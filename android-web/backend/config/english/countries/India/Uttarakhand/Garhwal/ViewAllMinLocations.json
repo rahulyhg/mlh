@@ -1,0 +1,16 @@
+{
+  "minLocations" :[{"minlocationName":"Badrinath","minlocationValue":"Badrinath"},
+				   {"minlocationName":"Karnaprayag","minlocationValue":"Karnaprayag"},
+				   {"minlocationName":"Tharali","minlocationValue":"Tharali"},
+				   {"minlocationName":"Ramnagar","minlocationValue":"Ramnagar"},
+				   {"minlocationName":"Chaubattakhal","minlocationValue":"Chaubattakhal"},
+				   {"minlocationName":"Kotdwar","minlocationValue":"Kotdwar"},
+				   {"minlocationName":"Lansdowne","minlocationValue":"Lansdowne"},
+				   {"minlocationName":"Pauri","minlocationValue":"Pauri"},
+				   {"minlocationName":"Srinagar","minlocationValue":"Srinagar"},
+				   {"minlocationName":"Yamkeshwar","minlocationValue":"Yamkeshwar"},
+				   {"minlocationName":"Kedarnath","minlocationValue":"Kedarnath"},
+				   {"minlocationName":"Rudraprayag","minlocationValue":"Rudraprayag"},
+				   {"minlocationName":"Devprayag","minlocationValue":"Devprayag"},
+				   {"minlocationName":"Narendranagar","minlocationValue":"Narendranagar"}]
+}

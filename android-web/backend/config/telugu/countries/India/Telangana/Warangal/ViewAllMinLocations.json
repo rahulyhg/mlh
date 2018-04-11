@@ -1,0 +1,14 @@
+{
+  "minLocations" :[{"minlocationName":"Jangaon","minlocationValue":"Jangaon"},
+				   {"minlocationName":"Ghanpur(Station)","minlocationValue":"Ghanpur(Station)"},
+				   {"minlocationName":"Palakurthi","minlocationValue":"Palakurthi"},
+				   {"minlocationName":"Dornakal","minlocationValue":"Dornakal"},
+				   {"minlocationName":"Mahabubabad","minlocationValue":"Mahabubabad"},
+				   {"minlocationName":"Narsampet","minlocationValue":"Narsampet"},
+				   {"minlocationName":"Parkal","minlocationValue":"Parkal"},
+				   {"minlocationName":"Warangal West","minlocationValue":"Warangal West"},
+				   {"minlocationName":"Warangal East","minlocationValue":"Warangal East"},
+				   {"minlocationName":"Waradhanapet","minlocationValue":"Waradhanapet"},
+				   {"minlocationName":"Bhupalpalle","minlocationValue":"Bhupalpalle"},
+				   {"minlocationName":"Mulug","minlocationValue":"Mulug"}]
+}

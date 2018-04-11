@@ -1,0 +1,12 @@
+{
+  "minLocations" :[{"minlocationName":"Jorhat","minlocationValue":"Jorhat"},
+				   {"minlocationName":"Titabar","minlocationValue":"Titabar"},
+				   {"minlocationName":"Mariani","minlocationValue":"Mariani"},
+				   {"minlocationName":"Teok","minlocationValue":"Teok"},
+				   {"minlocationName":"Amguri","minlocationValue":"Amguri"},
+				   {"minlocationName":"Nazira","minlocationValue":"Nazira"},
+				   {"minlocationName":"Mahmara","minlocationValue":"Mahmara"},
+				   {"minlocationName":"Sonari","minlocationValue":"Sonari"},
+				   {"minlocationName":"Thowra","minlocationValue":"Thowra"},
+				   {"minlocationName":"Sibsagar","minlocationValue":"Sibsagar"}]
+}

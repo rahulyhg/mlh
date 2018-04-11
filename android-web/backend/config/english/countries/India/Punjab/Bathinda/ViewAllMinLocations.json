@@ -1,0 +1,11 @@
+{
+  "minLocations" :[{"minlocationName":"Bhucho Mandi","minlocationValue":"Bhucho Mandi"},
+				   {"minlocationName":"Bathinda Urban","minlocationValue":"Bathinda Urban"},
+				   {"minlocationName":"Bathinda Rural","minlocationValue":"Bathinda Rural"},
+				   {"minlocationName":"Talwandi Sabo","minlocationValue":"Talwandi Sabo"},
+				   {"minlocationName":"Maur","minlocationValue":"Maur"},
+				   {"minlocationName":"Mansa","minlocationValue":"Mansa"},
+				   {"minlocationName":"Sardulgarh","minlocationValue":"Sardulgarh"},
+				   {"minlocationName":"Budhlada","minlocationValue":"Budhlada"},
+				   {"minlocationName":"Lambi","minlocationValue":"Lambi"}]
+}

@@ -1,0 +1,8 @@
+{
+  "minLocations" :[{"minlocationName":"Borivali","minlocationValue":"Borivali"},
+				   {"minlocationName":"Dahisar","minlocationValue":"Dahisar"},
+				   {"minlocationName":"Magathane","minlocationValue":"Magathane"},
+				   {"minlocationName":"Kandivali East","minlocationValue":"Kandivali East"},
+				   {"minlocationName":"Charkop","minlocationValue":"Charkop"},
+				   {"minlocationName":"Malad West","minlocationValue":"Malad West"}]
+}

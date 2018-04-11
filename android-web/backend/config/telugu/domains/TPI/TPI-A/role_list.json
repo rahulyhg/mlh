@@ -1,0 +1,4 @@
+{ 
+  "roles" :[{ "role_Id":"TPI-A-AD", "roleName":"AutoDriver" },
+			{ "role_Id":"TPI-A-AO", "roleName":"AutoOwner" }]
+}

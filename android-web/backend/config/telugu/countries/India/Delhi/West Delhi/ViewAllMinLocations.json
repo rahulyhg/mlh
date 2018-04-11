@@ -1,0 +1,12 @@
+{
+  "minLocations" :[{"minlocationName":"Madipur","minlocationValue":"Madipur"},
+				   {"minlocationName":"Rajouri Garden","minlocationValue":"Rajouri Garden"},
+				   {"minlocationName":"Hari Nagar","minlocationValue":"Hari Nagar"},
+				   {"minlocationName":"Tilak Nagar","minlocationValue":"Tilak Nagar"},
+				   {"minlocationName":"Janakpuri","minlocationValue":"Janakpuri"},
+				   {"minlocationName":"Vikaspuri","minlocationValue":"Vikaspuri"},
+				   {"minlocationName":"Uttam Nagar","minlocationValue":"Uttam Nagar"},
+				   {"minlocationName":"Dwarka","minlocationValue":"Dwarka"},
+				   {"minlocationName":"Matiala","minlocationValue":"Matiala"},
+				   {"minlocationName":"Najafgarh","minlocationValue":"Najafgarh"}]
+}

@@ -1,0 +1,5 @@
+{
+  "cloudinary": { "debug" :[{"cloudName":"dbcyhclaw","uploadpreset":"tpk5kzrt"}],
+				  "prod" : [{"cloudName":"dmmcate08","uploadpreset":"gki3kdvg"}]
+				}
+}

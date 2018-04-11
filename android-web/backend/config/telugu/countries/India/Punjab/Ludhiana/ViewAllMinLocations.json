@@ -1,0 +1,11 @@
+{
+  "minLocations" :[{"minlocationName":"Ludhiana East","minlocationValue":"Ludhiana East"},
+				   {"minlocationName":"Ludhiana South","minlocationValue":"Ludhiana South"},
+				   {"minlocationName":"Atam Nagar","minlocationValue":"Atam Nagar"},
+				   {"minlocationName":"Ludhiana Central","minlocationValue":"Ludhiana Central"},
+				   {"minlocationName":"Ludhiana West","minlocationValue":"Ludhiana West"},
+				   {"minlocationName":"Ludhiana North","minlocationValue":"Ludhiana North"},
+				   {"minlocationName":"Gill","minlocationValue":"Gill"},
+				   {"minlocationName":"Dakha","minlocationValue":"Dakha"},
+				   {"minlocationName":"Jagraon","minlocationValue":"Jagraon"}]
+}

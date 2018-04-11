@@ -1,0 +1,8 @@
+{
+  "minLocations" :[{"minlocationName":"Melur","minlocationValue":"Melur"},
+				   {"minlocationName":"Madurai East","minlocationValue":"Madurai East"},
+				   {"minlocationName":"Madurai North","minlocationValue":"Madurai North"},
+				   {"minlocationName":"Madurai South","minlocationValue":"Madurai South"},
+				   {"minlocationName":"Madurai Central","minlocationValue":"Madurai Central"},
+				   {"minlocationName":"Madurai West","minlocationValue":"Madurai West"}]
+}

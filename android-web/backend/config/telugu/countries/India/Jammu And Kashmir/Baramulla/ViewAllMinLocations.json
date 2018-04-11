@@ -1,0 +1,17 @@
+{
+  "minLocations" :[{"minlocationName":"Karnah","minlocationValue":"Karnah"},
+		           {"minlocationName":"Kupwara","minlocationValue":"Kupwara"},
+				   {"minlocationName":"Lolab","minlocationValue":"Lolab"},
+				   {"minlocationName":"Handwara","minlocationValue":"Handwara"},
+				   {"minlocationName":"Langate","minlocationValue":"Langate"},
+				   {"minlocationName":"Uri","minlocationValue":"Uri"},
+				   {"minlocationName":"Rafiabad","minlocationValue":"Rafiabad"},
+				   {"minlocationName":"Sopore","minlocationValue":"Sopore"},
+				   {"minlocationName":"Gurez","minlocationValue":"Gurez"},
+				   {"minlocationName":"Bandipora","minlocationValue":"Bandipora"},
+				   {"minlocationName":"Sonawari","minlocationValue":"Sonawari"},
+				   {"minlocationName":"Sangrama","minlocationValue":"Sangrama"},
+				   {"minlocationName":"Baramulla Region","minlocationValue":"Baramulla Region"},
+				   {"minlocationName":"Gulmarg","minlocationValue":"Gulmarg"},
+				   {"minlocationName":"Pattan","minlocationValue":"Pattan"}]
+}

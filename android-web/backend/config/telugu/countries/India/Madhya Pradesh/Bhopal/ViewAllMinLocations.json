@@ -1,0 +1,10 @@
+{
+  "minLocations" :[{"minlocationName":"Berasia","minlocationValue":"Berasia"},
+				   {"minlocationName":"Bhopal Uttar","minlocationValue":"Bhopal Uttar"},
+				   {"minlocationName":"Narela","minlocationValue":"Narela"},
+				   {"minlocationName":"Bhopal Dakshin-Paschim","minlocationValue":"Bhopal Dakshin-Paschim"},
+				   {"minlocationName":"Bhopal Madhya","minlocationValue":"Bhopal Madhya"},
+				   {"minlocationName":"Govindpura","minlocationValue":"Govindpura"},
+				   {"minlocationName":"Huzur","minlocationValue":"Huzur"},
+				   {"minlocationName":"Sehore","minlocationValue":"Sehore"}]
+}

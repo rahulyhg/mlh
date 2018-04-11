@@ -1,0 +1,406 @@
+$(document).ready(function(){
+bgstyle();
+$(".lang_"+USR_LANG).css('display','block');
+auth_choose("auth-part01-login"); 
+});
+
+function auth_choose(id){
+ var arry_auth1=["auth-part01-login","auth-part01-register"];
+ var arry_auth2=["auth-part01-login-a","auth-part01-register-a"];
+ for(var index=0;index<arry_auth1.length;index++){
+   if(arry_auth1[index]===id){ 
+      if(!$("#"+arry_auth1[index]).hasClass('active')) { $("#"+arry_auth1[index]).addClass('active'); }
+	  if(!$("#"+arry_auth2[index]).hasClass('tab-hgt')) { $("#"+arry_auth2[index]).addClass('tab-hgt'); }
+   } else {
+      if($("#"+arry_auth1[index]).hasClass('active')) { $("#"+arry_auth1[index]).removeClass('active'); }
+	  if($("#"+arry_auth2[index]).hasClass('tab-hgt')) { $("#"+arry_auth2[index]).removeClass('tab-hgt'); }
+   }
+ }
+ if(id==='auth-part01-login') {
+   document.getElementById("auth-part01-loginForm").style.display='block';
+   document.getElementById("auth-part01-registerForm").style.display='none';
+ }
+ if(id==='auth-part01-register') {
+   document.getElementById("auth-part01-loginForm").style.display='none';
+   document.getElementById("auth-part01-registerForm").style.display='block';
+   js_ajax('GET',PROJECT_URL+'backend/config/'+USR_LANG+'/countries/countries.json',{},countryload);
+ }
+}
+
+/**************************************************************************************************************************/
+/***********************************************    AUTHENTICATION : LOGIN  ***********************************************/
+/**************************************************************************************************************************/ 
+
+function login_email_verify(){ 
+/* This Function verifies the User entered Email Address is in right format or not.
+ * If it is in Right Format, Checks exist in Database or not.
+ * If Email exists in Database, displays PIN and ConfirmPIN Input Elements.
+ */
+ var email=document.getElementById("login_"+USR_LANG+"_email").value;
+ /* Check Email exists in Database or not */
+    var atpos = email.indexOf("@");
+    var dotpos = email.lastIndexOf(".");
+    if (atpos<1 || dotpos<atpos+2 || dotpos+2>=email.length) {
+       login_alert_display("alert_"+USR_LANG+"_invalidEmail");
+    } else {
+	   js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.auth.part01.php',
+               { action:'CHECK_EMAIL_UNIQUE', email:email },function(response){
+          if(response==='EMAIL_ALLOWED') {  /* It is allowed to Registered */
+            login_alert_display("alert_"+USR_LANG+"_notRegistered"); 
+          } else {    /* Email exists, Sign In is allowed */
+	        /* Display PIN and REPIN */ 
+			login_display_pinconfirmpin(email);
+		  }  
+       });
+	}  
+}
+
+
+function login_alert_display(id){ /* This Function enables Login Alerts when they are required to popup */
+ $('#auth-part01-loginForm-modal').modal({backdrop: "static"});
+ if($("#alert_"+USR_LANG+"_login").hasClass("hide-block")){
+      $("#alert_"+USR_LANG+"_login").removeClass("hide-block");
+    }
+ var ary_alert=["alert_"+USR_LANG+"_NoEmailEntered","alert_"+USR_LANG+"_invalidEmail","alert_"+USR_LANG+"_notRegistered",
+                "alert_"+USR_LANG+"_PINEmail","alert_"+USR_LANG+"_NoPINEntered","alert_"+USR_LANG+"_NoRePINEntered",
+				"alert_"+USR_LANG+"_PINRePINUnMatch","alert_"+USR_LANG+"_SentPINUnMatch"];
+ for(var index=0;index<ary_alert.length;index++){
+   if(id===ary_alert[index]) { 
+    // $("#"+ary_alert[index]).css("display","block"); 
+	 if($("#"+ary_alert[index]).hasClass("hide-block")){
+	    $("#"+ary_alert[index]).removeClass("hide-block");
+	 }
+	
+   }
+   else { if(!$("#"+ary_alert[index]).hasClass("hide-block")){
+      $("#"+ary_alert[index]).addClass("hide-block");
+    }
+   }
+ }
+}
+
+
+function login_auth(){
+/* This Function is called when a Login Button is clicked 
+ * When the Email Address exists in Database, PIN and Confirm PIN entered by User matches with GeneratedPIN,
+ * Then, the User is allowed to get Login required Data from Database and set in Session.
+ */
+  console.log("lang: "+USR_LANG);
+  console.log("Generated PIN: "+USR_LOGIN_PIN);
+  toggleMLHLoader('body');
+  var email=document.getElementById("login_"+USR_LANG+"_email").value;
+  console.log("Email: "+email);
+  if(email.length>0){
+    /* Start : */
+     var atpos = email.indexOf("@");
+     var dotpos = email.lastIndexOf(".");
+     if (atpos<1 || dotpos<atpos+2 || dotpos+2>=email.length) {
+        login_alert_display("alert_"+USR_LANG+"_invalidEmail");
+		toggleMLHLoader('body');
+     } else {
+	   console.log("AJAX CALL ");
+	   console.log("PROJECT_URL: "+PROJECT_URL);
+	   js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.auth.part01.php',
+               { action:'CHECK_EMAIL_UNIQUE', email:email },function(response){
+		  console.log("response: "+response);
+          if(response==='EMAIL_ALLOWED') {  /* It is allowed to Registered */
+              login_alert_display("alert_"+USR_LANG+"_notRegistered"); 
+			  toggleMLHLoader('body');
+          } else {    /* Email exists, Sign In is allowed and Display PIN and REPIN */ 
+			 /* Send PIN to Email */
+			    if($("#login_"+USR_LANG+"_pin").hasClass("hide-block")){
+					$("#login_"+USR_LANG+"_pin").removeClass("hide-block");
+				}
+				if($("#login_"+USR_LANG+"_repin").hasClass("hide-block")){
+					$("#login_"+USR_LANG+"_repin").removeClass("hide-block");
+				}
+				
+			 var pin=document.getElementById("login_"+USR_LANG+"_pin").value;
+	         var confirm_pin=document.getElementById("login_"+USR_LANG+"_repin").value;
+			
+			if((pin.length==0 && confirm_pin.length==0)) {
+			  js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.auth.part01.php',
+					{action:'SENDPIN_TO_EMAIL', email_Id:email, pin:USR_LOGIN_PIN},function(response){
+			     login_alert_display("alert_"+USR_LANG+"_PINEmail");	
+			  });
+			}	
+				
+
+			    if(pin.length>0){
+		          if(confirm_pin.length>0){
+		            if(pin===confirm_pin) {
+				         if(pin===USR_LOGIN_PIN){ 
+							 $('#auth-part01-loginForm-modal').modal('hide');
+							/* Remove SignIn / Register Notification In the App */
+							/* Set Required Parameters in the Session of App and the Web */
+							/* Then go to subscribe/categories page */
+							js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.auth.part01.php',
+                             { action:'USER_LOGIN', login_email:email },function(response){ 
+							 console.log("response: "+response);
+							   if(response==='AUTHENTICATION_SUCCESS'){
+							      toggleMLHLoader('body');
+								  window.location.href=PROJECT_URL+'subscribe/categories';
+							   }
+							 });
+							// 
+					     } else {
+					       login_alert_display("alert_"+USR_LANG+"_SentPINUnMatch"); 
+					       toggleMLHLoader('body');
+					    }
+				    } else {
+				          login_alert_display("alert_"+USR_LANG+"_PINRePINUnMatch"); 
+					      toggleMLHLoader('body');
+				      }
+			     } else {
+			        login_alert_display("alert_"+USR_LANG+"_NoRePINEntered"); 
+				    toggleMLHLoader('body');
+			     }
+			    } else {
+			       login_alert_display("alert_"+USR_LANG+"_NoPINEntered");
+			       toggleMLHLoader('body');
+	            }
+				
+            
+			}  
+       });
+	}  
+  } else { 
+       login_alert_display("alert_"+USR_LANG+"_NoEmailEntered");
+	   toggleMLHLoader('body');
+	   console.log("_NoEmailEntered");
+	}  
+}
+
+
+/**************************************************************************************************************************/
+/***********************************************    AUTHENTICATION : REGISTER  ********************************************/
+/**************************************************************************************************************************/ 
+
+function remove_prev_countryOpt(){ /* Delete previous Options */
+var countryElement=document.getElementById("reg_"+USR_LANG+"_country");
+for(var index=countryElement.length;index>0;index--) { countryElement.remove(index); }
+}
+
+function countryload(data){ /* Add States */ // Set it in Session: USER_REG_COUNTRY
+remove_prev_countryOpt();
+var countryElement=document.getElementById("reg_"+USR_LANG+"_country");
+for(var index=0;index<data.countries.length;index++) {
+ var option = document.createElement("option");
+     option.text = data.countries[index].countryName;
+	 option.value = data.countries[index].countryValue;
+ countryElement.add(option);
+}
+}
+
+function usr_change_countryTo(){
+var country=document.getElementById("reg_"+USR_LANG+"_country").value;
+remove_prev_stateOpt();
+remove_prev_locationOpt();
+remove_prev_localityOpt();
+if($("#reg_"+USR_LANG+"_state_division").hasClass('hide-block')) {
+ $("#reg_"+USR_LANG+"_state_division").removeClass('hide-block');
+}
+if(country.length>0){
+ js_ajax('GET',PROJECT_URL+'backend/config/'+USR_LANG+'/countries/'+country+'/viewAllStates.json',{},stateload);
+}
+}
+
+function remove_prev_stateOpt(){ /* Delete previous Options */
+ var stateElement=document.getElementById("reg_"+USR_LANG+"_state");
+ for(var index=stateElement.length;index>0;index--) { stateElement.remove(index); }
+}
+
+function stateload(data){ /* Add States */ // Session : USER_REG_STATE
+remove_prev_stateOpt();
+var stateElement=document.getElementById("reg_"+USR_LANG+"_state");
+for(var index=0;index<data.states.length;index++) {
+ var option = document.createElement("option");
+     option.text = data.states[index].stateName;
+     option.value = data.states[index].stateValue;
+ stateElement.add(option);
+}
+}
+
+function usr_change_stateTo(){
+remove_prev_locationOpt();
+remove_prev_localityOpt();
+if($("#reg_"+USR_LANG+"_location_division").hasClass('hide-block')) {
+ $("#reg_"+USR_LANG+"_location_division").removeClass('hide-block');
+}
+var country=document.getElementById("reg_"+USR_LANG+"_country").value;
+var state=document.getElementById("reg_"+USR_LANG+"_state").value;
+if(state.length>0) {
+js_ajax('GET',PROJECT_URL+'backend/config/'+USR_LANG+'/countries/'+country+'/'+state+'/viewAllLocations.json',{},locationload);
+}
+}
+
+function remove_prev_locationOpt(){ /* Delete previous Options */
+var locationElement=document.getElementById("reg_"+USR_LANG+"_location");
+for(var index=locationElement.length;index>0;index--) { locationElement.remove(index); }
+}
+
+function locationload(data){ /* Add Locations related to State Selected */  // Session : USER_REG_LOCATION
+remove_prev_locationOpt();
+var locationElement=document.getElementById("reg_"+USR_LANG+"_location"); 
+for(var index=0;index<data.location.length;index++) {
+ var option = document.createElement("option");
+     option.text = data.location[index].locationName;
+	 option.value = data.location[index].locationValue;
+     locationElement.add(option);
+}
+}
+
+function usr_change_locationTo(){
+remove_prev_localityOpt();
+if($("#reg_"+USR_LANG+"_locality_division").hasClass('hide-block')) {
+ $("#reg_"+USR_LANG+"_locality_division").removeClass('hide-block');
+}
+var country=document.getElementById("reg_"+USR_LANG+"_country").value;
+var state=document.getElementById("reg_"+USR_LANG+"_state").value;
+var location=document.getElementById("reg_"+USR_LANG+"_location").value;
+if(location.length>0) {
+js_ajax('GET',PROJECT_URL+'backend/config/'+USR_LANG+'/countries/'+country+'/'+state+'/'+location+'/ViewAllMinLocations.json',{},localityload);
+}
+}
+
+function remove_prev_localityOpt(){ /* Delete previous Options */
+var localityElement=document.getElementById("reg_"+USR_LANG+"_locality");
+for(var index=localityElement.length;index>0;index--) { localityElement.remove(index); }
+}
+
+function localityload(data){ /* Adding Locality related to Location Selected*/  // Session : USER_REG_LOCALITY
+remove_prev_localityOpt();
+var localityElement=document.getElementById("reg_"+USR_LANG+"_locality");
+ for(var index=0;index<data.minLocations.length;index++) {
+ var option = document.createElement("option");
+     option.text = data.minLocations[index].minlocationName;
+     option.value = data.minLocations[index].minlocationValue;
+     localityElement.add(option);
+ }
+}
+
+function register_alert_display(id){ /* This Function enables Login Alerts when they are required to popup */
+ $('#auth-part01-registerForm-modal').modal({backdrop: "static"});
+ if($("#alert_"+USR_LANG+"_register").hasClass("hide-block")){
+   $("#alert_"+USR_LANG+"_register").removeClass("hide-block");
+ }
+ var ary_alert=["alert_"+USR_LANG+"_missingUsername","alert_"+USR_LANG+"_usernameAlreadyExist", "alert_"+USR_LANG+"_missingSurname",
+                "alert_"+USR_LANG+"_missingFullName","alert_"+USR_LANG+"_missingEmail", "alert_"+USR_LANG+"_invalidRegEmail",
+				"alert_"+USR_LANG+"_emailAlreadyExist","alert_"+USR_LANG+"_missingCountry",
+				"alert_"+USR_LANG+"_missingState", "alert_"+USR_LANG+"_missingLocation", "alert_"+USR_LANG+"_missingLocality"]; 
+ for(var index=0;index<ary_alert.length;index++){
+   if(id===ary_alert[index]) { 
+      if($("#"+ary_alert[index]).hasClass("hide-block")){
+	    $("#"+ary_alert[index]).removeClass("hide-block");
+      }
+   }
+   else { 
+     if(!$("#"+ary_alert[index]).hasClass("hide-block")){
+	    $("#"+ary_alert[index]).addClass("hide-block");
+      }
+   }
+ }
+}
+
+function register_auth(){
+  toggleMLHLoader('body');
+  var username=document.getElementById("reg_"+USR_LANG+"_username").value;
+  document.getElementById("reg_"+USR_LANG+"_username").value=username.toLowerCase();
+  if(username.length>0) {
+  /* Check Username Uniquue or not */
+    js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.auth.part01.php',
+    {action:'CHECK_USERNAME_UNIQUE', username:username},function(response){
+	  console.log("username response: "+response);
+	  if(response==='USERNAME_ALLOWED'){ /* Username doesn't exists in Database */
+		  var surName=document.getElementById("reg_"+USR_LANG+"_surname").value;
+		   if(surName.length>0) {
+		      var fullName=document.getElementById("reg_"+USR_LANG+"_fullName").value;
+			   if(fullName.length>0){
+			      var email=document.getElementById("reg_"+USR_LANG+"_email").value;
+			      if(email.length>0){
+				    var atpos = email.indexOf("@");
+				    var dotpos = email.lastIndexOf(".");
+				    if(atpos<1 || dotpos<atpos+2 || dotpos+2>=email.length) {
+					   register_alert_display("alert_"+USR_LANG+"_invalidRegEmail");
+                       toggleMLHLoader('body');					   
+				    } else {  /* Valid Email Address */
+					    js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.auth.part01.php',
+                        { action:'CHECK_EMAIL_UNIQUE', email:email },function(response){
+						   var acc_type="OLD";
+						  if(response==='EMAIL_ALLOWED') { acc_type="NEW"; }
+						  else if(response==='EMAIL_EXISTS_INACTIVE') {  acc_type="REFERENCE"; }
+						  else { 
+						    register_alert_display("alert_"+USR_LANG+"_emailAlreadyExist");
+							toggleMLHLoader('body');
+						  } 
+						  if(acc_type==="NEW" || acc_type==="REFERENCE"){ /* Next Do */
+						    var country=document.getElementById("reg_"+USR_LANG+"_country").value;
+							if(country.length>0){
+							  var state=document.getElementById("reg_"+USR_LANG+"_state").value;
+							  if(state.length>0){
+							     var location=document.getElementById("reg_"+USR_LANG+"_location").value;
+							     if(location.length>0) {
+								    var locality=document.getElementById("reg_"+USR_LANG+"_locality").value;
+							        if(locality.length>0) {
+									   var reg_session_data='{"session_set":[';
+									       reg_session_data+='{ "key" : "AUTH_PART_01" , "value" : "COMPLETED" },';
+									       reg_session_data+='{ "key" : "USER_REG_USERNAME" , "value" : "'+username+'" },';
+										   reg_session_data+='{ "key" : "USER_REG_SURNAME" , "value" : "'+surName+'" },';
+										   reg_session_data+='{ "key" : "USER_REG_FULLNAME" , "value" : "'+fullName+'" },';
+										   reg_session_data+='{ "key" : "USER_REG_EMAIL" , "value" : "'+email+'" },';
+										   reg_session_data+='{ "key" : "USER_REG_COUNTRY" , "value" : "'+country+'" },';
+										   reg_session_data+='{ "key" : "USER_REG_STATE" , "value" : "'+state+'" },';
+										   reg_session_data+='{ "key" : "USER_REG_LOCATION" , "value" : "'+location+'" },';
+										   reg_session_data+='{ "key" : "USER_REG_LOCALITY" , "value" : "'+locality+'" },';
+										   reg_session_data+='{ "key" : "USER_REG_ACCTYPE" , "value" : "'+acc_type+'" }';
+									       reg_session_data+='],';
+									       reg_session_data+='"session_get":["USER_REG_USERNAME","USER_REG_SURNAME","USER_REG_FULLNAME","USER_REG_EMAIL","USER_REG_ACCTYPE"]}';
+                                       js_session(reg_session_data,function(response){
+								          window.location.href=PROJECT_URL+'initializer/confirm-email';
+										 
+									   });
+									} else {
+									    register_alert_display("alert_"+USR_LANG+"_missingLocality");
+										toggleMLHLoader('body');
+									}
+								 } else {
+								     register_alert_display("alert_"+USR_LANG+"_missingLocation");
+									 toggleMLHLoader('body');
+								 }
+							  } else {
+							     register_alert_display("alert_"+USR_LANG+"_missingState");
+								 toggleMLHLoader('body');
+							  }
+							} else {
+							   register_alert_display("alert_"+USR_LANG+"_missingCountry");
+							   toggleMLHLoader('body');
+							}
+						  }
+						});
+					}
+				  } else {
+		              register_alert_display("alert_"+USR_LANG+"_missingEmail");
+					  toggleMLHLoader('body');
+		          }
+			   } else {
+					register_alert_display("alert_"+USR_LANG+"_missingFullName");
+					toggleMLHLoader('body');
+		       }
+		   } else {
+		      register_alert_display("alert_"+USR_LANG+"_missingSurname");
+			  toggleMLHLoader('body');
+		   }
+		  
+	  } else { 
+		 register_alert_display("alert_"+USR_LANG+"_usernameAlreadyExist");
+		 toggleMLHLoader('body');
+	  }
+    });
+  } else {
+     register_alert_display("alert_"+USR_LANG+"_missingUsername");
+	 toggleMLHLoader('body');
+  }
+}
+
+
+

@@ -1,0 +1,4 @@
+{
+  "subdomains" :[{"subdomain_Id":"01-FIN-BNK","subdomainName":"Banking","source":""},
+                 {"subdomain_Id":"02-FIN-INS","subdomainName":"Insurance","source":""}]
+}

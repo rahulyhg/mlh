@@ -1,0 +1,11 @@
+{
+  "minLocations" :[{"minlocationName":"Baloda Bazar","minlocationValue":"Baloda Bazar"},
+				   {"minlocationName":"Bhatapara","minlocationValue":"Bhatapara"},
+				   {"minlocationName":"Dharsiwa","minlocationValue":"Dharsiwa"},
+				   {"minlocationName":"Raipur Rural","minlocationValue":"Raipur Rural"},
+				   {"minlocationName":"Raipur City West","minlocationValue":"Raipur City West"},
+				   {"minlocationName":"Raipur City North","minlocationValue":"Raipur City North"},
+				   {"minlocationName":"Raipur City South","minlocationValue":"Raipur City South"},
+				   {"minlocationName":"Arang","minlocationValue":"Arang"},
+				   {"minlocationName":"Abhanpur","minlocationValue":"Abhanpur"}]
+}

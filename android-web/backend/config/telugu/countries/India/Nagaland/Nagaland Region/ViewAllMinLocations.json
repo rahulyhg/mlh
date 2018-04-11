@@ -1,0 +1,10 @@
+{
+  "minLocations" :[{"minlocationName":"Dimapur","minlocationValue":"Dimapur"},
+				   {"minlocationName":"Kohima","minlocationValue":"Kohima"},
+				   {"minlocationName":"Mokokchung","minlocationValue":"Mokokchung"},
+				   {"minlocationName":"Mon","minlocationValue":"Mon"},
+				   {"minlocationName":"Phek","minlocationValue":"Phek"},
+				   {"minlocationName":"Tuensang","minlocationValue":"Tuensang"},
+				   {"minlocationName":"Wokha","minlocationValue":"Wokha"},
+				   {"minlocationName":"Zunheboto","minlocationValue":"Zunheboto"}]
+}

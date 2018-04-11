@@ -1,0 +1,5 @@
+{
+  "subdomains" :[{"subdomain_Id":"TPI-A","subdomainName":"Auto"},
+				 {"subdomain_Id":"TPI-B","subdomainName":"Bus"},
+				 {"subdomain_Id":"TPI-C","subdomainName":"Cabs"}]
+}

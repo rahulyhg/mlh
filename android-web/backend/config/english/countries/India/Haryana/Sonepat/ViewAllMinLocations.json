@@ -1,0 +1,11 @@
+{
+  "minLocations" :[{"minlocationName":"Ganaur","minlocationValue":"Ganaur"},
+	               {"minlocationName":"Rai","minlocationValue":"Rai"},
+				   {"minlocationName":"Kharkhauda","minlocationValue":"Kharkhauda"},
+				   {"minlocationName":"Sonipat Region","minlocationValue":"Sonipat Region"},
+				   {"minlocationName":"Gohana","minlocationValue":"Gohana"},
+				   {"minlocationName":"Baroda","minlocationValue":"Baroda"},
+				   {"minlocationName":"Julana","minlocationValue":"Julana"},
+				   {"minlocationName":"Safidon","minlocationValue":"Safidon"},
+				   {"minlocationName":"Jind","minlocationValue":"Jind"}]
+}

@@ -1,0 +1,12 @@
+{
+  "minLocations" :[{"minlocationName":"Karol Bagh","minlocationValue":"Karol Bagh"},
+				   {"minlocationName":"Patel Nagar","minlocationValue":"Patel Nagar"},
+				   {"minlocationName":"Moti Nagar","minlocationValue":"Moti Nagar"},
+				   {"minlocationName":"Delhi Cantonment","minlocationValue":"Delhi Cantonment"},
+				   {"minlocationName":"Rajinder Nagar","minlocationValue":"Rajinder Nagar"},
+				   {"minlocationName":"New Delhi City","minlocationValue":"New Delhi City"},
+				   {"minlocationName":"Kasturba Nagar","minlocationValue":"Kasturba Nagar"},
+				   {"minlocationName":"Malviya Nagar","minlocationValue":"Malviya Nagar"},
+				   {"minlocationName":"R K Puram","minlocationValue":"R K Puram"},
+				   {"minlocationName":"Greater Kailash","minlocationValue":"Greater Kailash"}]
+}

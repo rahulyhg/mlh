@@ -1,0 +1,11 @@
+{
+  "minLocations" :[{"minlocationName":"Kalka","minlocationValue":"Kalka"},
+				   {"minlocationName":"Panchkula","minlocationValue":"Panchkula"},
+				   {"minlocationName":"Naraingarh","minlocationValue":"Naraingarh"},
+				   {"minlocationName":"Ambala Cantonment","minlocationValue":"Ambala Cantonment"},
+				   {"minlocationName":"Ambala City","minlocationValue":"Ambala City"},
+				   {"minlocationName":"Mulana","minlocationValue":"Mulana"},
+				   {"minlocationName":"Sadhaura","minlocationValue":"Sadhaura"},
+				   {"minlocationName":"Jagadhri","minlocationValue":"Jagadhri"},
+				   {"minlocationName":"Yamuna Nagar","minlocationValue":"Yamuna Nagar"}]
+}

@@ -1,0 +1,12 @@
+{
+  "minLocations" :[{"minlocationName":"Adarsh Nagar","minlocationValue":"Adarsh Nagar"},
+				   {"minlocationName":"Shalimar Bagh","minlocationValue":"Shalimar Bagh"},
+				   {"minlocationName":"Shakur Basti","minlocationValue":"Shakur Basti"},
+				   {"minlocationName":"Tri Nagar","minlocationValue":"Tri Nagar"},
+				   {"minlocationName":"Wazirpur","minlocationValue":"Wazirpur"},
+				   {"minlocationName":"Model Town","minlocationValue":"Model Town"},
+				   {"minlocationName":"Sadar Bazar","minlocationValue":"Sadar Bazar"},
+				   {"minlocationName":"Chandni Chowk Urban","minlocationValue":"Chandni Chowk Urban"},
+				   {"minlocationName":"Matia Mahal","minlocationValue":"Matia Mahal"},
+				   {"minlocationName":"Ballimaran","minlocationValue":"Ballimaran"}]
+}

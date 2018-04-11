@@ -1,0 +1,11 @@
+{
+  "domains" :[{"domain_Id":"01-TPI","domainName":"Transportation","source":"images/categories/transportation.jpg"},
+              {"domain_Id":"02-EDU","domainName":"Education","source":"images/categories/education.jpg"},
+			  {"domain_Id":"03-MDA","domainName":"Media","source":"images/categories/media.jpg"},
+			  {"domain_Id":"04-STP","domainName":"Startups","source":"images/categories/startups.jpg"},
+			  {"domain_Id":"05-REL","domainName":"Religion","source":"images/categories/religion.jpg"},
+			  {"domain_Id":"06-FIN","domainName":"Banking and Finance","source":"images/categories/finance.jpg"},
+			  {"domain_Id":"07-AGR","domainName":"Agriculture","source":"images/categories/agriculture.jpg"},
+			  {"domain_Id":"08-ACE","domainName":"Arts, Culture and Entertainment","source":"images/categories/artsculture.jpg"},
+			  {"domain_Id":"09-ITS","domainName":"IT and Software","source":"images/categories/itsoftware.jpg"}]
+}

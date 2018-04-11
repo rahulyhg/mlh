@@ -1,0 +1,12 @@
+{
+  "minLocations" :[{"minlocationName":"Jangpura","minlocationValue":"Jangpura"},
+				  {"minlocationName":"Okhla","minlocationValue":"Okhla"},
+				  {"minlocationName":"Trilokpuri","minlocationValue":"Trilokpuri"},
+				  {"minlocationName":"Kondli","minlocationValue":"Kondli"},
+				  {"minlocationName":"Patparganj","minlocationValue":"Patparganj"},
+				  {"minlocationName":"Laxmi Nagar","minlocationValue":"Laxmi Nagar"},
+				  {"minlocationName":"Vishwas Nagar","minlocationValue":"Vishwas Nagar"},
+				  {"minlocationName":"Krishna Nagar","minlocationValue":"Krishna Nagar"},
+				  {"minlocationName":"Gandhi Nagar","minlocationValue":"Gandhi Nagar"},
+				  {"minlocationName":"Shahdara","minlocationValue":"Shahdara"}]
+}

@@ -1,0 +1,60 @@
+
+$(document).ready(function(){
+bgstyle();
+$(".lang_"+USR_LANG).css('display','block');
+});
+
+function alert_display_confirmEmail(id){
+if($("#alert_"+USR_LANG+"_confirmEmail").hasClass('hide-block')){
+  $("#alert_"+USR_LANG+"_confirmEmail").removeClass('hide-block');
+}
+var arry=["alert_"+USR_LANG+"_pinempty","alert_"+USR_LANG+"_repinempty",
+"alert_"+USR_LANG+"_pinrepinNoMatch","alert_"+USR_LANG+"_pinrepinGenpinNoMatch"];
+
+for(var index=0;index<arry.length;index++){
+  if(arry[index]===id) { 
+    if($("#"+arry[index]).hasClass('hide-block')){
+		$("#"+arry[index]).removeClass('hide-block');
+	}
+  } else {
+      if(!$("#"+arry[index]).hasClass('hide-block')){
+		$("#"+arry[index]).addClass('hide-block');
+	  }
+  }
+}
+
+}
+
+
+function reg_pin_auth(){
+ console.log("Generated PIN: "+USR_REG_PIN);
+ var pin=document.getElementById("reg_english_pin").value;
+ var confirmpin=document.getElementById("reg_english_confirmpin").value;
+ if(pin.length>0){
+   if(confirmpin.length>0){
+     if(pin===confirmpin){
+	     if(USR_REG_PIN===pin){
+		   var reg_session_data='{"session_set":[{ "key" : "AUTH_PART_02" , "value" : "COMPLETED" }';
+			   reg_session_data+='],';
+			   reg_session_data+='"session_get":["AUTH_PART_02"]}';
+           js_session(reg_session_data,function(response){
+			   window.location.href=PROJECT_URL+'initializer/profile-pic';
+		   });
+		 } else {
+		    alert_display_confirmEmail('alert_'+USR_LANG+'_pinrepinGenpinNoMatch');
+            $("#pinErrorModal").modal();
+		 }
+	 } else {
+	      alert_display_confirmEmail('alert_'+USR_LANG+'_pinrepinNoMatch');
+          $("#pinErrorModal").modal();
+	 }
+   } else {
+      alert_display_confirmEmail('alert_'+USR_LANG+'_repinempty');
+      $("#pinErrorModal").modal();
+   }
+ } else {
+    alert_display_confirmEmail('alert_'+USR_LANG+'_pinempty');
+    $("#pinErrorModal").modal();
+ }
+}
+
