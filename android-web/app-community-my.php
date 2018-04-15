@@ -34,6 +34,7 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
     <div id="page-content-wrapper">
 	  <?php include_once 'templates/api/api_header.php'; ?>
 	  <div id="app-page-content">
+	  
 	    <div id="app-page-title" class="list-group pad0">
 			<div align="center" class="list-group-item custom-lgt-bg">
 		       <span class="lang_english">
@@ -41,20 +42,35 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
 			   </span>
 			</div>
 		</div>
+		
 		<div class="container-fluid">
+		
 		    <div class="row">
 		     <div class="col-md-12">
 		       <a href="<?php echo $_SESSION["PROJECT_URL"]?>app/create-community">
 		         <button class="btn custom-bg pull-right"><b>Create Community</b></button>
 			   </a>
 		     </div>
-		   </div>
+		    </div>
+			
+			<div class="row mtop15p">
+			  <div class="col-md-12">
+				<div class="list-group">
+				  <div align="center" class="list-group-item custom-bg" style="text-transform:uppercase;font-size:12px;font-weight:bold;">Created Community List</div>
+				  <div class="list-group-item"></div>
+				  <div align="center" class="list-group-item custom-bg" style="text-transform:uppercase;font-size:12px;font-weight:bold;">Member of Community List</div>
+				  <div class="list-group-item"></div>
+				  <div align="center" class="list-group-item custom-bg" style="text-transform:uppercase;font-size:12px;font-weight:bold;">Supporting Community List</div>
+				  <div class="list-group-item"></div>
+				</div>
+			  </div>
+			</div>
+			
 		</div>
+		
 	   </div>
-	   <a href="#">
-	   <button>Reload</button>
-	   </a>
-	 </div>
+	</div>
+	
  </div>
 </body>
 </html>

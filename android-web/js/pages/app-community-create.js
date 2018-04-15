@@ -11,7 +11,7 @@ $(document).ready(function(){
  communityform_hglt("createCommunity-f1");
  newsFeedForm_mediaContent();
 });
-var FORM_LEVEL=2; /* 1,2,3,4 */
+var FORM_LEVEL=1; /* 1,2,3,4 */
 function communityform_hglt(id){
  var forms=["createCommunity-f1","createCommunity-f2","createCommunity-f3","createCommunity-f4"];
  for(var index=0;index<forms.length;index++){
