@@ -40,34 +40,14 @@ class newsfeed {
   }
   
   /* dash_info_union :: User_Votes  */
-  function query_newsFeed_checkUserVotedOrNot($info_Id,$user_Id,$newsType){
-   $sql="SELECT vote_Id FROM dash_info_user_votes WHERE info_Id = '".$info_Id."' ";
-   $sql.="AND user_Id = '".$user_Id."' AND newsType='".$newsType."';";
-   return $sql;
-  }
+ 
   
-  function query_newsFeed_updateUserVote($vote_Id,$vote){
-   $sql="UPDATE dash_info_user_votes SET vote='".$vote."' WHERE vote_Id='".$vote_Id."';";
-   return $sql;
-  }
-  
-  function query_newsFeed_addUserVote($vote_Id,$info_Id,$user_Id,$newsType,$vote){
-    $sql="INSERT INTO dash_info_user_votes(vote_Id,info_Id,user_Id,newsType,vote) ";
-	$sql.="VALUES ('".$vote_Id."','".$info_Id."','".$user_Id."','".$newsType."','".$vote."');";
-	return $sql;
-  }
+ 
   
   /* dash_info_union :: Favourites */
-  function query_newsFeed_addToUsrFavourites($fav_Id, $info_Id, $user_Id, $newsType){
-  $sql="INSERT INTO dash_info_user_fav(fav_Id, info_Id, user_Id, newsType) ";
-  $sql.="VALUES ('".$fav_Id."','".$info_Id."','".$user_Id."','".$newsType."')";
-  return $sql;
-  }
   
-  function query_newsFeed_deleteUsrFavourites($info_Id, $user_Id, $newsType){
-  $sql="DELETE FROM dash_info_user_fav WHERE info_Id='".$info_Id."' AND user_Id='".$user_Id."' AND newsType='".$newsType."';";
-  return $sql;
-  }
+  
+  
  
  /* dash_info_user_views :: Views */
  function query_newsFeed_noteUserViewed($view_Id, $info_Id, $user_Id, $newsType){
@@ -77,16 +57,7 @@ class newsfeed {
  }
  
  /* dash_info_union :: Likes */
-  function query_newsFeed_addToUsrLikes($like_Id, $info_Id, $user_Id, $newsType){
-  $sql="INSERT INTO dash_info_user_likes(like_Id, info_Id, user_Id, newsType) ";
-  $sql.="VALUES ('".$like_Id."','".$info_Id."','".$user_Id."','".$newsType."');";
-  return $sql;
-  }
   
-  function query_newsFeed_deleteUsrLikes($info_Id,$user_Id,$newsType){
-  $sql="DELETE FROM dash_info_user_likes WHERE info_Id='".$info_Id."' AND user_Id='".$user_Id."' AND newsType='".$newsType."';";
-  return $sql;
-  }
   
 
  

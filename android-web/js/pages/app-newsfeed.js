@@ -80,9 +80,9 @@ content+='Remove from <i class="fa fa-14px fa-heart"aria-hidden="true"></i> My F
 content+='Add to <i class="fa fa-14px fa-heart"aria-hidden="true"></i> My Favourites';
 }
 content+='</a></li>';
-content+='<li><a id="newsfeed-'+info_Id+'-statistics" href="#newsfeed-'+info_Id+'" >';
-content+='View <i class="fa fa-pie-chart" aria-hidden="true"></i>&nbsp;Statistics';
-content+='</a></li>';
+// content+='<li><a id="newsfeed-'+info_Id+'-statistics" href="#newsfeed-'+info_Id+'" >';
+// content+='View <i class="fa fa-pie-chart" aria-hidden="true"></i>&nbsp;Statistics';
+// content+='</a></li>';
 content+='</ul>';
 content+='</div>';
 
@@ -165,7 +165,7 @@ content+='class="col-md-4 col-xs-4" >';
 if(usr_liked==='Y') {
 content+='<span id="'+info_Id+'-likes" class="curpoint socio-btn custom-bg" style="background-color:'+CURRENT_DARK_COLOR+';"';
 content+='onclick="javascript:sel_likes(\''+newsType+'\',\''+union_Id+'\',\''+info_Id+'\','+likes+');">';
-content+='<i class="fa fa-thumbs-up"></i>&nbsp;<b>Liked</b>&nbsp;<i class="fa fa-check"></i>';
+content+='<i class="fa fa-thumbs-up"></i>&nbsp;<b>Liked</b>';
 content+='</span>';
 
 } else {
@@ -212,15 +212,13 @@ content+='</div>';
 content+='<div class="list-group-item pad0">';
 content+='<div class="container-fluid pad0" style="color:#6c7881;">';
 
-/* Anchor */
-content+='<div align="center" class="col-md-12 col-xs-12 pad0">';
-content+='<button class="btn form-control custom-bg" style="border-radius:0px;font-size:11px;background-color:'+CURRENT_DARK_COLOR+';color:#fff;">';
-// content+='<span class="socio-btn custom-bg" >';
-content+='<b>PROMOTE WITH&nbsp;<i class="fa fa-anchor" aria-hidden="true"></i>&nbsp;<b>HOOK</b>&nbsp;</b>';
-// content+='</span>';
-content+='</button>';
-content+='</div>';
-			  
+/* Hook Promote Button : Start */
+// content+='<div align="center" class="col-md-12 col-xs-12 pad0">';
+// content+='<button class="btn form-control custom-bg" style="border-radius:0px;font-size:11px;background-color:'+CURRENT_DARK_COLOR+';color:#fff;">';
+// content+='<b>PROMOTE WITH&nbsp;<i class="fa fa-anchor" aria-hidden="true"></i>&nbsp;<b>HOOK</b>&nbsp;</b>';
+// content+='</button>';
+// content+='</div>';
+/* Hook Promote Button : End */			  
 			  
 content+='</div>';
 content+='</div>';
@@ -304,7 +302,7 @@ if(vote_status==='voteup'){
   }
   /* AddLogic-VoteUp on UI: */
    if(ajaxvoteup){
-     js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.newsfeed.php',
+     js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.newsfeed.php',
        { action :'ADD_NEWSFEED_TO_USRVOTE',info_Id :info_Id, user_Id :AUTH_USER_ID, newsType:newsType, vote:'UP' },
 	 function(response){ console.log("VoteUpResponse:"+response); });
    }
@@ -327,7 +325,7 @@ if(vote_status==='voteup'){
   }
   /* AddLogic-VoteDown: */
   if(ajaxvotedown){
-    js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.newsfeed.php',
+    js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.newsfeed.php',
       { action : 'ADD_NEWSFEED_TO_USRVOTE',info_Id :info_Id, user_Id :AUTH_USER_ID,newsType:newsType,vote:'DOWN' },
 	  function(response){
          console.log("VoteDownResponse:"+response);
@@ -359,7 +357,7 @@ if(!$("#"+info_Id+"-favourite").hasClass('custom-font')){
   document.getElementById('newsfeed-'+info_Id+'-addRemoveMyFavourites').innerHTML=arfcontent;
 
   /* Ajax::: Add */
-js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.newsfeed.php',
+js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.newsfeed.php',
 { action : 'ADD_NEWSFEED_TO_USRFAV',info_Id :info_Id, user_Id :AUTH_USER_ID,newsType:newsType },function(response){
 console.log("UsrFavResponse(Add):"+response);
 });
@@ -374,7 +372,7 @@ console.log("UsrFavResponse(Add):"+response);
   document.getElementById('newsfeed-'+info_Id+'-addRemoveMyFavourites').innerHTML=rarfcontent;
   
   /* Ajax ::: */ // 
-js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.newsfeed.php',
+js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.newsfeed.php',
 { action : 'ADD_NEWSFEED_TO_REMOVEUSRFAV',info_Id :info_Id, user_Id :AUTH_USER_ID,newsType:newsType },function(response){
 console.log("UsrFavResponse(Remove):"+response);
 });
@@ -387,7 +385,7 @@ if(!$("#"+info_Id+"-likes").hasClass('custom-bg')){ /* Adding a Like */
   $("#"+info_Id+"-likes").addClass('custom-bg');
   $("#"+info_Id+"-likes").css('background-color',CURRENT_DARK_COLOR);
   like_status='Add';
-  var content='<i class="fa fa-check-circle"></i>&nbsp;<b>Liked</b>&nbsp;<i class="fa fa-check-circle"></i>';
+  var content='<i class="fa fa-thumbs-up"></i>&nbsp;<b>Liked</b>';
   document.getElementById(info_Id+"-likes").innerHTML=content;
   if($("#"+info_Id+"-likes").hasClass('custom-silver')){ 
     $("#"+info_Id+"-likes").removeClass('custom-silver');
@@ -405,13 +403,13 @@ if(!$("#"+info_Id+"-likes").hasClass('custom-bg')){ /* Adding a Like */
   }
 }
 if(like_status==='Add') {
-js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.newsfeed.php',
+js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.newsfeed.php',
          { action : 'ADD_NEWSFEED_TO_USRLIKES',info_Id :info_Id, user_Id :AUTH_USER_ID,newsType:newsType },
 		 function(response){ console.log("UsrLikesResponse(Add):"+response); });
 }
 
 if(like_status==='Remove') {
-js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.newsfeed.php',
+js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.newsfeed.php',
           { action : 'ADD_NEWSFEED_TO_REMOVEUSRLIKES',info_Id :info_Id, user_Id :AUTH_USER_ID,newsType:newsType },
 		  function(response){ console.log("UsrLikesResponse(Remove):"+response); });
 }

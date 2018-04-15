@@ -56,7 +56,6 @@ if(isset($_GET["action"])){
 		   $artShrtDesc=$unionFeedDejsonData[$index]->{'artShrtDesc'};
 		   $artDesc=$unionFeedDejsonData[$index]->{'artDesc'};
 		   $createdOn=$unionFeedDejsonData[$index]->{'createdOn'};
-		   $path_Id=$unionFeedDejsonData[$index]->{'path_Id'};
 		   $images=$unionFeedDejsonData[$index]->{'images'};
 		   $status=$unionFeedDejsonData[$index]->{'status'};
 		   
@@ -88,7 +87,6 @@ if(isset($_GET["action"])){
 		   $content.='"artShrtDesc":"'.$artShrtDesc.'",';
 	       $content.='"artDesc":"'.$artDesc.'",';
 		   $content.='"createdOn":"'.$createdOn.'",';
-		   $content.='"path_Id":"'.$path_Id.'",';
 		   $content.='"images":"'.$images.'",';
 		   $content.='"status":"'.$status.'",';
 		   $content.='"favourites":"'.$favourites.'",';
@@ -123,7 +121,6 @@ if(isset($_GET["action"])){
 		    $artShrtDesc=$bizFeedDejsonData[$index]->{'artShrtDesc'};
 		    $artDesc=$bizFeedDejsonData[$index]->{'artDesc'};
 		    $createdOn=$bizFeedDejsonData[$index]->{'createdOn'};
-		    $path_Id=$bizFeedDejsonData[$index]->{'path_Id'};
 		    $images=$bizFeedDejsonData[$index]->{'images'};
 		    $status=$bizFeedDejsonData[$index]->{'status'};
 			
@@ -154,7 +151,6 @@ if(isset($_GET["action"])){
 		   $content.='"artShrtDesc":"'.$artShrtDesc.'",';
 	       $content.='"artDesc":"'.$artDesc.'",';
 		   $content.='"createdOn":"'.$createdOn.'",';
-		   $content.='"path_Id":"'.$path_Id.'",';
 		   $content.='"images":"'.$images.'",';
 		   $content.='"status":"'.$status.'",';
 		   $content.='"favourites":"'.$favourites.'",';
@@ -176,7 +172,113 @@ if(isset($_GET["action"])){
 		} else { echo 'MISSING_LIMIT_END'; }
 	  } else { echo 'MISSING_LIMIT_START'; }
 	}
-	
+  else if($_GET["action"]=='ADD_NEWSFEED_TO_USRVOTE'){
+	/* User Votes UP/DOWN for a NewsFeed */
+	if(isset($_GET["info_Id"])){ // 
+	   if(isset($_GET["user_Id"])){
+	      if(isset($_GET["newsType"])){
+		    if(isset($_GET["vote"])){
+			  $idObj=new identity();
+			  $vote_Id=$idObj->dash_info_user_votes_id();
+			  $info_Id=$_GET["info_Id"];
+			  $user_Id=$_GET["user_Id"];
+			  $newsType=$_GET["newsType"];
+			  $vote=$_GET["vote"];
+			  $dbObj=new Database();
+		      $newsObj=new app_newsfeed();
+			  $checkVotedQuery=$newsObj->query_newsFeed_checkUserVotedOrNot($info_Id,$user_Id,$newsType);
+			  $voteJsonData=$dbObj->getJSONData($checkVotedQuery);
+			  $votedeJsonData=json_decode($voteJsonData);
+			  if(count($votedeJsonData)>0){ /* User already Voted */
+			  $vote_Id=$votedeJsonData[0]->{'vote_Id'};
+			  /* UPDATE */
+			  $usrVoteUpdateQuery=$newsObj->query_newsFeed_updateUserVote($vote_Id,$vote);
+			  echo $dbObj->addupdateData($usrVoteUpdateQuery);
+			  } else {
+			  /* INSERT */
+			  $usrVoteAddQuery=$newsObj->query_newsFeed_addUserVote($vote_Id,$info_Id,$user_Id,$newsType,$vote);
+			  echo $dbObj->addupdateData($usrVoteAddQuery);
+			  }
+			} else {
+			  echo 'MISSING_VOTE';
+			}
+	      } else {
+		     echo 'MISSING_USER_ID';
+	      }
+	   } else {
+		   echo 'MISSING_USER_ID';
+	   }
+	} else {
+	   echo 'MISSING_INFO_ID';
+	}
+  }
+  else if($_GET["action"]=='ADD_NEWSFEED_TO_USRFAV'){
+	 if(isset($_GET["info_Id"])){
+	   if(isset($_GET["user_Id"])){
+	     if(isset($_GET["newsType"])){
+		   $idObj=new identity();
+	       $fav_Id=$idObj->dash_info_user_fav_id();
+		   $info_Id=$_GET["info_Id"];
+		   $user_Id=$_GET["user_Id"];
+		   $newsType=$_GET["newsType"];
+		   $dbObj=new Database();
+		   $nfObj=new app_newsfeed();
+		   $query=$nfObj->query_newsFeed_addToUsrFavourites($fav_Id, $info_Id, $user_Id, $newsType);
+		   echo $dbObj->addupdateData($query);
+	     } else { echo 'MISSING_NEWSTYPE'; }
+	   } else { echo 'MISSING_USER_ID'; }
+	 } else { echo 'MISSING_INFO_ID'; }
+  }
+  else if($_GET["action"]=='ADD_NEWSFEED_TO_REMOVEUSRFAV'){
+	  if(isset($_GET["info_Id"])){
+	   if(isset($_GET["user_Id"])){
+	     if(isset($_GET["newsType"])){
+		   $info_Id=$_GET["info_Id"];
+		   $user_Id=$_GET["user_Id"];
+		   $newsType=$_GET["newsType"];
+		   $dbObj=new Database();
+		   $nfObj=new app_newsfeed();
+		   $query=$nfObj->query_newsFeed_deleteUsrFavourites($info_Id, $user_Id, $newsType);
+		   echo $dbObj->addupdateData($query);
+	     } else { echo 'MISSING_NEWSTYPE'; }
+	   } else { echo 'MISSING_USER_ID'; }
+	 } else { echo 'MISSING_INFO_ID'; }
+  }
+  else if($_GET["action"]=='ADD_NEWSFEED_TO_USRLIKES'){
+	   if(isset($_GET["info_Id"])){
+	   if(isset($_GET["user_Id"])){
+	     if(isset($_GET["newsType"])){
+		   $idObj=new identity();
+	       $like_Id=$idObj->dash_info_user_likes_id();
+		   $info_Id=$_GET["info_Id"];
+		   $user_Id=$_GET["user_Id"];
+		   $newsType=$_GET["newsType"];
+		   $dbObj=new Database();
+		   $nfObj=new app_newsfeed();
+		   $query=$nfObj->query_newsFeed_addToUsrLikes($like_Id, $info_Id, $user_Id, $newsType);
+		   echo $dbObj->addupdateData($query);
+	     } else { echo 'MISSING_NEWSTYPE'; }
+	   } else { echo 'MISSING_USER_ID'; }
+	 } else { echo 'MISSING_INFO_ID'; }
+  }
+  else if($_GET["action"]=='ADD_NEWSFEED_TO_REMOVEUSRLIKES'){
+	  if(isset($_GET["info_Id"])){
+	   if(isset($_GET["user_Id"])){
+	     if(isset($_GET["newsType"])){
+		   $info_Id=$_GET["info_Id"];
+		   $user_Id=$_GET["user_Id"];
+		   $newsType=$_GET["newsType"];
+		   $dbObj=new Database();
+		   $nfObj=new app_newsfeed();
+		   $query=$nfObj->query_newsFeed_deleteUsrLikes($info_Id,$user_Id,$newsType);
+		   echo $dbObj->addupdateData($query);
+	     } else { echo 'MISSING_NEWSTYPE'; }
+	   } else { echo 'MISSING_USER_ID'; }
+	 } else { echo 'MISSING_INFO_ID'; }
+	}
+  else if($_GET["action"]==''){
+  
+  }
 } else { echo 'MISSING_ACTION'; }
 
 ?>

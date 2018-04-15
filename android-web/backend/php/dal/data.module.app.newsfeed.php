@@ -18,7 +18,7 @@ class app_newsfeed {
     $sql="SELECT ";
 	$sql.="union_account.union_Id, union_account.unionName, union_account.domain_Id, union_account.subdomain_Id, union_account.unionURLName, ";
 	$sql.="dash_info_union.info_Id, dash_info_union.artTitle,dash_info_union.artShrtDesc, ";
-	$sql.="dash_info_union.artDesc, dash_info_union.createdOn, dash_info_union.path_Id, dash_info_union.images, ";
+	$sql.="dash_info_union.artDesc, dash_info_union.createdOn, dash_info_union.images, ";
 	$sql.=" dash_info_union.status ";
 	$sql.="FROM dash_info_union, union_account WHERE ";
 	$sql.="dash_info_union.union_Id=union_account.union_Id AND";
@@ -73,7 +73,7 @@ class app_newsfeed {
     $sql="SELECT biz_account.bizname,";
 	$sql.="dash_info_biz.info_Id, "; 
 	$sql.="dash_info_biz.biz_Id,   dash_info_biz.artTitle,  dash_info_biz.artShrtDesc,  dash_info_biz.artDesc, ";
-	$sql.="dash_info_biz.createdOn, dash_info_biz.path_Id, dash_info_biz.status ";
+	$sql.="dash_info_biz.createdOn, dash_info_biz.status ";
 	$sql.="FROM user_subscription, dash_info_biz, biz_account WHERE ";
 	$sql.="biz_account.biz_Id=dash_info_biz.biz_Id AND ";
     $sql.=" (( user_subscription.domain_Id=biz_account.domain_Id AND ";
@@ -190,6 +190,45 @@ class app_newsfeed {
     $sql.="AND user_account.user_Id=dash_info_user_views.user_Id GROUP BY dash_info_user_views.user_Id ";
 	$sql.="LIMIT ".$limit_start.",".$limit_end."; ";
 	return $sql;
+  }
+
+  function query_newsFeed_checkUserVotedOrNot($info_Id,$user_Id,$newsType){
+   $sql="SELECT vote_Id FROM dash_info_user_votes WHERE info_Id = '".$info_Id."' ";
+   $sql.="AND user_Id = '".$user_Id."' AND newsType='".$newsType."';";
+   return $sql;
+  }
+  
+  function query_newsFeed_updateUserVote($vote_Id,$vote){
+   $sql="UPDATE dash_info_user_votes SET vote='".$vote."' WHERE vote_Id='".$vote_Id."';";
+   return $sql;
+  }
+  
+  function query_newsFeed_addUserVote($vote_Id,$info_Id,$user_Id,$newsType,$vote){
+    $sql="INSERT INTO dash_info_user_votes(vote_Id,info_Id,user_Id,newsType,vote) ";
+	$sql.="VALUES ('".$vote_Id."','".$info_Id."','".$user_Id."','".$newsType."','".$vote."');";
+	return $sql;
+  }
+  
+  function query_newsFeed_addToUsrFavourites($fav_Id, $info_Id, $user_Id, $newsType){
+  $sql="INSERT INTO dash_info_user_fav(fav_Id, info_Id, user_Id, newsType) ";
+  $sql.="VALUES ('".$fav_Id."','".$info_Id."','".$user_Id."','".$newsType."')";
+  return $sql;
+  }
+  
+  function query_newsFeed_deleteUsrFavourites($info_Id, $user_Id, $newsType){
+  $sql="DELETE FROM dash_info_user_fav WHERE info_Id='".$info_Id."' AND user_Id='".$user_Id."' AND newsType='".$newsType."';";
+  return $sql;
+  }
+  
+  function query_newsFeed_addToUsrLikes($like_Id, $info_Id, $user_Id, $newsType){
+  $sql="INSERT INTO dash_info_user_likes(like_Id, info_Id, user_Id, newsType) ";
+  $sql.="VALUES ('".$like_Id."','".$info_Id."','".$user_Id."','".$newsType."');";
+  return $sql;
+  }
+  
+  function query_newsFeed_deleteUsrLikes($info_Id,$user_Id,$newsType){
+  $sql="DELETE FROM dash_info_user_likes WHERE info_Id='".$info_Id."' AND user_Id='".$user_Id."' AND newsType='".$newsType."';";
+  return $sql;
   }
 }
 ?>
