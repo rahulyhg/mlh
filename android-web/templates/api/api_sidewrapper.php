@@ -56,6 +56,13 @@ function logout(){
 				</div>
 			</a>
 		</li>
+		<li>
+			<a id="dn_english_myprofile" href="<?php echo $_SESSION["PROJECT_URL"]?>app/myprofile" onclick="javascript:mainMenuSelection(this.id);">
+				<div class="f14">
+				   <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;<b>My Profile</b>
+				</div>
+			</a>
+		</li>
 		<!--li>
 			<a id="dn_english_platform" href="<!--?php echo $_SESSION["PROJECT_URL"]--?>app/explore" onclick="javascript:mainMenuSelection(this.id);">
 				<div>

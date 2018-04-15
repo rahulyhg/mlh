@@ -1,8 +1,6 @@
 <?php
- $_SESSION["PROJECT_MODE"]='DEBUG'; // PROD/DEBUG
- if($_SESSION["PROJECT_MODE"]=='DEBUG'){ $_SESSION["PROJECT_URL"]='http://192.168.1.4/mylocalhook/'; } 
- else { $_SESSION["PROJECT_URL"]='http://'.$_SERVER["SERVER_NAME"].'/'; }
- 
+$_SESSION["PROJECT_MODE"]='DEBUG';
+if(!isset($_SESSION["PROJECT_URL"])){ $_SESSION["PROJECT_URL"]='http://192.168.1.4/mlh/android-web/'; }
 ?>
 <script type="text/javascript">
  var PROJECT_MODE='<?php echo $_SESSION["PROJECT_MODE"]; ?>';
@@ -30,7 +28,7 @@
  var AUTH_USER_FRIENDS='<?php if(isset($_SESSION["AUTH_USER_FRIENDS"])) { echo $_SESSION["AUTH_USER_FRIENDS"]; } ?>';
 /* User created Community List */
 var AUTH_USER_COMMUNITIES_CREATED='<?php if(isset($_SESSION["AUTH_USER_COMMUNITIES_CREATED"])) { echo $_SESSION["AUTH_USER_COMMUNITIES_CREATED"]; } ?>';
-console.log("[api_params] PROJECT_MODE: "+PROJECT_MODE);
+
 console.log("[api_params] PROJECT_URL: "+PROJECT_URL);
 console.log("[api_params] USR_LANG: "+USR_LANG);
 console.log("[api_params] AUTH_USER_ID: "+AUTH_USER_ID);
