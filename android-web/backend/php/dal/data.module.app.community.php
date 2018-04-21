@@ -33,5 +33,61 @@ class app_community {
 	$sql.="'".date('Y-m-d H:i:s')."','".$images."','".$status."')";
 	return $sql;
   }
+  
+  /* List of Communities Created by User */
+  function query_count_communitiesCreatedList($user_Id){
+    $sql="SELECT count(*) FROM union_account WHERE admin_Id='".$user_Id."';";
+	return $sql;
+  }
+  
+  function query_communitiesCreatedList($user_Id,$limit_start,$limit_end){
+    $sql="SELECT * FROM union_account WHERE admin_Id='".$user_Id."' LIMIT ".$limit_start.", ".$limit_end.";";
+	return $sql;
+  }
+  
+  function query_communityMembersCount($union_Id){
+    $sql="SELECT count(*) FROM union_mem WHERE union_Id='".$union_Id."';";
+	return $sql;
+  }
+  
+  function query_communitySupportersCount($union_Id){
+    $sql="SELECT count(*) FROM union_sup WHERE union_Id='".$union_Id."';";
+	return $sql;
+  }
+  
+  /* List of Communities Where User being Member */
+  function query_count_communitiesUserBeingMember($user_Id){
+   $sql="SELECT count(*) FROM union_account,union_mem WHERE union_account.union_Id IN (SELECT DISTINCT union_Id FROM ";
+   $sql.="union_mem WHERE user_Id='".$user_Id."') AND union_account.union_Id=union_mem.union_Id ";
+   $sql.="LIMIT ".$limit_start.", ".$limit_end.";";
+   return $sql;
+  }
+  
+  function query_communitiesUserBeingMember($user_Id,$limit_start,$limit_end){
+   $sql="SELECT DISTINCT union_account.union_Id, union_account.domain_Id, union_account.subdomain_Id, ";
+   $sql.="union_account.unionName, union_account.unionURLName, union_account.profile_pic, union_account.minlocation, ";
+   $sql.="union_account.location, union_account.state, union_account.country, union_account.created_On, ";
+   $sql.="union_account.admin_Id, union_mem.roleName, union_mem.isAdmin, union_mem.addedOn, union_mem.status ";
+   $sql.="FROM union_account,union_mem WHERE union_account.union_Id IN (SELECT DISTINCT union_Id FROM ";
+   $sql.="union_mem WHERE user_Id='".$user_Id."') AND union_account.union_Id=union_mem.union_Id ";
+   $sql.="LIMIT ".$limit_start.", ".$limit_end.";";
+   return $sql;
+  }
+
+  /* List of Communities Where User being Supporting */
+  function query_count_communitiesUserBeingSupporting($user_Id){
+   $sql="SELECT count(*) FROM union_account,union_sup WHERE union_account.union_Id IN (SELECT DISTINCT union_Id FROM ";
+   $sql.="union_sup WHERE user_Id='".$user_Id."') AND union_account.union_Id=union_sup.union_Id ";
+   $sql.="LIMIT ".$limit_start.", ".$limit_end.";";
+   return $sql;
+  }
+  
+  function query_communitiesUserBeingSupporting($user_Id,$limit_start,$limit_end){
+   $sql="SELECT * FROM union_account,union_sup WHERE union_account.union_Id IN (SELECT DISTINCT union_Id FROM ";
+   $sql.="union_sup WHERE user_Id='".$user_Id."') AND union_account.union_Id=union_sup.union_Id ";
+   $sql.="LIMIT ".$limit_start.", ".$limit_end.";";
+   return $sql;
+  }
+  
 }
 ?>

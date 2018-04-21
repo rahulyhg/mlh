@@ -12,8 +12,8 @@ js_session(sessionJSON,function(resp){ });
 /* Get Total News Feed Here */
 js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.newsfeed.php',
 {action:'TOTAL_PUBLIC_NEWSFEED',user_Id:AUTH_USER_ID},function(totalCount){ 
-if(totalCount===0){
-document.getElementById("publicNewsFeedlist").innerHTML='<div align="center"><span style="color:#aaa;">You don\'t have any more Newsfeed.</span></div>';
+if(totalCount==='0'){
+document.getElementById("publicNewsFeedlist").innerHTML='<div align="center" style="font-size:14px;color:#aaa;">You don\'t have any more Newsfeed.</div>';
 }
 scroll_loadInitializer('publicNewsFeedlist',10,getPublicNewsFeedBySource_data,totalCount);
 

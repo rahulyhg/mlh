@@ -32,8 +32,10 @@ function logout(){
 </script>
 <span class="lang_english">
 	<ul class="sidebar-nav">
-			<div align="center" class="div-w215px">
+			<div id="sideWrapper-profilepic" align="center" class="div-w215px">
+				<a href="<?php echo $_SESSION["PROJECT_URL"]?>app/myprofile">
 					<img src="<?php echo $_SESSION["AUTH_USER_PROFILEPIC"]; ?>" class="img-profilepic"/>
+				</a>
 			</div>
 	    <li>
 			<a id="dn_english_notifications" href="<?php echo $_SESSION["PROJECT_URL"]?>app/notifications" onclick="javascript:mainMenuSelection(this.id);">

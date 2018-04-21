@@ -1,5 +1,6 @@
 <?php
-$_SESSION["PROJECT_MODE"]='DEBUG';
+if(!isset($_SESSION["PROJECT_MODE"])){ $_SESSION["PROJECT_MODE"]='DEBUG'; }
+if(!isset($_SESSION["USR_LANG"])){ $_SESSION["USR_LANG"]='english'; }
 if(!isset($_SESSION["PROJECT_URL"])){ $_SESSION["PROJECT_URL"]='http://192.168.1.4/mlh/android-web/'; }
 ?>
 <script type="text/javascript">
@@ -8,7 +9,7 @@ if(!isset($_SESSION["PROJECT_URL"])){ $_SESSION["PROJECT_URL"]='http://192.168.1
  /* AUTHENTICATION_STATUS - COMPLETED/INCOMPLETED */
  var AUTHENTICATION_STATUS='<?php echo $_SESSION["AUTHENTICATION_STATUS"]; ?>'; 
  /* USER DATA */
- var USR_LANG='<?php if(isset($_SESSION["DRI_LANG"])) { echo $_SESSION["DRI_LANG"]; } ?>';
+ var USR_LANG='<?php if(isset($_SESSION["USR_LANG"])) { echo $_SESSION["USR_LANG"]; } ?>';
  var AUTH_USER_ID='<?php if(isset($_SESSION["AUTH_USER_ID"])) { echo $_SESSION["AUTH_USER_ID"]; } ?>';
  var AUTH_USER_USERNAME='<?php if(isset($_SESSION["AUTH_USER_USERNAME"])) { echo $_SESSION["AUTH_USER_USERNAME"]; } ?>';
  var AUTH_USER_SURNAME='<?php if(isset($_SESSION["AUTH_USER_SURNAME"])) { echo $_SESSION["AUTH_USER_SURNAME"]; } ?>';

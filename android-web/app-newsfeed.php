@@ -50,7 +50,6 @@ a.newsfeed-content { color:#000; }
 /* CSS : End */	
 </style>
 <script type="text/javascript">
-
 </script>
 </head>
 <body>

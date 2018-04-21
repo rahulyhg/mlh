@@ -23,6 +23,191 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/app-community-my.js"></script>
  <script type="text/javascript" src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/file-upload.js"></script>
  <script type="text/javascript" src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/croppie.js"></script>
+<script type="text/javascript">
+function urlRedirect_createCommunity(){ window.location.href=PROJECT_URL+'app/create-community'; }
+function urlRedirect_browseCommunity(){ window.location.href=PROJECT_URL+'app/findcommunity'; }
+$(document).ready(function(){
+sel_viewCommunityType('seltype_youcreated');
+});
+function sel_viewCommunityType(id){ 
+ var arr_list=["seltype_youcreated","seltype_beMember","seltype_beSupport"];
+ var arr_list_content=["community_youcreated_content0","community_beMember_content0","community_beSupport_content0"];
+ for(var index=0;index<arr_list.length;index++){
+   if(arr_list[index]===id){ 
+     if(!$('#'+arr_list[index]).hasClass('setTypeActive')) { $('#'+arr_list[index]).addClass('setTypeActive'); } 
+	 if($('#'+arr_list[index]).hasClass('setTypeInActive')) { $('#'+arr_list[index]).removeClass('setTypeInActive'); } 
+	 document.getElementById(arr_list_content[index]).style.display='block';
+   }
+   else { 
+     if($('#'+arr_list[index]).hasClass('setTypeActive')) { $('#'+arr_list[index]).removeClass('setTypeActive'); } 
+	 if(!$('#'+arr_list[index]).hasClass('setTypeInActive')) { $('#'+arr_list[index]).addClass('setTypeInActive'); } 
+	 document.getElementById(arr_list_content[index]).style.display='none';
+   }
+ }
+ if(id==='seltype_youcreated'){ communitylist_youCreated(); }
+ if(id==='seltype_beMember'){ communitylist_beMember(); }
+ if(id==='seltype_beSupport'){ communitylist_beSupport(); }
+}
+function communitylist_youCreated_contentData(div_view, appendContent,limit_start,limit_end){
+js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.community.mylist.php',
+{ action:'USERCREATED_COMMUNITYLIST', user_Id:AUTH_USER_ID, limit_start:limit_start, limit_end:limit_end},function(response){ 
+console.log(response);
+response=JSON.parse(response);
+var content='';
+  for(var index=0;index<response.communityListCreated.length;index++){
+    var union_Id=response.communityListCreated[index].union_Id;
+	var domain_Id=response.communityListCreated[index].domain_Id;
+	var domainName=response.communityListCreated[index].domainName;
+	var subdomain_Id=response.communityListCreated[index].subdomain_Id;
+	var subdomainName=response.communityListCreated[index].subdomainName;
+	var unionName=response.communityListCreated[index].unionName;
+	var unionURLName=response.communityListCreated[index].unionURLName;
+	var profile_pic=response.communityListCreated[index].profile_pic;
+	var minlocation=response.communityListCreated[index].minlocation;
+	var location=response.communityListCreated[index].location;
+	var state=response.communityListCreated[index].state;
+	var country=response.communityListCreated[index].country;
+	var created_On=get_stdDateTimeFormat01(response.communityListCreated[index].created_On);
+	var admin_Id=response.communityListCreated[index].admin_Id;
+    var members_count=response.communityListCreated[index].members_count;
+	var supporters_count=response.communityListCreated[index].supporters_count;
+   content+='<div class="list-group pad10" style="margin-bottom:10px;">';
+   content+='<div class="list-group-item">';
+   content+='<div class="container-fluid pad0">';
+   content+='<div class="col-md-12 col-xs-12 pad0">'; 
+   content+='<span class="label label-newsfeed custom-bg" style="background-color:#0ba0da;">';
+   content+='<b>'+domainName.toUpperCase()+' / '+subdomainName.toUpperCase()+'</b></span>';
+   content+='</div>';
+   content+='<div class="col-md-12 pad0">';
+   content+='<div class="col-md-3 col-xs-3 mtop15p">'; 
+   content+='<img class="img-min-profilepic" src="'+profile_pic+'">';
+   content+='</div>';
+   content+='<div align="left" class="col-md-9 col-xs-9 frnshipreqdiv">';
+   content+='<h5><b>'+unionName+'</b></h5>';
+   content+='<div style="color:#87898a;">created on '+created_On+'</div>';
+   content+='<div class="frnshipreqaddr mtop15p" style="color:#000;">'+minlocation+', '+location+', '+state+', '+country+'</div>';
+   content+='</div>';
+   content+='</div>';
+   content+='</div>';
+   content+='</div>';
+   content+='<div class="list-group-item">';
+   content+='<div class="container-fluid pad0">';
+   content+='<div align="center" class="col-md-6 col-xs-6" style="border-right:1px solid #ccc;">';
+   content+='<h4 style="color:#87898a;"><b>'+members_count+'</b></h4>';
+   content+='<b>MEMBERS</b>';
+   content+='</div>';
+   content+='<div align="center" class="col-md-6 col-xs-6">';
+   content+='<h4 style="color:#87898a;"><b>'+supporters_count+'</b></h4>';
+   content+='<b>SUPPORTERS</b>';
+   content+='</div>';
+   content+='</div>';
+   content+='</div>';
+   content+='</div>';
+  }
+  content+=appendContent;
+ document.getElementById(div_view).innerHTML=content;
+});
+}
+function communitylist_youCreated(){
+js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.community.mylist.php',
+{ action:'USERCREATED_COMMUNITYLIST_COUNT', user_Id:AUTH_USER_ID },function(total_data){ 
+ if(total_data==='0'){
+  content+='<div align="center" style="color:#87898a;">You didn\'t created any Community</div>';
+ } else {
+  scroll_loadInitializer('community_youcreated_content',10,communitylist_youCreated_contentData,total_data);
+ }
+});
+}
+function communitylist_beMember(){
+js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.community.mylist.php',
+{ action:'USERBEINGMEMBER_COMMUNITYLIST_COUNT', user_Id:AUTH_USER_ID },function(total_data){ 
+ if(total_data==='0'){
+  content+='<div align="center" style="color:#87898a;">You are not the Member of any Community</div>';
+ } else {
+  scroll_loadInitializer('community_beMember_content',10,communitylist_beMember_contentData,total_data);
+ }
+});
+}
+function communitylist_beMember_contentData(div_view, appendContent,limit_start,limit_end){
+js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.community.mylist.php',
+{ action:'USERBEINGMEMBER_COMMUNITYLIST', user_Id:AUTH_USER_ID, limit_start:limit_start, limit_end:limit_end},
+function(response){ 
+ console.log(response);
+response=JSON.parse(response);
+var content='';
+  for(var index=0;index<response.beingMemberCommunityList.length;index++){
+    var union_Id=response.beingMemberCommunityList[index].union_Id;
+	var domain_Id=response.beingMemberCommunityList[index].domain_Id;
+	var domainName=response.beingMemberCommunityList[index].domainName;
+	var subdomain_Id=response.beingMemberCommunityList[index].subdomain_Id;
+	var subdomainName=response.beingMemberCommunityList[index].subdomainName;
+	var unionName=response.beingMemberCommunityList[index].unionName;
+	var unionURLName=response.beingMemberCommunityList[index].unionURLName;
+	var profile_pic=response.beingMemberCommunityList[index].profile_pic;
+	var minlocation=response.beingMemberCommunityList[index].minlocation;
+	var location=response.beingMemberCommunityList[index].location;
+	var state=response.beingMemberCommunityList[index].state;
+	var country=response.beingMemberCommunityList[index].country;
+	var created_On=get_stdDateTimeFormat01(response.beingMemberCommunityList[index].created_On);
+	var admin_Id=response.beingMemberCommunityList[index].admin_Id;
+    var members_count=response.beingMemberCommunityList[index].members_count;
+	var supporters_count=response.beingMemberCommunityList[index].supporters_count;
+	var roleName=response.beingMemberCommunityList[index].roleName;
+	var isAdmin=response.beingMemberCommunityList[index].isAdmin;
+	var addedOn=response.beingMemberCommunityList[index].addedOn;
+	var status=response.beingMemberCommunityList[index].status;
+
+   content+='<div class="list-group pad10" style="margin-bottom:10px;">';
+   content+='<div class="list-group-item">';
+   content+='<div class="container-fluid pad0">';
+   content+='<div class="col-md-12 col-xs-12 pad0">'; 
+   content+='<span class="label label-newsfeed custom-bg" style="background-color:#0ba0da;">';
+   content+='<b>'+domainName.toUpperCase()+' / '+subdomainName.toUpperCase()+'</b></span>';
+   content+='</div>';
+   content+='<div class="col-md-12 pad0">';
+   content+='<div class="col-md-3 col-xs-3 mtop15p">'; 
+   content+='<img class="img-min-profilepic" src="'+profile_pic+'">';
+   content+='</div>';
+   content+='<div align="left" class="col-md-9 col-xs-9 frnshipreqdiv">';
+   content+='<h5><b>'+unionName+'</b></h5>';
+   content+='<div style="color:#87898a;">created on '+created_On+'</div>';
+   content+='<div class="frnshipreqaddr mtop15p" style="color:#000;">'+minlocation+', '+location+', '+state+', '+country+'</div>';
+   content+='</div>';
+   content+='</div>';
+   content+='</div>';
+   content+='</div>';
+   content+='<div class="list-group-item">';
+   content+='<div class="container-fluid pad0">';
+   content+='<div align="center" class="col-md-6 col-xs-6" style="border-right:1px solid #ccc;">';
+   content+='<h4 style="color:#87898a;"><b>'+members_count+'</b></h4>';
+   content+='<b>MEMBERS</b>';
+   content+='</div>';
+   content+='<div align="center" class="col-md-6 col-xs-6">';
+   content+='<h4 style="color:#87898a;"><b>'+supporters_count+'</b></h4>';
+   content+='<b>SUPPORTERS</b>';
+   content+='</div>';
+   content+='</div>';
+   content+='</div>';
+   content+='</div>';
+  }
+  content+=appendContent;
+ document.getElementById(div_view).innerHTML=content;
+});
+}  
+function communitylist_beSupport(){
+
+}
+function communitylist_beSupport_contentData(div_view, appendContent,limit_start,limit_end){
+js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.community.mylist.php',
+{ action:'USER_BEINGSUPPORT_COMMUNITYLIST', user_Id:AUTH_USER_ID },function(response){ 
+ document.getElementById("community_beSupport_content0").innerHTML=response;
+});
+}
+</script>
+<style>
+.setTypeActive { border:2px solid #0ba0da;padding:5px;color:#0ba0da;cursor:pointer; }
+.setTypeInActive { padding:5px;cursor:pointer; }
+</style>
 </head>
 <body>
  <?php include_once 'templates/api/api_loading.php'; ?>
@@ -42,28 +227,47 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
 			   </span>
 			</div>
 		</div>
-		
+
 		<div class="container-fluid">
-		
-		    <div class="row">
-		     <div class="col-md-12">
-		       <a href="<?php echo $_SESSION["PROJECT_URL"]?>app/create-community">
-		         <button class="btn custom-bg pull-right"><b>Create Community</b></button>
-			   </a>
+		   <div class="row">
+		     <div align="right" class="col-md-12">
+			   <div class="btn-group">
+		          <button class="btn custom-bg" onclick="javascript:urlRedirect_createCommunity();"><b>Create Community</b></button>
+			      <button class="btn custom-lgt-bg" onclick="javascript:urlRedirect_browseCommunity();"><b>Browse Community</b></button>
+			   </div>
 		     </div>
 		    </div>
+	
+			<div class="row">
+			  <div class="col-md-12"><hr/></div>
+			  <div class="col-md-12 mtop15p">
+			     <span id="seltype_youcreated" onclick="javascript:sel_viewCommunityType('seltype_youcreated');"><b>You Created</b></span>
+				 <span id="seltype_beMember" onclick="javascript:sel_viewCommunityType('seltype_beMember');"><b>Being Member</b></span>
+				 <span id="seltype_beSupport" onclick="javascript:sel_viewCommunityType('seltype_beSupport');"><b>Being Supporting</b></span>
+			  </div>
+			  <div class="col-md-12 mtop15p"><hr/></div>
+			</div>
 			
-			<div class="row mtop15p">
-			  <div class="col-md-12">
-				<div class="list-group">
-				  <div align="center" class="list-group-item custom-bg" style="text-transform:uppercase;font-size:12px;font-weight:bold;">Created Community List</div>
-				  <div class="list-group-item"></div>
-				  <div align="center" class="list-group-item custom-bg" style="text-transform:uppercase;font-size:12px;font-weight:bold;">Member of Community List</div>
-				  <div class="list-group-item"></div>
-				  <div align="center" class="list-group-item custom-bg" style="text-transform:uppercase;font-size:12px;font-weight:bold;">Supporting Community List</div>
-				  <div class="list-group-item"></div>
+			<div class="row">
+			 
+			 <div id="community_youcreated_content0" class="col-md-12">
+			    <div align="center">
+				  <img src="images/load.gif" style="width:150px;height:150px;"/>
+				</div>
+			 </div>
+			
+			  <div id="community_beMember_content0" class="col-md-12">
+			    <div align="center">
+				  <img src="images/load.gif" style="width:150px;height:150px;"/>
 				</div>
 			  </div>
+			  
+			  <div id="community_beSupport_content0" class="col-md-12">
+			    <div align="center">
+				  <img src="images/load.gif" style="width:150px;height:150px;"/>
+				</div>
+			  </div>
+			  
 			</div>
 			
 		</div>

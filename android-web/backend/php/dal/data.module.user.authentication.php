@@ -87,6 +87,11 @@ class user_authentication {
   return $query;
  }
 
+  /* My Profile */
+  function query_updateProfilePicture($user_Id,$profilepic){
+    $sql="UPDATE user_account SET profile_pic='".$profilepic."' WHERE user_Id='".$user_Id."';";
+	return $sql;
+  }
 }
 
 ?>

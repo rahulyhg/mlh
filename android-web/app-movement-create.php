@@ -102,7 +102,6 @@ var content='<div align="center" class="col-md-12">';
 	
  document.getElementById("petition-content-media").innerHTML=content;
 }
-
 </script>
 		  <!-- Petition - MEDIA -->
 			<div id="petition-content-media" class="row">

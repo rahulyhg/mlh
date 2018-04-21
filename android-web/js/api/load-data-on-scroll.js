@@ -24,9 +24,9 @@
  * | }                                                                            |                                        *
  * --------------------------------------------------------------------------------                                        *
  * STEP-2: Call the Following Function where it should be triggered.                                                       *
- * ---------------------------------------------------------------------------------------------------                     *
- * |  scroll_loadInitializer('searchload',10,contentData); // division_Id,display_limit,functionName |                     *
- * ---------------------------------------------------------------------------------------------------                     *
+ * --------------------------------------------------------------------------------------------------------------          *
+ * |  scroll_loadInitializer('searchload',10,contentData,total_data); // division_Id,display_limit,functionName |          *
+ * --------------------------------------------------------------------------------------------------------------          *
  * In above Syntax, "searchload" is an identity we mentioned in Division.                                                  *
  *                  10 is the display_limit, which fetch this many rows from Database.                                     *
  *                  contentData is the functionName that returns content data from Database.                               *
