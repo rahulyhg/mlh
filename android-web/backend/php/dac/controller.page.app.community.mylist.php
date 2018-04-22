@@ -8,11 +8,13 @@ $logger=Logger::getLogger("controller.page.app.community.mylist.php");
 if(isset($_GET["action"])){
 if($_GET["action"]=='USERCREATED_COMMUNITYLIST_COUNT'){
  if(isset($_GET["user_Id"])){
+   $user_Id=$_GET["user_Id"];
    $dbObj=new Database();
    $comObj=new app_community();
    $query=$comObj->query_count_communitiesCreatedList($user_Id);
    $jsonData=$dbObj->getJSONData($query);
-   echo $jsonData;
+   $dejsonData=json_decode($jsonData);
+   echo $dejsonData[0]->{'count(*)'};
  } else { echo 'MISSING_USERID'; }
 } 
 else if($_GET["action"]=='USERCREATED_COMMUNITYLIST'){
@@ -180,10 +182,12 @@ else if($_GET["action"]=='USERBEINGMEMBER_COMMUNITYLIST'){
 else if($_GET["action"]=='USERBEINGSUPPORT_COMMUNITYLIST_COUNT'){
  if(isset($_GET["user_Id"])){
    $dbObj=new Database();
+   $user_Id=$_GET["user_Id"];
    $comObj=new app_community();
    $query=$comObj->query_count_communitiesUserBeingSupporting($user_Id);
    $jsonData=$dbObj->getJSONData($query);
-   echo $jsonData;
+   $dejsonData=json_decode($jsonData);
+   echo $dejsonData[0]->{'count(*)'};
  } else { echo 'MISSING_USERID'; }
 }
 else if($_GET["action"]=='USERBEINGSUPPORT_COMMUNITYLIST'){
@@ -199,7 +203,7 @@ else if($_GET["action"]=='USERBEINGSUPPORT_COMMUNITYLIST'){
   $query=$comObj->query_communitiesUserBeingSupporting($user_Id,$limit_start,$limit_end);
   $jsonData=$dbObj->getJSONData($query);
   $dejsonData=json_decode($jsonData);
-  $content='[';
+  $content='{"beingSupportingCommunityList":[';
   if(count($dejsonData)>0){ 
     for($index=0;$index<count($dejsonData);$index++){
      $union_Id=$dejsonData[$index]->{'union_Id'};
@@ -218,8 +222,18 @@ else if($_GET["action"]=='USERBEINGSUPPORT_COMMUNITYLIST'){
 	 $admin_Id=$dejsonData[$index]->{'admin_Id'};
 	 $supportOn=$dejsonData[$index]->{'supportOn'};
 	  
+	 $memQuery=$comObj->query_communityMembersCount($union_Id);
+     $memjsonData=$dbObj->getJSONData($memQuery);
+     $memdejsonData=json_decode($memjsonData);
+	 
+     $supQuery=$comObj->query_communitySupportersCount($union_Id);
+     $supjsonData=$dbObj->getJSONData($supQuery);
+     $supdejsonData=json_decode($supjsonData);
+	 
 	 $content.='{';
 	 $content.='"union_Id":"'.$union_Id.'",';
+	 $content.='"members_count":"'.$memdejsonData[0]->{'count(*)'}.'",';
+	 $content.='"supporters_count":"'.$supdejsonData[0]->{'count(*)'}.'",';
 	 $content.='"domain_Id":"'.$domain_Id.'",';
 	 $content.='"domainName":"'.$domainName.'",';
 	 $content.='"subdomain_Id":"'.$subdomain_Id.'",';
@@ -238,7 +252,7 @@ else if($_GET["action"]=='USERBEINGSUPPORT_COMMUNITYLIST'){
 	}
 	$content=chop($content,',');
   }
-  $content.=']';
+  $content.=']}';
   echo $content;
  } else { 
     $content='Missing ';

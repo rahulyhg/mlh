@@ -28,6 +28,9 @@ function urlRedirect_createCommunity(){ window.location.href=PROJECT_URL+'app/cr
 function urlRedirect_browseCommunity(){ window.location.href=PROJECT_URL+'app/findcommunity'; }
 $(document).ready(function(){
 sel_viewCommunityType('seltype_youcreated');
+communitylist_youCreated();
+communitylist_beMember(); 
+communitylist_beSupport();
 });
 function sel_viewCommunityType(id){ 
  var arr_list=["seltype_youcreated","seltype_beMember","seltype_beSupport"];
@@ -44,14 +47,11 @@ function sel_viewCommunityType(id){
 	 document.getElementById(arr_list_content[index]).style.display='none';
    }
  }
- if(id==='seltype_youcreated'){ communitylist_youCreated(); }
- if(id==='seltype_beMember'){ communitylist_beMember(); }
- if(id==='seltype_beSupport'){ communitylist_beSupport(); }
 }
 function communitylist_youCreated_contentData(div_view, appendContent,limit_start,limit_end){
 js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.community.mylist.php',
 { action:'USERCREATED_COMMUNITYLIST', user_Id:AUTH_USER_ID, limit_start:limit_start, limit_end:limit_end},function(response){ 
-console.log(response);
+console.log("communitylist_youCreated_contentData: "+response);
 response=JSON.parse(response);
 var content='';
   for(var index=0;index<response.communityListCreated.length;index++){
@@ -104,15 +104,18 @@ var content='';
    content+='</div>';
    content+='</div>';
   }
-  content+=appendContent;
+
+ content+=appendContent;
  document.getElementById(div_view).innerHTML=content;
 });
 }
 function communitylist_youCreated(){
 js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.community.mylist.php',
 { action:'USERCREATED_COMMUNITYLIST_COUNT', user_Id:AUTH_USER_ID },function(total_data){ 
+console.log('communitylist_youCreated: '+total_data);
  if(total_data==='0'){
-  content+='<div align="center" style="color:#87898a;">You didn\'t created any Community</div>';
+  var content='<div align="center" style="color:#87898a;">You didn\'t created any Community</div>';
+  document.getElementById("community_youcreated_content0").innerHTML=content;
  } else {
   scroll_loadInitializer('community_youcreated_content',10,communitylist_youCreated_contentData,total_data);
  }
@@ -121,8 +124,10 @@ js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.community.mylist.
 function communitylist_beMember(){
 js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.community.mylist.php',
 { action:'USERBEINGMEMBER_COMMUNITYLIST_COUNT', user_Id:AUTH_USER_ID },function(total_data){
+console.log('communitylist_beMember: '+total_data);
  if(total_data==='0'){
-  content+='<div align="center" style="color:#87898a;">You are not the Member of any Community</div>';
+  var content='<div align="center" style="color:#87898a;">You are not the Member of any Community</div>';
+  document.getElementById("community_beMember_content0").innerHTML=content;
  } else {
   scroll_loadInitializer('community_beMember_content',10,communitylist_beMember_contentData,total_data);
  }
@@ -132,6 +137,7 @@ function communitylist_beMember_contentData(div_view, appendContent,limit_start,
 js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.community.mylist.php',
 { action:'USERBEINGMEMBER_COMMUNITYLIST', user_Id:AUTH_USER_ID, limit_start:limit_start, limit_end:limit_end},
 function(response){ 
+console.log("communitylist_beMember_contentData: "+response+" div_view: "+div_view);
 response=JSON.parse(response);
 var content='';
   for(var index=0;index<response.beingMemberCommunityList.length;index++){
@@ -189,17 +195,86 @@ var content='';
    content+='</div>';
    content+='</div>';
   }
-  content+=appendContent;
+
+ content+=appendContent;
  document.getElementById(div_view).innerHTML=content;
 });
 }  
 function communitylist_beSupport(){
-
+js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.community.mylist.php',
+{ action:'USERBEINGSUPPORT_COMMUNITYLIST_COUNT', user_Id:AUTH_USER_ID },function(total_data){
+console.log('communitylist_beSupport: '+total_data);
+ if(total_data==='0'){
+  var content='<div align="center" style="color:#87898a;">You are not Supporting any Community</div>';
+   document.getElementById("community_beSupport_content0").innerHTML=content;
+ } else {
+  scroll_loadInitializer('community_beSupport_content',10,communitylist_beSupport_contentData,total_data);
+ }
+});
 }
 function communitylist_beSupport_contentData(div_view, appendContent,limit_start,limit_end){
 js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.community.mylist.php',
-{ action:'USER_BEINGSUPPORT_COMMUNITYLIST', user_Id:AUTH_USER_ID },function(response){ 
- document.getElementById("community_beSupport_content0").innerHTML=response;
+{ action:'USERBEINGSUPPORT_COMMUNITYLIST', user_Id:AUTH_USER_ID,
+ limit_start:limit_start, limit_end:limit_end },
+function(response){ 
+console.log("communitylist_beSupport_contentData: "+response);
+response=JSON.parse(response);
+var content='';
+  for(var index=0;index<response.beingSupportingCommunityList.length;index++){
+    var union_Id=response.beingSupportingCommunityList[index].union_Id;
+	var domain_Id=response.beingSupportingCommunityList[index].domain_Id;
+	var domainName=response.beingSupportingCommunityList[index].domainName;
+	var subdomain_Id=response.beingSupportingCommunityList[index].subdomain_Id;
+	var subdomainName=response.beingSupportingCommunityList[index].subdomainName;
+	var unionName=response.beingSupportingCommunityList[index].unionName;
+	var unionURLName=response.beingSupportingCommunityList[index].unionURLName;
+	var profile_pic=response.beingSupportingCommunityList[index].profile_pic;
+	var minlocation=response.beingSupportingCommunityList[index].minlocation;
+	var location=response.beingSupportingCommunityList[index].location;
+	var state=response.beingSupportingCommunityList[index].state;
+	var country=response.beingSupportingCommunityList[index].country;
+	var created_On=get_stdDateTimeFormat01(response.beingSupportingCommunityList[index].created_On);
+	var admin_Id=response.beingSupportingCommunityList[index].admin_Id;
+	var members_count=response.beingSupportingCommunityList[index].members_count;
+	var supporters_count=response.beingSupportingCommunityList[index].supporters_count;
+    var supportOn=response.beingSupportingCommunityList[index].supportOn;
+	
+
+   content+='<div class="list-group pad10" style="margin-bottom:10px;">';
+   content+='<div class="list-group-item">';
+   content+='<div class="container-fluid pad0">';
+   content+='<div class="col-md-12 col-xs-12 pad0">'; 
+   content+='<span class="label label-newsfeed custom-bg" style="background-color:#0ba0da;">';
+   content+='<b>'+domainName.toUpperCase()+' / '+subdomainName.toUpperCase()+'</b></span>';
+   content+='</div>';
+   content+='<div class="col-md-12 pad0">';
+   content+='<div class="col-md-3 col-xs-3 mtop15p">'; 
+   content+='<img class="img-min-profilepic" src="'+profile_pic+'">';
+   content+='</div>';
+   content+='<div align="left" class="col-md-9 col-xs-9 frnshipreqdiv">';
+   content+='<h5><b>'+unionName+'</b></h5>';
+   content+='<div style="color:#87898a;">created on '+created_On+'</div>';
+   content+='<div class="frnshipreqaddr mtop15p" style="color:#000;">'+minlocation+', '+location+', '+state+', '+country+'</div>';
+   content+='</div>';
+   content+='</div>';
+   content+='</div>';
+   content+='</div>';
+   content+='<div class="list-group-item">';
+   content+='<div class="container-fluid pad0">';
+   content+='<div align="center" class="col-md-6 col-xs-6" style="border-right:1px solid #ccc;">';
+   content+='<h4 style="color:#87898a;"><b>'+members_count+'</b></h4>';
+   content+='<b>MEMBERS</b>';
+   content+='</div>';
+   content+='<div align="center" class="col-md-6 col-xs-6">';
+   content+='<h4 style="color:#87898a;"><b>'+supporters_count+'</b></h4>';
+   content+='<b>SUPPORTERS</b>';
+   content+='</div>';
+   content+='</div>';
+   content+='</div>';
+   content+='</div>';
+  }
+ content+=appendContent;
+ document.getElementById(div_view).innerHTML=content;
 });
 }
 </script>
@@ -248,7 +323,7 @@ js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.community.mylist.
 			</div>
 			
 			<div class="row">
-			 
+ 
 			 <div id="community_youcreated_content0" class="col-md-12">
 			    <div align="center">
 				  <img src="images/load.gif" style="width:150px;height:150px;"/>
