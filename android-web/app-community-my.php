@@ -120,7 +120,7 @@ js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.community.mylist.
 }
 function communitylist_beMember(){
 js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.community.mylist.php',
-{ action:'USERBEINGMEMBER_COMMUNITYLIST_COUNT', user_Id:AUTH_USER_ID },function(total_data){ 
+{ action:'USERBEINGMEMBER_COMMUNITYLIST_COUNT', user_Id:AUTH_USER_ID },function(total_data){
  if(total_data==='0'){
   content+='<div align="center" style="color:#87898a;">You are not the Member of any Community</div>';
  } else {
@@ -132,7 +132,6 @@ function communitylist_beMember_contentData(div_view, appendContent,limit_start,
 js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.community.mylist.php',
 { action:'USERBEINGMEMBER_COMMUNITYLIST', user_Id:AUTH_USER_ID, limit_start:limit_start, limit_end:limit_end},
 function(response){ 
- console.log(response);
 response=JSON.parse(response);
 var content='';
   for(var index=0;index<response.beingMemberCommunityList.length;index++){

@@ -57,19 +57,21 @@ class app_community {
   
   /* List of Communities Where User being Member */
   function query_count_communitiesUserBeingMember($user_Id){
-   $sql="SELECT count(*) FROM union_account,union_mem WHERE union_account.union_Id IN (SELECT DISTINCT union_Id FROM ";
-   $sql.="union_mem WHERE user_Id='".$user_Id."') AND union_account.union_Id=union_mem.union_Id ";
-   $sql.="LIMIT ".$limit_start.", ".$limit_end.";";
+   $sql="SELECT DISTINCT union_account.union_Id, count(*)";
+   $sql.="FROM union_account INNER JOIN union_mem ON union_account.union_Id=union_mem.union_Id AND ";
+   $sql.="union_mem.user_Id='".$user_Id."' ";
    return $sql;
   }
   
   function query_communitiesUserBeingMember($user_Id,$limit_start,$limit_end){
-   $sql="SELECT DISTINCT union_account.union_Id, union_account.domain_Id, union_account.subdomain_Id, ";
-   $sql.="union_account.unionName, union_account.unionURLName, union_account.profile_pic, union_account.minlocation, ";
-   $sql.="union_account.location, union_account.state, union_account.country, union_account.created_On, ";
-   $sql.="union_account.admin_Id, union_mem.roleName, union_mem.isAdmin, union_mem.addedOn, union_mem.status ";
-   $sql.="FROM union_account,union_mem WHERE union_account.union_Id IN (SELECT DISTINCT union_Id FROM ";
-   $sql.="union_mem WHERE user_Id='".$user_Id."') AND union_account.union_Id=union_mem.union_Id ";
+   $sql="SELECT DISTINCT union_account.union_Id, ";
+   $sql.="union_account.domain_Id, union_account.subdomain_Id, union_account.unionName, union_account.unionURLName, ";
+   $sql.="union_account.profile_pic, union_account.minlocation, union_account.location, union_account.state, ";
+   $sql.="union_account.country, union_account.created_On, union_account.admin_Id, ";
+   $sql.="union_mem.member_Id, union_mem.union_Id, union_mem.user_Id, union_mem.roleName, union_mem.isAdmin, ";
+   $sql.="union_mem.addedOn, union_mem.status ";
+   $sql.="FROM union_account INNER JOIN union_mem ON union_account.union_Id=union_mem.union_Id AND ";
+   $sql.="union_mem.user_Id='".$user_Id."' ";
    $sql.="LIMIT ".$limit_start.", ".$limit_end.";";
    return $sql;
   }
