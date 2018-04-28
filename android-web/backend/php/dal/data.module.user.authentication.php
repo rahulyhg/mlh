@@ -92,6 +92,11 @@ class user_authentication {
     $sql="UPDATE user_account SET profile_pic='".$profilepic."' WHERE user_Id='".$user_Id."';";
 	return $sql;
   }
+  
+  function query_getNameById($user_Id){
+    $sql="SELECT surName, name FROM user_account WHERE user_Id='".$user_Id."';";
+	return $sql;
+  }
 }
 
 ?>
