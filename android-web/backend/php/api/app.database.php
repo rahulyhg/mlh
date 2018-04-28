@@ -60,19 +60,14 @@ class Database
         return $json;
     }
     
-	function getAColumnAsArray($sql){
+	function getAColumnAsArray($sql,$columnName){
 	  $arry_col=array();
 	  $dbObj=new Database();
 	  $conn=$dbObj->dbinteraction();
 	  $result = $conn->query($sql);
-	  if (!$result) {   
-          die("Invalid query: " . mysqli_error($conn)); 
+	  if (!$result) { die("Invalid query: " . mysqli_error($conn)); 
           $this->logger->error("Query(Status-Invalid) : ".$sql); 
-      } else { 
-	           while($row = $result->fetch_assoc()) {
-                 $arry_col[count($arry_col)] = $row;
-               }
-            }
+      } else {  while($row = $result->fetch_assoc()){ $arry_col[count($arry_col)] = $row[$columnName];  } }
       $conn->close();
 	  return $arry_col;
 	}

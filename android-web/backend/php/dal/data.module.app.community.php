@@ -10,6 +10,7 @@ class app_community {
 	$sql.="'".$admin_Id."')";
 	return $sql;
   }
+ 
   /* Add Languages to the Community */
   function query_addLangToCommunity($union_Id, $eng, $tel){
     $sql="INSERT INTO union_lang(union_Id, eng, tel) VALUES ('".$union_Id."','".$eng."','".$tel."');";
@@ -97,5 +98,10 @@ class app_community {
    return $sql;
   }
   
+  function query_getCommunityPeople_userIds($union_Id){
+    $sql="SELECT user_Id FROM union_mem WHERE union_Id='".$union_Id."' UNION ";
+	$sql.="SELECT user_Id FROM union_sup WHERE union_Id='".$union_Id."';";
+	return $sql;
+  }
 }
 ?>
