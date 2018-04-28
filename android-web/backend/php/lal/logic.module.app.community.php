@@ -9,10 +9,17 @@ class logic_union_newsfeed {
    $communityObj=new app_community();
    $dbObj=new Database();
    $query=$communityObj->query_getCommunityPeople_userIds($union_Id);
-   echo $dbObj->getAColumnAsArray($query,"user_Id"); // For Javascript use - json_encode
+   return $dbObj->getAColumnAsArray($query,"user_Id"); // For Javascript use - json_encode
+  }
+  function getUnionNameByUnionId($union_Id){
+    $authObj=new app_community();
+	$dbObj=new Database();
+	$query=$authObj->query_getUnionNameByUnionId($union_Id);
+	$jsonData=$dbObj->getJSONData($query);
+	$dejsonData=json_decode($jsonData);
+	return $dejsonData[0]->{'unionName'};
   }
 }
 
-// $feedObj=new logic_union_newsfeed();
-// $feedObj->union_people_list('UAI363543863775');
+// 
 ?>

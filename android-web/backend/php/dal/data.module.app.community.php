@@ -98,9 +98,16 @@ class app_community {
    return $sql;
   }
   
+  /* Get list of people and Supporters (user_Ids) in the Community */
   function query_getCommunityPeople_userIds($union_Id){
     $sql="SELECT user_Id FROM union_mem WHERE union_Id='".$union_Id."' UNION ";
 	$sql.="SELECT user_Id FROM union_sup WHERE union_Id='".$union_Id."';";
+	return $sql;
+  }
+  
+  /* Get CommunityName using union_Id */
+  function query_getUnionNameByUnionId($union_Id){
+    $sql="SELECT unionName FROM union_account WHERE union_Id='".$union_Id."';";
 	return $sql;
   }
 }
