@@ -1,6 +1,6 @@
 <?php
 $CRON_SESSION_BINFOLDER="bin/";
-$CRON_SESSION_FILE="cron.notification.service.filetracker.json";
+$CRON_SESSION_FILE="cron.notification.filetracker.json";
 $CRON_SERVICE_NOTIFYFOLDER="notify";
 $existence=0;
 if(file_exists($CRON_SESSION_FILE)==0){ $existence=1; }
