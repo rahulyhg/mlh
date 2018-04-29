@@ -5,7 +5,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import anups.dun.notify.AuthenticationAlarm;
-import anups.dun.notify.NewsFeedImmediateAlarm;
+import anups.dun.notify.LatestNotificationServiceAlarm;
 import anups.dun.notify.NewsFeedIntervalAlarm;
 import anups.dun.notify.VersionUpgradeAlarm;
 
@@ -40,7 +40,7 @@ public void notify_authReminder(){
 }
 
 public void notify_newsFeedImmediateReminder(){
- Intent alarm_nfi = new Intent(context, NewsFeedImmediateAlarm.class);
+ Intent alarm_nfi = new Intent(context, LatestNotificationServiceAlarm.class);
  newsFeedImmediate_pendingIntent = PendingIntent.getBroadcast(context, 0, alarm_nfi, newsFeedImmediate_pendingIntent.FLAG_UPDATE_CURRENT);
  newsFeedImmediate_manager = (AlarmManager)context.getSystemService(context.getApplicationContext().ALARM_SERVICE);
  newsFeedImmediate_manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 1 * 60 * 1000, newsFeedImmediate_pendingIntent);  

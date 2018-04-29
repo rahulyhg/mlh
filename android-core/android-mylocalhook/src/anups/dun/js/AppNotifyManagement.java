@@ -9,7 +9,7 @@ import android.widget.Toast;
 import anups.dun.app.AndroidWebNotifications;
 import anups.dun.app.AndroidWebScreen;
 import anups.dun.constants.UnclosedNotifications;
-import anups.dun.notify.NewsFeedImmediateWebService;
+import anups.dun.notify.LatestNotificationServiceWebService;
 import anups.dun.notify.VersionUpgradeWebService;
 
 public class AppNotifyManagement extends ActionBarActivity {
@@ -43,6 +43,6 @@ public class AppNotifyManagement extends ActionBarActivity {
 	@JavascriptInterface
 	public void startNotification_newsFeedImmediate(){
 		String[] param={};
-		new NewsFeedImmediateWebService(mContext).execute(param);		
+		new LatestNotificationServiceWebService(mContext).execute(param);		
 	}
 }

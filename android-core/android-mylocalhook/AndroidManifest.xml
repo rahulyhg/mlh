@@ -61,7 +61,7 @@
         
          <receiver android:name="anups.dun.notify.VersionUpgradeAlarm"></receiver>
          <receiver android:name="anups.dun.notify.AuthenticationAlarm"></receiver>
-         <receiver android:name="anups.dun.notify.NewsFeedImmediateAlarm"></receiver>
+         <receiver android:name="anups.dun.notify.LatestNotificationServiceAlarm"></receiver>
          <receiver android:name="anups.dun.notify.NewsFeedIntervalAlarm"></receiver>
          <receiver android:name="anups.dun.services.OnBootCompleted"
               	   android:enabled="true"

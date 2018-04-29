@@ -40,8 +40,11 @@ import anups.dun.js.AppNotifyManagement;
 import anups.dun.js.AppSessionManagement;
 import anups.dun.mobile.util.TelephonicService;
 import anups.dun.notify.AuthenticationAlarm;
+import anups.dun.notify.LatestNotificationServiceWebService;
 import anups.dun.notify.VersionUpgradeAlarm;
+import anups.dun.util.AndroidLogger;
 import anups.dun.util.NetworkAvailability;
+import anups.dun.util.PropertiesFile;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -81,6 +84,8 @@ import java.util.Date;
 @SuppressLint({ "NewApi", "ShowToast" })
 public  class AndroidWebScreen extends Activity {
 
+	org.apache.log4j.Logger logger = AndroidLogger.getLogger(AndroidWebScreen.class);
+	
 	public static final int INPUT_FILE_REQUEST_CODE = 1;
     public static final String TAG = AndroidWebScreen.class.getSimpleName();
     public WebView webView;
@@ -196,6 +201,7 @@ public  class AndroidWebScreen extends Activity {
 @SuppressLint("SetJavaScriptEnabled")
 @Override
 protected void onCreate(Bundle savedInstanceState) {
+	logger.info("MyLocalHook Activity Begins...");
  super.onCreate(savedInstanceState);
  requestWindowFeature(Window.FEATURE_NO_TITLE);
  getWindow().requestFeature(Window.FEATURE_PROGRESS);
@@ -209,6 +215,12 @@ protected void onCreate(Bundle savedInstanceState) {
  AppManagement appManager = new AppManagement(this);
  AppNotifyManagement anm = new AppNotifyManagement(this);
  AppSessionManagement appSessionManager = new AppSessionManagement(this);
+ 
+ /* GET DATA FROM PROPERTIES FILE */
+ // Log.i(TAG, "Before [PropertiesFile] ");
+  String[] propertyParam={};
+  new PropertiesFile(this.getApplicationContext()).execute(propertyParam);
+ // Log.i(TAG, "After [PropertiesFile] ");
  
  /* VERSION UPGRADE : */
     awn.notify_versionupgrade();
