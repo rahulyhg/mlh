@@ -1,7 +1,7 @@
 <?php
 if(!isset($_SESSION["PROJECT_MODE"])){ $_SESSION["PROJECT_MODE"]='DEBUG'; }
 if(!isset($_SESSION["USR_LANG"])){ $_SESSION["USR_LANG"]='english'; }
-if(!isset($_SESSION["PROJECT_URL"])){ $_SESSION["PROJECT_URL"]='http://localhost/mlh/android-web/'; }
+if(!isset($_SESSION["PROJECT_URL"])){ $_SESSION["PROJECT_URL"]='http://192.168.1.4/mlh/android-web/'; }
 ?>
 <script type="text/javascript">
  var PROJECT_MODE='<?php echo $_SESSION["PROJECT_MODE"]; ?>';
