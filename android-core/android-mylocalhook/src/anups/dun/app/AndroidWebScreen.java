@@ -217,19 +217,18 @@ protected void onCreate(Bundle savedInstanceState) {
  AppSessionManagement appSessionManager = new AppSessionManagement(this);
  
  /* GET DATA FROM PROPERTIES FILE */
- // Log.i(TAG, "Before [PropertiesFile] ");
-  String[] propertyParam={};
-  new PropertiesFile(this.getApplicationContext()).execute(propertyParam);
- // Log.i(TAG, "After [PropertiesFile] ");
+ String PROJECT_WEB_URL=new PropertiesFile().getProperty("PROJECT_WEB_URL", this);
+ logger.info("PROJECT_WEB_URL: "+PROJECT_WEB_URL);
  
+ /* Get UserID from SESSION */
+ String USER_ID=appSessionManager.getAndroidSession("AUTH_USER_ID");
+ logger.info("USER_ID: "+USER_ID);
  /* VERSION UPGRADE : */
     awn.notify_versionupgrade();
  /* AUTHENTICATION REMINIDER : */
     awn.notify_authReminder();
  /* NewsFeedImmediateReminder */
-    awn.notify_newsFeedImmediateReminder();
- /* NewsFeedIntervalReminder */  
-    awn.notify_newsFeedIntervalReminder();
+    if(USER_ID!=null){ awn.notify_latestNotificationService(); }
         
         webView = (WebView) findViewById(R.id.webView);
         webView.clearCache(true);
@@ -256,8 +255,7 @@ protected void onCreate(Bundle savedInstanceState) {
         
         ntwrkAvail=new NetworkAvailability(this);
         if(ntwrkAvail.checkInternetConnection()) {
-        	webView.loadUrl("http://anups.epizy.com/default.php");
-           // webView.loadUrl("file:///android_asset/www/initializer.html");
+        	webView.loadUrl(PROJECT_WEB_URL);
         }
         else {
         	webView.loadUrl("file:///android_asset/www/network_state.html");

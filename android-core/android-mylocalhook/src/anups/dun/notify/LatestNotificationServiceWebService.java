@@ -14,22 +14,34 @@ import com.google.gson.Gson;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Looper;
 import android.widget.Toast;
+import anups.dun.app.AndroidWebScreen;
+import anups.dun.js.AppSessionManagement;
+import anups.dun.util.AndroidLogger;
+import anups.dun.util.PropertiesFile;
 import anups.dun.util.PushNotification;
 
 public class LatestNotificationServiceWebService  extends AsyncTask<String, String, String> {
+	org.apache.log4j.Logger logger = AndroidLogger.getLogger(LatestNotificationServiceWebService.class);
 	/* Checks over NewsFeed posted before Current Minute and Before Minute 
      * IF posted, pushes Notification */
 	private final static String USER_AGENT = "Mozilla/5.0";
 	Context context;
-	public LatestNotificationServiceWebService(Context context){
-	 this.context=context;	
-	}
+	public LatestNotificationServiceWebService(Context context){ this.context=context;	}
+	 @Override
+	 protected void onPreExecute() {
+	   super.onPreExecute();
+	   logger.info("LatestNotificationService : onPreExecute");
+	 }
 	@Override
 	protected String doInBackground(String... params) {
+	 Looper.prepare();
 	 StringBuilder response = new StringBuilder();
 	 try {
-		 String url = "http://192.168.1.4/abcd/notify_news.php";
+		 AppSessionManagement appSessionManager = new AppSessionManagement(context);
+		 String url = new PropertiesFile().getProperty("LATEST_NOTIFICATION_SERVICE", context)+"&user_Id="+appSessionManager.getAndroidSession("AUTH_USER_ID");
+		 logger.info("LatestNotificationServiceURL: "+url);
 		  URL obj = new URL(url);
 		  HttpURLConnection con = (HttpURLConnection)obj.openConnection();
 		                     con.setRequestMethod("GET");
@@ -41,16 +53,24 @@ public class LatestNotificationServiceWebService  extends AsyncTask<String, Stri
 		    response.append(inputLine);
 		  }
 		  in.close();	
-	 } catch(Exception e){ e.printStackTrace(); }	
+	  Looper.myLooper().quit();
+		  logger.info("LatestNotificationService (Output): "+response.toString());
+	 } catch(Exception e){logger.info("LatestNotificationServiceException: "+e); }	
 	 return response.toString();
 	}
 
 	@Override  
 	protected void onPostExecute(String response) {  
+		logger.info("LatestNotificationService (PostExecute): "+response.toString());
 		
+		 
+				
 		try {
 			PushNotification pnotify=new PushNotification();
-			JSONArray data=new JSONArray(response); 
+			Gson gson=new Gson();
+			LatestNotificationServiceBean lnsb=gson.fromJson(response.toString(), LatestNotificationServiceBean.class);
+
+		/*	JSONArray data=new JSONArray(response); 
 			for(int index=0;index<data.length();index++){
 				String info_Id = data.getJSONObject(index).getString("info_Id");
 				String artTitle = data.getJSONObject(index).getString("artTitle");
@@ -65,10 +85,10 @@ public class LatestNotificationServiceWebService  extends AsyncTask<String, Stri
 					     events[0] = new String(artShrtDesc);
 				pnotify.display_closableNotification(context, directURL, inapp, artTitle, artTitle, 
 						artShrtDesc, artTitle, events);
-			}
+			} */
 		
 		} catch(Exception e){
-			Toast.makeText(context, "Exception: "+e, 3000).show();
-		}
+			logger.error("LatestNotificationServiceException (PostExecute): "+e);
+		} 
 	}
 }

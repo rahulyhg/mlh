@@ -1,4 +1,8 @@
 <?php
+require_once '../api/app.initiator.php';
+require_once '../api/app.database.php';
+require_once '../lal/logic.appIdentity.php';
+
 $CRON_SESSION_BINFOLDER="bin/";
 $CRON_SESSION_FILE="cron.notification.filetracker.json";
 $CRON_SERVICE_NOTIFYFOLDER="notify";
@@ -13,34 +17,41 @@ $exceptionFiles=$dejsonData->{'files'};
 $FilesListInFolder=scandir($CRON_SERVICE_NOTIFYFOLDER);
 $gen_pickupList=array_diff($FilesListInFolder, $exceptionFiles);
 $pickFileList=array();$index=0;
-foreach($gen_pickupList as $key => $value) { $vr=0; if($value=='.' || $value=='..'){ $vr=1; } 
- if($vr==0){ $pickFileList[$index]=$value;$index++; } }
+foreach($gen_pickupList as $key => $value) { 
+  $vr=0; if($value=='.' || $value=='..'){ $vr=1; } 
+  if($vr==0){ $pickFileList[$index]=$value;$index++; } 
+}
 $pickupFile=$pickFileList[rand(0,count($pickFileList)-1)];
-echo date("Y-m-d H:i:s").": ".$pickupFile."\n";
+$pickupFileJsonData=file_get_contents('notify/'.$pickupFile);
+$pickupFileDeJsonData=json_decode($pickupFileJsonData);
+$userIdList=$pickupFileDeJsonData->{'user_Id'};
 
-//
-/*
-function cronJob_Session(){
-$sessionJSON='';
-$start = time();
-echo "Started At ".$start."\n";
-$filename = "C:\\wamp\\www\\mlh\\android-web\\backend\\php\\cj\\notifyFolder\\jsonFile.json";
-$fp = fopen($filename, 'w+') or die("have no access to ".$filename);
+$idObj=new identity();
+$query="";
+for($index=0;$index<count($userIdList);$index++){
+ $notify_Id=$idObj->user_notify_id();
+ $user_Id=$userIdList[$index];
+ $from_Id=$pickupFileDeJsonData->{'user_notify'}->{'from_Id'};
+ $notifyHeader=$pickupFileDeJsonData->{'user_notify'}->{'notifyHeader'};
+ $notifyTitle=$pickupFileDeJsonData->{'user_notify'}->{'notifyTitle'};
+ $notifyMsg=$pickupFileDeJsonData->{'user_notify'}->{'notifyMsg'};
+ $notifyType=$pickupFileDeJsonData->{'user_notify'}->{'notifyType'};
+ $notifyURL=$pickupFileDeJsonData->{'user_notify'}->{'notifyURL'};
+ $notify_ts=$pickupFileDeJsonData->{'user_notify'}->{'notify_ts'};
+ $watched=$pickupFileDeJsonData->{'user_notify'}->{'watched'};
+ $popup=$pickupFileDeJsonData->{'user_notify'}->{'popup'};
+ $req_accepted=$pickupFileDeJsonData->{'user_notify'}->{'req_accepted'};
+ $cal_event=$pickupFileDeJsonData->{'user_notify'}->{'cal_event'};
+ 
+ $query.="INSERT INTO user_notify(notify_Id, user_Id, from_Id, notifyHeader, notifyTitle, notifyMsg, ";
+ $query.="notifyType, notifyURL, notify_ts, watched, popup, req_accepted, cal_event) ";
+ $query.="VALUES ('".$notify_Id."','".$user_Id."','".$from_Id."','".$notifyHeader."','".$notifyTitle."',";
+ $query.="'".$notifyMsg."','".$notifyType."','".$notifyURL."','".$notify_ts."','".$watched."','".$popup."'";
+ $query.=",'".$req_accepted."','".$cal_event."');";
+}
+$dbObj=new Database();
+echo $dbObj->addupdateData($query);
 
-if (flock($fp, LOCK_EX)) {
- echo "File was locked at ".time().". Granted exclusive access to write \n";
-}
-else {
-    echo "File is locked by other user \n";
-	cronJob_Session();
-	sleep(3);
-}
-flock($fp, LOCK_UN);
-echo "File lock was released at ".time()." \n";
-fclose($fp);
-$end = time();
-echo "Finished at ".$end." \n";
-echo "Proccessing time ".($end - $start)." \n";
-return $sessionJSON;
-} */
+/* Delete File */
+unlink('notify/'.$pickupFile);
 ?>

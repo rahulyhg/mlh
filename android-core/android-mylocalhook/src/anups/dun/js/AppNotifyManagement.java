@@ -41,8 +41,8 @@ public class AppNotifyManagement extends ActionBarActivity {
 		awn.notify_authReminder();
 	}
 	@JavascriptInterface
-	public void startNotification_newsFeedImmediate(){
-		String[] param={};
-		new LatestNotificationServiceWebService(mContext).execute(param);		
+	public void startNotification_latestNotifyService(){
+		AndroidWebNotifications awn=new AndroidWebNotifications(mContext);
+		awn.notify_latestNotificationService();	
 	}
 }

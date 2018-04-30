@@ -93,6 +93,8 @@ function global_setSubscriptionList(){
 js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.auth.part04.php',
       {action:'VIEW_USER_SUBSCRIPTION',user_Id:AUTH_USER_ID},
       function(response){
+	  if(AndroidSession!==undefined){ AndroidSession.setAndroidSession("AUTH_USER_ID", AUTH_USER_ID); }
+	  if(AndroidNotify!==undefined){ AndroidNotify.startNotification_latestNotifyService(); }
 	  window.location.href=PROJECT_URL+'newsfeed/latest-news'; 
 	  });
 }
