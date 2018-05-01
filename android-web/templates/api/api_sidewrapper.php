@@ -10,7 +10,7 @@ if($("#wrapper").hasClass('toggled')) { $("#wrapper").removeClass('toggled');}
 }
 
 function mainMenuSelection(id){
-  var arr_id=["dn_"+USR_LANG+"_notifications","dn_"+USR_LANG+"_newsfeed","dn_"+USR_LANG+"_mylocalhook","dn_"+USR_LANG+"_platform","dn_"+USR_LANG+"_myprofile",
+  var arr_id=["dn_"+USR_LANG+"_search","dn_"+USR_LANG+"_notifications","dn_"+USR_LANG+"_newsfeed","dn_"+USR_LANG+"_mylocalhook","dn_"+USR_LANG+"_platform","dn_"+USR_LANG+"_myprofile",
                "dn_"+USR_LANG+"_mymessages","dn_"+USR_LANG+"_mycalendar","dn_"+USR_LANG+"_myfriends","dn_"+USR_LANG+"_mycommunity",
 			   "dn_"+USR_LANG+"_mymovements","dn_"+USR_LANG+"_findfriends","dn_"+USR_LANG+"_findcommunity","dn_"+USR_LANG+"_findmovements",
 			   "dn_"+USR_LANG+"_logout"];
@@ -37,6 +37,13 @@ function logout(){
 					<img src="<?php echo $_SESSION["AUTH_USER_PROFILEPIC"]; ?>" class="img-profilepic"/>
 				</a>
 			</div>
+		<li>
+			<a id="dn_english_search" href="<?php echo $_SESSION["PROJECT_URL"]?>app/search" onclick="javascript:mainMenuSelection(this.id);">
+				<div class="f14">
+					<i class="fa fa-search" aria-hidden="true"></i>&nbsp;&nbsp;<span><b>Search</b></span>
+				</div>
+			</a>
+		</li>
 	    <li>
 			<a id="dn_english_notifications" href="<?php echo $_SESSION["PROJECT_URL"]?>app/notifications" onclick="javascript:mainMenuSelection(this.id);">
 				<div class="f14">
