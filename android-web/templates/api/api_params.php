@@ -4,6 +4,11 @@ if(!isset($_SESSION["USR_LANG"])){ $_SESSION["USR_LANG"]='english'; }
 if(!isset($_SESSION["PROJECT_URL"])){ $_SESSION["PROJECT_URL"]='http://192.168.1.4/mlh/android-web/'; }
 ?>
 <script type="text/javascript">
+ /* Android Javascript Interface Objects */
+ var Android;
+ var AndroidNotify;
+ var AndroidSession;
+
  var PROJECT_MODE='<?php echo $_SESSION["PROJECT_MODE"]; ?>';
  var PROJECT_URL='<?php echo $_SESSION["PROJECT_URL"]; ?>';
  /* AUTHENTICATION_STATUS - COMPLETED/INCOMPLETED */

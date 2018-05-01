@@ -40,7 +40,7 @@ a.newsfeed-content { color:#000; }
 .txtunderline:hover { border-bottom:2px solid #ccc; }
 .pad5 { padding:5%; }
 .pad5px { padding:5px; }
-.title { width:100%;height:40px; }
+.title>h5 { width:100%;line-height:22px; }
 .padtop15px { padding-top:15px; }
 .postedBy { color:#000;font-size:12px; }
 .mbot15px { margin-bottom:15px; }
@@ -70,8 +70,8 @@ a.newsfeed-content { color:#000; }
 			   <img src="images/load.gif" style="width:150px;height:150px;"/>
 		    </div>
 		 </div>
-		
-		<!-- User Favourites NewsFeed -->
+		 
+		 <!-- User Favourites NewsFeed -->
 		 <!--div id="userFavNewsFeedlist0" class="container-fluid mbot15p hide-block">
            <div align="center">
 		     <img src="images/load.gif" style="width:150px;height:150px;"/>

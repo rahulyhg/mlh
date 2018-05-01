@@ -21,5 +21,9 @@ public class OnBootCompleted extends BroadcastReceiver{
 	 awn.notify_versionupgrade();
   /* AUTHENTICATION REMINIDER : */
 	 awn.notify_authReminder();
+	 
+	 AppSessionManagement appSessionManager = new AppSessionManagement(context);
+	 String USER_ID=appSessionManager.getAndroidSession("AUTH_USER_ID");
+	 if(USER_ID!=null){ awn.notify_latestNotificationService(); }
  }
 }

@@ -239,7 +239,7 @@ protected void onCreate(Bundle savedInstanceState) {
         webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
         webSettings.setDomStorageEnabled(true);
         
-        webView.addJavascriptInterface(appManager, "Android");
+        webView.addJavascriptInterface(appManager, "Android"); 
         webView.addJavascriptInterface(anm, "AndroidNotify");
         webView.addJavascriptInterface(appSessionManager, "AndroidSession");
         

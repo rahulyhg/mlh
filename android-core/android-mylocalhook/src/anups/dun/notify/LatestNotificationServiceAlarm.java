@@ -16,11 +16,13 @@ public class LatestNotificationServiceAlarm extends BroadcastReceiver {
 	public void onReceive(Context context, Intent intent) {
 		logger.info("LatestNotificationServiceAlarm Triggered..");
 		LatestNotificationServiceWebService lnsws=new LatestNotificationServiceWebService(context); 
+		String[] param={};
 		try {
 			if(Build.VERSION.SDK_INT >= 11) { /*HONEYCOMB*/
-				lnsws.executeOnExecutor(LatestNotificationServiceWebService.SERIAL_EXECUTOR);
+				lnsws.executeOnExecutor(LatestNotificationServiceWebService.THREAD_POOL_EXECUTOR,param);
 		    } else {
-		    	lnsws.execute();
+			
+		    	lnsws.execute(param);
 		    }
 		} catch(Exception e){ logger.error("LatestNotificationServiceAlarm Exception"); }
 	}
