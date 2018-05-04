@@ -4,6 +4,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.os.SystemClock;
 import anups.dun.notify.AuthenticationAlarm;
 import anups.dun.notify.LatestNotificationServiceAlarm;
 import anups.dun.notify.NewsFeedIntervalAlarm;
@@ -52,8 +53,9 @@ public void notify_latestNotificationService(){
    Intent alarm_nfi = new Intent(context, LatestNotificationServiceAlarm.class);
    latestNotifyService_pendingIntent = PendingIntent.getBroadcast(context, 0, alarm_nfi, latestNotifyService_pendingIntent.FLAG_UPDATE_CURRENT);
    latestNotifyService_manager = (AlarmManager)context.getSystemService(context.getApplicationContext().ALARM_SERVICE);
-   latestNotifyService_manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 1 * 60 * 1000, latestNotifyService_pendingIntent);  
- }
+   latestNotifyService_manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),  1 * 60 * 1000, latestNotifyService_pendingIntent);  
+    context.startService(new Intent(context, LatestNotificationServiceAlarm.class));
+   }
 }
 
 public void notify_newsFeedIntervalReminder(){

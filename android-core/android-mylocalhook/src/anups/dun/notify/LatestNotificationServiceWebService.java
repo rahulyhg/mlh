@@ -1,6 +1,7 @@
 package anups.dun.notify;
 
 import java.io.BufferedReader;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -40,24 +41,44 @@ public class LatestNotificationServiceWebService extends AsyncTask<String, Strin
 	 Looper myLooper = Looper.myLooper();
 	 myLooper.prepare();
 	 StringBuilder response = new StringBuilder();
+	 
+	 AppSessionManagement appSessionManager = new AppSessionManagement(context);
+	 String url = new PropertiesFile().getProperty("LATEST_NOTIFICATION_SERVICE", context)+"&user_Id="+appSessionManager.getAndroidSession("AUTH_USER_ID");
+	 logger.info("LatestNotificationServiceURL: "+url);
+	 
+	 HttpURLConnection con = null;
+	// BufferedReader in = null;
 	 try {
-		 AppSessionManagement appSessionManager = new AppSessionManagement(context);
-		 String url = new PropertiesFile().getProperty("LATEST_NOTIFICATION_SERVICE", context)+"&user_Id="+appSessionManager.getAndroidSession("AUTH_USER_ID");
-		 logger.info("LatestNotificationServiceURL: "+url);
-		  URL obj = new URL(url);
-		  HttpURLConnection con = (HttpURLConnection)obj.openConnection();
-		                     con.setRequestMethod("GET");
-		                     con.setRequestProperty("User-Agent", USER_AGENT);
+		 URL obj = new URL(url);
+		  con = (HttpURLConnection)obj.openConnection();
+		      con.setReadTimeout(10000 /* milliseconds */);
+			  con.setConnectTimeout(15000 /* milliseconds */);
+			  con.setRequestMethod("GET");
+			  con.setDoInput(true);
+		      con.setRequestProperty("User-Agent", USER_AGENT);
+		      con.connect();
 		  int responseCode = con.getResponseCode();
-		  BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+		//  in = new BufferedReader(new InputStreamReader(con.getInputStream()));
 		 
-		  for(String inputLine;(inputLine = in.readLine()) != null;) {
-		    response.append(inputLine);
-		  }
-		  in.close();	
-		 
+		//  for(String inputLine;(inputLine = in.readLine()) != null;) {
+		//    response.append(inputLine);
+		//  }
+		  InputStream in = con.getInputStream();
+          InputStreamReader isw = new InputStreamReader(in);
+
+	        
+	        for (int data = isw.read();data != -1;) {
+	            char current = (char) data;
+	                 data = isw.read();
+	                 response.append(current);
+	        } 
+		 in.close(); 
+		  
 		  logger.info("LatestNotificationService (Output): "+response.toString());
 	 } catch(Exception e){logger.info("LatestNotificationServiceException: "+e); }	
+	 finally{ 
+		 if(con!=null) { con.disconnect(); } 
+	 }
 	 if (myLooper!=null) { myLooper.quit(); }
 	 return response.toString();
 	}

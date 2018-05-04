@@ -1,0 +1,16 @@
+Firstly I'd recommend using an IntentService instead of an AsyncTask.
+
+Secondly, create an inner class in your main activity which extends BroadcastReceiver.
+
+Register an instance of the inner BroadcastReceiver in onResume() of your Activity and unregister it in onPause().
+
+Have your first BroadcastReceiver start the IntentService and have the IntentService send a broadcast which the inner 
+BroadcastReceiver of your Activity will be listening for if the Activity is running - the inner BroadcastReceiver can then 
+create the progress bar.
+
+When the IntentService finishes what it needs to do get it to send another broadcast to indicate that the progress bar 
+should be dismissed.
+
+Reference:
+https://stackoverflow.com/questions/21508091/asynctask-execute-from-alarmmanager-callbacks-to-ui
+https://www.survivingwithandroid.com/2014/03/consume-webservice-in-android-intentservice.html
