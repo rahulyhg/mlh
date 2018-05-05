@@ -23,7 +23,7 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
 <script type="text/javascript">
  $(document).ready(function(){
    sideWrapperToggle();
-   mainMenuSelection("dn_"+USR_LANG+"_newsfeed");
+   mainMenuSelection("dn_"+USR_LANG+"_search");
    bgstyle();
    $(".lang_"+USR_LANG).css('display','block');
  });
