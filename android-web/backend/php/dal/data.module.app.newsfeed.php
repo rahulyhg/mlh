@@ -155,9 +155,9 @@ class app_newsfeed {
 	$sql.="dash_info_union.artShrtDesc, dash_info_union.artDesc, dash_info_union.createdOn, dash_info_union.images, ";
 	$sql.="dash_info_union.status, ";
 	$sql.="union_account.union_Id, union_account.domain_Id, union_account.subdomain_Id, union_account.unionName, ";
-	$sql.="union_account.unionURLName, union_account.cover_pic, union_account.profile_pic, ";
+	$sql.="union_account.unionURLName, union_account.profile_pic, ";
 	$sql.="union_account.minlocation, union_account.location, union_account.state, union_account.country, ";
-	$sql.="union_account.created_On, union_account.admin_Id, union_account.members, union_account.supporters, ";
+	$sql.="union_account.created_On, union_account.admin_Id, ";
 	$sql.="COALESCE((SELECT count(DISTINCT user_Id) FROM dash_info_union, dash_info_user_views ";
     $sql.="WHERE dash_info_union.info_Id=dash_info_user_views.info_Id ";
     $sql.="AND dash_info_user_views.info_Id='".$info_Id."')) As viewedPeople, ";
