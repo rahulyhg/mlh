@@ -12,7 +12,7 @@ if(!isset($_SESSION["PROJECT_URL"])){ $_SESSION["PROJECT_URL"]='http://192.168.1
  var PROJECT_MODE='<?php echo $_SESSION["PROJECT_MODE"]; ?>';
  var PROJECT_URL='<?php echo $_SESSION["PROJECT_URL"]; ?>';
  /* AUTHENTICATION_STATUS - COMPLETED/INCOMPLETED */
- var AUTHENTICATION_STATUS='<?php echo $_SESSION["AUTHENTICATION_STATUS"]; ?>'; 
+ var AUTHENTICATION_STATUS='<?php  if(isset($_SESSION["AUTHENTICATION_STATUS"])) { echo $_SESSION["AUTHENTICATION_STATUS"]; } ?>'; 
  /* USER DATA */
  var USR_LANG='<?php if(isset($_SESSION["USR_LANG"])) { echo $_SESSION["USR_LANG"]; } ?>';
  var AUTH_USER_ID='<?php if(isset($_SESSION["AUTH_USER_ID"])) { echo $_SESSION["AUTH_USER_ID"]; } ?>';

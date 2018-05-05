@@ -869,3 +869,21 @@ Saturday 5th May 2018 02:06:35 AM [INFO] ::: [api.database.php]  Database connec
 Saturday 5th May 2018 02:06:36 AM [INFO] ::: [api.database.php]  Database connected Successfully 
 Saturday 5th May 2018 02:06:37 AM [INFO] ::: [api.database.php]  Database connected Successfully 
 Saturday 5th May 2018 02:06:38 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 6th May 2018 01:43:32 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 6th May 2018 01:43:34 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 6th May 2018 01:43:46 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 6th May 2018 01:43:46 AM [INFO] ::: [api.database.php]  Query(Status-Success) : UPDATE user_account SET  username='anups',  surName='Nellutla',  name='Anup Chakravarthi',  mcountrycode='+91',  mobile='9160869337',  mob_val='Y',  dob='2015-11-12',  gender='MALE',  profile_pic='http://192.168.1.4/mlh/android-web/images/avatar/3.jpg',  minlocation='Kuttanad',  location='Mavelikara',  state='Kerala',  country='India',  isAdmin='N',  user_tz='Asia/Kolkata',  acc_active='N' WHERE user_Id='USR924357814934'; 
+Sunday 6th May 2018 01:43:48 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 6th May 2018 01:43:53 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 6th May 2018 01:43:54 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 6th May 2018 01:43:56 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 6th May 2018 01:43:57 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 6th May 2018 01:43:58 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 6th May 2018 01:43:59 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 6th May 2018 01:44:00 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 6th May 2018 01:58:36 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 6th May 2018 01:58:37 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 6th May 2018 01:58:38 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 6th May 2018 01:58:39 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 6th May 2018 01:58:40 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 6th May 2018 01:58:41 AM [INFO] ::: [api.database.php]  Database connected Successfully 
