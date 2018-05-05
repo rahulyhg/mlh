@@ -42,18 +42,18 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
 	  <div id="app-page-content">
 	  
 	    <div class="container-fluid pad0">
-		    <div class="scroller scroller-left col-xs-1 custom-lgt-bg" style="height:41px;">
+		    <div class="scroller scroller-left col-xs-1 custom-bg" style="height:41px;">
 			   <i class="glyphicon glyphicon-chevron-left"></i>
 			</div>
-			<div class="scrollTabwrapper custom-lgt-bg col-xs-10">
+			<div class="scrollTabwrapper custom-bg col-xs-10">
 				<ul class="nav nav-tabs scrollTablist" id="myTab" style="border-bottom:0px;">
-					<li><a href="#home" class="custom-bg" style="border-radius:0px;"><b>People</b></a></li>
-					<li><a href="#profile" style="color:#000;"><b>NewsFeed</b></a></li>
-					<li><a href="#messages" style="color:#000;"><b>Community</b></a></li>
-					<li><a href="#settings" style="color:#000;"><b>Movements</b></a></li>
+					<li><a href="#home" class="custom-lgt-bg" style="border-radius:0px;"><b>People</b></a></li>
+					<li><a href="#profile" style="color:#fff;"><b>NewsFeed</b></a></li>
+					<li><a href="#messages" style="color:#fff;"><b>Community</b></a></li>
+					<li><a href="#settings" style="color:#fff;"><b>Movements</b></a></li>
 				</ul>
 			</div>
-			<div class="scroller scroller-right col-xs-1 custom-lgt-bg" style="height:41px;">
+			<div class="scroller scroller-right col-xs-1 custom-bg" style="height:41px;">
 			   <i class="glyphicon glyphicon-chevron-right"></i>
 			</div>
 		</div>
