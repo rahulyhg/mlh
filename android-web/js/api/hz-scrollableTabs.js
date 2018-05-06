@@ -1,1 +1,1 @@
-var scroller=40;$('.scroller-right').click(function() {  $('.scrollTablist').animate({left:"+="+scroller+"px"},'slow',function(){ });  });$('.scroller-left').click(function() {  $('.scrollTablist').animate({left:"-="+scroller+"px"},'slow',function(){ });});    
+var scroller=40;$('.scroller-right').click(function() {  $('.scrollTablist').animate({left:"-="+scroller+"px"},'slow',function(){ });  });$('.scroller-left').click(function() {  $('.scrollTablist').animate({left:"+="+scroller+"px"},'slow',function(){ });});
