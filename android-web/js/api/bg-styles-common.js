@@ -46,10 +46,10 @@ function bgstyle_common1() {
  $('.slider-selection').css('background',CURRENT_LIGHT_COLOR);
 }
 function bgstyle_applogo1(){
- document.getElementById("div_app_logo").innerHTML='<img src="images/logo-yellow-flat.jpg" class="dash_app_logo"/>';
+ document.getElementById("div_app_logo").innerHTML='<img src="'+PROJECT_URL+'images/logo-yellow-flat.jpg" class="dash_app_logo"/>';
 }
 function bgstyle_anuplogo1(){
- document.getElementById("div_anups_logo").innerHTML='<img class="anups-logo" src="images/anups-logo-yellow.jpg"/>';
+ document.getElementById("div_anups_logo").innerHTML='<img class="anups-logo" src="'+PROJECT_URL+'images/anups-logo-yellow.jpg"/>';
 }
 function bgstyle_bodyBgDark2(){
  $("body").css("background-color","#e72e10");
@@ -90,10 +90,10 @@ function bgstyle_common2() {
  $('.slider-selection').css('background',CURRENT_LIGHT_COLOR);
 }
 function bgstyle_applogo2(){
- document.getElementById("div_app_logo").innerHTML='<img src="images/logo-orange-flat.jpg" class="dash_app_logo"/>';
+ document.getElementById("div_app_logo").innerHTML='<img src="'+PROJECT_URL+'images/logo-orange-flat.jpg" class="dash_app_logo"/>';
 }
 function bgstyle_anuplogo2(){
- document.getElementById("div_anups_logo").innerHTML='<img class="anups-logo" src="images/anups-logo-orange.jpg"/>';
+ document.getElementById("div_anups_logo").innerHTML='<img class="anups-logo" src="'+PROJECT_URL+'images/anups-logo-orange.jpg"/>';
 }
 function bgstyle_bodyBgDark3(){
  $("body").css("background-color","#0ba0da");
@@ -133,8 +133,8 @@ function bgstyle_common3() {
  $('.slider-selection').css('background',CURRENT_LIGHT_COLOR);
 }
 function bgstyle_applogo3(){
- document.getElementById("div_app_logo").innerHTML='<img src="images/logo-blue-flat.jpg" class="dash_app_logo"/>';
+ document.getElementById("div_app_logo").innerHTML='<img src="'+PROJECT_URL+'images/logo-blue-flat.jpg" class="dash_app_logo"/>';
 }
 function bgstyle_anuplogo3(){
- document.getElementById("div_anups_logo").innerHTML='<img class="anups-logo" src="images/anups-logo-blue.jpg"/>';
+ document.getElementById("div_anups_logo").innerHTML='<img class="anups-logo" src="'+PROJECT_URL+'images/anups-logo-blue.jpg"/>';
 }
