@@ -79,10 +79,10 @@ var content='';
    content+='<b>'+domainName.toUpperCase()+' / '+subdomainName.toUpperCase()+'</b></span>';
    content+='</div>';
    content+='<div class="col-md-12 pad0">';
-   content+='<div class="col-md-3 col-xs-3 mtop15p">'; 
+   content+='<div class="col-md-4 col-xs-4 mtop15p">'; 
    content+='<img class="img-min-profilepic" src="'+profile_pic+'">';
    content+='</div>';
-   content+='<div align="left" class="col-md-9 col-xs-9 frnshipreqdiv">';
+   content+='<div align="left" class="col-md-8 col-xs-8 frnshipreqdiv">';
    content+='<h5><b>'+unionName+'</b></h5>';
    content+='<div style="color:#87898a;">created on '+created_On+'</div>';
    content+='<div class="frnshipreqaddr mtop15p" style="color:#000;">'+minlocation+', '+location+', '+state+', '+country+'</div>';
@@ -170,10 +170,10 @@ var content='';
    content+='<b>'+domainName.toUpperCase()+' / '+subdomainName.toUpperCase()+'</b></span>';
    content+='</div>';
    content+='<div class="col-md-12 pad0">';
-   content+='<div class="col-md-3 col-xs-3 mtop15p">'; 
+   content+='<div class="col-md-4 col-xs-4 mtop15p">'; 
    content+='<img class="img-min-profilepic" src="'+profile_pic+'">';
    content+='</div>';
-   content+='<div align="left" class="col-md-9 col-xs-9 frnshipreqdiv">';
+   content+='<div align="left" class="col-md-8 col-xs-8 frnshipreqdiv">';
    content+='<h5><b>'+unionName+'</b></h5>';
    content+='<div style="color:#87898a;">created on '+created_On+'</div>';
    content+='<div class="frnshipreqaddr mtop15p" style="color:#000;">'+minlocation+', '+location+', '+state+', '+country+'</div>';
@@ -248,10 +248,10 @@ var content='';
    content+='<b>'+domainName.toUpperCase()+' / '+subdomainName.toUpperCase()+'</b></span>';
    content+='</div>';
    content+='<div class="col-md-12 pad0">';
-   content+='<div class="col-md-3 col-xs-3 mtop15p">'; 
+   content+='<div class="col-md-4 col-xs-4 mtop15p">'; 
    content+='<img class="img-min-profilepic" src="'+profile_pic+'">';
    content+='</div>';
-   content+='<div align="left" class="col-md-9 col-xs-9 frnshipreqdiv">';
+   content+='<div align="left" class="col-md-8 col-xs-8 frnshipreqdiv">';
    content+='<h5><b>'+unionName+'</b></h5>';
    content+='<div style="color:#87898a;">created on '+created_On+'</div>';
    content+='<div class="frnshipreqaddr mtop15p" style="color:#000;">'+minlocation+', '+location+', '+state+', '+country+'</div>';
@@ -306,8 +306,8 @@ var content='';
 		   <div class="row">
 		     <div align="right" class="col-md-12">
 			   <div class="btn-group">
-		          <button class="btn custom-bg" onclick="javascript:urlRedirect_createCommunity();"><b>Create Community</b></button>
-			      <button class="btn custom-lgt-bg" onclick="javascript:urlRedirect_browseCommunity();"><b>Browse Community</b></button>
+		          <button class="btn custom-bg" onclick="javascript:urlRedirect_createCommunity();"><b>Create</b></button>
+			      <button class="btn custom-lgt-bg" onclick="javascript:urlRedirect_browseCommunity();"><b>Browse</b></button>
 			   </div>
 		     </div>
 		    </div>

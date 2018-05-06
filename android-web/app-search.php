@@ -194,10 +194,31 @@ function searchCommunityInitializer(){
      document.getElementById("searchCommunityDataload0").innerHTML='<div align="center" style="color:#ccc;">No Community found</div>';
    } else {
    console.log("searchCommunityInitializer: "+totalData);
+   scroll_loadInitializer('searchCommunityDataload',10,searchCommunitycontentData,totalData);
    }
  });
 }
-
+function searchCommunitycontentData(div_view, appendContent,limit_start,limit_end){
+  js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.page.app.search.php',
+ { action:'SEARCH_DATA_COMMUNITY', searchKeyword:SEARCH_KEYWORD,limit_start:limit_start,limit_end:limit_end },
+ function(response){
+ response=JSON.parse(response);
+ for(var index=0;index<response.length;index++){
+   var union_Id=response[index].union_Id;
+   var domain_Id=response[index].domain_Id;
+   var subdomain_Id=response[index].domain_Id;
+   var unionName=response[index].domain_Id;
+   var unionURLName=response[index].domain_Id;
+   var profile_pic=response[index].domain_Id;
+   var minlocation=response[index].domain_Id;
+   var location=response[index].domain_Id;
+   var state=response[index].domain_Id;	
+   var country=response[index].domain_Id;
+   var created_On=response[index].domain_Id;
+   var admin_Id=response[index].domain_Id;
+ }
+ });
+}
 /* Search Movement load On Scroll */ 
 function searchMovementInitializer(){
  js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.page.app.search.php',
