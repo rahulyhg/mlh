@@ -70,6 +70,9 @@ function js_getHashMap(key){
   return value;
 }
 
+function urlTransfer(url){
+ window.location.href=url;
+}
 /* AJAX */
 function js_ajax(method,url,data,fn_output){
  $.ajax({type: method, url: url,data:data,success: function(response) { fn_output(response); } }); 
