@@ -45,12 +45,39 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
 		    <div class="scroller scroller-left col-xs-1 custom-bg" style="height:41px;">
 			   <i class="glyphicon glyphicon-chevron-left"></i>
 			</div>
+<style>
+.unselectHzTab { color:#fff; }
+.unselectHzTab:hover { color:#000; }
+</style>
+<script type="text/javascript">
+function hzTabSelection(id){
+ var arry=["searchPeopleHzTab","searchNewsFeedHzTab","searchCommunityHzTab","searchMovementHzTab"];
+ for(var index=0;index<arry.length;index++){
+ if(arry[index]===id){
+   if(!$("#"+arry[index]).hasClass('custom-lgt-bg')){ $("#"+arry[index]).addClass('custom-lgt-bg'); }
+   if($("#"+arry[index]).hasClass('unselectHzTab')){ $("#"+arry[index]).removeClass('unselectHzTab'); }
+   $("#"+arry[index]).css('border-radius','0px');
+   $("#"+arry[index]).css('background-color',CURRENT_LIGHT_COLOR);
+   $("#"+arry[index]).css('color','#000');
+  } else {
+   if($("#"+arry[index]).hasClass('custom-lgt-bg')){ $("#"+arry[index]).removeClass('custom-lgt-bg'); }
+   if(!$("#"+arry[index]).hasClass('unselectHzTab')){ $("#"+arry[index]).addClass('unselectHzTab'); }
+   $("#"+arry[index]).css('border-radius','0px');
+   $("#"+arry[index]).css('background-color',CURRENT_DARK_COLOR);
+   $("#"+arry[index]).css('color','#fff');
+  }
+ }
+}
+$(document).ready(function(){
+  hzTabSelection('searchPeopleHzTab');
+});
+</script>
 			<div class="scrollTabwrapper custom-bg col-xs-10">
 				<ul class="nav nav-tabs scrollTablist" id="myTab" style="border-bottom:0px;">
-					<li><a href="#home" class="custom-lgt-bg" style="border-radius:0px;"><b>People</b></a></li>
-					<li><a href="#profile" style="color:#fff;"><b>NewsFeed</b></a></li>
-					<li><a href="#messages" style="color:#fff;"><b>Community</b></a></li>
-					<li><a href="#settings" style="color:#fff;"><b>Movements</b></a></li>
+					<li><a id="searchPeopleHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>People</b></a></li>
+					<li><a id="searchNewsFeedHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>NewsFeed</b></a></li>
+					<li><a id="searchCommunityHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>Community</b></a></li>
+					<li><a id="searchMovementHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>Movements</b></a></li>
 				</ul>
 			</div>
 			<div class="scroller scroller-right col-xs-1 custom-bg" style="height:41px;">
