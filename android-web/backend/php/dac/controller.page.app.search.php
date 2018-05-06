@@ -29,14 +29,14 @@ else if($_GET["action"]=='SEARCH_DATA_USERS'){
    echo $dbObj->getJSONData($query);
   } else { 
     $content='Missing ';
-	if(!isset($_GET["searchKeyword"])){ $content='searchKeyword, '; }
-	if(!isset($_GET["limit_start"])){ $content='limit_start, '; }
-	if(!isset($_GET["limit_end"])){ $content='limit_end, '; }
+	if(!isset($_GET["searchKeyword"])){ $content.='searchKeyword, '; }
+	if(!isset($_GET["limit_start"])){ $content.='limit_start, '; }
+	if(!isset($_GET["limit_end"])){ $content.='limit_end, '; }
 	$content=chop($content,', ');
     echo $content; 
    }
 }
-if($_GET["action"]=='SEARCH_COUNT_COMMUNITY'){
+else if($_GET["action"]=='SEARCH_COUNT_COMMUNITY'){
  if(isset($_GET["searchKeyword"])){
    $searchQuery=$_GET["searchKeyword"];
    $appSearchObj=new app_Search();
@@ -60,14 +60,14 @@ else if($_GET["action"]=='SEARCH_DATA_COMMUNITY'){
    echo $dbObj->getJSONData($query);
   } else { 
     $content='Missing ';
-	if(!isset($_GET["searchKeyword"])){ $content='searchKeyword, '; }
-	if(!isset($_GET["limit_start"])){ $content='limit_start, '; }
-	if(!isset($_GET["limit_end"])){ $content='limit_end, '; }
+	if(!isset($_GET["searchKeyword"])){ $content.='searchKeyword, '; }
+	if(!isset($_GET["limit_start"])){ $content.='limit_start, '; }
+	if(!isset($_GET["limit_end"])){ $content.='limit_end, '; }
 	$content=chop($content,', ');
     echo $content; 
    }
 }
-if($_GET["action"]=='SEARCH_COUNT_NEWSFEED'){
+else if($_GET["action"]=='SEARCH_COUNT_NEWSFEED'){
  if(isset($_GET["searchKeyword"])){
    $searchQuery=$_GET["searchKeyword"];
    $appSearchObj=new app_Search();
@@ -91,14 +91,14 @@ else if($_GET["action"]=='SEARCH_DATA_NEWSFEED'){
    echo $dbObj->getJSONData($query);
   } else { 
     $content='Missing ';
-	if(!isset($_GET["searchKeyword"])){ $content='searchKeyword, '; }
-	if(!isset($_GET["limit_start"])){ $content='limit_start, '; }
-	if(!isset($_GET["limit_end"])){ $content='limit_end, '; }
+	if(!isset($_GET["searchKeyword"])){ $content.='searchKeyword, '; }
+	if(!isset($_GET["limit_start"])){ $content.='limit_start, '; }
+	if(!isset($_GET["limit_end"])){ $content.='limit_end, '; }
 	$content=chop($content,', ');
     echo $content; 
    }
 }
-if($_GET["action"]=='SEARCH_COUNT_MOVEMENT'){
+else if($_GET["action"]=='SEARCH_COUNT_MOVEMENT'){
  if(isset($_GET["searchKeyword"])){
    $searchQuery=$_GET["searchKeyword"];
    $appSearchObj=new app_Search();
@@ -122,9 +122,9 @@ else if($_GET["action"]=='SEARCH_DATA_MOVEMENT'){
    echo $dbObj->getJSONData($query);
   } else { 
     $content='Missing ';
-	if(!isset($_GET["searchKeyword"])){ $content='searchKeyword, '; }
-	if(!isset($_GET["limit_start"])){ $content='limit_start, '; }
-	if(!isset($_GET["limit_end"])){ $content='limit_end, '; }
+	if(!isset($_GET["searchKeyword"])){ $content.='searchKeyword, '; }
+	if(!isset($_GET["limit_start"])){ $content.='limit_start, '; }
+	if(!isset($_GET["limit_end"])){ $content.='limit_end, '; }
 	$content=chop($content,', ');
     echo $content; 
    }

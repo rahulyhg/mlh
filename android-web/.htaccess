@@ -15,6 +15,7 @@ RewriteRule initializer/register auth-part-02.php [NC,L]
 RewriteRule initializer/profile-pic auth-part-03.php [NC,L]
 RewriteRule subscribe/categories auth-part-04.php [NC,L]
 
+RewriteRule app/search/([^/]+)$ app-search.php?searchKeyword=$1 [NC,L]
 RewriteRule app/search app-search.php [NC,L]
 
 RewriteRule app/myprofile app-user-myprofile.php [NC,L]
