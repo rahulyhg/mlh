@@ -38,6 +38,10 @@ $(document).ready(function(){
 //  notify_messagesrequest();
 //  notify_notificationrequest();
 });
+function searchDataOnMLH(){
+var searchKeywrd=document.getElementById("searchKeywrd").value;
+window.location.href=PROJECT_URL+'app/search/'+searchKeywrd;
+}
 </script>
 <nav id="header_bot" class="navbar" style="margin-bottom:0px;border-radius:0px;">
 	
@@ -51,8 +55,9 @@ $(document).ready(function(){
 			  <div id="div_app_logo" class="col-md-2 col-sm-4 col-xs-5" style="padding-left:0px;"></div>
 			  <div class="col-md-5 col-sm-12 col-xs-12 pad10">
 			     <div class="input-group">
-					<input type="text" class="form-control" placeholder="Enter your Search">
-					<span class="input-group-addon custom-lgt-bg" id="basic-addon1"><b>Search</b></span>
+					<input id="searchKeywrd" type="text" class="form-control" placeholder="Enter your Search" value="<?php if(isset($_GET["searchKeyword"])) { echo $_GET["searchKeyword"]; } ?>">
+					<span class="input-group-addon custom-lgt-bg curpoint" onclick="javascript:searchDataOnMLH();">
+					 <b>Search</b></span>
 				 </div>
 			  </div>
 
