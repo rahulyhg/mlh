@@ -54,7 +54,7 @@ var usr_vote_down=resp.unionNewsFeed[index].usr_vote_down;
 var usr_favourite=resp.unionNewsFeed[index].usr_favourite;
 var usr_liked=resp.unionNewsFeed[index].usr_liked;
 var newsType='UNION';
-content+=uiTemplate_newsFeedDisplay(union_Id, domainName, subdomainName, unionName, info_Id, artTitle, artShrtDesc, 
+content+=uiTemplate_unionNewsFeedDisplay(union_Id, domainName, subdomainName, unionName, info_Id, artTitle, artShrtDesc, 
          artDesc, createdOn, images, votes_up, votes_down, status, viewed, favourites, likes, usr_vote_up, usr_vote_down, 
          usr_favourite, usr_liked, newsType);
 }

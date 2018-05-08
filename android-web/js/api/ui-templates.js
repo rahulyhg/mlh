@@ -4,12 +4,30 @@ function uiTemplate_userDisplayWithCloseButton(){
 }
 
 /* User without close button icon Function */
-function uiTemplate_userDisplayWithoutCloseButton(){
-
+function uiTemplate_userDisplayWithoutCloseButton(param_surName, param_name, param_profilepic, param_minlocation, 
+             param_location,param_state,param_country){
+var content='<div class="list-group">';
+	content+='<div class="list-group-item">';
+	content+='<div class="container-fluid pad0">';
+	content+='<div class="row">';
+	content+='<div class="col-xs-4"><img src="'+param_profilepic+'" class="img-min-profilepic"></div>';
+	content+='<div class="col-xs-8">';
+	content+='<div align="center" class="col-xs-12">';
+	content+='<h5><b>'+param_surName+' '+param_name+'</b></h5>';
+	content+='</div>';
+	content+='<div align="center" class="col-xs-12" style="color:#999;">';
+	content+=param_minlocation+', '+param_location+', '+param_state+', '+param_country;
+	content+='</div>';
+	content+='</div>';
+	content+='</div>';
+	content+='</div>';
+	content+='</div>';
+	content+='</div>';
+ return content;
 }
 
 /* NewsFeed Display Function */
-function uiTemplate_newsFeedDisplay(param_unionId, param_domainName, param_subdomainName, param_unionName, param_infoId, 
+function uiTemplate_unionNewsFeedDisplay(param_unionId, param_domainName, param_subdomainName, param_unionName, param_infoId, 
 param_artTitle, param_artShrtDesc, param_artDesc, param_createdOn, param_images, param_votesup, param_votesdown, param_status, 
 param_viewed, param_favourites, param_likes, param_usrvoteup, param_usrvotedown, param_usrfavourite, param_usrliked, 
 param_newsType){
@@ -298,8 +316,41 @@ if(vote_status==='voteup'){
 }
 
 /* Community Display Function */
-function uiTemplate_communityDisplay(){
-
+function uiTemplate_communityDisplay(param_unionName,param_domainName,param_subdomainName,param_profilepic,param_createdOn,
+            param_minlocation, param_location, param_state, param_country, param_membersCount, param_supportersCount){
+var content='<div class="list-group pad10" style="margin-bottom:10px;">';
+    content+='<div class="list-group-item">';
+    content+='<div class="container-fluid pad0">';
+    content+='<div class="col-md-12 col-xs-12 pad0">'; 
+    content+='<span class="label label-newsfeed custom-bg" style="background-color:#0ba0da;">';
+    content+='<b>'+param_domainName.toUpperCase()+' / '+param_subdomainName.toUpperCase()+'</b></span>';
+    content+='</div>';
+    content+='<div class="col-md-12 pad0">';
+    content+='<div class="col-md-4 col-xs-4 mtop15p">'; 
+    content+='<img class="img-min-profilepic" src="'+param_profilepic+'">';
+    content+='</div>';
+    content+='<div align="left" class="col-md-8 col-xs-8 frnshipreqdiv">';
+    content+='<h5><b>'+param_unionName+'</b></h5>';
+    content+='<div style="color:#87898a;">created on '+param_createdOn+'</div>';
+    content+='<div class="frnshipreqaddr mtop15p" style="color:#000;">'+param_minlocation+', '+param_location+', '+param_state+', '+param_country+'</div>';
+    content+='</div>';
+    content+='</div>';
+    content+='</div>';
+    content+='</div>';
+    content+='<div class="list-group-item">';
+    content+='<div class="container-fluid pad0">';
+    content+='<div align="center" class="col-md-6 col-xs-6" style="border-right:1px solid #ccc;">';
+    content+='<h4 style="color:#87898a;"><b>'+param_membersCount+'</b></h4>';
+    content+='<b>MEMBERS</b>';
+    content+='</div>';
+    content+='<div align="center" class="col-md-6 col-xs-6">';
+    content+='<h4 style="color:#87898a;"><b>'+param_supportersCount+'</b></h4>';
+    content+='<b>SUPPORTERS</b>';
+    content+='</div>';
+    content+='</div>';
+    content+='</div>';
+    content+='</div>';
+  return content;
 }
 
 /* Movement Display Function */

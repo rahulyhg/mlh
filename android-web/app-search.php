@@ -16,6 +16,7 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/jquery.min.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/jquery-ui.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/bootstrap.min.js"></script>
+ <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/ui-templates.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/load-data-on-scroll.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/bg-styles-common.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/app-search-bg-styles.js"></script>
@@ -100,27 +101,7 @@ function searchpeoplecontentData(div_view, appendContent,limit_start,limit_end){
 	  var user_tz=response[index].user_tz;
 	  var acc_active=response[index].acc_active;
 	  
-	  content+='<div class="col-xs-12">';
-	  content+='<div class="list-group">';
-	  content+='<div class="list-group-item">';
-	  content+='<div class="container-fluid pad0">';
-	  content+='<div class="row">';
-	  content+='<div class="col-xs-4">';
-	  content+='<img src="'+profile_pic+'" class="img-min-profilepic"/>';
-	  content+='</div>';
-	  content+='<div class="col-xs-8">';
-	  content+='<div align="center" class="col-xs-12">';
-	  content+='<h5><b>'+surName+' '+name+'</b></h5>';
-	  content+='</div>';
-	  content+='<div align="center" class="col-xs-12" style="color:#999;">';
-	  content+=minlocation+', '+location+', '+state+', '+country;
-	  content+='</div>';
-	  content+='</div>';
-	  content+='</div>';
-	  content+='</div>';
-	  content+='</div>';
-	  content+='</div>';
-	  content+='</div>';  
+	  content+=uiTemplate_userDisplayWithoutCloseButton(surName, name, profile_pic, minlocation, location,state,country);
 	}
 	content+=appendContent;
 	document.getElementById(div_view).innerHTML=content;
@@ -262,7 +243,7 @@ function searchMovementInitializer(){
 			</div>
 		</div>
 
-		<div class="container-fluid pad0">
+		<div class="container-fluid">
 			<div id="searchPeopleDisplayDivision" align="center" class="mtop15p hide-block">
 			  <div id="searchPeopleDataload0">
 			   <img src="<?php echo $_SESSION["PROJECT_URL"]; ?>images/load.gif" style="margin-top:15px;width:150px;height:150px;"/>
