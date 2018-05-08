@@ -17,6 +17,7 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/bootstrap.min.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/load-data-on-scroll.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/bg-styles-common.js"></script>
+ <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/ui-templates.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/app-newsfeed-bg-styles.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/app-newsfeed.js"></script>
  <?php include_once 'templates/api/api_params.php'; ?>
