@@ -20,11 +20,16 @@ if($_SESSION["AUTHENTICATION_STATUS"]=='INCOMPLETED'){
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/auth-part-02-bg-styles.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/auth-part-02.js"></script>
  <script type="text/javascript">
- 
-
+ function authAlert(id){
+  var arryIds=["alert_english_surName","alert_english_fullName","alert_english_gender","alert_english_dob",
+			  "alert_english_country","alert_english_state","alert_english_location","alert_english_locality"];
+  for(var index=0;index<arryIds.length;index++){
+	if(arryIds[index]===id){ $("#authFormModal").modal();$("#"+arryIds[index]).removeClass('hide-block'); }
+	else { $("#"+arryIds[index]).addClass('hide-block'); }
+  }
+ }
  function authDone(){
    /* Set AUTHENTICATION_STATUS=DONE */
-  // 
   var userId=document.getElementById("reg_"+USR_LANG+"_userId").value;
   var username=document.getElementById("reg_"+USR_LANG+"_username").value;
   var userTz=document.getElementById("reg_"+USR_LANG+"_userTz").value;
@@ -36,30 +41,46 @@ if($_SESSION["AUTHENTICATION_STATUS"]=='INCOMPLETED'){
   var state=document.getElementById("reg_"+USR_LANG+"_state").value;
   var location=document.getElementById("reg_"+USR_LANG+"_location").value;
   var locality=document.getElementById("reg_"+USR_LANG+"_locality").value;
-    
+   
+  if(surname.length>0){
+  if(name.length>0){
+  if(dob.length>0){
+  if(gender.length>0){
+  if(country.length>0){
+  if(state.length>0){
+  if(location.length>0){
+  if(locality.length>0){
+     var sessionJSON='{"session_set":[';
+         sessionJSON+='{"key":"AUTH_USER_ID","value":"'+userId+'"},';
+         sessionJSON+='{"key":"AUTH_USER_USERNAME","value":"'+username+'"},';
+	     sessionJSON+='{"key":"AUTH_USER_TIMEZONE","value":"'+userTz+'"},';
+	     sessionJSON+='{"key":"AUTH_USER_SURNAME","value":"'+surname+'"},';
+	     sessionJSON+='{"key":"AUTH_USER_FULLNAME","value":"'+name+'"},';
+	     sessionJSON+='{"key":"AUTH_USER_GENDER","value":"'+gender+'"},';
+	     sessionJSON+='{"key":"AUTH_USER_DOB","value":"'+dob+'"},';
+	     sessionJSON+='{"key":"AUTH_USER_COUNTRY","value":"'+country+'"},';
+	     sessionJSON+='{"key":"AUTH_USER_STATE","value":"'+state+'"},';
+	     sessionJSON+='{"key":"AUTH_USER_LOCATION","value":"'+location+'"},';
+	     sessionJSON+='{"key":"AUTH_USER_LOCALITY","value":"'+locality+'"}';
+	     sessionJSON+='],';
+	     sessionJSON+='"session_get":["AUTH_USER_ID","AUTH_USER_USERNAME",';
+	     sessionJSON+='"AUTH_USER_TIMEZONE","AUTH_USER_SURNAME","AUTH_USER_FULLNAME","AUTH_USER_GENDER","AUTH_USER_DOB",';
+	     sessionJSON+='"AUTH_USER_COUNTRY","AUTH_USER_STATE","AUTH_USER_LOCATION","AUTH_USER_LOCALITY",';
+	     sessionJSON+='"AUTH_USER_COUNTRYCODE","AUTH_USER_PHONENUMBER" ]}';
+     js_session(sessionJSON,function(response){ window.location.href=PROJECT_URL+"initializer/profile-pic"; });
+  } else { authAlert("alert_english_locality"); }
+  } else { authAlert("alert_english_location"); }
+  } else { authAlert("alert_english_state"); }
+  } else { authAlert("alert_english_country"); }
+  } else { authAlert("alert_english_gender"); }
+  } else { authAlert("alert_english_dob"); }
+  } else { authAlert("alert_english_fullName"); }
+  } else { authAlert("alert_english_surName"); }
+
   /* Validations */	
   
- // alert(userId+" "+username+" "+userTz+" "+surname+" "+name+" "+gender+" "+dob+" "+country+" "+state+" "+location+" "+locality);
+  
   /* set in Session */
-  var sessionJSON='{"session_set":[';
-      sessionJSON+='{"key":"AUTH_USER_ID","value":"'+userId+'"},';
-      sessionJSON+='{"key":"AUTH_USER_USERNAME","value":"'+username+'"},';
-	  sessionJSON+='{"key":"AUTH_USER_TIMEZONE","value":"'+userTz+'"},';
-	  sessionJSON+='{"key":"AUTH_USER_SURNAME","value":"'+surname+'"},';
-	  sessionJSON+='{"key":"AUTH_USER_FULLNAME","value":"'+name+'"},';
-	  sessionJSON+='{"key":"AUTH_USER_GENDER","value":"'+gender+'"},';
-	  sessionJSON+='{"key":"AUTH_USER_DOB","value":"'+dob+'"},';
-	  sessionJSON+='{"key":"AUTH_USER_COUNTRY","value":"'+country+'"},';
-	  sessionJSON+='{"key":"AUTH_USER_STATE","value":"'+state+'"},';
-	  sessionJSON+='{"key":"AUTH_USER_LOCATION","value":"'+location+'"},';
-	  sessionJSON+='{"key":"AUTH_USER_LOCALITY","value":"'+locality+'"}';
-	  sessionJSON+='],';
-	  sessionJSON+='"session_get":["AUTH_USER_ID","AUTH_USER_USERNAME",';
-	  sessionJSON+='"AUTH_USER_TIMEZONE","AUTH_USER_SURNAME","AUTH_USER_FULLNAME","AUTH_USER_GENDER","AUTH_USER_DOB",';
-	  sessionJSON+='"AUTH_USER_COUNTRY","AUTH_USER_STATE","AUTH_USER_LOCATION","AUTH_USER_LOCALITY",';
-	  sessionJSON+='"AUTH_USER_COUNTRYCODE","AUTH_USER_PHONENUMBER" ]}';
-
-  js_session(sessionJSON,function(response){ window.location.href=PROJECT_URL+"initializer/profile-pic"; });
  // if(userId==='0'){ /* Add New Account*/
     
  // } else {  /* Update Existing Account */
@@ -75,6 +96,43 @@ if($_SESSION["AUTHENTICATION_STATUS"]=='INCOMPLETED'){
  </style>
 </head>
 <body>
+ <div id="authFormModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body pad0">
+		<div class="alert alert-warning alert-dismissible" style="margin-bottom:0px;">
+			<a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
+			<span class="lang_english">
+			  <div id="alert_english_surName" class="hide-block">
+				<strong>Warning!</strong> Missing SurName.
+			  </div>
+			  <div id="alert_english_fullName" class="hide-block">
+				<strong>Warning!</strong> Missing FullName.
+			  </div>
+			  <div id="alert_english_gender" class="hide-block">
+				<strong>Warning!</strong> Missing Gender.
+			  </div>
+			  <div id="alert_english_dob" class="hide-block">
+				<strong>Warning!</strong> Missing Date of Birth.
+			  </div>
+			  <div id="alert_english_country" class="hide-block">
+				<strong>Warning!</strong> Missing Country.
+			  </div>
+			  <div id="alert_english_state" class="hide-block">
+				<strong>Warning!</strong> Missing State.
+			  </div>
+			  <div id="alert_english_location" class="hide-block">
+				<strong>Warning!</strong> Missing Location.
+			  </div>
+			  <div id="alert_english_locality" class="hide-block">
+				<strong>Warning!</strong> Missing Locality.
+			  </div>
+			</span>
+		</div>
+      </div>
+    </div>
+  </div>
+ </div>
  <?php include_once 'templates/api/api_loading.php'; ?>
  <?php include_once 'templates/api/api_header_init.php'; ?>
  <div id="usernameCheckAvailabilityDivision" class="container-fluid">
@@ -169,10 +227,6 @@ if($_SESSION["AUTHENTICATION_STATUS"]=='INCOMPLETED'){
    </div>
    
    </div>
-
-     <!--a href="<?php echo $_SESSION["PROJECT_URL"]; ?>initializer/register">
-       <button class="btn btn-default"><b></b>&nbsp;&nbsp;<i class="fa fa-arrow-right"></i></button>
-	 </a-->
 </body>
 </html>
 <?php 
