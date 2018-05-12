@@ -1,15 +1,13 @@
 <?php
+if(!isset($_SESSION["PROJECT_URL"])){ $_SESSION["PROJECT_URL"]="http://".$_SERVER["HTTP_HOST"]."/mlh/android-web/"; }
 if(!isset($_SESSION["PROJECT_MODE"])){ $_SESSION["PROJECT_MODE"]='DEBUG'; }
 if(!isset($_SESSION["USR_LANG"])){ $_SESSION["USR_LANG"]='english'; }
-$_SESSION["PROJECT_URL"]='http://79a27a1c.ngrok.io/mlh/android-web/';
-if(!isset($_SESSION["PROJECT_URL"])){ $_SESSION["PROJECT_URL"]='http://79a27a1c.ngrok.io/mlh/android-web/'; }
 ?>
 <script type="text/javascript">
  /* Android Javascript Interface Objects */
  var Android;
  var AndroidNotify;
- var AndroidSession;
-
+ var AndroidSession
  var PROJECT_MODE='<?php  if(isset($_SESSION["PROJECT_MODE"])) { echo $_SESSION["PROJECT_MODE"]; } ?>';
  var PROJECT_URL='<?php  if(isset($_SESSION["PROJECT_URL"])) { echo $_SESSION["PROJECT_URL"]; } ?>';
  /* AUTHENTICATION_STATUS - COMPLETED/INCOMPLETED */
