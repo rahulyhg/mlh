@@ -1,31 +1,35 @@
 package anups.dun.util;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
+import java.io.Reader;
 import java.net.URL;
 import java.util.Properties;
-
 import android.content.Context;
-import android.content.res.AssetManager;
-import android.os.AsyncTask;
-import android.util.Log;
-import android.widget.Toast;
-import anups.dun.app.AndroidWebScreen;
 
 public class PropertiesFile {
 	
 	 public String getProperty(String key,Context context) {
+		 
+		 /*
 		 org.apache.log4j.Logger logger = AndroidLogger.getLogger(PropertiesFile.class);
-	    Properties properties = new Properties();
-	    AssetManager assetManager = context.getAssets();
-	    try {
-	      InputStream inputStream = assetManager.open("config.properties");
-	      properties.load(inputStream);
-	    }
-	    catch(IOException ioe){ logger.error("PropertiesFile Exception: "+ioe.getMessage()); }
+		 Reader reader = null;
+		 Properties properties = new Properties();
+		 String propertiesFileURL = "http://www.mylocalhook.com/default.properties";
+		 logger.info("propertiesFileURL: "+propertiesFileURL);
+		 try {
+		    URL url = new URL(propertiesFileURL);
+		    reader = new InputStreamReader(url.openStream(), "UTF-8"); 
+		 } 
+		 catch (Exception ex) { logger.error("Failed at  Reading PropertiesFile: "+ex); }
+		 finally { 	
+			 		if(reader!=null){ 
+			 			try { reader.close();  }
+			 			catch(IOException ioe){ logger.error("Failed at  Shutting down Reader Object: "+ioe); }
+			 		} 
+		 		 }
 	    return properties.getProperty(key);
+	    */
+		 return null;
 	 }
 }

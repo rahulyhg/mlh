@@ -49,10 +49,14 @@ import anups.dun.util.PropertiesFile;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.net.URL;
 import java.nio.channels.FileChannel;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -216,6 +220,7 @@ protected void onCreate(Bundle savedInstanceState) {
  AppNotifyManagement anm = new AppNotifyManagement(this);
  AppSessionManagement appSessionManager = new AppSessionManagement(this);
  
+ 
  /* GET DATA FROM PROPERTIES FILE */
  String PROJECT_WEB_URL=new PropertiesFile().getProperty("PROJECT_WEB_URL", this);
  logger.info("PROJECT_WEB_URL: "+PROJECT_WEB_URL);
@@ -241,8 +246,7 @@ protected void onCreate(Bundle savedInstanceState) {
         
         webView.addJavascriptInterface(appManager, "Android"); 
         webView.addJavascriptInterface(anm, "AndroidNotify");
-        webView.addJavascriptInterface(appSessionManager, "AndroidSession");
-        
+        webView.addJavascriptInterface(appSessionManager, "AndroidSession");   
         webView.setWebViewClient(new AndroidWebViewClient(this));
         webView.setWebChromeClient(new AndroidWebChromeClient(this));
         //if SDK version is greater of 19 then activate hardware acceleration otherwise activate software acceleration
