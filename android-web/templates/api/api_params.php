@@ -14,7 +14,7 @@ if(!isset($_SESSION["USR_LANG"])){ $_SESSION["USR_LANG"]='english'; }
  var AUTHENTICATION_STATUS='<?php  if(isset($_SESSION["AUTHENTICATION_STATUS"])) { echo $_SESSION["AUTHENTICATION_STATUS"]; } ?>'; 
  /* USER DATA */
  var USR_LANG='<?php if(isset($_SESSION["USR_LANG"])) { echo $_SESSION["USR_LANG"]; } ?>';
- var AUTH_USER_ID='<?php if(isset($_SESSION["AUTH_USER_ID"])) { echo $_SESSION["AUTH_USER_ID"]; } ?>';
+ var AUTH_USER_ID='<?php if(isset($_SESSION["AUTH_USER_ID"])) { echo $_SESSION["AUTH_USER_ID"]; } else { echo "0"; } ?>';
  var AUTH_USER_USERNAME='<?php if(isset($_SESSION["AUTH_USER_USERNAME"])) { echo $_SESSION["AUTH_USER_USERNAME"]; } ?>';
  var AUTH_USER_SURNAME='<?php if(isset($_SESSION["AUTH_USER_SURNAME"])) { echo $_SESSION["AUTH_USER_SURNAME"]; } ?>';
  var AUTH_USER_FULLNAME='<?php if(isset($_SESSION["AUTH_USER_FULLNAME"])) { echo $_SESSION["AUTH_USER_FULLNAME"]; } ?>';

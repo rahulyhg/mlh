@@ -1,62 +1,1 @@
-<?php session_start();
-if(isset($_SESSION["AUTHENTICATION_STATUS"])){
-if($_SESSION["AUTHENTICATION_STATUS"]=='INCOMPLETED'){
- ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<?php include_once 'templates/api/api_params.php'; ?>
-<?php include_once 'templates/api/api_js.php'; ?>
- <title>Authentication</title>
- <meta charset="utf-8">
- <meta name="viewport" content="width=device-width, initial-scale=1">
- <link rel="shortcut icon" type="image/x-icon" href="<?php echo $_SESSION["PROJECT_URL"]; ?>images/favicon.ico"/>
- <link rel="stylesheet" href="<?php echo $_SESSION["PROJECT_URL"]; ?>styles/api/bootstrap.min.css">
- <link rel="stylesheet" href="<?php echo $_SESSION["PROJECT_URL"]; ?>styles/api/core-skeleton.css">
- <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/jquery.min.js"></script>
- <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/bootstrap.min.js"></script>
- <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/bg-styles-common.js"></script>
- <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/auth-part-04-bg-styles.js"></script>
- <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/auth-part-04.js"></script>
- <?php include_once 'templates/api/api_params.php'; ?>
-<style>
-.card-img-top { width:100px;height:100px;border:1px solid #ccc; }
-.card:hover { background-color:#eee;cursor:pointer; }
-#intrd-title { height:100px;padding:30px; }
-</style>
-<script type="text/javascript">
-$(document).ready(function(){
-
-});
-</script>
-</head>
-<body>
- <?php include_once 'templates/api/api_loading.php'; ?>
- <?php include_once 'templates/api/api_header_init.php'; ?>
- <div id="domain_body">
-  <span class="lang_english">
-	 <div id="intrd-title" class="col-md-12 custom-bg white-font">
-	   <h4 align="center" class="uppercase"><b>Choose your Interest</b></h4>
-	 </div>
-	 <div id="intrd-subtitle" class="col-md-12">
-	   <h5 align="center" class="lineh25p"><b>Select few Categories which you are interested to get updates in your NewsFeed</b></h5>
-	 </div>
-	 
-	 <div align="center" id="categories-list" class="col-md-12 col-sm-12 col-xs-12" style="margin-top:15px;margin-bottom:15px;width:100%;height:auto;">
-	   
-	 </div>
-	 <div align="center" class="col-md-12 col-sm-12 col-xs-12" style="margin-top:15px;margin-bottom:65px;width:100%;height:auto;">
-	    <button class="btn custom-bg white-font" onclick="javascript:subscribe();"><b>I'm done</b></button>
-	 </div>
-   </span>
-   <!--a href="<?php echo $_SESSION["PROJECT_URL"]?>subscribe/categories">
-     <button><b>R</b></button>
-   </a-->
-</div>
- <!--?php include_once 'templates/api/api_bottom_doc.php'; ?-->
-</body>
-</html>
-<?php 
-} else { header("Location: ".$_SESSION["PROJECT_URL"]."newsfeed/latest-news"); }
-} else { header("Location: ".$_SESSION["PROJECT_URL"]); } ?>
-<?php // } ?>
+<?php session_start();if(isset($_SESSION["AUTHENTICATION_STATUS"])){if($_SESSION["AUTHENTICATION_STATUS"]=='INCOMPLETED'){ ?><!DOCTYPE html><html lang="en"><head> <?php include_once 'templates/api/api_params.php'; ?> <?php include_once 'templates/api/api_js.php'; ?> <title>Authentication</title> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1"> <link rel="shortcut icon" type="image/x-icon" href="<?php echo $_SESSION["PROJECT_URL"]; ?>images/favicon.ico"/> <link rel="stylesheet" href="<?php echo $_SESSION["PROJECT_URL"]; ?>styles/api/bootstrap.min.css"> <link rel="stylesheet" href="<?php echo $_SESSION["PROJECT_URL"]; ?>styles/api/core-skeleton.css"> <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/jquery.min.js"></script> <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/bootstrap.min.js"></script> <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/bg-styles-common.js"></script> <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/auth-part-05-bg-styles.js"></script> <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/auth-part-05.js"></script> <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/file-upload.js"></script> <script type="text/javascript" src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/croppie.js"></script> <link href="<?php echo $_SESSION["PROJECT_URL"]; ?>styles/api/croppie.css" rel="stylesheet" type="text/css"><style>.profilepic { width:100px;height:100px;border-radius:50%; }@media (min-width: 1281px) { #tmpl_button {  width:100%;margin-top:10%; } }@media (min-width: 1025px) and (max-width: 1280px) { #tmpl_button { width:100%;margin-top:10%; } }@media (min-width: 992px) and (max-width: 1024px) { #tmpl_button { width:100%;margin-top:10%; } }@media (min-width: 768px) and (max-width: 991px) and (orientation: landscape) { #tmpl_button { width:60%;margin-top:8%; } }@media (min-width: 481px) and (max-width: 767px) {  #tmpl_button { width:80%;margin-top:16%; }}@media (min-width: 200px) and (max-width: 480px) { #tmpl_button { width:100%;margin-top:20%; } }</style></head><body>   <?php include_once 'templates/api/api_loading.php'; ?>   <?php include_once 'templates/api/api_header_init.php'; ?>   <!-- BUTTON TEMPLATE -->   <div id="tmpl_button" class="container">      <div class="col-md-3 col-xs-12"></div>      <div class="col-md-6 col-xs-12">		 <div class="list-group">		   <div class="list-group-item">		      <div class="container-fluid pad0">				  <div align="center" class="col-xs-12 pad0">					<h5><b>Your Profile Picture</b></h5>				  </div>				  <div align="center" class="col-xs-12 mtop15p pad0">					 <img src="<?php if(isset($_SESSION["AUTH_USER_PROFILEPIC"])) { echo $_SESSION["AUTH_USER_PROFILEPIC"]; } ?>" class="profilepic"/>				  </div>				  <div align="center" class="col-xs-12 mtop15p pad0">					 <div class="btn-group">						<button class="btn custom-bg" onclick="javascript:urlTransfer(PROJECT_URL+'initializer/setup-profilepic');"><b>Edit</b></button>						<button class="btn custom-lgt-bg" onclick="javascript:urlTransfer(PROJECT_URL+'subscribe/categories');"><b>Continue</b></button>					 </div>				  </div>			  </div>		   </div>		 </div>      </div>	  <div class="col-md-3  col-xs-12"></div>   </div>   <?php include_once 'templates/api/api_bottom_doc.php'; ?></body></html><?php } else { header("Location: ".$_SESSION["PROJECT_URL"]."newsfeed/latest-news"); }} else { header("Location: ".$_SESSION["PROJECT_URL"]); } ?>

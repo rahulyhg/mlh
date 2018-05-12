@@ -1,98 +1,115 @@
-var AVATAR_URL;
-var IMG_URL;
-
-function authpart03_Completed(){
- var init_session_data='{"session_set":[{ "key":"AUTH_PART_03" , "value" : "COMPLETED" }],"session_get":[""]}';
- js_session(init_session_data,function(response){
-     toggleMLHLoader('body');
-	 window.location.href=PROJECT_URL+'subscribe/categories'; 
- });
-}
-
-$(document).ready(function(){
-bgstyle();
-cloudservers_auth(); // Get CloudName from Cloudinary
-$(".lang_"+USR_LANG).css('display','block');
+$(document).ready(function(){ 
+  bgstyle();
+  $(".lang_"+USR_LANG).css('display','block');
+  loadDataByPhoneNumberAndCountryCode(); /* Loads PhoneNumber and CountryCode */
 });
 
-function reg_data_store(profile_pic){
-if(AUTH_USER_ID==='0'){ /* New User Account */
-  js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.auth.part03.php',
-     { action:'ADD_NEW_USERACCOUNT', username: AUTH_USER_USERNAME, surName:AUTH_USER_SURNAME, name: AUTH_USER_FULLNAME,
-       mcountrycode: AUTH_USER_COUNTRYCODE, mobile:AUTH_USER_PHONENUMBER, dob: AUTH_USER_DOB, gender: AUTH_USER_GENDER,
-       profile_pic: profile_pic, minlocation: AUTH_USER_LOCALITY, location: AUTH_USER_LOCATION, 
-	   state: AUTH_USER_STATE, country: AUTH_USER_COUNTRY, user_tz: AUTH_USER_TIMEZONE },
-	   function(resp){  console.log(resp);window.location.href=PROJECT_URL+"subscribe/categories";  });
-}
-else {  /* Update Existing Account */
-  js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.auth.part03.php',
-     { action:'UPDATE_EXISTING_USERACCOUNT', user_Id: AUTH_USER_ID, username: AUTH_USER_USERNAME, 
-       surName: AUTH_USER_SURNAME, name: AUTH_USER_FULLNAME, mcountrycode: AUTH_USER_COUNTRYCODE,
-	   mobile:AUTH_USER_PHONENUMBER, mob_val:'Y',  dob: AUTH_USER_DOB, gender: AUTH_USER_GENDER, 
-	   profile_pic: profile_pic, minlocation: AUTH_USER_LOCALITY, location: AUTH_USER_LOCATION, 
-	   state: AUTH_USER_STATE, country: AUTH_USER_COUNTRY, isAdmin:'N', user_tz: AUTH_USER_TIMEZONE, 
-	   acc_active:'N' },function(resp){  console.log(resp);window.location.href=PROJECT_URL+"subscribe/categories";  });
-   }
+function loadDataByPhoneNumberAndCountryCode(){
+ document.getElementById("reg_"+USR_LANG+"_userId").value=AUTH_USER_ID;
+ document.getElementById("reg_"+USR_LANG+"_surname").value=AUTH_USER_SURNAME;
+ document.getElementById("reg_"+USR_LANG+"_name").value=AUTH_USER_FULLNAME;
+ document.getElementById("reg_"+USR_LANG+"_gender").value=AUTH_USER_GENDER;
+ document.getElementById("reg_"+USR_LANG+"_dob").value=AUTH_USER_DOB;
+ loadUserGeoLocation(AUTH_USER_COUNTRY, AUTH_USER_STATE, AUTH_USER_LOCATION, AUTH_USER_LOCALITY);
 }
 
-/****************************************************************************************************************************/
-/*********************************************** AVATAR *********************************************************************/
-/****************************************************************************************************************************/
-function avatarSelectImg(imgId){
- var arry_avatar=["1","2","3","4","5","6","7","8","9","10","11","12"];
- for(var index=0;index<arry_avatar.length;index++){
-   if(arry_avatar[index]===imgId) {
-	 if($('#avatar-select-'+arry_avatar[index]).hasClass("hide-block")){
-		$('#avatar-select-'+arry_avatar[index]).removeClass("hide-block");
-	 } 
-	 AVATAR_URL=PROJECT_URL+"images/avatar/"+arry_avatar[index]+".jpg";
-     console.log("img: "+AVATAR_URL);
-   } 
-   else {
-	if(!$('#avatar-select-'+arry_avatar[index]).hasClass("hide-block")){
-		$('#avatar-select-'+arry_avatar[index]).addClass("hide-block");
-	 }
-   }
- }
- if(AVATAR_URL!==undefined){ 
-   document.getElementById("avatar_done").style.display='block'; 
- } 
- else { document.getElementById("avatar_done").style.display='none'; }
+function loadUserGeoLocation(usr_country, usr_state, usr_location, usr_minlocation){
+/* Load Country */ loadUserGeoLocation_Country(usr_country); 
+/* Load State */ loadUserGeoLocation_State(usr_country,usr_state);
+/* Load Location */ loadUserGeoLocation_Location(usr_country,usr_state,usr_location);
+/* Load Minlocation */ loadUserGeoLocation_MinLocation(usr_country,usr_state,usr_location,usr_minlocation); 
 }
 
-function reg_avatar_img(){
- console.log("img: "+AVATAR_URL);
- var init_session_data='{"session_set":[{"key":"AUTH_USER_PROFILEPIC","value":"'+AVATAR_URL+'"}],';
-       init_session_data+='"session_get":["AUTH_USER_PROFILEPIC"]}';
-   js_session(init_session_data,function(response){
-        response=JSON.parse(response);
-		console.log("AUTH_USER_PROFILEPIC: "+response.AUTH_USER_PROFILEPIC);
-		reg_data_store(response.AUTH_USER_PROFILEPIC);
-	});
+function loadUserGeoLocation_Country(usr_country){
+js_ajax("GET",PROJECT_URL+'backend/config/'+USR_LANG+'/countries/countries.json',{},function(resp){ 
+ var result=resp;
+ var countryElement=document.getElementById("reg_"+USR_LANG+"_country");
+ /* Delete previous Options */ for(var index=countryElement.length;index>0;index--) { countryElement.remove(index); } 
+ for(var index=0;index<result.countries.length;index++) { /* Add States */
+  var option = document.createElement("option");
+      option.text = result.countries[index].countryName;
+	  option.value = result.countries[index].countryValue;
+    countryElement.add(option);
+  }
+  document.getElementById("reg_"+USR_LANG+"_country").value=usr_country;
+});
 }
-/*****************************************************************************************************************************/
-/************************************************* PICTURE *******************************************************************/
-/*****************************************************************************************************************************/
-function reg_profile_img(){
- if(IMG_URL!==undefined){
-   var init_session_data='{"session_set":[{"key":"AUTH_USER_PROFILEPIC","value":"'+IMG_URL+'"}],';
-       init_session_data+='"session_get":["AUTH_USER_PROFILEPIC"]}';
-   js_session(init_session_data,function(response){
-	   response=JSON.parse(response);
-       reg_data_store(response.AUTH_USER_PROFILEPIC);
-	   if(!$("#alert_"+USR_LANG+"_profilepic").hasClass("hide-block")){ 
-		   $("#alert_"+USR_LANG+"_profilepic").addClass("hide-block");
-		}
-	   if(!$("#alert_"+USR_LANG+"_missingprofilepic").hasClass("hide-block")){
-		   $("#alert_"+USR_LANG+"_missingprofilepic").addClass("hide-block");
-		}
-   });
- } else {
-    if($("#alert_"+USR_LANG+"_profilepic").hasClass("hide-block")){
-	   $("#alert_"+USR_LANG+"_profilepic").removeClass("hide-block");
-	}
-	if($("#alert_"+USR_LANG+"_missingprofilepic").hasClass("hide-block")){
-	   $("#alert_"+USR_LANG+"_missingprofilepic").removeClass("hide-block");
-	}
+
+function loadUserGeoLocation_State(usr_country,usr_state){
+if(usr_country.length>0){
+js_ajax("GET",PROJECT_URL+'backend/config/'+USR_LANG+'/countries/'+usr_country+'/viewAllStates.json',{},function(resp){  
+var result=resp;
+var stateElement=document.getElementById("reg_"+USR_LANG+"_state");
+/* Delete previous Options */
+for(var index=stateElement.length;index>0;index--) { stateElement.remove(index); }
+/* Add States */
+for(var index=0;index<result.states.length;index++) {
+ var option = document.createElement("option");
+     option.text = result.states[index].stateName;
+	 option.value = result.states[index].stateValue;
+     stateElement.add(option);
+}
+  document.getElementById("reg_"+USR_LANG+"_state").value=usr_state;
+});	
+}
+}
+
+function loadUserGeoLocation_Location(usr_country,usr_state,usr_location){
+if(usr_country.length>0 && usr_state.length>0){
+js_ajax("GET",PROJECT_URL+'backend/config/'+USR_LANG+'/countries/'+usr_country+'/'+usr_state+'/viewAllLocations.json',{},
+function(resp){  var result=resp;
+var locationElement=document.getElementById("reg_"+USR_LANG+"_location");
+/* Delete previous Options */
+for(var index=locationElement.length;index>0;index--) { locationElement.remove(index); }
+/* Add Locations related to State Selected */
+for(var index=0;index<result.location.length;index++) {
+ var option = document.createElement("option");
+     option.text = result.location[index].locationName;
+	 option.value = result.location[index].locationValue;
+ locationElement.add(option);
+}
+ document.getElementById("reg_"+USR_LANG+"_location").value=usr_location;
+});
+}
+}
+
+function loadUserGeoLocation_MinLocation(usr_country,usr_state,usr_location,usr_minlocation){
+if(usr_country.length>0 && usr_state.length>0 && usr_location.length>0){
+js_ajax("GET",PROJECT_URL+'backend/config/'+USR_LANG+'/countries/'+usr_country+'/'+usr_state+'/'+usr_location+'/ViewAllMinLocations.json',{},
+function(resp){  var result=resp;
+ var localityElement=document.getElementById("reg_"+USR_LANG+"_locality");
+ /* Delete previous Options */
+ for(var index=localityElement.length;index>0;index--) { localityElement.remove(index); }
+ /* Adding Locality related to Location Selected*/
+ for(var index=0;index<result.minLocations.length;index++) {
+  var option = document.createElement("option");
+      option.text = result.minLocations[index].minlocationName;
+	  option.value = result.minLocations[index].minlocationValue;
+  localityElement.add(option);
+ }
+document.getElementById("reg_"+USR_LANG+"_locality").value=usr_minlocation;
+});
  }
 }
+
+function userselected_country(){ /* Loads States */
+ var usr_country=document.getElementById("reg_"+USR_LANG+"_country").value;
+ var usr_state="";
+ loadUserGeoLocation_State(usr_country,usr_state);
+}
+
+function userselected_state(){ /* Loads Location */
+  var usr_country=document.getElementById("reg_"+USR_LANG+"_country").value;
+  var usr_state=document.getElementById("reg_"+USR_LANG+"_state").value;
+  var usr_location="";
+  loadUserGeoLocation_Location(usr_country,usr_state,usr_location);
+}
+
+function userselected_location(){  /* Loads Minlocation */
+  var usr_country=document.getElementById("reg_"+USR_LANG+"_country").value;
+  var usr_state=document.getElementById("reg_"+USR_LANG+"_state").value;
+  var usr_location=document.getElementById("reg_"+USR_LANG+"_location").value; 
+  var usr_minlocation=""; 
+  loadUserGeoLocation_MinLocation(usr_country,usr_state,usr_location,usr_minlocation);
+}
+

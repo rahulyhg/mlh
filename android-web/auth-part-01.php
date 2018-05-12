@@ -75,7 +75,7 @@ var sessionContent='{"session_set":[{"key":"AUTH_USER_PHONENUMBER","value":"'+si
      
    </div>
    <div id="authpart02_moverbtndiv" align="center" class="col-md-12 col-xs-12" style="margin-top:120px;">
-     <a href="<?php echo $_SESSION["PROJECT_URL"]; ?>initializer/register">
+     <a href="<?php echo $_SESSION["PROJECT_URL"]; ?>initializer/setup-username">
      <button class="btn btn-default"><b>NEXT</b>&nbsp;&nbsp;<i class="fa fa-arrow-right"></i></button>
 	 </a>
    </div>

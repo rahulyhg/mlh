@@ -2,61 +2,7 @@ $(document).ready(function(){
  bgstyle();
  $(".lang_"+USR_LANG).css('display','block');
  loadVerifyOTPCodeDivision();
-// simcard_detection();
 });
-
-function simcard_detection(){
- if(AndroidTelephony!==undefined){
- var content='';
- var sim1carrier=AndroidTelephony.getsim1carrierName();
- var sim1phoneNumber=AndroidTelephony.getsim1PhoneNumber();
- var sim2carrier=AndroidTelephony.getsim2carrierName();
- var sim2phoneNumber=AndroidTelephony.getsim2PhoneNumber();
-// alert(sim1carrier+" "+sim1phoneNumber+" "+sim2carrier+" "+sim2phoneNumber);
-   if(((sim1carrier!==undefined && sim1carrier.length>0) &&    
-       (sim1phoneNumber!==undefined && sim1phoneNumber.length>0)) && 
-	  ((sim2carrier!==undefined && sim2carrier.length>0) && 
-	  (sim2phoneNumber!==undefined && sim2phoneNumber.length>0))){
-	/* App detected SIM-1 (Carrier and PhoneNumber) and SIM-2 (Carrier and PhoneNumber) */
-	 content+='<div align="center" class="col-md-12 col-xs-12">';
-     content+='<h4 style="color:#fff;">Select your One of the SIM Card</h4>';
-     content+='</div>';
-	 content+='<div style="margin-top:100px;">';
-     content+='<div align="center" class="simslot col-xs-6 col-md-6 white-font" onclick="javascript:moveto_authpart02(\''+sim1carrier+'\',\''+sim1phoneNumber+'\');">';
-	 content+='<img id="simcard1" class="img-simcard" align="left" src="'+PROJECT_URL+'images/blue-SIM01.png"/>';
-	 content+='<b>'+sim1carrier+'<br/>'+sim1phoneNumber+'</b>';
-	 content+='</div>';
-	 content+='<div align="center" class="simslot col-xs-6 col-md-6 white-font" onclick="javascript:moveto_authpart02(\''+sim2carrier+'\',\''+sim2phoneNumber+'\');">';
-	 content+='<img id="simcard2" class="img-simcard" align="left" src="'+PROJECT_URL+'images/blue-SIM02.png"/>';
-	 content+='<b>'+sim2carrier+'<br/>'+sim2phoneNumber+'</b>';
-	 content+='</div>';
-	 content+='</div>';
-	 document.getElementById("dualsim_selection").innerHTML=content;
-   } 
-   else if(((sim1carrier!==undefined && sim1carrier.length>0) && 
-			(sim1phoneNumber!==undefined && sim1phoneNumber.length>0) ) && 
-			((sim2carrier==undefined || sim2carrier.length==0) || 
-			(sim2phoneNumber==undefined || sim2phoneNumber.length==0))){
-   /* App detected SIM-1 (Carrier and PhoneNumber) and SIM-2 not detected */
-     content+='<div align="center" class="col-md-12 col-xs-12">';
-     content+='<h4 style="color:#fff;">Select your SIM Card</h4>';
-     content+='</div>';
-	 content+='<div style="margin-top:100px;">';
-	 content+='<div class="simslot col-xs-12 col-md-12 white-font" onclick="javascript:moveto_authpart02(\''+sim1carrier+'\',\''+sim1phoneNumber+'\');">';
-     content+='<div align="center" class="col-xs-12 col-md-12">';
-	 content+='<img align="center" id="simcard1" class="img-simcard" align="left" src="'+PROJECT_URL+'images/blue-SIM01.png"/>';
-	 content+='</div>';
-	 content+='<div align="center" class="col-xs-12 col-md-12">';
-	 content+='<b>'+sim1carrier+'<br/>'+sim1phoneNumber+'</b>';
-	 content+='</div>';
-	 content+='</div>';
-	 content+='</div>';
-	 document.getElementById("dualsim_selection").innerHTML=content;
-  }  
-  else {  loadVerifyOTPCodeDivision();  } 
- 
- }
-}
 
 function loadVerifyOTPCodeDivision(){
  js_ajax("GET",PROJECT_URL+'backend/config/'+USR_LANG+'/countries/countries.json',{},function(response){
