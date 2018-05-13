@@ -25,7 +25,7 @@ function mainMenuSelection(id){
 function logout(){
   $.ajax({type: "GET", url: PROJECT_URL+'backend/php/dac/controller.session.php',
       data:{ action:'DestroySession' },success: function(resp) { 
-   window.location.href=PROJECT_URL+'initializer/start'; } 
+   window.location.href=PROJECT_URL; } 
   });
 		 
 }
