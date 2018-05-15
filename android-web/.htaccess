@@ -38,6 +38,7 @@ RewriteRule app/movement/([^/]+)$ app-movement-view.php?1=$1  [NC,L]
 RewriteRule app/mycommunity app-community-my.php  [NC,L]
 RewriteRule app/create-community app-community-create.php  [NC,L]
 RewriteRule app/findcommunity app-community-find.php  [NC,L]
+RewriteRule app/community/([^/]+)$ app-community-view.php?1=$1  [NC,L]
 
 RewriteRule doc/hook-standard-premium doc_info_hook.php  [NC,L]
 
