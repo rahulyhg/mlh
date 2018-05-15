@@ -103,6 +103,11 @@ function hzTabSelection(id){
  }
 }
 </script>
+	<div>
+		<!--div class="scroller scroller-left col-xs-1 custom-bg" style="height:41px;">
+			<i class="glyphicon glyphicon-chevron-left"></i>
+		</div-->
+			  
 		<div class="scrollTabwrapper custom-bg col-xs-12">
 			<ul class="nav nav-tabs scrollTablist" style="border-bottom:0px;">
 				<li><a id="movementDescHzTab" onclick="javascript:hzTabSelection(this.id);"><b>Description</b></a></li>
@@ -110,6 +115,10 @@ function hzTabSelection(id){
 			</ul>
 		</div>
 		
+		<!--div class="scroller scroller-right col-xs-1 custom-bg" style="height:41px;">
+			<i class="glyphicon glyphicon-chevron-right"></i>
+		</div-->
+	</div>	
 			  <div id="movementDescDisplayDivision" class="col-xs-12 hide-block mtop15p">
 				<div class="col-xs-12"><b>To<br/>Person Name<br/>Designation</b></div>
 
@@ -172,4 +181,7 @@ function hzTabSelection(id){
 		</div>
 	  </div>
   </div>
+  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/hz-scrollableTabs.js"></script>
+ </body>
+</html>
 <?php } else { header("Location:".$_SESSION["PROJECT_URL"]);  } ?>
