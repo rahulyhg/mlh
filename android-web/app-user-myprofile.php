@@ -170,7 +170,10 @@ var arr_id_c=["tpMenu_myprofile_content","tpMenu_other_content"];
 			</div>
 			
 <script type="text/javascript">
-$(document).ready(function(){ hzTabSelection('generalInformationHzTab'); });
+$(document).ready(function(){ 
+loadSubscriptionTab();
+hzTabSelection('generalInformationHzTab'); 
+});
 function hzTabSelection(id){        
  var arryHzTab=["generalInformationHzTab","yourSubscriptionHzTab"];
  var arryTabDataViewer=["generalInformationContent","yourSubscriptionContent"];
@@ -193,6 +196,11 @@ function hzTabSelection(id){
    
   }
  }
+}
+function loadSubscriptionTab(){
+ var subscriptionJSON='<?php if(isset($_SESSION["AUTH_USER_SUBSCRIPTIONS_LIST"])) { echo $_SESSION["AUTH_USER_SUBSCRIPTIONS_LIST"]; } ?>';
+ console.log("subscriptionJSON: "+subscriptionJSON);
+ subscriptionJSON=JSON.parse(subscriptionJSON);
 }
 </script>
 			<div style="height:45px;">

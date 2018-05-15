@@ -233,7 +233,7 @@ protected void onCreate(Bundle savedInstanceState) {
  /* AUTHENTICATION REMINIDER : */
     awn.notify_authReminder();
  /* NewsFeedImmediateReminder */
-    if(USER_ID!=null){ awn.notify_latestNotificationService(); }
+ //   if(USER_ID!=null){ awn.notify_latestNotificationService(); }
         
         webView = (WebView) findViewById(R.id.webView);
         webView.clearCache(true);
@@ -259,7 +259,8 @@ protected void onCreate(Bundle savedInstanceState) {
         
         ntwrkAvail=new NetworkAvailability(this);
         if(ntwrkAvail.checkInternetConnection()) {
-        	webView.loadUrl(PROJECT_WEB_URL);
+        	// webView.loadUrl(PROJECT_WEB_URL);
+        	webView.loadUrl("http://anups.epizy.com/default.php");
         }
         else {
         	webView.loadUrl("file:///android_asset/www/network_state.html");

@@ -10,18 +10,9 @@ require_once '../lal/logic.user.subscription.php';
 $logger=Logger::getLogger("controller.page.auth.part04.php");
 
 if(isset($_GET["action"])){
+
  
- if($_GET["action"]=='USER_DOMAIN_SUBSCRIBE'){
-   if(isset($_GET["user_Id"])){
-    $userId=$_GET["user_Id"];
-	$authObj=new user_authentication();
-	$dbObj=new Database();
-    $query=$authObj->query_getListOfDomainSubscriptions($userId);
-	echo $dbObj->getJSONData($query);
-   } else {  echo 'MISSING_USERID'; }
- }
- 
- else if($_GET["action"]=='USER_SUBSCRIPTION'){
+ if($_GET["action"]=='USER_SUBSCRIPTION'){
   if(isset($_GET["user_Id"]) && isset($_GET["categories"])){
     $subObj=new user_authentication();
 	$dbObj=new Database();
