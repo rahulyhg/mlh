@@ -23,6 +23,11 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/app-user-myprofile.js"></script>
  <script type="text/javascript" src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/file-upload.js"></script>
  <script type="text/javascript" src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/croppie.js"></script>
+ <link rel="stylesheet" href="<?php echo $_SESSION["PROJECT_URL"]; ?>styles/api/hz-scrollableTabs.css">
+<style>
+// .unselectHzTab { color:#fff; }
+// .unselectHzTab:hover { color:#000; }
+</style>
 <script type="text/javascript">
 function loadUserProfile(){
 // load  
@@ -136,33 +141,24 @@ var arr_id_c=["tpMenu_myprofile_content","tpMenu_other_content"];
     <div id="page-content-wrapper">
 	  <?php include_once 'templates/api/api_header.php'; ?>
 	  <div id="app-page-content">
-		 <div id="app-page-title" class="list-group pad0" style="margin-bottom:0px;">
-			<div align="center" class="list-group-item pad0">
-			  <span class="lang_english">
-			  <div class="container-fluid pad0">
-			   <div id="tpMenu_myprofile" class="col-xs-6" style="padding:10px 8px;" onclick="javascript:sel_tpMenu('tpMenu_myprofile');">
-		          <i class="fa fa-hands" aria-hidden="true"></i>&nbsp; <b>MY PROFILE</b>
-			   </div>
-			   <div id="tpMenu_other" class="col-xs-6"  style="padding:10px 8px;" onclick="javascript:sel_tpMenu('tpMenu_other');">
-				  <i class="fa fa-hands" aria-hidden="true"></i>&nbsp; <b>OTHER</b>
-			   </div>
-			  </div>
-			  </span>
-			</div>
+		 <div id="app-page-title" class="" style="margin-bottom:0px;">
 		  
 		  <div id="tpMenu_myprofile_content">
 		  
-			<div id="display_user_profile" align="center" class="list-group-item pad0">
+			<div id="display_user_profile" align="center" class="">
 				<img src="<?php echo $_SESSION["AUTH_USER_PROFILEPIC"]; ?>" style="width:100%;height:auto;"/>
 			</div>
-			<div align="center" class="list-group-item custom-bg" 
-			data-toggle="modal" data-target="#profilepicModal" style="cursor:pointer;" 
-			onclick="javascript:profilepicForm_mediaContent();">
-				<i class="fa fa-edit"></i>&nbsp;<b>Edit Profile Picture</b>
+			
+			<div class="list-group pad0">
+			  <div align="center" class="custom-bg list-group-item" data-toggle="modal" data-target="#profilepicModal" 
+			     style="cursor:pointer;" onclick="javascript:profilepicForm_mediaContent();">
+				   <i class="fa fa-edit"></i>&nbsp;<b>Edit Profile Picture</b>
+			  </div>
 			</div>
 			
 			<!-- Username -->
-			<div class="list-group-item">
+			<div class="list-group pad0">
+			<div class="list-group-item" style="border:0px;">
 			   <label>Username</label>
 			   <div class="input-group">
 			    <div class="form-control">
@@ -171,87 +167,124 @@ var arr_id_c=["tpMenu_myprofile_content","tpMenu_other_content"];
 				<span class="input-group-addon custom-bg"><i class="fa fa-edit"></i></span>
 			   </div>
 			</div>
+			</div>
 			
-			<div align="center" class="list-group-item custom-lgt-bg">GENERAL INFORMATION</div>
+<script type="text/javascript">
+$(document).ready(function(){ hzTabSelection('generalInformationHzTab'); });
+function hzTabSelection(id){        
+ var arryHzTab=["generalInformationHzTab","yourSubscriptionHzTab"];
+ var arryTabDataViewer=["generalInformationContent","yourSubscriptionContent"];
+ for(var index=0;index<arryHzTab.length;index++){
+ if(arryHzTab[index]===id){
+   if(!$("#"+arryHzTab[index]).hasClass('custom-lgt-bg')){ $("#"+arryHzTab[index]).addClass('custom-lgt-bg'); }
+   if($("#"+arryHzTab[index]).hasClass('unselectHzTab')){ $("#"+arryHzTab[index]).removeClass('unselectHzTab'); }
+   if($("#"+arryTabDataViewer[index]).hasClass('hide-block')){ $("#"+arryTabDataViewer[index]).removeClass('hide-block'); }
+   $("#"+arryHzTab[index]).css('border-radius','0px');
+   $("#"+arryHzTab[index]).css('background-color',CURRENT_LIGHT_COLOR);
+   $("#"+arryHzTab[index]).css('color','#000');
+   
+  } else {
+   if($("#"+arryHzTab[index]).hasClass('custom-lgt-bg')){ $("#"+arryHzTab[index]).removeClass('custom-lgt-bg'); }
+   if(!$("#"+arryHzTab[index]).hasClass('unselectHzTab')){ $("#"+arryHzTab[index]).addClass('unselectHzTab'); }
+   if(!$("#"+arryTabDataViewer[index]).hasClass('hide-block')){ $("#"+arryTabDataViewer[index]).addClass('hide-block'); }
+   $("#"+arryHzTab[index]).css('border-radius','0px');
+   $("#"+arryHzTab[index]).css('background-color',CURRENT_DARK_COLOR);
+   $("#"+arryHzTab[index]).css('color','#fff');
+   
+  }
+ }
+}
+</script>
+			<div style="height:45px;">
+			<div class="scroller scroller-left col-xs-1 custom-bg" style="height:41px;">
+			   <i class="glyphicon glyphicon-chevron-left"></i>
+		    </div>
+		
+			<div class="scrollTabwrapper custom-bg col-xs-10">
+				<ul class="nav nav-tabs scrollTablist" id="myTab" style="border-bottom:0px;">
+					<li><a id="generalInformationHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>General Information</b></a></li>
+					<li><a id="yourSubscriptionHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>Your Subscriptions</b></a></li>
+				</ul>
+			</div>
 			
-			<div class="list-group-item">
-			  <div class="col-md-12 pad0">
-				  <button class="mbot15p btn custom-bg pull-right"><i class="fa fa-edit"></i></button>
+			<div class="scroller scroller-right col-xs-1 custom-bg" style="height:41px;">
+			  <i class="glyphicon glyphicon-chevron-right"></i>
+		    </div>
+			
+			</div>
+
+			<div class="container-fluid mtop15p">
+			<div id="generalInformationContent" class="hide-block">
+			  <div class="col-xs-12 pad0">
+				  <button class="btn custom-bg pull-right"><i class="fa fa-edit"></i>&nbsp;<b>Edit</b></button>
 			  </div>
 			  <!-- Surname -->
-			  <div class="col-md-12 mtop15p">
+			  <div class="col-xs-12 mtop15p">
 			   <label>Surname</label>
 			   <div class="input-group form-control">
 			      <div><?php echo $_SESSION["AUTH_USER_SURNAME"]; ?></div>
 			   </div>
 			  </div>
-			  
 			  <!-- Fullname -->
-			  <div class="col-md-12 mtop15p">
+			  <div class="col-xs-12 mtop15p">
 			   <label>Fullname</label>
 			   <div class="input-group form-control">
 			      <div><?php echo $_SESSION["AUTH_USER_FULLNAME"]; ?></div>
 			   </div>
 			  </div>
-			  
 			  <!-- Gender -->
-			  <div class="col-md-12 mtop15p">
+			  <div class="col-xs-12 mtop15p">
 			   <label>Gender</label>
 			   <div class="input-group form-control">
 			      <div><?php echo $_SESSION["AUTH_USER_GENDER"]; ?></div>
 			   </div>
 			  </div>
-			  
 			  <!-- Mobile Number -->
-			  <div class="col-md-12 mtop15p">
+			  <div class="col-xs-12 mtop15p">
 			   <label>Mobile Number</label>
 			   <div class="input-group form-control">
 			      <div><?php echo $_SESSION["AUTH_USER_COUNTRYCODE"]."-".$_SESSION["AUTH_USER_PHONENUMBER"]; ?></div>
 			   </div>
 			  </div>
-			  
 			  <!-- DOB -->
-			  <div class="col-md-12 mtop15p">
+			  <div class="col-xs-12 mtop15p">
 			   <label>Date of Birth</label>
 			   <div class="input-group form-control">
 			      <div><?php echo date_format(date_create($_SESSION["AUTH_USER_DOB"]),"d F Y"); ?></div>
 			   </div>
 			  </div>
-			  
 			  <!-- COUNTRY -->
-			  <div class="col-md-12 mtop15p">
+			  <div class="col-xs-12 mtop15p">
 			   <label>Country</label>
 			   <div class="input-group form-control">
 			      <div><?php echo $_SESSION["AUTH_USER_COUNTRY"]; ?></div>
 			   </div>
 			  </div>
-			  
 			  <!-- STATE -->
-			  <div class="col-md-12 mtop15p">
+			  <div class="col-xs-12 mtop15p">
 			   <label>State</label>
 			   <div class="input-group form-control">
 			      <div><?php echo $_SESSION["AUTH_USER_STATE"]; ?></div>
 			   </div>
 			  </div>
-			  
 			  <!-- LOCATION -->
-			  <div class="col-md-12 mtop15p">
+			  <div class="col-xs-12 mtop15p">
 			   <label>Location</label>
 			   <div class="input-group form-control">
 			      <div><?php echo $_SESSION["AUTH_USER_LOCATION"]; ?></div>
 			   </div>
 			  </div>
-			  
 			  <!-- LOCALITY -->
-			  <div class="col-md-12 mtop15p mbot15p">
+			  <div class="col-xs-12 mtop15p mbot15p">
 			   <label>Locality</label>
 			   <div class="input-group form-control">
 			      <div><?php echo $_SESSION["AUTH_USER_LOCALITY"]; ?></div>
 			   </div>
 			  </div>
-			  
 			</div>
+			<div id="yourSubscriptionContent" class="hide-block"></div>
 			
+			</div>
 		  </div>
 		  
 		  <div id="tpMenu_other_content">
@@ -263,6 +296,7 @@ var arr_id_c=["tpMenu_myprofile_content","tpMenu_other_content"];
 	  </div>
 	</div>
  </div>
+ <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/hz-scrollableTabs.js"></script>
 </body>
 </html>
 <?php } ?>
