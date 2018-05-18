@@ -2338,3 +2338,43 @@ Wednesday 16th May 2018 12:03:49 AM [INFO] ::: [api.database.php]  Database conn
 Wednesday 16th May 2018 12:04:18 AM [INFO] ::: [api.database.php]  Database connected Successfully 
 Wednesday 16th May 2018 12:06:59 AM [INFO] ::: [api.database.php]  Database connected Successfully 
 Wednesday 16th May 2018 12:08:19 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 19th May 2018 12:40:13 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 19th May 2018 12:40:15 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 19th May 2018 12:40:26 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 19th May 2018 12:41:09 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 19th May 2018 01:20:55 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 19th May 2018 01:22:41 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 19th May 2018 01:33:33 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 19th May 2018 01:35:10 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 19th May 2018 01:36:38 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 19th May 2018 01:39:09 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 19th May 2018 01:39:52 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 19th May 2018 01:39:59 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 19th May 2018 01:40:30 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 19th May 2018 01:40:38 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 19th May 2018 01:41:28 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 19th May 2018 01:41:35 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 19th May 2018 01:42:18 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 19th May 2018 01:42:24 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 19th May 2018 01:42:25 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 19th May 2018 01:42:25 AM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_subscription(sub_Id, user_Id, domain_Id, subdomain_Id, sub_on) VALUES ('', 'USR924357814934', '01-TPI', '01-TPI-A', '2018-05-19 501:42:24'); 
+Saturday 19th May 2018 01:42:27 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 19th May 2018 01:42:28 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 19th May 2018 01:42:28 AM [INFO] ::: [api.database.php]  Query(Status-Error) : INSERT INTO user_subscription(sub_Id, user_Id, domain_Id, subdomain_Id, sub_on) VALUES ('', 'USR924357814934', '01-TPI', '02-TPI-B', '2018-05-19 501:42:27'); 
+Saturday 19th May 2018 01:42:29 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 19th May 2018 01:42:30 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 19th May 2018 01:42:30 AM [INFO] ::: [api.database.php]  Query(Status-Error) : INSERT INTO user_subscription(sub_Id, user_Id, domain_Id, subdomain_Id, sub_on) VALUES ('', 'USR924357814934', '01-TPI', '03-TPI-C', '2018-05-19 501:42:29'); 
+Saturday 19th May 2018 01:44:27 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 19th May 2018 01:44:31 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 19th May 2018 01:44:32 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 19th May 2018 01:44:33 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 19th May 2018 01:44:34 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 19th May 2018 01:44:34 AM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_subscription(sub_Id, user_Id, domain_Id, subdomain_Id, sub_on) VALUES ('USUB419787769656825954223', 'USR924357814934', '01-TPI', '02-TPI-B', '2018-05-19 501:44:33'); 
+Saturday 19th May 2018 01:44:35 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 19th May 2018 01:44:36 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 19th May 2018 01:44:37 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 19th May 2018 01:44:37 AM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_subscription(sub_Id, user_Id, domain_Id, subdomain_Id, sub_on) VALUES ('USUB866945995851248681346', 'USR924357814934', '01-TPI', '03-TPI-C', '2018-05-19 501:44:36'); 
+Saturday 19th May 2018 01:44:44 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 19th May 2018 01:46:57 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 19th May 2018 01:46:58 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 19th May 2018 01:46:59 AM [INFO] ::: [api.database.php]  Database connected Successfully 

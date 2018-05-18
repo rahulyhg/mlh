@@ -58,6 +58,19 @@ class user_authentication {
    return $sql;
   }
   
+  /* auth-part-06.php */
+  /* News : Start */
+  function query_notifyDuplicateSubscriptionForUser($user_Id,$domain_Id,$subdomain_Id){
+    $sql="SELECT count(*) FROM user_subscription WHERE user_Id='".$user_Id."' AND domain_Id='".$domain_Id."' ";
+	$sql.="AND subdomain_Id='".$subdomain_Id."'";
+	return $sql;
+  }
+  function query_insertUserSubscription($sub_Id, $user_Id, $domain_Id, $subdomain_Id){
+	$sql="INSERT INTO user_subscription(sub_Id, user_Id, domain_Id, subdomain_Id, sub_on) ";
+	$sql.="VALUES ('".$sub_Id."', '".$user_Id."', '".$domain_Id."', '".$subdomain_Id."', '".date("Y-m-d nH:i:s")."');";
+	return $sql;
+  }
+  /* News : End */
   function query_getListOfSubscriptions($user_Id){
    $sql="SELECT domain_Id, subdomain_Id FROM user_subscription WHERE user_Id='".$user_Id."';";
    return $sql;

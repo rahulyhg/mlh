@@ -30,7 +30,7 @@ show_toggleMLHLoader('body');
 	content+='<h5 align="center" class="card-title" ';
 	content+='style="margin-top:20px;height:40px;margin-bottom:20px;line-height:25px;"><b>'+domainName+'</b></h5>';
 	content+='<button id="select-'+domain_Id+'" class="btn btn-default form-control" ';
-	content+='onclick="javascript:selected(\''+domain_Id+'\',\''+domainName+'\');"><b>Subscribe</b></button>';
+	content+='onclick="javascript:selected(\''+domain_Id+'\',\''+domainName+'\',\''+source+'\');"><b>Subscribe</b></button>';
 	content+='</div>';
     content+='</div>';
 	content+='</div>';
@@ -59,15 +59,11 @@ function subscriptionList(){
 	$('#select-'+response[index].domain_Id).addClass('btn-success');
    }
   }
-  console.log("SUBSCRIPTION_JSONDATA_BUILDER: "+JSON.stringify(SUBSCRIPTION_JSONDATA_BUILDER));
   hide_toggleMLHLoader('body');
  });
 }
 
-var CATEGORY_SELECT=[];
-var SUBCATEGORY_SELECT=[];
-
-function selected(domain_Id,domainName){
+function selected(domain_Id,domainName,source){
  var existence=false;
  for(var index=0;index<SUBSCRIPTION_JSONDATA_BUILDER.subscriptionList.length;index++){
 	if(SUBSCRIPTION_JSONDATA_BUILDER.subscriptionList[index].domain_Id==domain_Id){ existence=true; break; }
@@ -77,61 +73,16 @@ function selected(domain_Id,domainName){
 	SUBSCRIPTION_JSONDATA_BUILDER.subscriptionList.splice(index,1);
  } else {
 	if(!$("#select-"+domain_Id).hasClass('btn-success')) { $("#select-"+domain_Id).addClass('btn-success'); }
-	var selData={"domain_Id":domain_Id, "domainName":domainName, "source":SUBSCRIBE_SOURCE[ind]};
+	var selData={"domain_Id":domain_Id, "domainName":domainName, "source":source};
     SUBSCRIPTION_JSONDATA_BUILDER.subscriptionList.push(selData);
  }
 }
-/*
-function selected(domain_Id,domainName){
- var cat_recognizer=false;
- for(var index=0;index<CATEGORY_SELECT.length;index++){
-    console.log(CATEGORY_SELECT[index]);
-   if(domain_Id===CATEGORY_SELECT[index]) {
-      cat_recognizer=true;
-      CATEGORY_SELECT.splice(index, 1);
-	  if($("#select-"+domain_Id).hasClass('btn-success')) {
-		  $("#select-"+domain_Id).removeClass('btn-success');
-		  $("#select-"+domain_Id).addClass('btn-default');
-	  }
-	  break;
-   } 
- }
- if(!cat_recognizer) {  
-    var selData={"domain_Id":domain_Id, "domainName":domainName};
-    SUBSCRIPTION_JSONDATA_BUILDER.subscriptionList.push(selData);
-   CATEGORY_SELECT[CATEGORY_SELECT.length]=domain_Id;
-   if($("#select-"+domain_Id).hasClass('btn-default')) {
-      $("#select-"+domain_Id).removeClass('btn-default');
-      $("#select-"+domain_Id).addClass('btn-success');
-   }
-   console.log("SUBSCRIPTION_JSONDATA_BUILDER: "+JSON.stringify(SUBSCRIPTION_JSONDATA_BUILDER));
- }
-} */
 
 function subscribe(){
 console.log(SUBSCRIPTION_JSONDATA_BUILDER);
 js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.auth.part06.php',
       {action:'SET_USER_SUBSCRIPTION',user_Id:AUTH_USER_ID, subscription: SUBSCRIPTION_JSONDATA_BUILDER},
-      function(response){ console.log(response); });
-/* Get List of SubCategories using Categories */
- /* show_toggleMLHLoader('body');
-  var response='';
-   if(CATEGORY_SELECT.length>0)  {
-    js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.auth.part04.php',
-      {action:'USER_SUBSCRIPTION',categories:CATEGORY_SELECT, user_Id:AUTH_USER_ID},
-      function(response){  hide_toggleMLHLoader('body');
-	    global_setSubscriptionList();
-    }); 
-  } else { global_setSubscriptionList(); } */
-}
-
-function global_setSubscriptionList(){
-js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.auth.part04.php',
-      {action:'VIEW_USER_SUBSCRIPTION',user_Id:AUTH_USER_ID},
-      function(response){
-	  if(AndroidSession!==undefined){ AndroidSession.setAndroidSession("AUTH_USER_ID", AUTH_USER_ID); }
+      function(response){ console.log(response);if(AndroidSession!==undefined){ AndroidSession.setAndroidSession("AUTH_USER_ID", AUTH_USER_ID); }
 	//  if(AndroidNotify!==undefined){ AndroidNotify.startNotification_latestNotifyService(); }
-	  window.location.href=PROJECT_URL+'newsfeed/latest-news'; 
-	  });
+	  window.location.href=PROJECT_URL+'newsfeed/latest-news';  });
 }
-
