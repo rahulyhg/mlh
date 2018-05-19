@@ -43,25 +43,7 @@ console.log("Search Keyword: "+SEARCH_KEYWORD);
 function hzTabSelection(id){
  var arryHzTab=["searchPeopleHzTab","searchNewsFeedHzTab","searchCommunityHzTab","searchMovementHzTab"];
  var arryTabDataViewer=["searchPeopleDisplayDivision","searchNewsFeedDisplayDivision","searchCommunityDisplayDivision","searchMovementDisplayDivision"];
- for(var index=0;index<arryHzTab.length;index++){
- if(arryHzTab[index]===id){
-   if(!$("#"+arryHzTab[index]).hasClass('custom-lgt-bg')){ $("#"+arryHzTab[index]).addClass('custom-lgt-bg'); }
-   if($("#"+arryHzTab[index]).hasClass('unselectHzTab')){ $("#"+arryHzTab[index]).removeClass('unselectHzTab'); }
-   if($("#"+arryTabDataViewer[index]).hasClass('hide-block')){ $("#"+arryTabDataViewer[index]).removeClass('hide-block'); }
-   $("#"+arryHzTab[index]).css('border-radius','0px');
-   $("#"+arryHzTab[index]).css('background-color',CURRENT_LIGHT_COLOR);
-   $("#"+arryHzTab[index]).css('color','#000');
-   
-  } else {
-   if($("#"+arryHzTab[index]).hasClass('custom-lgt-bg')){ $("#"+arryHzTab[index]).removeClass('custom-lgt-bg'); }
-   if(!$("#"+arryHzTab[index]).hasClass('unselectHzTab')){ $("#"+arryHzTab[index]).addClass('unselectHzTab'); }
-   if(!$("#"+arryTabDataViewer[index]).hasClass('hide-block')){ $("#"+arryTabDataViewer[index]).addClass('hide-block'); }
-   $("#"+arryHzTab[index]).css('border-radius','0px');
-   $("#"+arryHzTab[index]).css('background-color',CURRENT_DARK_COLOR);
-   $("#"+arryHzTab[index]).css('color','#fff');
-   
-  }
- }
+ hzTabSelector(id,arryHzTab,arryTabDataViewer);
 }
 /* Search People load On Scroll */
 function searchpeopleInitializer(){
@@ -226,6 +208,7 @@ function searchMovementInitializer(){
 	  <div id="app-page-content">
 	  
 	    <div class="container-fluid pad0">
+		   <div class="scroller-divison">
 		    <div class="scroller scroller-left col-xs-1 custom-bg" style="height:41px;">
 			   <i class="glyphicon glyphicon-chevron-left"></i>
 			</div>
@@ -241,6 +224,7 @@ function searchMovementInitializer(){
 			<div class="scroller scroller-right col-xs-1 custom-bg" style="height:41px;">
 			   <i class="glyphicon glyphicon-chevron-right"></i>
 			</div>
+		  </div>
 		</div>
 
 		<div class="container-fluid">

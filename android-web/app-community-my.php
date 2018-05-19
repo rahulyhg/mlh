@@ -25,6 +25,14 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
  <script type="text/javascript" src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/croppie.js"></script>
  <link rel="stylesheet" href="<?php echo $_SESSION["PROJECT_URL"]; ?>styles/api/hz-scrollableTabs.css">
 <script type="text/javascript">
+$(document).ready(function(){ hzTabSelection('youcreatedHzTab'); });
+function hzTabSelection(id){     
+ var arryHzTab=["youcreatedHzTab","beMemberHzTab","beSupportHzTab"];
+ var arryTabDataViewer=["community_youcreated_content0","community_beMember_content0","community_beSupport_content0"];
+ hzTabSelector(id,arryHzTab,arryTabDataViewer);
+} 
+</script> 
+<script type="text/javascript">
 function urlRedirect_createCommunity(){ window.location.href=PROJECT_URL+'app/create-community'; }
 function urlRedirect_browseCommunity(){ window.location.href=PROJECT_URL+'app/findcommunity'; }
 $(document).ready(function(){
@@ -313,40 +321,14 @@ var content='';
 		     </div>
 		    </div>
 	
-			<div class="row mtop15p">
-<script type="text/javascript">
-$(document).ready(function(){ hzTabSelection('youcreatedHzTab'); });
-function hzTabSelection(id){     
- var arryHzTab=["youcreatedHzTab","beMemberHzTab","beSupportHzTab"];
- var arryTabDataViewer=["community_youcreated_content0","community_beMember_content0","community_beSupport_content0"];
- for(var index=0;index<arryHzTab.length;index++){
- if(arryHzTab[index]===id){
-   if(!$("#"+arryHzTab[index]).hasClass('custom-lgt-bg')){ $("#"+arryHzTab[index]).addClass('custom-lgt-bg'); }
-   if($("#"+arryHzTab[index]).hasClass('unselectHzTab')){ $("#"+arryHzTab[index]).removeClass('unselectHzTab'); }
-   if($("#"+arryTabDataViewer[index]).hasClass('hide-block')){ $("#"+arryTabDataViewer[index]).removeClass('hide-block'); }
-   $("#"+arryHzTab[index]).css('border-radius','0px');
-   $("#"+arryHzTab[index]).css('background-color',CURRENT_LIGHT_COLOR);
-   $("#"+arryHzTab[index]).css('color','#000');
-   
-  } else {
-   if($("#"+arryHzTab[index]).hasClass('custom-lgt-bg')){ $("#"+arryHzTab[index]).removeClass('custom-lgt-bg'); }
-   if(!$("#"+arryHzTab[index]).hasClass('unselectHzTab')){ $("#"+arryHzTab[index]).addClass('unselectHzTab'); }
-   if(!$("#"+arryTabDataViewer[index]).hasClass('hide-block')){ $("#"+arryTabDataViewer[index]).addClass('hide-block'); }
-   $("#"+arryHzTab[index]).css('border-radius','0px');
-   $("#"+arryHzTab[index]).css('background-color',CURRENT_DARK_COLOR);
-   $("#"+arryHzTab[index]).css('color','#fff');
-   
-  }
- }
-}
-</script> 
+			<div class="scroller-divison row mtop15p">
 			  <div class="scroller scroller-left col-xs-1 custom-bg" style="height:41px;">
 			     <i class="glyphicon glyphicon-chevron-left"></i>
 			  </div>
 			
 			  <div class="scrollTabwrapper custom-bg col-xs-10">
 				<ul class="nav nav-tabs scrollTablist"  id="myTab"  style="border-bottom:0px;">
-					<li><a id="youcreatedHzTab" onclick="javascript:hzTabSelection(this.id);"><b>You Created</b></a></li>
+					<li><a id="youcreatedHzTab" onclick="javascript:hzTabSelection(this.id);"><b>View You Created</b></a></li>
 					<li><a id="beMemberHzTab" onclick="javascript:hzTabSelection(this.id);"><b>You are Member</b></a></li>
 					<li><a id="beSupportHzTab" onclick="javascript:hzTabSelection(this.id);"><b>You Supporting</b></a></li>
 				</ul>
