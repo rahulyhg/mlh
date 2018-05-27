@@ -16,6 +16,7 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/jquery.min.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/bootstrap.min.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/load-data-on-scroll.js"></script>
+ <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/ui-templates.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/bg-styles-common.js"></script>
  <?php include_once 'templates/api/api_js.php'; ?>
  <?php include_once 'templates/api/api_params.php'; ?>
@@ -25,18 +26,17 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
  <script type="text/javascript" src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/croppie.js"></script>
  <link rel="stylesheet" href="<?php echo $_SESSION["PROJECT_URL"]; ?>styles/api/hz-scrollableTabs.css">
 <script type="text/javascript">
-$(document).ready(function(){ hzTabSelection('youcreatedHzTab'); });
+$(document).ready(function(){ hzTabSelection('communityMemReqHzTab'); });
 function hzTabSelection(id){     
- var arryHzTab=["youcreatedHzTab","beMemberHzTab","beSupportHzTab"];
- var arryTabDataViewer=["community_youcreated_content0","community_beMember_content0","community_beSupport_content0"];
- hzTabSelector(id,arryHzTab,arryTabDataViewer);
+ var arryHzTab=["communityMemReqHzTab","browseHzTab","createHzTab","youcreatedHzTab","beMemberHzTab","beSupportHzTab"];
+ var arryTabDataViewer=["community_memReq_content0","community_browse_content0","community_create_content0","community_youcreated_content0","community_beMember_content0","community_beSupport_content0"];
+ hzTabSelector(id,arryHzTab,arryTabDataViewer); 
 } 
 </script> 
 <script type="text/javascript">
 function urlRedirect_createCommunity(){ window.location.href=PROJECT_URL+'app/create-community'; }
 function urlRedirect_browseCommunity(){ window.location.href=PROJECT_URL+'app/findcommunity'; }
 $(document).ready(function(){
-sel_viewCommunityType('seltype_youcreated');
 communitylist_youCreated();
 communitylist_beMember(); 
 communitylist_beSupport();
@@ -58,7 +58,7 @@ function sel_viewCommunityType(id){
  }
 }
 function communitylist_youCreated_contentData(div_view, appendContent,limit_start,limit_end){
-js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.community.mylist.php',
+js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.community.my.php',
 { action:'USERCREATED_COMMUNITYLIST', user_Id:AUTH_USER_ID, limit_start:limit_start, limit_end:limit_end},function(response){ 
 console.log("communitylist_youCreated_contentData: "+response);
 response=JSON.parse(response);
@@ -119,7 +119,7 @@ var content='';
 });
 }
 function communitylist_youCreated(){
-js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.community.mylist.php',
+js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.community.my.php',
 { action:'USERCREATED_COMMUNITYLIST_COUNT', user_Id:AUTH_USER_ID },function(total_data){ 
 console.log('communitylist_youCreated: '+total_data);
  if(total_data==='0'){
@@ -131,7 +131,7 @@ console.log('communitylist_youCreated: '+total_data);
 });
 }
 function communitylist_beMember(){
-js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.community.mylist.php',
+js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.community.my.php',
 { action:'USERBEINGMEMBER_COMMUNITYLIST_COUNT', user_Id:AUTH_USER_ID },function(total_data){
 console.log('communitylist_beMember: '+total_data);
  if(total_data==='0'){
@@ -143,7 +143,7 @@ console.log('communitylist_beMember: '+total_data);
 });
 }
 function communitylist_beMember_contentData(div_view, appendContent,limit_start,limit_end){
-js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.community.mylist.php',
+js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.community.my.php',
 { action:'USERBEINGMEMBER_COMMUNITYLIST', user_Id:AUTH_USER_ID, limit_start:limit_start, limit_end:limit_end},
 function(response){ 
 console.log("communitylist_beMember_contentData: "+response+" div_view: "+div_view);
@@ -210,7 +210,7 @@ var content='';
 });
 }  
 function communitylist_beSupport(){
-js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.community.mylist.php',
+js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.community.my.php',
 { action:'USERBEINGSUPPORT_COMMUNITYLIST_COUNT', user_Id:AUTH_USER_ID },function(total_data){
 console.log('communitylist_beSupport: '+total_data);
  if(total_data==='0'){
@@ -222,7 +222,7 @@ console.log('communitylist_beSupport: '+total_data);
 });
 }
 function communitylist_beSupport_contentData(div_view, appendContent,limit_start,limit_end){
-js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.community.mylist.php',
+js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.community.my.php',
 { action:'USERBEINGSUPPORT_COMMUNITYLIST', user_Id:AUTH_USER_ID,
  limit_start:limit_start, limit_end:limit_end },
 function(response){ 
@@ -303,59 +303,141 @@ var content='';
 	  <?php include_once 'templates/api/api_header.php'; ?>
 	  <div id="app-page-content">
 	  
-	    <div id="app-page-title" class="list-group pad0">
-			<div align="center" class="list-group-item custom-lgt-bg">
+	    <!--div id="app-page-title" class="list-group pad0" style="margin-bottom:0px;">
+			<div align="center" class="list-group-item custom-lgt-bg" style="border-bottom:0px;border-radius:0px;">
 		       <span class="lang_english">
 				  <i class="fa fa-hands" aria-hidden="true"></i>&nbsp; <b>MY COMMUNITY</b>
 			   </span>
 			</div>
-		</div>
+		</div-->
 
 		<div class="container-fluid">
-		   <div class="row">
-		     <div align="right" class="col-md-12">
-			   <div class="btn-group">
-		          <button class="btn custom-bg" onclick="javascript:urlRedirect_createCommunity();"><b>Create</b></button>
-			      <button class="btn custom-lgt-bg" onclick="javascript:urlRedirect_browseCommunity();"><b>Browse</b></button>
-			   </div>
-		     </div>
-		    </div>
-	
-			<div class="scroller-divison row mtop15p">
-			  <div class="scroller scroller-left col-xs-1 custom-bg" style="height:41px;">
+		   
+			<div class="scroller-divison row">
+			  <div class="scroller scroller-left col-xs-1" style="height:41px;">
 			     <i class="glyphicon glyphicon-chevron-left"></i>
 			  </div>
 			
-			  <div class="scrollTabwrapper custom-bg col-xs-10">
+			  <div class="scrollTabwrapper col-xs-10">
 				<ul class="nav nav-tabs scrollTablist"  id="myTab"  style="border-bottom:0px;">
-					<li><a id="youcreatedHzTab" onclick="javascript:hzTabSelection(this.id);"><b>View You Created</b></a></li>
-					<li><a id="beMemberHzTab" onclick="javascript:hzTabSelection(this.id);"><b>You are Member</b></a></li>
-					<li><a id="beSupportHzTab" onclick="javascript:hzTabSelection(this.id);"><b>You Supporting</b></a></li>
+				    <li><a id="communityMemReqHzTab" onclick="javascript:hzTabSelection(this.id);"><b>1. Community Member Request</b></a></li>
+					<li><a id="browseHzTab" onclick="javascript:hzTabSelection(this.id);"><b>2. Browse Community</b></a></li>
+					<li><a id="createHzTab" onclick="javascript:hzTabSelection(this.id);"><b>3. Create Community</b></a></li>
+					<li><a id="youcreatedHzTab" onclick="javascript:hzTabSelection(this.id);"><b>4. View Communities you Created</b></a></li>
+					<li><a id="beMemberHzTab" onclick="javascript:hzTabSelection(this.id);"><b>5. View Communities you are a Member</b></a></li>
+					<li><a id="beSupportHzTab" onclick="javascript:hzTabSelection(this.id);"><b>6. View Communities You are Supporting</b></a></li>
 				</ul>
 			  </div>
 			  
-			  <div class="scroller scroller-right col-xs-1 custom-bg" style="height:41px;">
+			  <div class="scroller scroller-right col-xs-1" style="height:41px;">
 			     <i class="glyphicon glyphicon-chevron-right"></i>
 			  </div>
 			
 			</div>
 			
-			<div class="row">
- 
+			<div class="row">  
+
+			<div id="community_memReq_content0" class="col-md-12">
+			    <div align="center" class="mtop15p">
+				  <img src="images/load.gif" style="width:150px;height:150px;"/>
+				</div>
+			</div>
+			 
+			<div id="community_browse_content0" class="col-md-12">
+			    <div class="mtop15p">
+				   <div class="container-fluid">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="panel panel-default">
+							   <div class="panel-heading custom-lgt-bg"><b>Search Community</b></div>
+								  <div class="panel-body">
+								    <!-- Category -->
+									<div class="form-group">
+									  <label>Category</label>
+									  <select id="search_english_ByCategory" class="form-control" onchange="javascript:build_subCategories();">
+										<option value="">Select Category</option>
+									  </select>
+									</div>
+									<!-- Sub-Category -->
+									<div id="search_english_BySubCategoryDiv" class="form-group hide-block">
+									  <label>Sub-Category</label>
+									  <select id="search_english_BySubCategory" class="form-control">
+										<option value="">Select Sub-Category</option>
+									  </select>
+									</div>
+									<!-- Country -->
+									<div class="form-group">
+									  <label>Country</label>
+									  <select id="search_english_ByCountry" class="form-control" onchange="javascript:build_stateOption();">
+										<option value="">Select Country</option>
+									  </select>
+									</div>
+									<!-- State -->
+									<div id="search_english_ByStateDiv" class="form-group hide-block">
+									  <label>State</label>
+									  <select id="search_english_ByState" class="form-control" onchange="javascript:build_locationOption();">
+										<option value="">Select State</option>
+									  </select>
+								    </div>
+									<!-- Location -->
+									<div id="search_english_ByLocationDiv" class="form-group hide-block">
+									  <label>Location</label>
+									  <select id="search_english_ByLocation" class="form-control" onchange="javascript:build_minlocationOption();">
+										<option value="">Select Location</option>
+									   </select>
+									</div>
+									<!-- Locality -->
+								    <div id="search_english_ByLocalityDiv" class="form-group hide-block">
+									   <label>Locality</label>
+									   <select id="search_english_ByLocality" class="form-control">
+									     <option value="">Select Locality</option>
+									   </select>
+								    </div>
+									<div class="form-group">
+									   <button class="form-control custom-bg" onclick="javascript:searchCommunity();"><b>Search</b></button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+					  <div class="col-md-12">
+						<div id="browseCommunityData0" style="margin-bottom:20px;">
+							<div class="list-group mtop10p mbot10p">
+								<div align="center" class="list-group-item">
+									<b>Search <i class="fa fa-hl-circle fa-user" aria-hidden="true"></i> and Stay Connected</b>   
+								</div>
+							</div>
+						</div>
+					  </div>
+					</div>
+					
+				   </div>
+				</div>
+			</div>
+			 
+			 <div id="community_create_content0" class="col-md-12">
+			    <div align="center" class="mtop15p">
+				  <img src="images/load.gif" style="width:150px;height:150px;"/>
+				</div>
+			 </div>
+			 
+			 
+			 
 			 <div id="community_youcreated_content0" class="col-md-12">
-			    <div align="center">
+			    <div align="center" class="mtop15p">
 				  <img src="images/load.gif" style="width:150px;height:150px;"/>
 				</div>
 			 </div>
 			
 			  <div id="community_beMember_content0" class="col-md-12">
-			    <div align="center">
+			    <div align="center" class="mtop15p">
 				  <img src="images/load.gif" style="width:150px;height:150px;"/>
 				</div>
 			  </div>
 			  
 			  <div id="community_beSupport_content0" class="col-md-12">
-			    <div align="center">
+			    <div align="center" class="mtop15p">
 				  <img src="images/load.gif" style="width:150px;height:150px;"/>
 				</div>
 			  </div>

@@ -10,10 +10,10 @@ if($("#wrapper").hasClass('toggled')) { $("#wrapper").removeClass('toggled');}
 }
 
 function mainMenuSelection(id){
-  var arr_id=["dn_"+USR_LANG+"_search","dn_"+USR_LANG+"_notifications","dn_"+USR_LANG+"_newsfeed","dn_"+USR_LANG+"_mylocalhook","dn_"+USR_LANG+"_platform","dn_"+USR_LANG+"_myprofile",
-               "dn_"+USR_LANG+"_mymessages","dn_"+USR_LANG+"_mycalendar","dn_"+USR_LANG+"_myfriends","dn_"+USR_LANG+"_mycommunity",
-			   "dn_"+USR_LANG+"_mymovements","dn_"+USR_LANG+"_findfriends","dn_"+USR_LANG+"_findcommunity","dn_"+USR_LANG+"_findmovements",
-			   "dn_"+USR_LANG+"_logout"];
+  var arr_id=["dn_"+USR_LANG+"_search","dn_"+USR_LANG+"_notifications","dn_"+USR_LANG+"_explore","dn_"+USR_LANG+"_newsfeed",
+			  "dn_"+USR_LANG+"_mylocalhook","dn_"+USR_LANG+"_platform","dn_"+USR_LANG+"_myprofile","dn_"+USR_LANG+"_mymessages",
+			  "dn_"+USR_LANG+"_mycalendar","dn_"+USR_LANG+"_myfriends","dn_"+USR_LANG+"_mycommunity","dn_"+USR_LANG+"_mymovements",
+			  "dn_"+USR_LANG+"_findfriends","dn_"+USR_LANG+"_findcommunity","dn_"+USR_LANG+"_findmovements","dn_"+USR_LANG+"_logout"];
   // "dn_settings"
   console.log("mainMenuSelection: "+id);
   for(var index=0;index<arr_id.length;index++){
@@ -48,6 +48,13 @@ function logout(){
 			<a id="dn_english_notifications" href="<?php echo $_SESSION["PROJECT_URL"]?>app/notifications" onclick="javascript:mainMenuSelection(this.id);">
 				<div class="f14">
 					<i class="fa fa-bell" aria-hidden="true"></i>&nbsp;&nbsp;<span><b>Notifications</b></span>
+				</div>
+			</a>
+		</li>
+		<li>
+			<a id="dn_english_explore" href="<?php echo $_SESSION["PROJECT_URL"]?>app/explore" onclick="javascript:mainMenuSelection(this.id);">
+				<div class="f14">
+					<i class="fa fa-plus" aria-hidden="true"></i>&nbsp;&nbsp;<span><b>Explore</b></span>
 				</div>
 			</a>
 		</li>

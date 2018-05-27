@@ -6,6 +6,6 @@
 			  {"domain_Id":"05-REL","domainName":"Religion","source":"images/categories/religion.jpg"},
 			  {"domain_Id":"06-FIN","domainName":"Banking and Finance","source":"images/categories/finance.jpg"},
 			  {"domain_Id":"07-AGR","domainName":"Agriculture","source":"images/categories/agriculture.jpg"},
-			  {"domain_Id":"08-ACE","domainName":"Arts, Culture and Entertainment","source":"images/categories/artsculture.jpg"},
+			  {"domain_Id":"08-ENT","domainName":"Entertainment","source":"images/categories/artsculture.jpg"},
 			  {"domain_Id":"09-ITS","domainName":"IT and Software","source":"images/categories/itsoftware.jpg"}]
 }

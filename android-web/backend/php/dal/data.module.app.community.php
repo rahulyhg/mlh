@@ -110,5 +110,41 @@ class app_community {
     $sql="SELECT unionName FROM union_account WHERE union_Id='".$union_Id."';";
 	return $sql;
   }
+  
+   /* Browse Communities Count By Categories, SubCategories, Country, State, Location. MinLocation */
+  function query_count_browseCommunitiesList($category, $subCategory, $country, $state, $location, $minlocation){
+    $sql="SELECT count(*) FROM union_account ";
+	if(strlen($category)>0 || strlen($subCategory)>0 || strlen($country)>0 || strlen($state)>0
+	|| strlen($location)>0 || strlen($minlocation)>0){
+	$sql.="WHERE ";
+	if(strlen($category)>0){ $sql.=" domain_Id='".$category."' AND"; }
+	if(strlen($subCategory)>0){ $sql.=" subdomain_Id='".$subCategory."' AND"; }
+	if(strlen($country)>0){ $sql.=" country='".$country."' AND"; }
+	if(strlen($state)>0){ $sql.=" state='".$state."' AND"; }
+	if(strlen($location)>0){ $sql.=" location='".$location."' AND"; }
+	if(strlen($minlocation)>0){ $sql.=" minlocation='".$minlocation."' AND"; }
+	$sql=chop($sql,"AND");
+	}
+	$sql.=';';
+	return $sql;
+  }
+  
+  /* Browse Communities By Categories, SubCategories, Country, State, Location. MinLocation */
+  function query_browseCommunitiesList($category, $subCategory, $country, $state, $location, $minlocation){
+    $sql="SELECT * FROM union_account ";
+	if(strlen($category)>0 || strlen($subCategory)>0 || strlen($country)>0 || strlen($state)>0
+	|| strlen($location)>0 || strlen($minlocation)>0){
+	$sql.="WHERE ";
+	if(strlen($category)>0){ $sql.=" domain_Id='".$category."' AND"; }
+	if(strlen($subCategory)>0){ $sql.=" subdomain_Id='".$subCategory."' AND"; }
+	if(strlen($country)>0){ $sql.=" country='".$country."' AND"; }
+	if(strlen($state)>0){ $sql.=" state='".$state."' AND"; }
+	if(strlen($location)>0){ $sql.=" location='".$location."' AND"; }
+	if(strlen($minlocation)>0){ $sql.=" minlocation='".$minlocation."' AND"; }
+	$sql=chop($sql,"AND");
+	}
+	$sql.=';';
+	return $sql;
+  }
 }
 ?>
