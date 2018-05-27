@@ -22,8 +22,6 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/app-search-bg-styles.js"></script>
  <link rel="stylesheet" href="<?php echo $_SESSION["PROJECT_URL"]; ?>styles/api/hz-scrollableTabs.css">
 <style>
-.unselectHzTab { color:#fff; }
-.unselectHzTab:hover { color:#000; }
 .img-min-profilepic { margin-top:4%;margin-bottom:4%;width:70px;height:70px;border-radius: 50%; }
 </style>
 <script type="text/javascript">
@@ -207,21 +205,21 @@ function searchMovementInitializer(){
 	  <?php include_once 'templates/api/api_header.php'; ?>
 	  <div id="app-page-content">
 	  
-	    <div class="container-fluid pad0">
-		   <div class="scroller-divison">
-		    <div class="scroller scroller-left col-xs-1 custom-bg" style="height:41px;">
+	    <div class="container-fluid">
+		   <div class="scroller-divison row">
+		    <div class="scroller scroller-left col-xs-1" style="height:41px;">
 			   <i class="glyphicon glyphicon-chevron-left"></i>
 			</div>
 
-			<div class="scrollTabwrapper custom-bg col-xs-10">
+			<div class="scrollTabwrapper col-xs-10">
 				<ul class="nav nav-tabs scrollTablist" id="myTab" style="border-bottom:0px;">
-					<li><a id="searchPeopleHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>People</b></a></li>
-					<li><a id="searchNewsFeedHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>NewsFeed</b></a></li>
-					<li><a id="searchCommunityHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>Community</b></a></li>
-					<li><a id="searchMovementHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>Movements</b></a></li>
+					<li><a id="searchPeopleHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>1. People</b></a></li>
+					<li><a id="searchNewsFeedHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>2. NewsFeed</b></a></li>
+					<li><a id="searchCommunityHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>3. Community</b></a></li>
+					<li><a id="searchMovementHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>4. Movements</b></a></li>
 				</ul>
 			</div>
-			<div class="scroller scroller-right col-xs-1 custom-bg" style="height:41px;">
+			<div class="scroller scroller-right col-xs-1" style="height:41px;">
 			   <i class="glyphicon glyphicon-chevron-right"></i>
 			</div>
 		  </div>

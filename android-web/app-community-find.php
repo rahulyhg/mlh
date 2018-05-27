@@ -45,74 +45,7 @@
 			   </span>
 			</div>
 		</div>
-		<div class="container-fluid">
-		   <div class="row">
-		      <div class="col-md-12">
-			     <div class="panel panel-default">
-				    <div class="panel-heading custom-lgt-bg"><b>Search by Location</b></div>
-					<div class="panel-body">
-					  <!-- Country -->
-					  <div class="form-group">
-						<label>Country</label>
-						<select id="search_english_ByCountry" class="form-control" onchange="javascript:build_stateOption();">
-						   <option value="">Select Country</option>
-						</select>
-					  </div>
-					  <!-- State -->
-					  <div id="search_english_ByStateDiv" class="form-group hide-block">
-						<label>State</label>
-						<select id="search_english_ByState" class="form-control" onchange="javascript:build_locationOption();">
-						   <option value="">Select State</option>
-						</select>
-					  </div>
-					  <!-- Location -->
-					  <div id="search_english_ByLocationDiv" class="form-group hide-block">
-						<label>Location</label>
-						<select id="search_english_ByLocation" class="form-control" onchange="javascript:build_minlocationOption();">
-						   <option value="">Select Location</option>
-						</select>
-					  </div>
-					  <!-- Locality -->
-					  <div id="search_english_ByLocalityDiv" class="form-group hide-block">
-						<label>Locality</label>
-						<select id="search_english_ByLocality" class="form-control">
-						   <option value="">Select Locality</option>
-						</select>
-					  </div>
-					  <div class="form-group">
-					    <button class="form-control custom-bg"><b>Search</b></button>
-					  </div>
-					</div>
-				 </div>
-			  </div>
-		   </div>
-		   <div class="row">
-		      <div class="col-md-12">
-			    <div id="searchByLocation" style="margin-bottom:20px;">
-			       <div class="list-group mtop10p mbot10p">
-				      <div align="center" class="list-group-item">
-						 <b>Search <i class="fa fa-hl-circle fa-user" aria-hidden="true"></i> and Stay Connected</b>   
-					  </div>
-				   </div>
-				</div>
-			  </div>
-		   </div>
-		   <div class="row">
-				<div class="col-md-12">
-					<div class="panel panel-default">
-						<div class="panel-heading custom-lgt-bg"><b>Community Member Request</b></div>
-						<div class="panel-body pad0">
-						   <div id="comMemreqlistToMe0"class="list-group mb0">
-							  <div align="center" class="list-group-item pad0">
-							     <img src="images/load.gif" style="width:150px;height:150px;"/>
-							  </div>
-						   </div>
-						</div>
-					</div>
-				</div>
-		   </div>
-		</div>
-	   </div>
+	  </div>
 	</div>
   </div>
 </body>

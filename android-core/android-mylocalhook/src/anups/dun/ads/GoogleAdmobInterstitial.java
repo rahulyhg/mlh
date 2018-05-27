@@ -13,7 +13,12 @@ import android.app.Activity;
 
 public class GoogleAdmobInterstitial {
     public static final String TAG = GoogleAdmobInterstitial.class.getSimpleName();
-    public static final String ID = "ca-app-pub-9032115287615251/7844041725";  
+    // public static final String ID = "ca-app-pub-9032115287615251/7844041725";  // Original
+    public static final String ID = "ca-app-pub-3940256099942544/1033173712";
+     // Interstitial
+    //	ca-app-pub-3940256099942544/8691691433 // Interstitial Video
+    //	ca-app-pub-3940256099942544/5224354917 // Rewarded Video
+    
     private static ScheduledFuture loaderHandler;
     static boolean newAdInitimater;
     static Runnable loader;
