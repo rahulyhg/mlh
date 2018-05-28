@@ -23,6 +23,7 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
  <link rel="stylesheet" href="<?php echo $_SESSION["PROJECT_URL"]; ?>styles/api/hz-scrollableTabs.css">
 <style>
 .img-min-profilepic { margin-top:4%;margin-bottom:4%;width:70px;height:70px;border-radius: 50%; }
+.label-newsfeed { font-size: 10px;padding: 5px; }
 </style>
 <script type="text/javascript">
 var SEARCH_KEYWORD='<?php if(isset($_GET["searchKeyword"])) { echo $_GET["searchKeyword"]; } ?>';
@@ -101,46 +102,28 @@ function searchNewsFeedInitializer(){
 }
 function searchNewsFeedcontentData(div_view, appendContent,limit_start,limit_end){
   js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.page.app.search.php',
-  { action:'SEARCH_DATA_NEWSFEED', searchKeyword:SEARCH_KEYWORD,limit_start:limit_start,limit_end:limit_end },
+  { action:'SEARCH_DATA_NEWSFEED', projectURL:PROJECT_URL, lang: USR_LANG, user_Id: AUTH_USER_ID, 
+  searchKeyword:SEARCH_KEYWORD, limit_start:limit_start, limit_end:limit_end },
   function(response){
+    console.log("response: "+response);
 	response=JSON.parse(response);
 	var content='';
 	for(var index=0;index<response.length;index++){
-	   var info_Id=response[index].info_Id;
-	   var union_Id=response[index].union_Id;
-	   var artTitle=decodeURI(response[index].artTitle);
-	   var artShrtDesc=decodeURI(response[index].artShrtDesc);
-	   var artDesc=decodeURI(response[index].artDesc);
-	   var createdOn=response[index].createdOn;
-	   var images=response[index].images;
-	   var status=response[index].status;
+	   var param_unionId=response[index].union_Id;
+	   var param_domainName=response[index].domainName;
+	   var param_subdomainName=response[index].subdomainName;
+	   var param_unionName=response[index].unionName;
+	   var param_infoId=response[index].info_Id;
+	   var param_artTitle=decodeURI(response[index].artTitle);
+	   var param_artShrtDesc=decodeURI(response[index].artShrtDesc);
+	   var param_artDesc=decodeURI(response[index].artDesc);
+	   var param_createdOn=get_stdDateTimeFormat01(response[index].createdOn);
+	   var param_images=response[index].images;
+	   var param_status=response[index].status;
+	   var param_newsType=response[index].newsType;
 	   
-	   content+='<div class="col-xs-12">';
-	   
-	   content+='<div class="list-group">';
-	   content+='<div class="list-group-item">';
-	   
-	   content+='<div class="container-fluid pad0">';
-	   
-	   content+='<div align="center">';
-	   content+='<h5><b>'+artTitle+'</b></h5>';
-	   content+='</div>';
-	   
-	   content+='<div align="center">';
-	   content+='<span style="color:#999;">'+artShrtDesc+'</span>';
-	   content+='</div>';
-	   
-	   content+='<div class="mtop15p">';
-	   content+='<button class="btn custom-bg pull-right" style="background-color:'+CURRENT_DARK_COLOR+';color:#fff;"';
-	   content+='onclick="javascript:urlTransfer(\''+PROJECT_URL+'newsfeed/news/union/'+info_Id+'\');">';
-	   content+='<i class="fa fa-14px fa-newspaper-o" aria-hidden="true"></i>&nbsp;<b>Read Full Story</b></button>';
-	   content+='</div>';
-	   
-	   content+='</div>';
-	   
-	   content+='</div>';
-	   content+='</div>';
-	   content+='</div>';
+	   content+=uiTemplate_simpleNewsFeedDisplay(param_domainName, param_subdomainName, param_images, param_artTitle, 
+					param_artShrtDesc, param_infoId, param_newsType, param_createdOn);
 	}
 	content+=appendContent;
 	document.getElementById(div_view).innerHTML=content;
@@ -161,23 +144,30 @@ function searchCommunityInitializer(){
 }
 function searchCommunitycontentData(div_view, appendContent,limit_start,limit_end){
   js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.page.app.search.php',
- { action:'SEARCH_DATA_COMMUNITY', searchKeyword:SEARCH_KEYWORD,limit_start:limit_start,limit_end:limit_end },
+ { action:'SEARCH_DATA_COMMUNITY', projectURL: PROJECT_URL, lang: USR_LANG, user_Id: AUTH_USER_ID, 
+ searchKeyword:SEARCH_KEYWORD, limit_start:limit_start, limit_end:limit_end },
  function(response){
+ console.log(response);
  response=JSON.parse(response);
+ var content='';
  for(var index=0;index<response.length;index++){
-   var union_Id=response[index].union_Id;
-   var domain_Id=response[index].domain_Id;
-   var subdomain_Id=response[index].domain_Id;
-   var unionName=response[index].domain_Id;
-   var unionURLName=response[index].domain_Id;
-   var profile_pic=response[index].domain_Id;
-   var minlocation=response[index].domain_Id;
-   var location=response[index].domain_Id;
-   var state=response[index].domain_Id;	
-   var country=response[index].domain_Id;
-   var created_On=response[index].domain_Id;
-   var admin_Id=response[index].domain_Id;
+   var param_unionId=response[index].union_Id;
+   var param_domainName=response[index].domainName;
+   var param_subdomainName=response[index].subdomainName;
+   var param_unionName=response[index].unionName;
+   var param_unionURLName=response[index].unionURLName;
+   var param_profilepic=response[index].profile_pic;
+   var param_minlocation=response[index].minlocation;
+   var param_location=response[index].location;
+   var param_state=response[index].state;	
+   var param_country=response[index].country;
+   var param_createdOn=response[index].created_On;
+   
+   content+=uiTemplate_simpleCommunityDisplay(param_unionId, param_unionURLName, param_domainName,param_subdomainName,
+        param_profilepic,param_unionName, param_createdOn,param_minlocation,param_location,param_state,param_country);
  }
+  content+=appendContent;
+  document.getElementById(div_view).innerHTML=content;
  });
 }
 /* Search Movement load On Scroll */ 
@@ -188,7 +178,17 @@ function searchMovementInitializer(){
      document.getElementById("searchMovementDataload0").innerHTML='<div align="center" style="color:#ccc;">No Movement found</div>';
    } else {
    console.log("searchMovementInitializer: "+totalData);
+   scroll_loadInitializer('searchMovementDataload',10,searchMovementcontentData,totalData);
    }
+ });
+}
+function searchMovementcontentData(div_view, appendContent,limit_start,limit_end){
+  js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.page.app.search.php',
+ { action:'SEARCH_DATA_MOVEMENT', searchKeyword:SEARCH_KEYWORD, limit_start:limit_start, limit_end:limit_end },
+ function(response){
+   var content=uiTemplate_simpleMovementDisplay();
+       content+=appendContent;
+   document.getElementById(div_view).innerHTML=content;
  });
 }
 </script>

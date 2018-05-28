@@ -9,7 +9,9 @@ function query_count_getSearchedUserList($searchQuery){
 }
 
 function query_getSearchedUserList($searchQuery,$limit_start,$limit_end){
- $sql="SELECT * FROM user_account WHERE username LIKE '%".$searchQuery."%' OR surName LIKE '%".$searchQuery."%' OR 	";
+ $sql="SELECT DISTINCT user_Id, username, surName, name, mcountrycode, mobile, mob_val, dob, gender, profile_pic, ";
+ $sql.="minlocation, location, state, country, created_On, isAdmin, user_tz, acc_active ";
+ $sql.="FROM user_account WHERE username LIKE '%".$searchQuery."%' OR surName LIKE '%".$searchQuery."%' OR 	";
  $sql.="name LIKE '%".$searchQuery."%' OR  minlocation LIKE '%".$searchQuery."%' OR location LIKE '%".$searchQuery."%' ";
  $sql.="OR state LIKE '%".$searchQuery."%' OR country LIKE '%".$searchQuery."%' LIMIT ".$limit_start.",".$limit_end.";";
  return $sql;
@@ -34,32 +36,58 @@ function query_getSearchedCommunityList($searchQuery,$limit_start,$limit_end){
 
 /* NewsFeed */
 function query_count_getSearchedNewsFeedList($searchQuery){
- $sql="SELECT count(*) FROM dash_info_union WHERE artTitle LIKE '%".$searchQuery."%' OR ";
- $sql.=" artShrtDesc LIKE  '%".$searchQuery."%' OR artDesc LIKE '%".$searchQuery."%';";
+ $sql="SELECT count(*) FROM dash_info_union, union_account WHERE (dash_info_union.artTitle LIKE '%".$searchQuery."%' OR ";
+ $sql.=" dash_info_union.artShrtDesc LIKE  '%".$searchQuery."%' OR dash_info_union.artDesc LIKE '%".$searchQuery."%') ";
+ $sql.=" AND dash_info_union.union_Id=union_account.union_Id; ";
  return $sql;
 }
 
 function query_getSearchedNewsFeedList($searchQuery,$limit_start,$limit_end){
- $sql="SELECT * FROM dash_info_union WHERE artTitle LIKE '%".$searchQuery."%' OR ";
- $sql.=" artShrtDesc LIKE  '%".$searchQuery."%' OR artDesc LIKE '%".$searchQuery."%' ";
+ $sql="SELECT dash_info_union.union_Id, union_account.domain_Id, union_account.subdomain_Id, union_account.unionName, ";
+ $sql.="dash_info_union.info_Id, dash_info_union.artTitle, dash_info_union.artShrtDesc, dash_info_union.artDesc, ";
+ $sql.="dash_info_union.createdOn, dash_info_union.images, dash_info_union.status ";
+ $sql.="FROM dash_info_union, union_account WHERE (dash_info_union.artTitle LIKE '%".$searchQuery."%' OR ";
+ $sql.=" dash_info_union.artShrtDesc LIKE  '%".$searchQuery."%' OR dash_info_union.artDesc LIKE '%".$searchQuery."%') ";
+ $sql.=" AND dash_info_union.union_Id=union_account.union_Id ";
  $sql.="LIMIT ".$limit_start.",".$limit_end.";";
  return $sql;
 }
 
+/*
+function query_getSearchedNewsFeedList_statistics($info_Id,$user_Id){
+  $sql="SELECT ";
+  $sql.="(SELECT count(*) FROM dash_info_user_votes WHERE info_Id='".$info_Id."' AND vote='UP') As voteUp, ";
+  $sql.="(SELECT count(*) FROM dash_info_user_votes WHERE info_Id='".$info_Id."' AND user_Id='".$user_Id."' AND vote='UP') As userVoteUp, ";
+  $sql.="(SELECT count(*) FROM dash_info_user_votes WHERE info_Id='".$info_Id."' AND vote='DOWN') As voteDown, ";
+  $sql.="(SELECT count(*) FROM dash_info_user_votes WHERE info_Id='".$info_Id."' AND user_Id='".$user_Id."' AND vote='DOWN') As userVoteDown, ";
+  $sql.="(SELECT count(*) FROM `dash_info_user_views` WHERE info_Id='".$info_Id."') As views, ";
+  $sql.="(SELECT count(*) FROM `dash_info_user_likes` WHERE info_Id='".$info_Id."') As likes, ";
+  $sql.="(SELECT count(*) FROM `dash_info_user_likes` WHERE info_Id='".$info_Id."' AND user_Id='".$user_Id."') As userLikes, ";
+  $sql.="(SELECT count(*) FROM `dash_info_user_fav` WHERE info_Id='".$info_Id."') As favourites, ";
+  $sql.="(SELECT count(*) FROM `dash_info_user_fav` WHERE info_Id='".$info_Id."' AND user_Id='".$user_Id."') As userFavourites; ";
+  return $sql;
+}
+*/
 /* Movement */
 function query_count_getSearchedMovementList($searchQuery){
- $sql="SELECT count(*) FROM  move_info WHERE petitionTitle LIKE '%".$searchQuery."%' OR toA_pName1 LIKE '%".$searchQuery."%' OR ";
- $sql.="toA_dd1 LIKE '%".$searchQuery."%' OR toA_pName2 LIKE '%".$searchQuery."%' OR toA_dd2 LIKE '%".$searchQuery."%' ";
- $sql.="OR toA_pName3 LIKE '%".$searchQuery."%' OR toA_dd3 LIKE '%".$searchQuery."%' OR issue_desc LIKE '%".$searchQuery."%' ";
- $sql.="OR issue_facedby LIKE '%".$searchQuery."%' OR expectedSolution LIKE '%".$searchQuery."%';";       	   
+ $sql="SELECT count(DISTINCT move_info.move_Id) As totalData ";
+ $sql.="FROM move_info, union_account WHERE union_account.union_Id=move_info.union_Id AND ";
+ $sql.="(petitionTitle LIKE '%".$searchQuery."%' OR toA_pName1 LIKE '%".$searchQuery."%' OR toA_dd1 LIKE '%".$searchQuery."%' ";
+ $sql.="OR toA_pName2 LIKE '%".$searchQuery."%' OR toA_dd2 LIKE '%".$searchQuery."%' OR toA_pName3 LIKE '%".$searchQuery."%' ";
+ $sql.="OR toA_dd3 LIKE '%".$searchQuery."%' OR issue_desc LIKE '%".$searchQuery."%' OR issue_facedby LIKE '%".$searchQuery."%' ";
+ $sql.="OR expectedSolution LIKE '%".$searchQuery."%');";
  return $sql;
 }
 
 function query_getSearchedMovementList($searchQuery,$limit_start,$limit_end){
- $sql="SELECT * FROM  move_info WHERE petitionTitle LIKE '%".$searchQuery."%' OR toA_pName1 LIKE '%".$searchQuery."%' OR ";
- $sql.="toA_dd1 LIKE '%".$searchQuery."%' OR toA_pName2 LIKE '%".$searchQuery."%' OR toA_dd2 LIKE '%".$searchQuery."%' ";
- $sql.="OR toA_pName3 LIKE '%".$searchQuery."%' OR toA_dd3 LIKE '%".$searchQuery."%' OR issue_desc LIKE '%".$searchQuery."%' ";
- $sql.="OR issue_facedby LIKE '%".$searchQuery."%' OR expectedSolution LIKE '%".$searchQuery."%' ";
+ $sql="SELECT DISTINCT move_info.move_Id, move_info.createdOn, move_info.petitionTitle, ";
+ $sql.="move_info.issue_facedby, move_info.move_img, ";
+ $sql.="union_account.union_Id, union_account.domain_Id, union_account.subdomain_Id, union_account.unionName ";
+ $sql.="FROM move_info, union_account WHERE union_account.union_Id=move_info.union_Id AND ";
+ $sql.="(petitionTitle LIKE '%".$searchQuery."%' OR toA_pName1 LIKE '%".$searchQuery."%' OR toA_dd1 LIKE '%".$searchQuery."%' ";
+ $sql.="OR toA_pName2 LIKE '%".$searchQuery."%' OR toA_dd2 LIKE '%".$searchQuery."%' OR toA_pName3 LIKE '%".$searchQuery."%' ";
+ $sql.="OR toA_dd3 LIKE '%".$searchQuery."%' OR issue_desc LIKE '%".$searchQuery."%' OR issue_facedby LIKE '%".$searchQuery."%' ";
+ $sql.="OR expectedSolution LIKE '%".$searchQuery."%') ";
  $sql.="LIMIT ".$limit_start.",".$limit_end.";";       	   
  return $sql;
 }

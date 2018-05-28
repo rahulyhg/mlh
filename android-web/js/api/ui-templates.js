@@ -6,6 +6,9 @@ function uiTemplate_userDisplayWithCloseButton(){
 /* User without close button icon Function */
 function uiTemplate_userDisplayWithoutCloseButton(param_surName, param_name, param_profilepic, param_minlocation, 
              param_location,param_state,param_country){
+/* Utility Description: 1) Used in app-search.php at (1) People Tab 
+ * 
+ */
 var content='<div class="list-group">';
 	content+='<div class="list-group-item">';
 	content+='<div class="container-fluid pad0">';
@@ -27,6 +30,37 @@ var content='<div class="list-group">';
 }
 
 /* NewsFeed Display Function */
+function uiTemplate_simpleNewsFeedDisplay(param_domainName, param_subdomainName, param_images, param_artTitle, 
+  param_artShrtDesc, param_infoId, param_newsType, param_createdOn){
+ var content='<div class="list-group pad0">';
+	 content+='<div class="list-group-item">';
+	 content+='<div align="left" class="mbot15p">';
+	 content+='<label class="label label-newsfeed custom-bg" style="background-color:'+CURRENT_DARK_COLOR+';color:#fff;">';
+	 content+='<span style="text-transform:uppercase;"><b>'+param_domainName+' / '+param_subdomainName+'</b></span>';
+	 content+='</label>';
+	 content+='</div>';
+	 content+='<div>';
+	 content+='<img src="'+param_images+'" style="width:100%;height:auto;"/>';
+	 content+='</div>';
+	 content+='<div><h5 align="center" style="text-transform:uppercase;line-height:22px;"><b>'+param_artTitle+'</b></h5></div>';
+	 content+='<div align="right" style="line-height:22px;color:#87898a;font-size:12px;">posted on <br/>'+param_createdOn+' IST</div>';
+	 content+='<div style="font-size:11px;color:#000;">'+param_artShrtDesc+'</div>';
+	 content+='<div align="right" class="mtop15p">';
+	 if(param_newsType==='UNION'){
+	   content+='<a href="'+PROJECT_URL+'newsfeed/news/union/'+param_infoId+'">';
+	 } else {
+	   content+='<a href="'+PROJECT_URL+'newsfeed/news/business/'+param_infoId+'">';
+	 }
+	 content+='<button class="btn custom-bg" style="background-color:'+CURRENT_DARK_COLOR+';color:#fff;">';
+	 content+='<i class="fa fa-14px fa-newspaper-o"></i> &nbsp;<span style="font-size:11px;"><b>Read Full Story</b></span>';
+	 content+='</button>';
+	 content+='</a>';
+	 content+='</div>';
+	 content+='</div>';
+	 content+='</div>';
+  return content;
+}
+
 function uiTemplate_unionNewsFeedDisplay(param_unionId, param_domainName, param_subdomainName, param_unionName, param_infoId, 
 param_artTitle, param_artShrtDesc, param_artDesc, param_createdOn, param_images, param_votesup, param_votesdown, param_status, 
 param_viewed, param_favourites, param_likes, param_usrvoteup, param_usrvotedown, param_usrfavourite, param_usrliked, 
@@ -184,6 +218,7 @@ content+='</div>';
 content+='</div>';
 return content;
 }
+
 function uiTemplate_newsFeedDisplay_selFavourite(newsType,union_Id,info_Id,favText){
 if(!$("#"+info_Id+"-favourite").hasClass('custom-font')){ 
   $("#"+info_Id+"-favourite").addClass('custom-font');
@@ -316,6 +351,40 @@ if(vote_status==='voteup'){
 }
 
 /* Community Display Function */
+function uiTemplate_simpleCommunityDisplay(param_unionId,param_unionURLName,param_domainName,param_subdomainName,
+    param_profilepic,param_unionName,param_createdOn,param_minlocation,param_location,param_state,param_country){
+ var content='<div class="list-group pad10" style="margin-bottom:10px;">';
+    content+='<div class="list-group-item">';
+    content+='<div class="container-fluid pad0">';
+    content+='<div align="left" class="col-md-12 col-xs-12 pad0">'; 
+    content+='<span class="label label-newsfeed custom-bg" style="background-color:#0ba0da;">';
+    content+='<b>'+param_domainName.toUpperCase()+' / '+param_subdomainName.toUpperCase()+'</b></span>';
+    content+='</div>';
+    content+='<div class="pad0">';
+    content+='<div class="">'; 
+    content+='<img class="img-min-profilepic mtop15p" src="'+param_profilepic+'">';
+    content+='</div>';
+    content+='<div class="frnshipreqdiv">';
+    content+='<h5 style="line-height:22px;"><b>'+param_unionName+'</b></h5>';
+	content+='<div align="center" style="line-height:22px;color:#87898a;font-size:12px;">joined on '+param_createdOn+' IST</div>';
+	content+='</div>';
+	
+    content+='<div class="frnshipreqaddr mtop15p" style="color:#6f6f6f;font-weight:bold;font-size:12px;">'+param_minlocation+', '+param_location+', '+param_state+', '+param_country+'</div>';
+    
+	content+='<div align="right" class="col-xs-12 mtop15p">';
+	content+='<a href="'+PROJECT_URL+'app/community/'+param_unionId+'">';
+	content+='<button class="btn custom-bg" style="background-color:'+CURRENT_DARK_COLOR+';color:#fff;">';
+    content+='<i class="fa fa-14px fa-user"></i> &nbsp;<span style="font-size:11px;"><b>View Community</b></span>';
+	content+='</button>';
+    content+='</a>';
+	content+='</div>';
+	
+    content+='</div>';
+    content+='</div>';
+    content+='</div>';
+    content+='</div>';
+  return content;
+}
 function uiTemplate_communityDisplay(param_unionName,param_domainName,param_subdomainName,param_profilepic,param_createdOn,
             param_minlocation, param_location, param_state, param_country, param_membersCount, param_supportersCount){
 var content='<div class="list-group pad10" style="margin-bottom:10px;">';
@@ -354,6 +423,43 @@ var content='<div class="list-group pad10" style="margin-bottom:10px;">';
 }
 
 /* Movement Display Function */
-function uiTemplate_movementDisplay(){
-
+function uiTemplate_simpleMovementDisplay(){
+ var param_moveId='ABCDE';
+ var param_domainName='Transportation';
+ var param_subdomainName='Auto';
+ var param_profilepic='https://avaazimages.avaaz.org/27583_27583_eco46_48_original_1_460x230.jpg';
+ var param_petitionTitle='Strike of Fee ReImbursement By Student Federation of India';
+ var param_createdOn='2018-04-12 10:11:00';
+ var param_minlocation='L.B.Nagar';
+ var param_location='Hyderabad';
+ var param_state='Telangana';
+ var param_country='India';
+ var content='<div class="list-group pad10" style="margin-bottom:10px;">';
+    content+='<div class="list-group-item">';
+    content+='<div class="container-fluid pad0">';
+    content+='<div align="left" class="col-md-12 col-xs-12 pad0">'; 
+    content+='<span class="label label-newsfeed custom-bg" style="background-color:#0ba0da;">';
+    content+='<b>'+param_domainName.toUpperCase()+' / '+param_subdomainName.toUpperCase()+'</b></span>';
+    content+='</div>';
+    content+='<div class="row pad0">';
+    content+='<img class="col-md-12 col-xs-12 mtop15p" style="height:auto;" src="'+param_profilepic+'">';
+    content+='<div align="left" class="col-md-12 col-xs-12 frnshipreqdiv">';
+    content+='<h5 style="line-height:22px;"><b>'+param_petitionTitle+'</b></h5>';
+    content+='<div align="right" style="color:#87898a;font-size:12px;">Movement started on <br/>'+param_createdOn+' IST</div>';
+    content+='<div align="center" class="frnshipreqaddr mtop15p" style="color:#6f6f6f;font-weight:bold;font-size:12px;">'+param_minlocation+', '+param_location+', '+param_state+', '+param_country+'</div>';
+    content+='</div>';
+	
+	content+='<div align="right" class="col-xs-12 mtop15p">';
+	content+='<a href="'+PROJECT_URL+'app/movement/'+param_moveId+'">';
+	content+='<button class="btn custom-bg" style="background-color:'+CURRENT_DARK_COLOR+';color:#fff;">';
+    content+='<i class="fa fa-14px fa-newspaper-o"></i> &nbsp;<span style="font-size:11px;"><b>Watch Movement</b></span>';
+	content+='</button>';
+    content+='</a>';
+	content+='</div>';
+	
+    content+='</div>';
+    content+='</div>';
+    content+='</div>';
+    content+='</div>';
+  return content;
 }
