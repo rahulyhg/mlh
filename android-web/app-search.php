@@ -191,6 +191,8 @@ function searchMovementcontentData(div_view, appendContent,limit_start,limit_end
    document.getElementById(div_view).innerHTML=content;
  });
 }
+
+
 </script>
  <?php include_once 'templates/api/api_params.php'; ?>
 </head>

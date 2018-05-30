@@ -1,4 +1,59 @@
 /* User with close button icon Function */
+function uiTemplate_displayPeopleWithFriendsNonFriendsDiff(param_userId, param_profilepic, param_surName, param_name,
+ param_minlocation,param_location,param_state,param_country,param_isFriend,param_youRecFrndRequest,param_youSentfrndRequest){
+ var content='<div id="searchpeople_'+param_userId+'" class="list-group-item" style="padding:5px 0px;">';
+	 content+='<div class="container-fluid pad0">';
+	 content+='<div class="col-md-2 col-xs-5">';
+	 content+='<img class="img-min-profilepic" src="'+param_profilepic+'"/>';
+	 content+='</div>';
+	 content+='<div align="left" class="col-md-6 col-xs-7 frnshipreqdiv">';
+	 content+='<h5><b>'+param_surName+' '+param_name+'</b></h5>';
+	 content+='<span class="frnshipreqaddr">'+param_minlocation+', '+param_location+', '+param_state+', '+param_country+'</span>';
+	 content+='</div>';
+	 content+='<div align="center" class="col-md-4 col-xs-12">';
+ if(AUTH_USER_ID===param_userId){
+	 content+='<button class="btn custom-bg m1 pull-right form-control" ';
+	 content+='style="background-color:'+CURRENT_DARK_COLOR+';font-size:11px;color:#fff;">';
+	 content+='<b><i class="fa fa-user" aria-hidden="true"></i>&nbsp;Me</b></button>';
+ }
+ else if(AUTH_USER_ID!==param_userId && param_isFriend==='NO') {
+	 if(param_youRecFrndRequest==='YES'){
+        content+='<button class="btn custom-bg custom-font m1 pull-right form-control" ';
+		content+='style="background-color:'+CURRENT_DARK_COLOR+';color:#fff;font-size:11px;">';
+		content+='<i class="fa fa-user" aria-hidden="true"></i>&nbsp;<b>Accept Friendship</b></button>';
+     } else if(param_youSentfrndRequest==='YES'){
+		content+='<div class="btn-group">';
+		content+='<button class="btn btn-default custom-font" style="color:'+CURRENT_DARK_COLOR+';font-size:11px;">';
+		content+='<b><i class="fa fa-check" aria-hidden="true"></i>&nbsp;Request Sent</b></button>';
+		content+='<button class="btn custom-bg custom-font white-font" style="background-color:'+CURRENT_DARK_COLOR+';';
+		content+='color:#fff;font-size:11px;" onclick="javascript:deleteARequestSent(\''+param_userId+'\')"><b>Delete Request</b>&nbsp;';
+		content+='<i class="fa fa-close" aria-hidden="true"></i></button>';
+		content+='</div>';
+	 } else {
+		content+='<div class="btn-group">';
+		content+='<button class="btn custom-bg white-font" style="background-color:'+CURRENT_DARK_COLOR+';color:#fff;font-size:11px;" ';
+		content+='onclick="javascript:send_friend_request(\''+param_userId+'\')">';
+		content+='<i class="fa fa-user" aria-hidden="true"></i>&nbsp;<b>Send Friend Request</b></button>';
+		content+='<button class="btn custom-lgt-bg custom-font" style="background-color:'+CURRENT_LIGHT_COLOR+';font-size:11px;" ';
+		content+='onclick="javascript:search_hide_currentPerson(\'searchpeople_'+param_userId+'\');">';
+		content+='<b>Hide</b>&nbsp;<i class="fa fa-close" aria-hidden="true"></i></button>';
+		content+='</div>';
+	 }
+ } else if(AUTH_USER_ID!==param_userId && param_isFriend==='YES') {
+	content+='<div class="btn-group">';
+	content+='<button class="btn btn-default custom-font" style="color:'+CURRENT_DARK_COLOR+';font-size:11px;"><b>';
+	content+='<i class="fa fa-check" aria-hidden="true"></i>&nbsp;Your Friend</b></button>';
+	content+='<button class="btn custom-bg custom-font white-font" style="background-color:'+CURRENT_DARK_COLOR+';';
+	content+='color:#fff;font-size:11px;" onclick="javascript:unfriendAperson(\''+param_userId+'\');">';
+	content+='<b>UnFriend</b>&nbsp;<i class="fa fa-close" aria-hidden="true"></i></button>';
+	content+='</div>';
+ }
+ content+='</div>';
+ content+='</div>';
+ content+='</div>';
+ return content;
+}
+
 function uiTemplate_userDisplayWithCloseButton(){
 
 }

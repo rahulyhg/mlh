@@ -133,68 +133,20 @@ function searchPeopleByLocation_data(div_view,appendContent,limit_start,limit_en
 	var content='';
 	if(resp.length>0) {
 	   for(var index=0;index<resp.length;index++){
-		 var user_Id=resp[index].user_Id;
-		 var surName=resp[index].surName;
-		 var name=resp[index].name;
-		 var profile_pic=resp[index].profile_pic;
-		 var minlocation=resp[index].minlocation;
-		 var location=resp[index].location;
-		 var state=resp[index].state;
-		 var country=resp[index].country;
-		 var isFriend=resp[index].isFriend;
-		 var youRecFrndRequest=resp[index].youRecFrndRequest;
-		 var youSentfrndRequest=resp[index].youSentfrndRequest; 
-		 content+='<div id="searchpeople_'+user_Id+'" class="list-group-item" style="padding:5px 0px;">';
-		 content+='<div class="container-fluid pad0">';
-		 content+='<div class="col-md-2 col-xs-5">';
-		 content+='<img class="img-min-profilepic" src="'+profile_pic+'"/>';
-		 content+='</div>';
-		 content+='<div align="left" class="col-md-6 col-xs-7 frnshipreqdiv">';
-		 content+='<h5><b>'+surName+' '+name+'</b></h5>';
-		 content+='<span class="frnshipreqaddr">'+minlocation+', '+location+', '+state+', '+country+'</span>';
-		 content+='</div>';
-		 content+='<div align="center" class="col-md-4 col-xs-12">';
-		 if(AUTH_USER_ID===user_Id){
-		  content+='<button class="btn custom-bg m1 pull-right form-control" ';
-		  content+='style="background-color:'+CURRENT_DARK_COLOR+';font-size:11px;color:#fff;">';
-		  content+='<b><i class="fa fa-user" aria-hidden="true"></i>&nbsp;Me</b></button>';
-		 }
-		 else if(AUTH_USER_ID!==user_Id && isFriend==='NO') {
-		   if(youRecFrndRequest==='YES'){
-             content+='<button class="btn custom-bg custom-font m1 pull-right form-control" ';
-			 content+='style="background-color:'+CURRENT_DARK_COLOR+';color:#fff;font-size:11px;">';
-			 content+='<i class="fa fa-user" aria-hidden="true"></i>&nbsp;<b>Accept Friendship</b></button>';
-		   } else if(youSentfrndRequest==='YES'){
-		     content+='<div class="btn-group">';
-			 content+='<button class="btn btn-default custom-font" style="color:'+CURRENT_DARK_COLOR+';font-size:11px;">';
-			 content+='<b><i class="fa fa-check" aria-hidden="true"></i>&nbsp;Request Sent</b></button>';
-			 content+='<button class="btn custom-bg custom-font white-font" style="background-color:'+CURRENT_DARK_COLOR+';';
-			 content+='color:#fff;font-size:11px;" onclick="javascript:deleteARequestSent(\''+user_Id+'\')"><b>Delete Request</b>&nbsp;';
-			 content+='<i class="fa fa-close" aria-hidden="true"></i></button>';
-		     content+='</div>';
-		   } else {
-		     content+='<div class="btn-group">';
-		     content+='<button class="btn custom-bg white-font" style="background-color:'+CURRENT_DARK_COLOR+';color:#fff;font-size:11px;" ';
-			 content+='onclick="javascript:send_friend_request(\''+user_Id+'\')">';
-			 content+='<i class="fa fa-user" aria-hidden="true"></i>&nbsp;<b>Send Friend Request</b></button>';
-		     content+='<button class="btn custom-lgt-bg custom-font" style="background-color:'+CURRENT_LIGHT_COLOR+';font-size:11px;" ';
-			 content+='onclick="javascript:search_hide_currentPerson(\'searchpeople_'+user_Id+'\');">';
-			 content+='<b>Hide</b>&nbsp;<i class="fa fa-close" aria-hidden="true"></i></button>';
-		     content+='</div>';
-		   }
-		 }
-		 else if(AUTH_USER_ID!==user_Id && isFriend==='YES') {
-		   content+='<div class="btn-group">';
-		   content+='<button class="btn btn-default custom-font" style="color:'+CURRENT_DARK_COLOR+';font-size:11px;"><b>';
-		   content+='<i class="fa fa-check" aria-hidden="true"></i>&nbsp;Your Friend</b></button>';
-		   content+='<button class="btn custom-bg custom-font white-font" style="background-color:'+CURRENT_DARK_COLOR+';';
-		   content+='color:#fff;font-size:11px;" onclick="javascript:unfriendAperson(\''+user_Id+'\');">';
-		   content+='<b>UnFriend</b>&nbsp;<i class="fa fa-close" aria-hidden="true"></i></button>';
-		   content+='</div>';
-		 }
-		 content+='</div>';
-		 content+='</div>';
-		 content+='</div>';
+		 var param_userId=resp[index].user_Id;
+		 var param_surName=resp[index].surName;
+		 var param_name=resp[index].name;
+		 var param_profilepic=resp[index].profile_pic;
+		 var param_minlocation=resp[index].minlocation;
+		 var param_location=resp[index].location;
+		 var param_state=resp[index].state;
+		 var param_country=resp[index].country;
+		 var param_isFriend=resp[index].isFriend;
+		 var param_youRecFrndRequest=resp[index].youRecFrndRequest;
+		 var param_youSentfrndRequest=resp[index].youSentfrndRequest; 
+		 content+=uiTemplate_displayPeopleWithFriendsNonFriendsDiff(param_userId, param_profilepic, param_surName, 
+					param_name, param_minlocation,param_location,param_state,param_country,param_isFriend,
+					param_youRecFrndRequest,param_youSentfrndRequest)
 	   }
 	} else {
 		 content+='<div align="center" class="list-group-item">';
