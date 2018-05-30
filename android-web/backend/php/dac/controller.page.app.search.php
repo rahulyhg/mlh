@@ -201,7 +201,6 @@ else if($_GET["action"]=='SEARCH_COUNT_MOVEMENT'){
    $dbObj=new Database();
    $jsonData=$dbObj->getJSONData($query);
    $dejsonData=json_decode($jsonData);
-   echo $jsonData;
    echo $dejsonData[0]->{'totalData'};
  } else { 
     $content='Missing searchKeyword'; 

@@ -52,7 +52,17 @@ function searchpeopleInitializer(){
    if(totalData=='0'){
      document.getElementById("searchPeopleDataload0").innerHTML='<div align="center" style="color:#ccc;">No People found</div>';
    } else {
-   scroll_loadInitializer('searchPeopleDataload',10,searchpeoplecontentData,totalData);
+      var content='<div align="left" class="mbot15p" style="font-size:12px;">';
+		  content+='<span style="color:#808080;">';
+		  content+='<b>Your Search Results:</b> ';
+		  content+='</span>';
+		  content+='<span style="color:'+CURRENT_DARK_COLOR+'"><b>';
+		  if(totalData=='1'){ content+=totalData+' Person Found'; }
+		  else { content+=totalData+' People Found'; }
+		  content+='</b></span>';
+		  content+='</div>';
+	  document.getElementById("searchPeopleDataResults").innerHTML=content; 
+	scroll_loadInitializer('searchPeopleDataload',10,searchpeoplecontentData,totalData);
    }
  });
 }
@@ -96,7 +106,14 @@ function searchNewsFeedInitializer(){
    if(totalData=='0'){
      document.getElementById("searchNewsFeedDataload0").innerHTML='<div align="center" style="color:#ccc;">No NewsFeed found</div>';
    } else {
-   scroll_loadInitializer('searchNewsFeedDataload',10,searchNewsFeedcontentData,totalData);
+    var content='<div align="left" class="mbot15p" style="font-size:12px;">';
+		content+='<span style="color:#808080;">';
+		content+='<b>Your Search Results:</b> ';
+		content+='</span>';
+		content+='<span style="color:'+CURRENT_DARK_COLOR+'"><b>'+totalData+' News Found</b></span>';
+		content+='</div>';
+	document.getElementById("searchNewsFeedDataResults").innerHTML=content; 
+    scroll_loadInitializer('searchNewsFeedDataload',10,searchNewsFeedcontentData,totalData);
    }
  });
 }
@@ -138,7 +155,17 @@ function searchCommunityInitializer(){
      document.getElementById("searchCommunityDataload0").innerHTML='<div align="center" style="color:#ccc;">No Community found</div>';
    } else {
    console.log("searchCommunityInitializer: "+totalData);
-   scroll_loadInitializer('searchCommunityDataload',10,searchCommunitycontentData,totalData);
+      var content='<div align="left" class="mbot15p" style="font-size:12px;">';
+		  content+='<span style="color:#808080;">';
+		  content+='<b>Your Search Results:</b> ';
+		  content+='</span>';
+		  content+='<span style="color:'+CURRENT_DARK_COLOR+'"><b>';
+		  if(totalData=='1'){ content+=totalData+' Community Found'; }
+		  else { content+=totalData+' Communities Found'; }
+		  content+='</b></span>';
+		  content+='</div>';
+	  document.getElementById("searchCommunityDataResults").innerHTML=content; 
+      scroll_loadInitializer('searchCommunityDataload',10,searchCommunitycontentData,totalData);
    }
  });
 }
@@ -178,6 +205,16 @@ function searchMovementInitializer(){
      document.getElementById("searchMovementDataload0").innerHTML='<div align="center" style="color:#ccc;">No Movement found</div>';
    } else {
    console.log("searchMovementInitializer: "+totalData);
+    var content='<div align="left" class="mbot15p" style="font-size:12px;">';
+		  content+='<span style="color:#808080;">';
+		  content+='<b>Your Search Results:</b> ';
+		  content+='</span>';
+		  content+='<span style="color:'+CURRENT_DARK_COLOR+'"><b>';
+		  if(totalData=='1'){ content+=totalData+' Movement Found'; }
+		  else { content+=totalData+' Movements Found'; }
+		  content+='</b></span>';
+		  content+='</div>';
+   document.getElementById("searchMovementDataResults").innerHTML=content;  
    scroll_loadInitializer('searchMovementDataload',10,searchMovementcontentData,totalData);
    }
  });
@@ -229,21 +266,25 @@ function searchMovementcontentData(div_view, appendContent,limit_start,limit_end
 
 		<div class="container-fluid">
 			<div id="searchPeopleDisplayDivision" align="center" class="mtop15p hide-block">
+			  <div id="searchPeopleDataResults"></div>
 			  <div id="searchPeopleDataload0">
 			   <img src="<?php echo $_SESSION["PROJECT_URL"]; ?>images/load.gif" style="margin-top:15px;width:150px;height:150px;"/>
 			  </div>
 			</div>
 			<div id="searchNewsFeedDisplayDivision" align="center" class="mtop15p hide-block">
+			   <div id="searchNewsFeedDataResults"></div>
 			   <div id="searchNewsFeedDataload0">
 			     <img src="<?php echo $_SESSION["PROJECT_URL"]; ?>images/load.gif" style="margin-top:15px;width:150px;height:150px;"/>
 			   </div>
 			</div>
 			<div id="searchCommunityDisplayDivision" align="center" class="mtop15p hide-block">
+			   <div id="searchCommunityDataResults"></div>
 			   <div id="searchCommunityDataload0">
 			     <img src="<?php echo $_SESSION["PROJECT_URL"]; ?>images/load.gif" style="margin-top:15px;width:150px;height:150px;"/>
 			   </div>
 			</div>
 			<div id="searchMovementDisplayDivision" align="center" class="mtop15p hide-block">
+			   <div id="searchMovementDataResults"></div>
 			   <div id="searchMovementDataload0">
 			     <img src="<?php echo $_SESSION["PROJECT_URL"]; ?>images/load.gif" style="margin-top:15px;width:150px;height:150px;"/>
 			   </div>
