@@ -9,30 +9,37 @@ $logger=Logger::getLogger("controller.page.app.search.php");
 
 if(isset($_GET["action"])){
 if($_GET["action"]=='SEARCH_COUNT_USERS'){
- if(isset($_GET["searchKeyword"])){
+ if(isset($_GET["searchKeyword"]) && isset($_GET["user_Id"])){
+   $user_Id=$_GET["user_Id"];
    $searchQuery=$_GET["searchKeyword"];
    $appSearchObj=new app_Search();
-   $query=$appSearchObj->query_count_getSearchedUserList($searchQuery);
+   $query=$appSearchObj->query_count_getSearchedUserList($user_Id,$searchQuery);
    $dbObj=new Database();
    $jsonData=$dbObj->getJSONData($query);
    $dejsonData=json_decode($jsonData);
-   echo $dejsonData[0]->{'count(*)'};
+   echo $dejsonData[0]->{'totalData'};
  } else { 
-    $content='Missing searchKeyword'; 
+	$content='Missing';
+    if(!isset($_GET["searchKeyword"])){ $content.=' searchKeyword,'; }
+    if(!isset($_GET["user_Id"])){ $content.=' user_Id,'; }
+	$content=chop($content,',');
+	echo $content;
  }
 }
 else if($_GET["action"]=='SEARCH_DATA_USERS'){
-  if(isset($_GET["searchKeyword"]) && isset($_GET["limit_start"]) && isset($_GET["limit_end"])){
+  if(isset($_GET["searchKeyword"]) && isset($_GET["user_Id"]) && isset($_GET["limit_start"]) && isset($_GET["limit_end"])){
+   $user_Id=$_GET["user_Id"];
    $searchQuery=$_GET["searchKeyword"];
    $limit_start=$_GET["limit_start"];
    $limit_end=$_GET["limit_end"];
    $appSearchObj=new app_Search();
-   $query=$appSearchObj->query_getSearchedUserList($searchQuery,$limit_start,$limit_end);
+   $query=$appSearchObj->query_getSearchedUserList($user_Id,$searchQuery,$limit_start,$limit_end);
    $dbObj=new Database();
    echo $dbObj->getJSONData($query);
   } else { 
     $content='Missing ';
 	if(!isset($_GET["searchKeyword"])){ $content.='searchKeyword, '; }
+	if(!isset($_GET["user_Id"])){ $content.=' user_Id,'; }
 	if(!isset($_GET["limit_start"])){ $content.='limit_start, '; }
 	if(!isset($_GET["limit_end"])){ $content.='limit_end, '; }
 	$content=chop($content,', ');

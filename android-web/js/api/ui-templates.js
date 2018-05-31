@@ -10,7 +10,7 @@ function uiTemplate_displayPeopleWithFriendsNonFriendsDiff(param_userId, param_p
 	 content+='<h5><b>'+param_surName+' '+param_name+'</b></h5>';
 	 content+='<span class="frnshipreqaddr">'+param_minlocation+', '+param_location+', '+param_state+', '+param_country+'</span>';
 	 content+='</div>';
-	 content+='<div align="center" class="col-md-4 col-xs-12">';
+	 content+='<div align="center" class="col-md-4 col-xs-12 mtop15p mbot15p">';
  if(AUTH_USER_ID===param_userId){
 	 content+='<button class="btn custom-bg m1 pull-right form-control" ';
 	 content+='style="background-color:'+CURRENT_DARK_COLOR+';font-size:11px;color:#fff;">';

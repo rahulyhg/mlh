@@ -47,7 +47,7 @@ function hzTabSelection(id){
 /* Search People load On Scroll */
 function searchpeopleInitializer(){
  js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.page.app.search.php',
- { action:'SEARCH_COUNT_USERS', searchKeyword:SEARCH_KEYWORD },function(totalData){
+ { action:'SEARCH_COUNT_USERS', searchKeyword:SEARCH_KEYWORD, user_Id:AUTH_USER_ID },function(totalData){
    console.log("searchpeopleInitializer: "+totalData);
    if(totalData=='0'){
      document.getElementById("searchPeopleDataload0").innerHTML='<div align="center" style="color:#ccc;">No People found</div>';
@@ -68,31 +68,26 @@ function searchpeopleInitializer(){
 }
 function searchpeoplecontentData(div_view, appendContent,limit_start,limit_end){
   js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.page.app.search.php',
-  { action:'SEARCH_DATA_USERS', searchKeyword:SEARCH_KEYWORD,limit_start:limit_start,limit_end:limit_end },
+  { action:'SEARCH_DATA_USERS', searchKeyword:SEARCH_KEYWORD, user_Id:AUTH_USER_ID, limit_start:limit_start,limit_end:limit_end },
   function(response){
     var content='';
 	response=JSON.parse(response);
 	for(var index=0;index<response.length;index++){
-	  var user_Id=response[index].user_Id;
-	  var username=response[index].username;
-	  var surName=response[index].surName;
-	  var name=response[index].name;
-	  var mcountrycode=response[index].mcountrycode;
-	  var mobile=response[index].mobile;
-	  var mob_val=response[index].mob_val;
-	  var dob=response[index].dob;
-	  var gender=response[index].gender;
-	  var profile_pic=response[index].profile_pic;
-	  var minlocation=response[index].minlocation;
-	  var location=response[index].location;
-	  var state=response[index].state;
-	  var country=response[index].country;
-	  var created_On=response[index].created_On;
-	  var isAdmin=response[index].isAdmin;
-	  var user_tz=response[index].user_tz;
-	  var acc_active=response[index].acc_active;
+	  var param_userId=response[index].user_Id;
+	  var param_surName=response[index].surName;
+	  var param_name=response[index].name;
+	  var param_profilepic=response[index].profile_pic;
+      var param_minlocation=response[index].minlocation;
+	  var param_location=response[index].location;
+	  var param_state=response[index].state;
+	  var param_country=response[index].country;
+	  var param_isFriend=response[index].isFriend;
+	  var param_youRecFrndRequest=response[index].youRecFrndRequest;
+	  var param_youSentfrndRequest=response[index].youSentfrndRequest; 
 	  
-	  content+=uiTemplate_userDisplayWithoutCloseButton(surName, name, profile_pic, minlocation, location,state,country);
+	   content+=uiTemplate_displayPeopleWithFriendsNonFriendsDiff(param_userId, param_profilepic, param_surName, param_name,
+ param_minlocation,param_location,param_state,param_country,param_isFriend,param_youRecFrndRequest,param_youSentfrndRequest);
+	  // content+=uiTemplate_userDisplayWithoutCloseButton(surName, name, profile_pic, minlocation, location,state,country);
 	}
 	content+=appendContent;
 	document.getElementById(div_view).innerHTML=content;

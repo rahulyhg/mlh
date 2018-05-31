@@ -1,19 +1,30 @@
 <?php
 class app_Search {
 /* People */
-function query_count_getSearchedUserList($searchQuery){
- $sql="SELECT count(*) FROM user_account WHERE username LIKE '%".$searchQuery."%' OR surName LIKE '%".$searchQuery."%' OR 	";
+function query_count_getSearchedUserList($user_Id,$searchQuery){
+ $sql="SELECT ";
+ $sql.="count(DISTINCT user_account.user_Id) As totalData ";
+ $sql.=" FROM user_account WHERE user_account.acc_active='Y' AND ";
+ $sql.="( username LIKE '%".$searchQuery."%' OR surName LIKE '%".$searchQuery."%' OR 	";
  $sql.="name LIKE '%".$searchQuery."%' OR  minlocation LIKE '%".$searchQuery."%' OR location LIKE '%".$searchQuery."%' ";
- $sql.="OR state LIKE '%".$searchQuery."%' OR country LIKE '%".$searchQuery."%';";
+ $sql.="OR state LIKE '%".$searchQuery."%' OR country LIKE '%".$searchQuery."%' ); ";
  return $sql;
 }
 
-function query_getSearchedUserList($searchQuery,$limit_start,$limit_end){
- $sql="SELECT DISTINCT user_Id, username, surName, name, mcountrycode, mobile, mob_val, dob, gender, profile_pic, ";
- $sql.="minlocation, location, state, country, created_On, isAdmin, user_tz, acc_active ";
- $sql.="FROM user_account WHERE username LIKE '%".$searchQuery."%' OR surName LIKE '%".$searchQuery."%' OR 	";
+function query_getSearchedUserList($user_Id,$searchQuery,$limit_start,$limit_end){
+ $sql="SELECT ";
+ $sql.="DISTINCT user_account.user_Id, ";
+ $sql.="user_account.username, user_account.surName, user_account.name, user_account.profile_pic, ";
+ $sql.="user_account.minlocation, user_account.location, user_account.state, user_account.country, ";
+ $sql.="IF(user_Id in (SELECT frnd1 FROM `user_frnds` WHERE frnd2='".$user_Id."' UNION ";
+ $sql.="SELECT frnd2 FROM user_frnds WHERE frnd1='".$user_Id."'),'YES','NO') As isFriend, ";
+ $sql.="IF(user_Id in (SELECT from_userId FROM user_frnds_req WHERE to_userId='".$user_Id."'),'YES','NO') As youRecFrndRequest, ";
+ $sql.="IF(user_Id in (SELECT to_userId FROM user_frnds_req WHERE from_userId='".$user_Id."'),'YES','NO') As youSentfrndRequest ";
+ $sql.=" FROM user_account WHERE user_account.acc_active='Y' AND ";
+ $sql.="( username LIKE '%".$searchQuery."%' OR surName LIKE '%".$searchQuery."%' OR 	";
  $sql.="name LIKE '%".$searchQuery."%' OR  minlocation LIKE '%".$searchQuery."%' OR location LIKE '%".$searchQuery."%' ";
- $sql.="OR state LIKE '%".$searchQuery."%' OR country LIKE '%".$searchQuery."%' LIMIT ".$limit_start.",".$limit_end.";";
+ $sql.="OR state LIKE '%".$searchQuery."%' OR country LIKE '%".$searchQuery."%' ) ";
+ $sql.="LIMIT ".$limit_start.", ".$limit_end.";";
  return $sql;
 }
 
