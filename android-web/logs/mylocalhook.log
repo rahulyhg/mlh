@@ -5630,3 +5630,24 @@ Friday 1st June 2018 04:37:32 PM [INFO] ::: [api.database.php]  Database connect
 Friday 1st June 2018 04:37:33 PM [INFO] ::: [api.database.php]  Database connected Successfully 
 Friday 1st June 2018 04:37:35 PM [INFO] ::: [api.database.php]  Database connected Successfully 
 Friday 1st June 2018 04:37:39 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 04:55:40 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 04:55:41 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 04:55:43 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 05:31:58 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 05:32:50 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 05:32:54 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 05:33:32 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 05:41:29 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 05:41:30 PM [INFO] ::: [api.database.php]  Query(Status-Success) : UPDATE user_account SET  username='Achuth',  surName='Achuytham',  name='Achuytham',  mcountrycode='+91',  mobile='9160896337',  mob_val='Y',  dob='2018-06-06',  gender='MALE',  profile_pic=' http://192.168.1.4/mlh/android-web/images/avatar/1.jpg',  minlocation='Parvathipuram',  location='Araku',  state='Andhra Pradesh',  country='India',  isAdmin='N',  user_tz='Asia/Kolkata',  acc_active='Y' WHERE user_Id='USR113561617186'; 
+Friday 1st June 2018 05:41:31 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 05:41:38 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 05:41:39 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 05:41:40 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 05:41:43 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 05:41:44 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 05:41:45 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 05:41:46 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 05:41:47 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 05:41:48 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 05:41:49 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 05:41:50 PM [INFO] ::: [api.database.php]  Database connected Successfully 

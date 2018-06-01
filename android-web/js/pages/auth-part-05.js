@@ -31,7 +31,7 @@ else {  /* Update Existing Account */
 	   mobile:AUTH_USER_PHONENUMBER, mob_val:'Y',  dob: AUTH_USER_DOB, gender: AUTH_USER_GENDER, 
 	   profile_pic: profile_pic, minlocation: AUTH_USER_LOCALITY, location: AUTH_USER_LOCATION, 
 	   state: AUTH_USER_STATE, country: AUTH_USER_COUNTRY, isAdmin:'N', user_tz: AUTH_USER_TIMEZONE, 
-	   acc_active:'N' },function(resp){  console.log(resp);window.location.href=PROJECT_URL+"subscribe/categories";  });
+	   acc_active:'Y' },function(resp){  console.log(resp);window.location.href=PROJECT_URL+"subscribe/categories";  });
    }
 }
 

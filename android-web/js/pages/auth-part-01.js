@@ -1,13 +1,12 @@
 $(document).ready(function(){
  bgstyle();
  $(".lang_"+USR_LANG).css('display','block');
- loadVerifyOTPCodeDivision();
+ loadFormWithCountryCodeInDivision();
 });
 
-function loadVerifyOTPCodeDivision(){
+function loadFormWithCountryCodeInDivision(){
  js_ajax("GET",PROJECT_URL+'backend/config/'+USR_LANG+'/countries/countries.json',{},function(response){
-   
-	 var content='<div align="center" class="col-md-12 col-xs-12">';
+ var content='<div align="center" class="col-md-12 col-xs-12">';
      content+='<h4 style="color:#fff;"><b>Enter your Phone Number</b></h4>';
      content+='</div>'; //  style="background-color:'+CURRENT_LIGHT_COLOR+';color:#000;"
 	 content+='<div align="center" class="col-md-12 col-xs-12 mtop15p">';
