@@ -65,6 +65,7 @@ function hzTabSelection(id){
 	load_notify_overview();
  } else if(id==='notifyRequestsHzTab'){ 
     document.getElementById("notify-menu-title").innerHTML='Requests'; 
+	sel_notify_reqMenu("notify-reqMenu-People");
  } else if(id==='notifyNewsHzTab'){ 
     document.getElementById("notify-menu-title").innerHTML='News'; 
  } else if(id==='notifyMovementsHzTab'){
@@ -73,17 +74,20 @@ function hzTabSelection(id){
 }
 function sel_notify_reqMenu(id){
  var arr_Id=["notify-reqMenu-People","notify-reqMenu-Community"];
+ var arr_Id_div=["notifyPeopleRequestsDisplayDivision","notifyCommunityRequestsDisplayDivision"];
  for(var index=0;index<arr_Id.length;index++){
    if(arr_Id[index]==id){ 
      if($('#'+arr_Id[index]).hasClass('custom-lgt-bg')){ $('#'+arr_Id[index]).removeClass('custom-lgt-bg'); } 
 	 if(!$('#'+arr_Id[index]).hasClass('custom-bg')){ $('#'+arr_Id[index]).addClass('custom-bg'); } 
 	 $('#'+arr_Id[index]).css('background-color',CURRENT_DARK_COLOR);
 	 $('#'+arr_Id[index]).css('color','#fff');
+	 if($('#'+arr_Id_div[index]).hasClass('hide-block')){ $('#'+arr_Id_div[index]).removeClass('hide-block'); } 
    } else {
       if($('#'+arr_Id[index]).hasClass('custom-bg')){ $('#'+arr_Id[index]).removeClass('custom-bg'); } 
 	  if(!$('#'+arr_Id[index]).hasClass('custom-lgt-bg')){ $('#'+arr_Id[index]).addClass('custom-lgt-bg'); }
 	  $('#'+arr_Id[index]).css('background-color',CURRENT_LIGHT_COLOR);
 	  $('#'+arr_Id[index]).css('color','#000');
+	  if(!$('#'+arr_Id_div[index]).hasClass('hide-block')){ $('#'+arr_Id_div[index]).addClass('hide-block'); } 
    }
  }
 }
@@ -260,9 +264,9 @@ function load_notify_overview(){
 					<div id="notify-reqMenu-Community" onclick="javascript:sel_notify_reqMenu(this.id);" class="list-group-item custom-lgt-bg curpoint" style="border:0px;border-radius:0px;">Community</div>
 				</div>
 		    </div>
-			<div class="col-xs-12 pad0">
+			<div id="notifyPeopleRequestsDisplayDivision" class="col-xs-12 pad0 hide-block">
 				<div class="list-group">
-				   <div class="list-group-item">
+				    <div class="list-group-item">
 					  <div class="container-fluid pad0">
 						<div class="col-md-2 col-xs-2">
 							<i class="fa fa-notification-icon fa-envelope" aria-hidden="true"></i>
@@ -271,18 +275,41 @@ function load_notify_overview(){
 							<div align="center" class="notification-title mbot15p">Someone sent you<br/> Relationship Request</div>
 							<div align="right" class="notification-silver mbot15p">02 March 2018, 10:35 PM</div>
 						</div>
-						<div id="load" class="col-md-12  col-xs-12">
-							<div class="btn-group">
-							  <butt
+						<div class="col-md-12  col-xs-12 pad0">
+							<div class="btn-group pull-right">
+							  <button class="btn custom-bg f12"><b>Accept Relationship</b></button>
 							</div>
 						</div>
-						<div align="right" class="col-md-12 col-xs-12 mtop5p">
+						<div align="left" class="col-md-12 col-xs-12 mtop5p">
 							<span class="notification-silver">
 							<i class="fa fa-check" aria-hidden="true"></i>&nbsp;Watched</span>
 						</div>
-				    </div>
-			  </div>
+				      </div>
+			        </div>
+					<div class="list-group-item">
+					  <div class="container-fluid pad0">
+						<div class="col-md-2 col-xs-2">
+							<i class="fa fa-notification-icon fa-envelope" aria-hidden="true"></i>
+						</div>
+						<div class="col-md-10 col-xs-10 pad0">
+							<div align="center" class="notification-title mbot15p">Someone sent you<br/> Relationship Request</div>
+							<div align="right" class="notification-silver mbot15p">02 March 2018, 10:35 PM</div>
+						</div>
+						<div class="col-md-12  col-xs-12 pad0">
+							<div class="btn-group pull-right">
+							  <button class="btn custom-bg f12"><b>Accept Relationship</b></button>
+							</div>
+						</div>
+						<div align="left" class="col-md-12 col-xs-12 mtop5p">
+							<span class="notification-silver">
+							<i class="fa fa-check" aria-hidden="true"></i>&nbsp;Watched</span>
+						</div>
+				      </div>
+			        </div>
 				</div>
+			</div>
+			<div id="notifyCommunityRequestsDisplayDivision" class="col-xs-12 pad0 hide-block">
+			
 			</div>
 		</div>
 		
