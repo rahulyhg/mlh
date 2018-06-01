@@ -6,7 +6,7 @@ function uiTemplate_displayPeopleWithFriendsNonFriendsDiff(param_userId, param_p
 	 content+='<div class="col-md-2 col-xs-5">';
 	 content+='<img class="img-min-profilepic" src="'+param_profilepic+'"/>';
 	 content+='</div>';
-	 content+='<div align="left" class="col-md-6 col-xs-7 frnshipreqdiv">';
+	 content+='<div align="left" class="col-md-6 col-xs-7 frnshipreqdiv pad5">';
 	 content+='<h5><b>'+param_surName+' '+param_name+'</b></h5>';
 	 content+='<span class="frnshipreqaddr">'+param_minlocation+', '+param_location+', '+param_state+', '+param_country+'</span>';
 	 content+='</div>';
