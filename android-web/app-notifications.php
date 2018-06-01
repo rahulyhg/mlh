@@ -16,6 +16,7 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/jquery.min.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/bootstrap.min.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/load-data-on-scroll.js"></script>
+ <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/ui-templates.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/bg-styles-common.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/app-notifications-bg-styles.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/app-notifications.js"></script>
@@ -34,13 +35,52 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
 .fa-icon-circle3 { border:2px solid #000;border-radius:50%;padding:10px;padding-left:10px; }
 .fa-icon-circle4 { border:2px solid #000;border-radius:50%;padding:7px; }
 .fa-icon-circle5 { border:2px solid #000;border-radius:50%;padding-right:12px;padding-left:12px;padding-top:10px;padding-bottom:10px; }
+.fa-notification-icon { font-size:18px;border:1px solid #2196F3;border-radius:50%;padding:5px;background-color:#2196F3;color:#fff; }
+.notification-title { color:#2196F3;font-weight:bold; }
+.notification-silver { color:#73879C; }
+.list-group { margin-bottom:0px; }
 </style>
 <script type="text/javascript">
-$(document).ready(function(){ hzTabSelection('notifyOverviewHzTab'); });
+function notifyPageLoader(){
+ var notifyAction='<?php if(isset($_GET["notifyAction"])){ echo $_GET["notifyAction"]; } ?>';
+ if(notifyAction==='NOTIFY_REQUEST_PEOPLE'){
+    hzTabSelection('notifyRequestsHzTab');
+	sel_notify_reqMenu('notify-reqMenu-People');
+ } else if(notifyAction==='NOTIFY_REQUEST_COMMUNITY'){
+    hzTabSelection('notifyRequestsHzTab');
+	sel_notify_reqMenu('notify-reqMenu-Community');
+ } else if(notifyAction==='NOTIFY_NEWSFEED'){
+    hzTabSelection('notifyNewsHzTab');
+ } else if(notifyAction==='NOTIFY_MOVEMENT'){
+    hzTabSelection('notifyMovementsHzTab');
+ } 
+ else {  hzTabSelection('notifyOverviewHzTab'); }
+}
+$(document).ready(function(){ notifyPageLoader(); });
 function hzTabSelection(id){
  var arryHzTab=["notifyOverviewHzTab","notifyRequestsHzTab","notifyNewsHzTab","notifyMovementsHzTab"];
  var arryTabDataViewer=["notifyOverviewDisplayDivision","notifyRequestsDisplayDivision","notifyNewsDisplayDivision","notifyMovementsDisplayDivision"];
  hzTabSelector(id,arryHzTab,arryTabDataViewer);
+ if(id==='notifyOverviewHzTab'){ document.getElementById("notify-menu-title").innerHTML='Overview'; }
+ else if(id==='notifyRequestsHzTab'){ document.getElementById("notify-menu-title").innerHTML='Requests'; }
+ else if(id==='notifyNewsHzTab'){ document.getElementById("notify-menu-title").innerHTML='News'; }
+ else if(id==='notifyMovementsHzTab'){ document.getElementById("notify-menu-title").innerHTML='Movement'; }
+}
+function sel_notify_reqMenu(id){
+ var arr_Id=["notify-reqMenu-People","notify-reqMenu-Community"];
+ for(var index=0;index<arr_Id.length;index++){
+   if(arr_Id[index]==id){ 
+     if($('#'+arr_Id[index]).hasClass('custom-lgt-bg')){ $('#'+arr_Id[index]).removeClass('custom-lgt-bg'); } 
+	 if(!$('#'+arr_Id[index]).hasClass('custom-bg')){ $('#'+arr_Id[index]).addClass('custom-bg'); } 
+	 $('#'+arr_Id[index]).css('background-color',CURRENT_DARK_COLOR);
+	 $('#'+arr_Id[index]).css('color','#fff');
+   } else {
+      if($('#'+arr_Id[index]).hasClass('custom-bg')){ $('#'+arr_Id[index]).removeClass('custom-bg'); } 
+	  if(!$('#'+arr_Id[index]).hasClass('custom-lgt-bg')){ $('#'+arr_Id[index]).addClass('custom-lgt-bg'); }
+	  $('#'+arr_Id[index]).css('background-color',CURRENT_LIGHT_COLOR);
+	  $('#'+arr_Id[index]).css('color','#000');
+   }
+ }
 }
 </script>
 </head>
@@ -57,7 +97,7 @@ function hzTabSelection(id){
 		<div class="container-fluid custom-bg">
 			<div align="center" class="col-xs-12">
 			   <i class="fa fa-3x fa-bell fa-icon-circle1" aria-hidden="true"></i><br/>
-			   <div class="mtop15p mbot15p"><b>NOTIFICATIONS</b></div>
+			   <div class="mtop15p mbot15p"><b>NOTIFICATIONS: <span id="notify-menu-title"></span></b></div>
 			</div>
 		</div>
 		<div class="container-fluid">
@@ -190,9 +230,42 @@ function hzTabSelection(id){
 				</div>
 			</div>
 		</div>
-	  
-		<div id="notifyRequestsDisplayDivision" class="container-fluid mtop15p hide-block">
-		
+
+		<div id="notifyRequestsDisplayDivision" class="container-fluid pad0 hide-block">
+			<div class="col-xs-6 pad0">
+			    <div align="center" class="list-group">
+					<div id="notify-reqMenu-People" onclick="javascript:sel_notify_reqMenu(this.id);" class="list-group-item custom-bg curpoint" style="border:0px;border-radius:0px;">People</div>
+				</div>
+			</div>
+			<div class="col-xs-6 pad0">
+			    <div align="center" class="list-group">
+					<div id="notify-reqMenu-Community" onclick="javascript:sel_notify_reqMenu(this.id);" class="list-group-item custom-lgt-bg curpoint" style="border:0px;border-radius:0px;">Community</div>
+				</div>
+		    </div>
+			<div class="col-xs-12 pad0">
+				<div class="list-group">
+				   <div class="list-group-item">
+					  <div class="container-fluid pad0">
+						<div class="col-md-2 col-xs-2">
+							<i class="fa fa-notification-icon fa-envelope" aria-hidden="true"></i>
+						</div>
+						<div class="col-md-10 col-xs-10 pad0">
+							<div align="center" class="notification-title mbot15p">Someone sent you<br/> Relationship Request</div>
+							<div align="right" class="notification-silver mbot15p">02 March 2018, 10:35 PM</div>
+						</div>
+						<div id="load" class="col-md-12  col-xs-12">
+							<div class="btn-group">
+							  <butt
+							</div>
+						</div>
+						<div align="right" class="col-md-12 col-xs-12 mtop5p">
+							<span class="notification-silver">
+							<i class="fa fa-check" aria-hidden="true"></i>&nbsp;Watched</span>
+						</div>
+				    </div>
+			  </div>
+				</div>
+			</div>
 		</div>
 		
 		<div id="notifyNewsDisplayDivision" class="container-fluid mtop15p hide-block">
