@@ -39,6 +39,7 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
 .notification-title { color:#2196F3;font-weight:bold; }
 .notification-silver { color:#73879C; }
 .list-group { margin-bottom:0px; }
+.img-min-profilepic { margin-top:4%;margin-bottom:4%;width:70px;height:70px;border-radius:50%;border:px solid #fff; }
 </style>
 <script type="text/javascript">
 $(document).ready(function(){ notifyPageLoader(); });
@@ -47,6 +48,7 @@ function notifyPageLoader(){
  if(notifyAction==='NOTIFY_REQUEST_PEOPLE'){
     hzTabSelection('notifyRequestsHzTab');
 	sel_notify_reqMenu('notify-reqMenu-People');
+	load_notify_peopleRequests();
  } else if(notifyAction==='NOTIFY_REQUEST_COMMUNITY'){
     hzTabSelection('notifyRequestsHzTab');
 	sel_notify_reqMenu('notify-reqMenu-Community');
@@ -90,6 +92,7 @@ function sel_notify_reqMenu(id){
 	  if(!$('#'+arr_Id_div[index]).hasClass('hide-block')){ $('#'+arr_Id_div[index]).addClass('hide-block'); } 
    }
  }
+ if(id==='notify-reqMenu-People'){ load_notify_peopleRequests(); }
 }
 function load_notify_overview(){
   js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.notifications.php',
@@ -103,6 +106,80 @@ function load_notify_overview(){
    document.getElementById("notify_movementParticipated").innerHTML='<b>'+response[0].movementParticipated+'</b>';
    document.getElementById("notify_movementUnParticipated").innerHTML='<b>'+response[0].movementUnParticipated+'</b>';   
  });    
+}
+
+function load_notify_peopleRequests(){
+  js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.notifications.php',
+  { action:'NOTIFICATION_COUNT_PEOPLEREQUEST', user_Id: AUTH_USER_ID },function(totalData){
+    if(totalData==='0'){
+	   var content='<div align="center" style="color:#ccc;font-size:12px;">';
+	       content='No Request Notification Found.';
+		   content='</div>';
+	   document.getElementById("notifyPeopleRequestsLoad0").innerHTML=content;
+	} else {
+      scroll_loadInitializer('notifyPeopleRequestsLoad',10,load_notify_peopleRequestsData,totalData); 
+	}
+  });
+  
+}
+function load_notify_peopleRequestsData(div_view, appendContent,limit_start,limit_end){
+  js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.notifications.php',
+  { action:'NOTIFICATION_DATA_PEOPLEREQUEST', user_Id: AUTH_USER_ID },function(response){ 
+   console.log(response); 
+   response=JSON.parse(response);
+   var content='';
+   for(var index=0;index<response.length;index++){
+     var param_notifyId=response[index].notify_Id;
+     var param_fromId=response[index].from_Id;
+     var param_notifyURL=response[index].notifyURL;
+	 var param_notifyts=get_stdDateTimeFormat01(response[index].notify_ts);
+	 var param_watched=response[index].watched;
+	 var param_surName=response[index].surName;
+	 var param_name=response[index].name;
+	 var param_profilepic=response[index].profile_pic;
+	 
+	if(param_watched==='Y'){ 
+	content+='<div class="list-group-item">';
+	} else {
+	content+='<div class="list-group-item" style="background-color:#fff8bc;">';
+	}
+	content+='<div class="container-fluid pad0">';
+	content+='<div class="col-md-2 col-xs-3">';
+	content+='<img class="img-min-profilepic" src="'+param_profilepic+'"/>';
+	content+='</div>';
+	content+='<div class="col-md-10 col-xs-9 pad0">';
+	content+='<div align="center" class="notification-title mbot15p">'+param_surName+' '+param_name+' sent you<br/> Relationship Request</div>';
+	content+='<div align="right" class="notification-silver mbot15p">'+param_notifyts+'</div>';
+	content+='</div>';
+	content+='<div class="col-md-12  col-xs-12 pad0">';
+	if(param_watched==='Y'){
+	content+='<span class="notification-silver">';
+	content+='<i class="fa fa-check" aria-hidden="true"></i>&nbsp;Watched';
+	content+='</span>';
+	}
+	content+='<div id="searchpeople_btnsView_'+param_fromId+'" class="btn-group pull-right">';
+	content+='<button class="btn custom-bg f12" style="background-color:'+CURRENT_DARK_COLOR+';color:#fff;"';
+	content+='onclick="javascript:acceptReqOfRelationship(\''+param_notifyId+'\',\''+param_fromId+'\');">';
+	content+='<b><i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;Accept Relationship</b>';
+	content+='</button>';
+	content+='</div>';
+	content+='</div>';
+	content+='</div>';
+	content+='</div>';
+   }
+   content+=appendContent;
+   document.getElementById(div_view).innerHTML=content;
+    
+   });
+}
+function acceptReqOfRelationship(param_notifyId,param_userId){
+ /* Accept Request */
+ acceptReqToMe(param_userId);
+ /* Delete from Notify */
+ js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.notifications.php',
+ { action:'NOTIFICATION_DELETE_PEOPLEREQUEST', notify_Id:param_notifyId },function(response){ 
+   console.log(response);
+ });
 }
 </script>
 </head>
@@ -265,47 +342,8 @@ function load_notify_overview(){
 				</div>
 		    </div>
 			<div id="notifyPeopleRequestsDisplayDivision" class="col-xs-12 pad0 hide-block">
-				<div class="list-group">
-				    <div class="list-group-item">
-					  <div class="container-fluid pad0">
-						<div class="col-md-2 col-xs-2">
-							<i class="fa fa-notification-icon fa-envelope" aria-hidden="true"></i>
-						</div>
-						<div class="col-md-10 col-xs-10 pad0">
-							<div align="center" class="notification-title mbot15p">Someone sent you<br/> Relationship Request</div>
-							<div align="right" class="notification-silver mbot15p">02 March 2018, 10:35 PM</div>
-						</div>
-						<div class="col-md-12  col-xs-12 pad0">
-							<div class="btn-group pull-right">
-							  <button class="btn custom-bg f12"><b>Accept Relationship</b></button>
-							</div>
-						</div>
-						<div align="left" class="col-md-12 col-xs-12 mtop5p">
-							<span class="notification-silver">
-							<i class="fa fa-check" aria-hidden="true"></i>&nbsp;Watched</span>
-						</div>
-				      </div>
-			        </div>
-					<div class="list-group-item">
-					  <div class="container-fluid pad0">
-						<div class="col-md-2 col-xs-2">
-							<i class="fa fa-notification-icon fa-envelope" aria-hidden="true"></i>
-						</div>
-						<div class="col-md-10 col-xs-10 pad0">
-							<div align="center" class="notification-title mbot15p">Someone sent you<br/> Relationship Request</div>
-							<div align="right" class="notification-silver mbot15p">02 March 2018, 10:35 PM</div>
-						</div>
-						<div class="col-md-12  col-xs-12 pad0">
-							<div class="btn-group pull-right">
-							  <button class="btn custom-bg f12"><b>Accept Relationship</b></button>
-							</div>
-						</div>
-						<div align="left" class="col-md-12 col-xs-12 mtop5p">
-							<span class="notification-silver">
-							<i class="fa fa-check" aria-hidden="true"></i>&nbsp;Watched</span>
-						</div>
-				      </div>
-			        </div>
+				<div id="notifyPeopleRequestsLoad0" class="list-group">
+				    
 				</div>
 			</div>
 			<div id="notifyCommunityRequestsDisplayDivision" class="col-xs-12 pad0 hide-block">

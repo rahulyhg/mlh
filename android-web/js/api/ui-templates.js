@@ -19,7 +19,7 @@ function uiTemplate_displayPeople_WithFriendsNonFriendsDiff(param_userId, param_
  }
  else if(AUTH_USER_ID!==param_userId && param_isFriend==='NO') {
 	 if(param_youRecFrndRequest==='YES'){
-	    content+=uiTemplate_displayPeople_acceptRelationship();
+	    content+=uiTemplate_displayPeople_acceptRelationship(param_userId);
      } else if(param_youSentfrndRequest==='YES'){
 	    content+=uiTemplate_displayPeople_reqSentDelRequest(param_userId);
 	 } else {
@@ -41,8 +41,8 @@ function uiTemplate_displayPeople_viewMeButton(){
 	  content+='<b><i class="fa fa-user" aria-hidden="true"></i>&nbsp;Me</b></button>';
   return content;
 }
-function uiTemplate_displayPeople_acceptRelationship(){
-  var content='<button class="btn custom-bg custom-font m1 pull-right" ';
+function uiTemplate_displayPeople_acceptRelationship(param_userId){
+  var content='<button class="btn custom-bg custom-font m1 pull-right" onclick="javascript:acceptReqToMe(\''+param_userId+'\')"';
 	  content+='style="background-color:'+CURRENT_DARK_COLOR+';color:#fff;font-size:11px;">';
 	  content+='<i class="fa fa-user" aria-hidden="true"></i>&nbsp;<b>Accept Friendship</b></button>';
   return content;
@@ -89,11 +89,26 @@ function send_relationship_request(user_Id){
 }
 /* Delete a Request that previously Sent */
 function delete_relationship_request(user_Id){
- document.getElementById("searchpeople_btnsView_"+user_Id).innerHTML=uiTemplate_displayPeople_sendReqHidePeople(user_Id);
+document.getElementById("searchpeople_btnsView_"+user_Id).innerHTML=uiTemplate_displayPeople_sendReqHidePeople(user_Id);
 js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.findfriends.php',
 {action:'DELETE_A_REQUEST_SENT',from_userId:AUTH_USER_ID, to_userId:user_Id },function(resp){
    console.log(resp);
 });
+}
+
+function acceptReqToMe(user_Id){
+document.getElementById("searchpeople_btnsView_"+user_Id).innerHTML=uiTemplate_displayPeople_frndUnFrnd(user_Id);
+js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.findfriends.php',
+{action:'ACCEPT_FRNDREQUEST_TO_ME',requestFrom:user_Id, user_Id:AUTH_USER_ID },function(resp){ 
+ console.log(resp);
+});
+}
+
+/* UnFriend a Person */
+function unfriendAperson(user_Id){  
+document.getElementById("searchpeople_btnsView_"+user_Id).innerHTML=uiTemplate_displayPeople_sendReqHidePeople(user_Id);
+js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.findfriends.php',
+{action:'UNFRIEND_A_PERSON',frnd1:user_Id, frnd2:AUTH_USER_ID },function(resp){ console.log(resp); });
 }
 
 function search_hide_currentPerson(id){ $('#'+id).hide(1000); }

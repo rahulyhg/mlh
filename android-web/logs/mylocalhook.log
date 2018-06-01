@@ -5902,3 +5902,251 @@ Friday 1st June 2018 07:55:40 PM [INFO] ::: [api.database.php]  Database connect
 Friday 1st June 2018 08:01:40 PM [INFO] ::: [api.database.php]  Database connected Successfully 
 Friday 1st June 2018 08:02:03 PM [INFO] ::: [api.database.php]  Database connected Successfully 
 Friday 1st June 2018 08:02:19 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 08:07:31 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 08:07:46 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 08:08:07 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 08:11:15 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 08:11:17 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 08:11:18 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 08:11:19 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 08:11:20 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 08:11:21 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 08:11:22 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 08:11:23 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 08:15:03 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 08:16:46 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 08:16:48 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 08:16:49 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 08:16:50 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 08:16:51 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 08:16:52 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 08:16:53 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 08:16:54 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 08:17:44 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 08:19:04 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 08:19:26 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 08:20:18 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 08:26:29 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 08:27:30 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 08:27:35 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 08:27:39 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 08:28:04 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 08:28:07 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 08:29:14 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 08:30:47 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 08:31:56 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 08:32:37 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 08:37:22 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 08:44:40 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 08:44:42 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 09:58:21 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 09:58:23 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 09:58:29 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 09:58:29 PM [INFO] ::: [api.database.php]  Query(Status-Success) : UPDATE user_account SET  username='anups',  surName='Nellutla',  name='Anup Chakravarthi',  mcountrycode='+91',  mobile='9160869337',  mob_val='Y',  dob='2015-11-12',  gender='MALE',  profile_pic='http://192.168.1.4/mlh/android-web/images/avatar/3.jpg',  minlocation='Kuttanad',  location='Mavelikara',  state='Kerala',  country='India',  isAdmin='N',  user_tz='Asia/Kolkata',  acc_active='Y' WHERE user_Id='USR924357814934'; 
+Friday 1st June 2018 09:58:30 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 09:58:32 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 09:58:33 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 09:58:34 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 09:58:36 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 09:58:37 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 09:58:38 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 09:58:39 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 09:58:40 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 09:58:41 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 09:58:43 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 09:58:44 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 09:58:45 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 09:58:46 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 09:58:47 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 09:58:48 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 09:58:49 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 09:58:50 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 09:58:51 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 09:58:52 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 09:58:54 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 09:58:55 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 09:58:56 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 09:58:57 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 09:58:58 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 09:58:59 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 10:00:11 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 10:00:17 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 10:00:22 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 10:38:42 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 10:38:46 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 10:38:47 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 10:40:16 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 10:40:33 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 10:42:34 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 10:53:02 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 10:53:04 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 10:53:07 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 10:54:00 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 10:54:07 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 10:56:07 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 10:56:09 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 10:58:12 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 10:58:13 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 10:58:27 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 10:58:30 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:02:18 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:02:21 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:05:51 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:05:56 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:05:57 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:05:58 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:05:59 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:06:00 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:06:01 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:06:03 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:06:04 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:06:10 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:06:57 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:06:58 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:07:00 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:07:01 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:07:02 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:07:03 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:07:04 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:07:05 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:07:07 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:07:08 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:07:08 PM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_frnds(rel_Id, rel_from, rel_tz, frnd1, frnd2, frnd1_call_frnd2, frnd2_call_frnd1) VALUES ('FREL465592416562739371251','2018-06-01 23:07:07','Asia/Kolkata','USR128879133554','USR113561617186','My LocalHook Friend','My LocalHook Friend'); 
+Friday 1st June 2018 11:07:09 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:07:09 PM [INFO] ::: [api.database.php]  Query(Status-Success) : DELETE FROM `user_frnds_req` WHERE from_userId='USR128879133554' AND to_userId='USR113561617186' 
+Friday 1st June 2018 11:08:13 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:08:15 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:08:16 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:08:17 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:08:18 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:08:19 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:08:20 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:08:21 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:09:13 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:09:14 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:09:15 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:09:16 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:09:17 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:09:18 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:09:19 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:09:21 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:09:25 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:09:27 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:09:28 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:09:28 PM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_frnds(rel_Id, rel_from, rel_tz, frnd1, frnd2, frnd1_call_frnd2, frnd2_call_frnd1) VALUES ('FREL187387334177284141946','2018-06-01 23:09:27','Asia/Kolkata','USR715494757975','USR113561617186','My LocalHook Friend','My LocalHook Friend'); 
+Friday 1st June 2018 11:09:29 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:09:29 PM [INFO] ::: [api.database.php]  Query(Status-Success) : DELETE FROM `user_frnds_req` WHERE from_userId='USR715494757975' AND to_userId='USR113561617186' 
+Friday 1st June 2018 11:09:39 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:09:40 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:09:40 PM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_frnds(rel_Id, rel_from, rel_tz, frnd1, frnd2, frnd1_call_frnd2, frnd2_call_frnd1) VALUES ('FREL582849374534951452184','2018-06-01 23:09:39','Asia/Kolkata','USR715494757975','USR113561617186','My LocalHook Friend','My LocalHook Friend'); 
+Friday 1st June 2018 11:09:41 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:09:41 PM [INFO] ::: [api.database.php]  Query(Status-Success) : DELETE FROM `user_frnds_req` WHERE from_userId='USR715494757975' AND to_userId='USR113561617186' 
+Friday 1st June 2018 11:09:44 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:09:45 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:09:45 PM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_frnds(rel_Id, rel_from, rel_tz, frnd1, frnd2, frnd1_call_frnd2, frnd2_call_frnd1) VALUES ('FREL443354954136494138944','2018-06-01 23:09:44','Asia/Kolkata','USR715494757975','USR113561617186','My LocalHook Friend','My LocalHook Friend'); 
+Friday 1st June 2018 11:09:46 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:09:46 PM [INFO] ::: [api.database.php]  Query(Status-Success) : DELETE FROM `user_frnds_req` WHERE from_userId='USR715494757975' AND to_userId='USR113561617186' 
+Friday 1st June 2018 11:10:47 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:10:48 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:10:48 PM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_frnds(rel_Id, rel_from, rel_tz, frnd1, frnd2, frnd1_call_frnd2, frnd2_call_frnd1) VALUES ('FREL418662147654876157835','2018-06-01 23:10:47','Asia/Kolkata','USR715494757975','USR113561617186','My LocalHook Friend','My LocalHook Friend'); 
+Friday 1st June 2018 11:10:49 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:10:49 PM [INFO] ::: [api.database.php]  Query(Status-Success) : DELETE FROM `user_frnds_req` WHERE from_userId='USR715494757975' AND to_userId='USR113561617186' 
+Friday 1st June 2018 11:11:00 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:11:01 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:11:02 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:11:04 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:11:05 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:11:06 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:11:07 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:11:08 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:11:10 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:11:43 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:11:44 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:11:45 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:11:46 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:11:47 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:11:48 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:11:49 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:11:50 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:11:52 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:11:53 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:11:53 PM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_frnds(rel_Id, rel_from, rel_tz, frnd1, frnd2, frnd1_call_frnd2, frnd2_call_frnd1) VALUES ('FREL755933712817918856754','2018-06-01 23:11:52','Asia/Kolkata','USR255798352927','USR113561617186','My LocalHook Friend','My LocalHook Friend'); 
+Friday 1st June 2018 11:11:54 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:11:54 PM [INFO] ::: [api.database.php]  Query(Status-Success) : DELETE FROM `user_frnds_req` WHERE from_userId='USR255798352927' AND to_userId='USR113561617186' 
+Friday 1st June 2018 11:13:31 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:13:32 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:13:33 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:13:34 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:13:35 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:13:36 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:13:37 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:13:39 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:13:41 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:13:46 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:13:47 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:13:47 PM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_frnds(rel_Id, rel_from, rel_tz, frnd1, frnd2, frnd1_call_frnd2, frnd2_call_frnd1) VALUES ('FREL373546946265162946937','2018-06-01 23:13:46','Asia/Kolkata','USR626729797799','USR113561617186','My LocalHook Friend','My LocalHook Friend'); 
+Friday 1st June 2018 11:13:48 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:13:48 PM [INFO] ::: [api.database.php]  Query(Status-Success) : DELETE FROM `user_frnds_req` WHERE from_userId='USR626729797799' AND to_userId='USR113561617186' 
+Friday 1st June 2018 11:17:26 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:17:27 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:17:28 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:17:29 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:17:30 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:17:31 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:17:32 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:17:34 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:17:35 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:17:37 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:17:41 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:17:42 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:17:42 PM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_frnds(rel_Id, rel_from, rel_tz, frnd1, frnd2, frnd1_call_frnd2, frnd2_call_frnd1) VALUES ('FREL583581511597759711768','2018-06-01 23:17:41','Asia/Kolkata','USR128879133554','USR113561617186','My LocalHook Friend','My LocalHook Friend'); 
+Friday 1st June 2018 11:17:43 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:17:43 PM [INFO] ::: [api.database.php]  Query(Status-Success) : DELETE FROM `user_frnds_req` WHERE from_userId='USR128879133554' AND to_userId='USR113561617186' 
+Friday 1st June 2018 11:34:16 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:34:18 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:34:19 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:44:30 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:44:31 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:44:32 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:44:56 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:45:07 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:45:08 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:45:11 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:45:12 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:45:12 PM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_frnds(rel_Id, rel_from, rel_tz, frnd1, frnd2, frnd1_call_frnd2, frnd2_call_frnd1) VALUES ('FREL398295761324325863596','2018-06-01 23:45:11','Asia/Kolkata','USR128879133554','USR113561617186','My LocalHook Friend','My LocalHook Friend'); 
+Friday 1st June 2018 11:45:13 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:45:13 PM [INFO] ::: [api.database.php]  Query(Status-Success) : DELETE FROM `user_frnds_req` WHERE from_userId='USR128879133554' AND to_userId='USR113561617186' 
+Friday 1st June 2018 11:46:00 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:46:02 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:46:03 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:46:06 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:46:07 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:46:07 PM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_frnds(rel_Id, rel_from, rel_tz, frnd1, frnd2, frnd1_call_frnd2, frnd2_call_frnd1) VALUES ('FREL355323199734657944622','2018-06-01 23:46:06','Asia/Kolkata','USR128879133554','USR113561617186','My LocalHook Friend','My LocalHook Friend'); 
+Friday 1st June 2018 11:46:08 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:46:08 PM [INFO] ::: [api.database.php]  Query(Status-Success) : DELETE FROM `user_frnds_req` WHERE from_userId='USR128879133554' AND to_userId='USR113561617186' 
+Friday 1st June 2018 11:46:09 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:46:09 PM [INFO] ::: [api.database.php]  Query(Status-Success) : DELETE FROM `user_notify` WHERE notify_Id='12345'; 
+Friday 1st June 2018 11:46:20 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:46:21 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:46:21 PM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_frnds(rel_Id, rel_from, rel_tz, frnd1, frnd2, frnd1_call_frnd2, frnd2_call_frnd1) VALUES ('FREL473477679165452365849','2018-06-01 23:46:20','Asia/Kolkata','USR128879133554','USR113561617186','My LocalHook Friend','My LocalHook Friend'); 
+Friday 1st June 2018 11:46:22 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:46:22 PM [INFO] ::: [api.database.php]  Query(Status-Success) : DELETE FROM `user_frnds_req` WHERE from_userId='USR128879133554' AND to_userId='USR113561617186' 
+Friday 1st June 2018 11:46:23 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:46:23 PM [INFO] ::: [api.database.php]  Query(Status-Success) : DELETE FROM `user_notify` WHERE notify_Id='12345'; 
+Friday 1st June 2018 11:46:24 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:46:25 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:46:25 PM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_frnds(rel_Id, rel_from, rel_tz, frnd1, frnd2, frnd1_call_frnd2, frnd2_call_frnd1) VALUES ('FREL742155929929149896838','2018-06-01 23:46:24','Asia/Kolkata','USR128879133554','USR113561617186','My LocalHook Friend','My LocalHook Friend'); 
+Friday 1st June 2018 11:46:26 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:46:26 PM [INFO] ::: [api.database.php]  Query(Status-Success) : DELETE FROM `user_frnds_req` WHERE from_userId='USR128879133554' AND to_userId='USR113561617186' 
+Friday 1st June 2018 11:46:27 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:46:27 PM [INFO] ::: [api.database.php]  Query(Status-Success) : DELETE FROM `user_notify` WHERE notify_Id='12345'; 
+Friday 1st June 2018 11:46:28 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:46:29 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:46:29 PM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_frnds(rel_Id, rel_from, rel_tz, frnd1, frnd2, frnd1_call_frnd2, frnd2_call_frnd1) VALUES ('FREL216621668146357997868','2018-06-01 23:46:28','Asia/Kolkata','USR128879133554','USR113561617186','My LocalHook Friend','My LocalHook Friend'); 
+Friday 1st June 2018 11:46:30 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:46:30 PM [INFO] ::: [api.database.php]  Query(Status-Success) : DELETE FROM `user_frnds_req` WHERE from_userId='USR128879133554' AND to_userId='USR113561617186' 
+Friday 1st June 2018 11:46:32 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:46:32 PM [INFO] ::: [api.database.php]  Query(Status-Success) : DELETE FROM `user_notify` WHERE notify_Id='12345'; 
+Friday 1st June 2018 11:48:38 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:48:39 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 1st June 2018 11:48:47 PM [INFO] ::: [api.database.php]  Database connected Successfully 

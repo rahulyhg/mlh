@@ -18,6 +18,35 @@ if(isset($_GET["action"])){
     $query=$notifyObj->query_count_getNotificationOverview($user_Id);
     echo $dbObj->getJSONData($query);
    } else { echo 'MISSING_USERID'; }
+   
+  } else if($_GET["action"]=='NOTIFICATION_COUNT_PEOPLEREQUEST'){
+     if(isset($_GET["user_Id"])){
+	     $user_Id=$_GET["user_Id"];
+		 $notifyObj=new app_notifications();
+		 $dbObj=new Database();
+		 $query=$notifyObj->query_count_getPeopleRelationshipRequests($user_Id);
+		 $jsonData=$dbObj->getJSONData($query);
+		 $dejsonData=json_decode($jsonData);
+		 echo $dejsonData[0]->{'totalData'};
+	  } else { echo 'MISSING_USERID'; }
+  }
+  else if($_GET["action"]=='NOTIFICATION_DATA_PEOPLEREQUEST'){
+	  if(isset($_GET["user_Id"])){
+	     $user_Id=$_GET["user_Id"];
+		 $notifyObj=new app_notifications();
+		 $dbObj=new Database();
+		 $query=$notifyObj->query_getPeopleRelationshipRequests($user_Id);
+		 echo $dbObj->getJSONData($query);
+	  } else { echo 'MISSING_USERID'; }
+  }
+  else if($_GET["action"]=='NOTIFICATION_DELETE_PEOPLEREQUEST'){
+	if(isset($_GET["notify_Id"])){
+	  $notify_Id=$_GET["notify_Id"];
+	  $notifyObj=new app_notifications();
+	  $dbObj=new Database();
+	  $query=$notifyObj->query_deleteRelationshipRequestNotification($notify_Id);
+	  echo $dbObj->addupdateData($query);
+	} else { echo 'MISSING_NOTIFYID'; }	 
   }
 } else { echo 'MISSING_ACTION'; }
 ?>
