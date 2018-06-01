@@ -85,7 +85,7 @@ function searchpeoplecontentData(div_view, appendContent,limit_start,limit_end){
 	  var param_youRecFrndRequest=response[index].youRecFrndRequest;
 	  var param_youSentfrndRequest=response[index].youSentfrndRequest; 
 	  
-	   content+=uiTemplate_displayPeopleWithFriendsNonFriendsDiff(param_userId, param_profilepic, param_surName, param_name,
+	   content+=uiTemplate_displayPeople_WithFriendsNonFriendsDiff(param_userId, param_profilepic, param_surName, param_name,
  param_minlocation,param_location,param_state,param_country,param_isFriend,param_youRecFrndRequest,param_youSentfrndRequest);
 	  // content+=uiTemplate_userDisplayWithoutCloseButton(surName, name, profile_pic, minlocation, location,state,country);
 	}

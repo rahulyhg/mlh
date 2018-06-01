@@ -144,7 +144,7 @@ function searchPeopleByLocation_data(div_view,appendContent,limit_start,limit_en
 		 var param_isFriend=resp[index].isFriend;
 		 var param_youRecFrndRequest=resp[index].youRecFrndRequest;
 		 var param_youSentfrndRequest=resp[index].youSentfrndRequest; 
-		 content+=uiTemplate_displayPeopleWithFriendsNonFriendsDiff(param_userId, param_profilepic, param_surName, 
+		 content+=uiTemplate_displayPeople_WithFriendsNonFriendsDiff(param_userId, param_profilepic, param_surName, 
 					param_name, param_minlocation,param_location,param_state,param_country,param_isFriend,
 					param_youRecFrndRequest,param_youSentfrndRequest)
 	   }
