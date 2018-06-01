@@ -41,6 +41,7 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
 .list-group { margin-bottom:0px; }
 </style>
 <script type="text/javascript">
+$(document).ready(function(){ notifyPageLoader(); });
 function notifyPageLoader(){
  var notifyAction='<?php if(isset($_GET["notifyAction"])){ echo $_GET["notifyAction"]; } ?>';
  if(notifyAction==='NOTIFY_REQUEST_PEOPLE'){
@@ -53,18 +54,22 @@ function notifyPageLoader(){
     hzTabSelection('notifyNewsHzTab');
  } else if(notifyAction==='NOTIFY_MOVEMENT'){
     hzTabSelection('notifyMovementsHzTab');
- } 
- else {  hzTabSelection('notifyOverviewHzTab'); }
+ } else {  hzTabSelection('notifyOverviewHzTab'); }
 }
-$(document).ready(function(){ notifyPageLoader(); });
 function hzTabSelection(id){
  var arryHzTab=["notifyOverviewHzTab","notifyRequestsHzTab","notifyNewsHzTab","notifyMovementsHzTab"];
  var arryTabDataViewer=["notifyOverviewDisplayDivision","notifyRequestsDisplayDivision","notifyNewsDisplayDivision","notifyMovementsDisplayDivision"];
  hzTabSelector(id,arryHzTab,arryTabDataViewer);
- if(id==='notifyOverviewHzTab'){ document.getElementById("notify-menu-title").innerHTML='Overview'; }
- else if(id==='notifyRequestsHzTab'){ document.getElementById("notify-menu-title").innerHTML='Requests'; }
- else if(id==='notifyNewsHzTab'){ document.getElementById("notify-menu-title").innerHTML='News'; }
- else if(id==='notifyMovementsHzTab'){ document.getElementById("notify-menu-title").innerHTML='Movement'; }
+ if(id==='notifyOverviewHzTab'){ 
+    document.getElementById("notify-menu-title").innerHTML='Overview';
+	load_notify_overview();
+ } else if(id==='notifyRequestsHzTab'){ 
+    document.getElementById("notify-menu-title").innerHTML='Requests'; 
+ } else if(id==='notifyNewsHzTab'){ 
+    document.getElementById("notify-menu-title").innerHTML='News'; 
+ } else if(id==='notifyMovementsHzTab'){
+    document.getElementById("notify-menu-title").innerHTML='Movement'; 
+ }
 }
 function sel_notify_reqMenu(id){
  var arr_Id=["notify-reqMenu-People","notify-reqMenu-Community"];
@@ -81,6 +86,19 @@ function sel_notify_reqMenu(id){
 	  $('#'+arr_Id[index]).css('color','#000');
    }
  }
+}
+function load_notify_overview(){
+  js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.notifications.php',
+  { action:'NOTIFICATION_OVERVIEW', user_Id: AUTH_USER_ID },function(response){ 
+   console.log(response);
+   response=JSON.parse(response);
+   document.getElementById("notify_relationShipRequests").innerHTML='<b>'+response[0].relationShipRequests+'</b>';
+   document.getElementById("notify_communityMembershipRequests").innerHTML='<b>'+response[0].communityMembershipRequests+'</b>';  
+   document.getElementById("notify_newsFeedWatched").innerHTML='<b>'+response[0].newsFeedWatched+'</b>';
+   document.getElementById("notify_newsFeedUnWatched").innerHTML='<b>'+response[0].newsFeedUnWatched+'</b>';
+   document.getElementById("notify_movementParticipated").innerHTML='<b>'+response[0].movementParticipated+'</b>';
+   document.getElementById("notify_movementUnParticipated").innerHTML='<b>'+response[0].movementUnParticipated+'</b>';   
+ });    
 }
 </script>
 </head>
@@ -122,8 +140,8 @@ function sel_notify_reqMenu(id){
 		  </div>
 		</div>
 		
-		<div id="notifyOverviewDisplayDivision" class="container-fluid mtop15p hide-block">
-			<div class="col-xs-12">
+		<div id="notifyOverviewDisplayDivision" class="container-fluid hide-block">
+			<div class="col-xs-12 mtop15p">
 				<div class="list-group">
 					<div class="list-group-item pad0">
 						<div class="container-fluid custom-bg pad0">
@@ -141,7 +159,7 @@ function sel_notify_reqMenu(id){
 								</div>
 								<div class="mtop15p">
 									<div class="f12">You have</div>
-									<div class="f24 custom-font"><b>100000</b></div>
+									<div id="notify_relationShipRequests" class="f24 custom-font"></div>
 									<div class="f12">Relationship Requests</div>
 								</div>
 							</div>
@@ -151,7 +169,7 @@ function sel_notify_reqMenu(id){
 								</div>
 								<div class="mtop15p mbot15p">
 									<div class="f12">You have</div>
-									<div class="f24 custom-font"><b>100000</b></div>
+									<div id="notify_communityMembershipRequests" class="f24 custom-font"></div>
 									<div class="f12">Community<br/> Membership Requests</div>
 								</div>
 							</div>
@@ -159,7 +177,7 @@ function sel_notify_reqMenu(id){
 					</div>
 				</div>
 			</div>
-			<div class="col-xs-12">
+			<div class="col-xs-12 mtop15p">
 				<div class="list-group">
 					<div class="list-group-item pad0">
 						<div class="container-fluid custom-bg pad0">
@@ -176,7 +194,7 @@ function sel_notify_reqMenu(id){
 								</div>
 								<div class="mtop15p">
 									<div class="f12">You have watched</div>
-									<div class="f24 custom-font"><b>100000</b></div>
+									<div id="notify_newsFeedWatched" class="f24 custom-font"></div>
 									<div class="f12">News till Today</div>
 								</div>
 							</div>
@@ -186,7 +204,7 @@ function sel_notify_reqMenu(id){
 								</div>
 								<div class="mtop15p mbot15p">
 									<div class="f12">You have</div>
-									<div class="f24 custom-font"><b>100000</b></div>
+									<div id="notify_newsFeedUnWatched" class="f24 custom-font"></div>
 									<div class="f12">News to Watch</div>
 								</div>
 							</div>
@@ -194,7 +212,7 @@ function sel_notify_reqMenu(id){
 					</div>
 				</div>
 			</div>
-			<div class="col-xs-12">
+			<div class="col-xs-12 mtop15p">
 				<div class="list-group">
 					<div class="list-group-item pad0">
 						<div class="container-fluid custom-bg pad0">
@@ -211,7 +229,7 @@ function sel_notify_reqMenu(id){
 								</div>
 								<div class="mtop15p">
 									<div class="f12">You have supported</div>
-									<div class="f24 custom-font"><b>100000</b></div>
+									<div id="notify_movementParticipated" class="f24 custom-font"></div>
 									<div class="f12">Movements till Today</div>
 								</div>
 							</div>
@@ -221,7 +239,7 @@ function sel_notify_reqMenu(id){
 								</div>
 								<div class="mtop15p mbot15p">
 									<div class="f12">You have</div>
-									<div class="f24 custom-font"><b>100000</b></div>
+								    <div id="notify_movementUnParticipated" class="f24 custom-font"></div>
 									<div class="f12">Movements waiting for your participation</div>
 								</div>
 							</div>
