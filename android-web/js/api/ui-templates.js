@@ -1,6 +1,6 @@
-/* ===========================================================================================================================
- * ================================== PEOPLE MANAGEMENT : START ==============================================================
- * ===========================================================================================================================
+/*****************************************************************************************************************************
+ *************************************************** PEOPLE MANAGEMENT : START ***********************************************
+ *****************************************************************************************************************************
  */
 function uiTemplate_displayPeople_WithFriendsNonFriendsDiff(param_userId, param_profilepic, param_surName, param_name,
  param_minlocation,param_location,param_state,param_country,param_isFriend,param_youRecFrndRequest,param_youSentfrndRequest){
@@ -34,7 +34,6 @@ function uiTemplate_displayPeople_WithFriendsNonFriendsDiff(param_userId, param_
  return content;
 }
 
-/* User with close button icon Function */
 function uiTemplate_displayPeople_viewMeButton(){
   var content='<button class="btn btn-default custom-font m1 pull-right" ';
 	  content+='style="color:'+CURRENT_DARK_COLOR+';font-size:11px;">';
@@ -95,7 +94,7 @@ js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.search.php',
    console.log(resp);
 });
 }
-
+/* AcceptRequestRecievedByMe */
 function acceptReqToMe(user_Id){
 document.getElementById("searchpeople_btnsView_"+user_Id).innerHTML=uiTemplate_displayPeople_frndUnFrnd(user_Id);
 js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.search.php',
@@ -103,7 +102,6 @@ js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.search.php',
  console.log(resp);
 });
 }
-
 /* UnFriend a Person */
 function unfriendAperson(user_Id){  
 document.getElementById("searchpeople_btnsView_"+user_Id).innerHTML=uiTemplate_displayPeople_sendReqHidePeople(user_Id);
@@ -112,10 +110,6 @@ js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.search.php',
 }
 
 function search_hide_currentPerson(id){ $('#'+id).hide(1000); }
-
-function uiTemplate_userDisplayWithCloseButton(){
-
-}
 
 /* User without close button icon Function */
 function uiTemplate_userDisplayWithoutCloseButton(param_surName, param_name, param_profilepic, param_minlocation, 
@@ -143,10 +137,53 @@ var content='<div class="list-group">';
  return content;
 }
 
-/* ===========================================================================================================================
- * ================================== PEOPLE MANAGEMENT : END ==============================================================
- * ===========================================================================================================================
+/*****************************************************************************************************************************
+ ************************************************** PEOPLE MANAGEMENT : END **************************************************
+ *****************************************************************************************************************************
  */
+/*****************************************************************************************************************************
+ ************************************************** NOTIFICATIONS : START **************************************************
+ *****************************************************************************************************************************
+ */ 
+ function uiTemplate_requestList_people(param_surName,param_name,param_watched,param_notifyURL,param_profilepic,
+    param_notifyts,param_fromId,param_notifyId){
+   var content='';
+   if(param_watched==='Y'){ 
+	content+='<div class="list-group-item curpoint">';
+	} else {
+	content+='<div class="list-group-item curpoint">';
+	}
+	content+='<div class="container-fluid pad0" onclick="urlTransfer(\''+param_notifyURL+'\');">';
+	content+='<div class="col-md-2 col-xs-3">';
+	content+='<img class="img-min-profilepic" src="'+param_profilepic+'"/>';
+	content+='</div>';
+	content+='<div class="col-md-10 col-xs-9 pad0">';
+	content+='<div align="center" class="notification-title mbot15p">'+param_surName+' '+param_name+' sent you <br/> Friendship Request</div>';
+	content+='<div align="right" class="notification-silver mbot15p">'+param_notifyts+'</div>';
+	content+='</div>';
+	content+='</div>';
+	content+='<div class="container-fluid pad0">';
+	content+='<div class="col-md-12  col-xs-12 pad0">';
+	if(param_watched==='Y'){
+	content+='<span class="notification-silver">';
+	content+='<i class="fa fa-check" aria-hidden="true"></i>&nbsp;Watched';
+	content+='</span>';
+	}
+	content+='<div id="searchpeople_btnsView_'+param_fromId+'" class="btn-group pull-right">';
+	content+='<button class="btn custom-bg f12" style="background-color:'+CURRENT_DARK_COLOR+';color:#fff;"';
+	content+='onclick="javascript:acceptReqOfRelationship(\''+param_notifyId+'\',\''+param_fromId+'\');">';
+	content+='<b><i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;Accept Friendship</b>';
+	content+='</button>';
+	content+='</div>';
+	content+='</div>';
+	content+='</div>';
+	content+='</div>';
+	return content;
+ }
+/*****************************************************************************************************************************
+ ************************************************** NOTIFICATIONS : END **************************************************
+ *****************************************************************************************************************************
+ */ 
 /* NewsFeed Display Function */
 function uiTemplate_simpleNewsFeedDisplay(param_domainName, param_subdomainName, param_images, param_artTitle, 
   param_artShrtDesc, param_infoId, param_newsType, param_createdOn){

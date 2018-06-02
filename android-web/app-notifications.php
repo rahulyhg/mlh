@@ -140,37 +140,8 @@ function load_notify_peopleRequestsData(div_view, appendContent,limit_start,limi
 	 var param_surName=response[index].surName;
 	 var param_name=response[index].name;
 	 var param_profilepic=response[index].profile_pic;
-	 
-	if(param_watched==='Y'){ 
-	content+='<div class="list-group-item curpoint">';
-	} else {
-	content+='<div class="list-group-item curpoint">';
-	}
-	content+='<div class="container-fluid pad0" onclick="urlTransfer(\''+param_notifyURL+'\');">';
-	content+='<div class="col-md-2 col-xs-3">';
-	content+='<img class="img-min-profilepic" src="'+param_profilepic+'"/>';
-	content+='</div>';
-	content+='<div class="col-md-10 col-xs-9 pad0">';
-	content+='<div align="center" class="notification-title mbot15p">'+param_surName+' '+param_name+' sent you <br/> Friendship Request</div>';
-	content+='<div align="right" class="notification-silver mbot15p">'+param_notifyts+'</div>';
-	content+='</div>';
-	content+='</div>';
-	content+='<div class="container-fluid pad0">';
-	content+='<div class="col-md-12  col-xs-12 pad0">';
-	if(param_watched==='Y'){
-	content+='<span class="notification-silver">';
-	content+='<i class="fa fa-check" aria-hidden="true"></i>&nbsp;Watched';
-	content+='</span>';
-	}
-	content+='<div id="searchpeople_btnsView_'+param_fromId+'" class="btn-group pull-right">';
-	content+='<button class="btn custom-bg f12" style="background-color:'+CURRENT_DARK_COLOR+';color:#fff;"';
-	content+='onclick="javascript:acceptReqOfRelationship(\''+param_notifyId+'\',\''+param_fromId+'\');">';
-	content+='<b><i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;Accept Friendship</b>';
-	content+='</button>';
-	content+='</div>';
-	content+='</div>';
-	content+='</div>';
-	content+='</div>';
+	 content+=uiTemplate_requestList_people(param_surName,param_name,param_watched,param_notifyURL,param_profilepic,
+				param_notifyts,param_fromId,param_notifyId);
    }
    content+=appendContent;
    document.getElementById(div_view).innerHTML=content;
@@ -180,11 +151,6 @@ function load_notify_peopleRequestsData(div_view, appendContent,limit_start,limi
 function acceptReqOfRelationship(param_notifyId,param_userId){
  /* Accept Request */
  acceptReqToMe(param_userId);
- /* Delete from Notify */
- js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.notifications.php',
- { action:'NOTIFICATION_DELETE_PEOPLEREQUEST', notify_Id:param_notifyId },function(response){ 
-   console.log(response);
- });
 }
 </script>
 </head>
