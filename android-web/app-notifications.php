@@ -42,13 +42,16 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
 .img-min-profilepic { margin-top:4%;margin-bottom:4%;width:70px;height:70px;border-radius:50%;border:px solid #fff; }
 </style>
 <script type="text/javascript">
-$(document).ready(function(){ notifyPageLoader(); });
+$(document).ready(function(){ 
+notifyPageLoader();
+load_notify_overview();
+load_notify_peopleRequests();
+ });
 function notifyPageLoader(){
  var notifyAction='<?php if(isset($_GET["notifyAction"])){ echo $_GET["notifyAction"]; } ?>';
  if(notifyAction==='NOTIFY_REQUEST_PEOPLE'){
     hzTabSelection('notifyRequestsHzTab');
 	sel_notify_reqMenu('notify-reqMenu-People');
-	load_notify_peopleRequests();
  } else if(notifyAction==='NOTIFY_REQUEST_COMMUNITY'){
     hzTabSelection('notifyRequestsHzTab');
 	sel_notify_reqMenu('notify-reqMenu-Community');
@@ -64,7 +67,6 @@ function hzTabSelection(id){
  hzTabSelector(id,arryHzTab,arryTabDataViewer);
  if(id==='notifyOverviewHzTab'){ 
     document.getElementById("notify-menu-title").innerHTML='Overview';
-	load_notify_overview();
  } else if(id==='notifyRequestsHzTab'){ 
     document.getElementById("notify-menu-title").innerHTML='Requests'; 
 	sel_notify_reqMenu("notify-reqMenu-People");
@@ -92,7 +94,6 @@ function sel_notify_reqMenu(id){
 	  if(!$('#'+arr_Id_div[index]).hasClass('hide-block')){ $('#'+arr_Id_div[index]).addClass('hide-block'); } 
    }
  }
- if(id==='notify-reqMenu-People'){ load_notify_peopleRequests(); }
 }
 function load_notify_overview(){
   js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.notifications.php',
@@ -111,10 +112,11 @@ function load_notify_overview(){
 function load_notify_peopleRequests(){
   js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.notifications.php',
   { action:'NOTIFICATION_COUNT_PEOPLEREQUEST', user_Id: AUTH_USER_ID },function(totalData){
+    console.log("load_notify_peopleRequests: "+totalData);
     if(totalData==='0'){
-	   var content='<div align="center" style="color:#ccc;font-size:12px;">';
-	       content='No Request Notification Found.';
-		   content='</div>';
+	   var content='<div align="center" class="mtop15p" style="color:#808080;font-size:12px;">';
+	       content+='<b>No Notification Request Found.</b>';
+		   content+='</div>';
 	   document.getElementById("notifyPeopleRequestsLoad0").innerHTML=content;
 	} else {
       scroll_loadInitializer('notifyPeopleRequestsLoad',10,load_notify_peopleRequestsData,totalData); 
