@@ -28,7 +28,7 @@ class app_notifications {
 	$sql.="(SELECT count(*) FROM user_notify ";
 	$sql.="WHERE user_Id='".$user_Id."' AND notifyType='COMMUNITY_MEMBERSHIP_REQUEST' ";
 	$sql.="AND req_accepted='N') As communityMembershipRequests, ";
-	$sql.="(SELECT count(*) FROM  dash_info_user_views WHERE user_Id='".$user_Id."') As newsFeedWatched, ";
+	$sql.="(SELECT count(DISTINCT info_Id) FROM  dash_info_user_views WHERE user_Id='".$user_Id."') As newsFeedWatched, ";
 	$sql.="(SELECT count(*) FROM user_notify WHERE user_Id='".$user_Id."' AND notifyType='NEWSFEED' AND ";
 	$sql.="watched='N') As newsFeedUnWatched, ";
 	$sql.="(SELECT count(*) FROM move_sign WHERE user_Id='".$user_Id."') As movementParticipated, ";
