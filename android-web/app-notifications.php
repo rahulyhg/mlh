@@ -145,8 +145,7 @@ function load_notify_peopleRequestsData(div_view, appendContent,limit_start,limi
    }
    content+=appendContent;
    document.getElementById(div_view).innerHTML=content;
-    
-   });
+ });
 }
 function acceptReqOfRelationship(param_notifyId,param_userId){
  /* Accept Request */
