@@ -76,7 +76,6 @@ class user_friends {
   function query_unfriendAperson($frnd1,$frnd2){
     $sql="DELETE FROM user_frnds WHERE ";
 	$sql.="(frnd1='".$frnd1."' AND frnd2='".$frnd2."') OR (frnd1='".$frnd2."' AND frnd2='".$frnd1."');";
-	echo $sql;
 	return $sql;
   }  
 

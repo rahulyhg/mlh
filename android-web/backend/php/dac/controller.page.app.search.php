@@ -3,7 +3,10 @@ session_start();
 require_once '../api/app.initiator.php';
 require_once '../api/app.database.php';
 require_once '../dal/data.module.app.search.php';
+require_once '../dal/data.module.app.notifications.php';
+require_once '../dal/data.module.user.friends.php';
 require_once '../lal/logic.dom.php';
+require_once '../lal/logic.appIdentity.php';
 
 $logger=Logger::getLogger("controller.page.app.search.php");
 
@@ -230,6 +233,107 @@ else if($_GET["action"]=='SEARCH_DATA_MOVEMENT'){
 	$content=chop($content,', ');
     echo $content; 
    }
+}
+else if($_GET["action"]=="SEND_USERFRND_REQUESTS") {
+	   if(isset($_GET["projectURL"]) && isset($_GET["from_user_Id"]) && isset($_GET["to_user_Id"])){
+	         $projectURL=$_GET["projectURL"];
+	         $idObj=new identity();
+			 $req_Id=$idObj->user_frnds_req_id();
+			 $from_userId=$_GET["from_user_Id"];
+			 $to_userId=$_GET["to_user_Id"];
+			 $usr_frm_call_to='My LocalHook Friend';
+			 $notify_Id=$idObj->user_notify_id();
+			 $notifyHeader="";
+			 $notifyTitle="";
+			 $notifyMsg="";
+			 $notifyType="PEOPLE_RELATIONSHIP_REQUEST";
+			 $notifyURL=$projectURL."app/user/".$from_userId; // notifyURL is to be added
+			 $notify_ts=date("Y-m-d H:i:s");
+			 $watched="N";
+			 $popup="N";
+			 $req_accepted="N";
+			 $cal_event="N";
+			 $userObj=new user_friends();
+			 $notifyObj=new app_notifications();
+			 $dbObj=new Database();
+			 $insertQuery=$userObj->query_sendUserFrndRequests($req_Id,$from_userId,$to_userId,$usr_frm_call_to);
+			 $notifyQuery=$notifyObj->query_addNotify_sendFriendRequest($notify_Id,$to_userId,$from_userId,
+			                   $notifyHeader,$notifyTitle,$notifyMsg,$notifyType,$notifyURL,$notify_ts,
+							   $watched,$popup,$req_accepted,$cal_event);
+			 echo $dbObj->addupdateData($insertQuery);
+			 echo $dbObj->addupdateData($notifyQuery);
+		} else {
+		    $content='Missing ';
+			if(!isset($_GET["from_user_Id"])){ $content='from_user_Id, '; }
+			if(!isset($_GET["to_user_Id"])){ $content='to_user_Id, '; }
+			$content=chop($content,', ');
+		    echo $content;
+		  }
+	} 
+else if($_GET["action"]=='ACCEPT_FRNDREQUEST_TO_ME'){ 
+  if(isset($_GET["requestFrom"]) && isset($_GET["user_Id"])){
+	$idObj=new identity();
+    $reqObj=new user_friends();
+    $dbObj=new Database();
+	$notifyObj=new app_notifications();
+    $from_userId=$_GET["requestFrom"];
+    $to_userId=$_GET["user_Id"];
+    $rel_Id=$idObj->user_frnds_id();
+		 $rel_from=date("Y-m-d H:i:s");
+		 $rel_tz='Asia/Kolkata';
+		 $frnd1_call_frnd2='My LocalHook Friend';
+		 $frnd2_call_frnd1='My LocalHook Friend';
+		 
+		 /* Add row in user_frnds */
+		 $addQuery=$reqObj->query_addUserFrnds($rel_Id, $rel_from,$rel_tz, $from_userId, $to_userId, $frnd1_call_frnd2, $frnd2_call_frnd1);
+		 echo $dbObj->addupdateData($addQuery);
+		 /* Delete row in user_frnds_req */
+		 $deleteQuery=$reqObj->query_deleteFrndRequestToMe($from_userId,$to_userId);
+		 echo $dbObj->addupdateData($deleteQuery);
+		 /* Delete Notification */
+		 $notifyQuery=$notifyObj->query_deleteNotify_acceptDeleteRequest($to_userId,$from_userId);
+		 echo $dbObj->addupdateData($notifyQuery);
+	  } else {
+	     echo 'MISSING_REQUEST_FROM_USER_ID';
+	  }
+   }
+else if($_GET["action"]=='DELETE_A_REQUEST_SENT'){
+		if(isset($_GET["from_userId"]) && isset($_GET["to_userId"])){  
+		 $from_userId=$_GET["from_userId"];
+		 $to_userId=$_GET["to_userId"];
+	     $reqObj=new user_friends();
+		 $dbObj=new Database();
+		 /* Delete row in user_frnds_req */
+		 $deleteQuery=$reqObj->query_deleteFrndRequestToMe($from_userId,$to_userId);
+		 echo $dbObj->addupdateData($deleteQuery);
+		 /* Delete Notification */
+		 $notifyQuery=$notifyObj->query_deleteNotify_acceptDeleteRequest($to_userId,$from_userId);
+		 echo $dbObj->addupdateData($notifyQuery);
+		} else {
+		    $content='Missing ';
+			if(isset($_GET["from_userId"])){ $content.='from_userId, '; }
+			if(isset($_GET["to_userId"])){ $content.='to_userId, '; }
+			$content=chop($content,", ");
+			echo $content;
+		}
+}  
+else if($_GET["action"]=='UNFRIEND_A_PERSON'){  
+	  if(isset($_GET["frnd1"]) && isset($_GET["frnd2"])){
+		$frnd1=$_GET["frnd1"];
+		$frnd2=$_GET["frnd2"];
+		$frndObj=new user_friends();
+		$query=$frndObj->query_unfriendAperson($frnd1,$frnd2);
+		$dbObj=new Database();
+		echo $dbObj->addupdateData($query);
+	  } else {
+			$content='Missing ';
+			if(!isset($_GET["frnd1"])){ $content.='frnd1, ';}
+			if(!isset($_GET["frnd2"])){ $content.='frnd2, ';}
+			$content=chop($content,", ");
+			echo $content;
+	  }
+	  //  user_frnds	frnd1   frnd2
+	  // 
 }
 else { echo 'NO_ACTION_INPUT'; }
 } else { echo 'MISSING_ACTION'; }

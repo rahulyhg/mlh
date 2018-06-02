@@ -23,6 +23,7 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
  <link rel="stylesheet" href="<?php echo $_SESSION["PROJECT_URL"]; ?>styles/api/hz-scrollableTabs.css">
  <?php include_once 'templates/api/api_params.php'; ?>
 <style>
+body{ background-color:#f1eded; }
 .custom-lgt-bg2 { background-color:#d9edf7;color:#000; }
 .mtop15p { margin-top:15px; }
 .mbot15p { margin-bottom:15px; }
@@ -141,18 +142,20 @@ function load_notify_peopleRequestsData(div_view, appendContent,limit_start,limi
 	 var param_profilepic=response[index].profile_pic;
 	 
 	if(param_watched==='Y'){ 
-	content+='<div class="list-group-item">';
+	content+='<div class="list-group-item curpoint">';
 	} else {
-	content+='<div class="list-group-item" style="background-color:#fff8bc;">';
+	content+='<div class="list-group-item curpoint">';
 	}
-	content+='<div class="container-fluid pad0">';
+	content+='<div class="container-fluid pad0" onclick="urlTransfer(\''+param_notifyURL+'\');">';
 	content+='<div class="col-md-2 col-xs-3">';
 	content+='<img class="img-min-profilepic" src="'+param_profilepic+'"/>';
 	content+='</div>';
 	content+='<div class="col-md-10 col-xs-9 pad0">';
-	content+='<div align="center" class="notification-title mbot15p">'+param_surName+' '+param_name+' sent you<br/> Relationship Request</div>';
+	content+='<div align="center" class="notification-title mbot15p">'+param_surName+' '+param_name+' sent you <br/> Friendship Request</div>';
 	content+='<div align="right" class="notification-silver mbot15p">'+param_notifyts+'</div>';
 	content+='</div>';
+	content+='</div>';
+	content+='<div class="container-fluid pad0">';
 	content+='<div class="col-md-12  col-xs-12 pad0">';
 	if(param_watched==='Y'){
 	content+='<span class="notification-silver">';
@@ -162,7 +165,7 @@ function load_notify_peopleRequestsData(div_view, appendContent,limit_start,limi
 	content+='<div id="searchpeople_btnsView_'+param_fromId+'" class="btn-group pull-right">';
 	content+='<button class="btn custom-bg f12" style="background-color:'+CURRENT_DARK_COLOR+';color:#fff;"';
 	content+='onclick="javascript:acceptReqOfRelationship(\''+param_notifyId+'\',\''+param_fromId+'\');">';
-	content+='<b><i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;Accept Relationship</b>';
+	content+='<b><i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;Accept Friendship</b>';
 	content+='</button>';
 	content+='</div>';
 	content+='</div>';
@@ -345,11 +348,17 @@ function acceptReqOfRelationship(param_notifyId,param_userId){
 		    </div>
 			<div id="notifyPeopleRequestsDisplayDivision" class="col-xs-12 pad0 hide-block">
 				<div id="notifyPeopleRequestsLoad0" class="list-group">
-				    
+				  <div align="center">
+				   <img src="<?php echo $_SESSION["PROJECT_URL"]; ?>images/load.gif" style="margin-top:15px;width:110px;height:110px;"/>
+				  </div>
 				</div>
 			</div>
 			<div id="notifyCommunityRequestsDisplayDivision" class="col-xs-12 pad0 hide-block">
-			
+				<div id="notifyCommunityRequestsLoad0" class="list-group">
+				  <div align="center">
+				   <img src="<?php echo $_SESSION["PROJECT_URL"]; ?>images/load.gif" style="margin-top:15px;width:75px;height:75px;"/>
+				  </div>
+				</div>
 			</div>
 		</div>
 		

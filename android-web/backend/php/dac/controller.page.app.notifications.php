@@ -17,8 +17,7 @@ if(isset($_GET["action"])){
     $dbObj=new Database();
     $query=$notifyObj->query_count_getNotificationOverview($user_Id);
     echo $dbObj->getJSONData($query);
-   } else { echo 'MISSING_USERID'; }
-   
+   } else { echo 'MISSING_USERID'; } 
   } else if($_GET["action"]=='NOTIFICATION_COUNT_PEOPLEREQUEST'){
      if(isset($_GET["user_Id"])){
 	     $user_Id=$_GET["user_Id"];

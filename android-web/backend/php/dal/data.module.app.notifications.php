@@ -60,5 +60,20 @@ class app_notifications {
     $sql="DELETE FROM `user_notify` WHERE notify_Id='".$notify_Id."';";
 	return $sql;
   }
+  
+  function query_addNotify_sendFriendRequest($notify_Id,$user_Id,$from_Id,$notifyHeader,$notifyTitle,
+        $notifyMsg,$notifyType,$notifyURL,$notify_ts,$watched,$popup,$req_accepted,$cal_event){
+    $sql="INSERT INTO user_notify(notify_Id, user_Id, from_Id, notifyHeader, notifyTitle, ";
+	$sql.="notifyMsg, notifyType, notifyURL, notify_ts, watched, popup, req_accepted, cal_event) ";
+	$sql.="VALUES ('".$notify_Id."','".$user_Id."','".$from_Id."','".$notifyHeader."','".$notifyTitle."','";
+	$sql.=$notifyMsg."','".$notifyType."','".$notifyURL."','".$notify_ts."','".$watched."','".$popup."','";
+	$sql.=$req_accepted."','".$cal_event."');";
+	return $sql;
+  }
+  
+  function query_deleteNotify_acceptDeleteRequest($user_Id,$from_Id){
+    $sql="DELETE FROM `user_notify` WHERE user_Id='".$user_Id."' AND from_Id='".$from_Id."'";
+	return $sql;
+  }
 }
 ?>
