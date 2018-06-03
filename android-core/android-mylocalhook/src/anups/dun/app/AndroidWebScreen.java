@@ -158,26 +158,13 @@ protected void onCreate(Bundle savedInstanceState) {
  logger.info("MyLocalHook is invoking GoogleAdmobInterstitial Service...");
  GoogleAdmobInterstitial.loadInterstitial(this);
  
- 
- /* GPS Location Tracing : Start */
- 
-
- /* GPS Location Tracing : End */
- 
- 
  progressBar = (ProgressBar) findViewById(R.id.progressBar);
  progressBar.setVisibility(View.VISIBLE);
- 
- /* Micromax - Version : 17 , Samsung Galaxy on PRO - Version : 23 */
+
  AndroidWebNotifications awn=new AndroidWebNotifications(this);
  AppManagement appManager = new AppManagement(this);
  AppNotifyManagement anm = new AppNotifyManagement(this);
  AppSessionManagement appSessionManager = new AppSessionManagement(this);
- 
- 
- /* GET DATA FROM PROPERTIES FILE */
- // String PROJECT_WEB_URL=new PropertiesFile().getProperty("PROJECT_WEB_URL", this);
- // logger.info("PROJECT_WEB_URL: "+PROJECT_WEB_URL);
  
  /* Get UserID from SESSION */
  String USER_ID=appSessionManager.getAndroidSession("AUTH_USER_ID");
@@ -187,7 +174,6 @@ protected void onCreate(Bundle savedInstanceState) {
  /* AUTHENTICATION REMINIDER : */
     awn.notify_authReminder();
  /* NewsFeedImmediateReminder */
- //   if(USER_ID!=null){ awn.notify_latestNotificationService(); }
         
         webView = (WebView) findViewById(R.id.webView);
         webView.clearCache(true);
@@ -203,18 +189,15 @@ protected void onCreate(Bundle savedInstanceState) {
         webView.addJavascriptInterface(appSessionManager, "AndroidSession");   
         webView.setWebViewClient(new AndroidWebViewClient(this));
         webView.setWebChromeClient(new AndroidWebChromeClient(this));
-        //if SDK version is greater of 19 then activate hardware acceleration otherwise activate software acceleration
-       
-        if (Build.VERSION.SDK_INT >= 19) {
-            webView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
-        } else if (Build.VERSION.SDK_INT >= 11 && Build.VERSION.SDK_INT < 19) {
+        
+        if (Build.VERSION.SDK_INT >= 19) { webView.setLayerType(View.LAYER_TYPE_HARDWARE, null); }
+        else if (Build.VERSION.SDK_INT >= 11 && Build.VERSION.SDK_INT < 19) {
             webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         }
         
         ntwrkAvail=new NetworkAvailability(this);
         if(ntwrkAvail.checkInternetConnection()) {
-        	// webView.loadUrl(PROJECT_WEB_URL);
-        	webView.loadUrl("http://anups.epizy.com/default.php");
+        	webView.loadUrl("file:///android_asset/www/initializer.html");
         }
         else {
         	webView.loadUrl("file:///android_asset/www/network_state.html");

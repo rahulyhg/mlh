@@ -11,11 +11,18 @@ import android.widget.Toast;
 import anups.dun.app.AndroidWebScreen;
 import anups.dun.app.BuildConfig;
 import anups.dun.media.AndroidWebScreenVideo;
+import anups.dun.web.templates.URLGenerator;
 
 public class AppManagement extends ActionBarActivity {
 	Context mContext;
 	public AppManagement(Context c) {  mContext = c; }
 
+	@JavascriptInterface
+	public String getDefaultPage() {
+      URLGenerator urlGenerator=new URLGenerator();
+      return urlGenerator.defaultPage();
+    }
+	
 	@JavascriptInterface
 	public String checkPlayStoreUpdate(String playstoreversion) {
 	String status="UP-TO-DATE";

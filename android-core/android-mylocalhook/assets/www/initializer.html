@@ -27,7 +27,9 @@ if(count==1) { progress=false; }
 
 $(document).ready(function(){
  progressLoader();
- setTimeout(function(){ window.location.href='http://anups.epizy.com/default.php'; }, 3000);
+ if(Android!==undefined){
+   setTimeout(function(){ window.location.href=Android.getDefaultPage(); }, 3000);
+ }
 });
 </script>
 <style>
@@ -60,33 +62,27 @@ body { background-color:#0ba0da; }
 </style>
 </head>
 <body>
-
-<div align="center" class="container-fluid">
-   <div align="center" class="col-md-12 col-sm-12 col-xs-12" style="margin-top:15px;">
-     <img src="images/logo-blue-flat.jpg" style="width:150px;height:auto;"/>
+<div class="container-fluid">
+   <div align="center" class="col-md-12 col-sm-12 col-xs-12">
+     
    </div>
 </div>
 
 <div align="center" style="margin-top:60px;">
-  <p class="item-1">
-      MyLocalHook is the "Driving Unity in Nation" Programme
-  </p>
-  <p class="item-2">
-     Connect People around you and form a Community
-  </p>
-  <p class="item-3">
-    Make a Movement to bring people-powered decision to come true
-  </p>
+   <div align="center" style="margin-top:160px;">
+   <div class="col-md-4 col-sm-3 col-xs-1"></div>
+   <div class="col-md-4 col-sm-6 col-xs-10">
+     <div style="margin-bottom:35px;">
+     <img src="images/logo-blue-flat.jpg" style="width:150px;height:auto;"/>
+     </div>
+     <div id="progressDisplay" class="progress" style="height:5px;"></div>
+   </div>
+   <div class="col-md-4 col-sm-3 col-xs-1"></div>
+   </div>
 </div>
 
 <div class="footer">
-   <div align="center" style="margin-top:160px;">
-   <div class="col-md-4 col-sm-3 col-xs-12"></div>
-   <div class="col-md-4 col-sm-6 col-xs-12">
-     <div id="progressDisplay" class="progress"></div>
-   </div>
-   <div class="col-md-4 col-sm-3 col-xs-12"></div>
-   </div>
+  
 </div>
 
 </body>
