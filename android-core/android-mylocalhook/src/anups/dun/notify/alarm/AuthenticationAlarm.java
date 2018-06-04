@@ -1,10 +1,10 @@
-package anups.dun.notify;
+package anups.dun.notify.alarm;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import anups.dun.constants.Sessions;
-import anups.dun.constants.UnclosedNotifications;
+import anups.dun.constants.NotificationIdentity;
 import anups.dun.js.AppSessionManagement;
 import anups.dun.util.PushNotification;
 
@@ -24,7 +24,7 @@ if(appsession.getAndroidSession("USER_REGISTERED")==null ||
 		     events[0] = new String("Connect to People around you");
 		     events[1] = new String("Watch NewsFeed happening around you");
 		     events[2] = new String("And Many More!");
-	new PushNotification().display_unclosableNotification(UnclosedNotifications.UNCLOSEDNOTIFICATION_AUTHREMINDER,
+	new PushNotification().display_unclosableNotification(NotificationIdentity.UNCLOSEDNOTIFICATION_AUTHREMINDER,
 			context, directURL, inapp, contentTitle, bigContentTitle, contentText, ticker, events);
 }
 }

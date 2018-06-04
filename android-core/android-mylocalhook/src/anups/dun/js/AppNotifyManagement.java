@@ -8,9 +8,8 @@ import android.webkit.JavascriptInterface;
 import android.widget.Toast;
 import anups.dun.app.AndroidWebNotifications;
 import anups.dun.app.AndroidWebScreen;
-import anups.dun.constants.UnclosedNotifications;
+import anups.dun.constants.NotificationIdentity;
 import anups.dun.notify.LatestNotificationServiceWebService;
-import anups.dun.notify.VersionUpgradeWebService;
 
 public class AppNotifyManagement extends ActionBarActivity {
 	Context mContext;
@@ -20,8 +19,8 @@ public class AppNotifyManagement extends ActionBarActivity {
 		NotificationCompat.Builder  mBuilder = new NotificationCompat.Builder(mContext);
 		mBuilder.setOngoing(false);
 		NotificationManager mNotificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
-		  mNotificationManager.notify(UnclosedNotifications.UNCLOSEDNOTIFICATION_VERSIONUPGRADE, mBuilder.build());  
-		  mNotificationManager.cancel(UnclosedNotifications.UNCLOSEDNOTIFICATION_VERSIONUPGRADE);
+		  mNotificationManager.notify(NotificationIdentity.UNCLOSEDNOTIFICATION_VERSIONUPGRADE, mBuilder.build());  
+		  mNotificationManager.cancel(NotificationIdentity.UNCLOSEDNOTIFICATION_VERSIONUPGRADE);
     }
 	@JavascriptInterface
 	public void shutdownNotification_authReminder() {
@@ -30,19 +29,7 @@ public class AppNotifyManagement extends ActionBarActivity {
 		NotificationCompat.Builder  mBuilder = new NotificationCompat.Builder(mContext);
 		mBuilder.setOngoing(false);
 		NotificationManager mNotificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
-		mNotificationManager.notify(UnclosedNotifications.UNCLOSEDNOTIFICATION_AUTHREMINDER, mBuilder.build());  
-		mNotificationManager.cancel(UnclosedNotifications.UNCLOSEDNOTIFICATION_AUTHREMINDER);
+		mNotificationManager.notify(NotificationIdentity.UNCLOSEDNOTIFICATION_AUTHREMINDER, mBuilder.build());  
+		mNotificationManager.cancel(NotificationIdentity.UNCLOSEDNOTIFICATION_AUTHREMINDER);
     }
-	@JavascriptInterface
-	public void startNotification_authReminder(){
-		AppSessionManagement appSessionManager = new AppSessionManagement(mContext);
-		appSessionManager.setAndroidSession("USER_REGISTERED","NO");
-		AndroidWebNotifications awn=new AndroidWebNotifications(mContext);
-		awn.notify_authReminder();
-	}
-	@JavascriptInterface
-	public void startNotification_latestNotifyService(){
-		AndroidWebNotifications awn=new AndroidWebNotifications(mContext);
-		awn.notify_latestNotificationService();	
-	}
 }

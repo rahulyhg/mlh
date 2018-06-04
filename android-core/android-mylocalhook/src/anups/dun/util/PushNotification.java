@@ -135,8 +135,6 @@ public class PushNotification {
 
 		   long[] v = {500,1000};
 		   mBuilder.setVibrate(v);
-
-		   
 		   mBuilder.setOngoing(true);
 		  // int notifyId=new Random().nextInt(10 - 1 + 1) + 1;
 		   /* notificationID allows you to update the notification later on. */

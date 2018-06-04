@@ -169,11 +169,9 @@ protected void onCreate(Bundle savedInstanceState) {
  /* Get UserID from SESSION */
  String USER_ID=appSessionManager.getAndroidSession("AUTH_USER_ID");
  logger.info("USER_ID: "+USER_ID);
- /* VERSION UPGRADE : */
-    awn.notify_versionupgrade();
- /* AUTHENTICATION REMINIDER : */
-    awn.notify_authReminder();
- /* NewsFeedImmediateReminder */
+ /* AUTHENTICATION REMINIDER : */  // awn.notify_authReminder();
+ /* VERSION UPGRADE : */ // awn.notify_versionupgrade();
+ /* NOTIFICATION : */ awn.notify_appServices();
         
         webView = (WebView) findViewById(R.id.webView);
         webView.clearCache(true);
@@ -197,7 +195,15 @@ protected void onCreate(Bundle savedInstanceState) {
         
         ntwrkAvail=new NetworkAvailability(this);
         if(ntwrkAvail.checkInternetConnection()) {
-        	webView.loadUrl("file:///android_asset/www/initializer.html");
+        	Bundle extras = getIntent().getExtras();
+        	logger.info("Recieve Intent Status: "+extras);
+        	if (extras != null) {
+        		String directURL = extras.getString("DIRECT_URL");
+        		logger.info("directURL: "+directURL);
+        		webView.loadUrl(directURL);
+        	} else {
+        	   webView.loadUrl("file:///android_asset/www/initializer.html");
+        	}
         }
         else {
         	webView.loadUrl("file:///android_asset/www/network_state.html");

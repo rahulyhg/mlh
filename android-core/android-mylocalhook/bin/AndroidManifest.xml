@@ -59,10 +59,7 @@
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
             android:theme="@android:style/Theme.Translucent" ></activity>
         
-         <receiver android:name="anups.dun.notify.VersionUpgradeAlarm"></receiver>
-         <receiver android:name="anups.dun.notify.AuthenticationAlarm"></receiver>
-         <receiver android:name="anups.dun.notify.LatestNotificationServiceAlarm"></receiver>
-         <receiver android:name="anups.dun.notify.NewsFeedIntervalAlarm"></receiver>
+         <receiver android:name="anups.dun.notify.alarm.AppNotificationAlarm"></receiver>
          <receiver android:name="anups.dun.services.OnBootCompleted"
               	   android:enabled="true"
                    android:exported="true"

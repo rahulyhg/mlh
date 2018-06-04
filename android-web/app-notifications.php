@@ -47,6 +47,7 @@ $(document).ready(function(){
 notifyPageLoader();
 load_notify_overview();
 load_notify_peopleRequests();
+load_notify_communityRequests();
  });
 function notifyPageLoader(){
  var notifyAction='<?php if(isset($_GET["notifyAction"])){ echo $_GET["notifyAction"]; } ?>';
@@ -127,7 +128,8 @@ function load_notify_peopleRequests(){
 }
 function load_notify_peopleRequestsData(div_view, appendContent,limit_start,limit_end){
   js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.notifications.php',
-  { action:'NOTIFICATION_DATA_PEOPLEREQUEST', user_Id: AUTH_USER_ID },function(response){ 
+  { action:'NOTIFICATION_DATA_PEOPLEREQUEST', user_Id: AUTH_USER_ID, limit_start:limit_start, 
+    limit_end:limit_end },function(response){ 
    console.log(response); 
    response=JSON.parse(response);
    var content='';
@@ -150,6 +152,25 @@ function load_notify_peopleRequestsData(div_view, appendContent,limit_start,limi
 function acceptReqOfRelationship(param_notifyId,param_userId){
  /* Accept Request */
  acceptReqToMe(param_userId);
+}
+
+function load_notify_communityRequests(){
+  js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.notifications.php',
+  { action:'NOTIFICATION_COUNT_COMMUNITYREQUEST', user_Id: AUTH_USER_ID },function(totalData){
+    console.log("load_notify_communityRequests: "+totalData);
+	if(totalData==='0'){
+	   var content='<div align="center" class="mtop15p" style="color:#808080;font-size:12px;">';
+	       content+='<b>No Notification Request Found.</b>';
+		   content+='</div>';
+	   document.getElementById("notifyCommunityRequestsLoad0").innerHTML=content;
+	} else {
+      scroll_loadInitializer('notifyCommunityRequestsLoad',10,load_notify_communityRequestsData,totalData); 
+	}
+	});
+}
+
+function load_notify_communityRequestsData(div_view, appendContent,limit_start,limit_end){
+
 }
 </script>
 </head>
