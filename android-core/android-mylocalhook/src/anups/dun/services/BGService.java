@@ -5,6 +5,8 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.IBinder;
+import anups.dun.constants.BusinessConstants;
+import anups.dun.js.AppSessionManagement;
 import anups.dun.util.AndroidLogger;
 
 @SuppressLint("NewApi")
@@ -15,14 +17,16 @@ public class BGService extends Service {
 	boolean SERVICE_EXECUTION_BEGIN=true;
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
-		
-		if(SERVICE_EXECUTION_BEGIN) {
-			SERVICE_EXECUTION_BEGIN=false;
+		AppSessionManagement appSessionManager = new AppSessionManagement(getApplicationContext());
+		String serviceExecutionStatus=appSessionManager.getAndroidSession(BusinessConstants.SERVICE_EXECUTION_STATUS);
+		if(serviceExecutionStatus==null) {
+			appSessionManager.setAndroidSession(BusinessConstants.SERVICE_EXECUTION_STATUS,"TRIGGERRED");
 			final Handler handler = new Handler();
 			handler.postDelayed(new Runnable() {
 				@Override
 				public void run() {
-					SERVICE_EXECUTION_BEGIN=true;
+					AppSessionManagement appSessionManager = new AppSessionManagement(getApplicationContext());
+										 appSessionManager.setAndroidSession(BusinessConstants.SERVICE_EXECUTION_STATUS,null);
 					Intent triggerWS = new Intent();
 					 	   triggerWS.setAction("anups.dun.notify.ws.AppNotificationAlarm");
 					getApplicationContext().sendBroadcast(triggerWS);
