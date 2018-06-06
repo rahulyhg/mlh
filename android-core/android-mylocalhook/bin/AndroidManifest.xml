@@ -13,7 +13,8 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /-->
-   
+  
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
     <uses-permission android:name="android.permission.READ_CONTACTS"></uses-permission>
 	<uses-permission android:name="android.permission.WRITE_CONTACTS"></uses-permission>
     <uses-permission android:name="android.permission.INTERNET" />
@@ -27,9 +28,9 @@
 	<uses-permission android:name="android.permission.BLUETOOTH" />
 	<uses-permission android:name="android.permission.VIBRATE" ></uses-permission>
 	<uses-permission android:name="android.permission.BIND_JOB_SERVICE" ></uses-permission>
-	
 	<uses-permission android:name="android.permission.SEND_SMS" />
-	<uses-permission android:name="android.permission.READ_PHONE_STATE"/> 
+	<uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+	<uses-permission android:name="android.permission.WAKE_LOCK" />
 	
     <application
         android:allowBackup="true"
@@ -59,18 +60,24 @@
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
             android:theme="@android:style/Theme.Translucent" ></activity>
         
-         <receiver android:name="anups.dun.notify.alarm.AppNotificationAlarm"></receiver>
+         <receiver android:name="anups.dun.notify.ws.AppNotificationAlarm">
+             <intent-filter>
+                 <action android:name="anups.dun.notify.ws.AppNotificationAlarm" />
+            </intent-filter>
+         </receiver>
+         
          <receiver android:name="anups.dun.services.OnBootCompleted"
               	   android:enabled="true"
                    android:exported="true"
                    android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+                 <action android:name="anups.dun.services.OnBootCompleted" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
          </receiver>
          
-        
+        <service android:name="anups.dun.services.BGService" />
          
     </application>
 

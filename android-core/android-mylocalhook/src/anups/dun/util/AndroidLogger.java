@@ -19,6 +19,7 @@ public class AndroidLogger {
         logConfigurator.setImmediateFlush(true);
         logConfigurator.configure();
         Logger log = Logger.getLogger(clazz);
+        	//   log.setLevel(Level.ERROR);
         return log;
     }
 }

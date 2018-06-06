@@ -3,8 +3,10 @@ package anups.dun.app;
 import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.ClipData;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Build;
 import android.view.KeyEvent;
@@ -20,6 +22,7 @@ import anups.dun.app.R;
 import anups.dun.js.AppManagement;
 import anups.dun.js.AppNotifyManagement;
 import anups.dun.js.AppSessionManagement;
+import anups.dun.services.OnBootCompleted;
 import anups.dun.util.AndroidLogger;
 import anups.dun.util.NetworkAvailability;
 import java.io.File;
@@ -160,8 +163,18 @@ protected void onCreate(Bundle savedInstanceState) {
  
  progressBar = (ProgressBar) findViewById(R.id.progressBar);
  progressBar.setVisibility(View.VISIBLE);
-
- AndroidWebNotifications awn=new AndroidWebNotifications(this);
+ 
+ /* Triggering Broadcast Receiver from Activity */
+ Intent triggerWS = new Intent();
+ triggerWS.setAction("anups.dun.services.OnBootCompleted");
+ sendBroadcast(triggerWS);
+ 
+ // OnBootCompleted receiver = new OnBootCompleted();
+ // IntentFilter filter = new IntentFilter(Intent.ACTION_BOOT_COMPLETED);
+ // this.registerReceiver(receiver, filter);
+ // this.sendBroadcast(intent, receiverPermission);
+ 
+ // AndroidWebNotifications awn=new AndroidWebNotifications(this);
  AppManagement appManager = new AppManagement(this);
  AppNotifyManagement anm = new AppNotifyManagement(this);
  AppSessionManagement appSessionManager = new AppSessionManagement(this);
@@ -171,7 +184,7 @@ protected void onCreate(Bundle savedInstanceState) {
  logger.info("USER_ID: "+USER_ID);
  /* AUTHENTICATION REMINIDER : */  // awn.notify_authReminder();
  /* VERSION UPGRADE : */ // awn.notify_versionupgrade();
- /* NOTIFICATION : */ awn.notify_appServices();
+ /* NOTIFICATION : */ // awn.notify_appServices();
         
         webView = (WebView) findViewById(R.id.webView);
         webView.clearCache(true);
@@ -199,8 +212,12 @@ protected void onCreate(Bundle savedInstanceState) {
         	logger.info("Recieve Intent Status: "+extras);
         	if (extras != null) {
         		String directURL = extras.getString("DIRECT_URL");
-        		logger.info("directURL: "+directURL);
-        		webView.loadUrl(directURL);
+        		if(directURL==null){
+        			webView.loadUrl("file:///android_asset/www/initializer.html");
+        		} else {
+        		   logger.info("directURL: "+directURL);
+        		   webView.loadUrl(directURL);
+        		}
         	} else {
         	   webView.loadUrl("file:///android_asset/www/initializer.html");
         	}

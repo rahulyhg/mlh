@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Calendar;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -12,8 +13,9 @@ import org.json.simple.parser.JSONParser;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Looper;
-import anups.dun.constants.NotificationIdentity;
+import anups.dun.constants.BusinessConstants;
 import anups.dun.js.AppManagement;
+import anups.dun.js.AppNotifyManagement;
 import anups.dun.js.AppSessionManagement;
 import anups.dun.util.AndroidLogger;
 import anups.dun.util.PushNotification;
@@ -21,10 +23,12 @@ import anups.dun.web.templates.URLGenerator;
 
 public class AppNotificationWebService  extends AsyncTask<String, String, String> {
  org.apache.log4j.Logger logger = AndroidLogger.getLogger(AppNotificationWebService.class);
- Context context;
+ private Context context;
  public AppNotificationWebService(Context context){ this.context=context; }
  private final static String USER_AGENT = "Mozilla/5.0";
- 
+ /* WEB-SERVICE CONSTANTS: */
+ private Calendar VERSION_POPUP_TRIGGER;
+ private boolean VERSION_POPUP_DISPLAYED;
  @Override
  protected String doInBackground(String... params) {
   logger.info("doInBackground begins in AppNotificationWebService");
@@ -49,6 +53,7 @@ public class AppNotificationWebService  extends AsyncTask<String, String, String
  @Override  
  protected void onPostExecute(String response) {
    logger.info("Response Recieved: "+response);
+   AppSessionManagement appSessionManager = new AppSessionManagement(context);
 	 /* peopleRelationshipRequestData */
    try {
 	 JSONParser jsonParser = new JSONParser();
@@ -57,22 +62,55 @@ public class AppNotificationWebService  extends AsyncTask<String, String, String
 	 
 	 /* PlayStoreVersionCheck */
 	 String status=new AppManagement(context).checkPlayStoreUpdate(playStoreAppVersion);
+	 appSessionManager.setAndroidSession(BusinessConstants.VERSION_APP_STATUS, status);
 	 logger.info("App Status: "+status);
 	 
+	 
 	 if(status.equalsIgnoreCase("APP_TO_UPDATE")){  // APP_TO_UPDATE
-		 String directURL="market://details?id=anups.dun.app";
-		 boolean inapp=false;
-		 String contentTitle="New Version Available";
-		 String bigContentTitle="New Version Available"; // Big Title Details:
-		 String contentText="You are using old Version"; // You have recieved new message
-		 String ticker="New Version Available"; // New Message Alert!
+		 boolean triggerNotification=false;
+		 
+		 String versionPopupTrigger = (String) appSessionManager.getAndroidSession(BusinessConstants.VERSION_POPUP_TRIGGER);
+		 logger.info("versionPopupTrigger: "+versionPopupTrigger);
+		 if(versionPopupTrigger==null){
+			 Calendar versionPopupCalendar =Calendar.getInstance();
+			 		  versionPopupCalendar.setTimeInMillis(System.currentTimeMillis());
+			 versionPopupTrigger = String.valueOf(versionPopupCalendar.getTimeInMillis());
+			 appSessionManager.setAndroidSession(BusinessConstants.VERSION_POPUP_TRIGGER,versionPopupTrigger);
+			 logger.info("Initial VERSION_POPUP_TRIGGER at "+versionPopupCalendar.getTime());
+			 triggerNotification=true;
+		 }
+		 
+		 long versionPopupTime=Long.parseLong(versionPopupTrigger);
+		 Calendar calendar =Calendar.getInstance();
+		          calendar.setTimeInMillis(System.currentTimeMillis());
+		 long diff = calendar.getTimeInMillis() - versionPopupTime;
+		 long diffSeconds = diff / 1000 % 60;
+		 long diffMinutes = diff / (60 * 1000) % 60;
+		 long diffHours = diff / (60 * 60 * 1000) % 24;
+		 logger.info("Duration Difference: "+diffHours+" Hrs "+diffMinutes+" Minutes "+diffSeconds+" Seconds");
+		 
+		 if(diffHours>=1){ appSessionManager.setAndroidSession(BusinessConstants.VERSION_POPUP_TRIGGER,null); }
+		 
+		 if(triggerNotification){
+			 appSessionManager.setAndroidSession(BusinessConstants.VERSION_POPUP_DISPLAYED,"TRIGGERRED");
+			 String directURL="market://details?id=anups.dun.app";
+			 boolean inapp=false;
+			 String contentTitle="New Version Available";
+			 String bigContentTitle="New Version Available"; // Big Title Details:
+			 String contentText="You are using old Version"; // You have recieved new message
+			 String ticker="New Version Available"; // New Message Alert!
 		 	
-		 String[] events = new String[3];
+			 String[] events = new String[3];
 		 	     events[0] = new String("You are using old Version");
 		 	     events[1] = new String("New Version is in Playstore");
 		 	     events[2] = new String("Upgrade your App Now!");
-		 new PushNotification().display_unclosableNotification(NotificationIdentity.UNCLOSEDNOTIFICATION_VERSIONUPGRADE,
+		 	 new PushNotification().display_unclosableNotification(BusinessConstants.UNCLOSEDNOTIFICATION_VERSIONUPGRADE,
 		 		context, directURL, inapp, contentTitle, bigContentTitle, contentText, ticker, events);
+		 }
+	 } else {
+		if(appSessionManager.getAndroidSession(BusinessConstants.VERSION_POPUP_DISPLAYED).equalsIgnoreCase("TRIGGERRED")){
+			new AppNotifyManagement(context).shutdownNotification_versionUpgrade();
+		}
 	 }
 	 
 	 JSONArray jsonObjectArry = (JSONArray)jsonObject.get("peopleRelationshipRequestData");

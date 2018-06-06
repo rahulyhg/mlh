@@ -1,21 +1,36 @@
 package anups.dun.services;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.widget.Toast;
-import anups.dun.constants.Sessions;
-import anups.dun.js.AppSessionManagement;
-import anups.dun.notify.alarm.AuthenticationAlarm;
-import anups.dun.app.AndroidWebNotifications;
-import anups.dun.app.AndroidWebScreen;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+import android.os.SystemClock;
+import anups.dun.notify.ws.AppNotificationAlarm;
+import anups.dun.util.AndroidLogger;
+import anups.dun.util.AppAlarmManager;
 
 public class OnBootCompleted extends BroadcastReceiver{
+
+ org.apache.log4j.Logger logger = AndroidLogger.getLogger(OnBootCompleted.class);
+ 
+
+
  @Override
  public void onReceive(Context context, Intent intent) {
-   AndroidWebNotifications  awn = new AndroidWebNotifications(context);
-	 awn.notify_appServices();
+	 try {
+   logger.info("OnBootCompleted is triggered..");
+   // AppAlarmManager.scheduleAlarm(context);
+   Intent bgIntent = new Intent(context, BGService.class);
+   		  context.startService(bgIntent);
+	 } catch(Exception e){ logger.error("OnBootCompleted Exception: "+e.getMessage());}
  }
 }

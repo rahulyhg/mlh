@@ -43,7 +43,7 @@ public class GoogleAdmobInterstitial {
                             @Override
                		     public void onAdClosed() {
                             	ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-                            	loaderHandler=scheduler.schedule(loader, 300, TimeUnit.SECONDS);
+                            	loaderHandler=scheduler.schedule(loader, 200, TimeUnit.SECONDS);
                			 }
                			
                         });
