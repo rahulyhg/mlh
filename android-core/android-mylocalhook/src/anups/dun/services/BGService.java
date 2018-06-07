@@ -18,32 +18,28 @@ import anups.dun.util.AndroidLogger;
 public class BGService extends Service {
   
 	 org.apache.log4j.Logger logger = AndroidLogger.getLogger(OnBootCompleted.class);
-	 final Handler handler = new Handler();
-
+	 
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		AppSessionManagement appSessionManager = new AppSessionManagement(getApplicationContext());
-		String serviceExecutionStatus=appSessionManager.getAndroidSession(BusinessConstants.SERVICE_EXECUTION_STATUS);
-		if(serviceExecutionStatus==null) {
-			logger.info("intent: "+intent+" flags: "+flags+" startId: "+startId);
-			appSessionManager.setAndroidSession(BusinessConstants.SERVICE_EXECUTION_STATUS,"TRIGGERRED");
-			final Handler handler = new Handler();
-			handler.postDelayed(new Runnable() {
-				@Override
+		String serviceExecutionStatus=appSessionManager.getAndroidSession(BusinessConstants.BGSERVICE_EXECUTION_STATUS);
+			if(serviceExecutionStatus==null) {
+				logger.info("intent: "+intent+" flags: "+flags+" startId: "+startId);
+			    appSessionManager.setAndroidSession(BusinessConstants.BGSERVICE_EXECUTION_STATUS,"TRIGGERRED");
+				final Handler handler = new Handler();
+				handler.postDelayed(new Runnable() {
+					@Override
 				public void run() {
-					AlarmManager manager = (AlarmManager)getApplicationContext().getSystemService(Context.ALARM_SERVICE);
-					Calendar calendar = Calendar.getInstance();
-					calendar.setTimeInMillis(manager.getNextAlarmClock().getTriggerTime());
-					logger.info("NextAlarmClock Triggers : "+calendar.getTime());
+					logger.info("BGService Execution runs..");
 					AppSessionManagement appSessionManager = new AppSessionManagement(getApplicationContext());
-										 appSessionManager.setAndroidSession(BusinessConstants.SERVICE_EXECUTION_STATUS,null);
+				    appSessionManager.setAndroidSession(BusinessConstants.BGSERVICE_EXECUTION_STATUS,null);
 					Intent triggerWS = new Intent();
 					 	   triggerWS.setAction("anups.dun.notify.ws.AppNotificationAlarm");
 					getApplicationContext().sendBroadcast(triggerWS);
 					
 				}
-			}, 60000);
-		}
+			   }, 60000);
+		  }
 		onTaskRemoved(intent);
 		return START_REDELIVER_INTENT;
 	}

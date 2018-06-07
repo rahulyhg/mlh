@@ -173,7 +173,7 @@ protected void onCreate(Bundle savedInstanceState) {
  Intent alarmIntent = new Intent(this, OnBootCompleted.class);
  logger.info("Alarm triggered");
  PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
- manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+AlarmManager.INTERVAL_HOUR, AlarmManager.INTERVAL_HOUR, pendingIntent);
+ manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+AlarmManager.INTERVAL_FIFTEEN_MINUTES, AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
 
  /* Triggering Broadcast Receiver from Activity */
  Intent triggerWS = new Intent();

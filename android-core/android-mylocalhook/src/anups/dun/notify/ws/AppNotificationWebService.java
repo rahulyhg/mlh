@@ -34,19 +34,25 @@ public class AppNotificationWebService  extends AsyncTask<String, String, String
   logger.info("doInBackground begins in AppNotificationWebService");
   logger.info("URL Recieved: "+params[0]);
   StringBuilder response = new StringBuilder();
+  HttpURLConnection con = null;
+  BufferedReader in = null;
   try {
 	  
 	 URL obj = new URL(params[0]);
-	  HttpURLConnection con = (HttpURLConnection)obj.openConnection();
-	                     con.setRequestMethod("GET");
-	                     con.setRequestProperty("User-Agent", USER_AGENT);
-	  BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+	 con = (HttpURLConnection)obj.openConnection();
+	 con.setRequestMethod("GET");
+	 con.setRequestProperty("User-Agent", USER_AGENT);
+	 in = new BufferedReader(new InputStreamReader(con.getInputStream()));
 	 
 	  for(String inputLine;(inputLine = in.readLine()) != null;) {
 	    response.append(inputLine);
 	  } 
-	  in.close();
+	 
    } catch(Exception e){ logger.error("Exception AppNotificationWebService: "+e.getMessage()); }
+    finally{
+    	if(in!=null) {  try { in.close(); } catch(Exception e){ logger.error("BufferedReader Close Exception: "+e.getMessage()); } }
+    	if(con!=null) {  try { con.disconnect(); } catch(Exception e){ logger.error("HttpURLConnection Disconnect Exception: "+e.getMessage()); } }
+    }
 	return response.toString();
  }
  

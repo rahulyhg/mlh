@@ -14,6 +14,8 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.os.SystemClock;
+import anups.dun.constants.BusinessConstants;
+import anups.dun.js.AppSessionManagement;
 import anups.dun.notify.ws.AppNotificationAlarm;
 import anups.dun.util.AndroidLogger;
 import anups.dun.util.AppAlarmManager;
@@ -27,9 +29,8 @@ public class OnBootCompleted extends BroadcastReceiver{
  public void onReceive(Context context, Intent intent) {
 	 try {
    /* Calling a Service */
-   Intent bgIntent = new Intent(context, BGService.class);
-   context.startService(bgIntent);
-	 
+      Intent bgIntent = new Intent(context, BGService.class);
+      context.startService(bgIntent);
    } catch(Exception e){ logger.error("OnBootCompleted Exception: "+e.getMessage());}
  }
 }
