@@ -1,7 +1,12 @@
 package anups.dun.services;
 
+import java.util.Calendar;
+
 import android.annotation.SuppressLint;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.IBinder;
@@ -14,22 +19,28 @@ public class BGService extends Service {
   
 	 org.apache.log4j.Logger logger = AndroidLogger.getLogger(OnBootCompleted.class);
 	 final Handler handler = new Handler();
-	boolean SERVICE_EXECUTION_BEGIN=true;
+
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		AppSessionManagement appSessionManager = new AppSessionManagement(getApplicationContext());
 		String serviceExecutionStatus=appSessionManager.getAndroidSession(BusinessConstants.SERVICE_EXECUTION_STATUS);
 		if(serviceExecutionStatus==null) {
+			logger.info("intent: "+intent+" flags: "+flags+" startId: "+startId);
 			appSessionManager.setAndroidSession(BusinessConstants.SERVICE_EXECUTION_STATUS,"TRIGGERRED");
 			final Handler handler = new Handler();
 			handler.postDelayed(new Runnable() {
 				@Override
 				public void run() {
+					AlarmManager manager = (AlarmManager)getApplicationContext().getSystemService(Context.ALARM_SERVICE);
+					Calendar calendar = Calendar.getInstance();
+					calendar.setTimeInMillis(manager.getNextAlarmClock().getTriggerTime());
+					logger.info("NextAlarmClock Triggers : "+calendar.getTime());
 					AppSessionManagement appSessionManager = new AppSessionManagement(getApplicationContext());
 										 appSessionManager.setAndroidSession(BusinessConstants.SERVICE_EXECUTION_STATUS,null);
 					Intent triggerWS = new Intent();
 					 	   triggerWS.setAction("anups.dun.notify.ws.AppNotificationAlarm");
 					getApplicationContext().sendBroadcast(triggerWS);
+					
 				}
 			}, 60000);
 		}
@@ -45,9 +56,17 @@ public class BGService extends Service {
 
 	@Override
 	public void onTaskRemoved(Intent rootIntent) {
-	  Intent restartIntentService = new Intent(getApplicationContext(),this.getClass());
-	  restartIntentService.setPackage(getPackageName());
-	  startService(restartIntentService);
-	  super.onTaskRemoved(rootIntent);
+		super.onTaskRemoved(rootIntent);
+		Intent triggerWS = new Intent();
+		       triggerWS.setAction("anups.dun.services.OnBootCompleted");
+		sendBroadcast(triggerWS);
+	 // Intent restartIntentService = new Intent(getApplicationContext(),this.getClass());
+	 // restartIntentService.setPackage(getPackageName());
+	 // startService(restartIntentService);
+	 
+	 // PendingIntent service = PendingIntent.getService(getApplicationContext(), 1001, new Intent(getApplicationContext(), BGService.class), PendingIntent.FLAG_ONE_SHOT);
+	 // AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+	 // alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, 1000, service);
     }
+	
 }

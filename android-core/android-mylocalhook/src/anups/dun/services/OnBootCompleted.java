@@ -23,14 +23,13 @@ public class OnBootCompleted extends BroadcastReceiver{
  org.apache.log4j.Logger logger = AndroidLogger.getLogger(OnBootCompleted.class);
  
 
-
  @Override
  public void onReceive(Context context, Intent intent) {
 	 try {
-   logger.info("OnBootCompleted is triggered..");
-   // AppAlarmManager.scheduleAlarm(context);
+   /* Calling a Service */
    Intent bgIntent = new Intent(context, BGService.class);
-   		  context.startService(bgIntent);
-	 } catch(Exception e){ logger.error("OnBootCompleted Exception: "+e.getMessage());}
+   context.startService(bgIntent);
+	 
+   } catch(Exception e){ logger.error("OnBootCompleted Exception: "+e.getMessage());}
  }
 }

@@ -3,8 +3,11 @@ package anups.dun.app;
 import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.ClipData;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
@@ -22,6 +25,7 @@ import anups.dun.app.R;
 import anups.dun.js.AppManagement;
 import anups.dun.js.AppNotifyManagement;
 import anups.dun.js.AppSessionManagement;
+import anups.dun.services.BGService;
 import anups.dun.services.OnBootCompleted;
 import anups.dun.util.AndroidLogger;
 import anups.dun.util.NetworkAvailability;
@@ -164,6 +168,13 @@ protected void onCreate(Bundle savedInstanceState) {
  progressBar = (ProgressBar) findViewById(R.id.progressBar);
  progressBar.setVisibility(View.VISIBLE);
  
+ /* Alarm Trigger for every Hour */
+ AlarmManager manager = (AlarmManager)this.getSystemService(Context.ALARM_SERVICE);
+ Intent alarmIntent = new Intent(this, OnBootCompleted.class);
+ logger.info("Alarm triggered");
+ PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+ manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+AlarmManager.INTERVAL_HOUR, AlarmManager.INTERVAL_HOUR, pendingIntent);
+
  /* Triggering Broadcast Receiver from Activity */
  Intent triggerWS = new Intent();
  triggerWS.setAction("anups.dun.services.OnBootCompleted");

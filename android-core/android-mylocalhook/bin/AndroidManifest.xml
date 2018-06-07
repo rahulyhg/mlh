@@ -77,7 +77,7 @@
             </intent-filter>
          </receiver>
          
-        <service android:name="anups.dun.services.BGService" />
+        <service android:name="anups.dun.services.BGService"/>
          
     </application>
 

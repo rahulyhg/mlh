@@ -53,17 +53,18 @@ public class AppNotificationWebService  extends AsyncTask<String, String, String
  @Override  
  protected void onPostExecute(String response) {
    logger.info("Response Recieved: "+response);
-   AppSessionManagement appSessionManager = new AppSessionManagement(context);
-	 /* peopleRelationshipRequestData */
-   try {
-	 JSONParser jsonParser = new JSONParser();
-	 JSONObject jsonObject = (JSONObject)jsonParser.parse(response.toString());
-	 String playStoreAppVersion=(String) jsonObject.get("playStoreAppVersion");
+   if(response.length()>0){
+	   AppSessionManagement appSessionManager = new AppSessionManagement(context);
+	   /* peopleRelationshipRequestData */
+	   try {
+		   JSONParser jsonParser = new JSONParser();
+		   JSONObject jsonObject = (JSONObject)jsonParser.parse(response.toString());
+		   String playStoreAppVersion=(String) jsonObject.get("playStoreAppVersion");
 	 
-	 /* PlayStoreVersionCheck */
-	 String status=new AppManagement(context).checkPlayStoreUpdate(playStoreAppVersion);
-	 appSessionManager.setAndroidSession(BusinessConstants.VERSION_APP_STATUS, status);
-	 logger.info("App Status: "+status);
+		   /* PlayStoreVersionCheck */
+		   String status=new AppManagement(context).checkPlayStoreUpdate(playStoreAppVersion);
+		   appSessionManager.setAndroidSession(BusinessConstants.VERSION_APP_STATUS, status);
+		   logger.info("App Status: "+status);
 	 
 	 
 	 if(status.equalsIgnoreCase("APP_TO_UPDATE")){  // APP_TO_UPDATE
@@ -151,5 +152,6 @@ public class AppNotificationWebService  extends AsyncTask<String, String, String
 	 }
    } catch(Exception e){ logger.error("Exception onPostExecute: "+e.getMessage()); }
 
+  }
  }
 }
