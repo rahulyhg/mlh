@@ -22,6 +22,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 import anups.dun.ads.GoogleAdmobInterstitial;
 import anups.dun.app.R;
+import anups.dun.constants.BusinessConstants;
 import anups.dun.js.AppManagement;
 import anups.dun.js.AppNotifyManagement;
 import anups.dun.js.AppSessionManagement;
@@ -169,30 +170,28 @@ protected void onCreate(Bundle savedInstanceState) {
  progressBar.setVisibility(View.VISIBLE);
  
  /* Alarm Trigger for every Hour */
- AlarmManager manager = (AlarmManager)this.getSystemService(Context.ALARM_SERVICE);
- Intent alarmIntent = new Intent(this, OnBootCompleted.class);
- logger.info("Alarm triggered");
- PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
- manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+AlarmManager.INTERVAL_FIFTEEN_MINUTES, AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
+ // AlarmManager manager = (AlarmManager)this.getSystemService(Context.ALARM_SERVICE);
+ // Intent alarmIntent = new Intent(this, OnBootCompleted.class);
+ // logger.info("Alarm triggered");
+ // PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+ // manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+AlarmManager.INTERVAL_FIFTEEN_MINUTES, AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
 
+ AppManagement appManager = new AppManagement(this);
+ AppNotifyManagement anm = new AppNotifyManagement(this);
+ AppSessionManagement appSessionManager = new AppSessionManagement(this);
+ 
+ /* Initially, Setting Service Execution to null */
+ appSessionManager.setAndroidSession(BusinessConstants.BGSERVICE_EXECUTION_STATUS,null); 
+ 
+ /* Get UserID from SESSION */
+ String USER_ID=appSessionManager.getAndroidSession("AUTH_USER_ID");
+ logger.info("USER_ID: "+USER_ID);
+ 
  /* Triggering Broadcast Receiver from Activity */
  Intent triggerWS = new Intent();
  triggerWS.setAction("anups.dun.services.OnBootCompleted");
  sendBroadcast(triggerWS);
  
- // OnBootCompleted receiver = new OnBootCompleted();
- // IntentFilter filter = new IntentFilter(Intent.ACTION_BOOT_COMPLETED);
- // this.registerReceiver(receiver, filter);
- // this.sendBroadcast(intent, receiverPermission);
- 
- // AndroidWebNotifications awn=new AndroidWebNotifications(this);
- AppManagement appManager = new AppManagement(this);
- AppNotifyManagement anm = new AppNotifyManagement(this);
- AppSessionManagement appSessionManager = new AppSessionManagement(this);
- 
- /* Get UserID from SESSION */
- String USER_ID=appSessionManager.getAndroidSession("AUTH_USER_ID");
- logger.info("USER_ID: "+USER_ID);
  /* AUTHENTICATION REMINIDER : */  // awn.notify_authReminder();
  /* VERSION UPGRADE : */ // awn.notify_versionupgrade();
  /* NOTIFICATION : */ // awn.notify_appServices();

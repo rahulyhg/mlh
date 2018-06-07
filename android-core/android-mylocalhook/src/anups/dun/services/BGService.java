@@ -41,7 +41,7 @@ public class BGService extends Service {
 			   }, 60000);
 		  }
 		onTaskRemoved(intent);
-		return START_REDELIVER_INTENT;
+		return START_STICKY;
 	}
 	
 	@Override
@@ -52,7 +52,7 @@ public class BGService extends Service {
 
 	@Override
 	public void onTaskRemoved(Intent rootIntent) {
-		super.onTaskRemoved(rootIntent);
+		// super.onTaskRemoved(rootIntent);
 		Intent triggerWS = new Intent();
 		       triggerWS.setAction("anups.dun.services.OnBootCompleted");
 		sendBroadcast(triggerWS);
