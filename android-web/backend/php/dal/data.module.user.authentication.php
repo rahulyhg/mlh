@@ -72,6 +72,8 @@ class user_authentication {
   }
   /* News : End */
   function query_getListOfSubscriptions($user_Id){
+  /* Used in Controllers : 1) controller.page.app.myprofile.php?action=USER_PROFILE_GETBYID 
+   */
    $sql="SELECT domain_Id, subdomain_Id FROM user_subscription WHERE user_Id='".$user_Id."';";
    return $sql;
   }
@@ -108,6 +110,12 @@ class user_authentication {
   
   function query_getNameById($user_Id){
     $sql="SELECT surName, name FROM user_account WHERE user_Id='".$user_Id."';";
+	return $sql;
+  }
+  
+  /* app-user-profile */
+  function query_getUserProfileByUserId($user_Id){
+	$sql="SELECT * FROM user_account WHERE user_Id='".$user_Id."';";
 	return $sql;
   }
 }
