@@ -93,8 +93,11 @@ if(isset($_GET["action"])) {
 		echo $idObj->srvy_optusers_id();
 	}
 	/* Union related Identites */
-	else if($_GET["action"]=='ID_UNION_ACCOUNT') { /* Table - union_profile ::: union_Id */
+	else if($_GET["action"]=='ID_UNION_ACCOUNT') { /* Table - union_account ::: union_Id */
 		echo $idObj->union_account_id();
+	}
+	else if($_GET["action"]=='ID_UNION_BRANCH') { /* Table - union_branch ::: branch_Id */
+		echo $idObj->union_branch_id();
 	}
 	else if($_GET["action"]=='ID_UNION_CALNDR') { /* Table - union_calndar ::: calendar_Id */
 	    echo $idObj->union_calndar_id();

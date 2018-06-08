@@ -133,11 +133,14 @@ function srvy_pay_history_Id(){ // srvy_pay_Id(25) in srvy_pay_history table
 function srvy_q_optusers_Id(){ // optInfo_Id(25) in srvy_q_optusers table
   return fn_identity("ID_SRVY_OPTUSERS");
 }
-/* Table - union_profile ::: union_Id */
-function union_profile_Id() { // union_Id(15) in union_profile table
+/* Table - union_account ::: union_Id */
+function union_account_Id() { // union_Id(15) in union_profile table
   return fn_identity("ID_UNION_ACCOUNT");
 }
-
+/* Table - union_branch ::: branch_Id */
+function union_branch_id() { // branch_Id(25) in union_profile table
+  return fn_identity("ID_UNION_BRANCH");
+}
 /* Table - union_calndar ::: calendar_Id */
 function union_calndar_Id(){ // calendar_Id(25) in union_calndar table
   return fn_identity("ID_UNION_CALNDR");

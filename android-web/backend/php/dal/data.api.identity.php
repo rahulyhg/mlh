@@ -203,9 +203,15 @@ class tbl_identity {
 	return $selectQuery;
   }
   
-  /* Table - union_profile ::: union_Id */
+  /* Table - union_account ::: union_Id */
   function query_checkId_union_account($union_Id) {
 	$selectQuery="SELECT * FROM union_account WHERE union_Id='".$union_Id."';";
+	return $selectQuery;
+  }
+  
+  /* Table - union_branch ::: branch_Id */
+  function query_checkId_union_branch($branch_Id){
+	$selectQuery="SELECT * FROM union_branch WHERE branch_Id='".$branch_Id."';";
 	return $selectQuery;
   }
   

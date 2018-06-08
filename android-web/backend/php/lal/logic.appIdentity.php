@@ -479,7 +479,7 @@ class identity_check {
 	return $output;
   }
   
- /* Table - union_profile ::: union_Id */
+ /* Table - union_account ::: union_Id */
  function id_union_account($id) { 
 		$dataObj=new tbl_identity();
 		$selectQuery=$dataObj->query_checkId_union_account($id);
@@ -494,6 +494,21 @@ class identity_check {
 	return $output;
   }
   
+ /* Table - union_branch ::: branch_Id */
+ function id_union_branch($id) { 
+	$dataObj=new tbl_identity();
+		$selectQuery=$dataObj->query_checkId_union_branch($id);
+		$dbObject=new Database(); 
+		$jsonData=$dbObject->getJSONData($selectQuery);
+		    $dejsonData=json_decode($jsonData);
+		   if(count($dejsonData)>0) {
+			 $output='ID_ALREADY_EXIST';
+		   } else {
+			 $output='ID_NOT_EXIST';
+		   }
+	return $output;
+ }
+ 
  /* Table - union_calndar ::: calendar_Id */
  function id_union_calndar($id) {
    $dataObj=new tbl_identity();
@@ -1184,17 +1199,29 @@ class identity {
 		else { return $num; }  
 	}
 	
-	/* Table - union_profile ::: union_Id */
+	/* Table - union_account ::: union_Id */
 	function union_account_id() { /* 15 */
 		$num="UAI";
         for($index=0;$index<12;$index++) {
             $num.=rand(1,9);
         }
-        return $num;
 		/* Check Exists or not, If not exist return */
 		$checkObj=new identity_check();
 		$output=$checkObj->id_union_account($num);
 		if($output==='ID_ALREADY_EXIST') { union_account_id(); } 
+		else { return $num; }  
+	}
+	
+	/* Table - union_branch ::: branch_Id */
+	function union_branch_id() { /* 25 */
+		$num="UB";
+		for($index=0;$index<23;$index++) {
+            $num.=rand(1,9);
+        }
+		/* Check Exists or not, If not exist return */
+		$checkObj=new identity_check();
+		$output=$checkObj->id_union_branch($num);
+		if($output==='ID_ALREADY_EXIST') { union_branch_id(); } 
 		else { return $num; }  
 	}
 	
