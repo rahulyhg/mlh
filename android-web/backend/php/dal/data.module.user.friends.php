@@ -142,6 +142,13 @@ class user_friends {
   // $sql.="LIMIT 0,5";
    return $sql;
   }
+  
+  function query_getUserFrndListByIds($user_Id){
+    $sql="(SELECT frnd1 As frnd FROM user_frnds WHERE frnd2='".$user_Id."')";
+	$sql.="UNION ";
+	$sql.="(SELECT frnd2 As frnd FROM user_frnds WHERE frnd1='".$user_Id."');";
+	return $sql;
+  }
 }
 
 ?>

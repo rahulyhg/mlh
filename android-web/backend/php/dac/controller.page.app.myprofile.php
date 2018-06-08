@@ -3,12 +3,13 @@ session_start();
 require_once '../api/app.initiator.php';
 require_once '../api/app.database.php';
 require_once '../dal/data.module.user.authentication.php';
+require_once '../dal/data.module.user.friends.php';
 require_once '../lal/logic.dom.php';
 
 $logger=Logger::getLogger("controller.page.app.myprofile.php");
 /*
 http://192.168.1.4/mlh/android-web/backend/php/dac/controller.page.app.myprofile.php?
-action=USER_PROFILE_GETBYID&user_Id=USR924357814934&projectURL=http://192.168.1.4/mlh/android-web/&lang=english
+action=USER_PROFILE_GETBYID&profile_user_Id=USR924357814934&user_Id=USR924357814934&projectURL=http://192.168.1.4/mlh/android-web/&lang=english&limit_start=0&limit_end=10
 */
 if(isset($_GET["action"])){
  if($_GET["action"]==='UPDATE_USER_PROFILE'){ 
@@ -26,32 +27,25 @@ if(isset($_GET["action"])){
 	  $content=chop($content,', ');
 	  echo $content;
   }
- } else if($_GET["action"]==='USER_PROFILE_GETBYID') {
-	if(isset($_GET["projectURL"]) && isset($_GET["lang"]) && isset($_GET["user_Id"])){
+ } 
+ else if($_GET["action"]==='USER_PROFILE_GETBYID') {
+	if(isset($_GET["projectURL"]) && isset($_GET["lang"]) && isset($_GET["profile_user_Id"]) && isset($_GET["user_Id"])){
 	  $projectURL=$_GET["projectURL"];
 	  $lang=$_GET["lang"];
+	  $profile_user_Id=$_GET["profile_user_Id"];
 	  $user_Id=$_GET["user_Id"];
 	  $authObj=new user_authentication();
+	  $frndObj=new user_friends();
 	  $dbObj=new Database();
 	  $domObj=new module_dom();
 	  
 	  /* User Information */
-	  $userprofileQuery=$authObj->query_getUserProfileByUserId($user_Id);
+	  $userprofileQuery=$authObj->query_getUserProfileByUserId($profile_user_Id);
 	  $userprofileJsonData=$dbObj->getJSONData($userprofileQuery);
-	 
 	  /* User Suscriptions */
-	  /* JSONData: {"userSubscriptions":[{"domain_Id":"","domainName":"",
-	       "subdomainList":[
-							{"subdomain_Id":"","subdomainName":""},
-							{"subdomain_Id":"","subdomainName":""}
-						   ]}]}
-	  
-	   */
-	  
-	  $subscriptionQuery=$authObj->query_getListOfSubscriptions($user_Id);
+	  $subscriptionQuery=$authObj->query_getListOfSubscriptions($profile_user_Id);
 	  $subscriptionJsonData=$dbObj->getJSONData($subscriptionQuery);
 	  $subscriptiondeJsonData=json_decode($subscriptionJsonData);
-	  
 	  $nonduplicate_domainId_List=array();
 	  $subscriptionArray=array();
 	  for($i1=0;$i1<count($subscriptiondeJsonData);$i1++){
@@ -66,7 +60,6 @@ if(isset($_GET["action"])){
 		  }
 		}
 		/* NonDuplicateDomainIdCollection : End */
-		
 		if(!$nonduplicate_domainId_recognizer){
 			$nonduplicate_domainId_List[count($nonduplicate_domainId_List)]=$DOMAINID;
 			$subDomainList=array();
@@ -87,20 +80,32 @@ if(isset($_GET["action"])){
 			$subscriptionArray[count($subscriptionArray)]=$subscriptionInfo;
 		}
 	  }
-	 
-	  /* Community Circle */
-	  
-	  /* Movement Circle */
+	  /* User Friend */
+	  $profileType='OTHER';
+	  if($profile_user_Id==$user_Id){ $profileType='OWN'; }
+	  else {
+	    $frndListQuery=$frndObj->query_getUserFrndListByIds($user_Id);
+	    $frndListJsonData=$dbObj->getJSONData($frndListQuery);
+	    $frndListdeJsonData=json_decode($frndListJsonData);
+		if(count($frndListdeJsonData)>0){
+	     for($index=0;$index<count($frndListdeJsonData);$index++){
+	       if($profile_user_Id==$frndListdeJsonData[0]->{'frnd'}){ $profileType='FRIEND'; }
+	     }
+		}
+	  }
 	  
 	  $content='{';
 	  $content.='"userProfile":'.$userprofileJsonData.',';
-	  $content.='"userSubscription":'.json_encode($subscriptionArray).',';
-	  $content.='"communities":'.'[]'.',';
-	  $content.='"movements":'.'[]';
+	  $content.='"profileType":"'.$profileType.'",';
+	  $content.='"userSubscription":'.json_encode($subscriptionArray);
 	  $content.='}';
 	  echo $content;
 	} else {
-	  $content='Missing user_Id';
+	  $content='Missing ';
+	  if(isset($_GET["projectURL"])){ $content.='projectURL, '; }
+	  if(isset($_GET["lang"])){ $content.='lang, '; }
+	  if(isset($_GET["profile_user_Id"])){ $content.='profile_user_Id, '; }
+	  $content=chop($content,', ');
 	  echo $content;
     }
  }
