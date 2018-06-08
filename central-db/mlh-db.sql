@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 11, 2018 at 06:25 PM
+-- Generation Time: Jun 08, 2018 at 05:52 PM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.4.3
 
@@ -328,19 +328,17 @@ CREATE TABLE IF NOT EXISTS `dash_info_biz` (
   `artShrtDesc` varchar(1500) NOT NULL,
   `artDesc` varchar(10000) NOT NULL,
   `createdOn` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `path_Id` varchar(5) NOT NULL,
   `images` varchar(10000) NOT NULL,
   `status` varchar(8) NOT NULL,
-  PRIMARY KEY (`info_Id`),
-  KEY `path_Id` (`path_Id`)
+  PRIMARY KEY (`info_Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `dash_info_biz`
 --
 
-INSERT INTO `dash_info_biz` (`info_Id`, `biz_Id`, `artTitle`, `artShrtDesc`, `artDesc`, `createdOn`, `path_Id`, `images`, `status`) VALUES
-('DUI1367419127383834463744', 'B1234', '', '', '', '2018-03-06 13:19:41', '001', '', '');
+INSERT INTO `dash_info_biz` (`info_Id`, `biz_Id`, `artTitle`, `artShrtDesc`, `artDesc`, `createdOn`, `images`, `status`) VALUES
+('DUI1367419127383834463744', 'B1234', '', '', '', '2018-03-06 13:19:41', '', '');
 
 -- --------------------------------------------------------
 
@@ -413,7 +411,9 @@ CREATE TABLE IF NOT EXISTS `dash_info_user_likes` (
 --
 
 INSERT INTO `dash_info_user_likes` (`like_Id`, `info_Id`, `user_Id`, `newsType`) VALUES
-('DIUL81858252676', 'DUI8962198129647727944827', 'USR461726196865', 'UNION');
+('DIUL81732573294', 'DUI9173695655975266683967', 'USR924357814934', 'UNION'),
+('DIUL81858252676', 'DUI8962198129647727944827', 'USR461726196865', 'UNION'),
+('DIUL84253822285', 'DUI1367419127383834463744', 'USR924357814934', 'UNION');
 
 -- --------------------------------------------------------
 
@@ -437,18 +437,34 @@ CREATE TABLE IF NOT EXISTS `dash_info_user_views` (
 
 INSERT INTO `dash_info_user_views` (`view_Id`, `info_Id`, `user_Id`, `newsType`, `viewedAt`) VALUES
 ('DIVW11674585425', 'DUI1367419127383834463744', 'USR924357814934', 'UNION', '2018-03-31 20:25:56'),
+('DIVW12726681427', 'DUI1367419127383834463744', 'USR924357814934', 'UNION', '2018-05-28 15:21:01'),
+('DIVW16147818824', 'DUI1367419127383834463744', 'USR924357814934', 'UNION', '2018-05-06 14:57:15'),
+('DIVW27239161176', 'DUI1367419127383834463744', 'USR924357814934', 'UNION', '2018-05-01 17:00:40'),
+('DIVW29913838591', 'DUI1367419127383834463744', 'USR924357814934', 'UNION', '2018-05-28 15:24:52'),
+('DIVW31783678898', 'DUI1367419127383834463744', 'USR924357814934', 'UNION', '2018-04-21 09:35:13'),
 ('DIVW33797952592', 'DUI1367419127383834463744', 'USR924357814934', 'UNION', '2018-03-31 20:43:52'),
+('DIVW34644276776', 'DUI8962198129647727944827', 'USR924357814934', 'UNION', '2018-05-28 18:11:54'),
 ('DIVW37664733314', 'DUI1367419127383834463744', 'USR924357814934', 'UNION', '2018-03-31 21:03:21'),
+('DIVW42577677175', 'DUI1367419127383834463744', 'USR924357814934', 'UNION', '2018-05-01 12:53:42'),
 ('DIVW43551581627', 'DUI1367419127383834463744', 'USR924357814934', 'UNION', '2018-03-31 18:36:52'),
 ('DIVW43872622389', 'DUI1367419127383834463744', 'USR924357814934', 'UNION', '2018-03-31 18:27:27'),
+('DIVW47746856351', 'DUI1367419127383834463744', 'USR924357814934', 'UNION', '2018-05-05 23:14:08'),
+('DIVW47868634839', 'DUI1367419127383834463744', 'USR924357814934', 'UNION', '2018-04-21 09:38:19'),
 ('DIVW47971863442', 'DUI1367419127383834463744', 'USR924357814934', 'UNION', '2018-03-31 18:35:39'),
 ('DIVW51825833564', 'DUI1367419127383834463744', 'USR924357814934', 'UNION', '2018-04-01 16:58:29'),
 ('DIVW52941361185', 'DUI1367419127383834463744', 'USR924357814934', 'UNION', '2018-03-31 18:31:16'),
 ('DIVW53394427724', 'DUI1367419127383834463744', 'USR924357814934', 'UNION', '2018-03-31 18:30:05'),
 ('DIVW55269336446', 'DUI1367419127383834463744', 'USR924357814934', 'UNION', '2018-03-31 21:07:16'),
+('DIVW75162683228', 'DUI1367419127383834463744', 'USR924357814934', 'UNION', '2018-05-06 09:12:11'),
+('DIVW78756317416', 'DUI1367419127383834463744', 'USR924357814934', 'UNION', '2018-05-05 23:16:31'),
+('DIVW79188567546', 'DUI1367419127383834463744', 'USR924357814934', 'UNION', '2018-04-21 09:34:56'),
+('DIVW84246965688', 'DUI1367419127383834463744', 'USR924357814934', 'UNION', '2018-05-28 15:23:42'),
+('DIVW88635758242', 'DUI1367419127383834463744', 'USR924357814934', 'UNION', '2018-05-06 15:03:36'),
 ('DIVW88827355738', 'DUI1367419127383834463744', 'USR924357814934', 'UNION', '2018-04-01 07:04:08'),
 ('DIVW94379444386', 'DUI1367419127383834463744', 'USR924357814934', 'UNION', '2018-04-07 04:20:50'),
-('DIVW97137888928', 'DUI1367419127383834463744', 'USR924357814934', 'UNION', '2018-03-31 18:24:06');
+('DIVW97137888928', 'DUI1367419127383834463744', 'USR924357814934', 'UNION', '2018-03-31 18:24:06'),
+('DIVW97329176659', 'DUI1367419127383834463744', 'USR924357814934', 'UNION', '2018-05-05 23:19:35'),
+('DIVW99251461577', 'DUI1367419127383834463744', 'USR924357814934', 'UNION', '2018-04-30 17:12:23');
 
 -- --------------------------------------------------------
 
@@ -475,7 +491,10 @@ CREATE TABLE IF NOT EXISTS `dash_info_user_votes` (
 INSERT INTO `dash_info_user_votes` (`vote_Id`, `info_Id`, `user_Id`, `newsType`, `vote`) VALUES
 ('DIVO19345742385', 'DUI1367419127383834463744', 'USR461726196865', 'UNION', 'UP'),
 ('DIVO31219739677', 'DUI9173695655975266683967', 'USR461726196865', 'UNION', 'UP'),
+('DIVO49131845397', 'DUI1367419127383834463744', 'USR924357814934', 'UNION', 'UP'),
+('DIVO51548729934', 'DUI8962198129647727944827', 'USR924357814934', 'UNION', 'DOWN'),
 ('DIVO53116438424', 'DUI8962198129647727944827', 'USR461726196865', 'UNION', 'UP'),
+('DIVO57776654736', 'DUI9173695655975266683967', 'USR924357814934', 'UNION', 'UP'),
 ('DIVO92856886884', 'DUI1367419127383834463744', 'USR113561617186', 'UNION', 'DOWN');
 
 -- --------------------------------------------------------
@@ -955,10 +974,28 @@ CREATE TABLE IF NOT EXISTS `union_account` (
 --
 
 INSERT INTO `union_account` (`union_Id`, `domain_Id`, `subdomain_Id`, `unionName`, `unionURLName`, `profile_pic`, `minlocation`, `location`, `state`, `country`, `created_On`, `admin_Id`) VALUES
-('UAI321663747936', '02-EDU', '01-EDU-STUD', 'Sapthagiri LLB', 'sapthagiri-llb', 'https://res.cloudinary.com/dbcyhclaw/image/upload/x_43,y_43,w_553,h_553,z_0.1811,c_crop/v1513062452/23517423_124644751642331_5441382144061063536_n_szip6p.jpg', 'Bijapur City', 'Bijapur', 'Karnataka', 'India', '2018-01-20 15:01:04', 'USR461726196865'),
-('UAI363543863775', '04-STP', '02-STP-RE', 'Maha Vikaas Nirman Maha Sena Sangam', 'maha-vikaas-nirman--maha-sena-sangam', 'https://res.cloudinary.com/dbcyhclaw/image/upload/w_150,c_scale/v1512374301/flags-500x500_est3vq.jpg', 'Gwalior Region', 'Gwalior', 'Madhya Pradesh', 'India', '2018-01-20 15:01:11', 'USR553425241674'),
-('UAI428951365258', '02-EDU', '01-EDU-STUD', 'Akhila Bharatha Vidhya Sangam', 'bharat', 'https://res.cloudinary.com/dbcyhclaw/image/upload/w_150,c_scale/v1512473074/09_lb8o9m.jpg', 'L. B. Nagar', 'Ranga Reddy District', 'Telangana', 'India', '2018-01-20 15:01:18', 'USR553425241674'),
-('UAI996769941529', '01-TPI', '01-TPI-A', 'Yuva Sena', 'yuva-sena', 'https://res.cloudinary.com/dbcyhclaw/image/upload/x_491,y_192,w_384,h_384,z_0.2604,c_crop/v1513026624/368383_SEilpnP_cvm0q7.jpg', 'Kochi', 'Ernakulam', 'Kerala', 'India', '2018-01-20 15:01:26', 'USR461726196865');
+('UAI321663747936', '02-EDU', '01-EDU-STUD', 'Student Federation Of India', 'sapthagiri-llb', 'http://192.168.1.4/mlh/android-web/images/avatar/1.jpg', 'Bijapur City', 'Bijapur', 'Karnataka', 'India', '2018-04-21 20:13:16', 'USR924357814934'),
+('UAI363543863775', '04-STP', '02-STP-RE', 'Bharitya Akhila Sena', 'maha-vikaas-nirman--maha-sena-sangam', 'http://192.168.1.4/mlh/android-web/images/avatar/1.jpg', 'Gwalior Region', 'Gwalior', 'Madhya Pradesh', 'India', '2018-04-21 20:13:04', 'USR924357814934'),
+('UAI428951365258', '02-EDU', '01-EDU-STUD', 'Akhila Bharatha Vidhya Sangam', 'bharat', 'http://192.168.1.4/mlh/android-web/images/avatar/1.jpg', 'L. B. Nagar', 'Ranga Reddy District', 'Telangana', 'India', '2018-04-21 19:54:29', 'USR924357814934'),
+('UAI996769941529', '01-TPI', '01-TPI-A', 'Yuva Sena', 'yuva-sena', 'http://192.168.1.4/mlh/android-web/images/avatar/1.jpg', 'Kochi', 'Ernakulam', 'Kerala', 'India', '2018-04-21 20:09:28', 'USR924357814934');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `union_branch`
+--
+
+CREATE TABLE IF NOT EXISTS `union_branch` (
+  `branch_Id` varchar(25) NOT NULL,
+  `union_Id` varchar(15) NOT NULL,
+  `mainBranch` varchar(1) NOT NULL,
+  `minlocation` varchar(25) NOT NULL,
+  `location` varchar(25) NOT NULL,
+  `state` varchar(25) NOT NULL,
+  `country` varchar(25) NOT NULL,
+  PRIMARY KEY (`branch_Id`),
+  KEY `union_Id` (`union_Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1008,6 +1045,7 @@ INSERT INTO `union_lang` (`union_Id`, `eng`, `tel`) VALUES
 CREATE TABLE IF NOT EXISTS `union_mem` (
   `member_Id` varchar(15) NOT NULL,
   `union_Id` varchar(15) NOT NULL,
+  `branch_Id` varchar(25) NOT NULL,
   `user_Id` varchar(15) NOT NULL,
   `roleName` varchar(20) NOT NULL,
   `isAdmin` varchar(1) NOT NULL,
@@ -1015,19 +1053,9 @@ CREATE TABLE IF NOT EXISTS `union_mem` (
   `status` varchar(8) NOT NULL COMMENT 'ONLINE/OFFLINE',
   PRIMARY KEY (`member_Id`),
   KEY `union_Id` (`union_Id`),
-  KEY `user_Id` (`user_Id`)
+  KEY `user_Id` (`user_Id`),
+  KEY `branch_Id` (`branch_Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `union_mem`
---
-
-INSERT INTO `union_mem` (`member_Id`, `union_Id`, `user_Id`, `roleName`, `isAdmin`, `addedOn`, `status`) VALUES
-('UMI219885596355', 'UAI321663747936', 'USR553425241674', 'Lawyers President', 'Y', '2018-03-05 16:33:03', ''),
-('UMI253577958134', 'UAI996769941529', 'USR255798352927', 'President', 'Y', '2018-03-05 16:33:19', ''),
-('UMI735922826293', 'UAI996769941529', 'USR113561617186', 'President', 'Y', '2018-03-05 16:33:12', ''),
-('UMI858364269256', 'UAI996769941529', 'USR924357814934', 'President', 'Y', '2018-03-25 16:54:55', ''),
-('UMI981526991557', 'UAI321663747936', 'USR626729797799', '', 'N', '2017-12-16 12:04:24', '');
 
 -- --------------------------------------------------------
 
@@ -1114,7 +1142,7 @@ CREATE TABLE IF NOT EXISTS `union_sup` (
 --
 
 INSERT INTO `union_sup` (`support_Id`, `union_Id`, `user_Id`, `supportOn`) VALUES
-('123', 'UAI996769941529', 'USR461726196865', '2018-03-05 16:35:51');
+('123', 'UAI321663747936', 'USR924357814934', '2018-04-22 12:31:06');
 
 -- --------------------------------------------------------
 
@@ -1164,23 +1192,25 @@ CREATE TABLE IF NOT EXISTS `user_account` (
 --
 
 INSERT INTO `user_account` (`user_Id`, `username`, `surName`, `name`, `mcountrycode`, `mobile`, `mob_val`, `dob`, `gender`, `profile_pic`, `minlocation`, `location`, `state`, `country`, `created_On`, `isAdmin`, `user_tz`, `acc_active`) VALUES
-('USR113561617186', 'Achuth', 'Achuytham', 'Achuytham', '', '', 'N', '0000-00-00', '', ' http://192.168.1.4/mylocalhook/images/avatar/1.jpg', '', '', '', '', '2018-04-07 18:37:59', 'N', 'Asia/Kolkata', 'Y'),
-('USR128879133554', 'Santosh', 'Ampani', 'Santosh Kumar', '+91', '9491034468', 'Y', '2018-04-07', 'MALE', 'http://192.168.1.4/mylocalhook/images/avatar/5.jpg', 'Malakpet', 'Hyderabad', 'Telangana', 'India', '2018-04-08 14:00:17', 'N', '', 'N'),
-('USR255798352927', 'kittu', 'Nellutla', 'Nellutla Venkata Kishore', '', '', 'N', '0000-00-00', '', 'http://192.168.1.4/mylocalhook/images/avatar/1.jpg', 'Ater', 'Bhind', 'Madhya Pradesh', 'India', '2018-04-07 18:38:14', 'N', 'Asia/Kolkata', 'Y'),
-('USR273782437846', 'geetha', 'Nellutla', 'Geetha Rani ', '+91', '9291532292', 'Y', '2018-03-19', 'FEMALE', 'http://192.168.1.4/mylocalhook/images/avatar/12.jpg', 'L. B. Nagar', 'Ranga Reddy District', 'Telangana', 'India', '2018-04-07 18:40:02', 'N', '', 'Y'),
-('USR461726196865', 'anupwefe', 'Nelwefl', 'eeffwee', '', '', 'N', '0000-00-00', '', 'http://192.168.1.4/mylocalhook/images/avatar/1.jpg', 'Bijapur City', 'Bijapur', 'Karnataka', 'India', '2018-04-07 18:40:15', 'N', 'Asia/Kolkata', 'Y'),
-('USR553425241674', 'anup123', 'Nellutlalnrao', 'Laxmi Narasimha', '', '', 'N', '0000-00-00', '', 'http://192.168.1.4/mylocalhook/images/avatar/1.jpg', 'Devar Hippargi', 'Bijapur', 'Karnataka', 'India', '2018-04-07 18:40:26', 'N', 'Asia/Kolkata', 'Y'),
-('USR571322289932', 'svsdv', 'vdv', 'e', '', '', 'N', '0000-00-00', '', 'http://192.168.1.4/mylocalhook/images/avatar/1.jpg', '', '', '', '', '2018-04-07 18:40:34', 'N', 'Asia/Kolkata', 'Y'),
-('USR626729797799', 'asifkhan', 'Shareef', 'Asif Khan', '', '', 'N', '0000-00-00', '', 'http://192.168.1.4/mylocalhook/images/avatar/3.jpg', 'L. B. Nagar', 'Ranga Reddy District', 'Telangana', 'India', '2018-04-07 18:40:41', 'N', 'Asia/Kolkata', 'Y'),
-('USR715494757975', 'asdwww', 'aasc', 'acedqw', '', '', 'N', '0000-00-00', '', 'http://192.168.1.4/mylocalhook/images/avatar/2.jpg', 'Araku Valley', 'Araku', 'Andhra Pradesh', 'India', '2018-04-07 18:40:48', 'N', 'Asia/Kolkata', 'Y'),
-('USR751143828474', 'anup12345f3rjf', 'ahchjdc', 'DXX ENX', '', '', 'N', '0000-00-00', '', 'http://192.168.1.4/mylocalhook/images/avatar/1.jpg', 'Raichur Rural', 'Raichur', 'Karnataka', 'India', '2018-04-07 18:40:58', 'N', 'Asia/Kolkata', 'Y'),
-('USR755171938565', 'qwert123', 'asdf123', 'adxdfcdg', '', '', 'N', '0000-00-00', '', ' http://192.168.1.4/mylocalhook/images/avatar/5.jpg', 'Anantnag Region', 'Anantnag', 'Jammu And Kashmir', 'India', '2018-04-07 18:41:05', 'N', 'Asia/Kolkata', 'Y'),
-('USR876657119297', 'k.adithya', 'Kankipati', 'adithya kankipati', '', '', 'N', '0000-00-00', '', 'http://192.168.1.4/mylocalhook/images/avatar/6.jpg', 'L. B. Nagar', 'Ranga Reddy District', 'Telangana', 'India', '2018-04-07 18:41:12', 'N', 'Asia/Kolkata', 'Y'),
-('USR916113175364', 'sde', 'wdqed', 'dqw', '', '', 'N', '0000-00-00', '', 'http://192.168.1.4/mylocalhook/images/avatar/7.jpg', '', '', '', '', '2018-04-07 18:41:19', 'N', 'Asia/Kolkata', 'Y'),
-('USR924357814934', 'anups', 'Nellutla', 'Anup Chakravarthi', '+91', '9160869337', 'Y', '2015-11-12', 'MALE', 'http://192.168.1.4/mylocalhook/images/avatar/3.jpg', 'Kuttanad', 'Mavelikara', 'Kerala', 'India', '2018-04-07 13:02:25', 'N', 'Asia/Kolkata', 'N'),
-('USR947899367838', 'ascadcad', 'acdc', 'dqwdde', '', '', 'N', '0000-00-00', '', ' http://192.168.1.4/mylocalhook/images/avatar/8.jpg', 'Araku Valley', 'Araku', 'Andhra Pradesh', 'India', '2018-04-07 18:41:26', 'N', 'Asia/Kolkata', 'Y'),
-('USR984371315633', 'nellutlalnrao', 'NellutlaLNRao', 'AnupChakravarthi', '', '', 'N', '0000-00-00', '', 'http://192.168.1.4/mylocalhook/images/avatar/3.jpg', 'Malappuram Region', 'Malappuram', 'Kerala', 'India', '2018-04-07 18:41:32', 'N', 'Asia/Kolkata', 'Y'),
-('USR985685916147', 'ascasc', 'asc', 'cscc', '', '', 'N', '0000-00-00', '', 'http://192.168.1.4/mylocalhook/images/avatar/2.jpg', 'Nandurbar', 'Nandurbar', 'Maharashtra', 'India', '2018-04-07 18:41:38', 'N', 'Asia/Kolkata', 'Y');
+('USR113561617186', 'Achuth', 'Achuytham', 'Achuytham', '+91', '9160896337', 'Y', '2018-06-06', 'MALE', ' http://192.168.1.4/mlh/android-web/images/avatar/1.jpg', 'Parvathipuram', 'Araku', 'Andhra Pradesh', 'India', '2018-06-01 12:11:29', 'N', 'Asia/Kolkata', 'Y'),
+('USR128879133554', 'Santosh', 'Santhu', 'Santo', '+91', '9491034468', 'Y', '2018-04-07', 'MALE', 'http://192.168.1.4/mlh/android-web/images/avatar/5.jpg', 'Malakpet', 'Hyderabad', 'Telangana', 'India', '2018-06-01 11:06:13', 'N', '', 'Y'),
+('USR255798352927', 'kittu', 'Nellutla', 'Venkata Kishore', '', '', 'N', '0000-00-00', '', 'http://192.168.1.4/mlh/android-web/images/avatar/1.jpg', 'Ater', 'Bhind', 'Madhya Pradesh', 'India', '2018-06-02 06:08:35', 'N', 'Asia/Kolkata', 'Y'),
+('USR273782437846', 'geetha', 'Nellutla', 'Geetha Rani ', '+91', '9291532292', 'Y', '2018-03-19', 'FEMALE', 'http://192.168.1.4/mlh/android-web/images/avatar/12.jpg', 'L. B. Nagar', 'Ranga Reddy District', 'Telangana', 'India', '2018-04-21 05:18:41', 'N', '', 'Y'),
+('USR461726196865', 'anupwefe', 'Nelwefl', 'eeffwee', '', '', 'N', '0000-00-00', '', 'http://192.168.1.4/mlh/android-web/images/avatar/1.jpg', 'Bijapur City', 'Bijapur', 'Karnataka', 'India', '2018-04-21 05:18:47', 'N', 'Asia/Kolkata', 'Y'),
+('USR473525687856', 'Raju', 'Rajendra', 'Raju', '+91', '9912995327', 'Y', '2009-10-14', 'MALE', 'https://res.cloudinary.com/dbcyhclaw/image/upload/x_293,y_133,w_694,h_694,z_0.1296,c_crop/v1526192946/IMG-20171019-WA0054_vexsaw.jpg', 'Malakpet', 'Hyderabad', 'Telangana', 'India', '2018-05-13 06:29:07', 'N', 'Asia/Kolkata', 'Y'),
+('USR553425241674', 'anup123', 'Nellutlalnrao', 'Laxmi Narasimha', '', '', 'N', '0000-00-00', '', 'http://192.168.1.4/mlh/android-web/images/avatar/1.jpg', 'Devar Hippargi', 'Bijapur', 'Karnataka', 'India', '2018-04-21 05:18:53', 'N', 'Asia/Kolkata', 'Y'),
+('USR571322289932', 'svsdv', 'vdv', 'e', '', '', 'N', '0000-00-00', '', 'http://192.168.1.4/mlh/android-web/images/avatar/1.jpg', '', '', '', '', '2018-04-21 05:18:59', 'N', 'Asia/Kolkata', 'Y'),
+('USR626729797799', 'asifkhan', 'Shareef', 'Asif Khan', '', '', 'N', '0000-00-00', '', 'http://192.168.1.4/mlh/android-web/images/avatar/3.jpg', 'L. B. Nagar', 'Ranga Reddy District', 'Telangana', 'India', '2018-04-21 05:19:05', 'N', 'Asia/Kolkata', 'Y'),
+('USR715494757975', 'asdwww', 'aasc', 'acedqw', '', '', 'N', '0000-00-00', '', 'http://192.168.1.4/mlh/android-web/images/avatar/2.jpg', 'Araku Valley', 'Araku', 'Andhra Pradesh', 'India', '2018-04-21 05:19:12', 'N', 'Asia/Kolkata', 'Y'),
+('USR751143828474', 'anup12345f3rjf', 'ahchjdc', 'DXX ENX', '', '', 'N', '0000-00-00', '', 'http://192.168.1.4/mlh/android-web/images/avatar/1.jpg', 'Raichur Rural', 'Raichur', 'Karnataka', 'India', '2018-04-21 05:19:17', 'N', 'Asia/Kolkata', 'Y'),
+('USR755171938565', 'qwert123', 'asdf123', 'adxdfcdg', '', '', 'N', '0000-00-00', '', ' http://192.168.1.4/mlh/android-web/images/avatar/5.jpg', 'Anantnag Region', 'Anantnag', 'Jammu And Kashmir', 'India', '2018-04-21 05:19:29', 'N', 'Asia/Kolkata', 'Y'),
+('USR862369784264', 'Sai teja', 'Tej Sai Teja ', 'Sai Teja ', '+91', '9581136564', 'Y', '2000-11-30', 'MALE', 'https://res.cloudinary.com/dbcyhclaw/image/upload/x_60,y_260,w_1080,h_1080,z_0.0833,c_crop/v1525800009/IMG_20180507_191759_y3yqnz.jpg', 'Wanaparthy', 'Mahbubnagar', 'Telangana', 'India', '2018-05-08 17:20:17', 'N', '', 'Y'),
+('USR876657119297', 'k.adithya', 'Kankipati', 'adithya kankipati', '', '', 'N', '0000-00-00', '', 'http://192.168.1.4/mlh/android-web/images/avatar/6.jpg', 'L. B. Nagar', 'Ranga Reddy District', 'Telangana', 'India', '2018-04-21 05:19:34', 'N', 'Asia/Kolkata', 'Y'),
+('USR916113175364', 'sde', 'wdqed', 'dqw', '', '', 'N', '0000-00-00', '', 'http://192.168.1.4/mlh/android-web/images/avatar/7.jpg', '', '', '', '', '2018-04-21 05:19:39', 'N', 'Asia/Kolkata', 'Y'),
+('USR924357814934', 'anups', 'Nellutla', 'Anup Chakravarthi', '+91', '9160869337', 'Y', '2015-11-12', 'MALE', 'http://192.168.1.4/mlh/android-web/images/avatar/3.jpg', 'Kuttanad', 'Mavelikara', 'Kerala', 'India', '2018-06-01 11:06:06', 'N', 'Asia/Kolkata', 'Y'),
+('USR947899367838', 'ascadcad', 'acdc', 'dqwdde', '', '', 'N', '0000-00-00', '', ' http://192.168.1.4/mlh/android-web/images/avatar/8.jpg', 'Araku Valley', 'Araku', 'Andhra Pradesh', 'India', '2018-04-21 05:19:59', 'N', 'Asia/Kolkata', 'Y'),
+('USR984371315633', 'nellutlalnrao', 'NellutlaLNRao', 'AnupChakravarthi', '', '', 'N', '0000-00-00', '', 'http://192.168.1.4/mlh/android-web/images/avatar/3.jpg', 'Malappuram Region', 'Malappuram', 'Kerala', 'India', '2018-04-21 05:20:05', 'N', 'Asia/Kolkata', 'Y'),
+('USR985685916147', 'ascasc', 'asc', 'cscc', '', '', 'N', '0000-00-00', '', 'http://192.168.1.4/mlh/android-web/images/avatar/2.jpg', 'Nandurbar', 'Nandurbar', 'Maharashtra', 'India', '2018-04-21 05:20:09', 'N', 'Asia/Kolkata', 'Y');
 
 -- --------------------------------------------------------
 
@@ -1206,8 +1236,23 @@ CREATE TABLE IF NOT EXISTS `user_frnds` (
 --
 
 INSERT INTO `user_frnds` (`rel_Id`, `rel_from`, `rel_tz`, `frnd1`, `frnd2`, `frnd1_call_frnd2`, `frnd2_call_frnd1`) VALUES
-('FREL386847988282194576181', '2018-04-08 13:46:50', 'Asia/Kolkata', 'USR128879133554', 'USR924357814934', 'My LocalHook Friend', 'My LocalHook Friend'),
+('FREL113163289416289671228', '2018-06-02 17:37:48', 'Asia/Kolkata', 'USR255798352927', 'USR924357814934', 'My LocalHook Friend', 'My LocalHook Friend'),
+('FREL187387334177284141946', '2018-06-01 17:39:27', 'Asia/Kolkata', 'USR715494757975', 'USR113561617186', 'My LocalHook Friend', 'My LocalHook Friend'),
+('FREL216621668146357997868', '2018-06-01 18:16:28', 'Asia/Kolkata', 'USR128879133554', 'USR113561617186', 'My LocalHook Friend', 'My LocalHook Friend'),
+('FREL323942158692231274458', '2018-06-02 18:04:18', 'Asia/Kolkata', 'USR461726196865', 'USR924357814934', 'My LocalHook Friend', 'My LocalHook Friend'),
+('FREL355323199734657944622', '2018-06-01 18:16:06', 'Asia/Kolkata', 'USR128879133554', 'USR113561617186', 'My LocalHook Friend', 'My LocalHook Friend'),
+('FREL373546946265162946937', '2018-06-01 17:43:46', 'Asia/Kolkata', 'USR626729797799', 'USR113561617186', 'My LocalHook Friend', 'My LocalHook Friend'),
+('FREL398295761324325863596', '2018-06-01 18:15:11', 'Asia/Kolkata', 'USR128879133554', 'USR113561617186', 'My LocalHook Friend', 'My LocalHook Friend'),
+('FREL418662147654876157835', '2018-06-01 17:40:47', 'Asia/Kolkata', 'USR715494757975', 'USR113561617186', 'My LocalHook Friend', 'My LocalHook Friend'),
+('FREL443354954136494138944', '2018-06-01 17:39:44', 'Asia/Kolkata', 'USR715494757975', 'USR113561617186', 'My LocalHook Friend', 'My LocalHook Friend'),
+('FREL465592416562739371251', '2018-06-01 17:37:07', 'Asia/Kolkata', 'USR128879133554', 'USR113561617186', 'My LocalHook Friend', 'My LocalHook Friend'),
+('FREL473477679165452365849', '2018-06-01 18:16:20', 'Asia/Kolkata', 'USR128879133554', 'USR113561617186', 'My LocalHook Friend', 'My LocalHook Friend'),
+('FREL492875446517343162711', '2018-06-02 18:15:37', 'Asia/Kolkata', 'USR473525687856', 'USR924357814934', 'My LocalHook Friend', 'My LocalHook Friend'),
+('FREL582849374534951452184', '2018-06-01 17:39:39', 'Asia/Kolkata', 'USR715494757975', 'USR113561617186', 'My LocalHook Friend', 'My LocalHook Friend'),
+('FREL583581511597759711768', '2018-06-01 17:47:41', 'Asia/Kolkata', 'USR128879133554', 'USR113561617186', 'My LocalHook Friend', 'My LocalHook Friend'),
 ('FREL733761537718959391538', '2018-04-07 18:20:19', 'Asia/Kolkata', 'USR924357814934', 'USR715494757975', 'My LocalHook Friend', 'My LocalHook Friend'),
+('FREL742155929929149896838', '2018-06-01 18:16:24', 'Asia/Kolkata', 'USR128879133554', 'USR113561617186', 'My LocalHook Friend', 'My LocalHook Friend'),
+('FREL755933712817918856754', '2018-06-01 17:41:52', 'Asia/Kolkata', 'USR255798352927', 'USR113561617186', 'My LocalHook Friend', 'My LocalHook Friend'),
 ('FREL887711391824254432678', '2018-04-08 13:46:54', 'Asia/Kolkata', 'USR553425241674', 'USR924357814934', 'My LocalHook Friend', 'My LocalHook Friend');
 
 -- --------------------------------------------------------
@@ -1229,6 +1274,23 @@ CREATE TABLE IF NOT EXISTS `user_frnds_req` (
   KEY `to_userId_2` (`to_userId`),
   KEY `to_userId` (`to_userId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user_frnds_req`
+--
+
+INSERT INTO `user_frnds_req` (`req_Id`, `from_userId`, `to_userId`, `usr_frm_call_to`, `usr_to_call_from`, `req_on`, `req_tz`) VALUES
+('FREQ131471494383972471526', 'USR924357814934', 'USR128879133554', 'My LocalHook Friend', '', '2018-06-02 18:05:14', ''),
+('FREQ166991197716757357414', 'USR113561617186', 'USR128879133554', 'My LocalHook Friend', '', '2018-06-01 13:00:34', ''),
+('FREQ176748496639515293966', 'USR113561617186', 'USR924357814934', 'My LocalHook Friend', '', '2018-06-01 10:59:12', ''),
+('FREQ187884522278229519357', 'USR113561617186', 'USR553425241674', 'My LocalHook Friend', '', '2018-06-01 12:45:05', ''),
+('FREQ225716379726455649186', 'USR113561617186', 'USR461726196865', 'My LocalHook Friend', '', '2018-06-01 12:44:19', ''),
+('FREQ351264184133736277864', 'USR924357814934', 'USR461726196865', 'My LocalHook Friend', '', '2018-06-02 18:02:14', ''),
+('FREQ444413517669158994848', 'USR113561617186', 'USR473525687856', 'My LocalHook Friend', '', '2018-06-01 12:45:14', ''),
+('FREQ468776991962435817861', 'USR924357814934', 'USR255798352927', 'My LocalHook Friend', '', '2018-06-02 06:45:57', ''),
+('FREQ712353652172731245879', 'USR113561617186', 'USR571322289932', 'My LocalHook Friend', '', '2018-06-01 12:46:31', ''),
+('FREQ766335313762498154755', 'USR924357814934', 'USR273782437846', 'My LocalHook Friend', '', '2018-06-02 18:02:10', ''),
+('FREQ952367994569533346233', 'USR924357814934', 'USR473525687856', 'My LocalHook Friend', '', '2018-06-02 18:02:18', '');
 
 -- --------------------------------------------------------
 
@@ -1315,6 +1377,7 @@ CREATE TABLE IF NOT EXISTS `user_mkt_stat` (
 CREATE TABLE IF NOT EXISTS `user_notify` (
   `notify_Id` varchar(35) NOT NULL,
   `user_Id` varchar(15) NOT NULL,
+  `from_Id` varchar(15) NOT NULL,
   `notifyHeader` varchar(300) NOT NULL,
   `notifyTitle` varchar(300) NOT NULL,
   `notifyMsg` varchar(300) NOT NULL,
@@ -1324,7 +1387,7 @@ CREATE TABLE IF NOT EXISTS `user_notify` (
   `watched` varchar(1) NOT NULL,
   `popup` varchar(1) NOT NULL,
   `req_accepted` varchar(1) NOT NULL,
-  `cal_event_status` varchar(3) NOT NULL COMMENT 'IN/OUT',
+  `cal_event` varchar(1) NOT NULL COMMENT 'YES/NO',
   PRIMARY KEY (`notify_Id`),
   KEY `user_Id` (`user_Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -1333,25 +1396,9 @@ CREATE TABLE IF NOT EXISTS `user_notify` (
 -- Dumping data for table `user_notify`
 --
 
-INSERT INTO `user_notify` (`notify_Id`, `user_Id`, `notifyHeader`, `notifyTitle`, `notifyMsg`, `notifyType`, `notifyURL`, `notify_ts`, `watched`, `popup`, `req_accepted`, `cal_event_status`) VALUES
-('CJUN19284933825', 'USR113561617186', 'Yuva Sena raised a Movement', 'NGO Movement', '', 'MOVEMENT_PARTICIPATION_REQUEST', 'http://localhost/mylocalhook/community/movement/MOV1234', '2018-03-06 14:29:42', 'N', 'N', 'N', 'OUT'),
-('CJUN26539618849', 'USR255798352927', 'Yuva Sena raised a Movement', 'NGO Movement', '', 'MOVEMENT_PARTICIPATION_REQUEST', 'http://localhost/mylocalhook/community/movement/', '2018-03-06 14:29:42', 'N', 'N', 'N', 'OUT'),
-('CJUN39119565182', 'USR461726196865', 'Yuva Sena raised a Movement', 'NGO Movement', '', 'MOVEMENT_PARTICIPATION_REQUEST', 'http://localhost/mylocalhook/community/movement/MOV1234', '2018-03-06 14:29:42', 'N', 'N', 'N', 'OUT'),
-('CJUN41381797886', 'USR461726196865', 'Yuva Sena raised a Movement', 'NGO Movement', '', 'MOVEMENT_PARTICIPATION_REQUEST', 'http://localhost/mylocalhook/community/movement/', '2018-03-06 14:29:42', 'N', 'N', 'N', 'OUT'),
-('CJUN45143867939', 'USR113561617186', 'Yuva Sena raised a Movement', 'NGO Movement', '', 'MOVEMENT_PARTICIPATION_REQUEST', 'http://192.168.1.4/mylocalhook/community/movement/MOV1234', '2018-03-06 14:29:42', 'N', 'N', 'N', 'OUT'),
-('CJUN46946265162', 'USR255798352927', ' posted in NewsFeed', '', '', 'BUSINESS_NEWSFEED', 'http://localhost/mylocalhook/app/news/business/DUI1367419127383834463744', '2018-03-06 12:29:36', 'N', '', '', ''),
-('CJUN61578353735', 'USR113561617186', ' posted in NewsFeed', '', '', 'BUSINESS_NEWSFEED', 'http://localhost/mylocalhook/app/news/business/DUI1367419127383834463744', '2018-03-06 12:29:36', 'N', '', '', ''),
-('CJUN62152113866', 'USR461726196865', 'Yuva Sena raised a Movement', 'NGO Movement', '', 'MOVEMENT_PARTICIPATION_REQUEST', 'http://192.168.1.4/mylocalhook/community/movement/MOV1234', '2018-03-06 14:29:42', 'N', 'N', 'N', 'OUT'),
-('CJUN62181955624', 'USR113561617186', 'Yuva Sena raised a Movement', 'NGO Movement', '', 'MOVEMENT_PARTICIPATION_REQUEST', 'http://localhost/mylocalhook/community/movement/', '2018-03-06 14:29:42', 'N', 'N', 'N', 'OUT'),
-('CJUN68222197187', 'USR461726196865', 'Yuva Sena raised a Movement', 'NGO Movement', '', 'MOVEMENT_PARTICIPATION_REQUEST', 'http://localhost/mylocalhook/community/movement/', '2018-03-06 14:29:42', 'N', 'N', 'N', 'OUT'),
-('CJUN71641992282', 'USR255798352927', 'Yuva Sena raised a Movement', 'NGO Movement', '', 'MOVEMENT_PARTICIPATION_REQUEST', 'http://localhost/mylocalhook/community/movement/MOV1234', '2018-03-06 14:29:42', 'N', 'N', 'N', 'OUT'),
-('CJUN75142497753', 'USR461726196865', 'Yuva Sena raised a Movement', 'NGO Movement', '', 'MOVEMENT_PARTICIPATION_REQUEST', 'http://localhost/mylocalhook/app/community/movement/', '2018-03-06 14:29:42', 'N', '', '', ''),
-('CJUN77715445392', 'USR113561617186', 'Yuva Sena raised a Movement', 'NGO Movement', '', 'MOVEMENT_PARTICIPATION_REQUEST', 'http://localhost/mylocalhook/app/community/movement/', '2018-03-06 14:29:42', 'N', '', '', ''),
-('CJUN86181842439', 'USR255798352927', 'Yuva Sena raised a Movement', 'NGO Movement', '', 'MOVEMENT_PARTICIPATION_REQUEST', 'http://192.168.1.4/mylocalhook/community/movement/MOV1234', '2018-03-06 14:29:42', 'N', 'N', 'N', 'OUT'),
-('CJUN89124618624', 'USR255798352927', 'Yuva Sena raised a Movement', 'NGO Movement', '', 'MOVEMENT_PARTICIPATION_REQUEST', 'http://localhost/mylocalhook/app/community/movement/', '2018-03-06 14:29:42', 'N', '', '', ''),
-('CJUN92533239112', 'USR255798352927', 'Yuva Sena raised a Movement', 'NGO Movement', '', 'MOVEMENT_PARTICIPATION_REQUEST', 'http://localhost/mylocalhook/community/movement/', '2018-03-06 14:29:42', 'N', 'N', 'N', 'OUT'),
-('CJUN94693758358', 'USR461726196865', ' posted in NewsFeed', '', '', 'BUSINESS_NEWSFEED', 'http://localhost/mylocalhook/app/news/business/DUI1367419127383834463744', '2018-03-06 12:29:36', 'N', '', '', ''),
-('CJUN99619388278', 'USR113561617186', 'Yuva Sena raised a Movement', 'NGO Movement', '', 'MOVEMENT_PARTICIPATION_REQUEST', 'http://localhost/mylocalhook/community/movement/', '2018-03-06 14:29:42', 'N', 'N', 'N', 'OUT');
+INSERT INTO `user_notify` (`notify_Id`, `user_Id`, `from_Id`, `notifyHeader`, `notifyTitle`, `notifyMsg`, `notifyType`, `notifyURL`, `notify_ts`, `watched`, `popup`, `req_accepted`, `cal_event`) VALUES
+('UNOT1368378364537488446123991877491', 'USR924357814934', 'UAI321663747936', '', '', '', 'COMMUNITY_MEMBERSHIP_REQUEST', 'http://192.168.43.47/mlh/android-web/app/notifications?notifyAction=NOTIFY_REQUEST_COMMUNITY', '2018-06-04 05:47:14', 'N', 'N', 'N', 'N'),
+('UNOT9722679339491337613632338869315', 'USR924357814934', 'USR924357814934', '', '', '', 'PEOPLE_RELATIONSHIP_REQUEST', 'http://192.168.43.47/mlh/android-web/app/notifications?notifyAction=NOTIFY_REQUEST_PEOPLE', '2018-06-04 05:47:07', 'N', 'N', 'N', 'N');
 
 -- --------------------------------------------------------
 
@@ -1565,50 +1612,11 @@ CREATE TABLE IF NOT EXISTS `user_subscription` (
 --
 
 INSERT INTO `user_subscription` (`sub_Id`, `user_Id`, `domain_Id`, `subdomain_Id`, `sub_on`) VALUES
-('USUB125876944443286742879', 'USR128879133554', '04-STP', '14-STP-TAL', '2018-04-07 12:54:23'),
-('USUB128632553198354481133', 'USR128879133554', '01-TPI', '03-TPI-C', '2018-04-07 05:51:11'),
-('USUB152284617948127596437', 'USR924357814934', '02-EDU', '02-EDU-TCHR', '2018-03-25 03:29:03'),
-('USUB229222839875558991439', 'USR924357814934', '01-TPI', '03-TPI-C', '2018-03-25 03:29:01'),
-('USUB237743647679927246618', 'USR128879133554', '04-STP', '09-STP-IG', '2018-04-07 12:54:18'),
-('USUB246254459938953121229', 'USR924357814934', '04-STP', '02-STP-RE', '2018-03-25 04:38:03'),
-('USUB247567151433471975317', 'USR128879133554', '04-STP', '08-STP-HC', '2018-04-07 12:54:17'),
-('USUB268126326226743192936', 'USR128879133554', '02-EDU', '01-EDU-STUD', '2018-04-07 05:51:06'),
-('USUB268535392969379981483', 'USR128879133554', '04-STP', '11-STP-RS', '2018-04-07 12:54:20'),
-('USUB278745957197132734541', 'USR128879133554', '04-STP', '03-STP-BPO', '2018-04-07 12:54:12'),
-('USUB283276326432235859768', 'USR128879133554', '01-TPI', '01-TPI-A', '2018-04-07 05:51:09'),
-('USUB283461251894375399818', 'USR924357814934', '04-STP', '03-STP-BPO', '2018-03-25 04:38:04'),
-('USUB317623395887982797213', 'USR924357814934', '04-STP', '06-STP-FIN', '2018-03-25 04:38:07'),
-('USUB365334294314331789216', 'USR924357814934', '04-STP', '07-STP-FAB', '2018-03-25 04:38:08'),
-('USUB423435357143248988763', 'USR128879133554', '01-TPI', '02-TPI-B', '2018-04-07 05:51:10'),
-('USUB452276377276976922457', 'USR128879133554', '04-STP', '05-STP-EAU', '2018-04-07 12:54:14'),
-('USUB477372647783411333423', 'USR924357814934', '01-TPI', '01-TPI-A', '2018-03-25 03:28:59'),
-('USUB494145493924998141997', 'USR924357814934', '04-STP', '09-STP-IG', '2018-03-25 04:38:10'),
-('USUB512859816449227376317', 'USR128879133554', '04-STP', '12-STP-TCH', '2018-04-07 12:54:21'),
-('USUB543446888948415924997', 'USR924357814934', '04-STP', '08-STP-HC', '2018-03-25 04:38:09'),
-('USUB553584716639535288566', 'USR128879133554', '03-MDA', '01-MDA-PRES', '2018-04-07 05:51:08'),
-('USUB559549173743872622389', 'USR924357814934', '09-ITS', '01-ITS-SN', '2018-03-25 03:29:04'),
-('USUB623156124955596562949', 'USR924357814934', '04-STP', '01-STP-BAC', '2018-03-25 04:38:02'),
-('USUB623795623177672239289', 'USR128879133554', '04-STP', '01-STP-BAC', '2018-04-07 12:54:10'),
-('USUB674131178449639188216', 'USR924357814934', '04-STP', '11-STP-RS', '2018-03-25 04:38:12'),
-('USUB712268172498185651583', 'USR128879133554', '02-EDU', '02-EDU-TCHR', '2018-04-07 05:51:07'),
-('USUB716612976574812566145', 'USR128879133554', '04-STP', '10-STP-MAP', '2018-04-07 12:54:19'),
-('USUB728767893943149789817', 'USR128879133554', '04-STP', '13-STP-TAA', '2018-04-07 12:54:22'),
-('USUB736173671933419554389', 'USR924357814934', '04-STP', '15-STP-TRL', '2018-03-25 04:38:16'),
-('USUB759855348151712449477', 'USR924357814934', '07-AGR', '', '2018-03-25 04:38:55'),
-('USUB773397492181575456772', 'USR924357814934', '04-STP', '12-STP-TCH', '2018-03-25 04:38:13'),
-('USUB812914671727827896557', 'USR128879133554', '04-STP', '07-STP-FAB', '2018-04-07 12:54:16'),
-('USUB828335279373791974147', 'USR924357814934', '04-STP', '13-STP-TAA', '2018-03-25 04:38:14'),
-('USUB833166865727876352772', 'USR128879133554', '04-STP', '02-STP-RE', '2018-04-07 12:54:11'),
-('USUB866876439884436144649', 'USR924357814934', '02-EDU', '01-EDU-STUD', '2018-03-25 03:29:02'),
-('USUB873892591531583361986', 'USR924357814934', '01-TPI', '02-TPI-B', '2018-03-25 03:29:00'),
-('USUB923431412529745862973', 'USR128879133554', '04-STP', '04-STP-EDU', '2018-04-07 12:54:13'),
-('USUB925437763132269547948', 'USR128879133554', '04-STP', '06-STP-FIN', '2018-04-07 12:54:15'),
-('USUB936624344356944687422', 'USR924357814934', '04-STP', '10-STP-MAP', '2018-03-25 04:38:11'),
-('USUB936945211443886423167', 'USR924357814934', '04-STP', '14-STP-TAL', '2018-03-25 04:38:15'),
-('USUB967332874149925586338', 'USR128879133554', '09-ITS', '01-ITS-SN', '2018-04-07 11:22:24'),
-('USUB981596195946611596317', 'USR924357814934', '04-STP', '04-STP-EDU', '2018-03-25 04:38:05'),
-('USUB985547989456789649559', 'USR128879133554', '04-STP', '15-STP-TRL', '2018-04-07 12:54:24'),
-('USUB992364489561755993725', 'USR924357814934', '04-STP', '05-STP-EAU', '2018-03-25 04:38:06');
+('', 'USR924357814934', '01-TPI', '01-TPI-A', '0000-00-00 00:00:00'),
+('USUB316754147743448624924', 'USR924357814934', '01-TPI', '02-TPI-B', '0000-00-00 00:00:00'),
+('USUB371119159644237221478', 'USR924357814934', '02-EDU', '01-EDU-STUD', '0000-00-00 00:00:00'),
+('USUB419787769656825954223', 'USR924357814934', '02-EDU', '02-EDU-TCHR', '2018-06-07 14:03:43'),
+('USUB866945995851248681346', 'USR924357814934', '01-TPI', '03-TPI-C', '0000-00-00 00:00:00');
 
 --
 -- Constraints for dumped tables
@@ -1644,12 +1652,6 @@ ALTER TABLE `biz_profile_geo`
 ALTER TABLE `biz_subscribe`
   ADD CONSTRAINT `biz_subscribe_ibfk_1` FOREIGN KEY (`biz_Id`) REFERENCES `biz_account` (`biz_Id`),
   ADD CONSTRAINT `biz_subscribe_ibfk_2` FOREIGN KEY (`user_Id`) REFERENCES `user_account` (`user_Id`);
-
---
--- Constraints for table `dash_info_biz`
---
-ALTER TABLE `dash_info_biz`
-  ADD CONSTRAINT `dash_info_biz_ibfk_2` FOREIGN KEY (`path_Id`) REFERENCES `app_ftp_path` (`path_Id`);
 
 --
 -- Constraints for table `dash_info_user_fav`
@@ -1782,6 +1784,12 @@ ALTER TABLE `union_account`
   ADD CONSTRAINT `union_account_ibfk_3` FOREIGN KEY (`subdomain_Id`) REFERENCES `dom_info` (`domain_Id`);
 
 --
+-- Constraints for table `union_branch`
+--
+ALTER TABLE `union_branch`
+  ADD CONSTRAINT `union_branch_ibfk_1` FOREIGN KEY (`union_Id`) REFERENCES `union_account` (`union_Id`);
+
+--
 -- Constraints for table `union_calndar`
 --
 ALTER TABLE `union_calndar`
@@ -1797,6 +1805,7 @@ ALTER TABLE `union_lang`
 -- Constraints for table `union_mem`
 --
 ALTER TABLE `union_mem`
+  ADD CONSTRAINT `union_mem_ibfk_3` FOREIGN KEY (`branch_Id`) REFERENCES `union_branch` (`branch_Id`),
   ADD CONSTRAINT `union_mem_ibfk_1` FOREIGN KEY (`union_Id`) REFERENCES `union_account` (`union_Id`),
   ADD CONSTRAINT `union_mem_ibfk_2` FOREIGN KEY (`user_Id`) REFERENCES `user_account` (`user_Id`);
 
@@ -1868,6 +1877,12 @@ ALTER TABLE `user_info`
 ALTER TABLE `user_message`
   ADD CONSTRAINT `user_message_ibfk_1` FOREIGN KEY (`from_Id`) REFERENCES `user_account` (`user_Id`),
   ADD CONSTRAINT `user_message_ibfk_2` FOREIGN KEY (`to_Id`) REFERENCES `user_account` (`user_Id`);
+
+--
+-- Constraints for table `user_notify`
+--
+ALTER TABLE `user_notify`
+  ADD CONSTRAINT `user_notify_ibfk_1` FOREIGN KEY (`user_Id`) REFERENCES `user_account` (`user_Id`);
 
 --
 -- Constraints for table `user_phook_info`
