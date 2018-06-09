@@ -1,3 +1,4 @@
+<meta charset="utf-8">
 <?php 
 
 /* UTF-8 is Mandatory */
@@ -15,5 +16,7 @@ class language {
   }	
   
 }
+$langObj=new language();
+echo $langObj->textTransform('en','te','Kuttanad');
 ?>
 

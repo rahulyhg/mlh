@@ -19,17 +19,17 @@ class user_authentication {
   
   /* auth-part-03.php */
   function query_addNewUser($user_Id,$username,$surName,$name,$mcountrycode,$mobile,$mob_val,$dob,$gender,
-	  $profile_pic,$minlocation,$location,$state,$country,$created_On,$isAdmin,$user_tz,$acc_active){
+	  $profile_pic,$about_me,$minlocation,$location,$state,$country,$created_On,$isAdmin,$user_tz,$acc_active){
     $sql="INSERT INTO user_account(user_Id,username,surName,name,mcountrycode,mobile,mob_val,dob,gender,";
-	$sql.="profile_pic,minlocation,location,state,country,created_On,isAdmin,user_tz,acc_active) ";
+	$sql.="profile_pic,about_me,minlocation,location,state,country,created_On,isAdmin,user_tz,acc_active) ";
 	$sql.="VALUES ('".$user_Id."','".$username."','".$surName."','".$name."','".$mcountrycode."','".$mobile."',";
-	$sql.="'".$mob_val."','".$dob."','".$gender."','".$profile_pic."','".$minlocation."','".$location."','".$state."',";
+	$sql.="'".$mob_val."','".$dob."','".$gender."','".$profile_pic."','".$about_me."','".$minlocation."','".$location."','".$state."',";
 	$sql.="'".$country."','".$created_On."','".$isAdmin."','".$user_tz."','".$acc_active."')";
 	return $sql;
   }
   
   function query_updateUserInfo($user_Id,$username,$surName,$name,$mcountrycode,$mobile,$mob_val,$dob,$gender,
-	    $profile_pic,$minlocation,$location,$state,$country,$isAdmin,$user_tz,$acc_active){
+	    $profile_pic,$about_me,$minlocation,$location,$state,$country,$isAdmin,$user_tz,$acc_active){
     $sql="UPDATE user_account SET ";
 	if(strlen($username)>0){  $sql.=" username='".$username."', "; }
 	if(strlen($surName)>0){  $sql.=" surName='".$surName."', "; }

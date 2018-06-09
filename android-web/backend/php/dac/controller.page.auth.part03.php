@@ -27,6 +27,7 @@ if(isset($_GET["action"])){
 	$dob=$_GET["dob"];                  
 	$gender=$_GET["gender"];
 	$profile_pic=$_GET["profile_pic"];    
+	$about_me='';
 	$minlocation=$_GET["minlocation"];    
 	$location=$_GET["location"];
 	$state=$_GET["state"];        
@@ -37,7 +38,7 @@ if(isset($_GET["action"])){
 	$acc_active='Y';   
 	
 	$addQuery=$usrauthObj->query_addNewUser($user_Id,$username,$surName,$name,$mcountrycode,$mobile,$mob_val,
-			                       $dob,$gender,$profile_pic,$minlocation,$location,$state,$country,$created_On,
+			                       $dob,$gender,$profile_pic,$about_me,$minlocation,$location,$state,$country,$created_On,
 								   $isAdmin,$user_tz,$acc_active);
     echo $dbObj->addupdateData($addQuery);
 	
@@ -79,6 +80,7 @@ if(isset($_GET["action"])){
 	   $dob='';  					if(isset($_GET["dob"])) {  $dob=$_GET["dob"];  }
 	   $gender=''; 			    if(isset($_GET["gender"])) { $gender=$_GET["gender"];  }
 	   $profile_pic='';  		if(isset($_GET["profile_pic"])) { $profile_pic=$_GET["profile_pic"]; }
+	   $about_me='';			if(isset($_GET["about_me"])) { $about_me=$_GET["about_me"]; }
 	   $minlocation='';  		if(isset($_GET["minlocation"])) { $minlocation=$_GET["minlocation"]; }
 	   $location='';  		if(isset($_GET["location"])) { $location=$_GET["location"]; }
 	   $state='';  			if(isset($_GET["state"])) { $state=$_GET["state"];  }
@@ -88,7 +90,7 @@ if(isset($_GET["action"])){
 	   $acc_active='';		if(isset($_GET["acc_active"])) { $acc_active=$_GET["acc_active"]; }
 	   
 	  $updateQuery=$usrauthObj->query_updateUserInfo($user_Id,$username,$surName,$name,$mcountrycode,$mobile,
-	                      $mob_val,$dob,$gender,$profile_pic,$minlocation,$location,$state,$country,$isAdmin,
+	                      $mob_val,$dob,$gender,$profile_pic,$about_me,$minlocation,$location,$state,$country,$isAdmin,
 						  $user_tz,$acc_active);
 	  echo $updateQuery;
 	  echo $dbObj->addupdateData($updateQuery);

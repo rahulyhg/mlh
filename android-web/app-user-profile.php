@@ -59,9 +59,13 @@ function loadDataofUser(){
 		var isAdmin=response.userProfile[i1].isAdmin;
 		var user_tz=response.userProfile[i1].user_tz;
 		var acc_active=response.userProfile[i1].acc_active;
-	    document.getElementById("app-user-profilepic").innerHTML='<img src="'+profile_pic+'" style="width:70px;height:70px;border-radius:50%;background-color:#efefef;"/>';
-		document.getElementById("app-user-title").innerHTML='<b>'+surName+' '+name+'</b>';
-		document.getElementById("app-user-area").innerHTML=minlocation+' '+location+'<br/>'+state+' <span style="text-transform:uppercase;">'+country+'</span>';
+		
+		var profilepicContent='<img src="'+profile_pic+'" style="width:70px;height:70px;border-radius:50%;background-color:#efefef;"/>';
+	    var profileNameContent='<b>'+surName+' '+name+'</b>';
+		var profileAreaContent=minlocation+', '+location+',<br/>'+state+', <span style="text-transform:uppercase;">'+country+'</span>';
+		document.getElementById("app-user-profilepic").innerHTML=profilepicContent;
+		document.getElementById("app-user-title").innerHTML=profileNameContent;
+		document.getElementById("app-user-area").innerHTML=profileAreaContent;
 	  }
 	  var profileType=response.profileType;
 	  if(profileType==='OWN'){ $('#app-profile-my').removeClass('hide-block'); }
@@ -147,14 +151,14 @@ function hzTabSelection(id){
 	   <?php include_once 'templates/api/api_progressbar.php'; ?>
 	   
 	   <div id="app-actual-content" class="hide-block">
-		<div class="container-fluid pad0 custom-bg">
+		<div class="container-fluid pad0">
 		    <div class="mtop15p">
 				<div id="app-user-profilepic" class="col-xs-3">
 					
 				</div>
 				<div class="col-xs-9">
-					<h5 id="app-user-title" style="color:#fff;"><b></b></h5>
-					<span id="app-user-area" style="font-weight:300;"></span>
+					<h5 id="app-user-title" style="color:#000;"><b></b></h5>
+					<span id="app-user-area" class="f12" style="font-weight:300;"></span>
 				</div>
 				<div id="app-profile-my" class="col-xs-12 mtop15p hide-block">
 					<button class="btn btn-default pull-right"><b>Edit your Profile</b></button>
@@ -169,7 +173,7 @@ function hzTabSelection(id){
 				</div>
 			</div>
 		</div>
-		<div class="container-fluid custom-bg">
+		<div class="container-fluid">
 		   <div class="scroller-divison row white-bg mtop15p">
 		    <div class="scroller scroller-left col-xs-1" style="height:41px;">
 			   <i class="glyphicon glyphicon-chevron-left"></i>
