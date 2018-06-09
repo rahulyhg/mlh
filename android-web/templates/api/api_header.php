@@ -46,6 +46,14 @@ window.location.href=PROJECT_URL+'app/search/'+searchKeywrd;
 <nav id="header_bot" class="navbar" style="margin-bottom:0px;border-radius:0px;">
 	
 	<div id="applogo-header">
+	    <div class="dropdown">
+		   <i class="dropdown-toggle pull-right fa fa-plus-circle" data-toggle="dropdown" style="padding-top:14px;padding-right:20px;font-size:20px;color:#fff;"></i>
+		   <ul class="dropdown-menu pull-right" style="width:200px;">
+			  <li><a href="#">Create Community</a></li>
+			  <li><a href="#">Write NewsFeed</a></li>
+			  <li><a href="#">Create Movement</a></li>
+		   </ul>
+		</div>
 		<a class="navbar-brand a-custom" style="cursor:pointer;" onclick="javascript:sideMenuToggle();">
 			<span class="glyphicon glyphicon-align-justify white-font"></span>
 		</a>
@@ -53,6 +61,7 @@ window.location.href=PROJECT_URL+'app/search/'+searchKeywrd;
 		
 		   <!--div class="row"--> 
 			  <div id="div_app_logo" class="col-md-2 col-sm-4 col-xs-5" style="padding-left:0px;"></div>
+			  
 			  <div class="col-md-5 col-sm-12 col-xs-12 pad10">
 			     <div class="input-group">
 					<input id="searchKeywrd" type="text" class="form-control" placeholder="Enter your Search" value="<?php if(isset($_GET["searchKeyword"])) { echo $_GET["searchKeyword"]; } ?>">
