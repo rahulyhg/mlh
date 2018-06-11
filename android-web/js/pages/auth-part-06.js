@@ -80,9 +80,12 @@ function selected(domain_Id,domainName,source){
 
 function subscribe(){
 console.log(SUBSCRIPTION_JSONDATA_BUILDER);
+show_toggleMLHLoader('body');
 js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.auth.part06.php',
       {action:'SET_USER_SUBSCRIPTION',user_Id:AUTH_USER_ID, subscription: SUBSCRIPTION_JSONDATA_BUILDER},
       function(response){ console.log(response);if(AndroidSession!==undefined){ AndroidSession.setAndroidSession("AUTH_USER_ID", AUTH_USER_ID); }
 	//  if(AndroidNotify!==undefined){ AndroidNotify.startNotification_latestNotifyService(); }
-	  window.location.href=PROJECT_URL+'newsfeed/latest-news';  });
+	  window.location.href=PROJECT_URL+'newsfeed/latest-news';  
+	  hide_toggleMLHLoader('body');
+});
 }
