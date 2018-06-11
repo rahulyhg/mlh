@@ -13,6 +13,7 @@ if($_SESSION["AUTHENTICATION_STATUS"]=='INCOMPLETED'){
  <link rel="shortcut icon" type="image/x-icon" href="<?php echo $_SESSION["PROJECT_URL"]; ?>images/favicon.ico"/>
  <link rel="stylesheet" href="<?php echo $_SESSION["PROJECT_URL"]; ?>styles/api/bootstrap.min.css">
  <link rel="stylesheet" href="<?php echo $_SESSION["PROJECT_URL"]; ?>styles/api/core-skeleton.css">
+ <link rel="stylesheet" href="<?php echo $_SESSION["PROJECT_URL"]; ?>styles/api/fontawesome.min.css">
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/jquery.min.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/bootstrap.min.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/bg-styles-common.js"></script>
@@ -42,11 +43,11 @@ $(document).ready(function(){
 	   <h5 align="center" class="lineh25p"><b>Select few Categories which you are interested to get updates in your NewsFeed</b></h5>
 	 </div>
 	 
-	 <div align="center" id="categories-list" class="col-md-12 col-sm-12 col-xs-12" style="margin-top:15px;margin-bottom:15px;width:100%;height:auto;">
-	   
+	 <div id="categories-list" class="col-md-12 col-sm-12 col-xs-12" style="margin-top:15px;margin-bottom:15px;width:100%;height:auto;">
+		
 	 </div>
-	 <div align="center" class="col-md-12 col-sm-12 col-xs-12" style="margin-top:15px;margin-bottom:65px;width:100%;height:auto;">
-	    <button class="btn custom-bg white-font" onclick="javascript:subscribe();"><b>I'm done</b></button>
+	 <div align="center" class="col-md-12 col-sm-12 col-xs-12" style="margin-bottom:65px;width:100%;height:auto;">
+	    <button class="btn custom-bg white-font" onclick="javascript:subscribe();"><b>Subscribe</b></button>
 	 </div>
    </span>
    <!--a href="<?php echo $_SESSION["PROJECT_URL"]?>subscribe/categories">

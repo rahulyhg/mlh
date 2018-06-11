@@ -22,13 +22,16 @@ if(isset($_GET["action"])){
    } else {  echo 'MISSING_USERID'; }
  } 
  else if($_GET["action"]=='SET_USER_SUBSCRIPTION'){
+	echo json_decode($_SESSION["AUTH_USER_SUBSCRIPTIONS_LIST"]);
 	if(isset($_GET["user_Id"]) && isset($_GET["subscription"])){
+		
+		/*
 		$authObj=new user_authentication();
 		$dbObj=new Database();
 		$idObj=new identity();
 		$user_Id=$_GET["user_Id"];
 		$subscription=$_GET["subscription"];
-		/* Get List of Subscription */
+		// Get List of Subscription
 		for($index=0;$index<count($subscription['subscriptionList']);$index++){
 			$domain_Id=$subscription['subscriptionList'][$index]['domain_Id'];
 			$domainFileURL=$_SESSION["PROJECT_URL"]."backend/config/".$_SESSION["USR_LANG"]."/domains/".$domain_Id."/subdomain_list.json";
@@ -54,6 +57,7 @@ if(isset($_GET["action"])){
 			}
 		} 
 		$_SESSION["AUTH_USER_SUBSCRIPTIONS_LIST"]=json_encode($subscription); // JSONData
+		*/
 	}
 	else { 
 		$content='Missing ';

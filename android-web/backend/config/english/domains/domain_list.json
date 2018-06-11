@@ -2,7 +2,7 @@
   "domains" :[{
 				"domain_Id":"01-TPI",
 				"domainName":"Transportation",
-				"source":"images/categories/transportation.jpg",
+				"source":"<i class=\"fa fa-bus\" aria-hidden=\"true\"></i>",
 			    "subdomains" :[{
 								"subdomain_Id":"01-TPI-A",
 							    "subdomainName":"Auto",
