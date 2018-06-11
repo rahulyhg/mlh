@@ -7,6 +7,7 @@ ini_set('display_errors', TRUE);
 body::-webkit-scrollbar-track { -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);background-color: #F5F5F5; }         
 body::-webkit-scrollbar { width: 6px;background-color: #F5F5F5; }        
 body::-webkit-scrollbar-thumb { background-color: #000000; }
+body { overflow-x:hidden; }
 </style>
 <script type="text/javascript">
 /* Anchor Scrolling */
