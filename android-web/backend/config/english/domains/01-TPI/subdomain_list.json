@@ -1,5 +1,0 @@
-{
-  "subdomains" :[{"subdomain_Id":"01-TPI-A","subdomainName":"Auto","source":""},
-				 {"subdomain_Id":"02-TPI-B","subdomainName":"Bus","source":""},
-				 {"subdomain_Id":"03-TPI-C","subdomainName":"Cabs","source":""}]
-}

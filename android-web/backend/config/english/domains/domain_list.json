@@ -1,11 +1,197 @@
 {
-  "domains" :[{"domain_Id":"01-TPI","domainName":"Transportation","source":"images/categories/transportation.jpg"},
-              {"domain_Id":"02-EDU","domainName":"Education","source":"images/categories/education.jpg"},
-			  {"domain_Id":"03-MDA","domainName":"Media","source":"images/categories/media.jpg"},
-			  {"domain_Id":"04-STP","domainName":"Startups","source":"images/categories/startups.jpg"},
-			  {"domain_Id":"05-REL","domainName":"Religion","source":"images/categories/religion.jpg"},
-			  {"domain_Id":"06-FIN","domainName":"Banking and Finance","source":"images/categories/finance.jpg"},
-			  {"domain_Id":"07-AGR","domainName":"Agriculture","source":"images/categories/agriculture.jpg"},
-			  {"domain_Id":"08-ENT","domainName":"Entertainment","source":"images/categories/artsculture.jpg"},
-			  {"domain_Id":"09-ITS","domainName":"IT and Software","source":"images/categories/itsoftware.jpg"}]
+  "domains" :[{
+				"domain_Id":"01-TPI",
+				"domainName":"Transportation",
+				"source":"images/categories/transportation.jpg",
+			    "subdomains" :[{
+								"subdomain_Id":"01-TPI-A",
+							    "subdomainName":"Auto",
+								"source":"",
+								"roles" :[{ "role_Id":"TPI-A-AD", "roleName":"AutoDriver" },
+										  { "role_Id":"TPI-A-AO", "roleName":"AutoOwner" }]
+							   },
+							   {
+								"subdomain_Id":"02-TPI-B",
+								"subdomainName":"Bus",
+								"source":"",
+								"roles" :[{ "role_Id":"TPI-B-BD", "roleName":"Bus Driver" },
+										  { "role_Id":"TPI-B-BC", "roleName":"Bus Conductor" }]
+							   },
+							   {
+							    "subdomain_Id":"03-TPI-C",
+								"subdomainName":"Cabs",
+								"source":"",
+								"roles" :[{ "role_Id":"TPI-C-CD", "roleName":"Cab Driver" },
+										  { "role_Id":"TPI-C-CO", "roleName":"Cab Owner" }]
+							   }],
+				"roles" :[]
+			  },
+              {
+				"domain_Id":"02-EDU",
+				"domainName":"Education",
+				"source":"images/categories/education.jpg",
+				"subdomains" :[{
+								 "subdomain_Id":"01-EDU-STUD",
+								 "subdomainName":"Students",
+								 "source":"",
+								 "roles" :[]
+							   },
+							   {
+								 "subdomain_Id":"02-EDU-TCHR",
+								 "subdomainName":"Teachers",
+								 "source":"",
+								 "roles" :[]
+							   }],
+				"roles" :[]
+				},
+			  {
+			   "domain_Id":"03-MDA",
+			   "domainName":"Media",
+			   "source":"images/categories/media.jpg",
+			   "subdomains" :[{
+							    "subdomain_Id":"01-MDA-PRES",
+								"subdomainName":"Journalists",
+								"source":"",
+								"roles" :[]
+							  }],
+				"roles" :[]
+			  },
+			  {
+				"domain_Id":"04-STP",
+				"domainName":"Startups",
+				"source":"images/categories/startups.jpg",
+				"subdomains" :[{
+								"subdomain_Id":"01-STP-BAC",
+								"subdomainName":"Building and Construction",
+								"source":"",
+								"roles" :[]
+							    },
+								{
+								 "subdomain_Id":"02-STP-RE",
+								 "subdomainName":"Real Estate",
+								 "source":"",
+								 "roles" :[]
+								 },
+								{
+								 "subdomain_Id":"03-STP-BPO",
+								 "subdomainName":"BPO",
+								 "source":"",
+								 "roles" :[]
+								},
+								{
+								 "subdomain_Id":"04-STP-EDU",
+								 "subdomainName":"Education",
+								 "source":"",
+								 "roles" :[]
+								},
+								{
+								 "subdomain_Id":"05-STP-EAU",
+								 "subdomainName":"Energy and Utilities",
+								 "source":"",
+								 "roles" :[]
+								},
+								{
+								 "subdomain_Id":"06-STP-FIN",
+								 "subdomainName":"Finance",
+								 "source":"",
+								 "roles" :[]
+								},
+								{
+								 "subdomain_Id":"07-STP-FAB",
+								 "subdomainName":"Food and Beverages",
+								 "source":"",
+								 "roles" :[]
+								},
+								{
+								 "subdomain_Id":"08-STP-HC",
+								 "subdomainName":"Health Care",
+								 "source":"",
+								 "roles" :[]
+								},
+								{
+								 "subdomain_Id":"09-STP-IG",
+								 "subdomainName":"Industrial Goods",
+								 "source":"",
+								 "roles" :[]
+								},
+								{
+								 "subdomain_Id":"10-STP-MAP",
+								 "subdomainName":"Media and Publishing",
+								 "source":"",
+								 "roles" :[]
+								},
+								{
+								 "subdomain_Id":"11-STP-RS",
+								 "subdomainName":"Retail Shops",
+								 "source":"",
+								 "roles" :[]
+								},
+								{
+								 "subdomain_Id":"12-STP-TCH",
+								 "subdomainName":"Technology",
+								 "source":"",
+								 "roles" :[]
+								},
+								{
+								 "subdomain_Id":"13-STP-TAA",
+								 "subdomainName":"Textiles and Apparel",
+								 "source":"",
+								 "roles" :[]
+								},
+								{
+								 "subdomain_Id":"14-STP-TAL",
+								 "subdomainName":"Transportation and Logistics",
+								 "source":"",
+								 "roles" :[]
+								},
+								{
+								 "subdomain_Id":"15-STP-TRL",
+								 "subdomainName":"Travel and Leisure",
+								 "source":"",
+								 "roles" :[]
+								}],
+				"roles" :[{"role_Id":"STP-INVS", "roleName":"Investor"},
+						  {"role_Id":"STP-MENT", "roleName":"Mentor"},
+						  {"role_Id":"STP-IA", "roleName":"Incubators/Accelerators"},
+						  {"role_Id":"STP-AVC", "roleName":"Angels/Venture Capitalists"},
+						  {"role_Id":"STP-ENP", "roleName":"Entrepreneur"}]
+			  },
+			  {
+				"domain_Id":"05-REL",
+				"domainName":"Religion",
+				"source":"images/categories/religion.jpg",
+				"subdomains" :[{"subdomain_Id":"01-REL-HIN","subdomainName":"Hinduism","source":""},
+							   {"subdomain_Id":"02-REL-ISL","subdomainName":"Islamic","source":""},
+							   {"subdomain_Id":"03-REL-CHR","subdomainName":"Christianity","source":""}],
+				"roles" :[]
+			  },
+			  {
+			    "domain_Id":"06-FIN",
+				"domainName":"Banking and Finance",
+				"source":"images/categories/finance.jpg",
+				"subdomains" :[{"subdomain_Id":"01-FIN-BNK","subdomainName":"Banking","source":""},
+							   {"subdomain_Id":"02-FIN-INS","subdomainName":"Insurance","source":""}],
+				"roles" :[]
+			  },
+			  {
+			    "domain_Id":"07-AGR",
+				"domainName":"Agriculture",
+				"source":"images/categories/agriculture.jpg",
+				"subdomains" :[{"subdomain_Id":"","subdomainName":"","source":""}],
+				"roles" :[]
+			  },
+			  {
+			    "domain_Id":"08-ENT",
+				"domainName":"Entertainment",
+				"source":"images/categories/artsculture.jpg",
+				"subdomains" :[{"subdomain_Id":"01-ENT-CIN","subdomainName":"Big Screen Cinema","source":""}],
+				"roles" :[]
+			  },
+			  {
+			    "domain_Id":"09-ITS",
+				"domainName":"IT and Software",
+				"source":"images/categories/itsoftware.jpg",
+				"subdomains" :[{"subdomain_Id":"01-ITS-SN","subdomainName":"Social Network","source":""}],
+				"roles" :[]
+			  }]
 }
