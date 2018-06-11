@@ -49,9 +49,9 @@ window.location.href=PROJECT_URL+'app/search/'+searchKeywrd;
 	    <div class="dropdown">
 		   <i class="dropdown-toggle pull-right fa fa-plus-circle" data-toggle="dropdown" style="padding-top:14px;padding-right:20px;font-size:20px;color:#fff;"></i>
 		   <ul class="dropdown-menu pull-right" style="width:200px;">
-			  <li><a href="#">Create Community</a></li>
-			  <li><a href="#">Write NewsFeed</a></li>
-			  <li><a href="#">Create Movement</a></li>
+			  <li><a href="#"><i class="fa fa-bank" aria-hidden="true"></i>&nbsp;&nbsp;Create Community</a></li>
+			  <li><a href="#"><i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;&nbsp;Write NewsFeed</a></li>
+			  <li><a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i>&nbsp;&nbsp;Create Movement</a></li>
 		   </ul>
 		</div>
 		<a class="navbar-brand a-custom" style="cursor:pointer;" onclick="javascript:sideMenuToggle();">
