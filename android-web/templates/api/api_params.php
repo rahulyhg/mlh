@@ -1,7 +1,6 @@
 <?php
 if(!isset($_SESSION["PROJECT_URL"])){ $_SESSION["PROJECT_URL"]="http://".$_SERVER["HTTP_HOST"]."/mlh/android-web/"; }
 if(!isset($_SESSION["PROJECT_MODE"])){ $_SESSION["PROJECT_MODE"]='DEBUG'; }
-if(!isset($_SESSION["USR_LANG"])){ $_SESSION["USR_LANG"]='english'; }
 ?>
 <script type="text/javascript">
  /* Android Javascript Interface Objects */
