@@ -1,5 +1,5 @@
 <?php session_start();
-if(!isset($_SESSION["DRI_LANG"])) { $_SESSION["DRI_LANG"]='english'; } 
+if(!isset($_SESSION["USR_LANG"])) { $_SESSION["USR_LANG"]='english'; } 
 if(!isset($_SESSION["AUTHENTICATION_STATUS"])){ $_SESSION["AUTHENTICATION_STATUS"]='INCOMPLETED'; }
 if($_SESSION["AUTHENTICATION_STATUS"]=='INCOMPLETED'){
 ?>
