@@ -7,8 +7,10 @@ require_once '../lal/logic.appIdentity.php';
 $logger=Logger::getLogger("controller.module.app.subscriptions.php");
 if(isset($_GET["action"])){
  if($_GET["action"]=='SET_SESSION_DOMAINSUBSCRIPTION'){
+  if(isset($_GET["user_Id"])){
+   $user_Id=$_GET["user_Id"];
    $subObj=new app_subscription();
-   $query=$subObj->query_geListOfSubscriptions();
+   $query=$subObj->query_geListOfSubscriptions($user_Id);
    $dbObj=new Database();
    $jsonData=$dbObj->getJSONData($query);
 	// echo $jsonData.'<br/>';
@@ -26,9 +28,10 @@ if(isset($_GET["action"])){
 	  for($i2=0;$i2<count($dejsonData2);$i2++){
 		$subdomain_Id=$dejsonData2[$i2]->{'subdomain_Id'};
 		$subdomainName=$dejsonData2[$i2]->{'subdomainName'};
+		$subscribed=$dejsonData2[$i2]->{'subscribed'};
 		$content.='{ "subdomain_Id":"'.$subdomain_Id.'", ';
 		$content.='"subdomainName":"'.$subdomainName.'" ,';
-		$content.='"subscribed":"NO" },';
+		$content.='"subscribed":"'.$subscribed.'" },';
 	  }
 	  $content=chop($content,',');
 	  $content.=']';
@@ -37,6 +40,7 @@ if(isset($_GET["action"])){
 	$content=chop($content,',');
 	$content.=']}';
 	echo $content;
+  } else { echo 'MISSING_USERID'; }
  }
  else { echo 'INVALID_ACTION'; }
 } 

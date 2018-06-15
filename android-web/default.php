@@ -26,13 +26,7 @@ if($_SESSION["AUTHENTICATION_STATUS"]=='INCOMPLETED'){
 <script type="text/javascript">
 $(document).ready(function(){
  $(".lang_"+USR_LANG).css('display','block');
- getListOfSubscription();
 });
-
-function getListOfSubscription(){
-js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.subscriptions.php',
-{ action: 'SET_SESSION_DOMAINSUBSCRIPTION' },function(response){ console.log(response);alert("Done"); });
-}
 </script>
 </head>
 <body>

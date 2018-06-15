@@ -25,14 +25,12 @@ function domainSubscription(domainIndex,domain_Id,subdomainIdList){
  var className;
  if($('#domain-subscribe-'+domain_Id).hasClass('fa-star') &&
     !$('#domain-subscribe-'+domain_Id).hasClass('fa-star-o')) {
-	SUBSCRIPTION_JSONDATA_BUILDER.domains[domainIndex].subscribed="NO";
 	$('#domain-subscribe-'+domain_Id).removeClass('fa-star');
     $('#domain-subscribe-'+domain_Id).addClass('fa-star-o'); 
 	className='fa-star-o';
  }
  else if(!$('#domain-subscribe-'+domain_Id).hasClass('fa-star') &&
 	      $('#domain-subscribe-'+domain_Id).hasClass('fa-star-o')) {
-	SUBSCRIPTION_JSONDATA_BUILDER.domains[domainIndex].subscribed="YES";
 	$('#domain-subscribe-'+domain_Id).removeClass('fa-star-o');
 	$('#domain-subscribe-'+domain_Id).addClass('fa-star');
 	className='fa-star';
@@ -58,7 +56,7 @@ function domainSubscription(domainIndex,domain_Id,subdomainIdList){
 }
 function getListOfCategories(){
  js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.subscriptions.php',
-{ action: 'SET_SESSION_DOMAINSUBSCRIPTION' }, function(result){
+  { action: 'SET_SESSION_DOMAINSUBSCRIPTION', user_Id:AUTH_USER_ID }, function(result){
    result=JSON.parse(result);
    SUBSCRIPTION_JSONDATA_BUILDER=result;
    console.log(JSON.stringify(result));
@@ -66,17 +64,22 @@ function getListOfCategories(){
    for(var i1=0;i1<result.domains.length;i1++){
     var content2='';
 	var subdomainIdList=[];
+	var emptySubscriptionRecoginzer=true;
 	for(var i2=0;i2<result.domains[i1].subdomains.length;i2++){
 	 var subdomain_Id=result.domains[i1].subdomains[i2].subdomain_Id;
 	 var subdomainName=result.domains[i1].subdomains[i2].subdomainName;
-	 SUBSCRIPTION_JSONDATA_BUILDER.domains[i1].subdomains[i2].subscribed="NO";
+	 var subscribed=result.domains[i1].subdomains[i2].subscribed;
+	 SUBSCRIPTION_JSONDATA_BUILDER.domains[i1].subdomains[i2].subscribed=subscribed;
 	 subdomainIdList[subdomainIdList.length]=subdomain_Id;
 	 content2+='<div class="list-group-item pad0">';
      content2+='<div class="container-fluid pad0">';
 	 content2+='<div class="col-xs-12 mtop10p mbot10p">';
 	 content2+='<span><b>&nbsp;'+subdomainName+'</b></span>';
 	 content2+='<i id="subdomain-subscribe-'+subdomain_Id+'" ';
-	 content2+='class="fa fa-star-o mtop5p pull-right" ';
+	 content2+='class="fa ';
+	 if(subscribed==='YES'){ content2+='fa-star '; } 
+	 else { content2+='fa-star-o ';emptySubscriptionRecoginzer=false; }
+	 content2+='mtop5p pull-right" ';
 	 content2+='onclick="javascript:subdomainSubscription(\''+i1+'\',\''+i2+'\',\''+subdomain_Id+'\');" ';
 	 content2+='aria-hidden="true"></i>';
 	 content2+='</div>';
@@ -91,7 +94,10 @@ function getListOfCategories(){
 	content1+='<div class="col-xs-12 mtop10p mbot10p">';
 	content1+='<span class="custom-font" style="color:'+CURRENT_DARK_COLOR+';"><b>'+domainName+'</b></span>';
 	content1+='<span class="pull-right">';
-	content1+='<i id="domain-subscribe-'+domain_Id+'" class="fa fa-star-o mtop5p custom-font" ';
+	content1+='<i id="domain-subscribe-'+domain_Id+'" class="fa ';
+	if(result.domains[i1].subdomains.length>0 && emptySubscriptionRecoginzer){ content1+='fa-star '; } 
+	else { content1+='fa-star-o '; }
+	content1+='mtop5p custom-font" ';
 	content1+='style="color:'+CURRENT_DARK_COLOR+';" onclick="javascript:domainSubscription(\''+i1+'\',\''+domain_Id+'\',\''+subdomainIdList+'\');" aria-hidden="true"></i>&nbsp;&nbsp;';
 	content1+='<span class="glyphicon glyphicon-chevron-down custom-font" style="color:'+CURRENT_DARK_COLOR+';"></span>';
 	content1+='</span>';
