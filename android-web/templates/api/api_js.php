@@ -87,6 +87,6 @@ function js_ajax(method,url,data,fn_output){
  */
 function js_session(sessionJSON,fn_output) {
  var sessionData={action:'Session',SESSION_JSON: sessionJSON};
- js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.session.php',sessionData,fn_output);
+ js_ajax("POST",PROJECT_URL+'backend/php/api/app.session.php',sessionData,fn_output);
 }
 </script>

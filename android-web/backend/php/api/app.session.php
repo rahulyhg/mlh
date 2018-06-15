@@ -6,9 +6,9 @@
   }
  */
 session_start();
-if(isset($_GET["action"]) && $_GET["action"]=='Session') {
-  if(isset($_GET["SESSION_JSON"])) {
-  $sessionJSON=$_GET["SESSION_JSON"];
+if(isset($_POST["action"]) && $_POST["action"]=='Session') {
+  if(isset($_POST["SESSION_JSON"])) {
+  $sessionJSON=$_POST["SESSION_JSON"];
   $sessionDeJSON=json_decode($sessionJSON);
   $session_set=$sessionDeJSON->session_set;
   for($index=0;$index<count($session_set);$index++) {
@@ -19,14 +19,14 @@ if(isset($_GET["action"]) && $_GET["action"]=='Session') {
   for($index=0;$index<count($session_get);$index++) {
     $key=$session_get[$index];$value='';
 	if(isset($_SESSION[$key])){ $value=$_SESSION[$key]; }
-    $content.='"'.$key.'" : "'.$value.'",';
+    $content.='"'.$key.'" : "'.str_replace("\"","\\\"",$value).'",';
   }
   $content=chop($content,",");
   $content.='}';
   echo $content; 
   } else { echo "MISSING_SESSION"; }
 }
-else if(isset($_GET["action"]) && $_GET["action"]=='DestroySession') {
+else if(isset($_POST["action"]) && $_POST["action"]=='DestroySession') {
    session_destroy();
 }
 ?>
