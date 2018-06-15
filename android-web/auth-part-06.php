@@ -50,9 +50,7 @@ $(document).ready(function(){
 	    <button class="btn custom-bg white-font" onclick="javascript:subscribe();"><b>Subscribe</b></button>
 	 </div>
    </span>
-   <!--a href="<?php echo $_SESSION["PROJECT_URL"]?>subscribe/categories">
-     <button><b>R</b></button>
-   </a-->
+   
 </div>
  <!--?php include_once 'templates/api/api_bottom_doc.php'; ?-->
 </body>

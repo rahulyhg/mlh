@@ -4,7 +4,7 @@ $(document).ready(function(){
  getListOfCategories();
 // 
 });
-var SUBSCRIPTION_JSONDATA_BUILDER;
+var SUBSCRIPTION_JSONDATA_BUILDER={};
 function subdomainSubscription(domainIndex,subdomainIndex,subdomain_Id){
 if($('#subdomain-subscribe-'+subdomain_Id).hasClass('fa-star') &&
     !$('#subdomain-subscribe-'+subdomain_Id).hasClass('fa-star-o')) {
@@ -57,7 +57,9 @@ function domainSubscription(domainIndex,domain_Id,subdomainIdList){
  console.log("SUBSCRIPTION_JSONDATA_BUILDER: "+JSON.stringify(SUBSCRIPTION_JSONDATA_BUILDER));
 }
 function getListOfCategories(){
- js_ajax("GET",PROJECT_URL+'backend/config/'+USR_LANG+'/domains/domain_list.json',{}, function(result){
+ js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.subscriptions.php',
+{ action: 'SET_SESSION_DOMAINSUBSCRIPTION' }, function(result){
+   result=JSON.parse(result);
    SUBSCRIPTION_JSONDATA_BUILDER=result;
    console.log(JSON.stringify(result));
    var content1='<div class="list-group">';
@@ -106,13 +108,15 @@ function getListOfCategories(){
 }
 
 function subscribe(){
- var sessionJSON='{"session_set":[{"key":"AUTH_USER_SUBSCRIPTIONS_LIST","value":"'+JSON.stringify(SUBSCRIPTION_JSONDATA_BUILDER)+'"}],';
+var sessionData=JSON.stringify(SUBSCRIPTION_JSONDATA_BUILDER);
+console.log("Sent sessionData: "+sessionData);
+ var sessionJSON='{"session_set":[{"key":"AUTH_USER_SUBSCRIPTIONS_LIST","value":"';
+	 sessionJSON+=sessionData.replace(/"/g, "\\\"")+'"}],';
 	 sessionJSON+='"session_get":["AUTH_USER_SUBSCRIPTIONS_LIST"]}';
  js_session(sessionJSON,function(response){
     console.log("session:"+response);
-	js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.auth.part06.php',
+/*	js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.auth.part06.php',
  {action:'SET_USER_SUBSCRIPTION',user_Id:AUTH_USER_ID },
- function(response){ console.log(response);});
+ function(response){ console.log(response);}); */
  });
- 
 }
