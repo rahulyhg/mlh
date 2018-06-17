@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 08, 2018 at 05:52 PM
+-- Generation Time: Jun 17, 2018 at 12:36 PM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.4.3
 
@@ -296,6 +296,18 @@ INSERT INTO `biz_subscribe` (`subscribe_Id`, `biz_Id`, `user_Id`, `subscribedOn`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `core_cookies`
+--
+
+CREATE TABLE IF NOT EXISTS `core_cookies` (
+  `module` varchar(25) NOT NULL,
+  `updatedOn` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`module`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `cron_notify_user`
 --
 
@@ -500,20 +512,6 @@ INSERT INTO `dash_info_user_votes` (`vote_Id`, `info_Id`, `user_Id`, `newsType`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dash_move`
---
-
-CREATE TABLE IF NOT EXISTS `dash_move` (
-  `dmove_Id` varchar(25) NOT NULL,
-  `info_Id` varchar(25) NOT NULL,
-  `move_Id` varchar(8) NOT NULL,
-  `newsType` varchar(10) NOT NULL,
-  PRIMARY KEY (`dmove_Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `dash_resp_history`
 --
 
@@ -595,10 +593,10 @@ CREATE TABLE IF NOT EXISTS `dash_vote_stat` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dom_info`
+-- Table structure for table `dom_info_bak`
 --
 
-CREATE TABLE IF NOT EXISTS `dom_info` (
+CREATE TABLE IF NOT EXISTS `dom_info_bak` (
   `domain_Id` varchar(15) NOT NULL,
   `t_users` int(11) NOT NULL COMMENT 'Total Users',
   `t_unions` int(11) NOT NULL,
@@ -610,10 +608,10 @@ CREATE TABLE IF NOT EXISTS `dom_info` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `dom_info`
+-- Dumping data for table `dom_info_bak`
 --
 
-INSERT INTO `dom_info` (`domain_Id`, `t_users`, `t_unions`, `t_move`, `o_move`, `c_move`, `t_signers`) VALUES
+INSERT INTO `dom_info_bak` (`domain_Id`, `t_users`, `t_unions`, `t_move`, `o_move`, `c_move`, `t_signers`) VALUES
 ('', 0, 0, 0, 0, 0, 0),
 ('01-EDU-STUD', 0, 0, 0, 0, 0, 0),
 ('01-ITS-SN', 0, 0, 0, 0, 0, 0),
@@ -731,6 +729,10 @@ CREATE TABLE IF NOT EXISTS `move_info` (
   `toA_dd2` varchar(100) NOT NULL,
   `toA_pName3` varchar(60) NOT NULL,
   `toA_dd3` varchar(100) NOT NULL,
+  `toA_pName4` varchar(60) NOT NULL,
+  `toA_dd4` varchar(100) NOT NULL,
+  `toA_pName5` varchar(60) NOT NULL,
+  `toA_dd5` varchar(100) NOT NULL,
   `issue_desc` varchar(1000) NOT NULL,
   `issue_facedby` varchar(1000) NOT NULL,
   `expectedSolution` varchar(1000) NOT NULL,
@@ -742,13 +744,6 @@ CREATE TABLE IF NOT EXISTS `move_info` (
   KEY `union_Id` (`union_Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Domain Movement';
 
---
--- Dumping data for table `move_info`
---
-
-INSERT INTO `move_info` (`move_Id`, `union_Id`, `createdOn`, `petitionTitle`, `toA_pName1`, `toA_dd1`, `toA_pName2`, `toA_dd2`, `toA_pName3`, `toA_dd3`, `issue_desc`, `issue_facedby`, `expectedSolution`, `move_img`, `move_status`, `openOn`, `closedOn`) VALUES
-('MOV1234', 'UAI996769941529', '2018-03-22 18:30:00', 'NGO Movement', '', '', '', '', '', '', '', '', '', '', '', '2018-03-22 18:30:00', '0000-00-00 00:00:00');
-
 -- --------------------------------------------------------
 
 --
@@ -759,6 +754,7 @@ CREATE TABLE IF NOT EXISTS `move_sign` (
   `sign_Id` varchar(25) NOT NULL,
   `move_Id` varchar(8) NOT NULL,
   `user_Id` varchar(15) NOT NULL,
+  `atTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`sign_Id`),
   KEY `move_Id` (`move_Id`,`user_Id`),
   KEY `user_Id` (`user_Id`),
@@ -769,31 +765,102 @@ CREATE TABLE IF NOT EXISTS `move_sign` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `move_stat_deep`
+-- Table structure for table `newsfeed_info`
 --
 
-CREATE TABLE IF NOT EXISTS `move_stat_deep` (
-  `mstatdeep_Id` varchar(15) NOT NULL,
-  `move_date` date NOT NULL,
-  `t_signers` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `newsfeed_info` (
+  `info_Id` varchar(25) NOT NULL,
+  `bizUnionId` varchar(15) NOT NULL,
+  `unionBranchId` varchar(25) NOT NULL,
+  `artTitle` varchar(250) NOT NULL,
+  `artShrtDesc` varchar(1500) NOT NULL,
+  `artDesc` varchar(10000) NOT NULL,
+  `createdOn` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `images` varchar(10000) NOT NULL,
+  `newsFeedType` varchar(8) NOT NULL COMMENT 'BUSINESS/UNION',
+  `displayLevel` varchar(25) NOT NULL COMMENT 'BRANCH_LEVEL/UNION_LEVEL/SUBDOMAIN_LEVEL/DOMAIN_LEVEL',
+  `status` varchar(8) NOT NULL COMMENT 'ACTIVE/INACTIVE',
+  PRIMARY KEY (`info_Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `newsfeed_move`
+--
+
+CREATE TABLE IF NOT EXISTS `newsfeed_move` (
+  `nf_move_Id` varchar(25) NOT NULL,
+  `info_Id` varchar(25) NOT NULL,
   `move_Id` varchar(8) NOT NULL,
-  PRIMARY KEY (`mstatdeep_Id`),
+  PRIMARY KEY (`nf_move_Id`),
+  KEY `info_Id` (`info_Id`),
   KEY `move_Id` (`move_Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `move_stat_top`
+-- Table structure for table `newsfeed_user_fav`
 --
 
-CREATE TABLE IF NOT EXISTS `move_stat_top` (
-  `mstattop_Id` varchar(15) NOT NULL,
-  `move_date` date NOT NULL,
-  `o_move` int(11) NOT NULL,
-  `c_move` int(11) NOT NULL,
-  `t_signers` int(11) NOT NULL,
-  PRIMARY KEY (`mstattop_Id`)
+CREATE TABLE IF NOT EXISTS `newsfeed_user_fav` (
+  `nf_fav_Id` varchar(15) NOT NULL,
+  `info_Id` varchar(25) NOT NULL,
+  `user_Id` varchar(15) NOT NULL,
+  `atTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`nf_fav_Id`),
+  KEY `info_Id` (`info_Id`,`user_Id`),
+  KEY `user_Id` (`user_Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `newsfeed_user_likes`
+--
+
+CREATE TABLE IF NOT EXISTS `newsfeed_user_likes` (
+  `nf_like_Id` varchar(15) NOT NULL,
+  `info_Id` varchar(25) NOT NULL,
+  `user_Id` varchar(15) NOT NULL,
+  `atTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`nf_like_Id`),
+  KEY `info_Id` (`info_Id`,`user_Id`),
+  KEY `user_Id` (`user_Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `newsfeed_user_views`
+--
+
+CREATE TABLE IF NOT EXISTS `newsfeed_user_views` (
+  `view_Id` varchar(15) NOT NULL,
+  `info_Id` varchar(25) NOT NULL,
+  `user_Id` varchar(15) NOT NULL,
+  `atTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`view_Id`),
+  KEY `info_Id` (`info_Id`),
+  KEY `user_Id` (`user_Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `newsfeed_user_votes`
+--
+
+CREATE TABLE IF NOT EXISTS `newsfeed_user_votes` (
+  `vote_Id` varchar(15) NOT NULL,
+  `info_Id` varchar(25) NOT NULL,
+  `user_Id` varchar(15) NOT NULL,
+  `vote` varchar(4) NOT NULL COMMENT 'UP/DOWN',
+  `atTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`vote_Id`),
+  KEY `info_Id` (`info_Id`),
+  KEY `user_Id` (`user_Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -946,6 +1013,81 @@ CREATE TABLE IF NOT EXISTS `srvy_q_optusers` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `subs_dom_info`
+--
+
+CREATE TABLE IF NOT EXISTS `subs_dom_info` (
+  `domain_Id` varchar(15) NOT NULL,
+  `domainName` varchar(100) NOT NULL,
+  PRIMARY KEY (`domain_Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `subs_dom_info`
+--
+
+INSERT INTO `subs_dom_info` (`domain_Id`, `domainName`) VALUES
+('01-TPI', 'Transportation'),
+('02-EDU', 'Education'),
+('03-MDA', 'Media'),
+('04-STP', 'Startups'),
+('05-REL', 'Religion'),
+('06-FIN', 'Banking and Finance'),
+('07-AGR', 'Agriculture'),
+('08-ENT', 'Entertainment'),
+('09-ITS', 'IT and Software');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subs_subdom_info`
+--
+
+CREATE TABLE IF NOT EXISTS `subs_subdom_info` (
+  `subdomain_Id` varchar(15) NOT NULL,
+  `domain_Id` varchar(15) NOT NULL,
+  `subdomainName` varchar(100) NOT NULL,
+  PRIMARY KEY (`subdomain_Id`),
+  KEY `domain_Id` (`domain_Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `subs_subdom_info`
+--
+
+INSERT INTO `subs_subdom_info` (`subdomain_Id`, `domain_Id`, `subdomainName`) VALUES
+('EDU-01-STUD', '02-EDU', 'Students'),
+('EDU-02-TCHR', '02-EDU', 'Teachers'),
+('ENT-01-CIN', '08-ENT', 'Big Screen Cinema'),
+('FIN-01-BNK', '06-FIN', 'Banking'),
+('FIN-02-INS', '06-FIN', 'Insurance'),
+('ITS-01-SN', '09-ITS', 'Social Network'),
+('MDA-01-PRES', '03-MDA', 'Journalists'),
+('REL-01-HIN', '05-REL', 'Hinduism'),
+('REL-02-ISL', '05-REL', 'Islamic'),
+('REL-03-CHR', '05-REL', 'Christianity'),
+('STP-01-BAC', '04-STP', 'Building and Construction'),
+('STP-02-RE', '04-STP', 'Real Estate'),
+('STP-03-BPO', '04-STP', 'BPO'),
+('STP-04-EDU', '04-STP', 'Education'),
+('STP-05-EAU', '04-STP', 'Energy and Utilities'),
+('STP-06-FIN', '04-STP', 'Finance'),
+('STP-07-FAB', '04-STP', 'Food and Beverages'),
+('STP-08-HC', '04-STP', 'Health Care'),
+('STP-09-IG', '04-STP', 'Industrial Goods'),
+('STP-10-MAP', '04-STP', 'Media and Publishing'),
+('STP-11-RS', '04-STP', 'Retail Shops'),
+('STP-12-TCH', '04-STP', 'Technology'),
+('STP-13-TAA', '04-STP', 'Textiles and Apparel'),
+('STP-14-TAL', '04-STP', 'Transportation and Logistics'),
+('STP-15-TRL', '04-STP', 'Travel and Leisure'),
+('TPI-01-A', '01-TPI', 'Auto'),
+('TPI-02-B', '01-TPI', 'Bus'),
+('TPI-03-C', '01-TPI', 'Cabs');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `union_account`
 --
 
@@ -953,31 +1095,19 @@ CREATE TABLE IF NOT EXISTS `union_account` (
   `union_Id` varchar(15) NOT NULL,
   `domain_Id` varchar(15) NOT NULL,
   `subdomain_Id` varchar(15) NOT NULL,
+  `main_branch_Id` varchar(25) NOT NULL,
   `unionName` varchar(45) NOT NULL,
   `unionURLName` varchar(50) NOT NULL,
   `profile_pic` varchar(500) NOT NULL,
-  `minlocation` varchar(25) NOT NULL,
-  `location` varchar(25) NOT NULL,
-  `state` varchar(25) NOT NULL,
-  `country` varchar(25) NOT NULL,
   `created_On` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `admin_Id` varchar(15) NOT NULL,
   PRIMARY KEY (`union_Id`),
   KEY `admin_Id` (`admin_Id`),
   KEY `domain_Id` (`domain_Id`),
   KEY `admin_Id_2` (`admin_Id`),
-  KEY `subdomain_Id` (`subdomain_Id`)
+  KEY `subdomain_Id` (`subdomain_Id`),
+  KEY `main_branch_Id` (`main_branch_Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `union_account`
---
-
-INSERT INTO `union_account` (`union_Id`, `domain_Id`, `subdomain_Id`, `unionName`, `unionURLName`, `profile_pic`, `minlocation`, `location`, `state`, `country`, `created_On`, `admin_Id`) VALUES
-('UAI321663747936', '02-EDU', '01-EDU-STUD', 'Student Federation Of India', 'sapthagiri-llb', 'http://192.168.1.4/mlh/android-web/images/avatar/1.jpg', 'Bijapur City', 'Bijapur', 'Karnataka', 'India', '2018-04-21 20:13:16', 'USR924357814934'),
-('UAI363543863775', '04-STP', '02-STP-RE', 'Bharitya Akhila Sena', 'maha-vikaas-nirman--maha-sena-sangam', 'http://192.168.1.4/mlh/android-web/images/avatar/1.jpg', 'Gwalior Region', 'Gwalior', 'Madhya Pradesh', 'India', '2018-04-21 20:13:04', 'USR924357814934'),
-('UAI428951365258', '02-EDU', '01-EDU-STUD', 'Akhila Bharatha Vidhya Sangam', 'bharat', 'http://192.168.1.4/mlh/android-web/images/avatar/1.jpg', 'L. B. Nagar', 'Ranga Reddy District', 'Telangana', 'India', '2018-04-21 19:54:29', 'USR924357814934'),
-('UAI996769941529', '01-TPI', '01-TPI-A', 'Yuva Sena', 'yuva-sena', 'http://192.168.1.4/mlh/android-web/images/avatar/1.jpg', 'Kochi', 'Ernakulam', 'Kerala', 'India', '2018-04-21 20:09:28', 'USR924357814934');
 
 -- --------------------------------------------------------
 
@@ -988,7 +1118,6 @@ INSERT INTO `union_account` (`union_Id`, `domain_Id`, `subdomain_Id`, `unionName
 CREATE TABLE IF NOT EXISTS `union_branch` (
   `branch_Id` varchar(25) NOT NULL,
   `union_Id` varchar(15) NOT NULL,
-  `mainBranch` varchar(1) NOT NULL,
   `minlocation` varchar(25) NOT NULL,
   `location` varchar(25) NOT NULL,
   `state` varchar(25) NOT NULL,
@@ -1026,16 +1155,6 @@ CREATE TABLE IF NOT EXISTS `union_lang` (
   PRIMARY KEY (`union_Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `union_lang`
---
-
-INSERT INTO `union_lang` (`union_Id`, `eng`, `tel`) VALUES
-('UAI321663747936', 'Y', 'Y'),
-('UAI363543863775', 'Y', 'Y'),
-('UAI428951365258', 'Y', 'Y'),
-('UAI996769941529', 'Y', 'Y');
-
 -- --------------------------------------------------------
 
 --
@@ -1047,14 +1166,15 @@ CREATE TABLE IF NOT EXISTS `union_mem` (
   `union_Id` varchar(15) NOT NULL,
   `branch_Id` varchar(25) NOT NULL,
   `user_Id` varchar(15) NOT NULL,
-  `roleName` varchar(20) NOT NULL,
+  `role_Id` varchar(25) NOT NULL,
   `isAdmin` varchar(1) NOT NULL,
   `addedOn` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `status` varchar(8) NOT NULL COMMENT 'ONLINE/OFFLINE',
   PRIMARY KEY (`member_Id`),
   KEY `union_Id` (`union_Id`),
   KEY `user_Id` (`user_Id`),
-  KEY `branch_Id` (`branch_Id`)
+  KEY `branch_Id` (`branch_Id`),
+  KEY `role_Id` (`role_Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -1077,34 +1197,92 @@ CREATE TABLE IF NOT EXISTS `union_mem_chat` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `union_mem_perm_branch`
+--
+
+CREATE TABLE IF NOT EXISTS `union_mem_perm_branch` (
+  `branch_permission_Id` varchar(25) NOT NULL,
+  `role_Id` varchar(25) NOT NULL,
+  `branch_permissions` varchar(1) NOT NULL,
+  `community_permissions` varchar(1) NOT NULL,
+  `createRole` varchar(1) NOT NULL,
+  `updateRole` varchar(1) NOT NULL,
+  `DeleteRole` varchar(1) NOT NULL,
+  `requestUsersToBeMembers` varchar(1) NOT NULL,
+  `approveUsersToBeMembers` varchar(1) NOT NULL,
+  `createNewsFeedBranchLevel` varchar(1) NOT NULL,
+  `approveNewsFeedBranchLevel` varchar(1) NOT NULL,
+  `createNewsFeedUnionLevel` varchar(1) NOT NULL,
+  `approveNewsFeedUnionLevel` varchar(1) NOT NULL,
+  `createMovementBranchLevel` varchar(1) NOT NULL,
+  `approveMovementBranchLevel` varchar(1) NOT NULL,
+  `createMovementUnionLevel` varchar(1) NOT NULL,
+  `approveMovementUnionLevel` varchar(1) NOT NULL,
+  `createMovementSubDomainLevel` varchar(1) NOT NULL,
+  `approveMovementSubDomainLevel` varchar(1) NOT NULL,
+  `createMovementDomainLevel` varchar(1) NOT NULL,
+  `approveMovementDomainLevel` varchar(1) NOT NULL,
+  PRIMARY KEY (`branch_permission_Id`),
+  KEY `role_Id` (`role_Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `union_mem_perm_union`
+--
+
+CREATE TABLE IF NOT EXISTS `union_mem_perm_union` (
+  `union_permission_Id` varchar(25) NOT NULL,
+  `role_Id` varchar(25) NOT NULL,
+  `createABranch` varchar(1) NOT NULL,
+  `updateBranchInfo` varchar(1) NOT NULL,
+  `deleteBranch` varchar(1) NOT NULL,
+  `shiftMainBranch` varchar(1) NOT NULL,
+  `createNewsFeedUnionLevel` varchar(1) NOT NULL,
+  `approveNewsFeedUnionLevel` varchar(1) NOT NULL,
+  `createMovementUnionLevel` varchar(1) NOT NULL,
+  `approveMovementUnionLevel` varchar(1) NOT NULL,
+  `createMovementsubdomainLevel` varchar(1) NOT NULL,
+  `approveMovementsubdomainLevel` varchar(1) NOT NULL,
+  PRIMARY KEY (`union_permission_Id`),
+  KEY `role_Id` (`role_Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `union_mem_req`
 --
 
 CREATE TABLE IF NOT EXISTS `union_mem_req` (
   `request_Id` varchar(15) NOT NULL,
   `union_Id` varchar(15) NOT NULL,
+  `branch_Id` varchar(25) NOT NULL,
   `req_from` varchar(15) NOT NULL,
   `req_to` varchar(15) NOT NULL,
   `sent_On` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`request_Id`),
   KEY `union_Id` (`union_Id`),
   KEY `req_from` (`req_from`),
-  KEY `req_to` (`req_to`)
+  KEY `req_to` (`req_to`),
+  KEY `branch_Id` (`branch_Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `union_mem_stat`
+-- Table structure for table `union_mem_roles`
 --
 
-CREATE TABLE IF NOT EXISTS `union_mem_stat` (
-  `memstat_Id` varchar(25) NOT NULL,
+CREATE TABLE IF NOT EXISTS `union_mem_roles` (
+  `role_Id` varchar(25) NOT NULL,
   `union_Id` varchar(15) NOT NULL,
-  `mem_date` date NOT NULL,
-  `members` int(11) NOT NULL COMMENT 'Total members added on that day',
-  PRIMARY KEY (`memstat_Id`),
-  KEY `union_Id` (`union_Id`)
+  `branch_Id` varchar(25) NOT NULL,
+  `roleName` varchar(60) NOT NULL,
+  PRIMARY KEY (`role_Id`),
+  KEY `union_Id` (`union_Id`),
+  KEY `branch_Id` (`branch_Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -1130,33 +1308,13 @@ CREATE TABLE IF NOT EXISTS `union_profile_geo` (
 CREATE TABLE IF NOT EXISTS `union_sup` (
   `support_Id` varchar(15) NOT NULL,
   `union_Id` varchar(15) NOT NULL,
+  `branch_Id` varchar(25) NOT NULL,
   `user_Id` varchar(15) NOT NULL,
   `supportOn` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`support_Id`),
   KEY `union_Id` (`union_Id`,`user_Id`),
-  KEY `user_Id` (`user_Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `union_sup`
---
-
-INSERT INTO `union_sup` (`support_Id`, `union_Id`, `user_Id`, `supportOn`) VALUES
-('123', 'UAI321663747936', 'USR924357814934', '2018-04-22 12:31:06');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `union_sup_stat`
---
-
-CREATE TABLE IF NOT EXISTS `union_sup_stat` (
-  `supstat_Id` varchar(25) NOT NULL,
-  `union_Id` varchar(15) NOT NULL,
-  `sup_date` date NOT NULL,
-  `supporters` int(11) NOT NULL,
-  PRIMARY KEY (`supstat_Id`),
-  KEY `union_Id` (`union_Id`)
+  KEY `user_Id` (`user_Id`),
+  KEY `branch_Id` (`branch_Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -1176,6 +1334,7 @@ CREATE TABLE IF NOT EXISTS `user_account` (
   `dob` date NOT NULL,
   `gender` varchar(6) NOT NULL,
   `profile_pic` varchar(500) NOT NULL,
+  `about_me` varchar(2000) NOT NULL,
   `minlocation` varchar(25) NOT NULL,
   `location` varchar(25) NOT NULL,
   `state` varchar(25) NOT NULL,
@@ -1191,26 +1350,26 @@ CREATE TABLE IF NOT EXISTS `user_account` (
 -- Dumping data for table `user_account`
 --
 
-INSERT INTO `user_account` (`user_Id`, `username`, `surName`, `name`, `mcountrycode`, `mobile`, `mob_val`, `dob`, `gender`, `profile_pic`, `minlocation`, `location`, `state`, `country`, `created_On`, `isAdmin`, `user_tz`, `acc_active`) VALUES
-('USR113561617186', 'Achuth', 'Achuytham', 'Achuytham', '+91', '9160896337', 'Y', '2018-06-06', 'MALE', ' http://192.168.1.4/mlh/android-web/images/avatar/1.jpg', 'Parvathipuram', 'Araku', 'Andhra Pradesh', 'India', '2018-06-01 12:11:29', 'N', 'Asia/Kolkata', 'Y'),
-('USR128879133554', 'Santosh', 'Santhu', 'Santo', '+91', '9491034468', 'Y', '2018-04-07', 'MALE', 'http://192.168.1.4/mlh/android-web/images/avatar/5.jpg', 'Malakpet', 'Hyderabad', 'Telangana', 'India', '2018-06-01 11:06:13', 'N', '', 'Y'),
-('USR255798352927', 'kittu', 'Nellutla', 'Venkata Kishore', '', '', 'N', '0000-00-00', '', 'http://192.168.1.4/mlh/android-web/images/avatar/1.jpg', 'Ater', 'Bhind', 'Madhya Pradesh', 'India', '2018-06-02 06:08:35', 'N', 'Asia/Kolkata', 'Y'),
-('USR273782437846', 'geetha', 'Nellutla', 'Geetha Rani ', '+91', '9291532292', 'Y', '2018-03-19', 'FEMALE', 'http://192.168.1.4/mlh/android-web/images/avatar/12.jpg', 'L. B. Nagar', 'Ranga Reddy District', 'Telangana', 'India', '2018-04-21 05:18:41', 'N', '', 'Y'),
-('USR461726196865', 'anupwefe', 'Nelwefl', 'eeffwee', '', '', 'N', '0000-00-00', '', 'http://192.168.1.4/mlh/android-web/images/avatar/1.jpg', 'Bijapur City', 'Bijapur', 'Karnataka', 'India', '2018-04-21 05:18:47', 'N', 'Asia/Kolkata', 'Y'),
-('USR473525687856', 'Raju', 'Rajendra', 'Raju', '+91', '9912995327', 'Y', '2009-10-14', 'MALE', 'https://res.cloudinary.com/dbcyhclaw/image/upload/x_293,y_133,w_694,h_694,z_0.1296,c_crop/v1526192946/IMG-20171019-WA0054_vexsaw.jpg', 'Malakpet', 'Hyderabad', 'Telangana', 'India', '2018-05-13 06:29:07', 'N', 'Asia/Kolkata', 'Y'),
-('USR553425241674', 'anup123', 'Nellutlalnrao', 'Laxmi Narasimha', '', '', 'N', '0000-00-00', '', 'http://192.168.1.4/mlh/android-web/images/avatar/1.jpg', 'Devar Hippargi', 'Bijapur', 'Karnataka', 'India', '2018-04-21 05:18:53', 'N', 'Asia/Kolkata', 'Y'),
-('USR571322289932', 'svsdv', 'vdv', 'e', '', '', 'N', '0000-00-00', '', 'http://192.168.1.4/mlh/android-web/images/avatar/1.jpg', '', '', '', '', '2018-04-21 05:18:59', 'N', 'Asia/Kolkata', 'Y'),
-('USR626729797799', 'asifkhan', 'Shareef', 'Asif Khan', '', '', 'N', '0000-00-00', '', 'http://192.168.1.4/mlh/android-web/images/avatar/3.jpg', 'L. B. Nagar', 'Ranga Reddy District', 'Telangana', 'India', '2018-04-21 05:19:05', 'N', 'Asia/Kolkata', 'Y'),
-('USR715494757975', 'asdwww', 'aasc', 'acedqw', '', '', 'N', '0000-00-00', '', 'http://192.168.1.4/mlh/android-web/images/avatar/2.jpg', 'Araku Valley', 'Araku', 'Andhra Pradesh', 'India', '2018-04-21 05:19:12', 'N', 'Asia/Kolkata', 'Y'),
-('USR751143828474', 'anup12345f3rjf', 'ahchjdc', 'DXX ENX', '', '', 'N', '0000-00-00', '', 'http://192.168.1.4/mlh/android-web/images/avatar/1.jpg', 'Raichur Rural', 'Raichur', 'Karnataka', 'India', '2018-04-21 05:19:17', 'N', 'Asia/Kolkata', 'Y'),
-('USR755171938565', 'qwert123', 'asdf123', 'adxdfcdg', '', '', 'N', '0000-00-00', '', ' http://192.168.1.4/mlh/android-web/images/avatar/5.jpg', 'Anantnag Region', 'Anantnag', 'Jammu And Kashmir', 'India', '2018-04-21 05:19:29', 'N', 'Asia/Kolkata', 'Y'),
-('USR862369784264', 'Sai teja', 'Tej Sai Teja ', 'Sai Teja ', '+91', '9581136564', 'Y', '2000-11-30', 'MALE', 'https://res.cloudinary.com/dbcyhclaw/image/upload/x_60,y_260,w_1080,h_1080,z_0.0833,c_crop/v1525800009/IMG_20180507_191759_y3yqnz.jpg', 'Wanaparthy', 'Mahbubnagar', 'Telangana', 'India', '2018-05-08 17:20:17', 'N', '', 'Y'),
-('USR876657119297', 'k.adithya', 'Kankipati', 'adithya kankipati', '', '', 'N', '0000-00-00', '', 'http://192.168.1.4/mlh/android-web/images/avatar/6.jpg', 'L. B. Nagar', 'Ranga Reddy District', 'Telangana', 'India', '2018-04-21 05:19:34', 'N', 'Asia/Kolkata', 'Y'),
-('USR916113175364', 'sde', 'wdqed', 'dqw', '', '', 'N', '0000-00-00', '', 'http://192.168.1.4/mlh/android-web/images/avatar/7.jpg', '', '', '', '', '2018-04-21 05:19:39', 'N', 'Asia/Kolkata', 'Y'),
-('USR924357814934', 'anups', 'Nellutla', 'Anup Chakravarthi', '+91', '9160869337', 'Y', '2015-11-12', 'MALE', 'http://192.168.1.4/mlh/android-web/images/avatar/3.jpg', 'Kuttanad', 'Mavelikara', 'Kerala', 'India', '2018-06-01 11:06:06', 'N', 'Asia/Kolkata', 'Y'),
-('USR947899367838', 'ascadcad', 'acdc', 'dqwdde', '', '', 'N', '0000-00-00', '', ' http://192.168.1.4/mlh/android-web/images/avatar/8.jpg', 'Araku Valley', 'Araku', 'Andhra Pradesh', 'India', '2018-04-21 05:19:59', 'N', 'Asia/Kolkata', 'Y'),
-('USR984371315633', 'nellutlalnrao', 'NellutlaLNRao', 'AnupChakravarthi', '', '', 'N', '0000-00-00', '', 'http://192.168.1.4/mlh/android-web/images/avatar/3.jpg', 'Malappuram Region', 'Malappuram', 'Kerala', 'India', '2018-04-21 05:20:05', 'N', 'Asia/Kolkata', 'Y'),
-('USR985685916147', 'ascasc', 'asc', 'cscc', '', '', 'N', '0000-00-00', '', 'http://192.168.1.4/mlh/android-web/images/avatar/2.jpg', 'Nandurbar', 'Nandurbar', 'Maharashtra', 'India', '2018-04-21 05:20:09', 'N', 'Asia/Kolkata', 'Y');
+INSERT INTO `user_account` (`user_Id`, `username`, `surName`, `name`, `mcountrycode`, `mobile`, `mob_val`, `dob`, `gender`, `profile_pic`, `about_me`, `minlocation`, `location`, `state`, `country`, `created_On`, `isAdmin`, `user_tz`, `acc_active`) VALUES
+('USR113561617186', 'Achuth', 'Achuytham', 'Achuytham', '+91', '9160896337', 'Y', '2018-06-06', 'MALE', ' http://192.168.1.4/mlh/android-web/images/avatar/1.jpg', '', 'Parvathipuram', 'Araku', 'Andhra Pradesh', 'India', '2018-06-01 12:11:29', 'N', 'Asia/Kolkata', 'Y'),
+('USR128879133554', 'Santosh', 'Santhu', 'Santo', '+91', '9491034468', 'Y', '2018-04-07', 'MALE', 'http://192.168.1.4/mlh/android-web/images/avatar/5.jpg', '', 'Malakpet', 'Hyderabad', 'Telangana', 'India', '2018-06-01 11:06:13', 'N', '', 'Y'),
+('USR255798352927', 'Saiteja', 'Srirambhatla', 'Saiteja', '+91', '9581929584', 'Y', '1996-08-16', 'MALE', 'http://192.168.1.4/mlh/android-web/images/avatar/1.jpg', '', 'L. B. Nagar', 'Ranga Reddy District', 'Telangana', 'India', '2018-06-10 07:52:25', 'N', 'Asia/Kolkata', 'Y'),
+('USR273782437846', 'geetha', 'Nellutla', 'Geetha Rani ', '+91', '9291532292', 'Y', '2018-03-19', 'FEMALE', 'http://192.168.1.4/mlh/android-web/images/avatar/12.jpg', '', 'L. B. Nagar', 'Ranga Reddy District', 'Telangana', 'India', '2018-04-21 05:18:41', 'N', '', 'Y'),
+('USR461726196865', 'anupwefe', 'Nelwefl', 'eeffwee', '', '', 'N', '0000-00-00', '', 'http://192.168.1.4/mlh/android-web/images/avatar/1.jpg', '', 'Bijapur City', 'Bijapur', 'Karnataka', 'India', '2018-04-21 05:18:47', 'N', 'Asia/Kolkata', 'Y'),
+('USR473525687856', 'Raju', 'Rajendra', 'Raju', '+91', '9912995327', 'Y', '2009-10-14', 'MALE', 'https://res.cloudinary.com/dbcyhclaw/image/upload/x_293,y_133,w_694,h_694,z_0.1296,c_crop/v1526192946/IMG-20171019-WA0054_vexsaw.jpg', '', 'Malakpet', 'Hyderabad', 'Telangana', 'India', '2018-05-13 06:29:07', 'N', 'Asia/Kolkata', 'Y'),
+('USR553425241674', 'anup123', 'Nellutlalnrao', 'Laxmi Narasimha', '', '', 'N', '0000-00-00', '', 'http://192.168.1.4/mlh/android-web/images/avatar/1.jpg', '', 'Devar Hippargi', 'Bijapur', 'Karnataka', 'India', '2018-04-21 05:18:53', 'N', 'Asia/Kolkata', 'Y'),
+('USR571322289932', 'svsdv', 'vdv', 'e', '', '', 'N', '0000-00-00', '', 'http://192.168.1.4/mlh/android-web/images/avatar/1.jpg', '', '', '', '', '', '2018-04-21 05:18:59', 'N', 'Asia/Kolkata', 'Y'),
+('USR626729797799', 'asifkhan', 'Shareef', 'Asif Khan', '', '', 'N', '0000-00-00', '', 'http://192.168.1.4/mlh/android-web/images/avatar/3.jpg', '', 'L. B. Nagar', 'Ranga Reddy District', 'Telangana', 'India', '2018-04-21 05:19:05', 'N', 'Asia/Kolkata', 'Y'),
+('USR715494757975', 'asdwww', 'aasc', 'acedqw', '', '', 'N', '0000-00-00', '', 'http://192.168.1.4/mlh/android-web/images/avatar/2.jpg', '', 'Araku Valley', 'Araku', 'Andhra Pradesh', 'India', '2018-04-21 05:19:12', 'N', 'Asia/Kolkata', 'Y'),
+('USR751143828474', 'anup12345f3rjf', 'ahchjdc', 'DXX ENX', '', '', 'N', '0000-00-00', '', 'http://192.168.1.4/mlh/android-web/images/avatar/1.jpg', '', 'Raichur Rural', 'Raichur', 'Karnataka', 'India', '2018-04-21 05:19:17', 'N', 'Asia/Kolkata', 'Y'),
+('USR755171938565', 'qwert123', 'asdf123', 'adxdfcdg', '', '', 'N', '0000-00-00', '', ' http://192.168.1.4/mlh/android-web/images/avatar/5.jpg', '', 'Anantnag Region', 'Anantnag', 'Jammu And Kashmir', 'India', '2018-04-21 05:19:29', 'N', 'Asia/Kolkata', 'Y'),
+('USR862369784264', 'Sai teja', 'Tej Sai Teja ', 'Sai Teja ', '+91', '9581136564', 'Y', '2000-11-30', 'MALE', 'https://res.cloudinary.com/dbcyhclaw/image/upload/x_60,y_260,w_1080,h_1080,z_0.0833,c_crop/v1525800009/IMG_20180507_191759_y3yqnz.jpg', '', 'Wanaparthy', 'Mahbubnagar', 'Telangana', 'India', '2018-05-08 17:20:17', 'N', '', 'Y'),
+('USR876657119297', 'k.adithya', 'Kankipati', 'adithya kankipati', '', '', 'N', '0000-00-00', '', 'http://192.168.1.4/mlh/android-web/images/avatar/6.jpg', '', 'L. B. Nagar', 'Ranga Reddy District', 'Telangana', 'India', '2018-04-21 05:19:34', 'N', 'Asia/Kolkata', 'Y'),
+('USR916113175364', 'sde', 'wdqed', 'dqw', '', '', 'N', '0000-00-00', '', 'http://192.168.1.4/mlh/android-web/images/avatar/7.jpg', '', '', '', '', '', '2018-04-21 05:19:39', 'N', 'Asia/Kolkata', 'Y'),
+('USR924357814934', 'anups', 'Nellutla123', 'Anup Chakravarthi', '+91', '9160869337', 'Y', '2015-11-12', 'MALE', 'http://192.168.1.4/mlh/android-web/images/avatar/3.jpg', '', 'Kuttanad', 'Mavelikara', 'Kerala', 'India', '2018-06-09 15:23:44', 'N', 'Asia/Kolkata', 'Y'),
+('USR947899367838', 'ascadcad', 'acdc', 'dqwdde', '', '', 'N', '0000-00-00', '', ' http://192.168.1.4/mlh/android-web/images/avatar/8.jpg', '', 'Araku Valley', 'Araku', 'Andhra Pradesh', 'India', '2018-04-21 05:19:59', 'N', 'Asia/Kolkata', 'Y'),
+('USR984371315633', 'nellutlalnrao', 'NellutlaLNRao', 'AnupChakravarthi', '', '', 'N', '0000-00-00', '', 'http://192.168.1.4/mlh/android-web/images/avatar/3.jpg', '', 'Malappuram Region', 'Malappuram', 'Kerala', 'India', '2018-04-21 05:20:05', 'N', 'Asia/Kolkata', 'Y'),
+('USR985685916147', 'ascasc', 'asc', 'cscc', '', '', 'N', '0000-00-00', '', 'http://192.168.1.4/mlh/android-web/images/avatar/2.jpg', '', 'Nandurbar', 'Nandurbar', 'Maharashtra', 'India', '2018-04-21 05:20:09', 'N', 'Asia/Kolkata', 'Y');
 
 -- --------------------------------------------------------
 
@@ -1612,11 +1771,9 @@ CREATE TABLE IF NOT EXISTS `user_subscription` (
 --
 
 INSERT INTO `user_subscription` (`sub_Id`, `user_Id`, `domain_Id`, `subdomain_Id`, `sub_on`) VALUES
-('', 'USR924357814934', '01-TPI', '01-TPI-A', '0000-00-00 00:00:00'),
-('USUB316754147743448624924', 'USR924357814934', '01-TPI', '02-TPI-B', '0000-00-00 00:00:00'),
-('USUB371119159644237221478', 'USR924357814934', '02-EDU', '01-EDU-STUD', '0000-00-00 00:00:00'),
-('USUB419787769656825954223', 'USR924357814934', '02-EDU', '02-EDU-TCHR', '2018-06-07 14:03:43'),
-('USUB866945995851248681346', 'USR924357814934', '01-TPI', '03-TPI-C', '0000-00-00 00:00:00');
+('1', 'USR924357814934', '01-TPI', 'TPI-01-A', '2018-06-15 21:00:54'),
+('2', 'USR924357814934', '01-TPI', 'TPI-02-B', '0000-00-00 00:00:00'),
+('3', 'USR924357814934', '01-TPI', 'TPI-03-C', '0000-00-00 00:00:00');
 
 --
 -- Constraints for dumped tables
@@ -1710,7 +1867,7 @@ ALTER TABLE `dom_role_history`
 -- Constraints for table `dom_stat`
 --
 ALTER TABLE `dom_stat`
-  ADD CONSTRAINT `dom_stat_ibfk_1` FOREIGN KEY (`domain_Id`) REFERENCES `dom_info` (`domain_Id`);
+  ADD CONSTRAINT `dom_stat_ibfk_1` FOREIGN KEY (`domain_Id`) REFERENCES `dom_info_bak` (`domain_Id`);
 
 --
 -- Constraints for table `move_info`
@@ -1726,17 +1883,46 @@ ALTER TABLE `move_sign`
   ADD CONSTRAINT `move_sign_ibfk_2` FOREIGN KEY (`user_Id`) REFERENCES `user_account` (`user_Id`);
 
 --
--- Constraints for table `move_stat_deep`
+-- Constraints for table `newsfeed_move`
 --
-ALTER TABLE `move_stat_deep`
-  ADD CONSTRAINT `move_stat_deep_ibfk_1` FOREIGN KEY (`move_Id`) REFERENCES `move_info` (`move_Id`);
+ALTER TABLE `newsfeed_move`
+  ADD CONSTRAINT `newsfeed_move_ibfk_2` FOREIGN KEY (`move_Id`) REFERENCES `move_info` (`move_Id`),
+  ADD CONSTRAINT `newsfeed_move_ibfk_1` FOREIGN KEY (`info_Id`) REFERENCES `newsfeed_info` (`info_Id`);
+
+--
+-- Constraints for table `newsfeed_user_fav`
+--
+ALTER TABLE `newsfeed_user_fav`
+  ADD CONSTRAINT `newsfeed_user_fav_ibfk_1` FOREIGN KEY (`info_Id`) REFERENCES `newsfeed_info` (`info_Id`),
+  ADD CONSTRAINT `newsfeed_user_fav_ibfk_2` FOREIGN KEY (`user_Id`) REFERENCES `user_account` (`user_Id`);
+
+--
+-- Constraints for table `newsfeed_user_likes`
+--
+ALTER TABLE `newsfeed_user_likes`
+  ADD CONSTRAINT `newsfeed_user_likes_ibfk_2` FOREIGN KEY (`user_Id`) REFERENCES `user_account` (`user_Id`),
+  ADD CONSTRAINT `newsfeed_user_likes_ibfk_1` FOREIGN KEY (`info_Id`) REFERENCES `newsfeed_info` (`info_Id`);
+
+--
+-- Constraints for table `newsfeed_user_views`
+--
+ALTER TABLE `newsfeed_user_views`
+  ADD CONSTRAINT `newsfeed_user_views_ibfk_2` FOREIGN KEY (`user_Id`) REFERENCES `user_account` (`user_Id`),
+  ADD CONSTRAINT `newsfeed_user_views_ibfk_1` FOREIGN KEY (`info_Id`) REFERENCES `newsfeed_info` (`info_Id`);
+
+--
+-- Constraints for table `newsfeed_user_votes`
+--
+ALTER TABLE `newsfeed_user_votes`
+  ADD CONSTRAINT `newsfeed_user_votes_ibfk_2` FOREIGN KEY (`user_Id`) REFERENCES `user_account` (`user_Id`),
+  ADD CONSTRAINT `newsfeed_user_votes_ibfk_1` FOREIGN KEY (`info_Id`) REFERENCES `newsfeed_info` (`info_Id`);
 
 --
 -- Constraints for table `srvy_info`
 --
 ALTER TABLE `srvy_info`
-  ADD CONSTRAINT `srvy_info_ibfk_1` FOREIGN KEY (`domain_Id`) REFERENCES `dom_info` (`domain_Id`),
-  ADD CONSTRAINT `srvy_info_ibfk_2` FOREIGN KEY (`subdomain_Id`) REFERENCES `dom_info` (`domain_Id`);
+  ADD CONSTRAINT `srvy_info_ibfk_1` FOREIGN KEY (`domain_Id`) REFERENCES `dom_info_bak` (`domain_Id`),
+  ADD CONSTRAINT `srvy_info_ibfk_2` FOREIGN KEY (`subdomain_Id`) REFERENCES `dom_info_bak` (`domain_Id`);
 
 --
 -- Constraints for table `srvy_info_stat`
@@ -1776,12 +1962,19 @@ ALTER TABLE `srvy_q_optusers`
   ADD CONSTRAINT `srvy_q_optusers_ibfk_2` FOREIGN KEY (`user_Id`) REFERENCES `user_account` (`user_Id`);
 
 --
+-- Constraints for table `subs_subdom_info`
+--
+ALTER TABLE `subs_subdom_info`
+  ADD CONSTRAINT `subs_subdom_info_ibfk_1` FOREIGN KEY (`domain_Id`) REFERENCES `subs_dom_info` (`domain_Id`);
+
+--
 -- Constraints for table `union_account`
 --
 ALTER TABLE `union_account`
+  ADD CONSTRAINT `union_account_ibfk_6` FOREIGN KEY (`subdomain_Id`) REFERENCES `subs_subdom_info` (`subdomain_Id`),
   ADD CONSTRAINT `union_account_ibfk_1` FOREIGN KEY (`admin_Id`) REFERENCES `user_account` (`user_Id`),
-  ADD CONSTRAINT `union_account_ibfk_2` FOREIGN KEY (`domain_Id`) REFERENCES `dom_info` (`domain_Id`),
-  ADD CONSTRAINT `union_account_ibfk_3` FOREIGN KEY (`subdomain_Id`) REFERENCES `dom_info` (`domain_Id`);
+  ADD CONSTRAINT `union_account_ibfk_4` FOREIGN KEY (`main_branch_Id`) REFERENCES `union_branch` (`branch_Id`),
+  ADD CONSTRAINT `union_account_ibfk_5` FOREIGN KEY (`domain_Id`) REFERENCES `subs_dom_info` (`domain_Id`);
 
 --
 -- Constraints for table `union_branch`
@@ -1805,9 +1998,10 @@ ALTER TABLE `union_lang`
 -- Constraints for table `union_mem`
 --
 ALTER TABLE `union_mem`
-  ADD CONSTRAINT `union_mem_ibfk_3` FOREIGN KEY (`branch_Id`) REFERENCES `union_branch` (`branch_Id`),
   ADD CONSTRAINT `union_mem_ibfk_1` FOREIGN KEY (`union_Id`) REFERENCES `union_account` (`union_Id`),
-  ADD CONSTRAINT `union_mem_ibfk_2` FOREIGN KEY (`user_Id`) REFERENCES `user_account` (`user_Id`);
+  ADD CONSTRAINT `union_mem_ibfk_2` FOREIGN KEY (`user_Id`) REFERENCES `user_account` (`user_Id`),
+  ADD CONSTRAINT `union_mem_ibfk_3` FOREIGN KEY (`branch_Id`) REFERENCES `union_branch` (`branch_Id`),
+  ADD CONSTRAINT `union_mem_ibfk_4` FOREIGN KEY (`role_Id`) REFERENCES `union_mem_roles` (`role_Id`);
 
 --
 -- Constraints for table `union_mem_chat`
@@ -1817,18 +2011,32 @@ ALTER TABLE `union_mem_chat`
   ADD CONSTRAINT `union_mem_chat_ibfk_2` FOREIGN KEY (`msg_by`) REFERENCES `union_mem` (`member_Id`);
 
 --
+-- Constraints for table `union_mem_perm_branch`
+--
+ALTER TABLE `union_mem_perm_branch`
+  ADD CONSTRAINT `union_mem_perm_branch_ibfk_1` FOREIGN KEY (`role_Id`) REFERENCES `union_mem_roles` (`role_Id`);
+
+--
+-- Constraints for table `union_mem_perm_union`
+--
+ALTER TABLE `union_mem_perm_union`
+  ADD CONSTRAINT `union_mem_perm_union_ibfk_1` FOREIGN KEY (`role_Id`) REFERENCES `union_mem_roles` (`role_Id`);
+
+--
 -- Constraints for table `union_mem_req`
 --
 ALTER TABLE `union_mem_req`
   ADD CONSTRAINT `union_mem_req_ibfk_1` FOREIGN KEY (`union_Id`) REFERENCES `union_account` (`union_Id`),
   ADD CONSTRAINT `union_mem_req_ibfk_3` FOREIGN KEY (`req_to`) REFERENCES `user_account` (`user_Id`),
-  ADD CONSTRAINT `union_mem_req_ibfk_4` FOREIGN KEY (`req_from`) REFERENCES `union_mem` (`member_Id`);
+  ADD CONSTRAINT `union_mem_req_ibfk_4` FOREIGN KEY (`req_from`) REFERENCES `union_mem` (`member_Id`),
+  ADD CONSTRAINT `union_mem_req_ibfk_5` FOREIGN KEY (`branch_Id`) REFERENCES `union_branch` (`branch_Id`);
 
 --
--- Constraints for table `union_mem_stat`
+-- Constraints for table `union_mem_roles`
 --
-ALTER TABLE `union_mem_stat`
-  ADD CONSTRAINT `union_mem_stat_ibfk_1` FOREIGN KEY (`union_Id`) REFERENCES `union_account` (`union_Id`);
+ALTER TABLE `union_mem_roles`
+  ADD CONSTRAINT `union_mem_roles_ibfk_1` FOREIGN KEY (`union_Id`) REFERENCES `union_account` (`union_Id`),
+  ADD CONSTRAINT `union_mem_roles_ibfk_2` FOREIGN KEY (`branch_Id`) REFERENCES `union_branch` (`branch_Id`);
 
 --
 -- Constraints for table `union_profile_geo`
@@ -1841,13 +2049,8 @@ ALTER TABLE `union_profile_geo`
 --
 ALTER TABLE `union_sup`
   ADD CONSTRAINT `union_sup_ibfk_1` FOREIGN KEY (`union_Id`) REFERENCES `union_account` (`union_Id`),
-  ADD CONSTRAINT `union_sup_ibfk_2` FOREIGN KEY (`user_Id`) REFERENCES `user_account` (`user_Id`);
-
---
--- Constraints for table `union_sup_stat`
---
-ALTER TABLE `union_sup_stat`
-  ADD CONSTRAINT `union_sup_stat_ibfk_1` FOREIGN KEY (`union_Id`) REFERENCES `union_account` (`union_Id`);
+  ADD CONSTRAINT `union_sup_ibfk_2` FOREIGN KEY (`user_Id`) REFERENCES `user_account` (`user_Id`),
+  ADD CONSTRAINT `union_sup_ibfk_3` FOREIGN KEY (`branch_Id`) REFERENCES `union_branch` (`branch_Id`);
 
 --
 -- Constraints for table `user_frnds`
@@ -1868,8 +2071,8 @@ ALTER TABLE `user_frnds_req`
 --
 ALTER TABLE `user_info`
   ADD CONSTRAINT `user_info_ibfk_1` FOREIGN KEY (`role_Id`) REFERENCES `dom_role_info` (`role_Id`),
-  ADD CONSTRAINT `user_info_ibfk_2` FOREIGN KEY (`domain_Id`) REFERENCES `dom_info` (`domain_Id`),
-  ADD CONSTRAINT `user_info_ibfk_4` FOREIGN KEY (`subdomain_Id`) REFERENCES `dom_info` (`domain_Id`);
+  ADD CONSTRAINT `user_info_ibfk_2` FOREIGN KEY (`domain_Id`) REFERENCES `dom_info_bak` (`domain_Id`),
+  ADD CONSTRAINT `user_info_ibfk_4` FOREIGN KEY (`subdomain_Id`) REFERENCES `dom_info_bak` (`domain_Id`);
 
 --
 -- Constraints for table `user_message`
@@ -1919,9 +2122,9 @@ ALTER TABLE `user_shook_views`
 -- Constraints for table `user_subscription`
 --
 ALTER TABLE `user_subscription`
-  ADD CONSTRAINT `user_subscription_ibfk_1` FOREIGN KEY (`domain_Id`) REFERENCES `dom_info` (`domain_Id`),
-  ADD CONSTRAINT `user_subscription_ibfk_2` FOREIGN KEY (`subdomain_Id`) REFERENCES `dom_info` (`domain_Id`),
-  ADD CONSTRAINT `user_subscription_ibfk_3` FOREIGN KEY (`user_Id`) REFERENCES `user_account` (`user_Id`);
+  ADD CONSTRAINT `user_subscription_ibfk_3` FOREIGN KEY (`user_Id`) REFERENCES `user_account` (`user_Id`),
+  ADD CONSTRAINT `user_subscription_ibfk_4` FOREIGN KEY (`domain_Id`) REFERENCES `subs_dom_info` (`domain_Id`),
+  ADD CONSTRAINT `user_subscription_ibfk_5` FOREIGN KEY (`subdomain_Id`) REFERENCES `subs_subdom_info` (`subdomain_Id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
