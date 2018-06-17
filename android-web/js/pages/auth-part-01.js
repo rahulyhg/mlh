@@ -63,7 +63,7 @@ document.getElementById("authPhNumberDisplay").disabled=true;
 document.getElementById("auth-phoneNumber").disabled=true;
 var fullphNumber=AUTH_EXTENSION_PHONENUMBER+'-'+phNumber;
 /* Code to Send OTPCode */
-// js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.auth.part01.php',
+// js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.user.authentication.php',
 // { action:'VALIDATE_MOBILE_OTP', OTPCode:otpcode, msisdn:fullphNumber },function(response){});
 
  var content='<div id="optcodeDivision">';

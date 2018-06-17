@@ -2,12 +2,29 @@
 session_start();
 require_once '../api/app.initiator.php';
 require_once '../api/app.database.php';
-require_once '../dal/data.module.user.authentication.php';
+require_once '../dal/data.module.app.user.authentication.php';
+require_once '../util/util.mobile.sms.php';
 $logger=Logger::getLogger("controller.module.app.user.authentication.php");
 
 if(isset($_GET["action"])){
+  /* Action Events used By auth-part-01.php/auth-part-01.js ::: START */
+  if($_GET["action"]==='VALIDATE_MOBILE_OTP'){
+    if(isset($_GET["OTPCode"])){
+	  if(isset($_GET["msisdn"])){
+	  $msisdn=str_replace("+","",$_GET["msisdn"]);
+	  $otpcode=$_GET["OTPCode"];
+	  $smsObj=new mobileSMS();
+	  echo $smsObj->sendMobileOTP($otpcode,$msisdn);
+	  }
+	}
+  }
+  else if($_GET["action"]==='MOBILE_SMS_BALANCE'){
+     $smsObj=new mobileSMS();
+	 echo $smsObj->getMobileSMSBalance();
+  }
+  /* Action Events used By auth-part-01.php/auth-part-01.js ::: END */
   /* Action Events used By auth-part-02.php/auth-part-02.js ::: START */
-  if($_GET["action"]=='USERINFO_BY_PHONENUMBER'){
+  else if($_GET["action"]=='USERINFO_BY_PHONENUMBER'){
     if(isset($_GET["countrycode"])){
 	 if(isset($_GET["phoneNumber"])){
 	   $countrycode=$_GET["countrycode"];
