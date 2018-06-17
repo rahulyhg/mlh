@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 17, 2018 at 12:36 PM
+-- Generation Time: Jun 17, 2018 at 06:14 PM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.4.3
 
@@ -1122,6 +1122,7 @@ CREATE TABLE IF NOT EXISTS `union_branch` (
   `location` varchar(25) NOT NULL,
   `state` varchar(25) NOT NULL,
   `country` varchar(25) NOT NULL,
+  `createdOn` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`branch_Id`),
   KEY `union_Id` (`union_Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -1771,9 +1772,8 @@ CREATE TABLE IF NOT EXISTS `user_subscription` (
 --
 
 INSERT INTO `user_subscription` (`sub_Id`, `user_Id`, `domain_Id`, `subdomain_Id`, `sub_on`) VALUES
-('1', 'USR924357814934', '01-TPI', 'TPI-01-A', '2018-06-15 21:00:54'),
-('2', 'USR924357814934', '01-TPI', 'TPI-02-B', '0000-00-00 00:00:00'),
-('3', 'USR924357814934', '01-TPI', 'TPI-03-C', '0000-00-00 00:00:00');
+('SUBUSR9243578149341330000', 'USR924357814934', '02-EDU', 'EDU-01-STUD', '2018-06-17 16:53:55'),
+('SUBUSR9243578149341330001', 'USR924357814934', '02-EDU', 'EDU-02-TCHR', '2018-06-17 16:53:55');
 
 --
 -- Constraints for dumped tables
