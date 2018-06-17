@@ -1,6 +1,23 @@
 var AVATAR_URL;
 var IMG_URL;
 
+$(document).ready(function(){
+ bgstyle();
+ $(".lang_"+USR_LANG).css('display','block');
+ sel_tmpl('tmpl_button');
+ cloudservers_auth(); // Get CloudName from Cloudinary
+});
+function sel_tmpl(id){
+var arry=["tmpl_button","tmpl_avatar","tmpl_profilepic"];
+for(var index=0;index<arry.length;index++){
+  if(id===arry[index]){
+    if($('#'+arry[index]).hasClass('hide-block')){ $('#'+arry[index]).removeClass('hide-block'); }
+  } else {
+    if(!$('#'+arry[index]).hasClass('hide-block')){ $('#'+arry[index]).addClass('hide-block'); }
+  }
+}
+}
+
 function authpart03_Completed(){
  var init_session_data='{"session_set":[{ "key":"AUTH_PART_03" , "value" : "COMPLETED" }],"session_get":[""]}';
  js_session(init_session_data,function(response){
@@ -9,15 +26,9 @@ function authpart03_Completed(){
  });
 }
 
-$(document).ready(function(){
-bgstyle();
-cloudservers_auth(); // Get CloudName from Cloudinary
-$(".lang_"+USR_LANG).css('display','block');
-});
-
 function reg_data_store(profile_pic){
 if(AUTH_USER_ID==='0'){ /* New User Account */
-  js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.auth.part03.php',
+  js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.user.authentication.php',
      { action:'ADD_NEW_USERACCOUNT', username: AUTH_USER_USERNAME, surName:AUTH_USER_SURNAME, name: AUTH_USER_FULLNAME,
        mcountrycode: AUTH_USER_COUNTRYCODE, mobile:AUTH_USER_PHONENUMBER, dob: AUTH_USER_DOB, gender: AUTH_USER_GENDER,
        profile_pic: profile_pic, minlocation: AUTH_USER_LOCALITY, location: AUTH_USER_LOCATION, 
@@ -25,7 +36,7 @@ if(AUTH_USER_ID==='0'){ /* New User Account */
 	   function(resp){  console.log(resp);window.location.href=PROJECT_URL+"subscribe/categories";  });
 }
 else {  /* Update Existing Account */
-  js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.auth.part03.php',
+  js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.user.authentication.php',
      { action:'UPDATE_EXISTING_USERACCOUNT', user_Id: AUTH_USER_ID, username: AUTH_USER_USERNAME, 
        surName: AUTH_USER_SURNAME, name: AUTH_USER_FULLNAME, mcountrycode: AUTH_USER_COUNTRYCODE,
 	   mobile:AUTH_USER_PHONENUMBER, mob_val:'Y',  dob: AUTH_USER_DOB, gender: AUTH_USER_GENDER, 

@@ -45,19 +45,6 @@ if($_SESSION["AUTHENTICATION_STATUS"]=='INCOMPLETED'){
 #pic_done { display:none; }
 </style>
 <script type="text/javascript">
-$(document).ready(function(){
- sel_tmpl('tmpl_button');
-});
-function sel_tmpl(id){
-var arry=["tmpl_button","tmpl_avatar","tmpl_profilepic"];
-for(var index=0;index<arry.length;index++){
-  if(id===arry[index]){
-    if($('#'+arry[index]).hasClass('hide-block')){ $('#'+arry[index]).removeClass('hide-block'); }
-  } else {
-    if(!$('#'+arry[index]).hasClass('hide-block')){ $('#'+arry[index]).addClass('hide-block'); }
-  }
-}
-}
 
 </script>
 </head>

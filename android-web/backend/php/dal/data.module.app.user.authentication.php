@@ -22,7 +22,7 @@ class user_authentication {
   
   function query_updateUserInfo($user_Id,$username,$surName,$name,$mcountrycode,$mobile,$mob_val,$dob,$gender,
 	    $profile_pic,$about_me,$minlocation,$location,$state,$country,$isAdmin,$user_tz,$acc_active){
-  /* PAGES UTILIZED : auth-part-04.php */
+  /* PAGES UTILIZED : auth-part-04.php, auth-part-05.php */
     $sql="UPDATE user_account SET ";
 	if(strlen($username)>0){  $sql.=" username='".$username."', "; }
 	if(strlen($surName)>0){  $sql.=" surName='".$surName."', "; }
@@ -47,6 +47,7 @@ class user_authentication {
   
   function query_addNewUser($user_Id,$username,$surName,$name,$mcountrycode,$mobile,$mob_val,$dob,$gender,
 	  $profile_pic,$about_me,$minlocation,$location,$state,$country,$created_On,$isAdmin,$user_tz,$acc_active){
+  /* PAGES UTILIZED : auth-part-05.php */
     $sql="INSERT INTO user_account(user_Id,username,surName,name,mcountrycode,mobile,mob_val,dob,gender,";
 	$sql.="profile_pic,about_me,minlocation,location,state,country,created_On,isAdmin,user_tz,acc_active) ";
 	$sql.="VALUES ('".$user_Id."','".$username."','".$surName."','".$name."','".$mcountrycode."','".$mobile."',";

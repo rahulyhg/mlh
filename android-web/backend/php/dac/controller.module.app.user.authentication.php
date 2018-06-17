@@ -75,7 +75,7 @@ if(isset($_GET["action"])){
   
   /* No Action Events used By auth-part-03.php/auth-part-03.js */
   
-  /* Action Events used By auth-part-04.php/auth-part-04.js ::: START */
+  /* Action Events used By auth-part-04.php/auth-part-04.js, auth-part-05.php/auth-part-05.js, ::: START */
   else if($_GET["action"]==='UPDATE_EXISTING_USERACCOUNT') {
     $usrauthObj=new user_authentication();
     $dbObj=new Database();
@@ -110,7 +110,68 @@ if(isset($_GET["action"])){
 	  
 	} else { echo 'MISSING_USERID';  }
  }
+  /* Action Events used By auth-part-04.php/auth-part-04.js, auth-part-05.php/auth-part-05.js, ::: END */
  
+  /* Action Events used By auth-part-05.php/auth-part-05.js ::: START */
+  else if($_GET["action"]==='ADD_NEW_USERACCOUNT'){
+  if(isset($_GET["username"]) && isset($_GET["surName"]) && isset($_GET["name"]) && 
+     isset($_GET["mcountrycode"]) && isset($_GET["mobile"]) && isset($_GET["dob"]) && isset($_GET["gender"]) && 
+	 isset($_GET["profile_pic"]) && isset($_GET["minlocation"]) &&  isset($_GET["location"]) && 
+	 isset($_GET["state"]) && isset($_GET["country"]) && isset($_GET["user_tz"])){
+	$idObj=new identity();
+	$usrauthObj=new user_authentication();
+	$dbObj=new Database();
+	
+	$user_Id=$idObj->user_account_id();    
+	$username=$_GET["username"];       
+	$surName=$_GET["surName"];
+	$name=$_GET["name"];   
+	$mcountrycode=$_GET["mcountrycode"];     
+	$mobile=$_GET["mobile"];
+	$mob_val='Y';                  
+	$dob=$_GET["dob"];                  
+	$gender=$_GET["gender"];
+	$profile_pic=$_GET["profile_pic"];    
+	$about_me='';
+	$minlocation=$_GET["minlocation"];    
+	$location=$_GET["location"];
+	$state=$_GET["state"];        
+	$country=$_GET["country"];    
+	$created_On=date('Y-m-d H:i:s');
+	$isAdmin='N';     
+	$user_tz=$_GET["user_tz"];     
+	$acc_active='Y';   
+	
+	$addQuery=$usrauthObj->query_addNewUser($user_Id,$username,$surName,$name,$mcountrycode,$mobile,$mob_val,
+			                       $dob,$gender,$profile_pic,$about_me,$minlocation,$location,$state,$country,$created_On,
+								   $isAdmin,$user_tz,$acc_active);
+    echo $dbObj->addupdateData($addQuery);
+	
+	/* Session: */
+	$_SESSION["AUTH_USER_ID"]=$user_Id;
+	$_SESSION["AUTH_USER_SUBSCRIPTIONS"]='0';
+	$_SESSION["AUTH_USER_SUBSCRIPTIONS_LIST"]='{}';
+   } else {
+		    $content='MISSING ';
+			if(!isset($_GET["username"])) { $content.='USERNAME, '; }
+			if(!isset($_GET["surName"])) { $content.='SURNAME, '; }
+			if(!isset($_GET["fullName"])) { $content.='FULLNAME, '; }
+			if(!isset($_GET["countrycode"])) { $content.='COUNTRYCODE, '; }
+			if(!isset($_GET["phone"])) { $content.='PHONE, '; }
+			if(!isset($_GET["dob"])) {  $content.='DATEOFBIRTH, ';  }
+			if(!isset($_GET["gender"])) { $content.='GENDER, '; }
+			if(!isset($_GET["user_profilepic"])) { $content.='PROFILEPIC, '; }
+			if(!isset($_GET["user_locality"])) { $content.='LOCALITY, '; }
+			if(!isset($_GET["user_location"])) { $content.='LOCATION, '; }
+			if(!isset($_GET["user_state"])) { $content.='STATE, '; }
+			if(!isset($_GET["user_country"])) { $content.='COUNTRY, '; }
+			if(!isset($_GET["user_tz"])) { $content.='TIMESTAMP, ';  }
+			$content=chop($content,", ");
+			echo $content;
+   }
+		  
+ } 
+  /* Action Events used By auth-part-05.php/auth-part-05.js ::: END */
   
   else { echo 'NO_ACTION'; }
 } 
