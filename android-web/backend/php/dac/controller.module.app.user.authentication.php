@@ -3,7 +3,9 @@ session_start();
 require_once '../api/app.initiator.php';
 require_once '../api/app.database.php';
 require_once '../dal/data.module.app.user.authentication.php';
+require_once '../lal/logic.appIdentity.php';
 require_once '../util/util.mobile.sms.php';
+
 $logger=Logger::getLogger("controller.module.app.user.authentication.php");
 
 if(isset($_GET["action"])){
@@ -73,6 +75,42 @@ if(isset($_GET["action"])){
   
   /* No Action Events used By auth-part-03.php/auth-part-03.js */
   
+  /* Action Events used By auth-part-04.php/auth-part-04.js ::: START */
+  else if($_GET["action"]==='UPDATE_EXISTING_USERACCOUNT') {
+    $usrauthObj=new user_authentication();
+    $dbObj=new Database();
+    if(isset($_GET["user_Id"])){
+	   $user_Id=$_GET["user_Id"]; 
+	   $username='';               if(isset($_GET["username"])) { $username=$_GET["username"]; }
+	   $surName='';                if(isset($_GET["surName"])) { $surName=$_GET["surName"]; }
+	   $name='';                   if(isset($_GET["name"])) { $name=$_GET["name"]; }
+	   $mcountrycode=''; 			if(isset($_GET["mcountrycode"])) { $mcountrycode=$_GET["mcountrycode"];  }
+	   $mobile=''; 			    if(isset($_GET["mobile"])) { $mobile=$_GET["mobile"];  }
+	   $mob_val='';				if(isset($_GET["mob_val"])) { $mob_val=$_GET["mob_val"];  }
+	   $dob='';  					if(isset($_GET["dob"])) {  $dob=$_GET["dob"];  }
+	   $gender=''; 			    if(isset($_GET["gender"])) { $gender=$_GET["gender"];  }
+	   $profile_pic='';  		if(isset($_GET["profile_pic"])) { $profile_pic=$_GET["profile_pic"]; }
+	   $about_me='';			if(isset($_GET["about_me"])) { $about_me=$_GET["about_me"]; }
+	   $minlocation='';  		if(isset($_GET["minlocation"])) { $minlocation=$_GET["minlocation"]; }
+	   $location='';  		if(isset($_GET["location"])) { $location=$_GET["location"]; }
+	   $state='';  			if(isset($_GET["state"])) { $state=$_GET["state"];  }
+	   $country='';  			if(isset($_GET["country"])) { $country=$_GET["country"]; }
+	   $isAdmin='';			if(isset($_GET["isAdmin"])) { $isAdmin=$_GET["isAdmin"]; }
+       $user_tz='';  				if(isset($_GET["user_tz"])) { $user_tz=$_GET["user_tz"];  }
+	   $acc_active='';		if(isset($_GET["acc_active"])) { $acc_active=$_GET["acc_active"]; }
+	   
+	  $updateQuery=$usrauthObj->query_updateUserInfo($user_Id,$username,$surName,$name,$mcountrycode,$mobile,
+	                      $mob_val,$dob,$gender,$profile_pic,$about_me,$minlocation,$location,$state,$country,$isAdmin,
+						  $user_tz,$acc_active);
+	  echo $updateQuery;
+	  echo $dbObj->addupdateData($updateQuery);
+	  
+	  $_SESSION["AUTH_USER_SUBSCRIPTIONS"]='0';
+	  $_SESSION["AUTH_USER_SUBSCRIPTIONS_LIST"]='{}';
+	  
+	} else { echo 'MISSING_USERID';  }
+ }
+ 
   
   else { echo 'NO_ACTION'; }
 } 
