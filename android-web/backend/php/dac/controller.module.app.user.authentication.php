@@ -7,6 +7,7 @@ require_once '../util/util.mobile.sms.php';
 $logger=Logger::getLogger("controller.module.app.user.authentication.php");
 
 if(isset($_GET["action"])){
+
   /* Action Events used By auth-part-01.php/auth-part-01.js ::: START */
   if($_GET["action"]==='VALIDATE_MOBILE_OTP'){
     if(isset($_GET["OTPCode"])){
@@ -23,6 +24,7 @@ if(isset($_GET["action"])){
 	 echo $smsObj->getMobileSMSBalance();
   }
   /* Action Events used By auth-part-01.php/auth-part-01.js ::: END */
+ 
   /* Action Events used By auth-part-02.php/auth-part-02.js ::: START */
   else if($_GET["action"]=='USERINFO_BY_PHONENUMBER'){
     if(isset($_GET["countrycode"])){
@@ -68,6 +70,9 @@ if(isset($_GET["action"])){
    } else { echo 'MISSING_USER_ID'; }
   }
   /* Action Events used By auth-part-02.php/auth-part-02.js ::: END */
+  
+  /* No Action Events used By auth-part-03.php/auth-part-03.js */
+  
   
   else { echo 'NO_ACTION'; }
 } 

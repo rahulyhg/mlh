@@ -19,63 +19,6 @@ if($_SESSION["AUTHENTICATION_STATUS"]=='INCOMPLETED'){
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/bg-styles-common.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/auth-part-03-bg-styles.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/auth-part-03.js"></script>
- <script type="text/javascript">
- function authAlert(id){
-  var arryIds=["alert_english_surName","alert_english_fullName","alert_english_gender","alert_english_dob",
-			  "alert_english_country","alert_english_state","alert_english_location","alert_english_locality"];
-  for(var index=0;index<arryIds.length;index++){
-	if(arryIds[index]===id){ $("#authFormModal").modal();$("#"+arryIds[index]).removeClass('hide-block'); }
-	else { $("#"+arryIds[index]).addClass('hide-block'); }
-  }
- }
- function authDone(){
-   /* Set AUTHENTICATION_STATUS=DONE */
-  var surname=document.getElementById("reg_"+USR_LANG+"_surname").value;
-  var name=document.getElementById("reg_"+USR_LANG+"_name").value;
-  var dob=document.getElementById("reg_"+USR_LANG+"_dob").value;
-  var gender=document.getElementById("reg_"+USR_LANG+"_gender").value;
-  var country=document.getElementById("reg_"+USR_LANG+"_country").value;
-  var state=document.getElementById("reg_"+USR_LANG+"_state").value;
-  var location=document.getElementById("reg_"+USR_LANG+"_location").value;
-  var locality=document.getElementById("reg_"+USR_LANG+"_locality").value;
-   
-  if(surname.length>0){
-  if(name.length>0){
-  if(dob.length>0){
-  if(gender.length>0){
-  if(country.length>0){
-  if(state.length>0){
-  if(location.length>0){
-  if(locality.length>0){
-     var sessionJSON='{"session_set":[';
-	     sessionJSON+='{"key":"AUTH_USER_SURNAME","value":"'+surname+'"},';
-	     sessionJSON+='{"key":"AUTH_USER_FULLNAME","value":"'+name+'"},';
-	     sessionJSON+='{"key":"AUTH_USER_GENDER","value":"'+gender+'"},';
-	     sessionJSON+='{"key":"AUTH_USER_DOB","value":"'+dob+'"},';
-	     sessionJSON+='{"key":"AUTH_USER_COUNTRY","value":"'+country+'"},';
-	     sessionJSON+='{"key":"AUTH_USER_STATE","value":"'+state+'"},';
-	     sessionJSON+='{"key":"AUTH_USER_LOCATION","value":"'+location+'"},';
-	     sessionJSON+='{"key":"AUTH_USER_LOCALITY","value":"'+locality+'"}';
-	     sessionJSON+='],';
-	     sessionJSON+='"session_get":["AUTH_USER_ID","AUTH_USER_USERNAME",';
-	     sessionJSON+='"AUTH_USER_TIMEZONE","AUTH_USER_SURNAME","AUTH_USER_FULLNAME","AUTH_USER_GENDER","AUTH_USER_DOB",';
-	     sessionJSON+='"AUTH_USER_COUNTRY","AUTH_USER_STATE","AUTH_USER_LOCATION","AUTH_USER_LOCALITY",';
-	     sessionJSON+='"AUTH_USER_COUNTRYCODE","AUTH_USER_PHONENUMBER" ]}';
-     js_session(sessionJSON,function(response){ 
-	   if(AUTH_USER_PROFILEPIC.length>0){
-			window.location.href=PROJECT_URL+"initializer/profilepic"; 
-		} else { window.location.href=PROJECT_URL+"initializer/setup-profilepic";  }
-	 });
-  } else { authAlert("alert_english_locality"); }
-  } else { authAlert("alert_english_location"); }
-  } else { authAlert("alert_english_state"); }
-  } else { authAlert("alert_english_country"); }
-  } else { authAlert("alert_english_gender"); }
-  } else { authAlert("alert_english_dob"); }
-  } else { authAlert("alert_english_fullName"); }
-  } else { authAlert("alert_english_surName"); }
-}
- </script>
  <style>
   body { background-color:#0ba0da; }
  </style>
