@@ -104,10 +104,6 @@ if(isset($_GET["action"])){
 						  $user_tz,$acc_active);
 	  echo $updateQuery;
 	  echo $dbObj->addupdateData($updateQuery);
-	  
-	  $_SESSION["AUTH_USER_SUBSCRIPTIONS"]='0';
-	  $_SESSION["AUTH_USER_SUBSCRIPTIONS_LIST"]='{}';
-	  
 	} else { echo 'MISSING_USERID';  }
  }
   /* Action Events used By auth-part-04.php/auth-part-04.js, auth-part-05.php/auth-part-05.js, ::: END */
@@ -149,8 +145,6 @@ if(isset($_GET["action"])){
 	
 	/* Session: */
 	$_SESSION["AUTH_USER_ID"]=$user_Id;
-	$_SESSION["AUTH_USER_SUBSCRIPTIONS"]='0';
-	$_SESSION["AUTH_USER_SUBSCRIPTIONS_LIST"]='{}';
    } else {
 		    $content='MISSING ';
 			if(!isset($_GET["username"])) { $content.='USERNAME, '; }
