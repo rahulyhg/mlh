@@ -11,7 +11,7 @@ function loadDataByPhoneNumberAndCountryCode(){
  * IF EXISTS, collect surName, fullName, country, state, location, minlocation
  * ELSE, Empty Form
  */
-js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.auth.part02.php',
+js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.user.authentication.php',
 {action:'USERINFO_BY_PHONENUMBER',countrycode:AUTH_USER_COUNTRYCODE, phoneNumber:AUTH_USER_PHONENUMBER},function(response){
 response=JSON.parse(response);
 if(response.length>0){
@@ -58,7 +58,7 @@ function checkUserAvailability(){
   var user_Id=document.getElementById("reg_"+USR_LANG+"_userId").value;
   var username=document.getElementById("reg_"+USR_LANG+"_username").value;
   if(username.length>0){
-   js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.auth.part02.php',
+   js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.user.authentication.php',
    { action:'CHECK_USERNAME_AVAILABILITY',user_Id:user_Id, username:username },function(response){ 
       if(response=='USERNAME_NOT_EXISTS') {   /* keep in Session and Move Forward  */
 		display_availabilityMsg();
