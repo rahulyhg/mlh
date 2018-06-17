@@ -1,18 +1,21 @@
 <?php
 class user_authentication {
-  /* auth-part-01.php */
+/* CLASS DESCRIPTION : This DAL Class is used by Controller (controller.module.app.user.authentication.php) */
+
   function query_getuserInfoByPhoneNumber($countrycode, $phoneNumber){
+  /* PAGES UTILIZED : auth-part-02.php */
     $query="SELECT * FROM user_account WHERE mcountrycode='".$countrycode."' AND mobile='".$phoneNumber."';";
     return $query;
   }
   
-  /* auth-part-02.php */
   function query_checkUsernameAvailability($username){
+  /* PAGES UTILIZED : auth-part-02.php */
     $sql="SELECT * FROM `user_account` WHERE username='".$username."';";
 	return $sql;
   }
   
   function query_checkUsernameAvailabilityExceptcurrentUserId($user_Id,$username){
+  /* PAGES UTILIZED : auth-part-02.php */
     $sql="SELECT * FROM `user_account` WHERE username='".$username."' AND NOT user_Id='".$user_Id."';";
 	return $sql;
   }
