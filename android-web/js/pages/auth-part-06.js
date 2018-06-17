@@ -56,7 +56,7 @@ function domainSubscription(domainIndex,domain_Id,subdomainIdList){
 }
 function getListOfCategories(){
  js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.subscriptions.php',
-  { action: 'SET_SESSION_DOMAINSUBSCRIPTION', user_Id:AUTH_USER_ID }, function(result){
+  { action: 'GET_SESSION_DOMAINSUBSCRIPTION', user_Id:AUTH_USER_ID }, function(result){
    result=JSON.parse(result);
    SUBSCRIPTION_JSONDATA_BUILDER=result;
    console.log(JSON.stringify(result));

@@ -6,7 +6,7 @@ require_once '../dal/data.module.app.subscriptions.php';
 require_once '../lal/logic.appIdentity.php';
 $logger=Logger::getLogger("controller.module.app.subscriptions.php");
 if(isset($_GET["action"])){
- if($_GET["action"]=='SET_SESSION_DOMAINSUBSCRIPTION'){
+ if($_GET["action"]=='GET_SESSION_DOMAINSUBSCRIPTION'){
   if(isset($_GET["user_Id"])){
    $user_Id=$_GET["user_Id"];
    $subObj=new app_subscription();
