@@ -2,7 +2,6 @@ $(document).ready(function(){
  bgstyle();
  $(".lang_"+USR_LANG).css('display','block');
  getListOfCategories();
-// 
 });
 var SUBSCRIPTION_JSONDATA_BUILDER={};
 function subdomainSubscription(domainIndex,subdomainIndex,subdomain_Id){
@@ -55,7 +54,7 @@ function domainSubscription(domainIndex,domain_Id,subdomainIdList){
  console.log("SUBSCRIPTION_JSONDATA_BUILDER: "+JSON.stringify(SUBSCRIPTION_JSONDATA_BUILDER));
 }
 function getListOfCategories(){
- js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.subscriptions.php',
+ js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.user.subscriptions.php',
   { action: 'GET_SESSION_DOMAINSUBSCRIPTION', user_Id:AUTH_USER_ID }, function(result){
    result=JSON.parse(result);
    SUBSCRIPTION_JSONDATA_BUILDER=result;
@@ -120,9 +119,10 @@ console.log("Sent sessionData: "+sessionData);
 	 sessionJSON+=sessionData.replace(/"/g, "\\\"")+'"}],';
 	 sessionJSON+='"session_get":["AUTH_USER_SUBSCRIPTIONS_LIST"]}';
  js_session(sessionJSON,function(response){
-    console.log("session:"+response);
-/*	js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.auth.part06.php',
- {action:'SET_USER_SUBSCRIPTION',user_Id:AUTH_USER_ID },
- function(response){ console.log(response);}); */
+	js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.user.subscriptions.php',
+     {action:'SET_USER_SUBSCRIPTION', user_Id:AUTH_USER_ID },
+     function(response){ console.log(response);
+	   window.location.href=PROJECT_URL+'newsfeed/latest-news';
+	 });
  });
 }
