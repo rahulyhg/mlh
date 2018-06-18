@@ -132,5 +132,5 @@ console.log("SUBSCRIPTION_COUNTER: "+SUBSCRIPTION_COUNTER);
 	       window.location.href=PROJECT_URL+'newsfeed/latest-news';
 	    });
     });
- }
+ } else { alert_display_warning('W011'); }
 }
