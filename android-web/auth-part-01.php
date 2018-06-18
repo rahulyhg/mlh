@@ -43,28 +43,6 @@ var sessionContent='{"session_set":[{"key":"AUTH_USER_PHONENUMBER","value":"'+si
 </style>
 </head>
 <body>
- <div id="authpart01Modal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      
-      <div class="modal-body pad0">
-	    <span class="lang_english">
-		   <div id="alert_english_phNumber" class="alert alert-success alert-dismissible hide-block mb0"> <!-- -->
-			<a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
-		    <strong>Warning!</strong> Please Enter your Phone Number
-		   </div>
-	    </span>
-		<span class="lang_telugu">
-		
-		</span>
-      
-      </div>
-    </div>
-
-  </div>
-</div>
  <?php include_once 'templates/api/api_loading.php'; ?>
  <?php include_once 'templates/api/api_header_init.php'; ?>
   <!-- If user has two SIM, ask him to choose which to choose.

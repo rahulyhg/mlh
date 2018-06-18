@@ -81,12 +81,8 @@ var fullphNumber=AUTH_EXTENSION_PHONENUMBER+'-'+phNumber;
 	 content+='<div class="col-xs-1"></div>';
 	 content+='</div>';
  document.getElementById("verifyOTPDiv").innerHTML=content;
- } else {
-   $("#authpart01Modal").modal("show");
-   if($("#alert_"+USR_LANG+"_phNumber").hasClass('hide-block')){ 
-      $("#alert_"+USR_LANG+"_phNumber").removeClass('hide-block');
-   }
- }
+ } 
+ else { alert_display_warning('W001'); }
 }
 
 function verifyOtpCodeWithUserInput(userOptCode,countrycode, phNumber){
