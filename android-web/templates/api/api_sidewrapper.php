@@ -26,9 +26,9 @@ function logout(){
   if(AndroidSession!==undefined){
     AndroidSession.setAndroidSession("AUTH_USER_ID",null);
   }
-  $.ajax({type: "GET", url: PROJECT_URL+'backend/php/dac/controller.session.php',
+  $.ajax({type: "POST", url: PROJECT_URL+'backend/php/api/app.session.php',
       data:{ action:'DestroySession' },success: function(resp) { 
-   window.location.href=PROJECT_URL; } 
+      window.location.href=PROJECT_URL; } 
   });
 		 
 }
