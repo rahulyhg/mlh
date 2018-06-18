@@ -24,20 +24,6 @@ if($_SESSION["AUTHENTICATION_STATUS"]=='INCOMPLETED'){
  </style>
 </head>
 <body>
- <div id="auth02FormModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-body pad0">
-		<div class="alert alert-warning alert-dismissible" style="margin-bottom:0px;">
-			<a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
-			<span class="lang_english">
-				<strong>Warning!</strong> Missing Username.
-			</span>
-		</div>
-      </div>
-    </div>
-  </div>
- </div>
  <?php include_once 'templates/api/api_loading.php'; ?>
  <?php include_once 'templates/api/api_header_init.php'; ?>
  <div id="usernameCheckAvailabilityDivision" class="container-fluid">

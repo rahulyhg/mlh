@@ -65,7 +65,7 @@ function checkUserAvailability(){
 		document.getElementById("username_"+USR_LANG+"_setupDisplay").innerHTML=username;
 	  }
    });
-  } else { /* Alert Missing Username */ $('#auth02FormModal').modal(); }
+  } else { alert_display_warning('W002'); }
 }
 
 function display_availabilityMsg(){
