@@ -4,16 +4,19 @@ $(document).ready(function(){
  getListOfCategories();
 });
 var SUBSCRIPTION_JSONDATA_BUILDER={};
+var SUBSCRIPTION_COUNTER=0;
 function subdomainSubscription(domainIndex,subdomainIndex,subdomain_Id){
 if($('#subdomain-subscribe-'+subdomain_Id).hasClass('fa-star') &&
     !$('#subdomain-subscribe-'+subdomain_Id).hasClass('fa-star-o')) {
 	$('#subdomain-subscribe-'+subdomain_Id).removeClass('fa-star');
     $('#subdomain-subscribe-'+subdomain_Id).addClass('fa-star-o'); 
 	SUBSCRIPTION_JSONDATA_BUILDER.domains[domainIndex].subdomains[subdomainIndex].subscribed="NO";
+	SUBSCRIPTION_COUNTER--;
  }
  else if(!$('#subdomain-subscribe-'+subdomain_Id).hasClass('fa-star') &&
 	      $('#subdomain-subscribe-'+subdomain_Id).hasClass('fa-star-o')) {
 	SUBSCRIPTION_JSONDATA_BUILDER.domains[domainIndex].subdomains[subdomainIndex].subscribed="YES";
+	SUBSCRIPTION_COUNTER++;
 	$('#subdomain-subscribe-'+subdomain_Id).removeClass('fa-star-o');
 	$('#subdomain-subscribe-'+subdomain_Id).addClass('fa-star');
  }
@@ -41,11 +44,13 @@ function domainSubscription(domainIndex,domain_Id,subdomainIdList){
 	
     if(className==='fa-star-o') {
 		SUBSCRIPTION_JSONDATA_BUILDER.domains[domainIndex].subdomains[subdomainIndex].subscribed="NO";
+		SUBSCRIPTION_COUNTER--;
 		$('#subdomain-subscribe-'+subdomain[subdomainIndex]).removeClass('fa-star');
 		$('#subdomain-subscribe-'+subdomain[subdomainIndex]).addClass('fa-star-o'); 
 	}
 	else if(className==='fa-star') {
 		SUBSCRIPTION_JSONDATA_BUILDER.domains[domainIndex].subdomains[subdomainIndex].subscribed="YES";
+		SUBSCRIPTION_COUNTER++;
 		$('#subdomain-subscribe-'+subdomain[subdomainIndex]).removeClass('fa-star-o');
 		$('#subdomain-subscribe-'+subdomain[subdomainIndex]).addClass('fa-star');
 	}
@@ -76,7 +81,7 @@ function getListOfCategories(){
 	 content2+='<span><b>&nbsp;'+subdomainName+'</b></span>';
 	 content2+='<i id="subdomain-subscribe-'+subdomain_Id+'" ';
 	 content2+='class="fa ';
-	 if(subscribed==='YES'){ content2+='fa-star '; } 
+	 if(subscribed==='YES'){ content2+='fa-star ';SUBSCRIPTION_COUNTER++; } 
 	 else { content2+='fa-star-o ';emptySubscriptionRecoginzer=false; }
 	 content2+='mtop5p pull-right" ';
 	 content2+='onclick="javascript:subdomainSubscription(\''+i1+'\',\''+i2+'\',\''+subdomain_Id+'\');" ';
@@ -113,16 +118,19 @@ function getListOfCategories(){
 }
 
 function subscribe(){
-var sessionData=JSON.stringify(SUBSCRIPTION_JSONDATA_BUILDER);
-console.log("Sent sessionData: "+sessionData);
- var sessionJSON='{"session_set":[{"key":"AUTH_USER_SUBSCRIPTIONS_LIST","value":"';
-	 sessionJSON+=sessionData.replace(/"/g, "\\\"")+'"}],';
-	 sessionJSON+='"session_get":["AUTH_USER_SUBSCRIPTIONS_LIST"]}';
- js_session(sessionJSON,function(response){
-	js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.user.subscriptions.php',
-     {action:'SET_USER_SUBSCRIPTION', user_Id:AUTH_USER_ID },
-     function(response){ console.log(response);
-	   window.location.href=PROJECT_URL+'newsfeed/latest-news';
-	 });
- });
+console.log("SUBSCRIPTION_COUNTER: "+SUBSCRIPTION_COUNTER);
+ if(SUBSCRIPTION_COUNTER>0) {
+    var sessionData=JSON.stringify(SUBSCRIPTION_JSONDATA_BUILDER);
+    console.log("Sent sessionData: "+sessionData);
+    var sessionJSON='{"session_set":[{"key":"AUTH_USER_SUBSCRIPTIONS_LIST","value":"';
+	    sessionJSON+=sessionData.replace(/"/g, "\\\"")+'"}],';
+	    sessionJSON+='"session_get":["AUTH_USER_SUBSCRIPTIONS_LIST"]}';
+    js_session(sessionJSON,function(response){
+	   js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.user.subscriptions.php',
+        { action:'SET_USER_SUBSCRIPTION', user_Id:AUTH_USER_ID },
+       function(response){ console.log(response);
+	       window.location.href=PROJECT_URL+'newsfeed/latest-news';
+	    });
+    });
+ }
 }
