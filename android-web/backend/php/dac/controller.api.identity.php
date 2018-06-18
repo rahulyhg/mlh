@@ -155,9 +155,6 @@ if(isset($_GET["action"])) {
     else if($_GET["action"]=='ID_USER_SHOOK_INFO') { /* Table - user_shook_info ::: shook_Id */
 	    echo $idObj->user_shook_info_id();
 	}
-    else if($_GET["action"]=='ID_USER_SUBSCRIBE') { /* Table - user_subscription ::: sub_Id */
-		echo $idObj->user_subscribe_id();
-	}
 	else {
 		echo 'INVALID_INPUT';
 	}

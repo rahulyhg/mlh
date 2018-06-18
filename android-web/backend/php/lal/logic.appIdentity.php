@@ -778,24 +778,6 @@ class identity_check {
 		   }
 	return $output;
  }
- 
- /* Table - user_subscription ::: sub_Id */
- function id_user_subscribe($id) { 
-		$dataObj=new tbl_identity();
-		$selectQuery=$dataObj->query_checkId_user_subscription($id);
-		$dbObject=new Database(); 
-		$jsonData=$dbObject->getJSONData($selectQuery);
-		    $dejsonData=json_decode($jsonData);
-		   if(count($dejsonData)>0) {
-			 $output='ID_ALREADY_EXIST';
-		   } else {
-			 $output='ID_NOT_EXIST';
-		   }
-	return $output;
-  }
-  
-
- 
 }
 
 /*
@@ -1451,21 +1433,6 @@ class identity {
 		  if($output==='ID_ALREADY_EXIST') { user_shook_info_id(); } 
 		  else { return $num; }
 	}
-	
-	/* Table - user_subscription ::: sub_Id */
-	function user_subscribe_id() { /* 25 */
-		$num="USUB";
-        for($index=0;$index<21;$index++) {
-            $num.=rand(1,9);
-        }
-		/* Check Exists or not, If not exist return */
-		$checkObj=new identity_check();
-		$output=$checkObj->id_user_subscribe($num);
-		if($output==='ID_ALREADY_EXIST') { user_subscribe_id(); } 
-		else { return $num; }  
-	}
-	
-	
 }
 
 ?>

@@ -318,11 +318,6 @@ class tbl_identity {
 	return $selectQuery;
   }
   
-  /* Table - user_subscription ::: sub_Id */
-  function query_checkId_user_subscription($sub_Id) {
-	$selectQuery="SELECT * FROM user_subscription WHERE sub_Id='".$sub_Id."';";
-	return $selectQuery;
-  }  
 }
 
 ?>

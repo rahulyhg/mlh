@@ -226,9 +226,4 @@ function user_shook_info_Id(){ // shook_Id(25) in user_shook_info table
  return fn_identity("ID_USER_SHOOK_INFO");
 }
 
-/* Table - user_subscription ::: sub_Id */
-function user_subscription_Id(){ // sub_Id(25) in user_subscription table
- return fn_identity("ID_USER_SUBSCRIBE");
-}
-
 
