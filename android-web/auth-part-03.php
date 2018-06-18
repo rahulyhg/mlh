@@ -24,43 +24,6 @@ if($_SESSION["AUTHENTICATION_STATUS"]=='INCOMPLETED'){
  </style>
 </head>
 <body>
- <div id="authFormModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-body pad0">
-		<div class="alert alert-warning alert-dismissible" style="margin-bottom:0px;">
-			<a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
-			<span class="lang_english">
-			  <div id="alert_english_surName" class="hide-block">
-				<strong>Warning!</strong> Missing SurName.
-			  </div>
-			  <div id="alert_english_fullName" class="hide-block">
-				<strong>Warning!</strong> Missing FullName.
-			  </div>
-			  <div id="alert_english_gender" class="hide-block">
-				<strong>Warning!</strong> Missing Gender.
-			  </div>
-			  <div id="alert_english_dob" class="hide-block">
-				<strong>Warning!</strong> Missing Date of Birth.
-			  </div>
-			  <div id="alert_english_country" class="hide-block">
-				<strong>Warning!</strong> Missing Country.
-			  </div>
-			  <div id="alert_english_state" class="hide-block">
-				<strong>Warning!</strong> Missing State.
-			  </div>
-			  <div id="alert_english_location" class="hide-block">
-				<strong>Warning!</strong> Missing Location.
-			  </div>
-			  <div id="alert_english_locality" class="hide-block">
-				<strong>Warning!</strong> Missing Locality.
-			  </div>
-			</span>
-		</div>
-      </div>
-    </div>
-  </div>
- </div>
  <?php include_once 'templates/api/api_loading.php'; ?>
  <?php include_once 'templates/api/api_header_init.php'; ?>
    <div id="authFormRegisterDivision" class="container-fluid white-font mbot30p">  

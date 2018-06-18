@@ -113,15 +113,6 @@ function userselected_location(){  /* Loads Minlocation */
   loadUserGeoLocation_MinLocation(usr_country,usr_state,usr_location,usr_minlocation);
 }
 
-function authAlert(id){
-  var arryIds=["alert_english_surName","alert_english_fullName","alert_english_gender","alert_english_dob",
-			  "alert_english_country","alert_english_state","alert_english_location","alert_english_locality"];
-  for(var index=0;index<arryIds.length;index++){
-	if(arryIds[index]===id){ $("#authFormModal").modal();$("#"+arryIds[index]).removeClass('hide-block'); }
-	else { $("#"+arryIds[index]).addClass('hide-block'); }
-  }
-}
-
 function authDone(){
    /* Set AUTHENTICATION_STATUS=DONE */
   var surname=document.getElementById("reg_"+USR_LANG+"_surname").value;
@@ -135,8 +126,8 @@ function authDone(){
    
   if(surname.length>0){
   if(name.length>0){
-  if(dob.length>0){
   if(gender.length>0){
+  if(dob.length>0){
   if(country.length>0){
   if(state.length>0){
   if(location.length>0){
@@ -160,12 +151,12 @@ function authDone(){
 			window.location.href=PROJECT_URL+"initializer/profilepic"; 
 		} else { window.location.href=PROJECT_URL+"initializer/setup-profilepic";  }
 	 });
-  } else { authAlert("alert_english_locality"); }
-  } else { authAlert("alert_english_location"); }
-  } else { authAlert("alert_english_state"); }
-  } else { authAlert("alert_english_country"); }
-  } else { authAlert("alert_english_gender"); }
-  } else { authAlert("alert_english_dob"); }
-  } else { authAlert("alert_english_fullName"); }
-  } else { authAlert("alert_english_surName"); }
+  } else { /* Locality */     alert_display_warning('W010'); }
+  } else { /* Location */     alert_display_warning('W009'); }
+  } else { /* State */        alert_display_warning('W008'); }
+  } else { /* Country */      alert_display_warning('W007'); }
+  } else { /* DateOfBirth */  alert_display_warning('W006'); }
+  } else { /* Gender */       alert_display_warning('W005'); }
+  } else { /* FullName */     alert_display_warning('W004'); }
+  } else { /* SurName */      alert_display_warning('W003'); }
 }
