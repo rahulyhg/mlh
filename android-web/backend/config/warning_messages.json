@@ -1,0 +1,13 @@
+{ 
+  "W001": { "english":"Please Enter your Phone Number." },
+  "W002": { "english":"Missing Username." },
+  "W003": { "english":"Missing SurName." },
+  "W004": { "english":"Missing FullName." },
+  "W005": { "english":"Missing Gender." },
+  "W006": { "english":"Missing Date of Birth." },
+  "W007": { "english":"Missing Country." },
+  "W008": { "english":"Missing State." },
+  "W009": { "english":"Missing Location." },
+  "W010": { "english":"Missing Locality." },
+  "W011": { "english":"Please subscribe atleast One Category." }
+}
