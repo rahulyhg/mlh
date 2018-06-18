@@ -42,7 +42,7 @@ if($_SESSION["AUTHENTICATION_STATUS"]=='INCOMPLETED'){
 @media (min-width: 200px) and (max-width: 480px) { #tmpl_button { width:100%;margin-top:20%; } }
 .profilepic { border-radius:50%;width:100px;height:100px; }
 #fileElem { visibility:hidden; }
-#pic_done { display:none; }
+#pic_done,#avatar_done { display:none; }
 </style>
 <script type="text/javascript">
 

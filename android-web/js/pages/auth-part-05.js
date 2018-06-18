@@ -72,7 +72,6 @@ function avatarSelectImg(imgId){
 }
 
 function reg_avatar_img(){
- console.log("img: "+AVATAR_URL);
  var init_session_data='{"session_set":[{"key":"AUTH_USER_PROFILEPIC","value":"'+AVATAR_URL+'"}],';
        init_session_data+='"session_get":["AUTH_USER_PROFILEPIC"]}';
    js_session(init_session_data,function(response){
