@@ -89,4 +89,23 @@ function js_session(sessionJSON,fn_output) {
  var sessionData={action:'Session',SESSION_JSON: sessionJSON};
  js_ajax("POST",PROJECT_URL+'backend/php/api/app.session.php',sessionData,fn_output);
 }
+
+function alert_display_warning(warning_Id){
+js_ajax("GET",PROJECT_URL+'backend/config/warning_messages.json',{},function(response){
+var content='<div id="alertWarningModal" class="modal fade" role="dialog">';
+    content+='<div class="modal-dialog">';
+	content+='<div class="modal-content">';
+    content+='<div class="modal-body" style="padding:0px;">';
+    content+='<div class="alert alert-warning alert-dismissible" style="margin-bottom:0px;">';
+    content+='<a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>';
+    content+='<strong>Warning!</strong> '+response[warning_Id][USR_LANG];
+    content+='</div>';
+    content+='</div>';
+    content+='</div>';
+    content+='</div>';
+    content+='</div>';
+document.body.innerHTML+=content;
+ $('#alertWarningModal').modal();
+});
+}
 </script>
