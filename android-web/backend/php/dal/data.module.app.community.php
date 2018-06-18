@@ -95,6 +95,14 @@ class app_community {
   return $sql;
  }
  
+ function query_updateMemberRoles($role_Id,$roleName){
+ /* FUNCTION DESCRIPTION : This Function is used to update Member Roles in a Branch of a Community.
+  * PAGES UTILIZED : 
+  */
+   $sql="UPDATE union_mem_roles SET roleName='".$roleName."' WHERE role_Id='".$role_Id."';";
+   return $sql;
+ }
+ 
  function query_count_getListOfRolesInABranch($union_Id,$branch_Id){
  /* FUNCTION DESCRIPTION : This Function provides list of Roles in a Branch.
   * PAGES UTILIZED : 
@@ -122,6 +130,11 @@ class app_community {
   $sql.="LIMIT ".$limit_start.",".$limit_end;
   return $sql;
  }
+ 
+ /**************************************************************************************************************************/
+ /******************************************* COMMUNITY BRANCH MEMBER ROLES ************************************************/
+ /**************************************************************************************************************************/
+ 
 }
 
 ?>
