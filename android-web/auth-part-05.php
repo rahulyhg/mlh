@@ -16,6 +16,7 @@ if($_SESSION["AUTHENTICATION_STATUS"]=='INCOMPLETED'){
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/jquery.min.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/bootstrap.min.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/bg-styles-common.js"></script>
+ <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/core-skeleton.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/auth-part-05-bg-styles.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/auth-part-05.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/file-upload.js"></script>
@@ -198,18 +199,8 @@ if($_SESSION["AUTHENTICATION_STATUS"]=='INCOMPLETED'){
 		      <div align="center">
 				 <h5><b>Choose your Picture</b></h5><hr/>
 		      </div>
-			  <div align="center" class="mbot15pc">
-                 <!--form-->
-				<input type="file" id="fileElem" accept="image/*" onchange="handleFiles(this.id,'div_cropping','img-crop',this.files,'fileSelect','pic_done',90,90,100,100,'circle')">
-				<img id="fileSelect" class="profilepic" src="images/avatar/0.jpg" onclick="javascript:imgClick('fileElem');"/>
-				<div id="img-crop" class="mbot15pc"></div>
-				<!--/form-->
-			  </div>
-			  <div id="div_cropping" align="center">
-			  
-			  </div>
-			  <div align="center" class="mbot15pc">
-				 <button id="pic_done" align="center" class="btn custom-bg white-font" onclick="javascript:reg_profile_img();"><b>Done</b></button>
+			  <div id="userprofilepic-media-content" align="center" class="mbot15pc">
+         
 			  </div>
 		   </div>
 		 </div>

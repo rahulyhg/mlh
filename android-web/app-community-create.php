@@ -1,6 +1,6 @@
 <?php session_start();
- // if(isset($_SESSION["AUTH_USER_ID"])) {
- ?>
+  if(isset($_SESSION["AUTH_USER_ID"])) {
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,6 +16,7 @@
  <link rel="stylesheet" href="<?php echo $_SESSION["PROJECT_URL"]; ?>styles/api/jquery-ui.css"> 
  <link href="<?php echo $_SESSION["PROJECT_URL"]; ?>styles/api/summernote.css" rel="stylesheet"/>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/jquery.min.js"></script>
+ <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/core-skeleton.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/bootstrap.min.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/jquery-ui.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/load-data-on-scroll.js"></script>
@@ -27,6 +28,9 @@
  <script type="text/javascript" src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/summernote.js"></script>
  <script type="text/javascript" src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/file-upload.js"></script>
  <script type="text/javascript" src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/croppie.js"></script>
+ <style>
+
+</style>
 </head>
 <body>
  <?php include_once 'templates/api/api_loading.php'; ?>
@@ -44,16 +48,20 @@
 				  <b>CREATE A COMMUNITY</b>
 			   </span>
 			</div>
+			<div class="custom-bg">
+				<div id="community-content-media" align="center">
 			
-			<div align="center" class="custom-bg">
-			  <img src="<?php echo $_SESSION["PROJECT_URL"]; ?>images/avatar/0.jpg" class="profile_pic_img mtop20p mbot20p"/>
-			  <br/><button class="btn custom-lgt-bg mbot20p"><span class="f14"><b>Edit Profile Picture</b></span></button>
+			    </div>
+				<div align="center" class="mtop15p padbot15"><b>Community Profile Picture</b></div>
 			</div>
-			
 		 </div>
 		
 		 <div class="container-fluid">
 		   
+		   <div class="form-group">
+		     
+			 
+		   </div>
 		   <div class="form-group">
 			  <label>Community Name:</label>
 			  <input type="text" class="form-control" id="add_unionName" placeholder="Enter your Community Name">
@@ -61,14 +69,15 @@
 		   
 		   <div class="form-group">
 			  <label>Choose a Category:</label>
-			  <select class="form-control">
+			  <select class="form-control" id="add_english_category" 
+			  onchange="javascript:build_subcategoryOption('add_english_category','add_english_subcategory');">
 				<option value="">Select your Category</option>
 			  </select>
 		   </div>
 		   
 		   <div class="form-group">
 			  <label>Choose a Sub-Category:</label>
-			  <select class="form-control">
+			  <select class="form-control" id="add_english_subcategory">
 				<option value="">Select your Sub-Category</option>
 			  </select>
 		   </div>
@@ -80,28 +89,31 @@
 		   
 		   <div class="form-group">
 			  <label>Choose Country:</label>
-			  <select class="form-control">
+			  <select class="form-control" id="add_english_country" 
+			  onchange="javascript:build_stateOption('add_english_country','add_english_state');">
 				<option value="">Select your Country</option>
 			  </select>
 		   </div>
 		   
 		   <div class="form-group">
 			  <label>Choose State:</label>
-			  <select class="form-control">
+			  <select class="form-control" id="add_english_state" 
+			  onchange="javascript:build_locationOption('add_english_country','add_english_state','add_english_location');">
 				<option value="">Select your State</option>
 			  </select>
 		   </div>
 		   
 		   <div class="form-group">
 			  <label>Choose Location:</label>
-			  <select class="form-control">
+			  <select class="form-control" id="add_english_location" 
+			  onchange="javascript:build_minlocationOption('add_english_country','add_english_state','add_english_location','add_english_locality')">
 				<option value="">Select your Location</option>
 			  </select>
 		   </div>
 		   
 		   <div class="form-group">
 			  <label>Choose Locality:</label>
-			  <select class="form-control">
+			  <select class="form-control" id="add_english_locality">
 				<option value="">Select your Locality</option>
 			  </select>
 		   </div>
@@ -117,4 +129,4 @@
  </div>
 </body>
 </html>
-<?php // }?>
+<?php }?>

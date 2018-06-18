@@ -1,3 +1,5 @@
+input[type="file"] { visibility:hidden; }
+#p100X100_pic_done { display:none; }
 body { padding-right: 0 !important }
 .panelborder0 { border:0px solid #fff;-webkit-box-shadow:0 0px 0px #fff;box-shadow:0 0px 0px #fff; }
 .box-shadow {  box-shadow:1px 2px 15px 5px #808080; }
@@ -6,6 +8,7 @@ body { padding-right: 0 !important }
 .pad5 { padding:5px; }
 .pad0 { padding:0px; }
 .padtop15 { padding-top:15px; }
+.padbot15 { padding-bottom:15px; }
 .padtop35 { padding-top:35px; }
 .grey-font { color:#aaa; }
 .lang_english,.lang_telugu { display:none; }
@@ -13,9 +16,9 @@ body { padding-right: 0 !important }
 .dblock { display:block; }
 .app_logo { width:80px; }
 .anups-logo  { width:240px; }
-.profile_pic_img { width:100px;height:100px;border-radius:50%;border:1px solid #000;cursor:pointer; }
-.profile_pic_img1 { width:100px;height:100px;border-radius:50%;border:1px solid #000;cursor:pointer; }
-.profile_pic_img2 { width:30px;height:30px;border-radius:50%;border:1px solid #fff;cursor:pointer; }
+.profile_pic_img { width:100px;height:100px;border-radius:50%;border:2px solid #fff;cursor:pointer; }
+.profile_pic_img1 { width:150px;height:150px;border-radius:50%;border:2px solid #fff;cursor:pointer; }
+.profile_pic_img2 { width:30px;height:30px;border-radius:50%;border:2px solid #fff;cursor:pointer; }
 .yellow-bg { background-color:#e88800; }
 .yellow-font { color:#e88800; }
 .white-bg { background-color:#fff; }

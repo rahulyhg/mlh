@@ -110,7 +110,7 @@ if(files[0].size<=5242880) { // Less than or Equal to 5 MB
             
 			var htmlContent='<div class="btn-group">';
 			    htmlContent+='<button align="center" id="'+IDENTITY+'_crop_done" ';
-				htmlContent+='class="btn custom-bg" style="color:#fff;background-color:'+CURRENT_DARK_COLOR+';" ';
+				htmlContent+='class="btn btn-default custom-font" style="color:'+CURRENT_DARK_COLOR+';background-color:#fff;" ';
 				htmlContent+='onclick="javascript:profilepic_done();"><b>Crop</b></button>';
 				htmlContent+='<button align="center" id="'+IDENTITY+'_reload_done" ';
 				htmlContent+='class="btn custom-bg" style="color:#000;background-color:'+CURRENT_LIGHT_COLOR+';" ';

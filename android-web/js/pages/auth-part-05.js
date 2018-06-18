@@ -6,6 +6,7 @@ $(document).ready(function(){
  $(".lang_"+USR_LANG).css('display','block');
  sel_tmpl('tmpl_button');
  cloudservers_auth(); // Get CloudName from Cloudinary
+ upload_picture_100X100('userprofilepic-media-content',PROJECT_URL+'images/avatar/0.jpg');
 });
 function sel_tmpl(id){
 var arry=["tmpl_button","tmpl_avatar","tmpl_profilepic"];
