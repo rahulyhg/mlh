@@ -1,6 +1,16 @@
 <?php session_start(); 
 if(isset($_SESSION["AUTHENTICATION_STATUS"])){
 if($_SESSION["AUTHENTICATION_STATUS"]=='INCOMPLETED'){
+ $_SESSION["AUTH_USER_ID"]='0';
+ unset($_SESSION["AUTH_USER_USERNAME"]);
+ unset($_SESSION["AUTH_USER_SURNAME"]);
+ unset($_SESSION["AUTH_USER_FULLNAME"]);
+ unset($_SESSION["AUTH_USER_GENDER"]);
+ unset($_SESSION["AUTH_USER_DOB"]);
+ unset($_SESSION["AUTH_USER_STATE"]);
+ unset($_SESSION["AUTH_USER_LOCATION"]);
+ unset($_SESSION["AUTH_USER_LOCALITY"]);
+ unset($_SESSION["AUTH_USER_PROFILEPIC"]);
 ?>
 <!DOCTYPE html>
 <html lang="en">

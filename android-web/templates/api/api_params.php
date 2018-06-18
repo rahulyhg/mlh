@@ -35,6 +35,7 @@ var AUTH_USER_COMMUNITIES_CREATED='<?php if(isset($_SESSION["AUTH_USER_COMMUNITI
 
 console.log("[api_params] PROJECT_URL: "+PROJECT_URL);
 console.log("[api_params] USR_LANG: "+USR_LANG);
+console.log("[api_params] AUTHENTICATION_STATUS: "+AUTHENTICATION_STATUS);
 console.log("[api_params] AUTH_USER_ID: "+AUTH_USER_ID);
 console.log("[api_params] AUTH_USER_USERNAME: "+AUTH_USER_USERNAME);
 console.log("[api_params] AUTH_USER_SURNAME: "+AUTH_USER_SURNAME);
