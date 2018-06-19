@@ -203,59 +203,65 @@ class tbl_identity {
 	return $selectQuery;
   }
   
-  /* Table - union_account ::: union_Id */
-  function query_checkId_union_account($union_Id) {
-	$selectQuery="SELECT * FROM union_account WHERE union_Id='".$union_Id."';";
+  /* Table - unionprof_account ::: union_Id */
+  function query_checkId_unionprof_account($union_Id) {
+	$selectQuery="SELECT * FROM unionprof_account WHERE union_Id='".$union_Id."';";
 	return $selectQuery;
   }
   
-  /* Table - union_branch ::: branch_Id */
-  function query_checkId_union_branch($branch_Id){
-	$selectQuery="SELECT * FROM union_branch WHERE branch_Id='".$branch_Id."';";
+  /* Table - unionprof_branch ::: branch_Id */
+  function query_checkId_unionprof_branch($branch_Id){
+	$selectQuery="SELECT * FROM unionprof_branch WHERE branch_Id='".$branch_Id."';";
 	return $selectQuery;
   }
   
-  /* Table - union_calndar ::: calendar_Id */
-  function query_checkId_union_calndar($calendar_Id){
-    $selectQuery="SELECT * FROM union_calndar WHERE calendar_Id='".$calendar_Id."';";
+  /* Table - unionprof_calndar ::: calendar_Id */
+  function query_checkId_unionprof_calndar($calendar_Id){
+    $selectQuery="SELECT * FROM unionprof_calndar WHERE calendar_Id='".$calendar_Id."';";
 	return $selectQuery;
   }
   
-  /* Table - union_mem ::: member_Id */
-  function query_checkId_union_mem($member_Id) {
-	$selectQuery="SELECT * FROM union_mem WHERE member_Id='".$member_Id."';";
+  /* Table - unionprof_mem ::: member_Id */
+  function query_checkId_unionprof_mem($member_Id) {
+	$selectQuery="SELECT * FROM unionprof_mem WHERE member_Id='".$member_Id."';";
 	return $selectQuery;
   }
   
-  /* Table - union_mem_chat ::: chat_Id */
-  function query_checkId_union_mem_chat($chat_Id) {
-	$selectQuery="SELECT * FROM union_mem_chat WHERE chat_Id='".$chat_Id."';";
+  /* Table - unionprof_mem_chat ::: chat_Id */
+  function query_checkId_unionprof_mem_chat($chat_Id) {
+	$selectQuery="SELECT * FROM unionprof_mem_chat WHERE chat_Id='".$chat_Id."';";
 	return $selectQuery;
   }
   
-  /* Table - union_mem_req :::  request_Id */
-  function query_checkId_union_mem_req($request_Id) {
-	$selectQuery="SELECT * FROM union_mem_req WHERE request_Id='".$request_Id."';";
+  /* Table - unionprof_mem_perm_branch ::: branch_permission_Id */
+  function query_checkId_unionprof_mem_perm_branch($branch_permission_Id) {
+	$selectQuery="SELECT * FROM unionprof_mem_perm_branch WHERE branch_permission_Id='".$branch_permission_Id."';";
+	return $selectQuery;
+  }
+  
+  /* Table - unionprof_mem_perm_union ::: union_permission_Id */
+  function query_checkId_unionprof_mem_perm_union($union_permission_Id) {
+	$selectQuery="SELECT * FROM unionprof_mem_perm_union WHERE union_permission_Id='".$union_permission_Id."';";
+	return $selectQuery;
+  }
+  
+  /* Table - unionprof_mem_req :::  request_Id */
+  function query_checkId_unionprof_mem_req($request_Id) {
+	$selectQuery="SELECT * FROM unionprof_mem_req WHERE request_Id='".$request_Id."';";
 	return $selectQuery;
   } 
   
-  /* Table - union_mem_stat ::: memstat_Id */
-  function query_checkId_union_mem_stat($memstat_Id) {
-	$selectQuery="SELECT * FROM union_mem_stat WHERE memstat_Id='".$memstat_Id."';";
-	return $selectQuery;
-  }
-  
-  /* Table - union_sup ::: support_Id */
-  function query_checkId_union_sup($support_Id) {
-	$selectQuery="SELECT * FROM union_sup WHERE support_Id='".$support_Id."';";
-	return $selectQuery;
-  }
-  
-  /* Table - union_sup_stat ::: supstat_Id */
-  function query_checkId_union_sup_stat($supstat_Id) {
-	$selectQuery="SELECT * FROM union_sup_stat WHERE supstat_Id='".$supstat_Id."';";
+  /* Table - unionprof_mem_roles ::: role_Id */
+  function query_checkId_unionprof_mem_roles($role_Id) {
+	$selectQuery="SELECT * FROM unionprof_mem_roles WHERE role_Id='".$role_Id."';";
 	return $selectQuery;
   } 
+  
+  /* Table - unionprof_sup ::: support_Id */
+  function query_checkId_unionprof_sup($support_Id) {
+	$selectQuery="SELECT * FROM unionprof_sup WHERE support_Id='".$support_Id."';";
+	return $selectQuery;
+  }
   
   /* Table - user_account ::: user_Id */
   function query_checkId_user_account($user_Id) {

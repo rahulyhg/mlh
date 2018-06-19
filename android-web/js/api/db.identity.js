@@ -1,7 +1,7 @@
 /* Identities of Tables in Database */
 function fn_identity(action){
   var num='';
-  $.ajax({type: "GET", async: false, url: PROJECT_URL+'admin/php/dac/controller.identity.php', 
+  $.ajax({type: "GET", async: false, url: PROJECT_URL+'backend/php/dac/controller.api.identity.php', 
 	      data:{action:action }, success: function(resp) { num=resp; } });
   return num;
 }
@@ -133,47 +133,55 @@ function srvy_pay_history_Id(){ // srvy_pay_Id(25) in srvy_pay_history table
 function srvy_q_optusers_Id(){ // optInfo_Id(25) in srvy_q_optusers table
   return fn_identity("ID_SRVY_OPTUSERS");
 }
-/* Table - union_account ::: union_Id */
-function union_account_Id() { // union_Id(15) in union_profile table
-  return fn_identity("ID_UNION_ACCOUNT");
+/* Table - unionprof_account ::: union_Id */
+function unionprof_account_Id() { // union_Id(15) in union_profile table
+  return fn_identity("ID_UNIONPROF_ACCOUNT");
 }
-/* Table - union_branch ::: branch_Id */
-function union_branch_id() { // branch_Id(25) in union_profile table
-  return fn_identity("ID_UNION_BRANCH");
+/* Table - unionprof_branch ::: branch_Id */
+function unionprof_branch_Id() { // branch_Id(25) in union_profile table
+  return fn_identity("ID_UNIONPROF_BRANCH");
 }
-/* Table - union_calndar ::: calendar_Id */
-function union_calndar_Id(){ // calendar_Id(25) in union_calndar table
-  return fn_identity("ID_UNION_CALNDR");
+/* Table - unionprof_calndar ::: calendar_Id */
+function unionprof_calndar_Id(){ // calendar_Id(25) in union_calndar table
+  return fn_identity("ID_UNIONPROF_CALNDR");
 }
-/* Table - union_mem ::: member_Id */
-function union_members_Id() { // member_Id(15) in union_members table
-  return fn_identity("ID_UNION_MEM");
-}
-
-/* Table - union_mem_chat ::: chat_Id */
-function union_chat_Id() { // chat_Id(25) in union_chat table
- return fn_identity("ID_UNION_MEMCHAT");
+/* Table - unionprof_mem ::: member_Id */
+function unionprof_members_Id() { // member_Id(15) in union_members table
+  return fn_identity("ID_UNIONPROF_MEM");
 }
 
-/* Table - union_mem_req :::  request_Id */
-function union_requests_Id() { // request_Id(15) in union_requests table
- return fn_identity("ID_UNION_MEMREQ");
+/* Table - unionprof_mem_chat ::: chat_Id */
+function unionprof_chat_Id() { // chat_Id(25) in union_chat table
+ return fn_identity("ID_UNIONPROF_MEMCHAT");
 }
 
-/* Table - union_mem_stat ::: memstat_Id */
-function union_mem_stat_Id(){ // memstat_Id(25) in union_mem_stat table
- return fn_identity("ID_UNION_MEMSTAT");
+/* Table - unionprof_mem_perm_branch ::: branch_permission_Id */
+function unionprof_mem_perm_branch_Id(){ // branch_permission_Id(25) in unionprof_mem_perm_branch table
+ return fn_identity("ID_UNIONPROF_PERMBRANCH");
 }
-/* Table - union_sup ::: support_Id */
-function union_sup_Id(){ // support_Id(15) in union_sup table
- return fn_identity("ID_UNION_SUP");
+
+/* Table - unionprof_mem_perm_union ::: union_permission_Id */
+function unionprof_mem_perm_union_Id(){ // union_permission_Id(25) in unionprof_mem_perm_union table
+ return fn_identity("ID_UNIONPROF_PERMUNION");
 }
-/* Table - union_sup_stat ::: supstat_Id */
-function union_sup_stat_Id(){ // supstat_Id(25) in union_sup_stat table
- return fn_identity("ID_UNION_SUPSTAT");
+
+/* Table - unionprof_mem_req :::  request_Id */
+function unionprof_requests_Id() { // request_Id(15) in union_requests table
+ return fn_identity("ID_UNIONPROF_MEMREQ");
 }
+
+/* Table - unionprof_mem_roles ::: role_Id  */
+function unionprof_mem_roles_Id(){ // role_Id(25) in unionprof_mem_roles table
+ return fn_identity("ID_UNIONPROF_MEMROLES");
+}
+
+/* Table - unionprof_sup ::: support_Id */
+function unionprof_sup_Id(){ // support_Id(15) in union_sup table
+ return fn_identity("ID_UNIONPROF_SUP");
+}
+
 /* Table - user_account ::: user_Id */
-function user_profile_Id() { // user_Id(15) in user_profile table
+function user_account_Id() { // user_Id(15) in user_profile table
  return fn_identity("ID_USER_ACCOUNT");
 }
 

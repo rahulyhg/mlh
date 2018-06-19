@@ -479,10 +479,10 @@ class identity_check {
 	return $output;
   }
   
- /* Table - union_account ::: union_Id */
- function id_union_account($id) { 
+ /* Table - unionprof_account ::: union_Id */
+ function id_unionprof_account($id) { 
 		$dataObj=new tbl_identity();
-		$selectQuery=$dataObj->query_checkId_union_account($id);
+		$selectQuery=$dataObj->query_checkId_unionprof_account($id);
 		$dbObject=new Database(); 
 		$jsonData=$dbObject->getJSONData($selectQuery);
 		    $dejsonData=json_decode($jsonData);
@@ -494,10 +494,10 @@ class identity_check {
 	return $output;
   }
   
- /* Table - union_branch ::: branch_Id */
- function id_union_branch($id) { 
+ /* Table - unionprof_branch ::: branch_Id */
+ function id_unionprof_branch($id) { 
 	$dataObj=new tbl_identity();
-		$selectQuery=$dataObj->query_checkId_union_branch($id);
+		$selectQuery=$dataObj->query_checkId_unionprof_branch($id);
 		$dbObject=new Database(); 
 		$jsonData=$dbObject->getJSONData($selectQuery);
 		    $dejsonData=json_decode($jsonData);
@@ -509,10 +509,10 @@ class identity_check {
 	return $output;
  }
  
- /* Table - union_calndar ::: calendar_Id */
- function id_union_calndar($id) {
+ /* Table - unionprof_calndar ::: calendar_Id */
+ function id_unionprof_calndar($id) {
    $dataObj=new tbl_identity();
-		$selectQuery=$dataObj->query_checkId_union_calndar($id);
+		$selectQuery=$dataObj->query_checkId_unionprof_calndar($id);
 		$dbObject=new Database(); 
 		$jsonData=$dbObject->getJSONData($selectQuery);
 		    $dejsonData=json_decode($jsonData);
@@ -524,10 +524,10 @@ class identity_check {
 	return $output;
  }
  
- /* Table - union_mem ::: member_Id */
- function id_union_mem($id) { 
+ /* Table - unionprof_mem ::: member_Id */
+ function id_unionprof_mem($id) { 
 		$dataObj=new tbl_identity();
-		$selectQuery=$dataObj->query_checkId_union_mem($id);
+		$selectQuery=$dataObj->query_checkId_unionprof_mem($id);
 		$dbObject=new Database(); 
 		$jsonData=$dbObject->getJSONData($selectQuery);
 		    $dejsonData=json_decode($jsonData);
@@ -539,10 +539,10 @@ class identity_check {
 	return $output;
   }
   
- /* Table - union_mem_chat ::: chat_Id */
- function id_union_memchat($id) { 
+ /* Table - unionprof_mem_chat ::: chat_Id */
+ function id_unionprof_memchat($id) { 
 	    $dataObj=new tbl_identity();
-		$selectQuery=$dataObj->query_checkId_union_mem_chat($id);
+		$selectQuery=$dataObj->query_checkId_unionprof_mem_chat($id);
 		$dbObject=new Database(); 
 		$jsonData=$dbObject->getJSONData($selectQuery);
 		    $dejsonData=json_decode($jsonData);
@@ -553,56 +553,58 @@ class identity_check {
 		   }
 	return $output;
   }
-  
- /* Table - union_mem_req :::  request_Id */
- function id_union_memreq($id) { 
-        $dataObj=new tbl_identity();
-		$selectQuery=$dataObj->query_checkId_union_mem_req($id);
-		$dbObject=new Database(); 
-		$jsonData=$dbObject->getJSONData($selectQuery);
-		    $dejsonData=json_decode($jsonData);
-		   if(count($dejsonData)>0) {
-			 $output='ID_ALREADY_EXIST';
-		   } else {
-			 $output='ID_NOT_EXIST';
-		   }
+  /* Table - unionprof_mem_perm_branch ::: branch_permission_Id */
+  function id_unionprof_mem_perm_branch($id){ 
+   $dataObj=new tbl_identity();
+   $selectQuery=$dataObj->query_checkId_unionprof_mem_perm_branch($id);
+   $dbObject=new Database(); 
+   $jsonData=$dbObject->getJSONData($selectQuery);
+   $dejsonData=json_decode($jsonData);
+   if(count($dejsonData)>0) { $output='ID_ALREADY_EXIST'; } 
+   else { $output='ID_NOT_EXIST'; }
+	return $output;
+  }
+ 
+ /* Table - unionprof_mem_perm_union ::: union_permission_Id */
+ function id_unionprof_mem_perm_union($id){
+   $dataObj=new tbl_identity();
+   $selectQuery=$dataObj->query_checkId_unionprof_mem_perm_union($id);
+   $dbObject=new Database(); 
+   $jsonData=$dbObject->getJSONData($selectQuery);
+   $dejsonData=json_decode($jsonData);
+   if(count($dejsonData)>0) { $output='ID_ALREADY_EXIST'; } 
+   else { $output='ID_NOT_EXIST'; }
+	return $output;
+ }
+	  
+ /* Table - unionprof_mem_req :::  request_Id */
+ function id_unionprof_memreq($id) { 
+   $dataObj=new tbl_identity();
+   $selectQuery=$dataObj->query_checkId_unionprof_mem_req($id);
+   $dbObject=new Database(); 
+   $jsonData=$dbObject->getJSONData($selectQuery);
+   $dejsonData=json_decode($jsonData);
+   if(count($dejsonData)>0) { $output='ID_ALREADY_EXIST'; } 
+   else { $output='ID_NOT_EXIST'; }
 	return $output;
   }
   
- /* Table - union_mem_stat ::: memstat_Id */
- function id_union_memstat($id) { 
-		$dataObj=new tbl_identity();
-		$selectQuery=$dataObj->query_checkId_union_mem_stat($id);
-		$dbObject=new Database(); 
-		$jsonData=$dbObject->getJSONData($selectQuery);
-		    $dejsonData=json_decode($jsonData);
-		   if(count($dejsonData)>0) {
-			 $output='ID_ALREADY_EXIST';
-		   } else {
-			 $output='ID_NOT_EXIST';
-		   }
+ /* Table - unionprof_mem_roles ::: role_Id */
+ function id_unionprof_mem_roles($id) {
+   $dataObj=new tbl_identity();
+   $selectQuery=$dataObj->query_checkId_unionprof_mem_roles($id);
+   $dbObject=new Database(); 
+   $jsonData=$dbObject->getJSONData($selectQuery);
+   $dejsonData=json_decode($jsonData);
+   if(count($dejsonData)>0) { $output='ID_ALREADY_EXIST'; } 
+   else { $output='ID_NOT_EXIST'; }
 	return $output;
-  }
+ }
   
- /* Table - union_sup ::: support_Id */
- function id_union_sup($id) { 
+ /* Table - unionprof_sup ::: support_Id */
+ function id_unionprof_sup($id) { 
 		$dataObj=new tbl_identity();
-		$selectQuery=$dataObj->query_checkId_union_sup($id);
-		$dbObject=new Database(); 
-		$jsonData=$dbObject->getJSONData($selectQuery);
-		    $dejsonData=json_decode($jsonData);
-		   if(count($dejsonData)>0) {
-			 $output='ID_ALREADY_EXIST';
-		   } else {
-			 $output='ID_NOT_EXIST';
-		   }
-    return $output;
-  }
-  
- /* Table - union_sup_stat ::: supstat_Id */
- function id_union_supstat($id) { 
-		$dataObj=new tbl_identity();
-		$selectQuery=$dataObj->query_checkId_union_sup_stat($id);
+		$selectQuery=$dataObj->query_checkId_unionprof_sup($id);
 		$dbObject=new Database(); 
 		$jsonData=$dbObject->getJSONData($selectQuery);
 		    $dejsonData=json_decode($jsonData);
@@ -1181,34 +1183,34 @@ class identity {
 		else { return $num; }  
 	}
 	
-	/* Table - union_account ::: union_Id */
-	function union_account_id() { /* 15 */
+	/* Table - unionprof_account ::: union_Id */
+	function unionprof_account_id() { /* 15 */
 		$num="UPA";
         for($index=0;$index<12;$index++) {
             $num.=rand(1,9);
         }
 		/* Check Exists or not, If not exist return */
 		$checkObj=new identity_check();
-		$output=$checkObj->id_union_account($num);
-		if($output==='ID_ALREADY_EXIST') { union_account_id(); } 
+		$output=$checkObj->id_unionprof_account($num);
+		if($output==='ID_ALREADY_EXIST') { unionprof_account_id(); } 
 		else { return $num; }  
 	}
 	
-	/* Table - union_branch ::: branch_Id */
-	function union_branch_id() { /* 25 */
+	/* Table - unionprof_branch ::: branch_Id */
+	function unionprof_branch_id() { /* 25 */
 		$num="UB";
 		for($index=0;$index<23;$index++) {
             $num.=rand(1,9);
         }
 		/* Check Exists or not, If not exist return */
 		$checkObj=new identity_check();
-		$output=$checkObj->id_union_branch($num);
-		if($output==='ID_ALREADY_EXIST') { union_branch_id(); } 
+		$output=$checkObj->id_unionprof_branch($num);
+		if($output==='ID_ALREADY_EXIST') { unionprof_branch_id(); } 
 		else { return $num; }  
 	}
 	
-	/* Table - union_calndar ::: calendar_Id */
-	function union_calndar_id(){ /* 25 */
+	/* Table - unionprof_calndar ::: calendar_Id */
+	function unionprof_calndar_id(){ /* 25 */
 	   $num="UCAL";
         for($index=0;$index<21;$index++) {
             $num.=rand(1,9);
@@ -1216,87 +1218,99 @@ class identity {
         return $num;
 		/* Check Exists or not, If not exist return */
 		$checkObj=new identity_check();
-		$output=$checkObj->id_union_calndar($num);
-		if($output==='ID_ALREADY_EXIST') { union_calndar_id(); } 
+		$output=$checkObj->id_unionprof_calndar($num);
+		if($output==='ID_ALREADY_EXIST') { unionprof_calndar_id(); } 
 		else { return $num; }  
 	}
 	
-	/* Table - union_mem ::: member_Id */
-	function union_mem_id() { /* 15 */
+	/* Table - unionprof_mem ::: member_Id */
+	function unionprof_mem_id() { /* 15 */
 		$num="UMI";
         for($index=0;$index<12;$index++) {
             $num.=rand(1,9);
         }
 		/* Check Exists or not, If not exist return */
 		$checkObj=new identity_check();
-		$output=$checkObj->id_union_mem($num);
-		if($output==='ID_ALREADY_EXIST') { union_mem_id(); } 
+		$output=$checkObj->id_unionprof_mem($num);
+		if($output==='ID_ALREADY_EXIST') { unionprof_mem_id(); } 
 		else { return $num; } 
 	}
 	
-	/* Table - union_mem_chat ::: chat_Id */
-	function union_memchat_id() { /* 25 */
+	/* Table - unionprof_mem_chat ::: chat_Id */
+	function unionprof_memchat_id() { /* 25 */
 		$num="UCI";
         for($index=0;$index<22;$index++) {
             $num.=rand(1,9);
         }
 		/* Check Exists or not, If not exist return */
 		$checkObj=new identity_check();
-		$output=$checkObj->id_union_memchat($num);
-		if($output==='ID_ALREADY_EXIST') { union_memchat_id(); } 
+		$output=$checkObj->id_unionprof_memchat($num);
+		if($output==='ID_ALREADY_EXIST') { unionprof_memchat_id(); } 
 		else { return $num; } 
 
 	}
+	/* Table - unionprof_mem_perm_branch ::: branch_permission_Id */
+	function unionprof_mem_perm_branch_id(){ /* 25 */
+	   $num="PUP";
+        for($index=0;$index<22;$index++) {
+            $num.=rand(1,9);
+        }
+		/* Check Exists or not, If not exist return */
+		$checkObj=new identity_check();
+		$output=$checkObj->id_unionprof_mem_perm_branch($num);
+		if($output==='ID_ALREADY_EXIST') { unionprof_mem_perm_branch_id(); } 
+		else { return $num; } 
+	}
 	
-	/* Table - union_mem_req :::  request_Id */
-	function union_memreq_id() { /* 15 */
+	/* Table - unionprof_mem_perm_union ::: union_permission_Id */
+	function unionprof_mem_perm_union_id(){ /* 25 */  
+	    $num="PUP";
+        for($index=0;$index<22;$index++) {
+            $num.=rand(1,9);
+        }
+		/* Check Exists or not, If not exist return */
+		$checkObj=new identity_check();
+		$output=$checkObj->id_unionprof_mem_perm_union($num);
+		if($output==='ID_ALREADY_EXIST') { unionprof_mem_perm_union_id(); } 
+		else { return $num; } 
+	}
+	
+	/* Table - unionprof_mem_req :::  request_Id */
+	function unionprof_memreq_id() { /* 15 */
 		$num="URI";
         for($index=0;$index<12;$index++) {
             $num.=rand(1,9);
         }
 		/* Check Exists or not, If not exist return */
 		$checkObj=new identity_check();
-		$output=$checkObj->id_union_memreq($num);
-		if($output==='ID_ALREADY_EXIST') { union_memreq_id(); } 
+		$output=$checkObj->id_unionprof_memreq($num);
+		if($output==='ID_ALREADY_EXIST') { unionprof_memreq_id(); } 
 		else { return $num; } 
 	}
 	
-	/* Table - union_mem_stat ::: memstat_Id */
-	function union_memstat_id() { /* 25 */
-		$num="USI";
+	/* Table - unionprof_mem_roles ::: role_Id */
+	function unionprof_mem_roles_id(){ /* 25 */
+	  $num="PUR";
         for($index=0;$index<22;$index++) {
             $num.=rand(1,9);
         }
 		/* Check Exists or not, If not exist return */
 		$checkObj=new identity_check();
-		$output=$checkObj->id_union_memstat($num);
-		if($output==='ID_ALREADY_EXIST') { union_memstat_id(); } 
+		$output=$checkObj->id_unionprof_mem_roles($num);
+		if($output==='ID_ALREADY_EXIST') { unionprof_mem_roles_id(); } 
 		else { return $num; } 
 	}
 	
-	/* Table - union_sup ::: support_Id */
-	function union_sup_id(){ /* 15 */
+	/* Table - unionprof_sup ::: support_Id */
+	function unionprof_sup_id(){ /* 15 */
 		$num="USP";
         for($index=0;$index<12;$index++) {
             $num.=rand(1,9);
         }
 		/* Check Exists or not, If not exist return */
 		$checkObj=new identity_check();
-		$output=$checkObj->id_union_sup($num);
-		if($output==='ID_ALREADY_EXIST') { union_sup_id(); } 
-		else { return $num; } 
-	}
-	
-	/* Table - union_sup_stat ::: supstat_Id */
-	function union_supstat_id() { /* 25 */
-		$num="USS";
-        for($index=0;$index<22;$index++) {
-            $num.=rand(1,9);
-        }
-		/* Check Exists or not, If not exist return */
-		$checkObj=new identity_check();
-		$output=$checkObj->id_union_supstat($num);
-		if($output==='ID_ALREADY_EXIST') { union_supstat_id(); } 
+		$output=$checkObj->id_unionprof_sup($num);
+		if($output==='ID_ALREADY_EXIST') { unionprof_sup_id(); } 
 		else { return $num; } 
 	}
 	

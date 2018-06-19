@@ -93,33 +93,37 @@ if(isset($_GET["action"])) {
 		echo $idObj->srvy_optusers_id();
 	}
 	/* Union related Identites */
-	else if($_GET["action"]=='ID_UNION_ACCOUNT') { /* Table - union_account ::: union_Id */
-		echo $idObj->union_account_id();
+	else if($_GET["action"]=='ID_UNIONPROF_ACCOUNT') { /* Table - union_account ::: union_Id */
+		echo $idObj->unionprof_account_id();
 	}
-	else if($_GET["action"]=='ID_UNION_BRANCH') { /* Table - union_branch ::: branch_Id */
-		echo $idObj->union_branch_id();
+	else if($_GET["action"]=='ID_UNIONPROF_BRANCH') { /* Table - union_branch ::: branch_Id */
+		echo $idObj->unionprof_branch_id();
 	}
-	else if($_GET["action"]=='ID_UNION_CALNDR') { /* Table - union_calndar ::: calendar_Id */
-	    echo $idObj->union_calndar_id();
+	else if($_GET["action"]=='ID_UNIONPROF_CALNDR') { /* Table - union_calndar ::: calendar_Id */
+	    echo $idObj->unionprof_calndar_id();
 	}
-	else if($_GET["action"]=='ID_UNION_MEM') {  /* Table - union_mem ::: member_Id */
-		echo $idObj->union_mem_id();
+	else if($_GET["action"]=='ID_UNIONPROF_MEM') {  /* Table - union_mem ::: member_Id */
+		echo $idObj->unionprof_mem_id();
 	}
-	else if($_GET["action"]=='ID_UNION_MEMCHAT') { /* Table - union_mem_chat ::: chat_Id */
-		echo $idObj->union_memchat_id();
+	else if($_GET["action"]=='ID_UNIONPROF_MEMCHAT') { /* Table - union_mem_chat ::: chat_Id */
+		echo $idObj->unionprof_memchat_id();
 	}
-	else if($_GET["action"]=='ID_UNION_MEMREQ') { /* Table - union_mem_req :::  request_Id */
-		echo $idObj->union_memreq_id();
+	else if($_GET["action"]=='ID_UNIONPROF_PERMBRANCH') { /* Table - unionprof_mem_perm_branch ::: branch_permission_Id */
+	    echo $idObj->unionprof_mem_perm_branch_id();
 	}
-	else if($_GET["action"]=='ID_UNION_MEMSTAT') { /* Table - union_mem_stat ::: memstat_Id */
-		echo $idObj->union_memstat_id();
+	else if($_GET["action"]=='ID_UNIONPROF_PERMUNION') { /* Table - unionprof_mem_perm_union ::: union_permission_Id */
+	    echo $idObj->unionprof_mem_perm_union_id();
 	}
-	else if($_GET["action"]=='ID_UNION_SUP') { /* Table - union_sup ::: support_Id */
-		echo $idObj->union_sup_id();
+	else if($_GET["action"]=='ID_UNIONPROF_MEMREQ') { /* Table - union_mem_req :::  request_Id */
+		echo $idObj->unionprof_memreq_id();
 	}
-	else if($_GET["action"]=='ID_UNION_SUPSTAT') { /* Table - union_sup_stat ::: supstat_Id */
-		echo $idObj->union_supstat_id();
+	else if($_GET["action"]=='ID_UNIONPROF_MEMROLES') { /* Table - unionprof_mem_roles ::: role_Id  */
+	    echo $idObj->unionprof_mem_roles_id();
 	}
+	else if($_GET["action"]=='ID_UNIONPROF_SUP') { /* Table - union_sup ::: support_Id */
+		echo $idObj->unionprof_sup_id();
+	}
+	
 	/* User related Identities */
 	else if($_GET["action"]=='ID_USER_ACCOUNT') { /* Table - user_account ::: user_Id */
 		echo $idObj->user_account_id();
