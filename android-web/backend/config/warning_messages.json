@@ -9,5 +9,10 @@
   "W008": { "english":"Missing State." },
   "W009": { "english":"Missing Location." },
   "W010": { "english":"Missing Locality." },
-  "W011": { "english":"Please subscribe atleast One Category." }
+  "W011": { "english":"Please subscribe atleast One Category." },
+  "W012": { "english":"Missing Community Name."},
+  "W013": { "english":"Select Category."},
+  "W014": { "english":"Select SubCategory."},
+  "W015": { "english":"Mention your Designation in the Community."},
+  "W016": { "english":"Missing Community Profile Picture."}
 }

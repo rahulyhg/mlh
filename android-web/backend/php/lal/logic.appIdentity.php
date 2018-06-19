@@ -1183,7 +1183,7 @@ class identity {
 	
 	/* Table - union_account ::: union_Id */
 	function union_account_id() { /* 15 */
-		$num="UAI";
+		$num="UPA";
         for($index=0;$index<12;$index++) {
             $num.=rand(1,9);
         }

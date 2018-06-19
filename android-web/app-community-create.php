@@ -49,9 +49,7 @@
 			   </span>
 			</div>
 			<div class="custom-bg">
-				<div id="community-content-media" align="center">
-			
-			    </div>
+			    <div id="community-content-media" align="center"></div>
 				<div align="center" class="mtop15p padbot15"><b>Community Profile Picture</b></div>
 			</div>
 		 </div>
@@ -64,7 +62,7 @@
 		   </div>
 		   <div class="form-group">
 			  <label>Community Name:</label>
-			  <input type="text" class="form-control" id="add_unionName" placeholder="Enter your Community Name">
+			  <input type="text" class="form-control" id="add_english_unionName" placeholder="Enter your Community Name">
 		   </div>
 		   
 		   <div class="form-group">
@@ -84,7 +82,7 @@
 		   
 		   <div class="form-group">
 			  <label>Your Designation in Community:</label>
-			  <input type="text" class="form-control" id="add_designation" placeholder="Enter your Designation">
+			  <input type="text" class="form-control" id="add_english_designation" placeholder="Enter your Designation">
 		   </div>
 		   
 		   <div class="form-group">
@@ -119,7 +117,7 @@
 		   </div>
 		   
 		   <div class="form-group">
-			  <button class="btn custom-bg form-control"><span class="f14"><b>Create Community</b></span></button>
+			  <button class="btn custom-bg form-control" onclick="javascript:createCommunity();"><span class="f14"><b>Create Community</b></span></button>
 		   </div>
 		   
 		 </div>

@@ -9,6 +9,58 @@ $(document).ready(function(){
  upload_picture_100X100('community-content-media',PROJECT_URL+'images/avatar/0.jpg');
 });
 
+function createCommunity(){
+var unionName=document.getElementById("add_"+USR_LANG+"_unionName").value;
+var category=document.getElementById("add_"+USR_LANG+"_category").value;
+var subcategory=document.getElementById("add_"+USR_LANG+"_subcategory").value;
+var designation=document.getElementById("add_"+USR_LANG+"_designation").value;
+var country=document.getElementById("add_"+USR_LANG+"_country").value;
+var state=document.getElementById("add_"+USR_LANG+"_state").value;
+var location=document.getElementById("add_"+USR_LANG+"_location").value;
+var locality=document.getElementById("add_"+USR_LANG+"_locality").value;
+
+console.log("unionName: "+unionName);
+console.log("category: "+category);
+console.log("subcategory: "+subcategory);
+console.log("designation: "+designation);
+console.log("country: "+country);
+console.log("state: "+state);
+console.log("location: "+location);
+console.log("locality: "+locality);
+
+if(unionName.length>0){
+  if(category.length>0){
+	if(subcategory.length>0){
+		if(designation.length>0){
+			if(country.length>0){
+				if(state.length>0){
+					if(location.length>0){
+						if(locality.length>0){
+						   if(IMG_URL.length>0) {
+							js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.community.professional.php',
+							{ action:'CREATE_PROFESSIONAL_COMMUNITY', unionName:unionName, category:category, 
+							  subcategory:subcategory, designation:designation, country:country, state:state, 
+							  location:location, locality:locality, communityProfilePicture:IMG_URL, admin_Id:AUTH_USER_ID },
+							  function(response){
+							
+							  });
+						   } else { alert_display_warning('W016'); }
+					    } else { alert_display_warning('W010'); }
+					} else { alert_display_warning('W009'); }
+				} else { alert_display_warning('W008'); }
+			} else { alert_display_warning('W007'); }
+        } else { alert_display_warning('W015'); }
+    } else { alert_display_warning('W014'); }
+  } else { alert_display_warning('W013'); }
+} else { alert_display_warning('W012'); }
+ 
+ 
+ 
+ 
+ 
+ 
+}
+
 function communityForm_mediaContent(){
 IMG_URL='';
 var content='';
@@ -88,75 +140,6 @@ function sel_offlang_tel(){
  else { olang_tel.checked=true; }
 }
 
-function create_community(){
-UNION_NAME=document.getElementById("regcom_"+USR_LANG+"_unionName").value;
-UNION_ADMINDESIGNATION=document.getElementById("regcom_"+USR_LANG+"_unionDesignation").value;
-UNION_PICTURE=IMG_URL;
-UNION_INDUSTRY=document.getElementById("regcom_"+USR_LANG+"_industry").value;
-UNION_SUBINDUSTRY=document.getElementById("regcom_"+USR_LANG+"_subindustry").value;
-UNION_COUNTRY=document.getElementById("regcom_"+USR_LANG+"_country").value;
-UNION_STATE=document.getElementById("regcom_"+USR_LANG+"_state").value;
-UNION_LOCATION=document.getElementById("regcom_"+USR_LANG+"_location").value;
-UNION_LOCALITY=document.getElementById("regcom_"+USR_LANG+"_locality").value;
-UNION_LANG_ENG=document.getElementById("regcom_"+USR_LANG+"_offlang_eng").checked;
-UNION_LANG_TEL=document.getElementById("regcom_"+USR_LANG+"_offlang_tel").checked;
-
-if(UNION_NAME.length>0){
- if(UNION_ADMINDESIGNATION.length>0){
-   if(UNION_PICTURE.length>0){
-    if(UNION_INDUSTRY.length>0){
-		if(UNION_SUBINDUSTRY.length>0){
-			if(UNION_COUNTRY.length>0){
-			  if(UNION_STATE.length>0){
-			     if(UNION_LOCATION.length>0){
-				   if(UNION_LOCALITY.length>0){ 
-						FORM_LEVEL=2;
-						createcommunity_form2();
-					} else { 
-					   createcomAlert_display("createcomAlert_"+USR_LANG+"_MissingUnionLocality");$("#communityModal").modal();
-					}
-				} else { 
-					createcomAlert_display("createcomAlert_"+USR_LANG+"_MissingUnionLocation");$("#communityModal").modal();	
-				 }
-			   } else { 
-			       createcomAlert_display("createcomAlert_"+USR_LANG+"_MissingUnionState");$("#communityModal").modal();	 
-			   }
-			 } else { 
-				createcomAlert_display("createcomAlert_"+USR_LANG+"_MissingUnionCountry");$("#communityModal").modal();	 
-		    }
-		} else { 
-			createcomAlert_display("createcomAlert_"+USR_LANG+"_MissingUnionSubCategory");$("#communityModal").modal();	 
-		}
-	 } else { 
-		createcomAlert_display("createcomAlert_"+USR_LANG+"_MissingUnionCategory");$("#communityModal").modal();			 
-	}
-   } else { 
-       createcomAlert_display("createcomAlert_"+USR_LANG+"_MissingProfilePic");$("#communityModal").modal();
-   }
-  } else { 
-	 createcomAlert_display("createcomAlert_"+USR_LANG+"_MissingDesignation");$("#communityModal").modal();		 
-  }
- } else {  
-    createcomAlert_display("createcomAlert_"+USR_LANG+"_MissingUnionName");$("#communityModal").modal();	 
- } 
-}
-
-function createcomAlert_display(id){
- var alertList=["createcomAlert_"+USR_LANG+"_MissingUnionName","createcomAlert_"+USR_LANG+"_MissingDesignation",
- "createcomAlert_"+USR_LANG+"_MissingProfilePic","createcomAlert_"+USR_LANG+"_MissingUnionCategory",
- "createcomAlert_"+USR_LANG+"_MissingUnionSubCategory","createcomAlert_"+USR_LANG+"_MissingUnionCountry",
- "createcomAlert_"+USR_LANG+"_MissingUnionState","createcomAlert_"+USR_LANG+"_MissingUnionLocation",
- "createcomAlert_"+USR_LANG+"_MissingUnionLocality", "createcomAlert_"+USR_LANG+"_MissingNewsFeedTitle",
-  "createcomAlert_"+USR_LANG+"_MissingNewsFeedPicture", "createcomAlert_"+USR_LANG+"_MissingNewsFeedShrtSummary",
-  "createcomAlert_"+USR_LANG+"_MissingNewsFeedDesc"];
- for(var index=0;index<alertList.length;index++){
-	if(alertList[index]===id){
-		if($('#'+alertList[index]).hasClass('hide-block')){ $('#'+alertList[index]).removeClass('hide-block'); }
-	} else {
-		if(!$('#'+alertList[index]).hasClass('hide-block')){ $('#'+alertList[index]).addClass('hide-block'); }
-	}
- }
-}
 
 var arry_frndMemReqList=[];
 var cur_inviteFrndMemCount=0;
