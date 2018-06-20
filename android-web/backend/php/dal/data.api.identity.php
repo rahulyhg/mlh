@@ -167,15 +167,39 @@ class tbl_identity {
 	return $selectQuery;
   }
   
-  /* Table - move_stat_deep ::: mstatdeep_Id */
-  function query_checkId_move_stat_deep($mstatdeep_Id) {
-	$selectQuery="SELECT * FROM move_stat_deep WHERE mstatdeep_Id='".$mstatdeep_Id."';";
+  /* Table - newsfeed_info ::: info_Id */
+  function query_checkId_newsfeed_info($info_Id) {
+	$selectQuery="SELECT * FROM newsfeed_info WHERE info_Id='".$info_Id."';";
 	return $selectQuery;
   }
   
-  /* Table - move_stat_top ::: mstattop_Id */
-  function query_checkId_move_stat_top($mstattop_Id) {
-	$selectQuery="SELECT * FROM move_stat_top WHERE mstattop_Id='".$mstattop_Id."';";
+  /* Table - newsfeed_move ::: nf_move_Id */
+  function query_checkId_newsfeed_move($nf_move_Id) {
+	$selectQuery="SELECT * FROM newsfeed_move WHERE nf_move_Id='".$nf_move_Id."';";
+	return $selectQuery;
+  }
+  
+  /* Table - newsfeed_user_fav ::: nf_fav_Id */
+  function query_checkId_newsfeed_user_fav($nf_fav_Id) {
+	$selectQuery="SELECT * FROM newsfeed_user_fav WHERE nf_fav_Id='".$nf_fav_Id."';";
+	return $selectQuery;
+  }
+  
+  /* Table - newsfeed_user_likes ::: nf_like_Id */
+  function query_checkId_newsfeed_user_likes($nf_like_Id) {
+	$selectQuery="SELECT * FROM newsfeed_user_likes WHERE nf_like_Id='".$nf_like_Id."';";
+	return $selectQuery;
+  }
+  
+  /* Table - newsfeed_user_views ::: view_Id */
+  function query_checkId_newsfeed_user_views($view_Id) {
+	$selectQuery="SELECT * FROM newsfeed_user_views WHERE view_Id='".$view_Id."';";
+	return $selectQuery;
+  }
+  
+  /* Table - newsfeed_user_votes ::: vote_Id */
+  function query_checkId_newsfeed_user_votes($vote_Id) {
+	$selectQuery="SELECT * FROM newsfeed_user_votes WHERE vote_Id='".$vote_Id."';";
 	return $selectQuery;
   }
   

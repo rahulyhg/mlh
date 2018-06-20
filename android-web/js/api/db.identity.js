@@ -105,16 +105,36 @@ function move_sign_Id(){ // sign_Id(25) in move_sign table
  return fn_identity("ID_MOVE_SIGN");
 }
 
-/* Table - move_stat_deep ::: mstatdeep_Id */
-function move_stat_deep_Id(){ // mstatdeep_Id(15) in move_stat_deep table
- return fn_identity("ID_MOVE_STATDEEP");
+/* Table - newsfeed_info ::: info_Id */    
+function newsfeed_info_Id(){ // info_Id(25) in newsfeed_info table
+ return fn_identity("ID_NEWSFEED_INFO");
 }
 
-/* Table - move_stat_top ::: mstattop_Id */
-function move_stat_top_Id(){ // mstattop_Id(15) in move_stat_top table
- return fn_identity("ID_MOVE_STATTOP");
+/* Table - newsfeed_move ::: nf_move_Id */ 
+function newsfeed_move_Id(){ // nf_move_Id(25) in newsfeed_move table
+ return fn_identity("ID_NEWSFEED_MOVE");
 }
 
+/* Table - newsfeed_user_fav ::: nf_fav_Id */  
+function newsfeed_user_fav_Id(){ // nf_fav_Id(15) in newsfeed_user_fav table
+ return fn_identity("ID_NEWSFEED_USERFAV");
+}
+
+/* Table - newsfeed_user_likes ::: nf_like_Id */ 
+function newsfeed_user_likes_Id(){ // nf_like_Id(15) in newsfeed_user_likes table
+ return fn_identity("ID_NEWSFEED_USERLIKES");
+}
+
+/* Table - newsfeed_user_views ::: view_Id */  
+function newsfeed_user_views_Id(){ // view_Id(15) in newsfeed_user_views table
+ return fn_identity("ID_NEWSFEED_USERVIEWS");
+}
+
+/* Table - newsfeed_user_votes ::: vote_Id */ 
+function newsfeed_user_votes_Id(){ // vote_Id(15) in newsfeed_user_votes table
+ return fn_identity("ID_NEWSFEED_USERVOTES");
+} 
+  
 /* Table - srvy_info ::: srvy_Id */
 function srvy_info_Id(){ // srvy_Id(25) in srvy_info table
  return fn_identity("ID_SRVY_INFO");

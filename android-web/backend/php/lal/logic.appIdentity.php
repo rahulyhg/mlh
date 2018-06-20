@@ -388,35 +388,76 @@ class identity_check {
 		   }
 	return $output;
   }
+ /* Table - newsfeed_info ::: info_Id */
+ function id_newsfeed_info($id) { 
+    $dataObj=new tbl_identity();
+	$selectQuery=$dataObj->query_checkId_newsfeed_info($id);
+	$dbObject=new Database(); 
+	$jsonData=$dbObject->getJSONData($selectQuery);
+	$dejsonData=json_decode($jsonData);
+	if(count($dejsonData)>0) {  $output='ID_ALREADY_EXIST'; }
+	else { $output='ID_NOT_EXIST'; }
+	return $output;
+ }
  
- /* Table - move_stat_deep ::: mstatdeep_Id */
- function id_move_statdeep($id) { 
-		$dataObj=new tbl_identity();
-		$selectQuery=$dataObj->query_checkId_move_stat_deep($id);
-		$dbObject=new Database(); 
-		$jsonData=$dbObject->getJSONData($selectQuery);
-		    $dejsonData=json_decode($jsonData);
-		   if(count($dejsonData)>0) {
-			 $output='ID_ALREADY_EXIST';
-		   } else {
-			 $output='ID_NOT_EXIST';
-		   }
+ /* Table - newsfeed_move ::: nf_move_Id */
+  function id_newsfeed_move($id) { 
+    $dataObj=new tbl_identity();
+	$selectQuery=$dataObj->query_checkId_newsfeed_move($id);
+	$dbObject=new Database(); 
+	$jsonData=$dbObject->getJSONData($selectQuery);
+	$dejsonData=json_decode($jsonData);
+	if(count($dejsonData)>0) {  $output='ID_ALREADY_EXIST'; }
+	else { $output='ID_NOT_EXIST'; }
+	return $output;
+ }
+ 
+ /* Table - newsfeed_user_fav ::: nf_fav_Id */
+ function id_newsfeed_user_fav($id) { 
+    $dataObj=new tbl_identity();
+	$selectQuery=$dataObj->query_checkId_newsfeed_user_fav($id);
+	$dbObject=new Database(); 
+	$jsonData=$dbObject->getJSONData($selectQuery);
+	$dejsonData=json_decode($jsonData);
+	if(count($dejsonData)>0) {  $output='ID_ALREADY_EXIST'; }
+	else { $output='ID_NOT_EXIST'; }
+	return $output;
+ }
+ 
+  /* Table - newsfeed_user_likes ::: nf_like_Id */
+  function id_newsfeed_user_likes($id) { 
+    $dataObj=new tbl_identity();
+	$selectQuery=$dataObj->query_checkId_newsfeed_user_likes($id);
+	$dbObject=new Database(); 
+	$jsonData=$dbObject->getJSONData($selectQuery);
+	$dejsonData=json_decode($jsonData);
+	if(count($dejsonData)>0) {  $output='ID_ALREADY_EXIST'; }
+	else { $output='ID_NOT_EXIST'; }
 	return $output;
   }
  
- /* Table - move_stat_top ::: mstattop_Id */
- function id_move_stattop($id) { 
-		$dataObj=new tbl_identity();
-		$selectQuery=$dataObj->query_checkId_move_stat_top($id);
-		$dbObject=new Database(); 
-		$jsonData=$dbObject->getJSONData($selectQuery);
-		    $dejsonData=json_decode($jsonData);
-		   if(count($dejsonData)>0) {
-			 $output='ID_ALREADY_EXIST';
-		   } else {
-			 $output='ID_NOT_EXIST';
-		   }
-    return $output;
+  /* Table - newsfeed_user_views ::: view_Id */
+  function id_newsfeed_user_views($id) { 
+    $dataObj=new tbl_identity();
+	$selectQuery=$dataObj->query_checkId_newsfeed_user_views($id);
+	$dbObject=new Database(); 
+	$jsonData=$dbObject->getJSONData($selectQuery);
+	$dejsonData=json_decode($jsonData);
+	if(count($dejsonData)>0) {  $output='ID_ALREADY_EXIST'; }
+	else { $output='ID_NOT_EXIST'; }
+	return $output;
+  }
+  
+  /* Table - newsfeed_user_votes ::: vote_Id */
+  function id_newsfeed_user_votes($id) { 
+    $dataObj=new tbl_identity();
+	$selectQuery=$dataObj->query_checkId_newsfeed_user_votes($id);
+	$dbObject=new Database(); 
+	$jsonData=$dbObject->getJSONData($selectQuery);
+	$dejsonData=json_decode($jsonData);
+	if(count($dejsonData)>0) {  $output='ID_ALREADY_EXIST'; }
+	else { $output='ID_NOT_EXIST'; }
+	return $output;
   }
   
  /* Table - srvy_info ::: srvy_Id */
@@ -1105,29 +1146,69 @@ class identity {
 		else { return $num; }  
 	}
 	
-	/* Table - move_stat_deep ::: mstatdeep_Id */
-	function move_statdeep_id() { /* 15 */
-		$num="MSDI";
-        for($index=0;$index<11;$index++) {
-            $num.=rand(1,9);
-        }
+	/* Table - newsfeed_info ::: info_Id  */ 
+    function newsfeed_info_id() { /* 25 */
+		$num="N";
+        for($index=0;$index<24;$index++) { $num.=rand(1,9); }
 		/* Check Exists or not, If not exist return */
 		$checkObj=new identity_check();
-		$output=$checkObj->id_move_statdeep($num);
-		if($output==='ID_ALREADY_EXIST') { move_statdeep_id(); } 
+		$output=$checkObj->id_newsfeed_info($num);
+		if($output==='ID_ALREADY_EXIST') { newsfeed_info_id(); } 
 		else { return $num; }  
 	}
 	
-	/* Table - move_stat_top ::: mstattop_Id */
-	function move_stattop_id() { /* 15 */
-		$num="MSTI";
-        for($index=0;$index<11;$index++) {
-            $num.=rand(1,9);
-        }
+	/* Table - newsfeed_move ::: nf_move_Id */ 
+	function newsfeed_move_id() { /* 25 */
+		$num="N2M";
+        for($index=0;$index<22;$index++) { $num.=rand(1,9); }
 		/* Check Exists or not, If not exist return */
 		$checkObj=new identity_check();
-		$output=$checkObj->id_move_stattop($num);
-		if($output==='ID_ALREADY_EXIST') { move_stattop_id(); } 
+		$output=$checkObj->id_newsfeed_move($num);
+		if($output==='ID_ALREADY_EXIST') { newsfeed_move_id(); } 
+		else { return $num; }  
+	}
+	
+    /* Table - newsfeed_user_fav ::: nf_fav_Id */  
+	function newsfeed_user_fav_id() { /* 15 */
+		$num="NF";
+        for($index=0;$index<13;$index++) { $num.=rand(1,9); }
+		/* Check Exists or not, If not exist return */
+		$checkObj=new identity_check();
+		$output=$checkObj->id_newsfeed_user_fav($num);
+		if($output==='ID_ALREADY_EXIST') { newsfeed_user_fav_id(); } 
+		else { return $num; }  
+	}
+	
+    /* Table - newsfeed_user_likes ::: nf_like_Id */
+	function newsfeed_user_likes_id() { /* 15 */
+		$num="NL";
+        for($index=0;$index<13;$index++) { $num.=rand(1,9); }
+		/* Check Exists or not, If not exist return */
+		$checkObj=new identity_check();
+		$output=$checkObj->id_newsfeed_user_likes($num);
+		if($output==='ID_ALREADY_EXIST') { newsfeed_user_likes_id(); } 
+		else { return $num; }  
+	}
+	
+    /* Table - newsfeed_user_views ::: view_Id (15) */ 
+	function newsfeed_user_views_id() { /* 15 */
+		$num="NVI";
+        for($index=0;$index<12;$index++) { $num.=rand(1,9); }
+		/* Check Exists or not, If not exist return */
+		$checkObj=new identity_check();
+		$output=$checkObj->id_newsfeed_user_views($num);
+		if($output==='ID_ALREADY_EXIST') { newsfeed_user_views_id(); } 
+		else { return $num; }  
+	}
+	
+    /* Table - newsfeed_user_votes ::: vote_Id (15) */ 
+	function newsfeed_user_votes_id() { /* 15 */
+		$num="NVO";
+        for($index=0;$index<12;$index++) { $num.=rand(1,9); }
+		/* Check Exists or not, If not exist return */
+		$checkObj=new identity_check();
+		$output=$checkObj->id_newsfeed_user_votes($num);
+		if($output==='ID_ALREADY_EXIST') { newsfeed_user_votes_id(); } 
 		else { return $num; }  
 	}
 	

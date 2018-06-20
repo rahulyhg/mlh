@@ -17,6 +17,12 @@
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/db.identity.js"></script>
  <script type="text/javascript">
    $(document).ready(function(){
+      console.log("unionprof_account_Id : "+newsfeed_info_Id()+" length: "+newsfeed_info_Id().length);
+	  console.log("newsfeed_move_Id : "+newsfeed_move_Id()+" length: "+newsfeed_move_Id().length);
+	  console.log("newsfeed_user_fav_Id : "+newsfeed_user_fav_Id()+" length: "+newsfeed_user_fav_Id().length);
+	  console.log("newsfeed_user_likes_Id : "+newsfeed_user_likes_Id()+" length: "+newsfeed_user_likes_Id().length);
+	  console.log("newsfeed_user_views_Id : "+newsfeed_user_views_Id()+" length: "+newsfeed_user_views_Id().length);
+	  console.log("newsfeed_user_votes_Id : "+newsfeed_user_votes_Id()+" length: "+newsfeed_user_votes_Id().length);
       console.log("unionprof_account_Id : "+unionprof_account_Id()+" length: "+unionprof_account_Id().length);
 	  console.log("unionprof_branch_Id : "+unionprof_branch_Id()+" length: "+unionprof_branch_Id().length);
 	  console.log("unionprof_calndar_Id : "+unionprof_calndar_Id()+" length: "+unionprof_calndar_Id().length);

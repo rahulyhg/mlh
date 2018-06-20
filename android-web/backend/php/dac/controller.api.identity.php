@@ -73,11 +73,24 @@ if(isset($_GET["action"])) {
 	else if($_GET["action"]=='ID_MOVE_SIGN') {  /* Table - move_sign ::: sign_Id */
 		echo $idObj->move_sign_id();
 	}
-	else if($_GET["action"]=='ID_MOVE_STATDEEP') { /* Table - move_stat_deep ::: mstatdeep_Id */
-		echo $idObj->move_statdeep_id();
+	/* NewsFeed related Identities */
+	else if($_GET["action"]=='ID_NEWSFEED_INFO') { /* Table - newsfeed_info ::: info_Id (25) */
+		echo $idObj->newsfeed_info_id();
 	}
-	else if($_GET["action"]=='ID_MOVE_STATTOP') {  /* Table - move_stat_top ::: mstattop_Id */
-		echo $idObj->move_stattop_id();
+	else if($_GET["action"]=='ID_NEWSFEED_MOVE') { /* Table - newsfeed_move ::: nf_move_Id (25) */  
+		echo $idObj->newsfeed_move_id();
+	}
+	else if($_GET["action"]=='ID_NEWSFEED_USERFAV') { /* Table - newsfeed_user_fav ::: nf_fav_Id (15) */
+		echo $idObj->newsfeed_user_fav_id();
+	}
+	else if($_GET["action"]=='ID_NEWSFEED_USERLIKES') { /* Table - newsfeed_user_likes ::: nf_like_Id (15) */
+		echo $idObj->newsfeed_user_likes_id();
+	}
+	else if($_GET["action"]=='ID_NEWSFEED_USERVIEWS') { /* Table - newsfeed_user_views ::: view_Id (15) */ 
+		echo $idObj->newsfeed_user_views_id();
+	}
+	else if($_GET["action"]=='ID_NEWSFEED_USERVOTES') { /* Table - newsfeed_user_votes ::: vote_Id (15) */
+		echo $idObj->newsfeed_user_votes_id();
 	}
 	/* Survey related Identities */
 	else if($_GET["action"]=='ID_SRVY_INFO') { /* Table - srvy_info ::: srvy_Id */
