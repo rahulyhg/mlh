@@ -1,6 +1,6 @@
 <?php session_start();
 if(isset($_SESSION["AUTHENTICATION_STATUS"])){
-if($_SESSION["AUTHENTICATION_STATUS"]=='COMPLETED'){
+if($_SESSION["AUTHENTICATION_STATUS"]=='INCOMPLETED'){
  ?>
 <!DOCTYPE html>
 <html lang="en">
