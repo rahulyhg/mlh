@@ -1,6 +1,6 @@
 <?php session_start();
 if(isset($_SESSION["AUTHENTICATION_STATUS"])){
-if($_SESSION["AUTHENTICATION_STATUS"]=='INCOMPLETED'){
+if($_SESSION["AUTHENTICATION_STATUS"]=='COMPLETED'){
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,10 +43,14 @@ $(document).ready(function(){
 	   <h5 align="center" class="lineh25p"><b>Select few Categories which you are interested to get updates in your NewsFeed</b></h5>
 	 </div>
 	 
-	 <div id="categories-list" class="col-md-12 col-sm-12 col-xs-12" style="margin-top:15px;margin-bottom:15px;width:100%;height:auto;">
-		
+	 <div id="categories-list" class="col-md-12 col-sm-12 col-xs-12" 
+	 style="margin-top:15px;margin-bottom:15px;width:100%;height:auto;">
+	   <div align="center">
+		<img src="<?php echo $_SESSION["PROJECT_URL"]?>images/load.gif" class="profile_pic_img1"/>
+	   </div>
 	 </div>
-	 <div align="center" class="col-md-12 col-sm-12 col-xs-12" style="margin-bottom:65px;width:100%;height:auto;">
+	 <div id="authSubscribeBtn" align="center" class="col-md-12 col-sm-12 col-xs-12 hide-block" 
+	 style="margin-bottom:65px;width:100%;height:auto;">
 	    <button class="btn custom-bg white-font" onclick="javascript:subscribe();"><b>Subscribe</b></button>
 	 </div>
    </span>
@@ -58,4 +62,3 @@ $(document).ready(function(){
 <?php 
 } else { header("Location: ".$_SESSION["PROJECT_URL"]."newsfeed/latest-news"); }
 } else { header("Location: ".$_SESSION["PROJECT_URL"]); } ?>
-<?php // } ?>

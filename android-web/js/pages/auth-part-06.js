@@ -114,6 +114,7 @@ function getListOfCategories(){
    }
    content1+='</div>';
    document.getElementById("categories-list").innerHTML=content1;
+   $("#authSubscribeBtn").removeClass('hide-block');
  });
 }
 
