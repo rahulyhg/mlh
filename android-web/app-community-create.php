@@ -57,10 +57,6 @@
 		 <div class="container-fluid">
 		   
 		   <div class="form-group">
-		     
-			 
-		   </div>
-		   <div class="form-group">
 			  <label>Community Name:</label>
 			  <input type="text" class="form-control" id="add_english_unionName" placeholder="Enter your Community Name">
 		   </div>

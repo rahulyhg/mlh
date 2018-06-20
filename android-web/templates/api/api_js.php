@@ -92,8 +92,7 @@ function js_session(sessionJSON,fn_output) {
 
 function alert_display_warning(warning_Id){
 js_ajax("GET",PROJECT_URL+'backend/config/warning_messages.json',{},function(response){
-var content='<div id="alertWarningModal" class="modal fade" role="dialog">';
-    content+='<div class="modal-dialog">';
+var content='<div class="modal-dialog">';
 	content+='<div class="modal-content">';
     content+='<div class="modal-body" style="padding:0px;">';
     content+='<div class="alert alert-warning alert-dismissible" style="margin-bottom:0px;">';
@@ -103,9 +102,36 @@ var content='<div id="alertWarningModal" class="modal fade" role="dialog">';
     content+='</div>';
     content+='</div>';
     content+='</div>';
-    content+='</div>';
-document.body.innerHTML+=content;
+var modalDivision = document.createElement("div"); 
+    modalDivision.setAttribute("id", "alertWarningModal");
+	modalDivision.setAttribute("class", "modal fade");
+	modalDivision.setAttribute("role", "dialog");
+ document.body.appendChild(modalDivision);  
+ document.getElementById("alertWarningModal").innerHTML=content;
  $('#alertWarningModal').modal();
+});
+}
+
+function alert_display_success(success_Id,success_url){
+js_ajax("GET",PROJECT_URL+'backend/config/success_messages.json',{},function(response){
+var content='<div class="modal-dialog">';
+	content+='<div class="modal-content">';
+    content+='<div class="modal-body" style="padding:0px;">';
+    content+='<div class="alert alert-success alert-dismissible" style="margin-bottom:0px;">';
+    content+='<a href="#" onclick="javascript:urlTransfer(\''+success_url+'\');" class="close" data-dismiss="modal" ';
+	content+='aria-label="close">&times;</a>';
+    content+='<strong>Warning!</strong> '+response[success_Id][USR_LANG];
+    content+='</div>';
+    content+='</div>';
+    content+='</div>';
+    content+='</div>';
+var modalDivision = document.createElement("div"); 
+    modalDivision.setAttribute("id", "alertSuccessModal");
+	modalDivision.setAttribute("class", "modal fade");
+	modalDivision.setAttribute("role", "dialog");
+ document.body.appendChild(modalDivision);  
+ document.getElementById("alertSuccessModal").innerHTML=content;
+ $('#alertSuccessModal').modal({backdrop: "static"});
 });
 }
 </script>

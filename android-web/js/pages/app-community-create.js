@@ -7,6 +7,7 @@ $(document).ready(function(){
  build_categoryOption("add_"+USR_LANG+"_category");
  build_countryOption("add_"+USR_LANG+"_country");
  upload_picture_100X100('community-content-media',PROJECT_URL+'images/avatar/0.jpg');
+ 
 });
 
 function createCommunity(){
@@ -37,12 +38,15 @@ if(unionName.length>0){
 					if(location.length>0){
 						if(locality.length>0){
 						   if(IMG_URL.length>0) {
+						    show_toggleMLHLoader('body');
 							js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.community.professional.php',
 							{ action:'CREATE_PROFESSIONAL_COMMUNITY', unionName:unionName, category:category, 
 							  subcategory:subcategory, designation:designation, country:country, state:state, 
 							  location:location, locality:locality, communityProfilePicture:IMG_URL, admin_Id:AUTH_USER_ID },
 							  function(response){
-							
+							     hide_toggleMLHLoader('body');
+							     console.log(response);
+								 alert_display_success('S001');
 							  });
 						   } else { alert_display_warning('W016'); }
 					    } else { alert_display_warning('W010'); }
@@ -60,7 +64,7 @@ if(unionName.length>0){
  
  
 }
-
+/*
 function communityForm_mediaContent(){
 IMG_URL='';
 var content='';
@@ -162,7 +166,7 @@ function inviteFrndAsMember(){ //  focus:inviteFrndAsMember_updateTxtBox,
 			 }
 		   } 
 		   if(!status){ */
-             return $('<li class="inviteFrndAsMember-item"></li>')  
+     /*        return $('<li class="inviteFrndAsMember-item"></li>')  
                    .data("item.autocomplete",item)  
                    .append("<a>").append("<img style='width:50px;height:50px;border-radius:50%;' src='"+item.profile_pic+"'/>")
 			       .append("&nbsp;&nbsp;&nbsp;")
@@ -199,10 +203,10 @@ function inviteFrndAsMember_updateTxtBox(event,ui){
  console.log("country: "+country); // country
  
  /* Add it to Inviting List */
- $(this).val("");
+ //$(this).val("");
  
  /* Display in Members Layout */
- if(cur_inviteFrndMemCount==0){
+ /*if(cur_inviteFrndMemCount==0){
 	 var initialContent='<div class="list-group-item custom-bg white-font" style="background-color:'+CURRENT_DARK_COLOR+';">';
 		 initialContent+='<b>You are inviting:</b>';
 		 initialContent+='</div>';
@@ -212,7 +216,7 @@ function inviteFrndAsMember_updateTxtBox(event,ui){
  }
  // inviteFrndMemCount
  /* First Value */
-     var nxt_inviteFrndMemCount=cur_inviteFrndMemCount+1;
+ /*    var nxt_inviteFrndMemCount=cur_inviteFrndMemCount+1;
      var content='<div id="inviteMemList-'+user_Id+'" class="list-group-item">';
 	     content+='<div class="container-fluid pad0">';
 		 content+='<div class="col-xs-12">';
@@ -303,4 +307,4 @@ console.log("newsDesc: "+UNION_FIRSTNEWS_DESC);
 	console.log(response);
  });
 
-}
+}*/
