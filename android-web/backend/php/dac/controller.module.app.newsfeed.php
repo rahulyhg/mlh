@@ -21,15 +21,24 @@ if(isset($_GET["action"])){
 	else { echo 'MISSING_USERID'; }
    }
    else if($_GET["action"]==='GETLIST_DATA_WRITENEWSFEEDAVAILABLECOMMUNITIES'){
-	if(isset($_GET["user_Id"])){
+	if(isset($_GET["user_Id"]) && isset($_GET["limit_start"]) && isset($_GET["limit_end"])){
 	 $user_Id=$_GET["user_Id"];
+	 $limit_start=$_GET["limit_start"];
+	 $limit_end=$_GET["limit_end"];
      $nfObj=new Newsfeed();
 	 $dbObj=new Database();
-	 $query=$nfObj->query_data_listOfAvailCommunitiesAndBranchesToWriteNewsFeed($user_Id);
+	 $query=$nfObj->query_data_listOfAvailCommunitiesAndBranchesToWriteNewsFeed($user_Id,$limit_start,$limit_end);
 	 $jsonData=$dbObj->getJSONData($query);
 	 echo $jsonData;
 	}
-	else { echo 'MISSING_USERID'; }
+	else { 
+	 $content='Missing'; 
+	 if(!isset($_GET["user_Id"])) { $content.=' user_Id,'; }
+	 if(!isset($_GET["limit_start"])) { $content.=' limit_start,'; }
+	 if(!isset($_GET["limit_end"])) { $content.=' limit_end,'; }
+	 $content=chop($content,',');
+	 echo $content;
+	}
    }
    else if($_GET["action"]==='WRITE_NEWSFEED'){
      

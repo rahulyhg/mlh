@@ -35,7 +35,7 @@ RewriteRule app/hooks app-mylocalhook.php  [NC,L]
 RewriteRule app/myfriends app-user-friends-my.php  [NC,L]
 RewriteRule app/findfriends app-user-friends-find.php  [NC,L]
 
-RewriteRule app/write-newsfeed app-write-newsfeed.php  [NC,L]
+RewriteRule app/write-newsfeed app-newsfeed-write.php  [NC,L]
 
 RewriteRule app/create-movement app-movement-create.php  [NC,L]
 RewriteRule app/movement/([^/]+)$ app-movement-view.php?1=$1  [NC,L]
