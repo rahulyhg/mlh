@@ -10,7 +10,7 @@ $logger=Logger::getLogger("controller.module.app.community.professional.php");
 if(isset($_GET["action"])){
   if($_GET["action"]==='CREATE_PROFESSIONAL_COMMUNITY'){
     $idObj=new identity();
-	$profComObj=new professionalCommunity();
+	$profComObj=new ProfessionalCommunity();
 	$dbObj=new Database();
 	
 	$union_Id=$idObj->unionprof_account_id();
