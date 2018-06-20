@@ -17,8 +17,7 @@ if(isset($_GET["action"])){
 	$main_branch_Id=$idObj->unionprof_branch_id();
 	$member_Id=$idObj->unionprof_mem_id();
 	$role_Id=$idObj->unionprof_mem_roles_id();
-	$union_permission_Id=$idObj->unionprof_mem_perm_union_id();
-	$branch_permission_Id=$idObj->unionprof_mem_perm_branch_id();
+	$permission_Id=$idObj->unionprof_mem_perm_id();
 	
 	$domain_Id=$_GET["category"];
 	$subdomain_Id=$_GET["subcategory"];
@@ -43,12 +42,9 @@ if(isset($_GET["action"])){
 	$queryBuilder.=$profComObj->query_createCommunityMember($member_Id, $union_Id, $main_branch_Id, $admin_Id, $role_Id, 					'OFFLINE', 'Y', 'Y');
 	
 	/* Creates Union Permissions */
-	$queryBuilder.=$profComObj->query_createUnionPermissions($union_permission_Id, $role_Id, 'Y', 'Y', 
-												'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y');
-	/* Creates Union Branch Permissions */
-    $queryBuilder.=$profComObj->query_createBranchPermissions($branch_permission_Id, $role_Id, 'Y', 'Y', 'Y',
-									'Y', 'Y', 'Y', 'Y','Y', 'Y', 'Y', 'Y','Y', 'Y', 'Y', 'Y','Y', 'Y');
-    echo $queryBuilder;
+	$queryBuilder.=$profComObj->query_createProfUnionPermissions($permission_Id, $role_Id, 'Y', 
+				'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y');
+
     echo $dbObj->addupdateData($queryBuilder);
 	/* Add Permissions Query */
   }
