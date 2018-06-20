@@ -175,9 +175,9 @@ function unionprof_chat_Id() { // chat_Id(25) in union_chat table
  return fn_identity("ID_UNIONPROF_MEMCHAT");
 }
 
-/* Table - unionprof_mem_perm_branch ::: branch_permission_Id */
-function unionprof_mem_perm_branch_Id(){ // branch_permission_Id(25) in unionprof_mem_perm_branch table
- return fn_identity("ID_UNIONPROF_PERMBRANCH");
+/* Table - unionprof_mem_perm ::: permission_Id */
+function unionprof_mem_perm_Id(){ // permission_Id(25) in unionprof_mem_perm table
+ return fn_identity("ID_UNIONPROF_PERM");
 }
 
 /* Table - unionprof_mem_perm_union ::: union_permission_Id */

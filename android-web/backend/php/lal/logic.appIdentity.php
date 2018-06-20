@@ -594,10 +594,10 @@ class identity_check {
 		   }
 	return $output;
   }
-  /* Table - unionprof_mem_perm_branch ::: branch_permission_Id */
-  function id_unionprof_mem_perm_branch($id){ 
+  /* Table - unionprof_mem_perm ::: permission_Id */
+  function id_unionprof_mem_perm($id){ 
    $dataObj=new tbl_identity();
-   $selectQuery=$dataObj->query_checkId_unionprof_mem_perm_branch($id);
+   $selectQuery=$dataObj->query_checkId_unionprof_mem_perm($id);
    $dbObject=new Database(); 
    $jsonData=$dbObject->getJSONData($selectQuery);
    $dejsonData=json_decode($jsonData);
@@ -605,18 +605,6 @@ class identity_check {
    else { $output='ID_NOT_EXIST'; }
 	return $output;
   }
- 
- /* Table - unionprof_mem_perm_union ::: union_permission_Id */
- function id_unionprof_mem_perm_union($id){
-   $dataObj=new tbl_identity();
-   $selectQuery=$dataObj->query_checkId_unionprof_mem_perm_union($id);
-   $dbObject=new Database(); 
-   $jsonData=$dbObject->getJSONData($selectQuery);
-   $dejsonData=json_decode($jsonData);
-   if(count($dejsonData)>0) { $output='ID_ALREADY_EXIST'; } 
-   else { $output='ID_NOT_EXIST'; }
-	return $output;
- }
 	  
  /* Table - unionprof_mem_req :::  request_Id */
  function id_unionprof_memreq($id) { 
@@ -1330,31 +1318,19 @@ class identity {
 		else { return $num; } 
 
 	}
-	/* Table - unionprof_mem_perm_branch ::: branch_permission_Id */
-	function unionprof_mem_perm_branch_id(){ /* 25 */
+	/* Table - unionprof_mem_perm ::: permission_Id */
+	function unionprof_mem_perm_id(){ /* 25 */
 	   $num="PUP";
         for($index=0;$index<22;$index++) {
             $num.=rand(1,9);
         }
 		/* Check Exists or not, If not exist return */
 		$checkObj=new identity_check();
-		$output=$checkObj->id_unionprof_mem_perm_branch($num);
-		if($output==='ID_ALREADY_EXIST') { unionprof_mem_perm_branch_id(); } 
+		$output=$checkObj->id_unionprof_mem_perm($num);
+		if($output==='ID_ALREADY_EXIST') { unionprof_mem_perm_id(); } 
 		else { return $num; } 
 	}
 	
-	/* Table - unionprof_mem_perm_union ::: union_permission_Id */
-	function unionprof_mem_perm_union_id(){ /* 25 */  
-	    $num="PUP";
-        for($index=0;$index<22;$index++) {
-            $num.=rand(1,9);
-        }
-		/* Check Exists or not, If not exist return */
-		$checkObj=new identity_check();
-		$output=$checkObj->id_unionprof_mem_perm_union($num);
-		if($output==='ID_ALREADY_EXIST') { unionprof_mem_perm_union_id(); } 
-		else { return $num; } 
-	}
 	
 	/* Table - unionprof_mem_req :::  request_Id */
 	function unionprof_memreq_id() { /* 15 */

@@ -28,8 +28,7 @@
 	  console.log("unionprof_calndar_Id : "+unionprof_calndar_Id()+" length: "+unionprof_calndar_Id().length);
 	  console.log("unionprof_members_Id : "+unionprof_members_Id()+" length: "+unionprof_members_Id().length);
 	  console.log("unionprof_chat_Id : "+unionprof_chat_Id()+" length: "+unionprof_chat_Id().length);
-	  console.log("unionprof_mem_perm_branch_Id : "+unionprof_mem_perm_branch_Id()+" length: "+unionprof_mem_perm_branch_Id().length);
-	  console.log("unionprof_mem_perm_union_Id : "+unionprof_mem_perm_union_Id()+" length: "+unionprof_mem_perm_union_Id().length);
+	  console.log("unionprof_mem_perm_Id : "+unionprof_mem_perm_Id()+" length: "+unionprof_mem_perm_Id().length);
 	  console.log("unionprof_requests_Id : "+unionprof_requests_Id()+" length: "+unionprof_requests_Id().length);
 	  console.log("unionprof_mem_roles_Id : "+unionprof_mem_roles_Id()+" length: "+unionprof_mem_roles_Id().length);
 	  console.log("unionprof_sup_Id : "+unionprof_sup_Id()+" length: "+unionprof_sup_Id().length);

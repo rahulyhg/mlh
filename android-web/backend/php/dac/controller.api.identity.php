@@ -121,11 +121,8 @@ if(isset($_GET["action"])) {
 	else if($_GET["action"]=='ID_UNIONPROF_MEMCHAT') { /* Table - union_mem_chat ::: chat_Id */
 		echo $idObj->unionprof_memchat_id();
 	}
-	else if($_GET["action"]=='ID_UNIONPROF_PERMBRANCH') { /* Table - unionprof_mem_perm_branch ::: branch_permission_Id */
-	    echo $idObj->unionprof_mem_perm_branch_id();
-	}
-	else if($_GET["action"]=='ID_UNIONPROF_PERMUNION') { /* Table - unionprof_mem_perm_union ::: union_permission_Id */
-	    echo $idObj->unionprof_mem_perm_union_id();
+	else if($_GET["action"]=='ID_UNIONPROF_PERM') { /* Table - unionprof_mem_perm_branch ::: branch_permission_Id */
+	    echo $idObj->unionprof_mem_perm_id();
 	}
 	else if($_GET["action"]=='ID_UNIONPROF_MEMREQ') { /* Table - union_mem_req :::  request_Id */
 		echo $idObj->unionprof_memreq_id();

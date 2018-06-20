@@ -257,9 +257,9 @@ class tbl_identity {
 	return $selectQuery;
   }
   
-  /* Table - unionprof_mem_perm_branch ::: branch_permission_Id */
-  function query_checkId_unionprof_mem_perm_branch($branch_permission_Id) {
-	$selectQuery="SELECT * FROM unionprof_mem_perm_branch WHERE branch_permission_Id='".$branch_permission_Id."';";
+  /* Table - unionprof_mem_perm ::: permission_Id */
+  function query_checkId_unionprof_mem_perm($permission_Id) {
+	$selectQuery="SELECT * FROM unionprof_mem_perm WHERE permission_Id='".$permission_Id."';";
 	return $selectQuery;
   }
   
