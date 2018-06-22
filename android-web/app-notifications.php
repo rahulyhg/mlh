@@ -197,11 +197,11 @@ function load_notify_communityRequestsData(div_view, appendContent,limit_start,l
 			</div>
 
 			<div class="scrollTabwrapper col-xs-10">
-				<ul class="nav nav-tabs scrollTablist" id="myTab" style="border-bottom:0px;">
+				<ul class="nav scrollTablist" id="myTab" style="border-bottom:0px;">
 					<li><a id="notifyOverviewHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>Overview</b></a></li>
-					<li><a id="notifyRequestsHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>1. Requests</b></a></li>
-					<li><a id="notifyNewsHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>2. News</b></a></li>
-					<li><a id="notifyMovementsHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>3. Movements</b></a></li>
+					<li><a id="notifyRequestsHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>Requests</b></a></li>
+					<li><a id="notifyNewsHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>News</b></a></li>
+					<li><a id="notifyMovementsHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>Movements</b></a></li>
 				</ul>
 			</div>
 			

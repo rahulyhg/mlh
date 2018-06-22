@@ -246,11 +246,11 @@ function searchMovementcontentData(div_view, appendContent,limit_start,limit_end
 			</div>
 
 			<div class="scrollTabwrapper col-xs-10">
-				<ul class="nav nav-tabs scrollTablist" id="myTab" style="border-bottom:0px;">
-					<li><a id="searchPeopleHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>1. People</b></a></li>
-					<li><a id="searchNewsFeedHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>2. NewsFeed</b></a></li>
-					<li><a id="searchCommunityHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>3. Community</b></a></li>
-					<li><a id="searchMovementHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>4. Movements</b></a></li>
+				<ul class="nav scrollTablist" id="myTab" style="border-bottom:0px;">
+					<li><a id="searchPeopleHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>People</b></a></li>
+					<li><a id="searchNewsFeedHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>NewsFeed</b></a></li>
+					<li><a id="searchCommunityHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>Community</b></a></li>
+					<li><a id="searchMovementHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>Movements</b></a></li>
 				</ul>
 			</div>
 			<div class="scroller scroller-right col-xs-1" style="height:41px;">

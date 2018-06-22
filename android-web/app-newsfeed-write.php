@@ -33,7 +33,7 @@
    { action : 'GETLIST_COUNT_WRITENEWSFEEDAVAILABLECOMMUNITIES', user_Id:AUTH_USER_ID+1 },function(totalData){
      if(totalData=='0'){
 	    var content='<div align="center" class="mtop15p">';
-			content+='<b>You don\'t have Permissions to write in any of the Community.</b>';
+			content+='<b>You don\'t have Permissions to write News in any of the Community.</b>';
 			content+='</div>';
 			content+='<div class="col-xs-2"></div>';
 			content+='<div class="col-xs-7">';
