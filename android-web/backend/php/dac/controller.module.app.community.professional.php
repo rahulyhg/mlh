@@ -48,6 +48,15 @@ if(isset($_GET["action"])){
     echo $dbObj->addupdateData($queryBuilder);
 	/* Add Permissions Query */
   }
+  else if($_GET["action"]==='GETDATA_PROFESSIONAL_COMMUNITY'){
+    if(isset($_GET["union_Id"])){
+	   $union_Id=$_GET["union_Id"];
+	   $comObj=new ProfessionalCommunity();
+	   $dbObj=new Database();
+	   $query=$comObj->query_getCommunityProfileData($union_Id);
+	   echo $dbObj->getJSONData($query);
+	} else { echo 'MISSING_UNION_ID'; }
+  }
   else { echo 'NO_ACTION'; }
 }
 else { echo 'MISSING_ACTION'; }

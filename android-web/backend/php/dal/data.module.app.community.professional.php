@@ -1,5 +1,31 @@
 <?php
 class ProfessionalCommunity {
+ /**************************************************************************************************************************/
+ /******************************************* GET COMMUNITY PROFILE DATA ***************************************************/
+ /**************************************************************************************************************************/
+ function query_getCommunityProfileData($union_Id){
+  // unionprof_account  unionprof_branch  unionprof_mem  unionprof_mem_perm  unionprof_mem_req  unionprof_mem_roles
+  // unionprof_sup  user_account  newsfeed_info  move_info  subs_dom_info  	subs_subdom_info
+  $sql="SELECT ";
+  $sql.="subs_dom_info.domain_Id, subs_dom_info.domainName, subs_subdom_info.subdomain_Id, subs_subdom_info.domain_Id, ";
+  $sql.="subs_subdom_info.subdomainName, unionprof_account.union_Id, unionprof_account.main_branch_Id, ";
+  $sql.="unionprof_account.unionName, unionprof_account.unionURLName, unionprof_account.profile_pic, ";
+  $sql.="unionprof_account.created_On, unionprof_account.admin_Id, unionprof_branch.minlocation, ";
+  $sql.="unionprof_branch.location, unionprof_branch.state, unionprof_branch.country, ";
+  $sql.="user_account.username As admin_username, user_account.surName As admin_surName, user_account.name As admin_name, ";
+  $sql.="user_account.profile_pic As admin_profilepic, user_account.minlocation As admin_minlocation, ";
+  $sql.="user_account.location As admin_location, user_account.state As admin_state, ";
+  $sql.="user_account.country As admin_country, ";
+  $sql.="(SELECT count(*) FROM unionprof_branch WHERE unionprof_branch.union_Id='".$union_Id."') As noOfBranches, ";
+  $sql.="(SELECT count(*) FROM unionprof_mem WHERE unionprof_mem.union_Id='".$union_Id."') As noOfMembers, ";
+  $sql.="(SELECT count(*) FROM unionprof_sup WHERE unionprof_sup.union_Id='".$union_Id."') As noOfSupporters ";
+  $sql.="FROM subs_dom_info, subs_subdom_info, user_account, unionprof_account, unionprof_branch ";
+  $sql.="WHERE unionprof_account.domain_Id=subs_dom_info.domain_Id AND ";
+  $sql.="unionprof_account.subdomain_Id=subs_subdom_info.subdomain_Id ";
+  $sql.="AND unionprof_account.main_branch_Id=unionprof_branch.branch_Id AND ";
+  $sql.="unionprof_account.admin_Id=user_account.user_Id AND unionprof_account.union_Id='".$union_Id."';";
+  return $sql;
+ }
  
  /**************************************************************************************************************************/
  /************************************************ COMMUNITY ***************************************************************/
