@@ -77,6 +77,12 @@
 		   </div>
 		   
 		   <div class="form-group">
+			  <label>About Community:</label>
+			  <textarea class="form-control" id="add_english_aboutUnion" placeholder="Mention description about Community"
+			    style="height:250px;"></textarea>
+		   </div>
+		   
+		   <div class="form-group">
 			  <label>Your Designation in Community:</label>
 			  <input type="text" class="form-control" id="add_english_designation" placeholder="Enter your Designation">
 		   </div>

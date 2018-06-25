@@ -14,6 +14,7 @@ function createCommunity(){
 var unionName=document.getElementById("add_"+USR_LANG+"_unionName").value;
 var category=document.getElementById("add_"+USR_LANG+"_category").value;
 var subcategory=document.getElementById("add_"+USR_LANG+"_subcategory").value;
+var aboutUnion=document.getElementById("add_"+USR_LANG+"_aboutUnion").value;
 var designation=document.getElementById("add_"+USR_LANG+"_designation").value;
 var country=document.getElementById("add_"+USR_LANG+"_country").value;
 var state=document.getElementById("add_"+USR_LANG+"_state").value;
@@ -23,6 +24,7 @@ var locality=document.getElementById("add_"+USR_LANG+"_locality").value;
 console.log("unionName: "+unionName);
 console.log("category: "+category);
 console.log("subcategory: "+subcategory);
+console.log("aboutUnion: "+aboutUnion);
 console.log("designation: "+designation);
 console.log("country: "+country);
 console.log("state: "+state);
@@ -32,6 +34,7 @@ console.log("locality: "+locality);
 if(unionName.length>0){
   if(category.length>0){
 	if(subcategory.length>0){
+	  if(aboutUnion.length>0){
 		if(designation.length>0){
 			if(country.length>0){
 				if(state.length>0){
@@ -41,8 +44,9 @@ if(unionName.length>0){
 						    show_toggleMLHLoader('body');
 							js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.community.professional.php',
 							{ action:'CREATE_PROFESSIONAL_COMMUNITY', unionName:unionName, category:category, 
-							  subcategory:subcategory, designation:designation, country:country, state:state, 
-							  location:location, locality:locality, communityProfilePicture:IMG_URL, admin_Id:AUTH_USER_ID },
+							  subcategory:subcategory, designation:designation, aboutUnion:aboutUnion, country:country, 
+							  state:state,  location:location, locality:locality, communityProfilePicture:IMG_URL,
+							  admin_Id:AUTH_USER_ID },
 							  function(response){
 							     hide_toggleMLHLoader('body');
 							     console.log(response);
@@ -54,7 +58,8 @@ if(unionName.length>0){
 				} else { alert_display_warning('W008'); }
 			} else { alert_display_warning('W007'); }
         } else { alert_display_warning('W015'); }
-    } else { alert_display_warning('W014'); }
+       } else { alert_display_warning('W017'); }
+	} else { alert_display_warning('W014'); }
   } else { alert_display_warning('W013'); }
 } else { alert_display_warning('W012'); }
  
