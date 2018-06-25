@@ -39,11 +39,14 @@
 </style>
 <script type="text/javascript">
 function hzTabSelection(id){
- var arryHzTab=["communityProfileHzTab","communityBranchHzTab","communityNewsFeedHzTab","communityMovementsHzTab",
+ var arryHzTab=["communityDashboardHzTab","communityProfileHzTab","communityBranchHzTab","communityNewsFeedHzTab","communityMovementsHzTab",
 				"communityMembersHzTab","communitySupportersHzTab"];
- var arryTabDataViewer=["communityProfileDisplayDivision","communityBranchDisplayDivision","communityNewsFeedDisplayDivision",
+ var arryTabDataViewer=["communityDashboardDisplayDivision","communityProfileDisplayDivision","communityBranchDisplayDivision","communityNewsFeedDisplayDivision",
 						"communityMovementsDisplayDivision","communityMembersDisplayDivision","communitySupportersDisplayDivision"];
  hzTabSelector(id,arryHzTab,arryTabDataViewer);
+ if(id==="communityDashboardHzTab"){
+   communityDashBoardMenu("communityDash_MemberRequest");
+ }
 }
 $(document).ready(function(){
 sideWrapperToggle();
@@ -119,6 +122,7 @@ $('#joinAsMemberModal').modal();
 function generateTabList(){
  
 var	 content='<ul class="nav scrollTablist" id="myTab" style="border-bottom:0px;">';
+	 content+='<li><a id="communityDashboardHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>Dashboard</b></a></li>';
 	 content+='<li><a id="communityProfileHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>Profile</b></a></li>';
 	 content+='<li><a id="communityBranchHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>Branches</b></a></li>';
 	 content+='<li><a id="communityNewsFeedHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>NewsFeed</b></a></li>';
@@ -293,6 +297,113 @@ var	 content='<ul class="nav scrollTablist" id="myTab" style="border-bottom:0px;
 		   </div>
 		</div>
 
+		<div id="communityDashboardDisplayDivision" class="container-fluid mtop15p">
+		   
+			<div class="list-group">
+				  <div class="list-group-item">
+			        <div class="container-fluid pad0">
+					   <div class="col-xs-3">
+					     <img src="https://res.cloudinary.com/dbcyhclaw/image/upload/x_856,y_436,w_208,h_208,z_0.4315,c_crop/v1529503339/Screenshot_20180619-135815_osobbt.png" style="margin-top:15px;width:70px;height:70px;border-radius:50%;background-color:#efefef;">
+					   </div>
+					   <div align="center" class="col-xs-9">
+					      <div><h4><b>SurName Name</b></h4></div>
+						  <div><span class="label custom-bg uppercase">Role in the Community</span></div>
+						  <div class="mtop15p fs16">Minlocation, Location,<br/> State, Country</div>
+					   </div>
+					</div>
+			      </div>
+				  <div class="list-group-item">
+				    <div class="container-fluid">
+					  <div class="col-xs-4 fs16">
+					    <b>Branch Details</b>
+					  </div>
+					  <div class="col-xs-8 fs16">
+					    Minlocation, Location,<br/> State, Country
+					  </div>
+					</div>
+				  </div>
+				  
+			   </div>
+<script type="text/javascript">
+function communityDashBoardMenu(id){  
+ var arry_Id=["communityDash_MemberRequest","communityDash_WriteNewsFeed","communityDash_Settings"];
+ var arry_Id_content=["communityDashMemberRequestDivision","communityDashWriteNewsFeedDivison","communityDashSettingsDivison"];
+ for(var index=0;index<arry_Id.length;index++){
+   if(arry_Id[index]===id){ 
+     if($('#'+arry_Id_content[index]).hasClass('hide-block')){ $('#'+arry_Id_content[index]).removeClass('hide-block'); } 
+	 $('#'+arry_Id[index]).css('color',CURRENT_DARK_COLOR);
+	 $('#'+arry_Id[index]).css('border-bottom','3px solid '+CURRENT_DARK_COLOR);
+   }
+   else {
+     if(!$('#'+arry_Id_content[index]).hasClass('hide-block')){ $('#'+arry_Id_content[index]).addClass('hide-block'); } 
+	 $('#'+arry_Id[index]).css('color','#000');
+	 $('#'+arry_Id[index]).css('border-bottom','0px');
+   }
+ }
+}
+</script>
+			<div class="list-group">
+			  <div class="list-group-item">
+			     <div class="container-fluid pad0">
+				    <div align="center" class="col-xs-5">
+					 <span id="communityDash_MemberRequest" style="padding-bottom:10px;" onclick="javascript:communityDashBoardMenu(this.id);"><b>Member Request</b></span>
+					 </div>
+					<div align="center" class="col-xs-5">
+					  <span id="communityDash_WriteNewsFeed" style="padding-bottom:10px;" onclick="javascript:communityDashBoardMenu(this.id);"><b>Write NewsFeed</b></span>
+					</div>
+					<div align="center" class="col-xs-2">
+					  <span id="communityDash_Settings" style="padding-bottom:10px;" onclick="javascript:communityDashBoardMenu(this.id);">
+					     <b><i class="fa fa-cog" style="font-size:22px;"></i></b>
+					  </span>
+				    </div>
+				 </div>
+			  </div>
+			</div>
+		   
+		    <div id="communityDashMemberRequestDivision" class="container-fluid hide-block">
+			  
+			  <div class="list-group">
+				  <div class="list-group-item">
+			        <div class="container-fluid pad0">
+					   <div class="col-xs-3">
+					     <img src="https://res.cloudinary.com/dbcyhclaw/image/upload/x_856,y_436,w_208,h_208,z_0.4315,c_crop/v1529503339/Screenshot_20180619-135815_osobbt.png" style="margin-top:15px;width:70px;height:70px;border-radius:50%;background-color:#efefef;">
+					   </div>
+					   <div align="center" class="col-xs-9">
+					      <div><h4><b>SurName Name</b></h4></div>
+						  <div><span class="label custom-bg uppercase">Role in the Community</span></div>
+						  <div class="mtop15p fs16">Minlocation, Location,<br/> State, Country</div>
+					   </div>
+					</div>
+			      </div>
+				  <div class="list-group-item">
+				    <div class="container-fluid">
+					  <div class="col-xs-4 fs16">
+					    <b>Branch Details</b>
+					  </div>
+					  <div class="col-xs-8 fs16">
+					    Minlocation, Location,<br/> State, Country
+					  </div>
+					</div>
+				  </div>
+				   <div class="list-group-item">
+				    <div class="container-fluid pad0">
+					  <div class="col-xs-12 pad0 fs16"><button class="btn custom-bg pull-right"><b>Accept Request</b></button></div>
+					</div>
+				   </div>
+			   </div>
+		
+			  
+			</div>
+			
+			<div id="communityDashWriteNewsFeedDivison" class="container-fluid hide-block">
+			  NewsFeedDivision
+			</div>
+			
+			<div id="communityDashSettingsDivison" class="container-fluid hide-block">
+			  My Permissions
+			</div>
+			   
+		</div>
 		<!-- app-page-content :: Start -->
 		<div id="communityProfileDisplayDivision">
 		<div class="container-fluid mtop15p">
