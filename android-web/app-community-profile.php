@@ -24,6 +24,7 @@
  <?php include_once 'templates/api/api_js.php'; ?>
  <?php include_once 'templates/api/api_params.php'; ?>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/app-community-create-bg-styles.js"></script>
+ <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/ui-templates.js"></script>
  <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
  <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
  <style>
@@ -38,20 +39,42 @@
 </style>
 <script type="text/javascript">
 function hzTabSelection(id){
- var arryHzTab=["searchPeopleHzTab","searchNewsFeedHzTab","searchCommunityHzTab","searchMovementHzTab"];
- var arryTabDataViewer=["searchPeopleDisplayDivision","searchNewsFeedDisplayDivision","searchCommunityDisplayDivision","searchMovementDisplayDivision"];
+ var arryHzTab=["communityProfileHzTab","communityBranchHzTab","communityNewsFeedHzTab","communityMovementsHzTab",
+				"communityMembersHzTab","communitySupportersHzTab"];
+ var arryTabDataViewer=["communityProfileDisplayDivision","communityBranchDisplayDivision","communityNewsFeedDisplayDivision",
+						"communityMovementsDisplayDivision","communityMembersDisplayDivision","communitySupportersDisplayDivision"];
  hzTabSelector(id,arryHzTab,arryTabDataViewer);
 }
 $(document).ready(function(){
 sideWrapperToggle();
 bgstyle();
 mainMenuSelection("dn_"+USR_LANG+"_mycommunity");
-hzTabSelection('searchPeopleHzTab');
 $(".lang_"+USR_LANG).css('display','block');
 var union_Id='<?php if(isset($_GET["1"])){ echo $_GET["1"]; }?>';
-loadCommunityData(union_Id);
+generateTabList();
+hzTabSelection('communityProfileHzTab');
+loadCommunity_profile(union_Id);
+loadCommunity_newsFeed();
+loadCommunity_movement();
 });
-function loadCommunityData(union_Id){
+function loadCommunity_newsFeed(){
+var param_domainName="IT AND SOFTWARE";
+var param_subdomainName="Social Network";
+var param_images="https://res.cloudinary.com/dbcyhclaw/image/upload/x_856,y_436,w_208,h_208,z_0.4315,c_crop/v1529503339/Screenshot_20180619-135815_osobbt.png";
+var param_artTitle="SampleNews";
+var param_artShrtDesc="Sample";
+var param_infoId="UAI1234566777";
+var param_newsType="UNION";
+var param_createdOn="22 November 2018, Thursday";
+var content=uiTemplate_simpleNewsFeedDisplay(param_domainName, param_subdomainName, param_images, param_artTitle, 
+  param_artShrtDesc, param_infoId, param_newsType, param_createdOn);
+ document.getElementById("communityNewsFeedDisplayDivision").innerHTML=content;
+}
+function loadCommunity_movement(){
+ var content=uiTemplate_simpleMovementDisplay();
+ document.getElementById("communityMovementsDisplayDivision").innerHTML=content;
+}
+function loadCommunity_profile(union_Id){
 js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.community.professional.php',
 { action:'GETDATA_PROFESSIONAL_COMMUNITY', union_Id:union_Id },function(response){
   console.log(response);
@@ -82,7 +105,7 @@ js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.community.profe
   var noOfBranches=response[0].noOfBranches;
   var noOfMembers=response[0].noOfMembers;
   var noOfSupporters=response[0].noOfSupporters;
-  document.getElementById("communityProfilePicDiv").innerHTML='<img src="'+profile_pic+'" style="width:70px;height:70px;border-radius:50%;background-color:#efefef;"/>';
+  document.getElementById("communityProfilePicDiv").innerHTML='<img src="'+profile_pic+'" style="margin-top:15px;width:70px;height:70px;border-radius:50%;background-color:#efefef;"/>';
 });
 }
 
@@ -92,76 +115,88 @@ $('#requestBranchModal').modal();
 function invoke_joinAsMemberModal(){
 $('#joinAsMemberModal').modal();
 }
+
+function generateTabList(){
+ 
+var	 content='<ul class="nav scrollTablist" id="myTab" style="border-bottom:0px;">';
+	 content+='<li><a id="communityProfileHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>Profile</b></a></li>';
+	 content+='<li><a id="communityBranchHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>Branches</b></a></li>';
+	 content+='<li><a id="communityNewsFeedHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>NewsFeed</b></a></li>';
+	 content+='<li><a id="communityMovementsHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>Movements</b></a></li>';
+	 content+='<li><a id="communityMembersHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>Members</b></a></li>';
+	 content+='<li><a id="communitySupportersHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>Subscribers</b></a></li>';
+	 content+='</ul>';
+	 
+  document.getElementById("communityProfileScrollableTab").innerHTML=content;
+}
 </script>
 </head>
 <body>
 <!-- Join As a Member Modal -->
 <div id="joinAsMemberModal" class="modal fade" role="dialog">
-<div class="modal-dialog"><!-- Modal content-->
-<div class="modal-content">
-<div class="modal-body">
-<div class="container-fluid mbot15p pad0">
-<div class="col-xs-12">
- <button type="button" class="close" data-dismiss="modal">&times;</button>
- <h5 style="text-transform:uppercase;"><b>Request to Join As a Member</b></h5><hr/>
-</div>
-<div class="col-xs-12">
-  <div class="form-group">
-    <label>Country</label>
-    <select class="form-control">
-      <option value="">Select your Country</option>
-    </select>
+  <div class="modal-dialog"><!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+         <div class="container-fluid mbot15p pad0">
+		 
+			<div class="col-xs-12">
+			 <button type="button" class="close" data-dismiss="modal">&times;</button>
+			 <h5 style="text-transform:uppercase;"><b>Request to Join As a Member</b></h5><hr/>
+			</div>
+			
+			<div class="col-xs-12">
+			  <div class="form-group">
+				<label>Country</label>
+				<select class="form-control">
+				  <option value="">Select your Country</option>
+				</select>
+			  </div>
+			</div>
+			
+			<div class="col-xs-12">
+			  <div class="form-group">
+				<label>State</label>
+				<select class="form-control">
+					<option value="">Select your State</option>
+				</select>
+			  </div>
+			</div>
+
+			<div class="col-xs-12">
+			   <div class="form-group">
+				  <label>Location</label>
+				  <select class="form-control">
+					<option value="">Select your Location</option>
+				  </select>
+			   </div>
+			</div>
+
+			<div class="col-xs-12">
+			   <div class="form-group">
+				   <label>Locality</label>
+				   <select class="form-control">
+					  <option value="">Select your Locality</option>
+				   </select>
+			   </div>
+			</div>
+
+			<div class="col-xs-12 mtop15p mbot15p">
+			   <div class="col-xs-9 pad0">
+				 <label>Share your details to Owner of the Community to contact you</label>
+			   </div>
+			   <div class="col-xs-2">
+				  <input type="checkbox" data-toggle="toggle" data-on="Yes" data-off="No">
+			   </div>
+			</div>
+
+			<div class="col-xs-12">
+				<button class="btn btn-primary form-control"><b>Request Local Branch</b></button>
+			</div>
+			
+		</div>
+      </div>
+    </div>
   </div>
-</div>
-<div class="col-xs-12">
-  <div class="form-group">
-    <label>State</label>
-    <select class="form-control">
-        <option value="">Select your State</option>
-    </select>
-  </div>
-</div>
-
-<div class="col-xs-12">
-<div class="form-group">
-<label>Location</label>
-<select class="form-control">
-<option value="">Select your Location</option>
-</select>
-</div>
-</div>
-
-<div class="col-xs-12">
-<div class="form-group">
-<label>Locality</label>
-<select class="form-control">
-<option value="">Select your Locality</option>
-</select>
-</div>
-</div>
-
-<div class="col-xs-12 mtop15p mbot15p">
-<div class="col-xs-9 pad0">
-<label>
-Share your details to Owner of the Community to contact you
-</label>
-</div>
-
-<div class="col-xs-2">
-<input type="checkbox" data-toggle="toggle" data-on="Yes" data-off="No">
-</div>
-
-</div>
-
-<div class="col-xs-12">
-<button class="btn btn-primary form-control"><b>Request Local Branch</b></button>
-</div>
-
-</div>
-
-</div>
-</div>
-</div>
 </div>
 
 <div id="requestBranchModal" class="modal fade" role="dialog">
@@ -215,9 +250,7 @@ Share your details to Owner of the Community to contact you
 
 <div class="col-xs-12 mtop15p mbot15p">
 <div class="col-xs-9 pad0">
-<label>
-Share your details to Owner of the Community to contact you
-</label>
+<label>Share your details to Owner of the Community to contact you</label>
 </div>
 
 <div class="col-xs-2">
@@ -249,112 +282,295 @@ Share your details to Owner of the Community to contact you
 	  
 	    <div class="container-fluid">
 		   <div class="scroller-divison row">
-		    <div class="scroller scroller-left col-xs-1" style="height:41px;">
-			   <i class="glyphicon glyphicon-chevron-left"></i>
+	         <div class="scroller scroller-left col-xs-1" style="height:41px;">
+				<i class="glyphicon glyphicon-chevron-left"></i>
+             </div>
+			 <div id="communityProfileScrollableTab" class="scrollTabwrapper col-xs-10">
+			 </div>
+			 <div class="scroller scroller-right col-xs-1" style="height:41px;">
+				<i class="glyphicon glyphicon-chevron-right"></i>
+			 </div>
+		   </div>
+		</div>
+
+		<!-- app-page-content :: Start -->
+		<div id="communityProfileDisplayDivision">
+		<div class="container-fluid mtop15p">
+		    <div class="" style="margin-bottom:15px;text-transform:uppercase;">
+				<span class="label custom-bg">IT and Software</span>&nbsp;<b>/</b>&nbsp;<span class="label custom-bg">Social Network</span>
+			</div>
+			<div id="communityProfilePicDiv" class="col-xs-3">
+			   <img src="https://res.cloudinary.com/dbcyhclaw/image/upload/x_856,y_436,w_208,h_208,z_0.4315,c_crop/v1529503339/Screenshot_20180619-135815_osobbt.png" style="margin-top:15px;width:70px;height:70px;border-radius:50%;background-color:#efefef;">
+			</div>
+			<div align="center" class="col-xs-9 pad0">
+			  <div class="col-xs-12 pad0">
+				<h4 style="line-height:28px;"><b>Telangana Owners and Drivers Association</b></h4>
+			  </div>
+			  <div class="col-xs-12 pad0" style="font-size:16px;">Kukatpally, Hyderabad,<br/> Telangana, INDIA</div>
 			</div>
 
-			<div class="scrollTabwrapper col-xs-10">
-				<ul class="nav scrollTablist" id="myTab" style="border-bottom:0px;">
-					<li><a id="searchPeopleHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>People</b></a></li>
-					<li><a id="searchNewsFeedHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>NewsFeed</b></a></li>
-					<li><a id="searchCommunityHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>Community</b></a></li>
-					<li><a id="searchMovementHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>Movements</b></a></li>
-				</ul>
+			<div class="col-xs-12 pad0 mtop15p">
+			<div class="btn-group pull-right">
+			<button class="btn btn-default"><b>Edit Profile</b></button>
+			<button class="btn btn-default"><b>Write NewsFeed</b></button>
+			<button class="btn btn-default"><i class="fa fa-cog"></i></button>
 			</div>
-			<div class="scroller scroller-right col-xs-1" style="height:41px;">
-			   <i class="glyphicon glyphicon-chevron-right"></i>
 			</div>
-		  </div>
+
+			<div class="col-xs-12 pad0 mtop15p">
+			<div class="btn-group pull-right">
+			<button class="btn btn-default pull-right" onclick="javascript:invoke_requestBranchModal();"><b>Request Local Branch</b></button>
+			<button class="btn btn-default" onclick="javascript:invoke_joinAsMemberModal();"><b>Join As Member</b></button>
+			</div>
+			</div>
+		</div>
+		<div class="container-fluid mtop15p pad0">
+			<div class="col-xs-12 pad0">
+				<div class="list-group">
+					<div class="list-group-item" style="border-bottom:3px solid #000;"><h5><b>About Community</b></h5></div>
+					<div class="list-group-item">
+					  <div class="fs16">
+					  Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. 
+					  Vivamus nisi metus, molestie vel, gravida in, condimentum sit amet, nunc. Nam a nibh.
+					  Donec suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur malesuada. 
+					  Vestibulum a velit eu ante scelerisque vulputate.
+					  </div>
+					</div>
+					<div class="list-group-item">
+					  <div class="container-fluid pad0">
+						<div class="col-xs-12 pad0">
+					       <button class="btn btn-default pull-right"><span class="fs14"><b>Subscribe to Community</b></span></button>
+						</div>
+					  </div>
+					</div>
+				</div>
+			</div>
+<script	type="text/javascript">
+$(document).ready(function(){
+ menuCommunityProfile("communityProfile_statistics");
+});
+function menuCommunityProfile(id){
+ var arry_Id=["communityProfile_statistics","communityProfile_comOwners"];
+ var arry_Id_content=["communityProfile_statistics_content","communityProfile_comOwners_content"];
+ for(var index=0;index<arry_Id.length;index++){
+   if(id===arry_Id[index]){
+     $('#'+arry_Id[index]).css('color',CURRENT_DARK_COLOR);
+     $('#'+arry_Id[index]).css('border-bottom','2px solid '+CURRENT_DARK_COLOR);
+	 if($('#'+arry_Id_content[index]).hasClass('hide-block')) { 
+	    $('#'+arry_Id_content[index]).removeClass('hide-block'); 
+	 }
+   } else {
+     $('#'+arry_Id[index]).css('color','#000');
+     $('#'+arry_Id[index]).css('border-bottom','0px');
+	 if(!$('#'+arry_Id_content[index]).hasClass('hide-block')) { 
+	    $('#'+arry_Id_content[index]).addClass('hide-block'); 
+	 }
+   }
+ }
+}
+</script>	 <div class="col-xs-12 pad0">
+				<div class="list-group">	
+					<div class="list-group-item" style="box-shadow:1px 1px 1px 1px #dedcdc;">
+					   <div align="center" class="container-fluid">
+					      <div class="col-xs-4 fs16">
+						    <span id="communityProfile_statistics" class="padbot10" onclick="javascript:menuCommunityProfile(this.id);"><b>Statistics</b></span>
+						  </div>
+						  <div class="col-xs-8 fs16">
+							<span id="communityProfile_comOwners" class="padbot10" onclick="javascript:menuCommunityProfile(this.id);"><b>Community Owners</b></span>
+						  </div>
+					   </div>
+					</div>
+				</div>
+			</div>
+
+			<div id="communityProfile_statistics_content" class="col-xs-12 hide-block">
+			  <div class="list-group">
+				<div class="list-group-item pad0">
+				  <div class="container-fluid pad0">
+			      <div class="col-xs-12">
+				    <span class="pull-right">
+				    <span class="fs36"><b>10000</b></span>&nbsp;&nbsp;<span class="fs24 uppercase"><b>Branches</b></span>
+					</span>
+				  </div>
+				  </div>
+				</div>
+			  </div>
+			  
+			  <div class="list-group">
+				<div class="list-group-item pad0">
+				  <div class="container-fluid pad0">
+				    <div class="col-xs-12">
+					   <span class="pull-left">
+			             <span class="fs36"><b>10000</b></span>&nbsp;&nbsp;<span class="fs24 uppercase"><b>Members</b></span>
+					   </span>
+				    </div>
+				  </div>
+				</div>
+			  </div>
+			  
+			  <div class="list-group">
+				<div class="list-group-item pad0">
+				  <div class="container-fluid pad0">
+				    <div class="col-xs-12">
+					   <span class="pull-right">
+			               <span class="fs36"><b>10000</b></span>&nbsp;&nbsp;<span class="fs24 uppercase"><b>Subscriptions</b></span>
+					   </span>
+					</div>
+				  </div>  
+				</div>
+			   </div>
+			   
+			   <div class="list-group">
+				<div class="list-group-item pad0">
+				  <div class="container-fluid pad0">
+				    <div class="col-xs-12">
+					   <span class="pull-left">
+			               <span class="fs36"><b>10000</b></span>&nbsp;&nbsp;<span class="fs24 uppercase"><b>Movement</b></span>
+					   </span>
+					</div>
+				  </div>  
+				</div>
+			   </div>
+
+			</div>
+
+			<div id="communityProfile_comOwners_content" class="col-xs-12 hide-block">
+			   <div class="list-group">
+				  <div class="list-group-item">
+			        <div class="container-fluid pad0">
+					   <div class="col-xs-12 pad0"><span class="label custom-bg uppercase">Community Creator</span></div>
+					   <div class="col-xs-3">
+					     <img src="https://res.cloudinary.com/dbcyhclaw/image/upload/x_856,y_436,w_208,h_208,z_0.4315,c_crop/v1529503339/Screenshot_20180619-135815_osobbt.png" style="margin-top:15px;width:70px;height:70px;border-radius:50%;background-color:#efefef;">
+					   </div>
+					   <div align="center" class="col-xs-9">
+					      <div><h4><b>SurName Name</b></h4></div>
+						  <div><span class="label custom-bg uppercase">Role in the Community</span></div>
+						  <div class="mtop15p fs16">Minlocation, Location,<br/> State, Country</div>
+					   </div>
+					</div>
+			      </div>
+			   </div>
+			</div>
+			
+		</div>
 		</div>
 		
-		<!-- app-page-content :: Start -->
-		<div class="container-fluid mtop15p">
-			<div id="communityProfilePicDiv" class="col-xs-3">
-				<div ></div>
+		<div id="communityBranchDisplayDivision" class="container-fluid mtop15p">
+		  <div class="col-xs-12">
+			<div class="list-group">
+			<div class="list-group-item pad0">
+			<div class="container-fluid mtop15p pad0">
+			<div class="col-xs-7">
+			<div class="mtop5p">
+			<span class="label label-primary">MAIN BRANCH</span>
 			</div>
-<div align="center" class="col-xs-9">
-<h5 style="line-height:18px;">Telangana Owners and Drivers Association</h5>
- <div>Kukatpally, Hyderabad,<br/> Telangana, INDIA</div>
-</div>
+			<div class="mtop5p">
+			Kukatpally, Hyderabad, Telangana, INDIA
+			</div>
+			</div>
+			<div align="center" class="col-xs-5">
+			<h5><b>MEMBERS</b></h5>
+			<h3><b>1000000</b></h3>
+			</div>
+			</div>
+			</div>
 
-<div class="col-xs-12 mtop15p">
-<div class="btn-group pull-right">
-<button class="btn btn-default"><b>Edit Profile</b></button>
-<button class="btn btn-default"><b>Write NewsFeed</b></button>
-<button class="btn btn-default"><i class="fa fa-cog"></i></button>
-</div>
-</div>
+			</div>
+			</div>
 
-<div class="col-xs-12 mtop15p">
-<div class="btn-group pull-right">
-<button class="btn btn-default" onclick="javascript:invoke_joinAsMemberModal();"><b>Join As Member</b></button>
-<button class="btn btn-default"><b>Add My Support</b></button>
-</div>
-</div>
-
-<div class="col-xs-12 mtop15p">
- <button class="btn btn-default pull-right" onclick="javascript:invoke_requestBranchModal();"><b>Request Local Branch</b></button>
-</div>
-
-<div class="col-xs-12"><hr/></div>
-
-<div class="col-xs-12">
-
-<div align="center" class="col-xs-4" style="border-right:1px solid #ccc;">
-<span style="font-size:12px;"><b>FRIENDS<br/>CIRCLE</b></span>
-<span>10000</span>
-</div>
-
-<div align="center" class="col-xs-4" style="border-right:1px solid #ccc;">
-<span style="font-size:12px;"><b>COMMUNITY<br/>JOINED</b></span>
-<span>10000</span>
-</div>
-
-<div align="center" class="col-xs-4">
-<span style="font-size:12px;"><b>MOVEMENT<br/>JOINED</b></span>
-<span>10000</span>
-</div>
-
-</div>
-
-<div class="col-xs-12"><hr/></div>
-
-<div class="col-xs-12">
-<div class="list-group">
-
-<div class="list-group-item pad0">
-
-<div class="container-fluid pad0">
-<div class="col-xs-12" style="border-bottom:2px solid #000;">
-<h5><b>List of Branches</b></h5>
-</div>
-</div>
-
-</div>
-
-<div class="list-group-item pad0">
-<div class="container-fluid pad0">
-<div class="col-xs-7">
-<div class="mtop5p">
-<span class="label label-primary">MAIN BRANCH</span>
-</div>
-<div class="mtop5p">
-Kukatpally, Hyderabad, Telangana, INDIA
-</div>
-</div>
-<div align="center" class="col-xs-5">
-<h5><b>MEMBERS</b></h5>
-<h3><b>1000000</b></h3>
-</div>
-</div>
-</div>
-
-</div>
-</div>
-
-
-</body>
-
+		</div>
+		
+		<div id="communityNewsFeedDisplayDivision" class="container-fluid mtop15p">NewsFeed</div>
+		
+		<div id="communityMovementsDisplayDivision" class="container-fluid mtop15p">Movement</div>
+		
+		<div id="communityMembersDisplayDivision" class="container-fluid mtop15p">
+		    
+			<div class="list-group">
+				  <div class="list-group-item">
+			        <div class="container-fluid pad0">
+					   <div class="col-xs-3">
+					     <img src="https://res.cloudinary.com/dbcyhclaw/image/upload/x_856,y_436,w_208,h_208,z_0.4315,c_crop/v1529503339/Screenshot_20180619-135815_osobbt.png" style="margin-top:15px;width:70px;height:70px;border-radius:50%;background-color:#efefef;">
+					   </div>
+					   <div align="center" class="col-xs-9">
+					      <div><h4><b>SurName Name</b></h4></div>
+						  <div><span class="label custom-bg uppercase">Role in the Community</span></div>
+						  <div class="mtop15p fs16">Minlocation, Location,<br/> State, Country</div>
+					   </div>
+					</div>
+			      </div>
+				  <div class="list-group-item">
+				    <div class="container-fluid">
+					  <div class="col-xs-4 fs16">
+					    <b>Branch Details</b>
+					  </div>
+					  <div class="col-xs-8 fs16">
+					    Minlocation, Location,<br/> State, Country
+					  </div>
+					</div>
+				  </div>
+				  
+			   </div>
+		
+			<div class="list-group mtop15p">
+				  <div class="list-group-item">
+			        <div class="container-fluid pad0">
+					   <div class="col-xs-3">
+					     <img src="https://res.cloudinary.com/dbcyhclaw/image/upload/x_856,y_436,w_208,h_208,z_0.4315,c_crop/v1529503339/Screenshot_20180619-135815_osobbt.png" style="margin-top:15px;width:70px;height:70px;border-radius:50%;background-color:#efefef;">
+					   </div>
+					   <div align="center" class="col-xs-9">
+					      <div><h4><b>SurName Name</b></h4></div>
+						  <div><span class="label custom-bg uppercase">Role in the Community</span></div>
+						  <div class="mtop15p fs16">Minlocation, Location,<br/> State, Country</div>
+					   </div>
+					</div>
+			      </div>
+				  <div class="list-group-item">
+				    <div class="container-fluid">
+					  <div class="col-xs-4 fs16">
+					    <b>Branch Details</b>
+					  </div>
+					  <div class="col-xs-8 fs16">
+					    Minlocation, Location,<br/> State, Country
+					  </div>
+					</div>
+				  </div>
+				  
+			</div>
+		
+		</div>
+		
+		<div id="communitySupportersDisplayDivision" class="container-fluid mtop15p">
+		    
+			<div class="list-group">
+				  <div class="list-group-item">
+			        <div class="container-fluid pad0">
+					   <div class="col-xs-3">
+					     <img src="https://res.cloudinary.com/dbcyhclaw/image/upload/x_856,y_436,w_208,h_208,z_0.4315,c_crop/v1529503339/Screenshot_20180619-135815_osobbt.png" style="margin-top:15px;width:70px;height:70px;border-radius:50%;background-color:#efefef;">
+					   </div>
+					   <div align="center" class="col-xs-9">
+					      <div><h4><b>SurName Name</b></h4></div>
+						  <div class="mtop15p fs16">Minlocation, Location,<br/> State, Country</div>
+					   </div>
+					</div>
+			      </div>
+			   </div>
+		
+			<div class="list-group mtop15p">
+				  <div class="list-group-item">
+			        <div class="container-fluid pad0">
+					   <div class="col-xs-3">
+					     <img src="https://res.cloudinary.com/dbcyhclaw/image/upload/x_856,y_436,w_208,h_208,z_0.4315,c_crop/v1529503339/Screenshot_20180619-135815_osobbt.png" style="margin-top:15px;width:70px;height:70px;border-radius:50%;background-color:#efefef;">
+					   </div>
+					   <div align="center" class="col-xs-9">
+					      <div><h4><b>SurName Name</b></h4></div>
+						  <div class="mtop15p fs16">Minlocation, Location,<br/> State, Country</div>
+					   </div>
+					</div>
+			      </div>
+			</div>
+		
+		</div>
 		<!-- app-page-content :: End -->
 	  </div>
 	</div>

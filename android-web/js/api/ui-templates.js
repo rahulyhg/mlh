@@ -195,11 +195,11 @@ function uiTemplate_simpleNewsFeedDisplay(param_domainName, param_subdomainName,
 	 content+='</label>';
 	 content+='</div>';
 	 content+='<div>';
-	 content+='<img src="'+param_images+'" style="width:100%;height:auto;"/>';
+	 content+='<img src="'+param_images+'" style="width:100%;height:200px;"/>';
 	 content+='</div>';
 	 content+='<div><h5 align="center" style="text-transform:uppercase;line-height:22px;"><b>'+param_artTitle+'</b></h5></div>';
-	 content+='<div align="right" style="line-height:22px;color:#87898a;font-size:12px;">posted on <br/>'+param_createdOn+' IST</div>';
-	 content+='<div style="font-size:11px;color:#000;">'+param_artShrtDesc+'</div>';
+	 content+='<div style="font-size:14px;color:#000;">'+param_artShrtDesc+'</div>';
+	 content+='<div align="right" style="line-height:22px;color:#87898a;font-size:16px;">posted on <br/>'+param_createdOn+' IST</div>';
 	 content+='<div align="right" class="mtop15p">';
 	 if(param_newsType==='UNION'){
 	   content+='<a href="'+PROJECT_URL+'newsfeed/news/union/'+param_infoId+'">';
@@ -207,7 +207,7 @@ function uiTemplate_simpleNewsFeedDisplay(param_domainName, param_subdomainName,
 	   content+='<a href="'+PROJECT_URL+'newsfeed/news/business/'+param_infoId+'">';
 	 }
 	 content+='<button class="btn custom-bg" style="background-color:'+CURRENT_DARK_COLOR+';color:#fff;">';
-	 content+='<i class="fa fa-14px fa-newspaper-o"></i> &nbsp;<span style="font-size:11px;"><b>Read Full Story</b></span>';
+	 content+='<i class="fa fa-14px fa-newspaper-o"></i> &nbsp;<span style="font-size:14px;"><b>Read Full Story</b></span>';
 	 content+='</button>';
 	 content+='</a>';
 	 content+='</div>';

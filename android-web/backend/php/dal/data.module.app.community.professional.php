@@ -9,7 +9,7 @@ class ProfessionalCommunity {
   $sql="SELECT ";
   $sql.="subs_dom_info.domain_Id, subs_dom_info.domainName, subs_subdom_info.subdomain_Id, subs_subdom_info.domain_Id, ";
   $sql.="subs_subdom_info.subdomainName, unionprof_account.union_Id, unionprof_account.main_branch_Id, ";
-  $sql.="unionprof_account.unionName, unionprof_account.unionURLName, unionprof_account.profile_pic, ";
+  $sql.="unionprof_account.unionName, unionprof_account.unionURLName, unionprof_account.aboutUnion, unionprof_account.profile_pic, ";
   $sql.="unionprof_account.created_On, unionprof_account.admin_Id, unionprof_branch.minlocation, ";
   $sql.="unionprof_branch.location, unionprof_branch.state, unionprof_branch.country, ";
   $sql.="user_account.username As admin_username, user_account.surName As admin_surName, user_account.name As admin_name, ";
@@ -31,14 +31,14 @@ class ProfessionalCommunity {
  /************************************************ COMMUNITY ***************************************************************/
  /**************************************************************************************************************************/
  
- function query_createCommunity($union_Id,$domain_Id,$subdomain_Id,$main_branch_Id,$unionName,$unionURLName,
+ function query_createCommunity($union_Id,$domain_Id,$subdomain_Id,$main_branch_Id,$unionName,$unionURLName,$aboutUnion,
 								$profile_pic, $admin_Id){
  /* FUNCTION DESCRIPTION : This Function is used to Create Community
   * PAGES UTILIZED :  
   */
-  $sql="INSERT INTO unionprof_account(union_Id, domain_Id, subdomain_Id, main_branch_Id, unionName, unionURLName, ";
+  $sql="INSERT INTO unionprof_account(union_Id, domain_Id, subdomain_Id, main_branch_Id, unionName, unionURLName, aboutUnion,";
   $sql.="profile_pic, created_On, admin_Id) VALUES ('".$union_Id."','".$domain_Id."','".$subdomain_Id."','";
-  $sql.=$main_branch_Id."','".$unionName."','".$unionURLName."','".$profile_pic."','".date('Y-m-d H:i:s')."','".$admin_Id."');";
+  $sql.=$main_branch_Id."','".$unionName."','".$unionURLName."','".$aboutUnion."','".$profile_pic."','".date('Y-m-d H:i:s')."','".$admin_Id."');";
   return $sql;
  }
  
