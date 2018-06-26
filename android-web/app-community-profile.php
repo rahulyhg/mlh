@@ -39,10 +39,10 @@
 </style>
 <script type="text/javascript">
 function hzTabSelection(id){
- var arryHzTab=["communityDashboardHzTab","communityProfileHzTab","communityBranchHzTab","communityNewsFeedHzTab","communityMovementsHzTab",
-				"communityMembersHzTab","communitySupportersHzTab"];
- var arryTabDataViewer=["communityDashboardDisplayDivision","communityProfileDisplayDivision","communityBranchDisplayDivision","communityNewsFeedDisplayDivision",
-						"communityMovementsDisplayDivision","communityMembersDisplayDivision","communitySupportersDisplayDivision"];
+ var arryHzTab=["communityDashboardHzTab","communityProfileHzTab","communityBranchHzTab","communityMemRolesHzTab",
+				"communityNewsFeedHzTab","communityMovementsHzTab","communityMembersHzTab","communitySupportersHzTab"];
+ var arryTabDataViewer=["communityDashboardDisplayDivision","communityProfileDisplayDivision","communityBranchDisplayDivision","communityMemRolesDisplayDivision",
+						"communityNewsFeedDisplayDivision","communityMovementsDisplayDivision","communityMembersDisplayDivision","communitySupportersDisplayDivision"];
  hzTabSelector(id,arryHzTab,arryTabDataViewer);
  
  if(id==="communityDashboardHzTab"){
@@ -129,6 +129,7 @@ function generateTabList(){
 	 content+='<li><a id="communityDashboardHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>Member Dashboard</b></a></li>';
 	 content+='<li><a id="communityProfileHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>Community Profile</b></a></li>';
 	 content+='<li><a id="communityBranchHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>Branches</b></a></li>';
+	 content+='<li><a id="communityMemRolesHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>Member Roles</b></a></li>';
 	 content+='<li><a id="communityNewsFeedHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>NewsFeed</b></a></li>';
 	 content+='<li><a id="communityMovementsHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>Movements</b></a></li>';
 	 content+='<li><a id="communityMembersHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>Members</b></a></li>';
@@ -180,6 +181,11 @@ function generateTabList(){
 		<div id="communityBranchDisplayDivision">
 		  <?php include_once 'templates/pages/app-community-profile/community-branches.php'; ?>
 		</div>
+		
+		<div id="communityMemRolesDisplayDivision">
+		  <?php include_once 'templates/pages/app-community-profile/community-member-roles.php'; ?>
+		</div>
+		
 		
 		<div id="communityNewsFeedDisplayDivision" class="container-fluid mtop15p">NewsFeed</div>
 		
