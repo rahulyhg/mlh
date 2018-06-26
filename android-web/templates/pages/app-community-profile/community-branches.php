@@ -1,4 +1,7 @@
 <div class="container-fluid mtop15p">
+    <div class="col-xs-12 mbot15p">
+	  <button class="btn btn-default pull-right"><b>Create a Branch</b></button>
+	</div>
 	<div class="col-xs-12">
 		<div class="list-group">
 			<div class="list-group-item pad0">
