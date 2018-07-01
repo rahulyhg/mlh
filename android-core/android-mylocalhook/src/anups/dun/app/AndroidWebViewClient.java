@@ -27,28 +27,22 @@ public class AndroidWebViewClient extends WebViewClient {
             view.getContext().startActivity(intent);
             return true;
          } 
-    	  
-    	else  if (url.contains("http") || url.contains("https")) {
+    	
+    	else if (url.startsWith("http") || url.startsWith("https")) {
     		if(!webscreenObject.ntwrkAvail.checkInternetConnection()) {
     			view.loadUrl("file:///android_asset/www/network_state.html"); 
     		} 
     		return false; 
     	}
-    	else  if (url.contains(".php")) {
-    		if(!webscreenObject.ntwrkAvail.checkInternetConnection()) {
-    			view.loadUrl("file:///android_asset/www/network_state.html"); 
-    		}
-            return false;
-    	}
-    	else  if (url.contains(".pdf")) {
+    	else  if (url.endsWith(".pdf")) {
     		if(!webscreenObject.ntwrkAvail.checkInternetConnection()) {
     			view.loadUrl("file:///android_asset/www/network_state.html"); 
     		}
             return false;
     	} else {
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-        view.getContext().startActivity(intent);
-        return true;
+           Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+           view.getContext().startActivity(intent);
+           return true;
     	 }
     }
 

@@ -1,6 +1,7 @@
 package anups.dun.app;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlarmManager;
@@ -10,6 +11,7 @@ import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Build;
 import android.view.KeyEvent;
@@ -20,9 +22,11 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+import anups.dun.ads.GoogleAdmob;
 import anups.dun.ads.GoogleAdmobInterstitial;
 import anups.dun.app.R;
 import anups.dun.constants.BusinessConstants;
+import anups.dun.db.Database;
 import anups.dun.js.AppManagement;
 import anups.dun.js.AppNotifyManagement;
 import anups.dun.js.AppSessionManagement;
@@ -36,7 +40,8 @@ import java.io.File;
 public  class AndroidWebScreen extends Activity  {
 
 	org.apache.log4j.Logger logger = AndroidLogger.getLogger(AndroidWebScreen.class);
-	
+	public static final Handler googleAdMobInterstitialHandler = new Handler();
+	public static Runnable googleAdMobRunnable;
 	public static final int INPUT_FILE_REQUEST_CODE = 1;
     public static final String TAG = AndroidWebScreen.class.getSimpleName();
     public WebView webView;
@@ -50,7 +55,7 @@ public  class AndroidWebScreen extends Activity  {
     NetworkAvailability ntwrkAvail;
     public String FILE_CHOOSER_VERSION;
     Intent captureIntent;
-    
+    Database mydb;
     /* GPS Location Tracing : Start */
 
     /* GPS Location Tracing : End */
@@ -183,6 +188,11 @@ protected void onCreate(Bundle savedInstanceState) {
  /* Initially, Setting Service Execution to null */
  appSessionManager.setAndroidSession(BusinessConstants.BGSERVICE_EXECUTION_STATUS,null); 
  
+/* DATABASE */
+ try {
+	mydb = Database.getInstance(this);
+  logger.info("Rows: "+mydb.numberOfRows());
+ } catch(Exception e) { logger.error("Exception: "+e.getMessage()); }
  /* Get UserID from SESSION */
  String USER_ID=appSessionManager.getAndroidSession("AUTH_USER_ID");
  logger.info("USER_ID: "+USER_ID);
@@ -191,6 +201,9 @@ protected void onCreate(Bundle savedInstanceState) {
  Intent triggerWS = new Intent();
  triggerWS.setAction("anups.dun.services.OnBootCompleted");
  sendBroadcast(triggerWS);
+ 
+
+ 
  
  /* AUTHENTICATION REMINIDER : */  // awn.notify_authReminder();
  /* VERSION UPGRADE : */ // awn.notify_versionupgrade();
@@ -238,7 +251,19 @@ protected void onCreate(Bundle savedInstanceState) {
        
     }
 
+/*
+   @Override
+   public void onBackPressed() {
+	 logger.info("Activity OnBack Pressed ");
+    return;
+   }  */ 
 
+   @Override
+   public void onDestroy() {
+    //  logger.info("Activity Destroyed ");
+     AndroidWebScreen.googleAdMobInterstitialHandler.removeCallbacks(AndroidWebScreen.googleAdMobRunnable);
+	 super.onDestroy();
+   }
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         // Check if the key event was the Back button and if there's history

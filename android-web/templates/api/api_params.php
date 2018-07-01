@@ -4,9 +4,6 @@ if(!isset($_SESSION["PROJECT_MODE"])){ $_SESSION["PROJECT_MODE"]='DEBUG'; }
 ?>
 <script type="text/javascript">
  /* Android Javascript Interface Objects */
- var Android;
- var AndroidNotify;
- var AndroidSession
  var PROJECT_MODE='<?php  if(isset($_SESSION["PROJECT_MODE"])) { echo $_SESSION["PROJECT_MODE"]; } ?>';
  var PROJECT_URL='<?php  if(isset($_SESSION["PROJECT_URL"])) { echo $_SESSION["PROJECT_URL"]; } ?>';
  /* AUTHENTICATION_STATUS - COMPLETED/INCOMPLETED */

@@ -9,7 +9,7 @@ public class URLGenerator {
  
  public String webservice_notify_appServices(String user_Id){
    StringBuilder stringBuilder=new StringBuilder(PROJECT_URL);
-                 stringBuilder.append("backend/php/dac/controller.page.app.notifications.php");
+                 stringBuilder.append("backend/php/dac/controller.module.app.notifications.php");
                  stringBuilder.append("?action=NOTIFICATION_APPSERVICE");
                  stringBuilder.append("&user_Id=").append(user_Id);
    return stringBuilder.toString();

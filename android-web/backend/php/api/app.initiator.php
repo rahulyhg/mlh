@@ -9,7 +9,7 @@
 	
  /* Database Credentials */ 
 	 define("SERVER_NAME","localhost:3306", true); 
-	 define("DB_NAME","mlh", true); 
+	 define("DB_NAME","mlh_basic", true); 
 	 define("DB_USER","root", true); 
 	 define("DB_PASSWORD","", true); 
 	 

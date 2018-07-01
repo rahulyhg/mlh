@@ -1,7 +1,7 @@
 <script type="text/javascript">
-function communityDashBoardMenu(id){  
- var arry_Id=["communityDash_MemberRequest","communityDash_Settings"];
- var arry_Id_content=["communityDashMemberRequestDivision","communityDashSettingsDivison"];
+function communityDashBoardMenu(id){  // "communityDash_MemberRequest", "communityDashMemberRequestDivision",
+ var arry_Id=["communityDash_Settings"];
+ var arry_Id_content=["communityDashSettingsDivison"];
  for(var index=0;index<arry_Id.length;index++){
    if(arry_Id[index]===id){ 
      if($('#'+arry_Id_content[index]).hasClass('hide-block')){ $('#'+arry_Id_content[index]).removeClass('hide-block'); } 
@@ -40,7 +40,7 @@ function communityDashBoardMenu(id){
      </div>
 </div>
 
-<div class="container-fluid pad0"> 
+<!--div class="container-fluid pad0"> 
    <div class="list-group">
 	  <div class="list-group-item">
 	     <div class="container-fluid pad0">
@@ -57,9 +57,9 @@ function communityDashBoardMenu(id){
 		 </div>
 	  </div>
    </div>
-</div>
+</div-->
 			
-<div id="communityDashMemberRequestDivision" class="container-fluid hide-block">
+<!--div id="communityDashMemberRequestDivision" class="container-fluid hide-block">
   <div class="list-group">
 	 <div class="list-group-item">
 		<div class="container-fluid pad0">
@@ -85,10 +85,13 @@ function communityDashBoardMenu(id){
 			</div>
 		 </div>
 	  </div>
-</div>
+</div-->
 			
-<div id="communityDashSettingsDivison" class="container-fluid hide-block mbot15p pad0">
+<div id="communityDashSettingsDivison" class="container-fluid mbot15p pad0">
    <div class="list-group">
+      <div class="list-group-item" style="border-bottom:3px solid #000;">
+	    <h5><b>About My Permissions</b></h5>
+	  </div>
       <div class="list-group-item custom-bg pad5">
 	    <div class="container-fluid pad0">
 		   <div align="center" class="col-xs-12 pad0"><h5><b>Commmunity Branch</b></h5></div>

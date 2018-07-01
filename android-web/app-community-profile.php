@@ -39,16 +39,13 @@
 </style>
 <script type="text/javascript">
 function hzTabSelection(id){
- var arryHzTab=["communityDashboardHzTab","communityProfileHzTab","communityBranchHzTab","communityMemRolesHzTab",
+ var arryHzTab=["communityMemRequestsHzTab","communityDashboardHzTab","communityProfileHzTab","communityBranchHzTab","communityMemRolesHzTab",
 				"communityNewsFeedHzTab","communityMovementsHzTab","communityMembersHzTab","communitySupportersHzTab"];
- var arryTabDataViewer=["communityDashboardDisplayDivision","communityProfileDisplayDivision","communityBranchDisplayDivision","communityMemRolesDisplayDivision",
+ var arryTabDataViewer=["communityMemRequestsDisplayDivision","communityDashboardDisplayDivision","communityProfileDisplayDivision","communityBranchDisplayDivision","communityMemRolesDisplayDivision",
 						"communityNewsFeedDisplayDivision","communityMovementsDisplayDivision","communityMembersDisplayDivision","communitySupportersDisplayDivision"];
  hzTabSelector(id,arryHzTab,arryTabDataViewer);
  
- if(id==="communityDashboardHzTab"){
-   communityDashBoardMenu("communityDash_MemberRequest");
- }
- else if(id==="communityProfileHzTab"){
+ if(id==="communityProfileHzTab"){
   menuCommunityProfile("communityProfile_statistics");
  } 
  
@@ -126,6 +123,7 @@ $('#joinAsMemberModal').modal();
 
 function generateTabList(){ 
  var content='<ul class="nav scrollTablist" id="myTab" style="border-bottom:0px;">';
+	 content+='<li><a id="communityMemRequestsHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>Membership Requests</b></a></li>';
 	 content+='<li><a id="communityDashboardHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>Member Dashboard</b></a></li>';
 	 content+='<li><a id="communityProfileHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>Community Profile</b></a></li>';
 	 content+='<li><a id="communityBranchHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>Branches</b></a></li>';
@@ -170,6 +168,9 @@ function generateTabList(){
 		</div>
 
 		<!-- app-page-content :: Start -->
+		<div id="communityMemRequestsDisplayDivision">
+		  <?php include_once 'templates/pages/app-community-profile/community-membership-requests.php'; ?>
+		</div>
 		<div id="communityDashboardDisplayDivision">
 		  <?php include_once 'templates/pages/app-community-profile/community-dashboard.php'; ?>
 		</div>

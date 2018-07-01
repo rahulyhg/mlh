@@ -1,5 +1,10 @@
 package anups.dun.services;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
+
 import android.annotation.SuppressLint;
 import android.app.Service;
 import android.content.Intent;
@@ -22,18 +27,22 @@ public class BGService extends Service {
 				
 					logger.info("intent: "+intent+" flags: "+flags+" startId: "+startId);
 					appSessionManager.setAndroidSession(BusinessConstants.BGSERVICE_EXECUTION_STATUS,"TRIGGERRED");
-				    final Handler handler = new Handler();
-					handler.postDelayed(new Runnable() {
-				    @Override
-					public void run() {
-						logger.info("BGService Execution runs..");
-						AppSessionManagement appSessionManager = new AppSessionManagement(getApplicationContext());
-					    appSessionManager.setAndroidSession(BusinessConstants.BGSERVICE_EXECUTION_STATUS,null);
-						Intent triggerWS = new Intent();
-						 	   triggerWS.setAction("anups.dun.notify.ws.AppNotificationAlarm");
-						getApplicationContext().sendBroadcast(triggerWS);
-					}
-				   }, 60000);
+					
+					ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+					Runnable serviceRunner=new Runnable() {
+			            @Override
+			            public void run() {
+			            	logger.info("BGService Execution runs..");
+							AppSessionManagement appSessionManager = new AppSessionManagement(getApplicationContext());
+						    appSessionManager.setAndroidSession(BusinessConstants.BGSERVICE_EXECUTION_STATUS,null);
+							Intent triggerWS = new Intent();
+							 	   triggerWS.setAction("anups.dun.notify.ws.AppNotificationAlarm");
+							getApplicationContext().sendBroadcast(triggerWS);
+			            } 
+					};
+					ScheduledFuture loaderHandler=scheduler.schedule(serviceRunner, 60, TimeUnit.SECONDS);
+					
+					
 		  }
 		onTaskRemoved(intent);
 		return Service.START_STICKY;

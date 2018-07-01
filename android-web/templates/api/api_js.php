@@ -134,4 +134,5 @@ var modalDivision = document.createElement("div");
  $('#alertSuccessModal').modal({backdrop: "static"});
 });
 }
+
 </script>

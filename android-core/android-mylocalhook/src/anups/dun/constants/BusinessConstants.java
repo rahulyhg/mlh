@@ -6,6 +6,8 @@ public class BusinessConstants {
  public static final int UNCLOSEDNOTIFICATION_AUTHREMINDER=2;
  
  /**/
+ public static final String GOOGLE_ADMOBINTERSTITIAL_STATUS="GOOGLE_ADMOBINTERSTITIAL_STATUS"; // TRIGGERED/ null
+ /**/
  public static final String BGSERVICE_EXECUTION_STATUS="BGSERVICE_EXECUTION_STATUS"; // TRIGGERRED/null(UNTRIGGERRED)
  public static final String BGSERVICE_EXECUTION_COUNTER="BGSERVICE_EXECUTION_COUNTER"; // 1 to 15
  

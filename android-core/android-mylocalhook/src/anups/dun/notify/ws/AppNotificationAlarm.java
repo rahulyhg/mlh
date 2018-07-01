@@ -24,13 +24,13 @@ public class AppNotificationAlarm extends BroadcastReceiver{
 		   AppSessionManagement appSessionManager = new AppSessionManagement(context);
 		   String user_Id=appSessionManager.getAndroidSession("AUTH_USER_ID");
 		   logger.info("user_Id: "+user_Id); 
-		   if(user_Id!=null) {
+		 //  if(user_Id!=null) {
 		   URLGenerator urlGenerator=new URLGenerator();
 		   String[] params=new String[1];
 				    params[0]=urlGenerator.webservice_notify_appServices(user_Id);
 		   new AppNotificationWebService(context).execute(params);
 		   AppAlarmManager.scheduleAlarm(context);
-		   }
+		//   }
 		 } catch(Exception e){ logger.error("AppNotificationAlarm Exception: "+e.getMessage());}
 		
 	}
