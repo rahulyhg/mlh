@@ -1,9 +1,9 @@
-<script type="text/javascript">
+<!--script type="text/javascript">
 var Android;
 var AndroidNotify;
 var AndroidSession;
 if(Android===undefined){ window.location.href="android.php"; }
-</script>
+</script-->
 <?php 
 session_start();
 if(!isset($_SESSION["USR_LANG"])) { $_SESSION["USR_LANG"]='english'; } 

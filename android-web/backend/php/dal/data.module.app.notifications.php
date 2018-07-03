@@ -130,5 +130,20 @@ class app_notifications {
     return $sql;
   }
   
+  function query_notify_unionMemberNewsFeedNotification($user_Id){
+  /* NewsFeed is displayed at displayLevel=BRANCH_LEVEL/UNION_LEVEL to User, 
+     If user is a member of the Union and respective Branch  */
+	 
+  }
+  
+  function query_notify_unionSupporterNewsFeedNotification($user_Id){
+  /* NewsFeed displayed at displayLevel=UNION_LEVEL to User If user is Subscribed to the Union */
+
+  }
+  
+  function query_notify_movementNotification($user_Id){
+  /* Movement is displayed based on User_Subscription to Domain */
+  
+  }
 }
 ?>
