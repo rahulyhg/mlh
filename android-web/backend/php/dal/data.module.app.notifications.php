@@ -68,5 +68,21 @@ class app_notifications {
    return $sql;
   }
   
+  function query_notify_unionMemberOnRoleChange($user_Id){
+  /* Notification Query to User When his role changes in Union */
+    $sql="SELECT ";
+    $sql.="(SELECT CONCAT('[{\"unionName\":\"',unionprof_account.unionName,'\",\"profile_pic\":\"',";
+	$sql.="unionprof_account.profile_pic,'\"}]') FROM unionprof_account WHERE unionprof_account.union_Id=";
+	$sql.="unionprof_mem.union_Id) As unionInfo,(SELECT CONCAT('[{\"minlocation\":\"',unionprof_branch.minlocation,";
+	$sql.="'\",\"location\":\"',unionprof_branch.location,'\",\"state\":\"',unionprof_branch.state,'\",";
+	$sql.="\"country\":\"',unionprof_branch.country,'\"}]') FROM unionprof_branch WHERE unionprof_branch.branch_Id=";
+	$sql.="unionprof_mem.branch_Id) As branchInfo, unionprof_mem.cur_role_Id,(SELECT roleName FROM unionprof_mem_roles ";
+	$sql.="WHERE unionprof_mem_roles.role_Id=unionprof_mem.cur_role_Id) As curRoleName, unionprof_mem.prev_role_Id, ";
+    $sql.="(SELECT roleName FROM unionprof_mem_roles WHERE unionprof_mem_roles.role_Id=unionprof_mem.prev_role_Id) As ";
+	$sql.="prevRoleName, unionprof_mem.roleUpdatedOn FROM unionprof_mem WHERE unionprof_mem.roleNotify='Y' AND ";
+	$sql.="unionprof_mem.user_Id='".$user_Id."';";
+	return $sql;
+  }
+  
 }
 ?>
