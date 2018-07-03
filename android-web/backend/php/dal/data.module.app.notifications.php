@@ -69,7 +69,7 @@ class app_notifications {
   }
   
   function query_notify_unionMemberOnRoleChange($user_Id){
-  /* Notification Query to User When his role changes in Union */
+  /* Notification Query to Union Member When his role changes in Union */
     $sql="SELECT ";
     $sql.="(SELECT CONCAT('[{\"unionName\":\"',unionprof_account.unionName,'\",\"profile_pic\":\"',";
 	$sql.="unionprof_account.profile_pic,'\"}]') FROM unionprof_account WHERE unionprof_account.union_Id=";
@@ -82,6 +82,52 @@ class app_notifications {
 	$sql.="prevRoleName, unionprof_mem.roleUpdatedOn FROM unionprof_mem WHERE unionprof_mem.roleNotify='Y' AND ";
 	$sql.="unionprof_mem.user_Id='".$user_Id."';";
 	return $sql;
+  }
+
+  function query_notify_unionMemberRolePermissionChange($user_Id){
+  /* Notification Query to Union Member When his Role Permission has been Changed */
+    $sql="SELECT ";
+    $sql.="unionprof_account.union_Id, unionprof_account.unionName, ";
+    $sql.="unionprof_branch.minlocation, unionprof_branch.location, unionprof_branch.state, unionprof_branch.country, ";
+    $sql.="unionprof_mem_roles.roleName, unionprof_mem_perm.createABranch, unionprof_mem_perm.createABranchNotify, ";
+    $sql.="unionprof_mem_perm.updateBranchInfo, unionprof_mem_perm.updateBranchInfoNotify, unionprof_mem_perm.deleteBranch, ";
+	$sql.="unionprof_mem_perm.deleteBranchNotify, unionprof_mem_perm.shiftMainBranch, ";
+	$sql.="unionprof_mem_perm.shiftMainBranchNotify, unionprof_mem_perm.createRole, unionprof_mem_perm.createRoleNotify, ";
+    $sql.="unionprof_mem_perm.updateRole, unionprof_mem_perm.updateRoleNotify, unionprof_mem_perm.deleteRole, ";
+	$sql.="unionprof_mem_perm.deleteRoleNotify, unionprof_mem_perm.requestUsersToBeMembers, ";
+	$sql.="unionprof_mem_perm.requestUsersToBeMembersNotify,unionprof_mem_perm.approveUsersToBeMembers, ";
+	$sql.="unionprof_mem_perm.approveUsersToBeMembersNotify, unionprof_mem_perm.createNewsFeedBranchLevel, ";
+	$sql.="unionprof_mem_perm.createNewsFeedBranchLevelNotify,unionprof_mem_perm.approveNewsFeedBranchLevel, ";
+	$sql.="unionprof_mem_perm.approveNewsFeedBranchLevelNotify, unionprof_mem_perm.createNewsFeedUnionLevel, ";
+	$sql.="unionprof_mem_perm.createNewsFeedUnionLevelNotify, unionprof_mem_perm.approveNewsFeedUnionLevel, ";
+	$sql.="unionprof_mem_perm.approveNewsFeedUnionLevelNotify, unionprof_mem_perm.createMovementBranchLevel, ";
+	$sql.="unionprof_mem_perm.createMovementBranchLevelNotify, unionprof_mem_perm.approveMovementBranchLevel, ";
+	$sql.="unionprof_mem_perm.approveMovementBranchLevelNotify, unionprof_mem_perm.createMovementUnionLevel, ";
+	$sql.="unionprof_mem_perm.createMovementUnionLevelNotify, unionprof_mem_perm.approveMovementUnionLevel, ";
+	$sql.="unionprof_mem_perm.approveMovementUnionLevelNotify, unionprof_mem_perm.createMovementSubDomainLevel, ";
+	$sql.="unionprof_mem_perm.createMovementSubDomainLevelNotify, unionprof_mem_perm.approveMovementSubDomainLevel, ";
+	$sql.="unionprof_mem_perm.approveMovementSubDomainLevelNotify, unionprof_mem_perm.createMovementDomainLevel, ";
+	$sql.="unionprof_mem_perm.createMovementDomainLevelNotify, unionprof_mem_perm.approveMovementDomainLevel, ";
+	$sql.="unionprof_mem_perm.approveMovementDomainLevelNotify, unionprof_mem_perm.updatedPermOn ";
+    $sql.="FROM unionprof_account, unionprof_branch, unionprof_mem, unionprof_mem_roles, unionprof_mem_perm ";
+    $sql.="WHERE ";
+    $sql.="unionprof_account.union_Id=unionprof_mem.union_Id AND unionprof_branch.branch_Id=unionprof_mem.branch_Id AND ";
+    $sql.="unionprof_mem.cur_role_Id=unionprof_mem_roles.role_Id AND unionprof_mem.user_Id='".$user_Id."' AND ";
+    $sql.="(unionprof_mem_perm.createABranchNotify='Y' OR unionprof_mem_perm.updateBranchInfoNotify='Y' OR ";
+    $sql.="unionprof_mem_perm.deleteBranchNotify='Y' OR unionprof_mem_perm.shiftMainBranchNotify='Y' OR ";
+    $sql.="unionprof_mem_perm.createRoleNotify='Y' OR  unionprof_mem_perm.updateRoleNotify='Y' OR ";
+    $sql.="unionprof_mem_perm.deleteRoleNotify='Y' OR unionprof_mem_perm.requestUsersToBeMembersNotify='Y' OR ";
+    $sql.="unionprof_mem_perm.approveUsersToBeMembersNotify='Y' OR unionprof_mem_perm.createNewsFeedBranchLevelNotify='Y' ";
+	$sql.="OR unionprof_mem_perm.approveNewsFeedBranchLevelNotify='Y' OR ";
+	$sql.="unionprof_mem_perm.createNewsFeedUnionLevelNotify='Y' OR unionprof_mem_perm.approveNewsFeedUnionLevelNotify='Y' ";
+	$sql.="OR unionprof_mem_perm.createMovementBranchLevelNotify='Y' OR ";
+	$sql.="unionprof_mem_perm.approveMovementBranchLevelNotify='Y' OR unionprof_mem_perm.createMovementUnionLevelNotify='Y' ";
+	$sql.="OR unionprof_mem_perm.approveMovementUnionLevelNotify='Y' OR ";
+    $sql.="unionprof_mem_perm.createMovementSubDomainLevelNotify='Y' OR ";
+    $sql.="unionprof_mem_perm.approveMovementSubDomainLevelNotify='Y' OR ";
+    $sql.="unionprof_mem_perm.createMovementDomainLevelNotify='Y' OR ";
+    $sql.="unionprof_mem_perm.approveMovementDomainLevelNotify='Y');";
+    return $sql;
   }
   
 }
