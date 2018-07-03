@@ -1,79 +1,46 @@
 <?php
 class app_notifications {
-  function query_count_getNotificationOverview($user_Id){
+
+  /***************************************************************************************************************************
+   * USER FRIENDSHIP NOTIFICATIONS */
+  function query_notify_usrFrndsReqReciever($user_Id){
+  /* Notification Query to User as he recieved Friendship Request */
     $sql="SELECT ";
-	$sql.="(SELECT count(*) FROM user_notify ";
-	$sql.="WHERE user_Id='".$user_Id."' AND notifyType='PEOPLE_RELATIONSHIP_REQUEST' ";
-	$sql.="AND req_accepted='N') As relationShipRequests , ";
-	$sql.="(SELECT count(*) FROM user_notify ";
-	$sql.="WHERE user_Id='".$user_Id."' AND notifyType='COMMUNITY_MEMBERSHIP_REQUEST' ";
-	$sql.="AND req_accepted='N') As communityMembershipRequests, ";
-	$sql.="(SELECT count(DISTINCT info_Id) FROM  dash_info_user_views WHERE user_Id='".$user_Id."') As newsFeedWatched, ";
-	$sql.="(SELECT count(*) FROM user_notify WHERE user_Id='".$user_Id."' AND notifyType='NEWSFEED' AND ";
-	$sql.="watched='N') As newsFeedUnWatched, ";
-	$sql.="(SELECT count(*) FROM move_sign WHERE user_Id='".$user_Id."') As movementParticipated, ";
-	$sql.="(SELECT count(*) FROM user_notify WHERE user_Id='".$user_Id."' AND notifyType='MOVEMENT' AND ";
-	$sql.="watched='N') As movementUnParticipated ";
+    $sql.=" user_account.surName, user_account.name, user_account.profile_pic, user_account.minlocation,";
+    $sql.=" user_account.location, user_account.state, user_account.country, user_frnds_req.req_on, user_frnds_req.req_tz ";
+    $sql.=" FROM user_account, user_frnds_req WHERE user_account.user_Id=user_frnds_req.from_userId ";
+    $sql.=" user_frnds_req.to_userId='".$user_Id."' ";
 	return $sql;
+  }  
+  
+  function query_notify_onAcceptUserFrndReq($user_Id){
+  /* Notification Query to Users(Sender/Reciever) as reciever accepts Friendship */
+   $sql="SELECT user_frnds.rel_Id, user_frnds.rel_from, user_frnds.rel_tz, ";
+   $sql.=" (SELECT CONCAT('[{\"frnd1\":\"',user_frnds.frnd1,'\",\"surName\":',user_account.surName,'\",";
+   $sql.="\"name\":\"',user_account.name,'\",\"frnd1_call_frnd2\":\"',user_frnds.frnd1_call_frnd2,'\"}]') ";
+   $sql.=" FROM user_account WHERE user_account.user_Id=user_frnds.frnd1) As requestSent, ";
+   $sql.=" (SELECT CONCAT('[{\"frnd2\":\"',user_frnds.frnd2,'\",\"surName\":',user_account.surName,'\",\"name\":\"',";
+   $sql.=" user_account.name,'\",\"frnd2_call_frnd1\":\"',user_frnds.frnd2_call_frnd1,'\"}]') FROM user_account WHERE ";
+   $sql.=" user_account.user_Id=user_frnds.frnd2) As requestrecieved FROM user_frnds ";
+   $sql.=" WHERE (user_frnds.frnd1='".$user_Id."' OR user_frnds.frnd2='".$user_Id."') AND notify='Y';";
+   return $sql;
   }
   
-  function query_count_getPeopleRelationshipRequests($user_Id){
-	$sql="SELECT count(*) As totalData FROM user_notify, user_account ";
-	$sql.="WHERE user_notify.user_Id='".$user_Id."' AND ";
-	$sql.="user_notify.from_Id=user_account.user_Id AND ";
-	$sql.="user_notify.notifyType='PEOPLE_RELATIONSHIP_REQUEST'; ";
-	return $sql;
+  function query_notify_unionMemberRequest($user_Id){
+    $sql="SELECT ";
+	$sql.=" subs_dom_info.domainName, subs_subdom_info.subdomainName, ";
+	$sql.=" user_account.surName, user_account.name, unionprof_account.union_Id, unionprof_account.unionName, ";
+	$sql.=" unionprof_account.profile_pic, unionprof_account.created_On, unionprof_branch.minlocation, ";
+	$sql.=" unionprof_branch.location, unionprof_branch.state, unionprof_branch.country FROM ";
+	$sql.=" user_account, subs_dom_info, subs_subdom_info, unionprof_account, unionprof_branch, unionprof_mem_req WHERE ";
+	$sql.=" unionprof_account.union_Id = unionprof_branch.union_Id AND ";
+	$sql.=" unionprof_account.union_Id = unionprof_mem_req.union_Id AND ";
+	$sql.=" unionprof_branch.branch_Id = unionprof_mem_req.branch_Id AND ";
+	$sql.=" unionprof_account.domain_Id = subs_dom_info.domain_Id AND ";
+	$sql.=" unionprof_account.subdomain_Id = subs_subdom_info.subdomain_Id AND ";
+	$sql.=" unionprof_mem_req.req_to='".$user_Id."' AND unionprof_mem_req.req_from=user_account.user_Id; ";
   }
   
-  function query_getPeopleRelationshipRequests($user_Id,$limit_start,$limit_end){
-	$sql="SELECT user_notify.notify_Id, ";
-	$sql.="user_notify.from_Id, user_notify.notifyHeader, user_notify.notifyMsg, user_notify.notifyTitle, ";
-	$sql.="user_notify.notifyURL, user_notify.notify_ts, user_notify.watched, user_account.surName, ";
-	$sql.="user_account.name, user_account.profile_pic FROM user_notify, user_account ";
-	$sql.="WHERE user_notify.user_Id='".$user_Id."' AND ";
-	$sql.="user_notify.from_Id=user_account.user_Id AND ";
-	$sql.="user_notify.notifyType='PEOPLE_RELATIONSHIP_REQUEST' ";
-	$sql.="LIMIT ".$limit_start.",".$limit_end;
-	return $sql;
-  }
   
-  function query_deleteRelationshipRequestNotification($notify_Id){
-    $sql="DELETE FROM `user_notify` WHERE notify_Id='".$notify_Id."';";
-	return $sql;
-  }
-  
-  function query_addNotify_sendFriendRequest($notify_Id,$user_Id,$from_Id,$notifyHeader,$notifyTitle,
-        $notifyMsg,$notifyType,$notifyURL,$notify_ts,$watched,$popup,$req_accepted,$cal_event){
-    $sql="INSERT INTO user_notify(notify_Id, user_Id, from_Id, notifyHeader, notifyTitle, ";
-	$sql.="notifyMsg, notifyType, notifyURL, notify_ts, watched, popup, req_accepted, cal_event) ";
-	$sql.="VALUES ('".$notify_Id."','".$user_Id."','".$from_Id."','".$notifyHeader."','".$notifyTitle."','";
-	$sql.=$notifyMsg."','".$notifyType."','".$notifyURL."','".$notify_ts."','".$watched."','".$popup."','";
-	$sql.=$req_accepted."','".$cal_event."');";
-	return $sql;
-  }
-  
-  function query_deleteNotify_acceptDeleteRequest($user_Id,$from_Id){
-    $sql="DELETE FROM `user_notify` WHERE user_Id='".$user_Id."' AND from_Id='".$from_Id."'";
-	return $sql;
-  }
-  
-  /* COMMUNITY MEMBERSHIP REQUESTS */
-  function query_count_getCommunityMembershipRequests($user_Id){
-    $sql="SELECT count(*) As totalData FROM user_notify, union_account, user_account ";
-	$sql.=" WHERE user_notify.from_Id=union_account.union_Id AND ";
-	$sql.="union_account.admin_Id=user_account.user_Id AND user_notify.notifyType='COMMUNITY_MEMBERSHIP_REQUEST' ";
-	$sql.="AND user_notify.user_Id='".$user_Id."' ";
-	return $sql;
-  }
-  
-  function query_getCommunityMembershipRequests($user_Id, $limit_start, $limit_end){
-    $sql="SELECT union_account.unionName, union_account.unionURLName, user_account.surName, user_account.name, ";
-	$sql.="user_notify.notify_ts, user_notify.watched, user_notify.popup, user_notify.req_accepted, user_notify.cal_event ";
-	$sql.="FROM user_notify, union_account, user_account WHERE user_notify.from_Id=union_account.union_Id AND ";
-	$sql.="union_account.admin_Id=user_account.user_Id AND user_notify.notifyType='COMMUNITY_MEMBERSHIP_REQUEST' ";
-	$sql.="AND user_notify.user_Id='".$user_Id."' ";
-	$sql.="LIMIT ".$limit_start.", ".$limit_end;
-	return $sql;
-  }
 }
 ?>
