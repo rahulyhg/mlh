@@ -1,24 +1,10 @@
 package anups.dun.services;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.Timer;
-import java.util.TimerTask;
-
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
-import android.os.SystemClock;
-import anups.dun.constants.BusinessConstants;
-import anups.dun.js.AppSessionManagement;
-import anups.dun.notify.ws.AppNotificationAlarm;
+import anups.dun.alarm.AlarmIntervalDay;
 import anups.dun.util.AndroidLogger;
-import anups.dun.util.AppAlarmManager;
 
 public class OnBootCompleted extends BroadcastReceiver{
 
@@ -28,6 +14,8 @@ public class OnBootCompleted extends BroadcastReceiver{
  @Override
  public void onReceive(Context context, Intent intent) {
 	 try {
+   /* Alarm Services: */
+		 AlarmIntervalDay.getInstance(context);
    /* Calling a Service */
       Intent bgIntent = new Intent(context, BGService.class);
       context.startService(bgIntent);

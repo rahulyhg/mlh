@@ -4,11 +4,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
-
 import android.annotation.SuppressLint;
 import android.app.Service;
 import android.content.Intent;
-import android.os.Handler;
 import android.os.IBinder;
 import anups.dun.constants.BusinessConstants;
 import anups.dun.js.AppSessionManagement;
@@ -36,7 +34,7 @@ public class BGService extends Service {
 							AppSessionManagement appSessionManager = new AppSessionManagement(getApplicationContext());
 						    appSessionManager.setAndroidSession(BusinessConstants.BGSERVICE_EXECUTION_STATUS,null);
 							Intent triggerWS = new Intent();
-							 	   triggerWS.setAction("anups.dun.notify.ws.AppNotificationAlarm");
+							 	   triggerWS.setAction("anups.dun.broadcast.recievers.BRIntervalMinute");
 							getApplicationContext().sendBroadcast(triggerWS);
 			            } 
 					};

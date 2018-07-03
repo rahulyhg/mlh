@@ -9,8 +9,17 @@ import org.apache.log4j.Logger;
 
 public class AndroidLogger {
 	public static org.apache.log4j.Logger getLogger(Class clazz) {
+		String internalMemory=System.getenv("EXTERNAL_STORAGE");
+		String externalMemory=System.getenv("EXTERNAL_STORAGE2");
+		   String filePath=externalMemory+"/"+"mylocalhook";
+		   if(externalMemory==null){
+			   filePath=internalMemory+"/"+"mylocalhook";
+		   }
+		   File externalDir = new File(filePath);
+	       if(!externalDir.exists()) { externalDir.mkdir();  }
+	       
         final LogConfigurator logConfigurator = new LogConfigurator();
-        logConfigurator.setFileName(Environment.getExternalStorageDirectory().toString() + File.separator + "log/file.txt");
+        logConfigurator.setFileName(filePath + "/log/file.txt");
         logConfigurator.setRootLevel(Level.ALL);
         logConfigurator.setLevel("org.apache", Level.ALL);
         logConfigurator.setUseFileAppender(true);

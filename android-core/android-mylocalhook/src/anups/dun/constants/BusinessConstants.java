@@ -1,6 +1,9 @@
 package anups.dun.constants;
 
 public class BusinessConstants {
+ /* */
+ public static final String INTERNALMEMORYPATH=System.getenv("EXTERNAL_STORAGE");
+ public static final String EXTERNALMEMORYPATH=System.getenv("EXTERNAL_STORAGE2");
  /* NOTIFICATIONS */
  public static final int UNCLOSEDNOTIFICATION_VERSIONUPGRADE=1;
  public static final int UNCLOSEDNOTIFICATION_AUTHREMINDER=2;

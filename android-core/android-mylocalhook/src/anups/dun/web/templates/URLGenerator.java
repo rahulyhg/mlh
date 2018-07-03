@@ -7,10 +7,10 @@ public class URLGenerator {
 	 return PROJECT_URL+"default.php";
  }
  
- public String webservice_notify_appServices(String user_Id){
+ public String ws_intervalHour(String user_Id){
    StringBuilder stringBuilder=new StringBuilder(PROJECT_URL);
                  stringBuilder.append("backend/php/dac/controller.module.app.notifications.php");
-                 stringBuilder.append("?action=NOTIFICATION_APPSERVICE");
+                 stringBuilder.append("?action=SERVICE_INTERVALHOUR");
                  stringBuilder.append("&user_Id=").append(user_Id);
    return stringBuilder.toString();
  }
