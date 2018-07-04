@@ -7,11 +7,11 @@
 	 include('../../../log4php/Logger.php'); 
 	 Logger::configure('../../../backend/config/log-config.xml'); 
 	
- /* Database Credentials */ 
-	 define("SERVER_NAME","localhost:3306", true); 
-	 define("DB_NAME","mlh_basic", true); 
-	 define("DB_USER","root", true); 
-	 define("DB_PASSWORD","", true); 
+ /* Database Credentials */
+$DB_MLHBASIC_SERVERNAME="localhost:3306";
+$DB_MLHBASIC_NAME="mlh_basic";
+$DB_MLHBASIC_USER="root";
+$DB_MLHBASIC_PASSWORD="";
 	 
 // DB: myloc6lh_mlh
 // USER: myloc6lh_root

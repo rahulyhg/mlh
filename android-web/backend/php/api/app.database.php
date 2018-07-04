@@ -3,14 +3,21 @@
 class Database
 {
     private $logger;
-    
-    function __construct() {
+	private $serverName;
+	private $databaseName;
+	private $userName;
+	private $password;
+	
+    function __construct($serverName,$databaseName,$userName,$password) {
        $this->logger= Logger::getLogger("api.database.php");
+	   $this->serverName=$serverName;
+	   $this->databaseName=$databaseName;
+	   $this->userName=$userName;
+	   $this->password=$password;
     }
     
     function dbinteraction() {
-	   $conn = new mysqli(constant("SERVER_NAME"),constant("DB_USER"), 
-                           constant("DB_PASSWORD"), constant("DB_NAME"));
+	   $conn = new mysqli($this->serverName,$this->userName,$this->password,$this->databaseName);
         if ($conn->connect_error) {   die("Connection failed: " . $conn->connect_error); } 
         else { $this->logger->info("Database connected Successfully"); }
         return $conn;
@@ -18,7 +25,7 @@ class Database
     
     function addupdateData($sql) {
        $result="Error";
-       $db=new Database();
+       $db=new Database($this->serverName,$this->databaseName,$this->userName,$this->password);
        $conn = $db->dbinteraction();
        if ($conn->multi_query($sql) === true) { $result="Success";}
        $conn->close();
@@ -28,7 +35,7 @@ class Database
     
 	function deleteData($sql) {
 		$result='Error';
-		$db=new Database();
+		$db=new Database($this->serverName,$this->databaseName,$this->userName,$this->password);
 		$conn = $db->dbinteraction();
 		if ($conn->query($sql) === TRUE) {
 			$result='Success';
@@ -37,7 +44,7 @@ class Database
 	}
    
     function getJSONData($sql) {
-        $db=new Database();
+        $db=new Database($this->serverName,$this->databaseName,$this->userName,$this->password);
         $conn = $db->dbinteraction();
         $result = mysqli_query($conn, $sql); 
         $json="";
@@ -62,7 +69,7 @@ class Database
     
 	function getAColumnAsArray($sql,$columnName){
 	  $arry_col=array();
-	  $dbObj=new Database();
+	  $dbObj=new Database($this->serverName,$this->databaseName,$this->userName,$this->password);
 	  $conn=$dbObj->dbinteraction();
 	  $result = $conn->query($sql);
 	  if (!$result) { die("Invalid query: " . mysqli_error($conn)); 
