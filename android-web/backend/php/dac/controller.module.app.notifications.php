@@ -22,22 +22,36 @@ if(isset($_GET["action"])){
   else if($_GET["action"]=='SERVICE_INTERVALDAY'){
     
   }
-  else if($_GET["action"]=='SERVICE_INTERVALMINUTE'){
+  else if($_GET["action"]=='SERVICE_INTERVALMINUTE'){ // USR924357814934
     if(isset($_GET["user_Id"])){
 	  $user_Id=$_GET["user_Id"];
 	  $limit_start='0';
 	  $limit_end='5';
 	  $notifyObj=new app_notifications();
-	  $dbObj=new Database();
-	  $peopleRelationshipRequestDataQuery=$notifyObj->query_getPeopleRelationshipRequests($user_Id,$limit_start,$limit_end);
-	  $communityMembershipRequestDataQuery=$notifyObj->query_getCommunityMembershipRequests($user_Id, $limit_start, $limit_end);
-      $content='{';
-	  $content.='"peopleRelationship":'.$dbObj->getJSONData($peopleRelationshipRequestDataQuery).',';
-	  $content.='"communityMembership":'.$dbObj->getJSONData($communityMembershipRequestDataQuery).',';
-	  $content.='"unionNewsFeed":[],';
-	  $content.='"bizNewsFeed":[],';
-	  $content.='"movements":'.'[]';
-	  $content.='}';
+	  $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
+	  $query1=$notifyObj->query_notify_usrFrndsReqReciever($user_Id);
+	  $query2=$notifyObj->query_notify_onAcceptUserFrndReq($user_Id);
+	  $query3=$notifyObj->query_notify_reqLocalBranch($user_Id);
+	  $query4=$notifyObj->query_notify_unionMemberReqReciever($user_Id);
+	  $query5=$notifyObj->query_notify_onAcceptUnionMemberReq($user_Id);
+	  $query6=$notifyObj->query_notify_unionMemberOnRoleChange($user_Id);
+	  $query7=$notifyObj->query_notify_unionMemberRolePermissionChange($user_Id);
+	  $query8=$notifyObj->query_notify_unionMemberNewsFeedNotification($user_Id);
+	  $query9=$notifyObj->query_notify_unionSupporterNewsFeedNotification($user_Id);
+	  $query10=$notifyObj->query_notify_movementNotification($user_Id);
+
+	  $sqlArray=array();
+	  $sqlArray["usrFrndReqRecieved"]=$query1;
+	  $sqlArray["usrFrndReqAccepted"]=$query2;
+	  $sqlArray["usrReqUnionLocalBranch"]=$query3;
+	  $sqlArray["unionMemReqRecieved"]=$query4;
+	  $sqlArray["unionMemReqAccepted"]=$query5;
+	  $sqlArray["unionMemOnRoleChange"]=$query6;
+	  $sqlArray["unionMemRolePermUpdated"]=$query7;
+	  $sqlArray["unionMemNewsFeed"]=$query8;
+	  $sqlArray["unionSubscriberNewsFeed"]=$query9;
+	  $sqlArray["unionMovements"]=$query10;
+	  $content=$dbObj->getBulkJSONData($sqlArray);
 	  echo $content;
 	}
 	 else {

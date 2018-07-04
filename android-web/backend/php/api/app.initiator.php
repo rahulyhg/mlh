@@ -13,6 +13,7 @@ $DB_MLHBASIC_NAME="mlh_basic";
 $DB_MLHBASIC_USER="root";
 $DB_MLHBASIC_PASSWORD="";
 	 
+	 
 // DB: myloc6lh_mlh
 // USER: myloc6lh_root
 // PASSWORD : myloc6lh_root

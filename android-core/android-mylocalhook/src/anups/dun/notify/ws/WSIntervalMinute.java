@@ -21,7 +21,7 @@ public class WSIntervalMinute  extends AsyncTask<String, String, String>{
 	  @Override  
 	  protected void onPostExecute(String response) {
 		  WSRIntervalMinute wsr=new WSRIntervalMinute(context,response);
-		  wsr.funcTrigger_userNotifications();
+		  
 	  }
 
 }

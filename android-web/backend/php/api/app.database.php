@@ -67,6 +67,29 @@ class Database
         return $json;
     }
     
+	function getBulkJSONData($sqlArray){
+	  $db=new Database($this->serverName,$this->databaseName,$this->userName,$this->password);
+      $conn = $db->dbinteraction();
+	  $json='{';
+	  foreach($sqlArray as $x => $x_value) {
+	    $result = mysqli_query($conn, $x_value); 
+		if (!$result) {   
+            die("Invalid query: " . mysqli_error($conn)); 
+            $this->logger->error("Query(Status-Invalid) : ".$sql); 
+        }
+        else {
+          $rows= array();
+          while($row = $result->fetch_assoc()) { $rows[] = $row; }
+		  $json.='"'.$x.'":'.json_encode($rows).',';
+        }  
+	    mysqli_free_result($result); 
+	  }  
+      $conn->close();	  
+	  $json=chop($json,',');
+      $json.='}';
+	  return $json;
+	}
+	
 	function getAColumnAsArray($sql,$columnName){
 	  $arry_col=array();
 	  $dbObj=new Database($this->serverName,$this->databaseName,$this->userName,$this->password);
@@ -78,4 +101,5 @@ class Database
       $conn->close();
 	  return $arry_col;
 	}
+
 }

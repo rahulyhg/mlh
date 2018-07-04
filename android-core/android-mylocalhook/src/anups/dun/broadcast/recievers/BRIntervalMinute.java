@@ -17,4 +17,5 @@ public class BRIntervalMinute extends BroadcastReceiver {
 	 new WSIntervalMinute(context).execute(params);
  }
 
+ 
 }

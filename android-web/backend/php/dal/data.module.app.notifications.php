@@ -8,8 +8,8 @@ class app_notifications {
   function query_notify_usrFrndsReqReciever($user_Id){
   /* Notification Query to User recieved Friendship Request */
     $sql="SELECT ";
-    $sql.=" user_account.surName, user_account.name, user_account.profile_pic, user_account.minlocation,";
-    $sql.=" user_account.location, user_account.state, user_account.country, user_frnds_req.req_on, user_frnds_req.req_tz ";
+    $sql.=" user_frnds_req.from_userId, user_account.username, user_account.surName, user_account.name,";
+    $sql.="  user_frnds_req.req_on ";
     $sql.=" FROM user_account, user_frnds_req WHERE user_account.user_Id=user_frnds_req.from_userId AND ";
     $sql.=" user_frnds_req.to_userId='".$user_Id."' ORDER BY user_frnds_req.req_on DESC LIMIT 0 , 1;";
 	return $sql;
@@ -29,19 +29,28 @@ class app_notifications {
    return $sql;
   }
   
+  function query_notify_reqLocalBranch($user_Id){
+  /* Request to Local Branch */
+    $sql="SELECT CONCAT('[{\"user_Id\":\"',user_account.user_Id,'\",\"surName\":\"', user_account.surName, ";
+    $sql.="'\",\"name\":\"', user_account.name,'\"}]') As requestedBy, unionprof_account.unionName, ";
+    $sql.="unionprof_branch_req.minlocation, unionprof_branch_req.location, ";
+    $sql.="unionprof_branch_req.state, unionprof_branch_req.country, unionprof_branch_req.reqOn ";
+    $sql.="FROM unionprof_account, unionprof_branch_req, user_account ";
+    $sql.="WHERE unionprof_account.union_Id=unionprof_branch_req.union_Id AND ";
+    $sql.="unionprof_branch_req.reqBy=user_account.user_Id AND unionprof_account.admin_Id='".$user_Id."' ";
+	$sql.=" ORDER BY reqOn DESC LIMIT 0,1 ";
+    return $sql;
+  }
+
   function query_notify_unionMemberReqReciever($user_Id){
   /* Notification Query to User Recieved Membership Request for a Union */
     $sql="SELECT ";
-	$sql.=" subs_dom_info.domainName, subs_subdom_info.subdomainName, ";
 	$sql.=" user_account.surName, user_account.name, unionprof_account.union_Id, unionprof_account.unionName, ";
-	$sql.=" unionprof_account.profile_pic, unionprof_account.created_On, unionprof_branch.minlocation, ";
-	$sql.=" unionprof_branch.location, unionprof_branch.state, unionprof_branch.country FROM ";
-	$sql.=" user_account, subs_dom_info, subs_subdom_info, unionprof_account, unionprof_branch, unionprof_mem_req WHERE ";
+	$sql.=" unionprof_mem_req.sent_On FROM ";
+	$sql.=" user_account, unionprof_account, unionprof_branch, unionprof_mem_req WHERE ";
 	$sql.=" unionprof_account.union_Id = unionprof_branch.union_Id AND ";
 	$sql.=" unionprof_account.union_Id = unionprof_mem_req.union_Id AND ";
 	$sql.=" unionprof_branch.branch_Id = unionprof_mem_req.branch_Id AND ";
-	$sql.=" unionprof_account.domain_Id = subs_dom_info.domain_Id AND ";
-	$sql.=" unionprof_account.subdomain_Id = subs_subdom_info.subdomain_Id AND ";
 	$sql.=" unionprof_mem_req.req_to='".$user_Id."' AND unionprof_mem_req.req_from=user_account.user_Id ";
 	$sql.="  ORDER BY unionprof_mem_req.sent_On DESC LIMIT 0 , 1; ";
 	return $sql;
@@ -197,20 +206,9 @@ class app_notifications {
 	return $sql;
   }
 
-  function query_notify_reqLocalBranch($user_Id){
-  /* Request to Local Branch */
-    $sql="SELECT CONCAT('[{\"user_Id\":\"',user_account.user_Id,'\",\"surName\":\"', user_account.surName, ";
-    $sql.="'\",\"name\":\"', user_account.name,'\"}]') As requestedBy, unionprof_account.unionName, ";
-    $sql.="unionprof_branch_req.minlocation, unionprof_branch_req.location, ";
-    $sql.="unionprof_branch_req.state, unionprof_branch_req.country, unionprof_branch_req.reqOn ";
-    $sql.="FROM unionprof_account, unionprof_branch_req, user_account ";
-    $sql.="WHERE unionprof_account.union_Id=unionprof_branch_req.union_Id AND ";
-    $sql.="unionprof_branch_req.reqBy=user_account.user_Id AND unionprof_account.admin_Id='".$user_Id."' ";
-	$sql.=" ORDER BY reqOn DESC LIMIT 0,1 ";
-    return $sql;
-  }
+ 
 }
-
+/*
 $notifyObj=new app_notifications();
 echo $notifyObj->query_notify_usrFrndsReqReciever('USR924357814934').'<br/><br/>';
 echo $notifyObj->query_notify_onAcceptUserFrndReq('USR924357814934').'<br/><br/>';
@@ -221,5 +219,5 @@ echo $notifyObj->query_notify_unionMemberRolePermissionChange('USR924357814934')
 echo $notifyObj->query_notify_unionMemberNewsFeedNotification('USR924357814934').'<br/><br/>';
 echo $notifyObj->query_notify_unionSupporterNewsFeedNotification('USR924357814934').'<br/><br/>';
 echo $notifyObj->query_notify_movementNotification('USR924357814934');
-
+*/
 ?>
