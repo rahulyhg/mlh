@@ -4,8 +4,11 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -190,11 +193,14 @@ public void createProjectPath(){
 
 final private int REQUEST_CODE_ASK_PERMISSIONS = 123;
 
-public void checkPermissions(String permission){ // Manifest.permission.WRITE_CALENDAR
-	if(this.checkSelfPermission(permission)!= PackageManager.PERMISSION_GRANTED){
-		requestPermissions(new String[] {permission},REQUEST_CODE_ASK_PERMISSIONS);
-		return ;
-	}
+public boolean doesPermissionExist(String permission){ 
+ boolean status=false;
+ if(AndroidWebScreen.this.checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED){ status=true; }
+ return status;
+}
+
+public void makeAPermission(String permission){
+  requestPermissions(new String[] {permission},REQUEST_CODE_ASK_PERMISSIONS);  // 
 }
 
 @Override
@@ -297,13 +303,15 @@ protected void onCreate(Bundle savedInstanceState) {
         	if (extras != null) {
         		String directURL = extras.getString("DIRECT_URL");
         		if(directURL==null){
-        			webView.loadUrl("file:///android_asset/www/initializer.html");
+        			// webView.loadUrl("file:///android_asset/www/app-default.html");
+        			webView.loadUrl("http://192.168.43.47/m-android/app-default.html");
         		} else {
         		   logger.info("directURL: "+directURL);
         		   webView.loadUrl(directURL);
         		}
         	} else {
-        	   webView.loadUrl("file:///android_asset/www/initializer.html");
+        	 //	webView.loadUrl("file:///android_asset/www/app-default.html");
+        	   webView.loadUrl("http://192.168.43.47/m-android/app-default.html");
         	}
         }
         else {

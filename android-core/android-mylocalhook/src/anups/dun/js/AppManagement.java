@@ -1,17 +1,13 @@
 package anups.dun.js;
 
-import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.webkit.JavascriptInterface;
 import android.widget.Toast;
 import anups.dun.app.AndroidWebScreen;
-import anups.dun.app.BuildConfig;
 import anups.dun.media.AndroidWebScreenVideo;
 import anups.dun.web.templates.URLGenerator;
 
@@ -68,7 +64,13 @@ public class AppManagement extends ActionBarActivity {
 	}
 	
 	@JavascriptInterface
-	public void checkPermissions(String permission){ // Manifest.permission.WRITE_CALENDAR
-		((AndroidWebScreen) mContext).checkPermissions(permission);
+	public boolean doesPermissionExist(String permission){ 
+		boolean status=((AndroidWebScreen) mContext).doesPermissionExist(permission);
+		return status;
+	}
+	
+	@JavascriptInterface
+	public void makeAPermission(String permission){
+		((AndroidWebScreen) mContext).makeAPermission(permission);
 	}
 }
