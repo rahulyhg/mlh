@@ -65,6 +65,7 @@ public class Database extends SQLiteOpenHelper {
 		
 	}
 
+	
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 	/*	onUpgrade() is only called when the database file exists but the stored version number is lower than requested in constructor. */

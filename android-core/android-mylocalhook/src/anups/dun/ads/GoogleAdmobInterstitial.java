@@ -1,19 +1,10 @@
 package anups.dun.ads;
 
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
-
 import android.app.Activity;
-import android.app.Service;
-import android.content.Intent;
-import android.os.Handler;
 import anups.dun.app.AndroidWebScreen;
-import anups.dun.js.AppSessionManagement;
 import anups.dun.util.AndroidLogger;
 
 public class GoogleAdmobInterstitial {

@@ -11,6 +11,7 @@ import anups.dun.util.Utility;
 
 public class WSRIntervalMinute {
 /*
+  RESPONSE:
  {"usrFrndReqRecieved":[{"from_userId":"USR113561617186","username":"Achuth","surName":"Achuytham","name":"Achuytham","req_on":"2018-06-01 16:29:12"}],
  "usrFrndReqAccepted":[{"rel_Id":"FREL113163289416289671228","rel_from":"2018-07-03 18:01:27","rel_tz":"Asia\/Kolkata",
  "requestSent":"[{\"frnd1\":\"USR255798352927\",\"surName\":Srirambhatla\",\"name\":\"Saiteja\",\"frnd1_call_frnd2\":\"My LocalHook Friend\"}]",

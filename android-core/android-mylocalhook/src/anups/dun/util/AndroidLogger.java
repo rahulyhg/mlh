@@ -1,25 +1,28 @@
 package anups.dun.util;
 
 import java.io.File;
-
-import android.os.Environment;
 import de.mindpipe.android.logging.log4j.LogConfigurator;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
+import android.os.Environment;
+import android.widget.Toast;
+import anups.dun.app.AndroidWebScreen;
+import anups.dun.constants.BusinessConstants;
+
 public class AndroidLogger {
+
 	public static org.apache.log4j.Logger getLogger(Class clazz) {
-		String internalMemory=System.getenv("EXTERNAL_STORAGE");
-		String externalMemory=System.getenv("EXTERNAL_STORAGE2");
-		   String filePath=externalMemory+"/"+"mylocalhook";
-		   if(externalMemory==null){
-			   filePath=internalMemory+"/"+"mylocalhook";
-		   }
-		   File externalDir = new File(filePath);
-	       if(!externalDir.exists()) { externalDir.mkdir();  }
-	       
+		
+		 Logger log = Logger.getLogger(clazz);
+		 try {
+     	//   log.setLevel(Level.ERROR);
+	    String filePath=BusinessConstants.EXTERNALMEMORYPATH+"/"+"mylocalhook";
+	    if(BusinessConstants.EXTERNALMEMORYPATH==null){
+		   filePath=BusinessConstants.INTERNALMEMORYPATH+"/"+"mylocalhook";
+	    }
         final LogConfigurator logConfigurator = new LogConfigurator();
-        logConfigurator.setFileName(filePath + "/log/file.txt");
+        logConfigurator.setFileName(filePath + "/log.txt");
         logConfigurator.setRootLevel(Level.ALL);
         logConfigurator.setLevel("org.apache", Level.ALL);
         logConfigurator.setUseFileAppender(true);
@@ -27,8 +30,10 @@ public class AndroidLogger {
         logConfigurator.setMaxFileSize(1024 * 1024 * 5);
         logConfigurator.setImmediateFlush(true);
         logConfigurator.configure();
-        Logger log = Logger.getLogger(clazz);
-        	//   log.setLevel(Level.ERROR);
+		 }
+		 catch(Exception e){ 
+		  
+		 }
         return log;
     }
 }

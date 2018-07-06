@@ -15,4 +15,11 @@ public class URLGenerator {
    return stringBuilder.toString();
  }
  
+ public String ws_intervalMinute(String user_Id){
+   StringBuilder stringBuilder=new StringBuilder(PROJECT_URL);
+	             stringBuilder.append("backend/php/dac/controller.module.app.notifications.php");
+	             stringBuilder.append("?action=SERVICE_INTERVALMINUTE");
+	             stringBuilder.append("&user_Id=").append(user_Id);
+   return stringBuilder.toString();
+ }
 }

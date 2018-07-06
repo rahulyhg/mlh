@@ -19,8 +19,9 @@ if(isset($_GET["action"])){
 	    echo 'MISSING_USERID';
 	 }
   }
-  else if($_GET["action"]=='SERVICE_INTERVALDAY'){
-    
+  else if($_GET["action"]=='SERVICE_INTERVALDAY'){ // EveryDay 9 PM
+    /* Send Statistics of Union Admin about Users joined for Today */
+	
   }
   else if($_GET["action"]=='SERVICE_INTERVALMINUTE'){ // USR924357814934
     if(isset($_GET["user_Id"])){
