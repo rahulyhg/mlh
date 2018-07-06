@@ -5,6 +5,8 @@ import de.mindpipe.android.logging.log4j.LogConfigurator;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
+import android.Manifest;
+import android.content.Context;
 import android.os.Environment;
 import android.widget.Toast;
 import anups.dun.app.AndroidWebScreen;
@@ -14,6 +16,8 @@ public class AndroidLogger {
 
 	public static org.apache.log4j.Logger getLogger(Class clazz) {
 		
+		
+		// Environment.getExternalStorageDirectory()
 		 Logger log = Logger.getLogger(clazz);
 		 try {
      	//   log.setLevel(Level.ERROR);
@@ -22,7 +26,7 @@ public class AndroidLogger {
 		   filePath=BusinessConstants.INTERNALMEMORYPATH+"/"+"mylocalhook";
 	    }
         final LogConfigurator logConfigurator = new LogConfigurator();
-        logConfigurator.setFileName(filePath + "/log.txt");
+        logConfigurator.setFileName(filePath+"/mylocalhook/log.txt");
         logConfigurator.setRootLevel(Level.ALL);
         logConfigurator.setLevel("org.apache", Level.ALL);
         logConfigurator.setUseFileAppender(true);

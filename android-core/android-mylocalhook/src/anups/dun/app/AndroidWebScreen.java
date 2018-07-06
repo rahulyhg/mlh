@@ -1,7 +1,10 @@
 package anups.dun.app;
 
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
+import android.support.v4.content.ContextCompat;
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlarmManager;
@@ -11,6 +14,7 @@ import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Build;
@@ -29,12 +33,14 @@ import anups.dun.constants.BusinessConstants;
 import anups.dun.db.Database;
 import anups.dun.js.AppManagement;
 import anups.dun.js.AppNotifyManagement;
+import anups.dun.js.AppPermissions;
 import anups.dun.js.AppSessionManagement;
 import anups.dun.services.BGService;
 import anups.dun.services.OnBootCompleted;
 import anups.dun.util.AndroidLogger;
 import anups.dun.util.NetworkAvailability;
 import java.io.File;
+import java.util.ArrayList;
 
 @SuppressLint({ "NewApi", "ShowToast" })
 public  class AndroidWebScreen extends Activity  {
@@ -158,14 +164,69 @@ public  class AndroidWebScreen extends Activity  {
       
     }
 
+public void createProjectPath(){
+	 String filePath=Environment.getExternalStorageDirectory().toString()+"/"+"mylocalhook";
+   /* if(BusinessConstants.EXTERNALMEMORYPATH==null){
+	   filePath=BusinessConstants.INTERNALMEMORYPATH+"/"+"mylocalhook";
+    } */
+    Toast.makeText(getBaseContext(), "State: "+Environment.getExternalStorageState()+"  filePath: " +filePath, Toast.LENGTH_LONG).show();
+    File externalDir = new File(filePath);
+    if(!externalDir.exists()){
+    	try{
+    	if(externalDir.mkdir()) {
+    		Toast.makeText(getBaseContext(), "Made a Directory: ", Toast.LENGTH_LONG).show();	
+    	}
+    	else {
+    		Toast.makeText(getBaseContext(), "Not Made a Directory: ", Toast.LENGTH_LONG).show();
+    	}
+    	; 
+    	}
+    	catch(Exception e){ Toast.makeText(getBaseContext(), "Made a Directory Exception: "+e, Toast.LENGTH_LONG).show(); }
+    }
+    else {
+    	Toast.makeText(getBaseContext(), "Not Made a Directory: ", Toast.LENGTH_LONG).show();
+    }
+}
+
+final private int REQUEST_CODE_ASK_PERMISSIONS = 123;
+
+public void checkPermissions(String permission){ // Manifest.permission.WRITE_CALENDAR
+	if(this.checkSelfPermission(permission)!= PackageManager.PERMISSION_GRANTED){
+		requestPermissions(new String[] {permission},REQUEST_CODE_ASK_PERMISSIONS);
+		return ;
+	}
+}
+
+@Override
+public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+	AppSessionManagement appSessionManager = new AppSessionManagement(this);
+	for(int index=0;index<permissions.length;index++){
+	  switch (requestCode) {
+        case REQUEST_CODE_ASK_PERMISSIONS:
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) { // Permission Granted
+            	appSessionManager.setAndroidSession(permissions[index], "GRANTED");
+            } else { // Permission Denied
+            	appSessionManager.setAndroidSession(permissions[index], null);
+            }
+            break;
+        default:
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+     }
+  }
+}
+
+
 @SuppressLint("SetJavaScriptEnabled")
 @Override
 protected void onCreate(Bundle savedInstanceState) {
  logger.info("MyLocalHook Activity Container Created...");
  super.onCreate(savedInstanceState);
  requestWindowFeature(Window.FEATURE_NO_TITLE);
- getWindow().requestFeature(Window.FEATURE_PROGRESS);
+ // getWindow().requestFeature(Window.FEATURE_PROGRESS);
  setContentView(R.layout.activity_androidwebscreen);
+ 
+ /* Permissions List: */
+ 
  
  /* Google AdMob Ads */
  logger.info("MyLocalHook is invoking GoogleAdmobInterstitial Service...");
@@ -181,12 +242,12 @@ protected void onCreate(Bundle savedInstanceState) {
  // PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
  // manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+AlarmManager.INTERVAL_FIFTEEN_MINUTES, AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
 
- AppManagement appManager = new AppManagement(this);
- AppNotifyManagement anm = new AppNotifyManagement(this);
- AppSessionManagement appSessionManager = new AppSessionManagement(this);
+ AppManagement appManagement = new AppManagement(this);
+ AppNotifyManagement appNotifyManagement = new AppNotifyManagement(this);
+ AppSessionManagement appSessionManagement = new AppSessionManagement(this);
  
  /* Initially, Setting Service Execution to null */
- appSessionManager.setAndroidSession(BusinessConstants.BGSERVICE_EXECUTION_STATUS,null); 
+ appSessionManagement.setAndroidSession(BusinessConstants.BGSERVICE_EXECUTION_STATUS,null); 
  
 /* DATABASE */
  try {
@@ -194,7 +255,7 @@ protected void onCreate(Bundle savedInstanceState) {
   logger.info("Rows: "+mydb.numberOfRows());
  } catch(Exception e) { logger.error("Exception: "+e.getMessage()); }
  /* Get UserID from SESSION */
- String USER_ID=appSessionManager.getAndroidSession("AUTH_USER_ID");
+ String USER_ID=appSessionManagement.getAndroidSession(BusinessConstants.AUTH_USER_ID);
  logger.info("USER_ID: "+USER_ID);
  
  /* Triggering Broadcast Receiver from Activity */
@@ -218,9 +279,9 @@ protected void onCreate(Bundle savedInstanceState) {
         webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
         webSettings.setDomStorageEnabled(true);
         
-        webView.addJavascriptInterface(appManager, "Android"); 
-        webView.addJavascriptInterface(anm, "AndroidNotify");
-        webView.addJavascriptInterface(appSessionManager, "AndroidSession");   
+        webView.addJavascriptInterface(appManagement, "Android"); 
+        webView.addJavascriptInterface(appNotifyManagement, "AndroidNotify");
+        webView.addJavascriptInterface(appSessionManagement, "AndroidSession");   
         webView.setWebViewClient(new AndroidWebViewClient(this));
         webView.setWebChromeClient(new AndroidWebChromeClient(this));
         

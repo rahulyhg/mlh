@@ -26,6 +26,8 @@ if(isset($_GET["action"])){
   else if($_GET["action"]=='SERVICE_INTERVALMINUTE'){ // USR924357814934
     if(isset($_GET["user_Id"])){
 	  $user_Id=$_GET["user_Id"];
+	  $content='[]';
+	  if($user_Id!='null'){
 	  $limit_start='0';
 	  $limit_end='5';
 	  $notifyObj=new app_notifications();
@@ -53,6 +55,7 @@ if(isset($_GET["action"])){
 	  $sqlArray["unionSubscriberNewsFeed"]=$query9;
 	  $sqlArray["unionMovements"]=$query10;
 	  $content=$dbObj->getBulkJSONData($sqlArray);
+	  }
 	  echo $content;
 	}
 	 else {

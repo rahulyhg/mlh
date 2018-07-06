@@ -1,5 +1,7 @@
 package anups.dun.js;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -50,7 +52,6 @@ public class AppManagement extends ActionBarActivity {
         Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show();
     }
 	
-	
 	@JavascriptInterface
 	public void showVideo(String videoURL) {
 		 Toast.makeText(mContext, "Javascript: "+videoURL, Toast.LENGTH_SHORT).show();
@@ -66,4 +67,8 @@ public class AppManagement extends ActionBarActivity {
 		 }
 	}
 	
+	@JavascriptInterface
+	public void checkPermissions(String permission){ // Manifest.permission.WRITE_CALENDAR
+		((AndroidWebScreen) mContext).checkPermissions(permission);
+	}
 }

@@ -27,9 +27,10 @@ if(count==1) { progress=false; }
 
 $(document).ready(function(){
  progressLoader();
+ /*
  if(Android!==undefined){
    setTimeout(function(){ window.location.href=Android.getDefaultPage(); }, 3000);
- }
+ } */
 });
 </script>
 <style>
@@ -85,8 +86,13 @@ body { background-color:#0ba0da; }
 </div>
 
 <div class="footer">
-  
+  <button onclick="javascript:permission();">Permission</button>
 </div>
 
+<script type="text/javascript">
+function permission(){
+Android.checkPermissions("android.permission.CAMERA");
+}
+</script>
 </body>
 </html>
