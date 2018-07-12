@@ -31,7 +31,8 @@ $(document).ready(function(){
  
  if(Android!==undefined){
    setTimeout(function(){ nextPageDivert(); }, 3000);
-  // setTimeout(function(){ window.location.href=Android.getDefaultPage(); }, 3000);
+ } else {
+     setTimeout(function(){ window.location.href='file:///android_asset/www/app-info-about.html'; }, 3000);
  }
 });
 
@@ -50,9 +51,8 @@ function nextPageDivert(){
 	   break; 
 	 }
   }
-  alert(permissionPage);
   if(permissionPage===true){
-     window.location.href='app-permissions.html';
+     window.location.href='app-info-about.html';
   } else {
      window.location.href=Android.getDefaultPage();
   }

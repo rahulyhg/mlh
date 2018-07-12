@@ -35,9 +35,8 @@ public class AndroidWebScreenVideo extends Activity {
 		String videoURL = getIntent().getStringExtra("VIDEO_URL");
 		Toast.makeText(this.getApplicationContext(), "VIDEO_URL"+videoURL, Toast.LENGTH_SHORT).show();
 		
-		if(videoURL.length()>0){
-			this.VideoURL=videoURL;
-		}
+		if(videoURL.length()>0){ this.VideoURL=videoURL; }
+		
 		// Create a progressbar
 		pDialog = new ProgressDialog(AndroidWebScreenVideo.this);
 		// Set progressbar title
@@ -51,8 +50,7 @@ public class AndroidWebScreenVideo extends Activity {
 
 		try {
 			// Start the MediaController
-			MediaController mediacontroller = new MediaController(
-					AndroidWebScreenVideo.this);
+			MediaController mediacontroller = new MediaController(AndroidWebScreenVideo.this);
 			mediacontroller.setAnchorView(videoview);
 			// Get the URL from String VideoURL
 			Uri video = Uri.parse(VideoURL);

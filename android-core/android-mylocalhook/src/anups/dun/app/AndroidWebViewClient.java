@@ -39,7 +39,14 @@ public class AndroidWebViewClient extends WebViewClient {
     			view.loadUrl("file:///android_asset/www/network_state.html"); 
     		}
             return false;
-    	} else {
+    	} 
+    	else if (url.startsWith("file")){
+    		if(!webscreenObject.ntwrkAvail.checkInternetConnection()) {
+    			view.loadUrl("file:///android_asset/www/network_state.html"); 
+    		}
+    	   return false;
+    	}
+    	else {
            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
            view.getContext().startActivity(intent);
            return true;

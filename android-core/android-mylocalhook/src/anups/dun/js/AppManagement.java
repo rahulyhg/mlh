@@ -1,17 +1,24 @@
 package anups.dun.js;
 
+import android.app.AlertDialog;
+import android.content.ContentResolver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
 import android.webkit.JavascriptInterface;
 import android.widget.Toast;
 import anups.dun.app.AndroidWebScreen;
 import anups.dun.media.AndroidWebScreenVideo;
+import anups.dun.util.CRUDContacts;
 import anups.dun.web.templates.URLGenerator;
 
 public class AppManagement extends ActionBarActivity {
+	
 	Context mContext;
 	public AppManagement(Context c) {  mContext = c; }
 
@@ -48,19 +55,29 @@ public class AppManagement extends ActionBarActivity {
         Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show();
     }
 	
+	
 	@JavascriptInterface
 	public void showVideo(String videoURL) {
-		 Toast.makeText(mContext, "Javascript: "+videoURL, Toast.LENGTH_SHORT).show();
-		 
-		 try {
-		// Start NewActivity.class
 		Intent intent = new Intent(mContext, AndroidWebScreenVideo.class);
 		intent.putExtra("VIDEO_URL", videoURL);
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		mContext.getApplicationContext().startActivity(intent);
-		 } catch(Exception e){
-			 Toast.makeText(mContext, "JavascriptException: "+e, Toast.LENGTH_SHORT).show();
-		 }
+	}
+	
+	@JavascriptInterface
+	public void goToAppPermissions(){
+		Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, 
+			      Uri.parse("package:" + mContext.getPackageName()));
+			  intent.addCategory(Intent.CATEGORY_DEFAULT);
+			  intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			  mContext.startActivity(intent);
+	}
+	
+	@JavascriptInterface
+	public String listOfContacts(){
+		ContentResolver contentResolver = mContext.getContentResolver();
+	    CRUDContacts crudContacts = new CRUDContacts();
+	    return crudContacts.fetchContacts(contentResolver);
 	}
 	
 	@JavascriptInterface

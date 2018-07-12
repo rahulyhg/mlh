@@ -3,7 +3,12 @@ package anups.dun.app;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.provider.Settings;
 import android.support.v4.content.ContextCompat;
+import android.text.Html;
+import android.text.SpannableString;
+import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.Manifest;
@@ -11,23 +16,29 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlarmManager;
+import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.ClipData;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.webkit.ValueCallback;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 import anups.dun.ads.GoogleAdmob;
 import anups.dun.ads.GoogleAdmobInterstitial;
@@ -38,10 +49,13 @@ import anups.dun.js.AppManagement;
 import anups.dun.js.AppNotifyManagement;
 import anups.dun.js.AppPermissions;
 import anups.dun.js.AppSessionManagement;
+import anups.dun.media.AndroidWebScreenVideo;
 import anups.dun.services.BGService;
 import anups.dun.services.OnBootCompleted;
 import anups.dun.util.AndroidLogger;
 import anups.dun.util.NetworkAvailability;
+import anups.dun.web.templates.URLGenerator;
+
 import java.io.File;
 import java.util.ArrayList;
 
@@ -195,7 +209,9 @@ final private int REQUEST_CODE_ASK_PERMISSIONS = 123;
 
 public boolean doesPermissionExist(String permission){ 
  boolean status=false;
- if(AndroidWebScreen.this.checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED){ status=true; }
+ if(AndroidWebScreen.this.checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED){ 
+	status=true; 
+ }
  return status;
 }
 
@@ -205,16 +221,50 @@ public void makeAPermission(String permission){
 
 @Override
 public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-	AppSessionManagement appSessionManager = new AppSessionManagement(this);
 	for(int index=0;index<permissions.length;index++){
 	  switch (requestCode) {
         case REQUEST_CODE_ASK_PERMISSIONS:
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) { // Permission Granted
-            	appSessionManager.setAndroidSession(permissions[index], "GRANTED");
+            	
             } else { // Permission Denied
-            	appSessionManager.setAndroidSession(permissions[index], null);
+            	boolean showPermissionRationale=this.shouldShowRequestPermissionRationale(permissions[index]);
+            	if(!showPermissionRationale){
+            		AlertDialog.Builder builder  = new AlertDialog.Builder(this);
+            		StringBuilder msg=new StringBuilder();
+            		msg.append("<span style=\"font-size:12px;\">");
+            		msg.append("You need to provide access for this Permission from App Settings, ");
+            		msg.append("as you previously denied this Permission with \"Don't ask again\".");
+            		msg.append("<br/><br/>");
+            		msg.append("Click on \"App Permission Settings Video\" to view how to grant Permissions to the App.");
+            		msg.append("<br/>");
+            		msg.append("</span>");
+            		builder.setMessage(Html.fromHtml(msg.toString()));
+            		builder.setCancelable(false);
+            		builder.setPositiveButton("Go to App Permissions Settings", new DialogInterface.OnClickListener() {  
+                        public void onClick(DialogInterface dialog, int id) {  
+                            finish();  
+                            Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,  Uri.parse("package:" + getPackageName()));
+                  			  intent.addCategory(Intent.CATEGORY_DEFAULT);
+                  			  intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                  			  startActivity(intent);
+                        }  
+                    }); 
+            		builder.setNegativeButton("App Permission Settings Video", new DialogInterface.OnClickListener() {  
+                        public void onClick(DialogInterface dialog, int id) {  
+                        		Intent intent = new Intent(AndroidWebScreen.this, AndroidWebScreenVideo.class);
+                        		intent.putExtra("VIDEO_URL", URLGenerator.PROJECT_URL + "videos/AppPermissionGrants.mp4");
+                        		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        		startActivity(intent);
+                        }  
+                    });  
+            		AlertDialog alertDialog = builder.create();
+            		alertDialog.show();
+            	}
+            	else {
+            		
+            	}
             }
-            break;
+         break;
         default:
             super.onRequestPermissionsResult(requestCode, permissions, grantResults);
      }
@@ -303,15 +353,16 @@ protected void onCreate(Bundle savedInstanceState) {
         	if (extras != null) {
         		String directURL = extras.getString("DIRECT_URL");
         		if(directURL==null){
-        			// webView.loadUrl("file:///android_asset/www/app-default.html");
-        			webView.loadUrl("http://192.168.43.47/m-android/app-default.html");
+        			// webView.loadUrl("http://192.168.1.4/m-android/app-default.html");
+        		    webView.loadUrl("file:///android_asset/www/app-default.html");
+        			
         		} else {
         		   logger.info("directURL: "+directURL);
         		   webView.loadUrl(directURL);
         		}
         	} else {
-        	 //	webView.loadUrl("file:///android_asset/www/app-default.html");
-        	   webView.loadUrl("http://192.168.43.47/m-android/app-default.html");
+        		//webView.loadUrl("http://192.168.1.4/m-android/app-default.html");
+        	   webView.loadUrl("file:///android_asset/www/app-default.html");
         	}
         }
         else {

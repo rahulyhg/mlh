@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MyLocalHook</title>
+  <link rel="stylesheet" href="styles/bootstrap.min.css">
+  <link rel="stylesheet" href="styles/font-awesome.min.css">
+  <link href="styles/bootstrap-toggle.min.css" rel="stylesheet">
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/bootstrap-toggle.min.js"></script>
+<style>
+@font-face { font-family: "mlhfont001";src: url("fonts/BAUHS93.TTF"); }
+@font-face { font-family: "mlhfont002";src: url("fonts/Boogaloo-Regular.otf"); }
+.f12 { font-size:12px; }
+body { background-color:#085c58;color:#fff; }
+.mtop15p { margin-top:15px; }
+.footer { position: fixed;left: 0;bottom: 5%;width: 100%; }
+</style>
+<script type="text/javascript">
+var Android;
+var AndroidSession;
+var permissions=["android.permission.INTERNET","android.permission.ACCESS_NETWORK_STATE",
+				 "android.permission.ACCESS_WIFI_STATE","android.permission.ACCESS_COARSE_LOCATION",
+				 "android.permission.ACCESS_FINE_LOCATION"];
+function appPermission() {
+ var page=true;
+ for(var index=0;index<permissions.length;index++){
+  if(Android.doesPermissionExist(permissions[index])===false){
+    Android.makeAPermission(permissions[index]);page=false;
+  }
+ }
+ if(page===true){ window.location.href="file:///android_asset/www/app-perm-02-contacts.html"; }
+}
+</script>
+<body>
+
+<div align="center" class="container-fluid" style="padding:5px;margin-top:10px;">
+  <img src="images/logo-darkgreen-flat.png" style="width:110px;height:auto;"/>
+</div>
+
+
+  <div class="container-fluid" style="margin-top:100px;">
+    <div align="center" class="col-xs-12">
+	  <i class="fa fa-5x fa-map-marker" aria-hidden="true"></i>
+	</div>
+	<div align="center" class="col-xs-12 mtop15p">
+		<h4 style="line-height:25px;font-family:mlhfont002;text-transform:uppercase;">
+		  Location helps us to<br/> customize your Experience
+		</h4>
+	</div>
+	<div align="center" class="col-xs-12 mtop15p">
+		We use your location to display<br/> NewsFeed 
+		and Events happening around you.
+	</div>
+  </div>
+  
+<div class="footer">
+	<div align="center" class="col-xs-12">
+	  <div class="col-xs-2"></div>
+	  <div class="col-xs-8">
+			<button class="btn btn-default form-control" onclick="javascript:appPermission();">
+			  <span class="f12"><b>Accept</b></span>
+			</button>
+	  </div>
+	  <div class="col-xs-2"></div>
+	</div>
+  </div>
+
+</body>
+</html>
