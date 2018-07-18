@@ -6,6 +6,7 @@ import org.json.simple.parser.JSONParser;
 import android.content.Context;
 import anups.dun.constants.BusinessConstants;
 import anups.dun.js.AppManagement;
+import anups.dun.js.AppSessionManagement;
 import anups.dun.util.AndroidLogger;
 import anups.dun.util.PushNotification;
 
@@ -47,4 +48,7 @@ public class WSRIntervalHour {
   } 
   catch(Exception e){ logger.error("Exception funcTrigger_playStoreAppVersion: "+e.getMessage()); }
  }
+ 
 }
+
+

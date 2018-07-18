@@ -47,13 +47,13 @@ import anups.dun.constants.BusinessConstants;
 import anups.dun.db.Database;
 import anups.dun.js.AppManagement;
 import anups.dun.js.AppNotifyManagement;
-import anups.dun.js.AppPermissions;
+import anups.dun.js.AppSQLiteManagement;
 import anups.dun.js.AppSessionManagement;
 import anups.dun.media.AndroidWebScreenVideo;
 import anups.dun.services.BGService;
 import anups.dun.services.OnBootCompleted;
 import anups.dun.util.AndroidLogger;
-import anups.dun.util.NetworkAvailability;
+import anups.dun.util.NetworkUtility;
 import anups.dun.web.templates.URLGenerator;
 
 import java.io.File;
@@ -75,10 +75,9 @@ public  class AndroidWebScreen extends Activity  {
     public Uri mCapturedImageURI = null;
     public String mCameraPhotoPath = null;
     public long size = 0;
-    NetworkAvailability ntwrkAvail;
+    NetworkUtility ntwrkAvail;
     public String FILE_CHOOSER_VERSION;
     Intent captureIntent;
-    Database mydb;
     /* GPS Location Tracing : Start */
 
     /* GPS Location Tracing : End */
@@ -301,15 +300,11 @@ protected void onCreate(Bundle savedInstanceState) {
  AppManagement appManagement = new AppManagement(this);
  AppNotifyManagement appNotifyManagement = new AppNotifyManagement(this);
  AppSessionManagement appSessionManagement = new AppSessionManagement(this);
+ AppSQLiteManagement appSQLiteManagement = new AppSQLiteManagement(this);
  
  /* Initially, Setting Service Execution to null */
  appSessionManagement.setAndroidSession(BusinessConstants.BGSERVICE_EXECUTION_STATUS,null); 
  
-/* DATABASE */
- try {
-	mydb = Database.getInstance(this);
-  logger.info("Rows: "+mydb.numberOfRows());
- } catch(Exception e) { logger.error("Exception: "+e.getMessage()); }
  /* Get UserID from SESSION */
  String USER_ID=appSessionManagement.getAndroidSession(BusinessConstants.AUTH_USER_ID);
  logger.info("USER_ID: "+USER_ID);
@@ -320,7 +315,8 @@ protected void onCreate(Bundle savedInstanceState) {
  sendBroadcast(triggerWS);
  
 
- 
+ NetworkUtility networkUtility = new NetworkUtility(this);
+ logger.info("IMEI: "+networkUtility.getDeviceIMEI());
  
  /* AUTHENTICATION REMINIDER : */  // awn.notify_authReminder();
  /* VERSION UPGRADE : */ // awn.notify_versionupgrade();
@@ -337,7 +333,9 @@ protected void onCreate(Bundle savedInstanceState) {
         
         webView.addJavascriptInterface(appManagement, "Android"); 
         webView.addJavascriptInterface(appNotifyManagement, "AndroidNotify");
-        webView.addJavascriptInterface(appSessionManagement, "AndroidSession");   
+        webView.addJavascriptInterface(appSessionManagement, "AndroidSession"); 
+        webView.addJavascriptInterface(appSQLiteManagement, "AndroidDatabase");  
+        
         webView.setWebViewClient(new AndroidWebViewClient(this));
         webView.setWebChromeClient(new AndroidWebChromeClient(this));
         
@@ -346,7 +344,7 @@ protected void onCreate(Bundle savedInstanceState) {
             webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         }
         
-        ntwrkAvail=new NetworkAvailability(this);
+        ntwrkAvail=new NetworkUtility(this);
         if(ntwrkAvail.checkInternetConnection()) {
         	Bundle extras = getIntent().getExtras();
         	logger.info("Recieve Intent Status: "+extras);

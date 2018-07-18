@@ -24,4 +24,5 @@ public class WSIntervalHour extends AsyncTask<String, String, String>{
 	WSRIntervalHour wsrIntervalHour = new WSRIntervalHour(context,response);
 	wsrIntervalHour.funcTrigger_playStoreAppVersion();
   }
+ 
 }

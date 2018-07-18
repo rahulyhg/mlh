@@ -29,7 +29,9 @@ function appPermission() {
     Android.makeAPermission(permissions[index]);page=false;
   }
  }
- if(page===true){ window.location.href=Android.getDefaultPage(); }
+ if(page===true){
+   if(Android!==undefined) { Android.loadAndroidWebScreen(Android.getDefaultPage()); } 
+ }
 }
 </script>
 <body>

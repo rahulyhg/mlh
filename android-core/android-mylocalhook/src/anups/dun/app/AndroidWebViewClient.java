@@ -9,7 +9,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 import anups.dun.media.AndroidWebScreenVideo;
-import anups.dun.util.NetworkAvailability;
+import anups.dun.util.NetworkUtility;
 public class AndroidWebViewClient extends WebViewClient {
    
 	AndroidWebScreen webscreenObject;

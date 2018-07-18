@@ -90,4 +90,12 @@ public class AppManagement extends ActionBarActivity {
 	public void makeAPermission(String permission){
 		((AndroidWebScreen) mContext).makeAPermission(permission);
 	}
+	
+	@JavascriptInterface
+	public void loadAndroidWebScreen(String directURL){
+		Intent intent = new Intent(mContext, AndroidWebScreen.class);
+		intent.putExtra("DIRECT_URL", directURL);
+		mContext.startActivity(intent);
+	}
+	
 }

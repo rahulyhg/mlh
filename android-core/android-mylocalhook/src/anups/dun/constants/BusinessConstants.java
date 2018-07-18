@@ -8,6 +8,7 @@ public class BusinessConstants {
  public static final int UNCLOSEDNOTIFICATION_VERSIONUPGRADE=1;
  public static final int UNCLOSEDNOTIFICATION_AUTHREMINDER=2;
  
+ public static final String GOOGLE_ADS_ACTIIVATION="GOOGLE_ADS_ACTIIVATION";
  /**/
  public static final String GOOGLE_ADMOBINTERSTITIAL_STATUS="GOOGLE_ADMOBINTERSTITIAL_STATUS"; // TRIGGERED/ null
  /**/

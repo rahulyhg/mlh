@@ -11,7 +11,8 @@ if(isset($_GET["action"])){
      if(isset($_GET["user_Id"])){
 		$user_Id=$_GET["user_Id"];
 		$content='{';
-	    $content.='"playStoreAppVersion":"1.0.9"';
+	    $content.='"playStoreAppVersion":"1.0.9",';
+		$content.='"googleAds":"ACTIVATE_DEBUG"'; // ACTIVATE_PROD, ACTIVATE_DEBUG, ACTIVATE_NO
 		$content.='}';
 		echo $content;
 	 }
@@ -30,7 +31,7 @@ if(isset($_GET["action"])){
 	  if($user_Id!='null'){
 	  $limit_start='0';
 	  $limit_end='5';
-	  $notifyObj=new app_notifications();
+	  $notifyObj=new AppNotifications();
 	  $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
 	  $query1=$notifyObj->query_notify_usrFrndsReqReciever($user_Id);
 	  $query2=$notifyObj->query_notify_onAcceptUserFrndReq($user_Id);

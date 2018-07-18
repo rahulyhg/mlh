@@ -31,6 +31,8 @@ if($_SESSION["AUTHENTICATION_STATUS"]=='INCOMPLETED'){
  @font-face { font-family: "mlhfont002";src: url("fonts/Boogaloo-Regular.otf"); }
  </style>
 <script type="text/javascript">
+var Android;
+var AndroidDatabase;
 $(document).ready(function(){
  $(".lang_"+USR_LANG).css('display','block');
 });
@@ -51,10 +53,10 @@ $(document).ready(function(){
 	  STAY CONNECTED TO YOUR LOCAL ENVIRONMENT BY CONNECTING TO PEOPLE AROUND YOU</h5>
    </div>
    <div align="center" class="col-md-12" style="margin-top:120px;">
-     <a href="<?php echo $_SESSION["PROJECT_URL"]; ?>initializer/start">
-     <button class="btn btn-default">
+     <!--a href="<?php echo $_SESSION["PROJECT_URL"]; ?>initializer/start"-->
+     <button class="btn btn-default" onclick="javascript:alert(AndroidDatabase.getAppStatistics('10-10-1991 11:12:33', '11-11-1992 12:12:33'));">
 	 <b>START MY JOURNEY</b>&nbsp;&nbsp;<i class="fa fa-arrow-right"></i></button>
-	 </a>
+	 <!--/a-->
    </div>
  </div>
 </body>
