@@ -7,12 +7,20 @@ require_once '../dal/data.module.app.notifications.php';
 $logger=Logger::getLogger("controller.module.app.notifications.php");
 
 if(isset($_GET["action"])){ 
-  if($_GET["action"]=='SERVICE_INTERVALHOUR'){
+  if($_GET["action"]=='SERVICE_GOOGLEADS'){
+	$content='{';
+    $content.='"googleAds":"ACTIVATE_DEBUG",'; // ACTIVATE_PROD, ACTIVATE_DEBUG, ACTIVATE_NO
+	$content.='"debug_Id":"ca-app-pub-3940256099942544/1033173712",';
+	$content.='"prod_Id":"ca-app-pub-9032115287615251/7844041725",';
+	$content.='"duration_in_seconds":300';
+	$content.='}';
+	echo $content;
+  }
+  else if($_GET["action"]=='SERVICE_INTERVALHOUR'){
      if(isset($_GET["user_Id"])){
 		$user_Id=$_GET["user_Id"];
 		$content='{';
-	    $content.='"playStoreAppVersion":"1.0.9",';
-		$content.='"googleAds":"ACTIVATE_DEBUG"'; // ACTIVATE_PROD, ACTIVATE_DEBUG, ACTIVATE_NO
+	    $content.='"playStoreAppVersion":"1.0.9"';
 		$content.='}';
 		echo $content;
 	 }

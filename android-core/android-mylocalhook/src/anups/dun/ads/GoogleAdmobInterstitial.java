@@ -11,38 +11,45 @@ public class GoogleAdmobInterstitial {
 	
 	public static final String TAG = GoogleAdmobInterstitial.class.getSimpleName();
     // public static final String ID = "ca-app-pub-9032115287615251/7844041725";  // Original
-    public static final String ID = "ca-app-pub-3940256099942544/1033173712";
-    
+    // public static final String ID = "ca-app-pub-3940256099942544/1033173712"; // Debug
+    private String ID;
+    private int duration;
     public static org.apache.log4j.Logger logger = AndroidLogger.getLogger(GoogleAdmobInterstitial.class);
 	 
+	public GoogleAdmobInterstitial(String id, int duration){
+		this.ID=id;
+		this.duration=duration;
+	}
 	
-	public static void loadInterstitial(final Activity activity) {
+	public void loadInterstitial(final Activity activity) {
 		
 		AndroidWebScreen.googleAdMobRunnable=new Runnable() {
 		    @Override
 			public void run() {
+		    	 AdRequest adRequest = new AdRequest.Builder().build();
 		    	 final InterstitialAd interstitial = new InterstitialAd(activity);
 		    	 interstitial.setAdUnitId(ID);
-                 AdRequest adRequest = new AdRequest.Builder().build();
-                
                  interstitial.loadAd(adRequest);
                  interstitial.setAdListener(new AdListener() {
+                	 
                  	 @Override
                      public void onAdLoaded() {
                  		logger.info("Displayed Ad");
-                 		  displayInterstitial(interstitial);
+                 		displayInterstitial(interstitial);
                      }
+                 	 
                      @Override
         		     public void onAdClosed() {
                     	 logger.info("Closed Ad");
-                    	 GoogleAdmobInterstitial.loadInterstitial(activity);
+                    	 GoogleAdmobInterstitial googleAdmobInterstitial = new GoogleAdmobInterstitial(ID,duration);
+                    	 googleAdmobInterstitial.loadInterstitial(activity);
         			 }
         			
                  });
 		    }
 		 };
 
-		 AndroidWebScreen.googleAdMobInterstitialHandler.postDelayed(AndroidWebScreen.googleAdMobRunnable, 60000);
+		 AndroidWebScreen.googleAdMobInterstitialHandler.postDelayed(AndroidWebScreen.googleAdMobRunnable, duration * 1000);
 		
 	}
 	

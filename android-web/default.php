@@ -53,10 +53,10 @@ $(document).ready(function(){
 	  STAY CONNECTED TO YOUR LOCAL ENVIRONMENT BY CONNECTING TO PEOPLE AROUND YOU</h5>
    </div>
    <div align="center" class="col-md-12" style="margin-top:120px;">
-     <!--a href="<?php echo $_SESSION["PROJECT_URL"]; ?>initializer/start"-->
-     <button class="btn btn-default" onclick="javascript:alert(AndroidDatabase.getAppStatistics('10-10-1991 11:12:33', '11-11-1992 12:12:33'));">
+     <a href="<?php echo $_SESSION["PROJECT_URL"]; ?>initializer/start">
+     <button class="btn btn-default">
 	 <b>START MY JOURNEY</b>&nbsp;&nbsp;<i class="fa fa-arrow-right"></i></button>
-	 <!--/a-->
+	 </a>
    </div>
  </div>
 </body>

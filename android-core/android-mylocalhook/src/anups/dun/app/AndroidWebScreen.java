@@ -50,6 +50,7 @@ import anups.dun.js.AppNotifyManagement;
 import anups.dun.js.AppSQLiteManagement;
 import anups.dun.js.AppSessionManagement;
 import anups.dun.media.AndroidWebScreenVideo;
+import anups.dun.notify.ws.WSGoogleAds;
 import anups.dun.services.BGService;
 import anups.dun.services.OnBootCompleted;
 import anups.dun.util.AndroidLogger;
@@ -281,11 +282,11 @@ protected void onCreate(Bundle savedInstanceState) {
  setContentView(R.layout.activity_androidwebscreen);
  
  /* Permissions List: */
- 
- 
- /* Google AdMob Ads */
- logger.info("MyLocalHook is invoking GoogleAdmobInterstitial Service...");
- GoogleAdmobInterstitial.loadInterstitial(this);
+ URLGenerator urlGenerator = new URLGenerator();
+ AppManagement appManagement = new AppManagement(this);
+ AppNotifyManagement appNotifyManagement = new AppNotifyManagement(this);
+ AppSessionManagement appSessionManagement = new AppSessionManagement(this);
+ AppSQLiteManagement appSQLiteManagement = new AppSQLiteManagement(this);
  
  progressBar = (ProgressBar) findViewById(R.id.progressBar);
  progressBar.setVisibility(View.VISIBLE);
@@ -297,10 +298,7 @@ protected void onCreate(Bundle savedInstanceState) {
  // PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
  // manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+AlarmManager.INTERVAL_FIFTEEN_MINUTES, AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
 
- AppManagement appManagement = new AppManagement(this);
- AppNotifyManagement appNotifyManagement = new AppNotifyManagement(this);
- AppSessionManagement appSessionManagement = new AppSessionManagement(this);
- AppSQLiteManagement appSQLiteManagement = new AppSQLiteManagement(this);
+ 
  
  /* Initially, Setting Service Execution to null */
  appSessionManagement.setAndroidSession(BusinessConstants.BGSERVICE_EXECUTION_STATUS,null); 
@@ -355,8 +353,16 @@ protected void onCreate(Bundle savedInstanceState) {
         		    webView.loadUrl("file:///android_asset/www/app-default.html");
         			
         		} else {
-        		   logger.info("directURL: "+directURL);
-        		   webView.loadUrl(directURL);
+        			/* Google AdMob Ads */
+        			logger.info("MyLocalHook is invoking GoogleAdmobInterstitial Service...");
+       			 	String[] googleAdsParams = new String[1];
+       			 	googleAdsParams[0]=urlGenerator.ws_googleAds();;
+       			 	WSGoogleAds wsGoogleAds = new WSGoogleAds(this);
+       			 	wsGoogleAds.execute(googleAdsParams);
+       			 
+        			 /* directURL */
+        			 logger.info("directURL: "+directURL);
+        			 webView.loadUrl(directURL);
         		}
         	} else {
         		//webView.loadUrl("http://192.168.1.4/m-android/app-default.html");
