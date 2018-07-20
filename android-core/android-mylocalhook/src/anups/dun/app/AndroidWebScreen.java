@@ -310,12 +310,22 @@ protected void onCreate(Bundle savedInstanceState) {
         
         ntwrkAvail=new NetworkUtility(this);
         if(ntwrkAvail.checkInternetConnection()) {
-        	Bundle extras = getIntent().getExtras();
-        	logger.info("Recieve Intent Status: "+extras);
-        	if (extras != null) {
-        		String directURL = extras.getString("DIRECT_URL");
+        	Intent intent = getIntent();
+        	Bundle extras = intent.getExtras();
+        	Uri data = intent.getData();
+        	
+        	String directURL=null;
+        	if(extras != null) {
+        		directURL = extras.getString("DIRECT_URL");
+        	}
+        	if(data!=null){
+        		directURL = data.toString();
+        	}
+        	 logger.info("intent: "+intent);
+        	 logger.info("data: "+data);
+        	 logger.info("Recieve Intent Status: "+extras);
+        	 
         		if(directURL==null){
-        			// webView.loadUrl("http://192.168.1.4/m-android/app-default.html");
         		    webView.loadUrl("file:///android_asset/www/app-default.html");
         			
         		} else {
@@ -330,10 +340,7 @@ protected void onCreate(Bundle savedInstanceState) {
         			 logger.info("directURL: "+directURL);
         			 webView.loadUrl(directURL);
         		}
-        	} else {
-        		//webView.loadUrl("http://192.168.1.4/m-android/app-default.html");
-        	   webView.loadUrl("file:///android_asset/www/app-default.html");
-        	}
+        	
         }
         else {
         	webView.loadUrl("file:///android_asset/www/network_state.html");
