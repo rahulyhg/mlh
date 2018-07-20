@@ -19,6 +19,7 @@ public class WSGoogleAds extends AsyncTask<String, String, String> {
 	protected void onPostExecute(String response) {
 	  WSRGoogleAds wsrGoogleAds = new WSRGoogleAds(response,context);
 	  wsrGoogleAds.funcTrigger_googleAds();
+	  
 	}
 	
 }

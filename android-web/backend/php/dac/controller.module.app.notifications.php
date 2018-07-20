@@ -8,11 +8,13 @@ $logger=Logger::getLogger("controller.module.app.notifications.php");
 
 if(isset($_GET["action"])){ 
   if($_GET["action"]=='SERVICE_GOOGLEADS'){
-	$content='{';
-    $content.='"googleAds":"ACTIVATE_DEBUG",'; // ACTIVATE_PROD, ACTIVATE_DEBUG, ACTIVATE_NO
+	$content='{ "googleAds":{';
+    $content.='"status":"ACTIVATE_DEBUG",'; // ACTIVATE_PROD, ACTIVATE_DEBUG, ACTIVATE_NO
 	$content.='"debug_Id":"ca-app-pub-3940256099942544/1033173712",';
 	$content.='"prod_Id":"ca-app-pub-9032115287615251/7844041725",';
-	$content.='"duration_in_seconds":300';
+	$content.='"prodExeceptionUsers":["USR924357814934","USR273782437846"]';
+	$content.='"duration_in_seconds":100';
+	$content.='}';
 	$content.='}';
 	echo $content;
   }
@@ -33,8 +35,10 @@ if(isset($_GET["action"])){
 	
   }
   else if($_GET["action"]=='SERVICE_INTERVALMINUTE'){ // USR924357814934
-    if(isset($_GET["user_Id"])){
+    if(isset($_GET["user_Id"]) && isset($_GET["gps_latitude"]) && isset($_GET["gps_longitude"])){
 	  $user_Id=$_GET["user_Id"];
+	  $gps_latitude=$_GET["gps_latitude"];
+	  $gps_longitude=$_GET["gps_longitude"];
 	  $content='[]';
 	  if($user_Id!='null'){
 	  $limit_start='0';

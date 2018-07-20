@@ -14,6 +14,7 @@ import anups.dun.constants.BusinessConstants;
 
 public class AndroidLogger {
 
+	public static LogConfigurator logConfigurator = new LogConfigurator();
 	public static org.apache.log4j.Logger getLogger(Class clazz) {
 		
 		
@@ -25,8 +26,8 @@ public class AndroidLogger {
 	    if(BusinessConstants.EXTERNALMEMORYPATH==null){
 		   filePath=BusinessConstants.INTERNALMEMORYPATH+"/"+"mylocalhook";
 	    }
-        final LogConfigurator logConfigurator = new LogConfigurator();
-        logConfigurator.setFileName(filePath+"/mylocalhook/log.txt");
+        
+        logConfigurator.setFileName(filePath+"/logs/log.txt");
         logConfigurator.setRootLevel(Level.ALL);
         logConfigurator.setLevel("org.apache", Level.ALL);
         logConfigurator.setUseFileAppender(true);

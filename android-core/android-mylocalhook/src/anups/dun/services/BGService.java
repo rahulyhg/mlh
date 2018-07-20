@@ -7,7 +7,9 @@ import java.util.concurrent.TimeUnit;
 import android.annotation.SuppressLint;
 import android.app.Service;
 import android.content.Intent;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Looper;
 import anups.dun.constants.BusinessConstants;
 import anups.dun.js.AppSessionManagement;
 import anups.dun.util.AndroidLogger;
@@ -15,8 +17,8 @@ import anups.dun.util.AndroidLogger;
 @SuppressLint("NewApi")
 public class BGService extends Service {
   
-	 org.apache.log4j.Logger logger = AndroidLogger.getLogger(OnBootCompleted.class);
-	 
+	 org.apache.log4j.Logger logger = AndroidLogger.getLogger(BGService.class);
+	 Runnable serviceRunner;
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		AppSessionManagement appSessionManager = new AppSessionManagement(getApplicationContext());
@@ -26,19 +28,32 @@ public class BGService extends Service {
 					logger.info("intent: "+intent+" flags: "+flags+" startId: "+startId);
 					appSessionManager.setAndroidSession(BusinessConstants.BGSERVICE_EXECUTION_STATUS,"TRIGGERRED");
 					
-					ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-					Runnable serviceRunner=new Runnable() {
+					final Handler handler = new Handler(Looper.getMainLooper());
+				    handler.postDelayed(new Runnable() {
+				      @Override
+				      public void run() {
+				        //Do something after 100ms
+				       // Toast.makeText(c, "check", Toast.LENGTH_SHORT).show();  
+				        
+				        logger.info("BGService Execution runs..");
+						AppSessionManagement appSessionManager = new AppSessionManagement(getApplicationContext());
+					    appSessionManager.setAndroidSession(BusinessConstants.BGSERVICE_EXECUTION_STATUS,null);
+						Intent triggerWS = new Intent();
+						 	   triggerWS.setAction("anups.dun.broadcast.recievers.BRIntervalMinute");
+						sendBroadcast(triggerWS);
+				      }
+				    }, 60000);
+				    
+				    /*
+					 serviceRunner=new Runnable() {
 			            @Override
 			            public void run() {
-			            	logger.info("BGService Execution runs..");
-							AppSessionManagement appSessionManager = new AppSessionManagement(getApplicationContext());
-						    appSessionManager.setAndroidSession(BusinessConstants.BGSERVICE_EXECUTION_STATUS,null);
-							Intent triggerWS = new Intent();
-							 	   triggerWS.setAction("anups.dun.broadcast.recievers.BRIntervalMinute");
-							getApplicationContext().sendBroadcast(triggerWS);
+			            	
 			            } 
 					};
+					ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 					ScheduledFuture loaderHandler=scheduler.schedule(serviceRunner, 60, TimeUnit.SECONDS);
+					*/
 					
 					
 		  }

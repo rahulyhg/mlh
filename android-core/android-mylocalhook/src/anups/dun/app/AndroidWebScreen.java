@@ -4,66 +4,44 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.provider.Settings;
-import android.support.v4.content.ContextCompat;
 import android.text.Html;
-import android.text.SpannableString;
-import android.text.method.LinkMovementMethod;
-import android.text.util.Linkify;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.Manifest;
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.AlarmManager;
 import android.app.AlertDialog;
-import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
 import android.content.ClipData;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.pm.PackageManager;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 import android.webkit.ValueCallback;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
-import anups.dun.ads.GoogleAdmob;
-import anups.dun.ads.GoogleAdmobInterstitial;
+import anups.dun.alarm.AlarmIntervalDay;
+import anups.dun.alarm.AlarmIntervalHour;
 import anups.dun.app.R;
 import anups.dun.constants.BusinessConstants;
-import anups.dun.db.Database;
 import anups.dun.js.AppManagement;
 import anups.dun.js.AppNotifyManagement;
 import anups.dun.js.AppSQLiteManagement;
 import anups.dun.js.AppSessionManagement;
 import anups.dun.media.AndroidWebScreenVideo;
 import anups.dun.notify.ws.WSGoogleAds;
-import anups.dun.services.BGService;
-import anups.dun.services.OnBootCompleted;
 import anups.dun.util.AndroidLogger;
+import anups.dun.util.GPSTracker;
 import anups.dun.util.NetworkUtility;
 import anups.dun.web.templates.URLGenerator;
-
 import java.io.File;
-import java.util.ArrayList;
 
 @SuppressLint({ "NewApi", "ShowToast" })
 public  class AndroidWebScreen extends Activity  {
-
 	org.apache.log4j.Logger logger = AndroidLogger.getLogger(AndroidWebScreen.class);
+	public static final long LOGGER_FILESIZE=2097152; // 1 MB  (1048576)  2MB (2097152)
 	public static final Handler googleAdMobInterstitialHandler = new Handler();
 	public static Runnable googleAdMobRunnable;
 	public static final int INPUT_FILE_REQUEST_CODE = 1;
@@ -82,6 +60,22 @@ public  class AndroidWebScreen extends Activity  {
     /* GPS Location Tracing : Start */
 
     /* GPS Location Tracing : End */
+    public void regulateLoggerFile(){
+        String filePath=BusinessConstants.EXTERNALMEMORYPATH+"/mylocalhook/logs/log.txt";
+ 	    if(BusinessConstants.EXTERNALMEMORYPATH==null){
+ 		  filePath=BusinessConstants.INTERNALMEMORYPATH+"/mylocalhook/logs/log.txt";
+ 	    }
+ 	   File file = new File(filePath);
+ 	   long fileSize = Integer.parseInt(String.valueOf(file.length()));
+ 	   logger.info("Logger File Size: "+fileSize);
+ 	   if(fileSize>LOGGER_FILESIZE){ /* Delete File */
+ 		  boolean deleted = file.delete();
+ 		  if(deleted) { logger.info("Deleted Logger"); }
+ 		  else { logger.info("Not Deleted Logger"); } 
+ 	   } 
+    }
+    
+    
     
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -90,63 +84,38 @@ public  class AndroidWebScreen extends Activity  {
      //  ANDROID_LOLLIPOP  ANDROID_5.0  ANDROID_3.0 ANDROID<3.0
     if(FILE_CHOOSER_VERSION.equalsIgnoreCase("ANDROID_3.0")){
     	if(this.mUploadMessage!=null){
-    		// Toast.makeText(getApplicationContext(), "mUploadMessage :"+mUploadMessage, Toast.LENGTH_LONG).show();
 	            Uri result=null;
-	             
 	            try{
-	                 if (resultCode != RESULT_OK) {
-	                      
-	                     result = null;
-	                      
-	                 } else {
-	                      
-	                     // retrieve from the private variable if the intent is null
+	                 if (resultCode != RESULT_OK) { result = null; } 
+	                 else { // retrieve from the private variable if the intent is null
 	                     result = data == null ? mCapturedImageURI : data.getData(); 
 	                 } 
 	             }
-	             catch(Exception e)
-	             {
-	                 Toast.makeText(getApplicationContext(), "activity :"+e, Toast.LENGTH_LONG).show();
-	             }
-	              
+	             catch(Exception e) { logger.error("activity :"+e); }
 	             mUploadMessage.onReceiveValue(result);
 	             mUploadMessage = null;
-	        	
 	        }
     	
     } else {
-    	// Toast.makeText(getBaseContext(), "mFilePathCallback: "+mFilePathCallback, Toast.LENGTH_LONG).show(); 
       	if(resultCode==0) {
       	  Intent myintent=new Intent(AndroidWebScreen.this, AndroidWebScreen.class);
          	  this.startActivity(myintent);
-         	  
       	} else {
   	        if (requestCode != INPUT_FILE_REQUEST_CODE || mFilePathCallback == null) {
   	            super.onActivityResult(requestCode, resultCode, data);
   	            return;
   	        }
-  	       
-  	        
-  	        
-  	        
   	        try {
   	            String file_path = mCameraPhotoPath.replace("file:","");
   	            File file = new File(file_path);
   	            size = file.length();
-  	           // Toast.makeText(getBaseContext(), "mCameraPhotoPath:"+mCameraPhotoPath+" fileSize: "+size, Toast.LENGTH_LONG).show();
-  	        }catch (Exception e){
-  	        	 Toast.makeText(getBaseContext(), "Error while opening image file" + e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-  	        }
+  	        } catch (Exception e){ logger.error("Error while opening image file" + e.getLocalizedMessage()); }
   	
   	        if (data != null || mCameraPhotoPath != null) {
   	            Integer count = 1;
   	            ClipData images = null;
-  	            try {
-  	                images = data.getClipData();
-  	               // Toast.makeText(getBaseContext(), "ClipDataImages:"+images, Toast.LENGTH_LONG).show();
-  	            }catch (Exception e) {
-  	            	Toast.makeText(getBaseContext(), "Error while opening image file" + e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-  	            }
+  	            try { images = data.getClipData(); }
+  	            catch (Exception e) { logger.error("Error while opening image file" + e.getLocalizedMessage()); }
   	
   	            if (images == null && data != null && data.getDataString() != null) {
   	                    count = data.getDataString().length();
@@ -155,12 +124,10 @@ public  class AndroidWebScreen extends Activity  {
   	            }
   	            Uri[] results = new Uri[count];
   	            
-  	            // Toast.makeText(getBaseContext(), "count:"+count+" resultCode: "+resultCode, Toast.LENGTH_LONG).show();
   	            // Check that the response is a good one
   	            if (resultCode == Activity.RESULT_OK) {
   	                if (size != 0) {
-  	                    // If there is not data, then we may have taken a photo
-  	                    if (mCameraPhotoPath != null) {
+  	                   if (mCameraPhotoPath != null) {  // If there is not data, then we may have taken a photo
   	                        results = new Uri[]{Uri.parse(mCameraPhotoPath)};
   	                    }
   	                } else if (data.getClipData() == null) {
@@ -182,23 +149,16 @@ public  class AndroidWebScreen extends Activity  {
     }
 
 public void createProjectPath(){
-	 String filePath=Environment.getExternalStorageDirectory().toString()+"/"+"mylocalhook";
-   /* if(BusinessConstants.EXTERNALMEMORYPATH==null){
-	   filePath=BusinessConstants.INTERNALMEMORYPATH+"/"+"mylocalhook";
-    } */
-    Toast.makeText(getBaseContext(), "State: "+Environment.getExternalStorageState()+"  filePath: " +filePath, Toast.LENGTH_LONG).show();
+    String filePath=Environment.getExternalStorageDirectory().toString()+"/"+"mylocalhook";
+    logger.info("State: "+Environment.getExternalStorageState()+"  filePath: " +filePath);
     File externalDir = new File(filePath);
     if(!externalDir.exists()){
     	try{
-    	if(externalDir.mkdir()) {
-    		Toast.makeText(getBaseContext(), "Made a Directory: ", Toast.LENGTH_LONG).show();	
-    	}
-    	else {
-    		Toast.makeText(getBaseContext(), "Not Made a Directory: ", Toast.LENGTH_LONG).show();
-    	}
+    	if(externalDir.mkdir()) { logger.info("Made a Directory: "); }
+    	else {  logger.info("Not Made a Directory: "); }
     	; 
     	}
-    	catch(Exception e){ Toast.makeText(getBaseContext(), "Made a Directory Exception: "+e, Toast.LENGTH_LONG).show(); }
+    	catch(Exception e){ logger.error("Made a Directory Exception: "+e); }
     }
     else {
     	Toast.makeText(getBaseContext(), "Not Made a Directory: ", Toast.LENGTH_LONG).show();
@@ -281,7 +241,13 @@ protected void onCreate(Bundle savedInstanceState) {
  // getWindow().requestFeature(Window.FEATURE_PROGRESS);
  setContentView(R.layout.activity_androidwebscreen);
  
- /* Permissions List: */
+ /* Regulates the Logger File Size upto 2 MB */
+ regulateLoggerFile();
+ 
+ /* Alarm Services: */
+ AlarmIntervalDay.getInstance(this);
+ AlarmIntervalHour.getInstance(this);
+ 
  URLGenerator urlGenerator = new URLGenerator();
  AppManagement appManagement = new AppManagement(this);
  AppNotifyManagement appNotifyManagement = new AppNotifyManagement(this);
@@ -356,7 +322,7 @@ protected void onCreate(Bundle savedInstanceState) {
         			/* Google AdMob Ads */
         			logger.info("MyLocalHook is invoking GoogleAdmobInterstitial Service...");
        			 	String[] googleAdsParams = new String[1];
-       			 	googleAdsParams[0]=urlGenerator.ws_googleAds();;
+       			 	googleAdsParams[0]=urlGenerator.ws_googleAds();
        			 	WSGoogleAds wsGoogleAds = new WSGoogleAds(this);
        			 	wsGoogleAds.execute(googleAdsParams);
        			 
@@ -384,7 +350,9 @@ protected void onCreate(Bundle savedInstanceState) {
 
    @Override
    public void onDestroy() {
-    //  logger.info("Activity Destroyed ");
+     logger.info("Activity Destroyed ");
+     AppSessionManagement appSessionManagement = new AppSessionManagement(this);
+     appSessionManagement.setAndroidSession(BusinessConstants.GOOGLE_ADMOBINTERSTITIAL_STATUS,null);
      AndroidWebScreen.googleAdMobInterstitialHandler.removeCallbacks(AndroidWebScreen.googleAdMobRunnable);
 	 super.onDestroy();
    }

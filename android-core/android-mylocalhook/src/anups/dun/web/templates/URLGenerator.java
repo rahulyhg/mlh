@@ -22,11 +22,13 @@ public class URLGenerator {
    return stringBuilder.toString();
  }
  
- public String ws_intervalMinute(String user_Id){
+ public String ws_intervalMinute(String user_Id, String gps_latitude, String gps_longitude){
    StringBuilder stringBuilder=new StringBuilder(PROJECT_URL);
 	             stringBuilder.append("backend/php/dac/controller.module.app.notifications.php");
 	             stringBuilder.append("?action=SERVICE_INTERVALMINUTE");
 	             stringBuilder.append("&user_Id=").append(user_Id);
+	             stringBuilder.append("&gps_latitude=").append(gps_latitude);
+	             stringBuilder.append("&gps_longitude=").append(gps_longitude);
    return stringBuilder.toString();
  }
 }

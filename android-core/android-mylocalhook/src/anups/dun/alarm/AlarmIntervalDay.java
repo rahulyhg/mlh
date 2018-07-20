@@ -6,8 +6,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.SystemClock;
 import anups.dun.broadcast.recievers.BRIntervalDay;
+import anups.dun.util.AndroidLogger;
 
 public class AlarmIntervalDay {
+ org.apache.log4j.Logger logger = AndroidLogger.getLogger(AlarmIntervalDay.class);
  private AlarmManager alarmMgr;
  private PendingIntent alarmIntent;
  public static AlarmIntervalDay sInstance;
