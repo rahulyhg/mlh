@@ -4,6 +4,8 @@ public class BusinessConstants {
  /* */
  public static final String INTERNALMEMORYPATH=System.getenv("EXTERNAL_STORAGE");
  public static final String EXTERNALMEMORYPATH=System.getenv("EXTERNAL_STORAGE2");
+ public static final String ANDROID_PROJECTPATH="ANDROID_PROJECTPATH";
+ 
  /* NOTIFICATIONS */
  public static final int UNCLOSEDNOTIFICATION_VERSIONUPGRADE=1;
  public static final int UNCLOSEDNOTIFICATION_AUTHREMINDER=2;

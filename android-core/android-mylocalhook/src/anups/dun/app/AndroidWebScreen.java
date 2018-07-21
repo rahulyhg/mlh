@@ -12,6 +12,7 @@ import android.content.ClipData;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Build;
 import android.view.KeyEvent;
@@ -26,6 +27,9 @@ import anups.dun.alarm.AlarmIntervalDay;
 import anups.dun.alarm.AlarmIntervalHour;
 import anups.dun.app.R;
 import anups.dun.constants.BusinessConstants;
+import anups.dun.db.Database;
+import anups.dun.db.tbl.UserFrndsContacts;
+import anups.dun.db.tbl.UserFrndsInfo;
 import anups.dun.js.AppManagement;
 import anups.dun.js.AppNotifyManagement;
 import anups.dun.js.AppSQLiteManagement;
@@ -148,8 +152,17 @@ public  class AndroidWebScreen extends Activity  {
       
     }
 
-public void createProjectPath(){
-    String filePath=Environment.getExternalStorageDirectory().toString()+"/"+"mylocalhook";
+public void createProjectPath(AppSessionManagement appSessionManagement){
+  String filePath=BusinessConstants.EXTERNALMEMORYPATH+"/"+"mylocalhook";
+  if(BusinessConstants.EXTERNALMEMORYPATH==null){
+      filePath=BusinessConstants.INTERNALMEMORYPATH+"/"+"mylocalhook";
+  }
+  File externalDir = new File(filePath);
+  if(!externalDir.exists()) { externalDir.mkdir();  }
+  
+  appSessionManagement.setAndroidSession(BusinessConstants.ANDROID_PROJECTPATH, filePath);
+  
+   /* String filePath=Environment.getExternalStorageDirectory().toString()+"/"+"mylocalhook";
     logger.info("State: "+Environment.getExternalStorageState()+"  filePath: " +filePath);
     File externalDir = new File(filePath);
     if(!externalDir.exists()){
@@ -162,7 +175,7 @@ public void createProjectPath(){
     }
     else {
     	Toast.makeText(getBaseContext(), "Not Made a Directory: ", Toast.LENGTH_LONG).show();
-    }
+    } */
 }
 
 final private int REQUEST_CODE_ASK_PERMISSIONS = 123;
@@ -241,18 +254,53 @@ protected void onCreate(Bundle savedInstanceState) {
  // getWindow().requestFeature(Window.FEATURE_PROGRESS);
  setContentView(R.layout.activity_androidwebscreen);
  
- /* Regulates the Logger File Size upto 2 MB */
- regulateLoggerFile();
- 
- /* Alarm Services: */
- AlarmIntervalDay.getInstance(this);
- AlarmIntervalHour.getInstance(this);
- 
  URLGenerator urlGenerator = new URLGenerator();
  AppManagement appManagement = new AppManagement(this);
  AppNotifyManagement appNotifyManagement = new AppNotifyManagement(this);
  AppSessionManagement appSessionManagement = new AppSessionManagement(this);
  AppSQLiteManagement appSQLiteManagement = new AppSQLiteManagement(this);
+ 
+ /* Set Project Path */
+ if(appSessionManagement.getAndroidSession(BusinessConstants.ANDROID_PROJECTPATH)==null){
+   createProjectPath(appSessionManagement);
+ }
+ 
+ /* Regulates the Logger File Size upto 2 MB */
+ regulateLoggerFile();
+ 
+ /* Contacts */
+ try {
+ Database database =Database.getInstance(this);
+ /* Getting Core based Data */
+ SQLiteDatabase sqLiteDatabase = database.connectDatabase();
+ database.onCreate(sqLiteDatabase);
+ database.getListOfTablesInDatabase(sqLiteDatabase);
+ sqLiteDatabase.close();
+ 
+ /* Adding UserFrndsInfo based Data in Rows */
+ UserFrndsInfo userFrndsInfo = new UserFrndsInfo();
+ UserFrndsContacts userFrndsContacts = new UserFrndsContacts();
+ long frnd_Id=userFrndsInfo.addUsrFrndInfo(database, "surName", "name", "youCall", "relationship",  "mobileNumber", 
+		  								"country", "state", "location",  "minlocation");
+ long contact_Id=userFrndsContacts.adduserFrndsContacts(database, frnd_Id, "1234567890");
+ logger.info("userFrndsContacts: "+userFrndsContacts.viewUsrFrndContactsList(database));
+ /*
+ userFrndsInfo.viewUsrFrndInfoList(database);
+ userFrndsInfo.updateUsrFrndInfo(database, 2, null, "surName1", null, "youCall01", null, null, null, "state01", null, "minlocation01");
+ userFrndsInfo.getUsrFrndInfo(database, 2);
+ userFrndsInfo.deleteUsrFrndInfo(database, 2);
+ userFrndsInfo.viewUsrFrndInfoList(database); */
+ database.close();
+ }
+ catch(Exception e){ logger.error("Exception: "+e.getMessage()); }
+ 
+ 
+ 
+ /* Alarm Services: */
+ AlarmIntervalDay.getInstance(this);
+ AlarmIntervalHour.getInstance(this);
+ 
+ 
  
  progressBar = (ProgressBar) findViewById(R.id.progressBar);
  progressBar.setVisibility(View.VISIBLE);
