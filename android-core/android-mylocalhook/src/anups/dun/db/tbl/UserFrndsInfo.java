@@ -30,7 +30,7 @@ public class UserFrndsInfo {
 	public String schema_userFrndsInfo(){
 	  StringBuilder schema = new StringBuilder();
 	  schema.append("CREATE TABLE IF NOT EXISTS ").append(TBL_NAME).append("( ");
-	  schema.append(COLUMN_00_FRNDID).append(" INTEGER PRIMARY KEY AUTOINCREMENT, ");
+	  schema.append(COLUMN_00_FRNDID).append(" INTEGER PRIMARY KEY, ");
 	  schema.append(COLUMN_01_USERID).append(" text, ");
 	  schema.append(COLUMN_02_USERNAME).append(" text, ");
 	  schema.append(COLUMN_03_SURNAME).append(" text, ");
@@ -48,10 +48,11 @@ public class UserFrndsInfo {
 	  return schema.toString();
 	}
 	
-	 public long data_add_usrFrndInfo(Database database, String user_Id, String userName, String surName, String name, String youCall, String relationship,
+	 public long data_add_usrFrndInfo(Database database, String frnd_Id, String user_Id, String userName, String surName, String name, String youCall, String relationship,
 	  String country, String state, String location, String minlocation, String isContacts, String isFriend, String created_on){
 	  SQLiteDatabase db = database.getWritableDatabase();
 	  ContentValues contentValues = new ContentValues();
+	  	  contentValues.put(COLUMN_00_FRNDID, frnd_Id);
 	      contentValues.put(COLUMN_01_USERID, user_Id);
 		  contentValues.put(COLUMN_02_USERNAME, userName);
 		  contentValues.put(COLUMN_03_SURNAME, surName);	
@@ -101,7 +102,21 @@ public class UserFrndsInfo {
 		 return jsonData.toString();
 	 }
 	 
-	 public String data_get_usrFrndInfo(Database database, long frnd_Id){
+	 public long data_count_usrFrndInfo(Database database, String frnd_Id){
+		 long dataCount=0;
+		 SQLiteDatabase db = database.getReadableDatabase();
+		 Cursor cursor =  db.rawQuery( "select count(*) from "+TBL_NAME+" where "+COLUMN_00_FRNDID+"='"+frnd_Id+"';", null );
+		 if (cursor.moveToFirst()) {
+		   while ( !cursor.isAfterLast() ) {
+			 dataCount = Long.parseLong(cursor.getString(0));
+			 cursor.moveToNext();
+		   }
+		}
+		 logger.info("viewUsrFrndListCount: "+dataCount);
+		 return dataCount;
+	 }
+	 
+	 public String data_get_usrFrndInfo(Database database, String frnd_Id){
 		 StringBuilder jsonData = new StringBuilder();
 		 jsonData.append("{\"data\":[");
 		 SQLiteDatabase db = database.getReadableDatabase();

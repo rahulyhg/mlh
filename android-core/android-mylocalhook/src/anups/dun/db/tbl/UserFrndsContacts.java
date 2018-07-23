@@ -145,6 +145,7 @@ org.apache.log4j.Logger logger = AndroidLogger.getLogger(UserFrndsContacts.class
 		 return jsonData01.toString();
 	}
 	
+	
 	public String data_get_UsrFrndContacts(Database database, long frnd_Id){
 		StringBuilder jsonData01 = new StringBuilder();
 		 jsonData01.append("{\"data\":[");
@@ -229,7 +230,6 @@ org.apache.log4j.Logger logger = AndroidLogger.getLogger(UserFrndsContacts.class
 		}
 		 jsonData01.deleteCharAt(jsonData01.length()-1);
 		 jsonData01.append("]}");
-		 db.close();
 		 logger.info("viewUsrFrndList: "+jsonData01.toString());
 		 return jsonData01.toString();
 	}
@@ -271,4 +271,30 @@ org.apache.log4j.Logger logger = AndroidLogger.getLogger(UserFrndsContacts.class
 	  return true;
 	}
 
+	public long data_count_usrFrndContacts(Database database, long frnd_Id, String phoneNumber){
+		long dataCount = 0;
+		 SQLiteDatabase db = database.getReadableDatabase();
+		 StringBuilder query01 = new StringBuilder();
+		 query01.append( "SELECT count(*) FROM ").append(UserFrndsInfo.TBL_NAME).append(" WHERE ");
+		 query01.append(UserFrndsContacts.COLUMN_01_FRNDID).append(" = ").append(frnd_Id).append(" AND ");
+		 query01.append(UserFrndsContacts.COLUMN_02_PHONENUMBER).append(" = ").append(phoneNumber).append(";");
+		 
+		 Cursor cursor01 =  db.rawQuery(query01.toString(), null );
+		 
+		 if (cursor01.moveToFirst()) {
+		   while ( !cursor01.isAfterLast() ) {
+			 dataCount=Long.parseLong(cursor01.getString(0));
+			 cursor01.moveToNext();
+		   }
+		 }
+		 logger.info("viewUsrFrndContactsList: "+dataCount);
+		 return dataCount;
+	}
+
+	public int data_update_usrFrndContacts(Database database, String frnd_Id, String phoneNumber){
+		ContentValues contentValues = new ContentValues();
+		SQLiteDatabase db = database.getReadableDatabase();
+	      if(phoneNumber !=null){ contentValues.put(UserFrndsContacts.COLUMN_02_PHONENUMBER, phoneNumber); }
+	   return db.update(UserFrndsContacts.TBL_NAME, contentValues, UserFrndsContacts.COLUMN_00_CONTACTID+" = ? ", new String[] { frnd_Id } );
+	}
 }
