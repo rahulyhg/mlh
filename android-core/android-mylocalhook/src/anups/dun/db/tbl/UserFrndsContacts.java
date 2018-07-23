@@ -275,9 +275,9 @@ org.apache.log4j.Logger logger = AndroidLogger.getLogger(UserFrndsContacts.class
 		long dataCount = 0;
 		 SQLiteDatabase db = database.getReadableDatabase();
 		 StringBuilder query01 = new StringBuilder();
-		 query01.append( "SELECT count(*) FROM ").append(UserFrndsInfo.TBL_NAME).append(" WHERE ");
+		 query01.append( "SELECT count(*) FROM ").append(UserFrndsContacts.TBL_NAME).append(" WHERE ");
 		 query01.append(UserFrndsContacts.COLUMN_01_FRNDID).append(" = ").append(frnd_Id).append(" AND ");
-		 query01.append(UserFrndsContacts.COLUMN_02_PHONENUMBER).append(" = ").append(phoneNumber).append(";");
+		 query01.append(UserFrndsContacts.COLUMN_02_PHONENUMBER).append(" = '").append(phoneNumber).append("';");
 		 
 		 Cursor cursor01 =  db.rawQuery(query01.toString(), null );
 		 

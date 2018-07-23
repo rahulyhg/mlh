@@ -22,9 +22,6 @@ public class Database extends SQLiteOpenHelper {
     public static synchronized Database getInstance(Context context) {
 	  if (sInstance == null) {
 		  sInstance = new Database(context.getApplicationContext()); 
-		  SQLiteDatabase sqLiteDatabase = sInstance.connectDatabase();
-		  sInstance.onCreate(sqLiteDatabase);
-		  sqLiteDatabase.close();
 	  }
 	  return sInstance;
 	}

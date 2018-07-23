@@ -273,16 +273,21 @@ protected void onCreate(Bundle savedInstanceState) {
  /* Regulates the Logger File Size upto 2 MB */
  regulateLoggerFile();
  
- /* Contacts */
- new WSUserFrndsContacts(this).execute("");
-  try {
- //  Database database =Database.getInstance(this);
- /* Getting Core based Data */
- //  SQLiteDatabase sqLiteDatabase = database.connectDatabase();
- //  database.onCreate(sqLiteDatabase);
- // database.getListOfTablesInDatabase(sqLiteDatabase);
-  // sqLiteDatabase.close();
  
+ 
+  try {
+	  
+    /* Creating Database Schema If it is not created */
+    Database database =Database.getInstance(this);
+    SQLiteDatabase sqLiteDatabase = database.connectDatabase();
+    		database.onCreate(sqLiteDatabase);
+    		database.getListOfTablesInDatabase(sqLiteDatabase);
+    sqLiteDatabase.close();
+    database.close();
+    
+   /* Contacts */
+   new WSUserFrndsContacts(this).execute("");
+   
  /* Adding UserFrndsInfo based Data in Rows */
  // UserFrndsInfo userFrndsInfo = new UserFrndsInfo();
  // UserFrndsContacts userFrndsContacts = new UserFrndsContacts();
@@ -296,7 +301,7 @@ protected void onCreate(Bundle savedInstanceState) {
  userFrndsInfo.getUsrFrndInfo(database, 2);
  userFrndsInfo.deleteUsrFrndInfo(database, 2);
  userFrndsInfo.viewUsrFrndInfoList(database); */
- // database.close();
+ // 
  }
  catch(Exception e){ logger.error("Exception: "+e.getMessage()); }
  
