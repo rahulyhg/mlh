@@ -28,6 +28,7 @@ import anups.dun.alarm.AlarmIntervalHour;
 import anups.dun.app.R;
 import anups.dun.constants.BusinessConstants;
 import anups.dun.db.Database;
+import anups.dun.db.js.AppSQLiteUsrFrndsContactsInfo;
 import anups.dun.db.tbl.UserFrndsContacts;
 import anups.dun.db.tbl.UserFrndsInfo;
 import anups.dun.js.AppManagement;
@@ -35,6 +36,7 @@ import anups.dun.js.AppNotifyManagement;
 import anups.dun.js.AppSQLiteManagement;
 import anups.dun.js.AppSessionManagement;
 import anups.dun.media.AndroidWebScreenVideo;
+import anups.dun.notify.ws.WSUserFrndsContacts;
 import anups.dun.notify.ws.WSGoogleAds;
 import anups.dun.util.AndroidLogger;
 import anups.dun.util.GPSTracker;
@@ -255,10 +257,13 @@ protected void onCreate(Bundle savedInstanceState) {
  setContentView(R.layout.activity_androidwebscreen);
  
  URLGenerator urlGenerator = new URLGenerator();
+ 
  AppManagement appManagement = new AppManagement(this);
  AppNotifyManagement appNotifyManagement = new AppNotifyManagement(this);
  AppSessionManagement appSessionManagement = new AppSessionManagement(this);
  AppSQLiteManagement appSQLiteManagement = new AppSQLiteManagement(this);
+ 
+ AppSQLiteUsrFrndsContactsInfo appSQLiteUsrFrndsInfo = new AppSQLiteUsrFrndsContactsInfo(this);
  
  /* Set Project Path */
  if(appSessionManagement.getAndroidSession(BusinessConstants.ANDROID_PROJECTPATH)==null){
@@ -269,28 +274,29 @@ protected void onCreate(Bundle savedInstanceState) {
  regulateLoggerFile();
  
  /* Contacts */
- try {
- Database database =Database.getInstance(this);
+ new WSUserFrndsContacts(this).execute("");
+  try {
+ //  Database database =Database.getInstance(this);
  /* Getting Core based Data */
- SQLiteDatabase sqLiteDatabase = database.connectDatabase();
- database.onCreate(sqLiteDatabase);
- database.getListOfTablesInDatabase(sqLiteDatabase);
- sqLiteDatabase.close();
+ //  SQLiteDatabase sqLiteDatabase = database.connectDatabase();
+ //  database.onCreate(sqLiteDatabase);
+ // database.getListOfTablesInDatabase(sqLiteDatabase);
+  // sqLiteDatabase.close();
  
  /* Adding UserFrndsInfo based Data in Rows */
- UserFrndsInfo userFrndsInfo = new UserFrndsInfo();
- UserFrndsContacts userFrndsContacts = new UserFrndsContacts();
- long frnd_Id=userFrndsInfo.addUsrFrndInfo(database, "surName", "name", "youCall", "relationship",  "mobileNumber", 
-		  								"country", "state", "location",  "minlocation");
- long contact_Id=userFrndsContacts.adduserFrndsContacts(database, frnd_Id, "1234567890");
- logger.info("userFrndsContacts: "+userFrndsContacts.viewUsrFrndContactsList(database));
+ // UserFrndsInfo userFrndsInfo = new UserFrndsInfo();
+ // UserFrndsContacts userFrndsContacts = new UserFrndsContacts();
+ // long frnd_Id=userFrndsInfo.data_add_usrFrndInfo(database, "surName", "name", "youCall", "relationship", 
+	//	  								"country", "state", "location",  "minlocation");
+//  long contact_Id=userFrndsContacts.data_add_userFrndsContacts(database, frnd_Id, "1234567890");
+ // logger.info("userFrndsContacts: "+userFrndsContacts.data_getAll_UsrFrndContacts(database));
  /*
  userFrndsInfo.viewUsrFrndInfoList(database);
  userFrndsInfo.updateUsrFrndInfo(database, 2, null, "surName1", null, "youCall01", null, null, null, "state01", null, "minlocation01");
  userFrndsInfo.getUsrFrndInfo(database, 2);
  userFrndsInfo.deleteUsrFrndInfo(database, 2);
  userFrndsInfo.viewUsrFrndInfoList(database); */
- database.close();
+ // database.close();
  }
  catch(Exception e){ logger.error("Exception: "+e.getMessage()); }
  
@@ -346,7 +352,9 @@ protected void onCreate(Bundle savedInstanceState) {
         webView.addJavascriptInterface(appManagement, "Android"); 
         webView.addJavascriptInterface(appNotifyManagement, "AndroidNotify");
         webView.addJavascriptInterface(appSessionManagement, "AndroidSession"); 
-        webView.addJavascriptInterface(appSQLiteManagement, "AndroidDatabase");  
+        webView.addJavascriptInterface(appSQLiteManagement, "AndroidDatabase"); 
+        webView.addJavascriptInterface(appSQLiteUsrFrndsInfo, "AndroidSQLiteUsrFrndsInfo"); 
+        
         
         webView.setWebViewClient(new AndroidWebViewClient(this));
         webView.setWebChromeClient(new AndroidWebChromeClient(this));

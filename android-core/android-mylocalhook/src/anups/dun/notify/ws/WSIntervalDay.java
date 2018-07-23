@@ -15,7 +15,7 @@ public class WSIntervalDay extends AsyncTask<String, String, String> {
   @Override
   protected String doInBackground(String... params) {
     WSUtility wsUtility = new WSUtility();
-    return wsUtility.HttpURLResponse(params[0]);
+    return wsUtility.HttpURLGETResponse(params[0]);
   }
 
   @Override  

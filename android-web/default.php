@@ -33,7 +33,9 @@ if($_SESSION["AUTHENTICATION_STATUS"]=='INCOMPLETED'){
 <script type="text/javascript">
 var Android;
 var AndroidDatabase;
+var AndroidSQLiteUsrFrndsInfo;
 $(document).ready(function(){
+ alert(AndroidSQLiteUsrFrndsInfo.data_count_UsrFrndsContact());
  $(".lang_"+USR_LANG).css('display','block');
 });
 </script>

@@ -20,7 +20,12 @@ public class Database extends SQLiteOpenHelper {
 	public static final String DATABASE_FILE = "Mylocalhook.db";
     public String DATABASE_FILEPATH;
     public static synchronized Database getInstance(Context context) {
-	  if (sInstance == null) { sInstance = new Database(context.getApplicationContext());  }
+	  if (sInstance == null) {
+		  sInstance = new Database(context.getApplicationContext()); 
+		  SQLiteDatabase sqLiteDatabase = sInstance.connectDatabase();
+		  sInstance.onCreate(sqLiteDatabase);
+		  sqLiteDatabase.close();
+	  }
 	  return sInstance;
 	}
 

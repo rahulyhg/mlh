@@ -1,6 +1,29 @@
 <?php
-class AppNotifications {
+class AppAndroidService {
 
+  /***************************************************************************************************************************
+   ******************************************** SERVICE USR DUMP FRNDS *******************************************************
+   ***************************************************************************************************************************/
+   function query_get_usrFrndsFromContactsData($user_Id, $phoneNumbersArray){
+     $sql="SELECT user_account.user_Id, user_account.username, user_account.surName, user_account.name, ";
+	 $sql.=" user_contact.mcountrycode, user_contact.mobile, ";
+	 $sql.="user_account.minlocation, user_account.location, user_account.state, user_account.country, ";
+	 $sql.=" (SELECT count(*) FROM user_frnds WHERE (user_frnds.frnd1 = user_account.user_Id AND ";
+	 $sql.=" user_frnds.frnd2 = '".$user_Id."') OR (user_frnds.frnd1 ='".$user_Id."' AND ";
+	 $sql.=" user_frnds.frnd2 = user_account.user_Id)) As IsFriend ";
+	 $sql.="FROM user_account, user_contact ";
+	 $sql.="WHERE user_account.user_Id=user_contact.user_Id AND ";
+	 $sql.="(";
+	 for($index=0;$index<count($phoneNumbersArray);$index++){
+	   $sql.=" ((SELECT REPLACE(concat(user_contact.mcountrycode,user_contact.mobile), '+', '') ";
+	   $sql.="As tmp)='".trim($phoneNumbersArray[$index])."' ";
+	   $sql.="OR user_contact.mobile='".trim($phoneNumbersArray[$index])."') OR";
+	  }
+	 $sql=chop($sql,"OR");
+	 $sql.=");";
+	return $sql;
+   }
+   
   /***************************************************************************************************************************
    ******************************************* USER FRIENDSHIP NOTIFICATIONS *************************************************
    ***************************************************************************************************************************/

@@ -39,7 +39,7 @@ public class BGService extends Service {
 						AppSessionManagement appSessionManager = new AppSessionManagement(getApplicationContext());
 					    appSessionManager.setAndroidSession(BusinessConstants.BGSERVICE_EXECUTION_STATUS,null);
 						Intent triggerWS = new Intent();
-						 	   triggerWS.setAction("anups.dun.broadcast.recievers.BRIntervalMinute");
+						 	   triggerWS.setAction("anups.dun.br.BRIntervalMinute");
 						sendBroadcast(triggerWS);
 				      }
 				    }, 60000);

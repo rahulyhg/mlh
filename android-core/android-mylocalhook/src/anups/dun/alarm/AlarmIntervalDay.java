@@ -5,7 +5,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.SystemClock;
-import anups.dun.broadcast.recievers.BRIntervalDay;
+import anups.dun.br.BRIntervalDay;
 import anups.dun.util.AndroidLogger;
 
 public class AlarmIntervalDay {

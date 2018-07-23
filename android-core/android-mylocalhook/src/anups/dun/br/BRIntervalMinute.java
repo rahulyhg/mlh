@@ -1,4 +1,4 @@
-package anups.dun.broadcast.recievers;
+package anups.dun.br;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

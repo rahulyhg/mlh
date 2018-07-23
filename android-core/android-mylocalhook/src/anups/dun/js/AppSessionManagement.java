@@ -12,7 +12,7 @@ import anups.dun.app.AndroidWebScreen;
 import anups.dun.media.AndroidWebScreenVideo;
 
 public class AppSessionManagement extends ActionBarActivity {
-	Context mContext;
+	private Context mContext;
 	SharedPreferences pref;
 	Editor editor;
 	public AppSessionManagement(Context c) { 
