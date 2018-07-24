@@ -11,7 +11,7 @@ public class UserFrndsInfo {
 	org.apache.log4j.Logger logger = AndroidLogger.getLogger(UserFrndsInfo.class);
 	
 	public static final String TBL_NAME="userFrndsInfo";
-	
+	public static final double TBL_VERSION=1.0;
 	public static final String COLUMN_00_FRNDID = "frnd_Id";
 	public static final String COLUMN_01_USERID = "user_Id";
 	public static final String COLUMN_02_USERNAME = "username";

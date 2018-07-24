@@ -10,7 +10,7 @@ public class UserFrndsContacts {
 org.apache.log4j.Logger logger = AndroidLogger.getLogger(UserFrndsContacts.class);
 	
 	public static final String TBL_NAME="userFrndsContacts";
-	
+	public static final double TBL_VERSION=1.0;
 	public static final String COLUMN_00_CONTACTID = "contact_Id";
 	public static final String COLUMN_01_FRNDID = "frnd_Id";
 	public static final String COLUMN_02_PHONENUMBER = "phoneNumber";
