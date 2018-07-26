@@ -48,6 +48,11 @@ public class UserFrndsInfo {
 	  return schema.toString();
 	}
 	
+	public void dropUserFrndsContactsInfoSchema(SQLiteDatabase sqliteDatabase){
+		sqliteDatabase.execSQL("DROP TABLE IF EXISTS " + UserFrndsContacts.TBL_NAME);
+		sqliteDatabase.execSQL("DROP TABLE IF EXISTS " + UserFrndsInfo.TBL_NAME);
+	}
+	
 	 public long data_add_usrFrndInfo(Database database, String frnd_Id, String user_Id, String userName, String surName, String name, String youCall, String relationship,
 	  String country, String state, String location, String minlocation, String isContacts, String isFriend, String created_on){
 	  SQLiteDatabase db = database.getWritableDatabase();
