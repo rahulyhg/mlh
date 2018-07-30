@@ -1,12 +1,33 @@
 <?php
+$user_Id='USR924357814934';
+$phoneNumbersArray=array('+915345678191');
+$appAndroidServiceObj = new AppAndroidService();
+echo $appAndroidServiceObj->query_get_usrFrndsFromContactsData($user_Id, $phoneNumbersArray);
 class AppAndroidService {
 
   /***************************************************************************************************************************
    ******************************************** SERVICE USR DUMP FRNDS *******************************************************
    ***************************************************************************************************************************/
    function query_get_usrFrndsFromContactsData($user_Id, $phoneNumbersArray){
-     $sql="SELECT user_account.user_Id, user_account.username, user_account.surName, user_account.name, ";
-	 $sql.=" user_contact.mcountrycode, user_contact.mobile, ";
+   /*  If the Data not exists for a Mobile Number, then, it mean he is not registered in MyLocalHook.
+    *  If the Data exists for a Mobile Number, then, it is registered in MyLocalHook.
+    *  IsFriend = 0 and IsContact = 1, If MobileNumber is not a friend and exists in his Contacts.
+    *  IsFriend = 1 and IsContact = 1, If MobileNumber is a friend and exists in his Contacts.
+	*  IsFriend = 1 and IsContact = 0, The MobileNumber not exists in Contacts but, he is a Friend of User
+    */
+	 $sql="(SELECT user_account.user_Id, user_account.username, user_account.surName, user_account.name, ";
+	 $sql.=" (SELECT GROUP_CONCAT(user_contact.mcountrycode,user_contact.mobile) FROM user_contact  ";
+	 $sql.=" WHERE user_contact.user_Id=user_account.user_Id) As phoneNumbers, ";
+	 $sql.="user_account.minlocation, user_account.location, user_account.state, user_account.country, ";
+	 $sql.=" (SELECT count(*) FROM user_frnds WHERE (user_frnds.frnd1 = user_account.user_Id AND ";
+	 $sql.=" user_frnds.frnd2 = '".$user_Id."') OR (user_frnds.frnd1 ='".$user_Id."' AND ";
+	 $sql.=" user_frnds.frnd2 = user_account.user_Id)) As IsFriend ";
+	 $sql.=" FROM user_account, user_frnds WHERE (user_frnds.frnd1 = user_account.user_Id AND ";
+	 $sql.=" user_frnds.frnd2 = '".$user_Id."') OR (user_frnds.frnd1 ='".$user_Id."' AND ";
+	 $sql.=" user_frnds.frnd2 = user_account.user_Id))";
+	 $sql.=" UNION ";
+     $sql.="(SELECT user_account.user_Id, user_account.username, user_account.surName, user_account.name, ";
+	 $sql.=" GROUP_CONCAT(user_contact.mcountrycode,user_contact.mobile) As phoneNumbers, ";
 	 $sql.="user_account.minlocation, user_account.location, user_account.state, user_account.country, ";
 	 $sql.=" (SELECT count(*) FROM user_frnds WHERE (user_frnds.frnd1 = user_account.user_Id AND ";
 	 $sql.=" user_frnds.frnd2 = '".$user_Id."') OR (user_frnds.frnd1 ='".$user_Id."' AND ";
@@ -20,7 +41,7 @@ class AppAndroidService {
 	   $sql.="OR user_contact.mobile='".trim($phoneNumbersArray[$index])."') OR";
 	  }
 	 $sql=chop($sql,"OR");
-	 $sql.=");";
+	 $sql.="));";
 	return $sql;
    }
    

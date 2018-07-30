@@ -45,14 +45,8 @@ public class WSRUserFrndsContacts {
 			   
 			   /* Update ::: */
 			   Database database = Database.getInstance(context);
-			   UserFrndsContacts usrFrndsContacts = new UserFrndsContacts();
-			   boolean status = usrFrndsContacts.data_update_usrFrndContacts(database, user_Id, username, surName, surName, 
-					   youCall, relationship, country, state, location, minlocation, isContacts, isFriend, 
-					   created_On, mcountrycode, mobile);
-			   logger.info("Updated Status : "+status);
 			   
-			  String jsonData = usrFrndsContacts.data_getAll_UsrFrndContacts(database, "0", String.valueOf(usrFrndsContacts.data_count_usrFrndInfo(database)));
-			  logger.info("jsonData : "+jsonData);
+			   
 			  database.close();
 		   }
 	   }

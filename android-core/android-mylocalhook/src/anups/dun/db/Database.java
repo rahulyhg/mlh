@@ -3,6 +3,7 @@ package anups.dun.db;
 import anups.dun.constants.BusinessConstants;
 import anups.dun.db.tbl.UserFrndsContacts;
 import anups.dun.db.tbl.UserFrndsInfo;
+import anups.dun.db.tbl.UserFrndsProfile;
 import anups.dun.js.AppSessionManagement;
 import android.content.Context;
 import android.database.Cursor;
@@ -41,13 +42,12 @@ public class Database extends SQLiteOpenHelper {
 	  
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		db.execSQL(new UserFrndsInfo().schema_userFrndsInfo());
-		db.execSQL(new UserFrndsContacts().schema_userFrndsContacts());
+		new UserFrndsInfo().schema_userFrndsInfo(db);
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		new UserFrndsInfo().dropUserFrndsContactsInfoSchema(db);
+		new UserFrndsInfo().drop_userFrndsInfoSchema(db);
 		onCreate(db);
 	}
 	

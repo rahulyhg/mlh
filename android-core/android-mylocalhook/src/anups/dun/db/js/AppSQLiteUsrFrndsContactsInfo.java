@@ -5,7 +5,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.webkit.JavascriptInterface;
 import anups.dun.db.Database;
 import anups.dun.db.tbl.UserFrndsContacts;
-import anups.dun.db.tbl.UserFrndsInfo;
+import anups.dun.db.tbl.UserFrndsProfile;
 import anups.dun.util.AndroidLogger;
 
 public class AppSQLiteUsrFrndsContactsInfo extends ActionBarActivity  {
@@ -24,7 +24,7 @@ public class AppSQLiteUsrFrndsContactsInfo extends ActionBarActivity  {
 	  try {
 		  Database database =Database.getInstance(mContext);
 		  UserFrndsContacts userFrndsContacts = new UserFrndsContacts();
-		  count = userFrndsContacts.data_count_usrFrndInfo(database); 
+		 
 		  database.close();
 	  }
 	  catch(Exception e){ logger.error("Exception: "+e.getMessage()); }
@@ -37,7 +37,7 @@ public class AppSQLiteUsrFrndsContactsInfo extends ActionBarActivity  {
 	 try {
 	  Database database =Database.getInstance(mContext);
 	  UserFrndsContacts userFrndsContacts = new UserFrndsContacts();
-	  jsonData = userFrndsContacts.data_getAll_UsrFrndContacts(database, limit_start, limit_end);
+	 
 	  database.close();
 	 }
 	 catch(Exception e){ logger.error("Exception: "+e.getMessage()); }

@@ -7,177 +7,163 @@ import anups.dun.db.Database;
 import anups.dun.util.AndroidLogger;
 
 public class UserFrndsInfo {
-
+ 
 	org.apache.log4j.Logger logger = AndroidLogger.getLogger(UserFrndsInfo.class);
 	
 	public static final String TBL_NAME="userFrndsInfo";
 	public static final double TBL_VERSION=1.0;
 	public static final String COLUMN_00_FRNDID = "frnd_Id";
-	public static final String COLUMN_01_USERID = "user_Id";
-	public static final String COLUMN_02_USERNAME = "username";
-	public static final String COLUMN_03_SURNAME = "surName";
-	public static final String COLUMN_04_NAME = "name";
-	public static final String COLUMN_05_YOUCALL = "youCall";
-	public static final String COLUMN_06_RELATIONSHIP = "relationship";
-	public static final String COLUMN_07_COUNTRY = "country";
-	public static final String COLUMN_08_STATE = "state";
-	public static final String COLUMN_09_LOCATION = "location";
-	public static final String COLUMN_10_MINLOCATION = "minlocation";
-	public static final String COLUMN_11_ISCONTACTS = "isContacts";
-	public static final String COLUMN_12_ISFRIEND = "isFriend";
-	public static final String COLUMN_13_CREATEDON = "createdOn";
+	public static final String COLUMN_01_YOUCALL = "youCall";
 	
-	public String schema_userFrndsInfo(){
-	  StringBuilder schema = new StringBuilder();
-	  schema.append("CREATE TABLE IF NOT EXISTS ").append(TBL_NAME).append("( ");
-	  schema.append(COLUMN_00_FRNDID).append(" INTEGER PRIMARY KEY, ");
-	  schema.append(COLUMN_01_USERID).append(" text, ");
-	  schema.append(COLUMN_02_USERNAME).append(" text, ");
-	  schema.append(COLUMN_03_SURNAME).append(" text, ");
-	  schema.append(COLUMN_04_NAME).append(" text, ");
-	  schema.append(COLUMN_05_YOUCALL).append(" text, ");
-	  schema.append(COLUMN_06_RELATIONSHIP).append(" text, ");
-	  schema.append(COLUMN_07_COUNTRY).append(" text, ");
-	  schema.append(COLUMN_08_STATE).append(" text, ");
-	  schema.append(COLUMN_09_LOCATION).append(" text, ");
-	  schema.append(COLUMN_10_MINLOCATION).append(" text, ");
-	  schema.append(COLUMN_11_ISCONTACTS).append(" text, ");
-	  schema.append(COLUMN_12_ISFRIEND).append(" text, ");
-	  schema.append(COLUMN_13_CREATEDON).append(" text ");
-	  schema.append(");");
-	  return schema.toString();
+	public void schema_userFrndsInfo(SQLiteDatabase sqliteDatabase){
+	  /* UserFrndsInfo */
+	  StringBuilder schema_userFrndsInfo = new StringBuilder();
+	  				schema_userFrndsInfo.append("CREATE TABLE IF NOT EXISTS ").append(UserFrndsInfo.TBL_NAME).append("( ");
+	  				schema_userFrndsInfo.append(UserFrndsInfo.COLUMN_00_FRNDID).append(" INTEGER PRIMARY KEY, ");
+	  				schema_userFrndsInfo.append(UserFrndsInfo.COLUMN_01_YOUCALL).append(" TEXT, ");
+	  				schema_userFrndsInfo.append(");");
+	  
+	  /* UserFrndsProfile */
+	  StringBuilder schema_userFrndsProfile = new StringBuilder();
+	  				schema_userFrndsProfile.append("CREATE TABLE IF NOT EXISTS ").append(UserFrndsProfile.TBL_NAME).append("( ");
+	  				schema_userFrndsProfile.append(UserFrndsProfile.COLUMN_00_USERID).append(" TEXT PRIMARY KEY, ");
+	  				schema_userFrndsProfile.append(UserFrndsProfile.COLUMN_01_USERNAME).append(" TEXT, ");
+	  				schema_userFrndsProfile.append(UserFrndsProfile.COLUMN_02_SURNAME).append(" TEXT, ");
+	  				schema_userFrndsProfile.append(UserFrndsProfile.COLUMN_03_NAME).append(" TEXT, ");
+	  				schema_userFrndsProfile.append(UserFrndsProfile.COLUMN_04_RELATIONSHIP).append(" TEXT, ");
+	  				schema_userFrndsProfile.append(UserFrndsProfile.COLUMN_05_COUNTRY).append(" TEXT, ");
+	  				schema_userFrndsProfile.append(UserFrndsProfile.COLUMN_06_STATE).append(" TEXT, ");
+	  				schema_userFrndsProfile.append(UserFrndsProfile.COLUMN_07_LOCATION).append(" TEXT, ");
+	  				schema_userFrndsProfile.append(UserFrndsProfile.COLUMN_08_MINLOCATION).append(" TEXT, ");
+	  				schema_userFrndsProfile.append(UserFrndsProfile.COLUMN_09_ISCONTACTS).append(" TEXT, ");
+	  				schema_userFrndsProfile.append(UserFrndsProfile.COLUMN_10_ISFRIEND).append(" TEXT, ");
+	  				schema_userFrndsProfile.append(UserFrndsProfile.COLUMN_11_CREATEDON).append(" TEXT ");
+	  				schema_userFrndsProfile.append(");");
+	 
+	 /* UserFrndsContacts */
+	 StringBuilder schema_userFrndsContacts = new StringBuilder();
+	 			   schema_userFrndsContacts.append("CREATE TABLE IF NOT EXISTS ").append(UserFrndsContacts.TBL_NAME).append("( ");
+	 			   schema_userFrndsContacts.append(UserFrndsContacts.COLUMN_00_CONTACTID).append(" INTEGER PRIMARY KEY AUTOINCREMENT, ");
+	 			   schema_userFrndsContacts.append(UserFrndsContacts.COLUMN_01_FRNDID).append(" INTEGER, ");
+	 			   schema_userFrndsContacts.append(UserFrndsContacts.COLUMN_02_PHONENUMBER).append(" TEXT, ");
+	 			   schema_userFrndsContacts.append(UserFrndsContacts.COLUMN_03_USERID).append(" TEXT ");
+	 			   schema_userFrndsContacts.append(");");
+	 	
+	 sqliteDatabase.execSQL(schema_userFrndsInfo.toString());
+	 sqliteDatabase.execSQL(schema_userFrndsProfile.toString());	   
+	 sqliteDatabase.execSQL(schema_userFrndsContacts.toString());
 	}
-	
-	public void dropUserFrndsContactsInfoSchema(SQLiteDatabase sqliteDatabase){
+		
+	public void drop_userFrndsInfoSchema(SQLiteDatabase sqliteDatabase){
 		sqliteDatabase.execSQL("DROP TABLE IF EXISTS " + UserFrndsContacts.TBL_NAME);
+		sqliteDatabase.execSQL("DROP TABLE IF EXISTS " + UserFrndsProfile.TBL_NAME);
 		sqliteDatabase.execSQL("DROP TABLE IF EXISTS " + UserFrndsInfo.TBL_NAME);
 	}
 	
-	 public long data_add_usrFrndInfo(Database database, String frnd_Id, String user_Id, String userName, String surName, String name, String youCall, String relationship,
-	  String country, String state, String location, String minlocation, String isContacts, String isFriend, String created_on){
-	  SQLiteDatabase db = database.getWritableDatabase();
-	  ContentValues contentValues = new ContentValues();
-	  	  contentValues.put(COLUMN_00_FRNDID, frnd_Id);
-	      contentValues.put(COLUMN_01_USERID, user_Id);
-		  contentValues.put(COLUMN_02_USERNAME, userName);
-		  contentValues.put(COLUMN_03_SURNAME, surName);	
-		  contentValues.put(COLUMN_04_NAME, name);
-		  contentValues.put(COLUMN_05_YOUCALL, youCall);
-		  contentValues.put(COLUMN_06_RELATIONSHIP, relationship);	
-		  contentValues.put(COLUMN_07_COUNTRY, country);	
-		  contentValues.put(COLUMN_08_STATE, state);
-		  contentValues.put(COLUMN_09_LOCATION, location);	
-		  contentValues.put(COLUMN_10_MINLOCATION, minlocation);
-		  contentValues.put(COLUMN_11_ISCONTACTS, isContacts);
-		  contentValues.put(COLUMN_12_ISFRIEND, isFriend);
-		  contentValues.put(COLUMN_13_CREATEDON, created_on);
-	  long id = db.insert(TBL_NAME, null, contentValues);
-	  logger.info("addUsrFrnd: "+id);
-      return id; 
-	 }
+	public long data_add_userFrndsInfo(Database database, String frnd_Id, String youCall){
+	 SQLiteDatabase db = database.getWritableDatabase();
+	 ContentValues contentValues = new ContentValues();
+	    contentValues.put(COLUMN_00_FRNDID, frnd_Id);
+		contentValues.put(COLUMN_01_YOUCALL, youCall);
+	 long id = db.insert(UserFrndsInfo.TBL_NAME, null, contentValues);
+     return id; 
+	}
+
+	public int data_update_userFrndsInfo(Database database, String frnd_Id, String youCall){
+		ContentValues contentValues = new ContentValues();
+		SQLiteDatabase db = database.getReadableDatabase();
+	      if(youCall !=null){ contentValues.put(UserFrndsInfo.COLUMN_01_YOUCALL, youCall); }
+	   return db.update(UserFrndsInfo.TBL_NAME, contentValues, UserFrndsInfo.COLUMN_00_FRNDID+" = ? ", new String[] { frnd_Id } );
+	}
 	
-	 public String data_getAll_usrFrndInfo(Database database, int limit_start, int limit_end){
-		 StringBuilder jsonData = new StringBuilder();
-		 jsonData.append("{\"data\":[");
+	public long data_count_userFrndsInfo(Database database){
+		long dataCount = 0;
 		 SQLiteDatabase db = database.getReadableDatabase();
-		 Cursor cursor =  db.rawQuery( "select * from "+TBL_NAME+" limit "+limit_start+","+limit_end+";", null );
-		 if (cursor.moveToFirst()) {
-		   while ( !cursor.isAfterLast() ) {
-			 jsonData.append("{");
-			 jsonData.append("\"").append(COLUMN_01_USERID).append("\":\"").append(cursor.getString(0)).append("\",");
-			 jsonData.append("\"").append(COLUMN_02_USERNAME).append("\":\"").append(cursor.getString(1)).append("\",");
-			 jsonData.append("\"").append(COLUMN_03_SURNAME).append("\":\"").append(cursor.getString(2)).append("\",");
-			 jsonData.append("\"").append(COLUMN_04_NAME).append("\":\"").append(cursor.getString(3)).append("\",");
-			 jsonData.append("\"").append(COLUMN_05_YOUCALL).append("\":\"").append(cursor.getString(4)).append("\",");
-			 jsonData.append("\"").append(COLUMN_06_RELATIONSHIP).append("\":\"").append(cursor.getString(5)).append("\",");
-			 jsonData.append("\"").append(COLUMN_07_COUNTRY).append("\":\"").append(cursor.getString(6)).append("\",");
-			 jsonData.append("\"").append(COLUMN_08_STATE).append("\":\"").append(cursor.getString(7)).append("\",");
-			 jsonData.append("\"").append(COLUMN_09_LOCATION).append("\":\"").append(cursor.getString(8)).append("\",");
-			 jsonData.append("\"").append(COLUMN_10_MINLOCATION).append("\":\"").append(cursor.getString(9)).append("\",");
-			 jsonData.append("\"").append(COLUMN_11_ISCONTACTS).append("\":\"").append(cursor.getString(10)).append("\",");
-			 jsonData.append("\"").append(COLUMN_12_ISFRIEND).append("\":\"").append(cursor.getString(11)).append("\",");
-			 jsonData.append("\"").append(COLUMN_13_CREATEDON).append("\":\"").append(cursor.getString(12)).append("\"");
-			 jsonData.append("},");
-			 cursor.moveToNext();
+		 StringBuilder query01 = new StringBuilder();
+		 query01.append( "SELECT count(*) FROM ").append(UserFrndsInfo.TBL_NAME);
+		 Cursor cursor01 =  db.rawQuery(query01.toString(), null ); 
+		 if (cursor01.moveToFirst()) {
+		   while ( !cursor01.isAfterLast() ) {
+			 dataCount=Long.parseLong(cursor01.getString(0));
+			 cursor01.moveToNext();
 		   }
-		}
-		 jsonData.deleteCharAt(jsonData.length()-1);
-		 jsonData.append("]}");
-		 logger.info("viewUsrFrndList: "+jsonData.toString());
-		 return jsonData.toString();
-	 }
-	 
-	 public long data_count_usrFrndInfo(Database database, String frnd_Id){
-		 long dataCount=0;
-		 SQLiteDatabase db = database.getReadableDatabase();
-		 Cursor cursor =  db.rawQuery( "select count(*) from "+TBL_NAME+" where "+COLUMN_00_FRNDID+"='"+frnd_Id+"';", null );
-		 if (cursor.moveToFirst()) {
-		   while ( !cursor.isAfterLast() ) {
-			 dataCount = Long.parseLong(cursor.getString(0));
-			 cursor.moveToNext();
-		   }
-		}
-		 logger.info("viewUsrFrndListCount: "+dataCount);
+		 }
 		 return dataCount;
-	 }
-	 
-	 public String data_get_usrFrndInfo(Database database, String frnd_Id){
-		 StringBuilder jsonData = new StringBuilder();
-		 jsonData.append("{\"data\":[");
-		 SQLiteDatabase db = database.getReadableDatabase();
-		 Cursor cursor =  db.rawQuery( "select * from "+TBL_NAME+" where "+COLUMN_00_FRNDID+"='"+frnd_Id+"';", null );
-		 if (cursor.moveToFirst()) {
-		   while ( !cursor.isAfterLast() ) {
-			 jsonData.append("{");
-			 jsonData.append("\"").append(COLUMN_01_USERID).append("\":\"").append(cursor.getString(0)).append("\",");
-			 jsonData.append("\"").append(COLUMN_02_USERNAME).append("\":\"").append(cursor.getString(1)).append("\",");
-			 jsonData.append("\"").append(COLUMN_03_SURNAME).append("\":\"").append(cursor.getString(2)).append("\",");
-			 jsonData.append("\"").append(COLUMN_04_NAME).append("\":\"").append(cursor.getString(3)).append("\",");
-			 jsonData.append("\"").append(COLUMN_05_YOUCALL).append("\":\"").append(cursor.getString(4)).append("\",");
-			 jsonData.append("\"").append(COLUMN_06_RELATIONSHIP).append("\":\"").append(cursor.getString(5)).append("\",");
-			 jsonData.append("\"").append(COLUMN_07_COUNTRY).append("\":\"").append(cursor.getString(6)).append("\",");
-			 jsonData.append("\"").append(COLUMN_08_STATE).append("\":\"").append(cursor.getString(7)).append("\",");
-			 jsonData.append("\"").append(COLUMN_09_LOCATION).append("\":\"").append(cursor.getString(8)).append("\",");
-			 jsonData.append("\"").append(COLUMN_10_MINLOCATION).append("\":\"").append(cursor.getString(9)).append("\",");
-			 jsonData.append("\"").append(COLUMN_11_ISCONTACTS).append("\":\"").append(cursor.getString(10)).append("\",");
-			 jsonData.append("\"").append(COLUMN_12_ISFRIEND).append("\":\"").append(cursor.getString(11)).append("\",");
-			 jsonData.append("\"").append(COLUMN_13_CREATEDON).append("\":\"").append(cursor.getString(12)).append("\"");
-			 jsonData.append("},");
-			 cursor.moveToNext();
-		   }
+	}
+	
+	public String data_getAll_UsrFrndsInfo(Database database, String limit_start, String limit_end){
+		StringBuilder jsonData = new StringBuilder();
+		SQLiteDatabase sqliteDatabase = database.getReadableDatabase();
+		StringBuilder query01 = new StringBuilder();
+		     query01.append( "SELECT ");
+		     query01.append(UserFrndsInfo.COLUMN_00_FRNDID).append(",").append(UserFrndsInfo.COLUMN_01_YOUCALL);
+		     query01.append(" FROM ").append(UserFrndsInfo.TBL_NAME).append(" LIMIT ");
+		     query01.append(limit_start).append(",").append(limit_end);
+		Cursor cursor01 =  sqliteDatabase.rawQuery(query01.toString(), null );
+		jsonData.append("[");
+		if(cursor01.moveToFirst()) {
+	      while(!cursor01.isAfterLast()) {
+	    	  String frnd_Id=cursor01.getString(0);
+			  String youCall=cursor01.getString(1);  
+			  StringBuilder query02 = new StringBuilder();
+			  query02.append("SELECT ");
+			  query02.append(UserFrndsProfile.COLUMN_00_USERID).append(",");
+			  query02.append(UserFrndsContacts.COLUMN_02_PHONENUMBER).append(",");
+			  query02.append(UserFrndsProfile.COLUMN_01_USERNAME).append(",");
+			  query02.append(UserFrndsProfile.COLUMN_02_SURNAME).append(",");
+			  query02.append(UserFrndsProfile.COLUMN_03_NAME).append(",");
+			  query02.append(UserFrndsProfile.COLUMN_04_RELATIONSHIP).append(",");
+			  query02.append(UserFrndsProfile.COLUMN_05_COUNTRY).append(",");
+			  query02.append(UserFrndsProfile.COLUMN_06_STATE).append(",");
+			  query02.append(UserFrndsProfile.COLUMN_07_LOCATION).append(",");
+			  query02.append(UserFrndsProfile.COLUMN_08_MINLOCATION).append(",");
+			  query02.append(UserFrndsProfile.COLUMN_09_ISCONTACTS).append(",");
+			  query02.append(UserFrndsProfile.COLUMN_10_ISFRIEND).append(",");
+			  query02.append(UserFrndsProfile.COLUMN_11_CREATEDON);
+			  query02.append(" FROM ");
+			  query02.append(UserFrndsContacts.TBL_NAME).append(",").append(UserFrndsProfile.TBL_NAME).append(" WHERE ");
+			  query02.append(UserFrndsContacts.COLUMN_01_FRNDID).append("=").append(frnd_Id).append(" AND ");
+			  query02.append(UserFrndsContacts.COLUMN_03_USERID).append("=").append(UserFrndsProfile.COLUMN_00_USERID);
+			  Cursor cursor02 =  sqliteDatabase.rawQuery(query01.toString(), null );
+			  if(cursor02.moveToFirst()) {
+			      while(!cursor02.isAfterLast()) {
+			    	  String user_Id=cursor02.getString(0);
+			    	  String phoneNumber=cursor02.getString(1);
+			    	  String userName=cursor02.getString(2);
+			    	  String surName=cursor02.getString(3);
+			    	  String name=cursor02.getString(4);
+			    	  String relationship=cursor02.getString(5);
+			    	  String country=cursor02.getString(6);
+			    	  String state=cursor02.getString(7);
+			    	  String location=cursor02.getString(8);
+			    	  String minlocation=cursor02.getString(9);
+			    	  String isContacts=cursor02.getString(10);
+			    	  String isFriend=cursor02.getString(11);
+			    	  String createdOn=cursor02.getString(12);
+			    	  
+			    	  jsonData.append("{").append("\"frnd_Id\":\"").append(frnd_Id).append("\",");
+			    	  jsonData.append("\"youCall\":\"").append(youCall).append("\",");
+			    	  jsonData.append("\"user_Id\":\"").append(user_Id).append("\",");
+			    	  jsonData.append("\"phoneNumber\":\"").append(phoneNumber).append("\",");
+			    	  jsonData.append("\"userName\":\"").append(userName).append("\",");
+			    	  jsonData.append("\"surName\":\"").append(surName).append("\",");
+			    	  jsonData.append("\"name\":\"").append(name).append("\",");
+			    	  jsonData.append("\"relationship\":\"").append(relationship).append("\",");
+			    	  jsonData.append("\"country\":\"").append(country).append("\",");
+			    	  jsonData.append("\"state\":\"").append(state).append("\",");
+			    	  jsonData.append("\"location\":\"").append(location).append("\",");
+			    	  jsonData.append("\"minlocation\":\"").append(minlocation).append("\",");
+			    	  jsonData.append("\"isContacts\":\"").append(isContacts).append("\",");
+			    	  jsonData.append("\"isFriend\":\"").append(isFriend).append("\",");
+			    	  jsonData.append("\"createdOn\":\"").append(createdOn).append("\"}");
+			    	  
+			    	  cursor02.moveToNext();
+			      }
+			  }
+		    cursor01.moveToNext();
+		  }
 		}
-		 jsonData.deleteCharAt(jsonData.length()-1);
-		 jsonData.append("]}");
-		 db.close();
-		 logger.info("viewUsrFrndList: "+jsonData.toString());
-		 return jsonData.toString();
-	 }
-	 
-	 
-	public boolean data_update_usrFrndInfo(Database database, long frnd_Id, String user_Id, String username, String surName, String name, String youCall, 
-			String relationship,  String country, String state, String location, String minlocation, String isContacts, String isFriend, String createdOn){
-		  SQLiteDatabase db = database.getWritableDatabase();
-	      ContentValues contentValues = new ContentValues();
-	      if(user_Id != null){  contentValues.put(COLUMN_01_USERID, user_Id);  }
-	      if(username != null){  contentValues.put(COLUMN_02_USERNAME, username);  }
-	      if(surName != null){  contentValues.put(COLUMN_03_SURNAME, surName);  }
-	      if(name != null){ contentValues.put(COLUMN_04_NAME, name); }
-	      if(youCall != null){  contentValues.put(COLUMN_05_YOUCALL, youCall);  }
-	      if(relationship != null){ contentValues.put(COLUMN_06_RELATIONSHIP, relationship); }
-	      if(country !=null){ contentValues.put(COLUMN_07_COUNTRY, country); }
-	      if(state != null){ contentValues.put(COLUMN_08_STATE, state); }
-	      if(location !=null){ contentValues.put(COLUMN_09_LOCATION, location); }
-	      if(minlocation !=null){ contentValues.put(COLUMN_10_MINLOCATION, minlocation); }
-	      if(isContacts !=null){ contentValues.put(COLUMN_11_ISCONTACTS, isContacts); }
-	      if(isFriend !=null){ contentValues.put(COLUMN_12_ISFRIEND, isFriend); }
-	      if(createdOn !=null){ contentValues.put(COLUMN_13_CREATEDON, createdOn); }
-	      db.update(TBL_NAME, contentValues, COLUMN_00_FRNDID+" = ? ", new String[] { Long.toString(frnd_Id) } );
-	      return true;
+		jsonData.append("]");
+		return jsonData.toString();
 	}
-	
-	public Integer data_delete_usrFrndInfo(Database database,long frnd_Id) {
-	    SQLiteDatabase db = database.getWritableDatabase();
-	    return db.delete(TBL_NAME, COLUMN_00_FRNDID+" = ? ", new String[] { Long.toString(frnd_Id) });
-	}
-	
 }

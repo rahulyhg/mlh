@@ -30,7 +30,7 @@ import anups.dun.constants.BusinessConstants;
 import anups.dun.db.Database;
 import anups.dun.db.js.AppSQLiteUsrFrndsContactsInfo;
 import anups.dun.db.tbl.UserFrndsContacts;
-import anups.dun.db.tbl.UserFrndsInfo;
+import anups.dun.db.tbl.UserFrndsProfile;
 import anups.dun.js.AppManagement;
 import anups.dun.js.AppNotifyManagement;
 import anups.dun.js.AppSQLiteManagement;
@@ -81,7 +81,7 @@ public  class AndroidWebScreen extends Activity  {
  	   } 
     }
     
-    
+   
     
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -288,8 +288,8 @@ protected void onCreate(Bundle savedInstanceState) {
    /* Contacts */
    new WSUserFrndsContacts(this).execute("");
    
- /* Adding UserFrndsInfo based Data in Rows */
- // UserFrndsInfo userFrndsInfo = new UserFrndsInfo();
+ /* Adding UserFrndsProfile based Data in Rows */
+ // UserFrndsProfile userFrndsInfo = new UserFrndsProfile();
  // UserFrndsContacts userFrndsContacts = new UserFrndsContacts();
  // long frnd_Id=userFrndsInfo.data_add_usrFrndInfo(database, "surName", "name", "youCall", "relationship", 
 	//	  								"country", "state", "location",  "minlocation");
