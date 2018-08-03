@@ -26,13 +26,29 @@ org.apache.log4j.Logger logger = AndroidLogger.getLogger(UserFrndsContacts.class
 	 return id; 
     }
 	
-	public int data_update_usrFrndsContacts(Database database, String contact_Id, String frnd_Id, String phoneNumber, String user_Id){
-		ContentValues contentValues = new ContentValues();
+	public long data_update_usrFrndsContacts(Database database, String phoneNumber, String user_Id){
+		long execution_Id=0;
+		String[] phoneNumberArry=phoneNumber.split("|");
+		String mCountryCode=phoneNumberArry[0];
+		String mobile=phoneNumberArry[1];
+
 		SQLiteDatabase db = database.getReadableDatabase();
-		  if(frnd_Id != null){ contentValues.put(UserFrndsContacts.COLUMN_01_FRNDID, frnd_Id); }
-	      if(phoneNumber !=null){ contentValues.put(UserFrndsContacts.COLUMN_02_PHONENUMBER, phoneNumber); }
-	      if(phoneNumber !=null){ contentValues.put(UserFrndsContacts.COLUMN_03_USERID, user_Id); }
-	   return db.update(UserFrndsContacts.TBL_NAME, contentValues, UserFrndsContacts.COLUMN_00_CONTACTID+" = ? ", new String[] { contact_Id } );
+		 StringBuilder query01 = new StringBuilder();
+		 query01.append( "SELECT ").append(UserFrndsContacts.COLUMN_00_CONTACTID).append(" FROM ").append(UserFrndsContacts.TBL_NAME);
+		 query01.append(" WHERE ").append(UserFrndsContacts.COLUMN_02_PHONENUMBER).append(" = '").append(mCountryCode+mobile).append("' OR ");
+		 query01.append(UserFrndsContacts.COLUMN_02_PHONENUMBER).append(" LIKE '%").append(mobile).append("%';");
+		 Cursor cursor01 =  db.rawQuery(query01.toString(), null ); 
+		 if (cursor01.moveToFirst()) {
+		   while ( !cursor01.isAfterLast() ) {
+			  String contact_Id=cursor01.getString(0);
+			  ContentValues contentValues = new ContentValues();
+		      if(phoneNumber !=null){ contentValues.put(UserFrndsContacts.COLUMN_02_PHONENUMBER, mCountryCode+mobile); }
+		      if(phoneNumber !=null){ contentValues.put(UserFrndsContacts.COLUMN_03_USERID, user_Id); }
+		      execution_Id = db.update(UserFrndsContacts.TBL_NAME, contentValues, UserFrndsContacts.COLUMN_00_CONTACTID+" = ? ", new String[] { contact_Id } );
+			 cursor01.moveToNext();
+		   }
+		 }
+	   return execution_Id;
 	}
 	
 }

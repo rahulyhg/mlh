@@ -1,10 +1,6 @@
 package anups.dun.notify.ws;
 
 import java.util.ArrayList;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
@@ -15,7 +11,6 @@ import android.provider.ContactsContract;
 import anups.dun.db.Database;
 import anups.dun.db.tbl.UserFrndsContacts;
 import anups.dun.db.tbl.UserFrndsInfo;
-import anups.dun.db.tbl.UserFrndsProfile;
 import anups.dun.notify.ws.response.WSRUserFrndsContacts;
 import anups.dun.notify.ws.util.WSUtility;
 import anups.dun.util.AndroidLogger;
@@ -32,13 +27,12 @@ public class WSUserFrndsContacts extends AsyncTask<String, String, String> {
  }
  
  public String dumpContacts(ContentResolver contentResolver) {
-	 JSONArray jsonArrayData = new JSONArray();
-	 Database database =Database.getInstance(context);
+	 ArrayList<String> phoneNumberList = new ArrayList<String>();
+	 Database database =Database.getInstance(context); 
 	 SQLiteDatabase sqliteDatabase = database.connectDatabase();
   try {
 	  
 	  UserFrndsInfo userFrndsInfo = new UserFrndsInfo();
-	  UserFrndsProfile userFrndsProfile = new UserFrndsProfile();
 	  UserFrndsContacts userFrndsContacts = new UserFrndsContacts();
 	  
 	  /* Drop Schemas and Create Schemas */
@@ -66,32 +60,32 @@ public class WSUserFrndsContacts extends AsyncTask<String, String, String> {
 		if(hasPhoneNumber > 0) {
 		    // Query and loop for every phone number of the contact
 			Cursor phoneCursor = contentResolver.query(PhoneCONTENT_URI, null, Phone_CONTACT_ID + " = ?", new String[] { frnd_Id }, null);
-			JSONArray phoneNumberDuplicateArray=new JSONArray(); /* Check Non-Duplicate */
+			ArrayList<String> phoneNumberDuplicateArray=new ArrayList<String>(); /* Check Non-Duplicate */
 		    while (phoneCursor.moveToNext()) {
-		    	String phoneNumber = phoneCursor.getString(phoneCursor.getColumnIndex(NUMBER)).replaceAll("[^\\d+]", "").replaceAll(" ", "");
+		    	String phoneNumber = phoneCursor.getString(phoneCursor.getColumnIndex(NUMBER)).replaceAll("[^\\d+]", "").replaceAll(" ", "").trim();
 		      boolean phoneNumberduplicateRecognizer=false;
-		      for(int index=0;index<phoneNumberDuplicateArray.length();index++){
-		    	if(phoneNumberDuplicateArray.get(index).toString().equalsIgnoreCase(phoneNumber)){
+		      for(int index=0;index<phoneNumberDuplicateArray.size();index++){
+		    	String phoneNumberToRecoginze=phoneNumberDuplicateArray.get(index).toString().trim();
+		    	if(phoneNumberToRecoginze.equalsIgnoreCase(phoneNumber) ||
+		    		 phoneNumber.contains(phoneNumberToRecoginze) || 
+		    		  phoneNumberToRecoginze.contains(phoneNumberToRecoginze)){
 		    		phoneNumberduplicateRecognizer=true;
 		    	}
 		      }
 		      if(!phoneNumberduplicateRecognizer){
-		        phoneNumberDuplicateArray.put(phoneNumber);
+		        phoneNumberDuplicateArray.add(phoneNumber);
+		        phoneNumberList.add(phoneNumber);
 		      }
 		      
 		    }
 		    phoneCursor.close();
-		    logger.info(usrContactCounter+". (contact_id="+frnd_Id+") "+youCall+" "+phoneNumberDuplicateArray.toString());
 		    
-		    JSONObject jsonObject=new JSONObject();
-		    jsonObject.put("frnd_Id", frnd_Id);
-		    jsonObject.put("phoneNumber", phoneNumberDuplicateArray);
-		    jsonArrayData.put(jsonObject);
+		    logger.info(usrContactCounter+". (contact_id="+frnd_Id+") "+youCall+" "+phoneNumberDuplicateArray.toString());
 		    
 		    /* Add Data into UsrFrndsInfo Table */
 		    String user_Id="";
 		    userFrndsInfo.data_add_userFrndsInfo(database, frnd_Id, youCall); /* */
-		    for(int index=0;index<phoneNumberDuplicateArray.length();index++){
+		    for(int index=0;index<phoneNumberDuplicateArray.size();index++){
 		      userFrndsContacts.data_add_userFrndsContacts(database, frnd_Id, phoneNumberDuplicateArray.get(index).toString(), user_Id);
 		    }
 		    
@@ -102,7 +96,7 @@ public class WSUserFrndsContacts extends AsyncTask<String, String, String> {
     
    } catch(Exception e){ logger.error("Exception: "+e.getMessage()); }
    finally { database.close();sqliteDatabase.close(); }
-   return jsonArrayData.toString();
+   return phoneNumberList.toString();
  }
 
 @Override
@@ -118,15 +112,14 @@ protected String doInBackground(String... arg0) {
 	/* */
 	String[] params = new URLGenerator().ws_userFrndInfoDetails(user_Id, phoneNumberList);
 	 WSUtility wsUtility = new WSUtility();
-	 return wsUtility.HttpURLPOSTResponse(params);
-	
+	 String response = wsUtility.HttpURLPOSTResponse(params);
+	 logger.info("response: "+response);
+	 WSRUserFrndsContacts wsrUserFrndsContacts = new WSRUserFrndsContacts(response, context);
+	  					   wsrUserFrndsContacts.funcTrigger_usrFrndsContacts();
+  return null;
 }
 
 @Override  
-protected void onPostExecute(String response) {
-  logger.info("response: "+response);
-  WSRUserFrndsContacts wsrUserFrndsContacts = new WSRUserFrndsContacts(response, context);
-  wsrUserFrndsContacts.funcTrigger_usrFrndsContacts();
-}
+protected void onPostExecute(String response) { }
 
 }

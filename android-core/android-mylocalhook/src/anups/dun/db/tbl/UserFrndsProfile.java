@@ -25,7 +25,8 @@ public class UserFrndsProfile {
 	public static final String COLUMN_10_ISFRIEND = "isFriend";
 	public static final String COLUMN_11_CREATEDON = "createdOn";
 	
-	public long data_add_userFrndsProfile(Database database, String user_Id, String userName, String surName, String name, String youCall, String relationship,
+	
+	public long data_add_userFrndsProfile(Database database, String user_Id, String userName, String surName, String name, String relationship,
 	  String country, String state, String location, String minlocation, String isContacts, String isFriend, String created_on){
 	  SQLiteDatabase db = database.getWritableDatabase();
 	  ContentValues contentValues = new ContentValues();
@@ -42,25 +43,44 @@ public class UserFrndsProfile {
 		  contentValues.put(UserFrndsProfile.COLUMN_10_ISFRIEND, isFriend);
 		  contentValues.put(UserFrndsProfile.COLUMN_11_CREATEDON, created_on);
 	  long id = db.insert(UserFrndsProfile.TBL_NAME, null, contentValues);
+	  db.close();
       return id; 
 	}
 	
-	public int data_update_userFrndsProfile(Database database, String user_Id, String userName, String surName, String name, String youCall, String relationship,
+	public long data_update_userFrndsProfile(Database database, String user_Id, String userName, String surName, String name, String relationship,
 			  String country, String state, String location, String minlocation, String isContacts, String isFriend, String created_on){
-		ContentValues contentValues = new ContentValues();
+		long executionId=0;
+		long dataCount = 0;
 		SQLiteDatabase db = database.getReadableDatabase();
-		if(user_Id != null){  contentValues.put(UserFrndsProfile.COLUMN_00_USERID, user_Id); }
-		if(userName != null){ contentValues.put(UserFrndsProfile.COLUMN_01_USERNAME, userName); }
-		if(surName != null){  contentValues.put(UserFrndsProfile.COLUMN_02_SURNAME, surName); }
-		if(name != null){  contentValues.put(UserFrndsProfile.COLUMN_03_NAME, name); }
-		if(relationship != null){  contentValues.put(UserFrndsProfile.COLUMN_04_RELATIONSHIP, relationship); }
-		if(country != null){  contentValues.put(UserFrndsProfile.COLUMN_05_COUNTRY, country);	}
-		if(state != null){  contentValues.put(UserFrndsProfile.COLUMN_06_STATE, state);  }
-		if(location != null){  contentValues.put(UserFrndsProfile.COLUMN_07_LOCATION, location);	 }
-		if(minlocation != null){  contentValues.put(UserFrndsProfile.COLUMN_08_MINLOCATION, minlocation); }
-		if(isContacts != null){  contentValues.put(UserFrndsProfile.COLUMN_09_ISCONTACTS, isContacts); }
-		if(isFriend != null){ contentValues.put(UserFrndsProfile.COLUMN_10_ISFRIEND, isFriend); }
-		if(created_on != null){  contentValues.put(UserFrndsProfile.COLUMN_11_CREATEDON, created_on); }
-	   return db.update(UserFrndsProfile.TBL_NAME, contentValues, UserFrndsProfile.COLUMN_00_USERID+" = ? ", new String[] { user_Id } );
+		 StringBuilder query01 = new StringBuilder();
+		 query01.append( "SELECT count(*) FROM ").append(UserFrndsProfile.TBL_NAME).append(" WHERE user_Id = '").append(user_Id).append("';");
+		 Cursor cursor01 =  db.rawQuery(query01.toString(), null ); 
+		 if (cursor01.moveToFirst()) {
+		   while ( !cursor01.isAfterLast() ) {
+			 dataCount=Long.parseLong(cursor01.getString(0));
+			 if(dataCount>0){
+				    ContentValues contentValues = new ContentValues();
+					if(user_Id != null){  contentValues.put(UserFrndsProfile.COLUMN_00_USERID, user_Id); }
+					if(userName != null){ contentValues.put(UserFrndsProfile.COLUMN_01_USERNAME, userName); }
+					if(surName != null){  contentValues.put(UserFrndsProfile.COLUMN_02_SURNAME, surName); }
+					if(name != null){  contentValues.put(UserFrndsProfile.COLUMN_03_NAME, name); }
+					if(relationship != null){  contentValues.put(UserFrndsProfile.COLUMN_04_RELATIONSHIP, relationship); }
+					if(country != null){  contentValues.put(UserFrndsProfile.COLUMN_05_COUNTRY, country);	}
+					if(state != null){  contentValues.put(UserFrndsProfile.COLUMN_06_STATE, state);  }
+					if(location != null){  contentValues.put(UserFrndsProfile.COLUMN_07_LOCATION, location);	 }
+					if(minlocation != null){  contentValues.put(UserFrndsProfile.COLUMN_08_MINLOCATION, minlocation); }
+					if(isContacts != null){  contentValues.put(UserFrndsProfile.COLUMN_09_ISCONTACTS, isContacts); }
+					if(isFriend != null){ contentValues.put(UserFrndsProfile.COLUMN_10_ISFRIEND, isFriend); }
+					if(created_on != null){  contentValues.put(UserFrndsProfile.COLUMN_11_CREATEDON, created_on); }
+					executionId = db.update(UserFrndsProfile.TBL_NAME, contentValues, UserFrndsProfile.COLUMN_00_USERID+" = ? ", new String[] { user_Id } );
+			 } else {
+				 executionId = new UserFrndsProfile().data_add_userFrndsProfile(database, user_Id, userName, surName, name, 
+						 relationship, country, state, location, minlocation, isContacts, isFriend, created_on);
+			 }
+			 cursor01.moveToNext();
+		   }
+		 }
+	  db.close();
+	  return executionId;
 	}
 }

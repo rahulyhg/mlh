@@ -8,10 +8,9 @@ $logger=Logger::getLogger("controller.module.app.notifications.php");
 
 if(isset($_POST["action"])){ 
   if($_POST["action"]=='SERVICE_USRDUMPFRNDS'){
-    if(isset($_POST["user_Id"]) && isset($_POST["phoneNumbers"])){
+    if(isset($_POST["user_Id"]) && isset($_POST["phoneNumbersList"])){
       $user_Id=$_POST["user_Id"];
-	  $user_Id='USR924357814934';
-	  $phoneNumbers=$_POST["phoneNumbers"];
+	  $phoneNumbers=trim($_POST["phoneNumbersList"]);
 	  $phoneNumbers=str_replace("[","",$phoneNumbers);
 	  $phoneNumbers=str_replace("]","",$phoneNumbers);
 	  $phoneNumbersArray=explode(",",$phoneNumbers);
@@ -23,6 +22,7 @@ if(isset($_POST["action"])){
 	  $content.='"data":'.$dbObj->getJSONData($query);
 	  $content.='}';
 	  echo $content;
+	  
 	} 
 	else {
 	   $content='MISSING ';

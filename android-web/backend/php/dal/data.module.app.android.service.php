@@ -1,8 +1,4 @@
 <?php
-$user_Id='USR924357814934';
-$phoneNumbersArray=array('+915345678191');
-$appAndroidServiceObj = new AppAndroidService();
-echo $appAndroidServiceObj->query_get_usrFrndsFromContactsData($user_Id, $phoneNumbersArray);
 class AppAndroidService {
 
   /***************************************************************************************************************************
@@ -15,23 +11,26 @@ class AppAndroidService {
     *  IsFriend = 1 and IsContact = 1, If MobileNumber is a friend and exists in his Contacts.
 	*  IsFriend = 1 and IsContact = 0, The MobileNumber not exists in Contacts but, he is a Friend of User
     */
-	 $sql="(SELECT user_account.user_Id, user_account.username, user_account.surName, user_account.name, ";
-	 $sql.=" (SELECT GROUP_CONCAT(user_contact.mcountrycode,user_contact.mobile) FROM user_contact  ";
-	 $sql.=" WHERE user_contact.user_Id=user_account.user_Id) As phoneNumbers, ";
+	 $sql="SELECT * FROM (";
+	 $sql.="(SELECT user_account.user_Id, user_account.username, user_account.surName, user_account.name, ";
+	 $sql.=" (SELECT CONCAT(user_contact.mcountrycode,'|',user_contact.mobile) FROM user_contact  ";
+	 $sql.=" WHERE user_contact.user_Id=user_account.user_Id) As phoneNumber, ";
 	 $sql.="user_account.minlocation, user_account.location, user_account.state, user_account.country, ";
-	 $sql.=" (SELECT count(*) FROM user_frnds WHERE (user_frnds.frnd1 = user_account.user_Id AND ";
-	 $sql.=" user_frnds.frnd2 = '".$user_Id."') OR (user_frnds.frnd1 ='".$user_Id."' AND ";
-	 $sql.=" user_frnds.frnd2 = user_account.user_Id)) As IsFriend ";
+	 $sql.="(SELECT IF(";
+	 $sql.="(SELECT count(*) FROM user_frnds WHERE (user_frnds.frnd1 = user_account.user_Id ";
+	 $sql.="AND user_frnds.frnd2 = '".$user_Id."') OR (user_frnds.frnd1 ='".$user_Id."'"; 
+	 $sql.="AND user_frnds.frnd2 = user_account.user_Id))>0, 'YES', 'NO')) As IsFriend, user_account.created_On ";
 	 $sql.=" FROM user_account, user_frnds WHERE (user_frnds.frnd1 = user_account.user_Id AND ";
 	 $sql.=" user_frnds.frnd2 = '".$user_Id."') OR (user_frnds.frnd1 ='".$user_Id."' AND ";
 	 $sql.=" user_frnds.frnd2 = user_account.user_Id))";
-	 $sql.=" UNION ";
+	 $sql.=" UNION "; 
      $sql.="(SELECT user_account.user_Id, user_account.username, user_account.surName, user_account.name, ";
-	 $sql.=" GROUP_CONCAT(user_contact.mcountrycode,user_contact.mobile) As phoneNumbers, ";
+	 $sql.=" CONCAT(user_contact.mcountrycode,'|',user_contact.mobile) As phoneNumber, ";
 	 $sql.="user_account.minlocation, user_account.location, user_account.state, user_account.country, ";
-	 $sql.=" (SELECT count(*) FROM user_frnds WHERE (user_frnds.frnd1 = user_account.user_Id AND ";
-	 $sql.=" user_frnds.frnd2 = '".$user_Id."') OR (user_frnds.frnd1 ='".$user_Id."' AND ";
-	 $sql.=" user_frnds.frnd2 = user_account.user_Id)) As IsFriend ";
+	 $sql.="(SELECT IF(";
+	 $sql.="(SELECT count(*) FROM user_frnds WHERE (user_frnds.frnd1 = user_account.user_Id ";
+	 $sql.="AND user_frnds.frnd2 = '".$user_Id."') OR (user_frnds.frnd1 ='".$user_Id."'"; 
+	 $sql.="AND user_frnds.frnd2 = user_account.user_Id))>0, 'YES', 'NO')) As IsFriend, user_account.created_On ";
 	 $sql.="FROM user_account, user_contact ";
 	 $sql.="WHERE user_account.user_Id=user_contact.user_Id AND ";
 	 $sql.="(";
@@ -40,8 +39,8 @@ class AppAndroidService {
 	   $sql.="As tmp)='".trim($phoneNumbersArray[$index])."' ";
 	   $sql.="OR user_contact.mobile='".trim($phoneNumbersArray[$index])."') OR";
 	  }
-	 $sql=chop($sql,"OR");
-	 $sql.="));";
+     $sql=chop($sql,"OR");
+	 $sql.="))) As tbl WHERE phoneNumber IS NOT NULL;";
 	return $sql;
    }
    

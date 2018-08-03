@@ -32,10 +32,10 @@ public class URLGenerator {
    return stringBuilder.toString();
  }
  
- public String[] ws_userFrndInfoDetails(String user_Id, String phoneNumbers){
+ public String[] ws_userFrndInfoDetails(String user_Id, String phoneNumbersList){
    String[] params = new String[2];
    params[0] = PROJECT_URL + "backend/php/dac/controller.module.app.android.service.php";
-   params[1] = "action=SERVICE_USRDUMPFRNDS&user_Id="+user_Id+"&phoneNumbers="+phoneNumbers;
+   params[1] = "action=SERVICE_USRDUMPFRNDS&user_Id="+user_Id+"&phoneNumbersList="+phoneNumbersList;
    return params;
  }
 }

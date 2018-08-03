@@ -5,6 +5,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.webkit.JavascriptInterface;
 import anups.dun.db.Database;
 import anups.dun.db.tbl.UserFrndsContacts;
+import anups.dun.db.tbl.UserFrndsInfo;
 import anups.dun.db.tbl.UserFrndsProfile;
 import anups.dun.util.AndroidLogger;
 
@@ -19,26 +20,28 @@ public class AppSQLiteUsrFrndsContactsInfo extends ActionBarActivity  {
 	}
 	
 	@JavascriptInterface
-	public long data_count_UsrFrndsContact(){
+	public long data_count_UserFrndsInfo(){
 	  long count = 0;
 	  try {
 		  Database database =Database.getInstance(mContext);
-		  UserFrndsContacts userFrndsContacts = new UserFrndsContacts();
-		 
+		  UserFrndsInfo userFrndsInfo = new UserFrndsInfo();
+		  count = userFrndsInfo.data_count_userFrndsInfo(database);
 		  database.close();
+		  logger.info("data_count_UserFrndsInfo: "+count);
 	  }
 	  catch(Exception e){ logger.error("Exception: "+e.getMessage()); }
 	  return count;
 	}
 	
 	@JavascriptInterface
-	public String data_get_UsrFrndsContact(String limit_start, String limit_end){
+	public String data_get_UserFrndsInfo(String limit_start, String limit_end){
 	 String jsonData = "";
 	 try {
 	  Database database =Database.getInstance(mContext);
-	  UserFrndsContacts userFrndsContacts = new UserFrndsContacts();
-	 
+	  UserFrndsInfo userFrndsInfo = new UserFrndsInfo();
+	  jsonData=userFrndsInfo.data_getAll_UsrFrndsInfo(database, limit_start, limit_end);
 	  database.close();
+	  logger.info("data_get_UserFrndsInfo: "+jsonData);
 	 }
 	 catch(Exception e){ logger.error("Exception: "+e.getMessage()); }
 	 return jsonData;

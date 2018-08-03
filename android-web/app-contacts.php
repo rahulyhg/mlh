@@ -15,10 +15,27 @@
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/bg-styles-common.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/app-contacts-bg-styles.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/app-contacts.js"></script>
+ <script type="text/javascript">
+ var AndroidSQLiteUsrFrndsInfo;
+$(document).ready(function(){
+ bgstyle();
+ $(".lang_"+USR_LANG).css('display','block');
+ alert(AndroidSQLiteUsrFrndsInfo.data_count_UserFrndsInfo());
+});
+function loadContacts(){
+  var num=AndroidSQLiteUsrFrndsInfo.data_count_UserFrndsInfo();
+  var content=AndroidSQLiteUsrFrndsInfo.data_get_UserFrndsInfo('0', num);
+  document.getElementById("loadData").innerHTML=content;
+}
+ </script>
 </head>
 <body>
  <?php include_once 'templates/api/api_loading.php'; ?>
  <?php include_once 'templates/api/api_header_init.php'; ?>
+ <button class="btn btn-primary" onclick="javascript:alert(AndroidSQLiteUsrFrndsInfo.data_count_UserFrndsInfo());">Contacts</button>
+ <button class="btn btn-primary" onclick="javascript:loadContacts();">loadContacts</button>
+ <div id="loadData">
  
-</body>
+ </div>
+ </body>
 </html>
