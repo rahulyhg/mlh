@@ -246,6 +246,7 @@ public void onRequestPermissionsResult(int requestCode, String[] permissions, in
   }
 }
 
+public static AppSessionManagement appSessionManagement;
 
 @SuppressLint("SetJavaScriptEnabled")
 @Override
@@ -260,7 +261,7 @@ protected void onCreate(Bundle savedInstanceState) {
  
  AppManagement appManagement = new AppManagement(this);
  AppNotifyManagement appNotifyManagement = new AppNotifyManagement(this);
- AppSessionManagement appSessionManagement = new AppSessionManagement(this);
+  appSessionManagement = new AppSessionManagement(this);
  AppSQLiteManagement appSQLiteManagement = new AppSQLiteManagement(this);
  
  AppSQLiteUsrFrndsContactsInfo appSQLiteUsrFrndsInfo = new AppSQLiteUsrFrndsContactsInfo(this);
@@ -308,8 +309,8 @@ protected void onCreate(Bundle savedInstanceState) {
  
  
  /* Alarm Services: */
- AlarmIntervalDay.getInstance(this);
- AlarmIntervalHour.getInstance(this);
+ // AlarmIntervalDay.getInstance(this);
+ // AlarmIntervalHour.getInstance(this);
  
  
  
@@ -333,13 +334,13 @@ protected void onCreate(Bundle savedInstanceState) {
  logger.info("USER_ID: "+USER_ID);
  
  /* Triggering Broadcast Receiver from Activity */
- Intent triggerWS = new Intent();
- triggerWS.setAction("anups.dun.services.OnBootCompleted");
- sendBroadcast(triggerWS);
+// Intent triggerWS = new Intent();
+// triggerWS.setAction("anups.dun.services.OnBootCompleted");
+// sendBroadcast(triggerWS);
  
 
- NetworkUtility networkUtility = new NetworkUtility(this);
- logger.info("IMEI: "+networkUtility.getDeviceIMEI());
+ // NetworkUtility networkUtility = new NetworkUtility(this);
+ // logger.info("IMEI: "+networkUtility.getDeviceIMEI());
  
  /* AUTHENTICATION REMINIDER : */  // awn.notify_authReminder();
  /* VERSION UPGRADE : */ // awn.notify_versionupgrade();
@@ -372,36 +373,36 @@ protected void onCreate(Bundle savedInstanceState) {
         ntwrkAvail=new NetworkUtility(this);
         if(ntwrkAvail.checkInternetConnection()) {
         	Intent intent = getIntent();
-        	Bundle extras = intent.getExtras();
+        	// Bundle extras = intent.getExtras();
         	Uri data = intent.getData();
         	
-        	String directURL=null;
-        	if(extras != null) {
+        	String directURL="file:///android_asset/www/app-default.html";
+        	/* if(extras != null) {
         		directURL = extras.getString("DIRECT_URL");
-        	}
-        	if(data!=null){
+        	} 
+        	else */ if(data!=null){
         		directURL = data.toString();
         	}
         	 logger.info("intent: "+intent);
+        	// logger.info("extras: "+extras);
         	 logger.info("data: "+data);
-        	 logger.info("Recieve Intent Status: "+extras);
-        	 
-        		if(directURL==null){
-        		    webView.loadUrl("file:///android_asset/www/app-default.html");
-        			
-        		} else {
-        			/* Google AdMob Ads */
-        			logger.info("MyLocalHook is invoking GoogleAdmobInterstitial Service...");
-       			 	String[] googleAdsParams = new String[1];
-       			 	googleAdsParams[0]=urlGenerator.ws_googleAds();
-       			 	WSGoogleAds wsGoogleAds = new WSGoogleAds(this);
-       			 	wsGoogleAds.execute(googleAdsParams);
-       			 
-        			 /* directURL */
-        			 logger.info("directURL: "+directURL);
-        			 webView.loadUrl(directURL);
-        		}
-        	
+        	 logger.info("directURL: "+directURL);
+        	// logger.info("Recieve Intent Status: "+extras);
+        	 	
+        		/* Google AdMob Ads */
+    			/*try {
+    			  logger.info("MyLocalHook is invoking GoogleAdmobInterstitial Service...");
+   			 	  String[] googleAdsParams = new String[1];
+   			 	           googleAdsParams[0]=urlGenerator.ws_googleAds();
+   			 	  WSGoogleAds wsGoogleAds = new WSGoogleAds(this);
+   			 	              wsGoogleAds.execute(googleAdsParams);
+    			}
+    			catch(Exception e){ logger.error("Exception: "+e.getMessage()); }
+    			*/
+        	    try {
+        		 webView.loadUrl(directURL);
+        	    }
+        	    catch(Exception e){ logger.error("Exception: "+e.getMessage()); }
         }
         else {
         	webView.loadUrl("file:///android_asset/www/network_state.html");

@@ -20,7 +20,7 @@ public class UserFrndsInfo {
 	  StringBuilder schema_userFrndsInfo = new StringBuilder();
 	  				schema_userFrndsInfo.append("CREATE TABLE IF NOT EXISTS ").append(UserFrndsInfo.TBL_NAME).append("( ");
 	  				schema_userFrndsInfo.append(UserFrndsInfo.COLUMN_00_FRNDID).append(" INTEGER PRIMARY KEY, ");
-	  				schema_userFrndsInfo.append(UserFrndsInfo.COLUMN_01_YOUCALL).append(" TEXT, ");
+	  				schema_userFrndsInfo.append(UserFrndsInfo.COLUMN_01_YOUCALL).append(" TEXT ");
 	  				schema_userFrndsInfo.append(");");
 	  
 	  /* UserFrndsProfile */

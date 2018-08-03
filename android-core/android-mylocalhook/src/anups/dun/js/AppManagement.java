@@ -1,5 +1,7 @@
 package anups.dun.js;
 
+import java.io.File;
+
 import android.app.AlertDialog;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -94,7 +96,7 @@ public class AppManagement extends ActionBarActivity {
 	@JavascriptInterface
 	public void loadAndroidWebScreen(String directURL){
 		Intent intent = new Intent(mContext, AndroidWebScreen.class);
-		intent.putExtra("DIRECT_URL", directURL);
+			   intent.setData(Uri.parse(directURL));
 		mContext.startActivity(intent);
 	}
 	

@@ -1,5 +1,6 @@
 package anups.dun.util;
 
+import java.io.File;
 import java.util.Random;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
@@ -53,7 +54,8 @@ public class PushNotification {
 		   Intent resultIntent=null;
 		   if(inapp) {
 		       resultIntent = new Intent(context, AndroidWebScreen.class);
-		          resultIntent.putExtra("DIRECT_URL",directURL.toString());
+		       resultIntent.setData(Uri.parse(directURL));
+		         // resultIntent.putExtra("DIRECT_URL",directURL.toString());
 		   }  else {
 			   resultIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(directURL.toString()));
 		   }
@@ -114,7 +116,8 @@ public class PushNotification {
 		   Intent resultIntent=null;
 		   if(inapp) {
 		       resultIntent = new Intent(context, AndroidWebScreen.class);
-		          resultIntent.putExtra("DIRECT_URL",directURL.toString());
+		       resultIntent.setData(Uri.parse(directURL));
+		      //    resultIntent.putExtra("DIRECT_URL",directURL.toString());
 		   }  else {
 			   resultIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(directURL.toString()));
 		   }

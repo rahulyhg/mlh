@@ -1,5 +1,6 @@
 package anups.dun.db;
 
+import anups.dun.app.AndroidWebScreen;
 import anups.dun.constants.BusinessConstants;
 import anups.dun.db.tbl.UserFrndsContacts;
 import anups.dun.db.tbl.UserFrndsInfo;
@@ -20,8 +21,9 @@ public class Database extends SQLiteOpenHelper {
 	
 	public static final String DATABASE_FILE = "Mylocalhook.db";
     public String DATABASE_FILEPATH;
+	 
     public static synchronized Database getInstance(Context context) {
-	  if (sInstance == null) {
+      if (sInstance == null) {
 		  sInstance = new Database(context.getApplicationContext()); 
 	  }
 	  return sInstance;
@@ -33,8 +35,7 @@ public class Database extends SQLiteOpenHelper {
 	}
 
     public SQLiteDatabase connectDatabase(){
-      AppSessionManagement appSessionManagement = new AppSessionManagement(context);
-	  String externalDir = appSessionManagement.getAndroidSession(BusinessConstants.ANDROID_PROJECTPATH);
+      String externalDir = AndroidWebScreen.appSessionManagement.getAndroidSession(BusinessConstants.ANDROID_PROJECTPATH);
 	  DATABASE_FILEPATH=externalDir+"//"+DATABASE_FILE;
 	  SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase(DATABASE_FILEPATH, null);
 	  return db;
