@@ -375,8 +375,8 @@ protected void onCreate(Bundle savedInstanceState) {
         	Intent intent = getIntent();
         	// Bundle extras = intent.getExtras();
         	Uri data = intent.getData();
-        	
-        	String directURL="file:///android_asset/www/app-default.html";
+        	String directURL="http://192.168.1.4/mlh/android-web/app-contacts.php";
+        	// String directURL="file:///android_asset/www/app-default.html";
         	/* if(extras != null) {
         		directURL = extras.getString("DIRECT_URL");
         	} 

@@ -13,7 +13,7 @@ class AppAndroidService {
     */
 	 $sql="SELECT * FROM (";
 	 $sql.="(SELECT user_account.user_Id, user_account.username, user_account.surName, user_account.name, ";
-	 $sql.=" (SELECT CONCAT(user_contact.mcountrycode,'|',user_contact.mobile) FROM user_contact  ";
+	 $sql.=" (SELECT CONCAT(user_contact.mcountrycode,',',user_contact.mobile) FROM user_contact  ";
 	 $sql.=" WHERE user_contact.user_Id=user_account.user_Id) As phoneNumber, ";
 	 $sql.="user_account.minlocation, user_account.location, user_account.state, user_account.country, ";
 	 $sql.="(SELECT IF(";
@@ -25,7 +25,7 @@ class AppAndroidService {
 	 $sql.=" user_frnds.frnd2 = user_account.user_Id))";
 	 $sql.=" UNION "; 
      $sql.="(SELECT user_account.user_Id, user_account.username, user_account.surName, user_account.name, ";
-	 $sql.=" CONCAT(user_contact.mcountrycode,'|',user_contact.mobile) As phoneNumber, ";
+	 $sql.=" CONCAT(user_contact.mcountrycode,',',user_contact.mobile) As phoneNumber, ";
 	 $sql.="user_account.minlocation, user_account.location, user_account.state, user_account.country, ";
 	 $sql.="(SELECT IF(";
 	 $sql.="(SELECT count(*) FROM user_frnds WHERE (user_frnds.frnd1 = user_account.user_Id ";

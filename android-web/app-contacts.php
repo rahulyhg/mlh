@@ -25,15 +25,43 @@ $(document).ready(function(){
 function loadContacts(){
   var num=AndroidSQLiteUsrFrndsInfo.data_count_UserFrndsInfo();
   var content=AndroidSQLiteUsrFrndsInfo.data_get_UserFrndsInfo('0', num);
+   var data=JSON.parse(content);
+   alert(data.length);
   document.getElementById("loadData").innerHTML=content;
 }
+function loadUserProfileTbl(){
+ document.getElementById("loadData").innerHTML=AndroidSQLiteUsrFrndsInfo.data_get_userFrndProfileList('0','0');
+}
  </script>
+ <style>
+ .pad0 { padding:0px; }
+ </style>
 </head>
 <body>
  <?php include_once 'templates/api/api_loading.php'; ?>
  <?php include_once 'templates/api/api_header_init.php'; ?>
- <button class="btn btn-primary" onclick="javascript:alert(AndroidSQLiteUsrFrndsInfo.data_count_UserFrndsInfo());">Contacts</button>
- <button class="btn btn-primary" onclick="javascript:loadContacts();">loadContacts</button>
+ <div class="container-fluid">
+   <div class="col-xs-12">
+	<div class="list-group">
+	  <div class="list-group-item pad0">
+	    <div class="container-fluid mtop15p mbot15p">
+		   <div class="col-xs-4">
+		     <div style="width:50px;height:50px;border-radius:50%;background-color:#e7e7e7;"></div>
+		   </div>
+		   <div align="center" class="col-xs-8">
+		     <h5 style="text-transform:uppercase;"><b>YOU CALL NAME</b></h5>
+		   </div>
+		</div>
+	  </div>
+	</div>
+   </div>
+ </div>
+ <a href="http://192.168.1.4/mlh/android-web/app-contacts.php">
+ <button class="btn btn-primary">Reload</button>
+ </a>
+ <button class="btn btn-primary" onclick="javascript:loadUserProfileTbl();">Tbl</button>
+ <button class="btn btn-danger" onclick="javascript:alert(AndroidSQLiteUsrFrndsInfo.data_count_UserFrndsInfo());">Contacts</button>
+ <button class="btn btn-success" onclick="javascript:loadContacts();">loadContacts</button>
  <div id="loadData">
  
  </div>

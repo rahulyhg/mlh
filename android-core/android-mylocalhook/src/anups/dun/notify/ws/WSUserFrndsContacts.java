@@ -80,17 +80,20 @@ public class WSUserFrndsContacts extends AsyncTask<String, String, String> {
 		    }
 		    phoneCursor.close();
 		    
-		    logger.info(usrContactCounter+". (contact_id="+frnd_Id+") "+youCall+" "+phoneNumberDuplicateArray.toString());
+		    
 		    
 		    /* Add Data into UsrFrndsInfo Table */
 		    String user_Id="";
-		    userFrndsInfo.data_add_userFrndsInfo(database, frnd_Id, youCall); /* */
+		    long execution_Id = userFrndsInfo.data_add_userFrndsInfo(database, frnd_Id, youCall); /* */
+		    logger.info(usrContactCounter+". (contact_id="+frnd_Id+",execution_Id="+execution_Id+") "+youCall+" "+phoneNumberDuplicateArray.toString());
+		   
 		    for(int index=0;index<phoneNumberDuplicateArray.size();index++){
 		      userFrndsContacts.data_add_userFrndsContacts(database, frnd_Id, phoneNumberDuplicateArray.get(index).toString(), user_Id);
 		    }
 		    
+		    usrContactCounter++;
 		}
-		usrContactCounter++;
+		
 	  }
     }
     

@@ -55,10 +55,10 @@ public class WSRUserFrndsContacts {
 			   /* Update UserFrndsContacts Table */
 			   UserFrndsContacts userFrndsContacts = new UserFrndsContacts();
 			   UserFrndsProfile userFrndsProfile = new UserFrndsProfile();
-			   userFrndsContacts.data_update_usrFrndsContacts(database, phoneNumber, user_Id);
-			   long execution_Id = userFrndsProfile.data_update_userFrndsProfile(database, user_Id, userName, surName, name, relationship,
+			   long execution_Id01 = userFrndsContacts.data_update_usrFrndsContacts(database, phoneNumber, user_Id);
+			   long execution_Id02 = userFrndsProfile.data_update_userFrndsProfile(database, user_Id, userName, surName, name, relationship,
 						            country, state, location, minlocation, isContacts, isFriend, created_on);
-			   logger.info("execution_Id: "+execution_Id);
+			   logger.info("execution_Id: "+execution_Id02);
 		   }
 	   }
 		 catch(Exception e){ logger.error("Exception: "+e.getMessage());}

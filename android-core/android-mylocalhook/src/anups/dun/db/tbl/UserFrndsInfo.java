@@ -69,7 +69,6 @@ public class UserFrndsInfo {
 	    contentValues.put(COLUMN_00_FRNDID, frnd_Id);
 		contentValues.put(COLUMN_01_YOUCALL, youCall);
 	 long id = db.insert(UserFrndsInfo.TBL_NAME, null, contentValues);
-	 db.close();
      return id; 
 	}
 
@@ -77,7 +76,6 @@ public class UserFrndsInfo {
 		ContentValues contentValues = new ContentValues();
 		SQLiteDatabase db = database.getReadableDatabase();
 	      if(youCall !=null){ contentValues.put(UserFrndsInfo.COLUMN_01_YOUCALL, youCall); }
-	      db.close();
 	   return db.update(UserFrndsInfo.TBL_NAME, contentValues, UserFrndsInfo.COLUMN_00_FRNDID+" = ? ", new String[] { frnd_Id } );
 	}
 	
@@ -93,7 +91,6 @@ public class UserFrndsInfo {
 			 cursor01.moveToNext();
 		   }
 		 }
-		 db.close();
 		 return dataCount;
 	}
 	
@@ -107,19 +104,38 @@ public class UserFrndsInfo {
 		     query01.append(" FROM ").append(UserFrndsInfo.TBL_NAME).append(" LIMIT ");
 		     query01.append(limit_start).append(",").append(limit_end);
 		Cursor cursor01 =  sqliteDatabase.rawQuery(query01.toString(), null );
-		
+		int indexing = 0;
 		if(cursor01.moveToFirst()) {
 	      while(!cursor01.isAfterLast()) {
+	    	  indexing++;
 	    	  String frnd_Id=cursor01.getString(0);
 			  String youCall=cursor01.getString(1);  
 			  JSONObject jsonObjectData = new JSONObject();
+			  			 jsonObjectData.put("index", indexing);
 			  			 jsonObjectData.put("frnd_Id", frnd_Id);
 			  			 jsonObjectData.put("youCall", youCall);
+			  /* Single Account, Multiple PhoneNumbers (or) Multiple Accounts, Multiple PhoneNumbers */
 			  JSONArray jsonArrayAccData = new JSONArray();
 			  StringBuilder query02 = new StringBuilder();
+			  
 			  query02.append("SELECT ");
-			  query02.append(UserFrndsProfile.TBL_NAME).append(".").append(UserFrndsProfile.COLUMN_00_USERID).append(",");
-			  query02.append(UserFrndsContacts.TBL_NAME).append(".").append(UserFrndsContacts.COLUMN_02_PHONENUMBER).append(",");
+			  query02.append("tbl.").append(UserFrndsProfile.COLUMN_00_USERID).append(", ");
+			  query02.append("GROUP_CONCAT(tbl.").append(UserFrndsContacts.COLUMN_02_PHONENUMBER).append("), ");
+			  query02.append("tbl.").append(UserFrndsProfile.COLUMN_01_USERNAME).append(", ");
+			  query02.append("tbl.").append(UserFrndsProfile.COLUMN_02_SURNAME).append(", ");
+			  query02.append("tbl.").append(UserFrndsProfile.COLUMN_03_NAME).append(", ");
+			  query02.append("tbl.").append(UserFrndsProfile.COLUMN_04_RELATIONSHIP).append(", ");
+			  query02.append("tbl.").append(UserFrndsProfile.COLUMN_05_COUNTRY).append(", ");
+			  query02.append("tbl.").append(UserFrndsProfile.COLUMN_06_STATE).append(", ");
+			  query02.append("tbl.").append(UserFrndsProfile.COLUMN_07_LOCATION).append(", ");
+			  query02.append("tbl.").append(UserFrndsProfile.COLUMN_08_MINLOCATION).append(", ");
+			  query02.append("tbl.").append(UserFrndsProfile.COLUMN_09_ISCONTACTS).append(", ");
+			  query02.append("tbl.").append(UserFrndsProfile.COLUMN_10_ISFRIEND).append(", ");
+			  query02.append("tbl.").append(UserFrndsProfile.COLUMN_11_CREATEDON).append(" ");
+			  query02.append("FROM ");
+			  query02.append("(SELECT DISTINCT(");
+			  query02.append(UserFrndsContacts.TBL_NAME).append(".").append(UserFrndsContacts.COLUMN_02_PHONENUMBER).append("),");
+			  query02.append(UserFrndsProfile.TBL_NAME).append(".").append(UserFrndsProfile.COLUMN_00_USERID).append(", ");
 			  query02.append(UserFrndsProfile.TBL_NAME).append(".").append(UserFrndsProfile.COLUMN_01_USERNAME).append(",");
 			  query02.append(UserFrndsProfile.TBL_NAME).append(".").append(UserFrndsProfile.COLUMN_02_SURNAME).append(",");
 			  query02.append(UserFrndsProfile.TBL_NAME).append(".").append(UserFrndsProfile.COLUMN_03_NAME).append(",");
@@ -135,7 +151,10 @@ public class UserFrndsInfo {
 			  query02.append(UserFrndsContacts.TBL_NAME).append(",").append(UserFrndsProfile.TBL_NAME).append(" WHERE ");
 			  query02.append(UserFrndsContacts.TBL_NAME).append(".").append(UserFrndsContacts.COLUMN_01_FRNDID).append("=").append(frnd_Id).append(" AND ");
 			  query02.append(UserFrndsContacts.TBL_NAME).append(".").append(UserFrndsContacts.COLUMN_03_USERID);
-			  query02.append("=").append(UserFrndsProfile.TBL_NAME).append(".").append(UserFrndsProfile.COLUMN_00_USERID);
+			  query02.append("=").append(UserFrndsProfile.TBL_NAME).append(".").append(UserFrndsProfile.COLUMN_00_USERID).append(") As tbl ");			  
+			  query02.append(" GROUP BY tbl.").append(UserFrndsProfile.COLUMN_00_USERID);
+			  query02.append(" HAVING COUNT(tbl.").append(UserFrndsProfile.COLUMN_00_USERID).append(")>0");
+			  
 			  Cursor cursor02 =  sqliteDatabase.rawQuery(query02.toString(), null );
 			  if(cursor02.moveToFirst()) {
 			      while(!cursor02.isAfterLast()) {
@@ -171,14 +190,14 @@ public class UserFrndsInfo {
 			    	  cursor02.moveToNext();
 			      }
 			  }
-			jsonObjectData.put("accounts", jsonArrayAccData);
-			jsonArrayData.put(jsonObjectData);
+			jsonObjectData.put("accounts", jsonArrayAccData); 
+			jsonArrayData.put(jsonObjectData); 
 		    cursor01.moveToNext();
 		  }
 		}
 		} catch(Exception e){ logger.error("Exception: "+e.getMessage()); }
-		  finally { sqliteDatabase.close(); }
 		logger.info("jsonArrayData: "+jsonArrayData.toString());
 		return jsonArrayData.toString();
 	}
+	
 }

@@ -1,5 +1,8 @@
 package anups.dun.db.tbl;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -43,7 +46,6 @@ public class UserFrndsProfile {
 		  contentValues.put(UserFrndsProfile.COLUMN_10_ISFRIEND, isFriend);
 		  contentValues.put(UserFrndsProfile.COLUMN_11_CREATEDON, created_on);
 	  long id = db.insert(UserFrndsProfile.TBL_NAME, null, contentValues);
-	  db.close();
       return id; 
 	}
 	
@@ -53,7 +55,9 @@ public class UserFrndsProfile {
 		long dataCount = 0;
 		SQLiteDatabase db = database.getReadableDatabase();
 		 StringBuilder query01 = new StringBuilder();
-		 query01.append( "SELECT count(*) FROM ").append(UserFrndsProfile.TBL_NAME).append(" WHERE user_Id = '").append(user_Id).append("';");
+		 query01.append( "SELECT count(*) FROM ").append(UserFrndsProfile.TBL_NAME);
+		 query01.append(" WHERE user_Id = '").append(user_Id).append("';");
+		 logger.info("Update: "+query01);
 		 Cursor cursor01 =  db.rawQuery(query01.toString(), null ); 
 		 if (cursor01.moveToFirst()) {
 		   while ( !cursor01.isAfterLast() ) {
@@ -80,7 +84,7 @@ public class UserFrndsProfile {
 			 cursor01.moveToNext();
 		   }
 		 }
-	  db.close();
 	  return executionId;
 	}
+	
 }

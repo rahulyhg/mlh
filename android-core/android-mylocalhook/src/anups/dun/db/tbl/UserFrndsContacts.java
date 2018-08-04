@@ -28,15 +28,16 @@ org.apache.log4j.Logger logger = AndroidLogger.getLogger(UserFrndsContacts.class
 	
 	public long data_update_usrFrndsContacts(Database database, String phoneNumber, String user_Id){
 		long execution_Id=0;
-		String[] phoneNumberArry=phoneNumber.split("|");
+		String[] phoneNumberArry=phoneNumber.split(",");
 		String mCountryCode=phoneNumberArry[0];
 		String mobile=phoneNumberArry[1];
-
+		logger.info("phoneNumberArry: "+phoneNumber+" mCountryCode: "+mCountryCode+" mobile: "+mobile);
 		SQLiteDatabase db = database.getReadableDatabase();
 		 StringBuilder query01 = new StringBuilder();
 		 query01.append( "SELECT ").append(UserFrndsContacts.COLUMN_00_CONTACTID).append(" FROM ").append(UserFrndsContacts.TBL_NAME);
 		 query01.append(" WHERE ").append(UserFrndsContacts.COLUMN_02_PHONENUMBER).append(" = '").append(mCountryCode+mobile).append("' OR ");
 		 query01.append(UserFrndsContacts.COLUMN_02_PHONENUMBER).append(" LIKE '%").append(mobile).append("%';");
+		logger.info("Update: "+query01);
 		 Cursor cursor01 =  db.rawQuery(query01.toString(), null ); 
 		 if (cursor01.moveToFirst()) {
 		   while ( !cursor01.isAfterLast() ) {
