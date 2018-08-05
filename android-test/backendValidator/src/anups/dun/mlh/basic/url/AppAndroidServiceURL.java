@@ -12,14 +12,14 @@ import anups.dun.mlh.basic.data.AppAndroidServiceData;
  * @author N.L.N.Rao
  */
 public class AppAndroidServiceURL {
-  public static final String SERVICE_URL="http://localhost/mlh-backend/backend/php/dac/controller.module.app.android.service.php";
+  public static final String SERVICE_URL="http://localhost/mlh/android-web/backend/php/dac/controller.module.app.android.service.php";
   public String userDumpFriendsServiceParameters(){
      AppAndroidServiceData appAndroidServiceData = new AppAndroidServiceData();
      AppAndroidServiceData.UserDumpFriendsService userDumpFriendsService = appAndroidServiceData.new UserDumpFriendsService();
      StringBuilder params = new StringBuilder();
      params.append("action=").append("SERVICE_USRDUMPFRNDS").append("&");
      params.append("user_Id=").append(userDumpFriendsService.USER_ID).append("&");
-     params.append("phoneNumbers=[");
+     params.append("phoneNumbersList=[");
      for(int index=0;index<userDumpFriendsService.PHONENUMBERS.length;index++){
        params.append(userDumpFriendsService.PHONENUMBERS[index].toString()).append(",");
      }

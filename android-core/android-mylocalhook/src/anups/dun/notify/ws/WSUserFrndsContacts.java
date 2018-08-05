@@ -1,6 +1,9 @@
 package anups.dun.notify.ws;
 
 import java.util.ArrayList;
+
+import org.apache.commons.lang3.StringUtils;
+
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
@@ -66,9 +69,8 @@ public class WSUserFrndsContacts extends AsyncTask<String, String, String> {
 		      boolean phoneNumberduplicateRecognizer=false;
 		      for(int index=0;index<phoneNumberDuplicateArray.size();index++){
 		    	String phoneNumberToRecoginze=phoneNumberDuplicateArray.get(index).toString().trim();
-		    	if(phoneNumberToRecoginze.equalsIgnoreCase(phoneNumber) ||
-		    		 phoneNumber.contains(phoneNumberToRecoginze) || 
-		    		  phoneNumberToRecoginze.contains(phoneNumberToRecoginze)){
+		    	if(phoneNumber.contains(phoneNumberToRecoginze) || 
+		    		  phoneNumberToRecoginze.contains(phoneNumber)){
 		    		phoneNumberduplicateRecognizer=true;
 		    	}
 		      }
@@ -88,7 +90,7 @@ public class WSUserFrndsContacts extends AsyncTask<String, String, String> {
 		    logger.info(usrContactCounter+". (contact_id="+frnd_Id+",execution_Id="+execution_Id+") "+youCall+" "+phoneNumberDuplicateArray.toString());
 		   
 		    for(int index=0;index<phoneNumberDuplicateArray.size();index++){
-		      userFrndsContacts.data_add_userFrndsContacts(database, frnd_Id, phoneNumberDuplicateArray.get(index).toString(), user_Id);
+		      userFrndsContacts.data_add_userFrndsContacts(database, frnd_Id, phoneNumberDuplicateArray.get(index).toString(), user_Id,"YES","NO");
 		    }
 		    
 		    usrContactCounter++;

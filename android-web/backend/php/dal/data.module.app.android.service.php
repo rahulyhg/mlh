@@ -11,10 +11,21 @@ class AppAndroidService {
     *  IsFriend = 1 and IsContact = 1, If MobileNumber is a friend and exists in his Contacts.
 	*  IsFriend = 1 and IsContact = 0, The MobileNumber not exists in Contacts but, he is a Friend of User
     */
-	 $sql="SELECT * FROM (";
+	 $phoneNumbers=implode(",",$phoneNumbersArray);
+	 $sql="SELECT ";
+	 $sql.="tbl.user_Id, tbl.username, tbl.surName, tbl.name, tbl.phoneNumber, tbl.profile_pic, ";
+	 $sql.="tbl.minlocation, tbl.location, tbl.state, tbl.country, tbl.IsFriend, tbl.created_On, ";
+	 
+	 $sql.="(SELECT IF (";
+	 $sql.="(SELECT FIND_IN_SET((SELECT REPLACE(tbl.phoneNumber, ',', '')),('".$phoneNumbers."')) )>0  OR ";
+	 $sql.="(SELECT FIND_IN_SET((SELECT REPLACE((SELECT REPLACE(tbl.phoneNumber, ',', '')),'+','')),('".$phoneNumbers."')) )>0  OR ";
+	 $sql.="(SELECT FIND_IN_SET((SELECT SUBSTRING_INDEX(tbl.phoneNumber, ',', -1)),('".$phoneNumbers."'))) >0,'YES','NO')) ";
+	 $sql.=" As IsContacts  ";
+	 
+	 $sql.="FROM (";
 	 $sql.="(SELECT user_account.user_Id, user_account.username, user_account.surName, user_account.name, ";
 	 $sql.=" (SELECT CONCAT(user_contact.mcountrycode,',',user_contact.mobile) FROM user_contact  ";
-	 $sql.=" WHERE user_contact.user_Id=user_account.user_Id) As phoneNumber, ";
+	 $sql.=" WHERE user_contact.user_Id=user_account.user_Id) As phoneNumber, user_account.profile_pic, ";
 	 $sql.="user_account.minlocation, user_account.location, user_account.state, user_account.country, ";
 	 $sql.="(SELECT IF(";
 	 $sql.="(SELECT count(*) FROM user_frnds WHERE (user_frnds.frnd1 = user_account.user_Id ";
@@ -25,8 +36,9 @@ class AppAndroidService {
 	 $sql.=" user_frnds.frnd2 = user_account.user_Id))";
 	 $sql.=" UNION "; 
      $sql.="(SELECT user_account.user_Id, user_account.username, user_account.surName, user_account.name, ";
-	 $sql.=" CONCAT(user_contact.mcountrycode,',',user_contact.mobile) As phoneNumber, ";
+	 $sql.=" CONCAT(user_contact.mcountrycode,',',user_contact.mobile) As phoneNumber, user_account.profile_pic, ";
 	 $sql.="user_account.minlocation, user_account.location, user_account.state, user_account.country, ";
+	 
 	 $sql.="(SELECT IF(";
 	 $sql.="(SELECT count(*) FROM user_frnds WHERE (user_frnds.frnd1 = user_account.user_Id ";
 	 $sql.="AND user_frnds.frnd2 = '".$user_Id."') OR (user_frnds.frnd1 ='".$user_Id."'"; 

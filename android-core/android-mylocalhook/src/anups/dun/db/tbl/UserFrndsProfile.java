@@ -24,13 +24,11 @@ public class UserFrndsProfile {
 	public static final String COLUMN_06_STATE = "state";
 	public static final String COLUMN_07_LOCATION = "location";
 	public static final String COLUMN_08_MINLOCATION = "minlocation";
-	public static final String COLUMN_09_ISCONTACTS = "isContacts";
-	public static final String COLUMN_10_ISFRIEND = "isFriend";
-	public static final String COLUMN_11_CREATEDON = "createdOn";
-	
+	public static final String COLUMN_09_CREATEDON = "createdOn";
+	public static final String COLUMN_10_PROFILEPIC = "profile_pic";
 	
 	public long data_add_userFrndsProfile(Database database, String user_Id, String userName, String surName, String name, String relationship,
-	  String country, String state, String location, String minlocation, String isContacts, String isFriend, String created_on){
+	  String country, String state, String location, String minlocation, String created_on, String profile_pic){
 	  SQLiteDatabase db = database.getWritableDatabase();
 	  ContentValues contentValues = new ContentValues();
 	      contentValues.put(UserFrndsProfile.COLUMN_00_USERID, user_Id);
@@ -42,15 +40,14 @@ public class UserFrndsProfile {
 		  contentValues.put(UserFrndsProfile.COLUMN_06_STATE, state);
 		  contentValues.put(UserFrndsProfile.COLUMN_07_LOCATION, location);	
 		  contentValues.put(UserFrndsProfile.COLUMN_08_MINLOCATION, minlocation);
-		  contentValues.put(UserFrndsProfile.COLUMN_09_ISCONTACTS, isContacts);
-		  contentValues.put(UserFrndsProfile.COLUMN_10_ISFRIEND, isFriend);
-		  contentValues.put(UserFrndsProfile.COLUMN_11_CREATEDON, created_on);
+		  contentValues.put(UserFrndsProfile.COLUMN_09_CREATEDON, created_on);
+		  contentValues.put(UserFrndsProfile.COLUMN_10_PROFILEPIC, profile_pic);
 	  long id = db.insert(UserFrndsProfile.TBL_NAME, null, contentValues);
       return id; 
 	}
 	
 	public long data_update_userFrndsProfile(Database database, String user_Id, String userName, String surName, String name, String relationship,
-			  String country, String state, String location, String minlocation, String isContacts, String isFriend, String created_on){
+			  String country, String state, String location, String minlocation, String created_on, String profile_pic){
 		long executionId=0;
 		long dataCount = 0;
 		SQLiteDatabase db = database.getReadableDatabase();
@@ -73,13 +70,12 @@ public class UserFrndsProfile {
 					if(state != null){  contentValues.put(UserFrndsProfile.COLUMN_06_STATE, state);  }
 					if(location != null){  contentValues.put(UserFrndsProfile.COLUMN_07_LOCATION, location);	 }
 					if(minlocation != null){  contentValues.put(UserFrndsProfile.COLUMN_08_MINLOCATION, minlocation); }
-					if(isContacts != null){  contentValues.put(UserFrndsProfile.COLUMN_09_ISCONTACTS, isContacts); }
-					if(isFriend != null){ contentValues.put(UserFrndsProfile.COLUMN_10_ISFRIEND, isFriend); }
-					if(created_on != null){  contentValues.put(UserFrndsProfile.COLUMN_11_CREATEDON, created_on); }
+					if(created_on != null){  contentValues.put(UserFrndsProfile.COLUMN_09_CREATEDON, created_on); }
+					if(profile_pic != null) { contentValues.put(UserFrndsProfile.COLUMN_10_PROFILEPIC, profile_pic); }
 					executionId = db.update(UserFrndsProfile.TBL_NAME, contentValues, UserFrndsProfile.COLUMN_00_USERID+" = ? ", new String[] { user_Id } );
 			 } else {
 				 executionId = new UserFrndsProfile().data_add_userFrndsProfile(database, user_Id, userName, surName, name, 
-						 relationship, country, state, location, minlocation, isContacts, isFriend, created_on);
+						 relationship, country, state, location, minlocation, created_on,profile_pic);
 			 }
 			 cursor01.moveToNext();
 		   }

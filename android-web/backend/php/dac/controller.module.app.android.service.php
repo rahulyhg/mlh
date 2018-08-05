@@ -9,15 +9,21 @@ $logger=Logger::getLogger("controller.module.app.notifications.php");
 if(isset($_POST["action"])){ 
   if($_POST["action"]=='SERVICE_USRDUMPFRNDS'){
     if(isset($_POST["user_Id"]) && isset($_POST["phoneNumbersList"])){
-      $user_Id=$_POST["user_Id"];
+	 /*{"data":[{"user_Id":"USR273782437846","username":"geetha","surName":"Nellutla","name":"Geetha Rani ",
+	  *          "phoneNumber":"+91|9959633209","minlocation":"L. B. Nagar","location":"Ranga Reddy District",
+	  *          "state":"Telangana","country":"India","IsFriend":"NO"},{...}]}
+      */
+	  $user_Id=$_POST["user_Id"];
 	  $phoneNumbers=trim($_POST["phoneNumbersList"]);
 	  $phoneNumbers=str_replace("[","",$phoneNumbers);
 	  $phoneNumbers=str_replace("]","",$phoneNumbers);
 	  $phoneNumbersArray=explode(",",$phoneNumbers);
-	
+	  $phoneNumbersArray=array_map('trim',$phoneNumbersArray);
+
 	  $appAndroidService = new AppAndroidService();
 	  $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
 	  $query=$appAndroidService->query_get_usrFrndsFromContactsData($user_Id, $phoneNumbersArray);
+	 // echo $query;
 	  $content='{';
 	  $content.='"data":'.$dbObj->getJSONData($query);
 	  $content.='}';

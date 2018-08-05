@@ -1,5 +1,7 @@
 package anups.dun.db.tbl;
 
+import java.util.ArrayList;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -38,9 +40,8 @@ public class UserFrndsInfo {
 	  				schema_userFrndsProfile.append(UserFrndsProfile.COLUMN_06_STATE).append(" TEXT, ");
 	  				schema_userFrndsProfile.append(UserFrndsProfile.COLUMN_07_LOCATION).append(" TEXT, ");
 	  				schema_userFrndsProfile.append(UserFrndsProfile.COLUMN_08_MINLOCATION).append(" TEXT, ");
-	  				schema_userFrndsProfile.append(UserFrndsProfile.COLUMN_09_ISCONTACTS).append(" TEXT, ");
-	  				schema_userFrndsProfile.append(UserFrndsProfile.COLUMN_10_ISFRIEND).append(" TEXT, ");
-	  				schema_userFrndsProfile.append(UserFrndsProfile.COLUMN_11_CREATEDON).append(" TEXT ");
+	  				schema_userFrndsProfile.append(UserFrndsProfile.COLUMN_09_CREATEDON).append(" TEXT, ");
+	  				schema_userFrndsProfile.append(UserFrndsProfile.COLUMN_10_PROFILEPIC).append(" TEXT ");
 	  				schema_userFrndsProfile.append(");");
 	 
 	 /* UserFrndsContacts */
@@ -49,7 +50,9 @@ public class UserFrndsInfo {
 	 			   schema_userFrndsContacts.append(UserFrndsContacts.COLUMN_00_CONTACTID).append(" INTEGER PRIMARY KEY AUTOINCREMENT, ");
 	 			   schema_userFrndsContacts.append(UserFrndsContacts.COLUMN_01_FRNDID).append(" INTEGER, ");
 	 			   schema_userFrndsContacts.append(UserFrndsContacts.COLUMN_02_PHONENUMBER).append(" TEXT, ");
-	 			   schema_userFrndsContacts.append(UserFrndsContacts.COLUMN_03_USERID).append(" TEXT ");
+	 			   schema_userFrndsContacts.append(UserFrndsContacts.COLUMN_03_USERID).append(" TEXT, ");
+	 			   schema_userFrndsContacts.append(UserFrndsContacts.COLUMN_04_ISCONTACTS).append(" TEXT, ");
+	 			   schema_userFrndsContacts.append(UserFrndsContacts.COLUMN_05_ISFRIEND).append(" TEXT ");
 	 			   schema_userFrndsContacts.append(");");
 	 	
 	 sqliteDatabase.execSQL(schema_userFrndsInfo.toString());
@@ -95,109 +98,114 @@ public class UserFrndsInfo {
 	}
 	
 	public String data_getAll_UsrFrndsInfo(Database database, String limit_start, String limit_end){
-		JSONArray jsonArrayData = new JSONArray();	
-		SQLiteDatabase sqliteDatabase = database.getReadableDatabase();
-		try {
-		StringBuilder query01 = new StringBuilder();
-		     query01.append( "SELECT ");
-		     query01.append(UserFrndsInfo.COLUMN_00_FRNDID).append(",").append(UserFrndsInfo.COLUMN_01_YOUCALL);
-		     query01.append(" FROM ").append(UserFrndsInfo.TBL_NAME).append(" LIMIT ");
-		     query01.append(limit_start).append(",").append(limit_end);
-		Cursor cursor01 =  sqliteDatabase.rawQuery(query01.toString(), null );
-		int indexing = 0;
-		if(cursor01.moveToFirst()) {
-	      while(!cursor01.isAfterLast()) {
-	    	  indexing++;
-	    	  String frnd_Id=cursor01.getString(0);
-			  String youCall=cursor01.getString(1);  
-			  JSONObject jsonObjectData = new JSONObject();
-			  			 jsonObjectData.put("index", indexing);
-			  			 jsonObjectData.put("frnd_Id", frnd_Id);
-			  			 jsonObjectData.put("youCall", youCall);
-			  /* Single Account, Multiple PhoneNumbers (or) Multiple Accounts, Multiple PhoneNumbers */
-			  JSONArray jsonArrayAccData = new JSONArray();
-			  StringBuilder query02 = new StringBuilder();
-			  
-			  query02.append("SELECT ");
-			  query02.append("tbl.").append(UserFrndsProfile.COLUMN_00_USERID).append(", ");
-			  query02.append("GROUP_CONCAT(tbl.").append(UserFrndsContacts.COLUMN_02_PHONENUMBER).append("), ");
-			  query02.append("tbl.").append(UserFrndsProfile.COLUMN_01_USERNAME).append(", ");
-			  query02.append("tbl.").append(UserFrndsProfile.COLUMN_02_SURNAME).append(", ");
-			  query02.append("tbl.").append(UserFrndsProfile.COLUMN_03_NAME).append(", ");
-			  query02.append("tbl.").append(UserFrndsProfile.COLUMN_04_RELATIONSHIP).append(", ");
-			  query02.append("tbl.").append(UserFrndsProfile.COLUMN_05_COUNTRY).append(", ");
-			  query02.append("tbl.").append(UserFrndsProfile.COLUMN_06_STATE).append(", ");
-			  query02.append("tbl.").append(UserFrndsProfile.COLUMN_07_LOCATION).append(", ");
-			  query02.append("tbl.").append(UserFrndsProfile.COLUMN_08_MINLOCATION).append(", ");
-			  query02.append("tbl.").append(UserFrndsProfile.COLUMN_09_ISCONTACTS).append(", ");
-			  query02.append("tbl.").append(UserFrndsProfile.COLUMN_10_ISFRIEND).append(", ");
-			  query02.append("tbl.").append(UserFrndsProfile.COLUMN_11_CREATEDON).append(" ");
-			  query02.append("FROM ");
-			  query02.append("(SELECT DISTINCT(");
-			  query02.append(UserFrndsContacts.TBL_NAME).append(".").append(UserFrndsContacts.COLUMN_02_PHONENUMBER).append("),");
-			  query02.append(UserFrndsProfile.TBL_NAME).append(".").append(UserFrndsProfile.COLUMN_00_USERID).append(", ");
-			  query02.append(UserFrndsProfile.TBL_NAME).append(".").append(UserFrndsProfile.COLUMN_01_USERNAME).append(",");
-			  query02.append(UserFrndsProfile.TBL_NAME).append(".").append(UserFrndsProfile.COLUMN_02_SURNAME).append(",");
-			  query02.append(UserFrndsProfile.TBL_NAME).append(".").append(UserFrndsProfile.COLUMN_03_NAME).append(",");
-			  query02.append(UserFrndsProfile.TBL_NAME).append(".").append(UserFrndsProfile.COLUMN_04_RELATIONSHIP).append(",");
-			  query02.append(UserFrndsProfile.TBL_NAME).append(".").append(UserFrndsProfile.COLUMN_05_COUNTRY).append(",");
-			  query02.append(UserFrndsProfile.TBL_NAME).append(".").append(UserFrndsProfile.COLUMN_06_STATE).append(",");
-			  query02.append(UserFrndsProfile.TBL_NAME).append(".").append(UserFrndsProfile.COLUMN_07_LOCATION).append(",");
-			  query02.append(UserFrndsProfile.TBL_NAME).append(".").append(UserFrndsProfile.COLUMN_08_MINLOCATION).append(",");
-			  query02.append(UserFrndsProfile.TBL_NAME).append(".").append(UserFrndsProfile.COLUMN_09_ISCONTACTS).append(",");
-			  query02.append(UserFrndsProfile.TBL_NAME).append(".").append(UserFrndsProfile.COLUMN_10_ISFRIEND).append(",");
-			  query02.append(UserFrndsProfile.TBL_NAME).append(".").append(UserFrndsProfile.COLUMN_11_CREATEDON);
-			  query02.append(" FROM ");
-			  query02.append(UserFrndsContacts.TBL_NAME).append(",").append(UserFrndsProfile.TBL_NAME).append(" WHERE ");
-			  query02.append(UserFrndsContacts.TBL_NAME).append(".").append(UserFrndsContacts.COLUMN_01_FRNDID).append("=").append(frnd_Id).append(" AND ");
-			  query02.append(UserFrndsContacts.TBL_NAME).append(".").append(UserFrndsContacts.COLUMN_03_USERID);
-			  query02.append("=").append(UserFrndsProfile.TBL_NAME).append(".").append(UserFrndsProfile.COLUMN_00_USERID).append(") As tbl ");			  
-			  query02.append(" GROUP BY tbl.").append(UserFrndsProfile.COLUMN_00_USERID);
-			  query02.append(" HAVING COUNT(tbl.").append(UserFrndsProfile.COLUMN_00_USERID).append(")>0");
-			  
-			  Cursor cursor02 =  sqliteDatabase.rawQuery(query02.toString(), null );
-			  if(cursor02.moveToFirst()) {
-			      while(!cursor02.isAfterLast()) {
-			    	  String user_Id=cursor02.getString(0);
-			    	  String phoneNumber=cursor02.getString(1);
-			    	  String userName=cursor02.getString(2);
-			    	  String surName=cursor02.getString(3);
-			    	  String name=cursor02.getString(4);
-			    	  String relationship=cursor02.getString(5);
-			    	  String country=cursor02.getString(6);
-			    	  String state=cursor02.getString(7);
-			    	  String location=cursor02.getString(8);
-			    	  String minlocation=cursor02.getString(9);
-			    	  String isContacts=cursor02.getString(10);
-			    	  String isFriend=cursor02.getString(11);
-			    	  String createdOn=cursor02.getString(12);
-			    	  
-			    JSONObject  jsonObjectAccData = new JSONObject();
-			    			jsonObjectAccData.put("user_Id", user_Id);
-			    			jsonObjectAccData.put("phoneNumber", phoneNumber);
-			    			jsonObjectAccData.put("userName", userName);
-			    			jsonObjectAccData.put("surName", surName);
-			    			jsonObjectAccData.put("name", name);
-			    			jsonObjectAccData.put("relationship", relationship);
-			    			jsonObjectAccData.put("country", country);
-			    			jsonObjectAccData.put("state", state);
-			    			jsonObjectAccData.put("location", location);
-			    			jsonObjectAccData.put("minlocation", minlocation);
-			    			jsonObjectAccData.put("isContacts", isContacts);
-			    			jsonObjectAccData.put("isFriend", isFriend);
-			    			jsonObjectAccData.put("createdOn", createdOn);
-			    			jsonArrayAccData.put(jsonObjectAccData) ;
-			    	  cursor02.moveToNext();
-			      }
-			  }
-			jsonObjectData.put("accounts", jsonArrayAccData); 
-			jsonArrayData.put(jsonObjectData); 
-		    cursor01.moveToNext();
-		  }
-		}
-		} catch(Exception e){ logger.error("Exception: "+e.getMessage()); }
-		logger.info("jsonArrayData: "+jsonArrayData.toString());
-		return jsonArrayData.toString();
+	   JSONArray jsonArrayObject01 = new JSONArray();
+	   try {
+	   SQLiteDatabase db = database.getReadableDatabase();
+	   StringBuilder query01 = new StringBuilder();
+	   				 query01.append( "SELECT ");
+	   				 query01.append(UserFrndsInfo.TBL_NAME).append(".").append(UserFrndsInfo.COLUMN_00_FRNDID).append(", ");
+	   				 query01.append(UserFrndsInfo.TBL_NAME).append(".").append(UserFrndsInfo.COLUMN_01_YOUCALL);
+	   				 query01.append(" FROM ").append(UserFrndsInfo.TBL_NAME);
+	   				
+	   Cursor cursor01 =  db.rawQuery(query01.toString(), null ); 
+	   long indexing = 0;
+	   if (cursor01.moveToFirst()) {
+		   while ( !cursor01.isAfterLast() ) {
+			 indexing++;
+			 String frnd_Id = cursor01.getString(0);
+			 String youCall = cursor01.getString(1);
+			 JSONObject jsonObject01 = new JSONObject();
+						jsonObject01.put("index", indexing);
+						jsonObject01.put("frnd_Id", frnd_Id);
+						jsonObject01.put("youCall", youCall);
+			 
+			 
+			 StringBuilder query02 = new StringBuilder();
+			 			   query02.append( "SELECT DISTINCT(");
+				           query02.append(UserFrndsContacts.TBL_NAME).append(".").append(UserFrndsContacts.COLUMN_02_PHONENUMBER).append("), ");
+				           query02.append(UserFrndsContacts.TBL_NAME).append(".").append(UserFrndsContacts.COLUMN_03_USERID).append(", ");
+				           query02.append(UserFrndsContacts.TBL_NAME).append(".").append(UserFrndsContacts.COLUMN_04_ISCONTACTS).append(", ");
+				           query02.append(UserFrndsContacts.TBL_NAME).append(".").append(UserFrndsContacts.COLUMN_05_ISFRIEND).append(" ");
+				           query02.append(" FROM ").append(UserFrndsContacts.TBL_NAME);
+				           query02.append(" WHERE ");
+				           query02.append(UserFrndsContacts.COLUMN_01_FRNDID).append("=").append(frnd_Id);
+		
+		      JSONArray jsonArrayObject02 = new JSONArray();
+				    
+		      
+		      Cursor cursor02 =  db.rawQuery(query02.toString(), null );
+		      if (cursor02.moveToFirst()) {
+				   while ( !cursor02.isAfterLast() ) {
+					   String phoneNumber = cursor02.getString(0);
+					   String user_Id = cursor02.getString(1);
+					   String isContacts = cursor02.getString(2);
+					   String isFriend = cursor02.getString(3);
+					   
+					   JSONObject jsonObject02 = new JSONObject();
+					   jsonObject02.put("phoneNumber", phoneNumber);
+					   jsonObject02.put("isContacts", isContacts);
+					   jsonObject02.put("isFriend", isFriend);
+					   
+					   StringBuilder query03 = new StringBuilder();
+					   				 query03.append("SELECT DISTINCT(");
+					   				 query03.append(UserFrndsProfile.TBL_NAME).append(".").append(UserFrndsProfile.COLUMN_00_USERID).append("), ");
+					   				 query03.append(UserFrndsProfile.TBL_NAME).append(".").append(UserFrndsProfile.COLUMN_01_USERNAME).append(", ");
+					   				 query03.append(UserFrndsProfile.TBL_NAME).append(".").append(UserFrndsProfile.COLUMN_02_SURNAME).append(", ");
+					   				 query03.append(UserFrndsProfile.TBL_NAME).append(".").append(UserFrndsProfile.COLUMN_03_NAME).append(", ");
+					   				 query03.append(UserFrndsProfile.TBL_NAME).append(".").append(UserFrndsProfile.COLUMN_04_RELATIONSHIP).append(", ");
+					   				 query03.append(UserFrndsProfile.TBL_NAME).append(".").append(UserFrndsProfile.COLUMN_05_COUNTRY).append(", ");
+					   				 query03.append(UserFrndsProfile.TBL_NAME).append(".").append(UserFrndsProfile.COLUMN_06_STATE).append(", ");
+					   				 query03.append(UserFrndsProfile.TBL_NAME).append(".").append(UserFrndsProfile.COLUMN_07_LOCATION).append(", ");
+					   				 query03.append(UserFrndsProfile.TBL_NAME).append(".").append(UserFrndsProfile.COLUMN_08_MINLOCATION).append(", ");
+					   				 query03.append(UserFrndsProfile.TBL_NAME).append(".").append(UserFrndsProfile.COLUMN_09_CREATEDON).append(", ");
+					   				query03.append(UserFrndsProfile.TBL_NAME).append(".").append(UserFrndsProfile.COLUMN_10_PROFILEPIC).append(" ");
+					   				 query03.append(" FROM ").append(UserFrndsProfile.TBL_NAME);
+							         query03.append(" WHERE ");
+							         query03.append(UserFrndsProfile.TBL_NAME).append(".").append(UserFrndsProfile.COLUMN_00_USERID).append("= '");
+							         query03.append(user_Id).append("';");
+							         
+					   Cursor cursor03 =  db.rawQuery(query03.toString(), null );
+					   if (cursor03.moveToFirst()) {
+						   while ( !cursor03.isAfterLast() ) {
+							   String userName = cursor03.getString(1);
+							   String surName = cursor03.getString(2);
+							   String name = cursor03.getString(3);
+							   String relationShip = cursor03.getString(4);
+							   String country = cursor03.getString(5);
+							   String state  = cursor03.getString(6);
+							   String location  = cursor03.getString(7);
+							   String minlocation = cursor03.getString(8);
+							   String createdOn = cursor03.getString(9);
+							   String profile_pic = cursor03.getString(10);
+							   
+							   jsonObject02.put("user_Id", user_Id);
+							   jsonObject02.put("userName", userName);
+							   jsonObject02.put("surName", surName);
+							   jsonObject02.put("name", name);
+							   jsonObject02.put("relationShip", relationShip);
+							   jsonObject02.put("country", country);
+							   jsonObject02.put("state", state);
+							   jsonObject02.put("location", location);
+							   jsonObject02.put("minlocation", minlocation);
+							   jsonObject02.put("createdOn", createdOn);
+							   jsonObject02.put("profile_pic", profile_pic);
+							   
+							   cursor03.moveToNext();
+						   }
+					   }
+					   
+					   
+					   jsonArrayObject02.put(jsonObject02);
+					   jsonObject01.put("accounts", jsonArrayObject02);
+					   cursor02.moveToNext();
+				   }
+		      }
+		     jsonArrayObject01.put(jsonObject01);
+			 cursor01.moveToNext();
+		   }
+		 }
+	   } catch(Exception e) { logger.error("Exception: "+e.getMessage());}
+		return jsonArrayObject01.toString();
 	}
 	
 }

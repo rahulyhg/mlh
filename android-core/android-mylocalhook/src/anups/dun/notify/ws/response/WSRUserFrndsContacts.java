@@ -43,6 +43,7 @@ public class WSRUserFrndsContacts {
 			   String name = (String) jsonObject02.get("name");
 			   String phoneNumber=(String) jsonObject02.get("phoneNumber");
 			   String minlocation = (String) jsonObject02.get("minlocation");
+			   String profile_pic = (String) jsonObject02.get("profile_pic");
 			   String location = (String) jsonObject02.get("location");
 			   String state = (String) jsonObject02.get("state");
 			   String country = (String) jsonObject02.get("country");
@@ -55,10 +56,11 @@ public class WSRUserFrndsContacts {
 			   /* Update UserFrndsContacts Table */
 			   UserFrndsContacts userFrndsContacts = new UserFrndsContacts();
 			   UserFrndsProfile userFrndsProfile = new UserFrndsProfile();
-			   long execution_Id01 = userFrndsContacts.data_update_usrFrndsContacts(database, phoneNumber, user_Id);
-			   long execution_Id02 = userFrndsProfile.data_update_userFrndsProfile(database, user_Id, userName, surName, name, relationship,
-						            country, state, location, minlocation, isContacts, isFriend, created_on);
-			   logger.info("execution_Id: "+execution_Id02);
+			   long execution_Id01 = userFrndsContacts.data_update_usrFrndsContacts(database, phoneNumber, user_Id,isContacts,isFriend);
+			   long  execution_Id02 = userFrndsProfile.data_update_userFrndsProfile(database, user_Id, userName, surName, name, relationship,
+						   country, state, location, minlocation, created_on, profile_pic);		
+				 logger.info("execution_Id: "+execution_Id01);
+				 logger.info("execution_Id: "+execution_Id02);
 		   }
 	   }
 		 catch(Exception e){ logger.error("Exception: "+e.getMessage());}
