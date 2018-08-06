@@ -10,6 +10,7 @@ import anups.dun.constants.BusinessConstants;
 import anups.dun.db.Database;
 import anups.dun.db.js.AppSQLiteUsrFrndsContactsInfo;
 import anups.dun.db.tbl.UserFrndsContacts;
+import anups.dun.db.tbl.UserFrndsInfo;
 import anups.dun.db.tbl.UserFrndsProfile;
 import anups.dun.js.AppSessionManagement;
 import anups.dun.util.AndroidLogger;
@@ -42,6 +43,9 @@ public class WSRUserFrndsContacts {
 			   String surName = (String) jsonObject02.get("surName");
 			   String name = (String) jsonObject02.get("name");
 			   String phoneNumber=(String) jsonObject02.get("phoneNumber");
+			   		  String[] phoneNumberArry=phoneNumber.split(",");
+				      String mCountryCode=phoneNumberArry[0];
+				      String mobile=phoneNumberArry[1];
 			   String minlocation = (String) jsonObject02.get("minlocation");
 			   String profile_pic = (String) jsonObject02.get("profile_pic");
 			   String location = (String) jsonObject02.get("location");
@@ -50,17 +54,28 @@ public class WSRUserFrndsContacts {
 			   String isFriend = (String) jsonObject02.get("IsFriend");
 			   String created_on = (String) jsonObject02.get("created_On");
 			   String relationship= null;
-			   String isContacts = null;
+			   String isContacts = (String) jsonObject02.get("IsContacts");
 			   /* Update ::: */
 			   
 			   /* Update UserFrndsContacts Table */
 			   UserFrndsContacts userFrndsContacts = new UserFrndsContacts();
 			   UserFrndsProfile userFrndsProfile = new UserFrndsProfile();
-			   long execution_Id01 = userFrndsContacts.data_update_usrFrndsContacts(database, phoneNumber, user_Id,isContacts,isFriend);
-			   long  execution_Id02 = userFrndsProfile.data_update_userFrndsProfile(database, user_Id, userName, surName, name, relationship,
+			   if(isContacts.equalsIgnoreCase("NO")){ /* Add New */
+				   UserFrndsInfo userFrndInfo = new UserFrndsInfo();
+					 String frnd_Id="N";
+					 String youCall="";
+					 isContacts="NO";
+					 isFriend="YES";
+					 userFrndInfo.data_add_userFrndsInfo(database, frnd_Id, youCall);
+					long execution_Id = userFrndsContacts.data_add_userFrndsContacts(database, frnd_Id, mCountryCode+mobile, user_Id, isContacts, isFriend);
+					logger.info("execution_Id: "+execution_Id);
+			   } else {
+			       long execution_Id01 = userFrndsContacts.data_update_usrFrndsContacts(database, phoneNumber, user_Id,isContacts,isFriend);
+			       long  execution_Id02 = userFrndsProfile.data_update_userFrndsProfile(database, user_Id, userName, surName, name, relationship,
 						   country, state, location, minlocation, created_on, profile_pic);		
-				 logger.info("execution_Id: "+execution_Id01);
-				 logger.info("execution_Id: "+execution_Id02);
+				   logger.info("execution_Id: "+execution_Id01);
+				   logger.info("execution_Id: "+execution_Id02);
+		      }
 		   }
 	   }
 		 catch(Exception e){ logger.error("Exception: "+e.getMessage());}

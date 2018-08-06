@@ -19,14 +19,32 @@ org.apache.log4j.Logger logger = AndroidLogger.getLogger(UserFrndsContacts.class
 	public static final String COLUMN_05_ISFRIEND = "isFriend";
 	
 	public long data_add_userFrndsContacts(Database database, String frnd_Id, String phoneNumber, String user_Id, String isContacts, String isFriend){
-	  SQLiteDatabase db = database.getWritableDatabase();
-	  ContentValues contentValues = new ContentValues();
-	     contentValues.put(UserFrndsContacts.COLUMN_01_FRNDID, frnd_Id);
-		 contentValues.put(UserFrndsContacts.COLUMN_02_PHONENUMBER, phoneNumber);
-		 contentValues.put(UserFrndsContacts.COLUMN_03_USERID, user_Id);
-		 contentValues.put(UserFrndsContacts.COLUMN_04_ISCONTACTS, isContacts);
-		 contentValues.put(UserFrndsContacts.COLUMN_05_ISFRIEND, isFriend);
-	  long id = db.insert(UserFrndsContacts.TBL_NAME, null, contentValues);
+		/* If PhoneNUmber not exists, then Add */
+		long id = 0;
+		SQLiteDatabase db = database.getWritableDatabase();
+		StringBuilder query01 = new StringBuilder();
+		 query01.append( "SELECT count(*) ").append(" FROM ").append(UserFrndsContacts.TBL_NAME);
+		 query01.append(" WHERE ").append(UserFrndsContacts.COLUMN_02_PHONENUMBER).append(" = '").append(phoneNumber).append("' ");
+		 query01.append(" OR ").append(UserFrndsContacts.COLUMN_02_PHONENUMBER).append(" LIKE '%").append(phoneNumber).append("%'; ");
+		 Cursor cursor01 =  db.rawQuery(query01.toString(), null ); 
+		   if(cursor01.moveToFirst()) {
+		      while(!cursor01.isAfterLast() ) {
+		    	  
+			    long dataCount=Long.parseLong(cursor01.getString(0));
+			    logger.info("dataCount: "+dataCount); 
+			    if(dataCount==0){
+			     ContentValues contentValues = new ContentValues();
+			                   contentValues.put(UserFrndsContacts.COLUMN_01_FRNDID, frnd_Id);
+				               contentValues.put(UserFrndsContacts.COLUMN_02_PHONENUMBER, phoneNumber);
+				               contentValues.put(UserFrndsContacts.COLUMN_03_USERID, user_Id);
+				               contentValues.put(UserFrndsContacts.COLUMN_04_ISCONTACTS, isContacts);
+				               contentValues.put(UserFrndsContacts.COLUMN_05_ISFRIEND, isFriend);
+			      id = db.insert(UserFrndsContacts.TBL_NAME, null, contentValues);
+			      logger.info("Added Successfully: "+id);
+			    }
+			    cursor01.moveToNext();
+		      }
+		   }
 	 return id; 
     }
 	
@@ -43,37 +61,24 @@ org.apache.log4j.Logger logger = AndroidLogger.getLogger(UserFrndsContacts.class
 		logger.info("phoneNumberArry: "+phoneNumber+" mCountryCode: "+mCountryCode+" mobile: "+mobile);
 		SQLiteDatabase db = database.getReadableDatabase();
 		 StringBuilder query01 = new StringBuilder();
-		 query01.append( "SELECT ").append(UserFrndsContacts.COLUMN_00_CONTACTID).append(" FROM ").append(UserFrndsContacts.TBL_NAME);
+		 query01.append( "SELECT ").append(UserFrndsContacts.COLUMN_02_PHONENUMBER).append(" FROM ").append(UserFrndsContacts.TBL_NAME);
 		 query01.append(" WHERE ").append(UserFrndsContacts.COLUMN_02_PHONENUMBER).append(" = '").append(mCountryCode+mobile).append("' OR ");
 		 query01.append(UserFrndsContacts.COLUMN_02_PHONENUMBER).append(" LIKE '%").append(mobile).append("%';");
 		logger.info("Update: "+query01);
 		 Cursor cursor01 =  db.rawQuery(query01.toString(), null ); 
 		 logger.info("cursor01: "+cursor01.getCount());
-		 if(cursor01.getCount()>0){ /* Exists -> Update */
 		   if(cursor01.moveToFirst()) {
 		      while(!cursor01.isAfterLast() ) {
-			    String contact_Id=cursor01.getString(0);
+			    String phNumber=cursor01.getString(0);
 			    ContentValues contentValues = new ContentValues();
 		        if(phoneNumber !=null){ contentValues.put(UserFrndsContacts.COLUMN_02_PHONENUMBER, mCountryCode+mobile); }
 		        if(user_Id !=null){ contentValues.put(UserFrndsContacts.COLUMN_03_USERID, user_Id); }
 		        if(isContacts !=null){ contentValues.put(UserFrndsContacts.COLUMN_04_ISCONTACTS, isContacts); }
 		        if(isFriend !=null){ contentValues.put(UserFrndsContacts.COLUMN_05_ISFRIEND, isFriend); }
-		        execution_Id = db.update(UserFrndsContacts.TBL_NAME, contentValues, UserFrndsContacts.COLUMN_00_CONTACTID+" = ? ", new String[] { contact_Id } );
+		        execution_Id = db.update(UserFrndsContacts.TBL_NAME, contentValues, UserFrndsContacts.COLUMN_02_PHONENUMBER+" = ? ", new String[] { phNumber } );
 			    cursor01.moveToNext();
 		      }
 		    }
-		 }
-		 else { /* New */
-			 UserFrndsInfo userFrndInfo = new UserFrndsInfo();
-			 String frnd_Id="N";
-			 String youCall="";
-			 isContacts="NO";
-			 isFriend="YES";
-			 userFrndInfo.data_add_userFrndsInfo(database, frnd_Id, youCall);
-			 UserFrndsContacts userFrndsContacts = new UserFrndsContacts();
-			 execution_Id = userFrndsContacts.data_add_userFrndsContacts(database, frnd_Id, mCountryCode+mobile, user_Id, isContacts, isFriend);
-		 }
-		 
 	   return execution_Id;
 	}
 	

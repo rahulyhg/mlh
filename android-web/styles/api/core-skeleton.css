@@ -1,3 +1,4 @@
+.navbar { margin-bottom:0px; }
 input[type="file"] { visibility:hidden; }
 #p100X100_pic_done { display:none; }
 body { padding-right: 0 !important }
@@ -42,9 +43,11 @@ body { padding-right: 0 !important }
 .topPostuser { line-height:45px;margin-bottom:5px;border-bottom:1px solid #ccc; }
 .postUserIcon { width:30px;height:30px;border:1px solid #000; }
 .lineh45p { line-height:45px; } 
+.lineh38p { line-height:38px; }
 .lineh30p { line-height:30px; }
 .lineh35p { line-height:35px; }
 .lineh25p { line-height: 25px; }
+.lineh22p { line-height: 22px; }
 .lineh20p { line-height: 20px; }
 .hide-block { display:none; }
 #applogo-header { height:50px; }
@@ -56,6 +59,7 @@ footer { bottom: 0;width: 100%;height: 30px; }
 .searchcontainer { width:100%;height:36px;background-color:#000; }
 .maintabscontainer { width:100%;background-color:#000; }
 .fs12{ font-size:12px; }
+.fs13 { font-size:13px; }
 .fs14 { font-size:14px; }
 .fs16 { font-size:16px; }
 .fs18 { font-size:18px; }
@@ -74,6 +78,7 @@ footer { bottom: 0;width: 100%;height: 30px; }
 .mtop30p { margin-top:30px; }
 
 .mb0 { margin-bottom:0px; }
+.mbot2p {margin-bottom:2px;}
 .mbot5p {margin-bottom:5px;}
 .mbot10p {margin-bottom:10px;}
 .mtop15p {margin-top:15px;}

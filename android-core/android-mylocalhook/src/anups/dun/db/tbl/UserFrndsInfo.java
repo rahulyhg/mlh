@@ -105,7 +105,8 @@ public class UserFrndsInfo {
 	   				 query01.append( "SELECT ");
 	   				 query01.append(UserFrndsInfo.TBL_NAME).append(".").append(UserFrndsInfo.COLUMN_00_FRNDID).append(", ");
 	   				 query01.append(UserFrndsInfo.TBL_NAME).append(".").append(UserFrndsInfo.COLUMN_01_YOUCALL);
-	   				 query01.append(" FROM ").append(UserFrndsInfo.TBL_NAME);
+	   				 query01.append(" FROM ").append(UserFrndsInfo.TBL_NAME).append(" ORDER BY ");
+	   				 query01.append(UserFrndsInfo.TBL_NAME).append(".").append(UserFrndsInfo.COLUMN_01_YOUCALL).append("; ");
 	   				
 	   Cursor cursor01 =  db.rawQuery(query01.toString(), null ); 
 	   long indexing = 0;
@@ -125,7 +126,8 @@ public class UserFrndsInfo {
 				           query02.append(UserFrndsContacts.TBL_NAME).append(".").append(UserFrndsContacts.COLUMN_02_PHONENUMBER).append("), ");
 				           query02.append(UserFrndsContacts.TBL_NAME).append(".").append(UserFrndsContacts.COLUMN_03_USERID).append(", ");
 				           query02.append(UserFrndsContacts.TBL_NAME).append(".").append(UserFrndsContacts.COLUMN_04_ISCONTACTS).append(", ");
-				           query02.append(UserFrndsContacts.TBL_NAME).append(".").append(UserFrndsContacts.COLUMN_05_ISFRIEND).append(" ");
+				           query02.append(UserFrndsContacts.TBL_NAME).append(".").append(UserFrndsContacts.COLUMN_05_ISFRIEND).append(", ");
+				           query02.append(UserFrndsContacts.TBL_NAME).append(".").append(UserFrndsContacts.COLUMN_00_CONTACTID).append(" ");
 				           query02.append(" FROM ").append(UserFrndsContacts.TBL_NAME);
 				           query02.append(" WHERE ");
 				           query02.append(UserFrndsContacts.COLUMN_01_FRNDID).append("=").append(frnd_Id);
@@ -140,8 +142,10 @@ public class UserFrndsInfo {
 					   String user_Id = cursor02.getString(1);
 					   String isContacts = cursor02.getString(2);
 					   String isFriend = cursor02.getString(3);
+					   String contactId = cursor02.getString(4);
 					   
 					   JSONObject jsonObject02 = new JSONObject();
+					   jsonObject02.put("contactId", contactId);
 					   jsonObject02.put("phoneNumber", phoneNumber);
 					   jsonObject02.put("isContacts", isContacts);
 					   jsonObject02.put("isFriend", isFriend);
