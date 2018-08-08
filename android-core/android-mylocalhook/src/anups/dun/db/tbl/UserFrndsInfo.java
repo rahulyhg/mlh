@@ -200,7 +200,7 @@ public class UserFrndsInfo {
 					   
 					   
 					   jsonArrayObject02.put(jsonObject02);
-					   jsonObject01.put("accounts", jsonArrayObject02);
+					   jsonObject01.put("data", jsonArrayObject02);
 					   cursor02.moveToNext();
 				   }
 		      }
@@ -212,4 +212,7 @@ public class UserFrndsInfo {
 		return jsonArrayObject01.toString();
 	}
 	
+	public void data_search_UsrFrndsInfo(Database database){
+		
+	}
 }

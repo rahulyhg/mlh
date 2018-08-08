@@ -68,6 +68,8 @@ public class WSRUserFrndsContacts {
 					 isFriend="YES";
 					 userFrndInfo.data_add_userFrndsInfo(database, frnd_Id, youCall);
 					long execution_Id = userFrndsContacts.data_add_userFrndsContacts(database, frnd_Id, mCountryCode+mobile, user_Id, isContacts, isFriend);
+					long  execution_Id02 = userFrndsProfile.data_update_userFrndsProfile(database, user_Id, userName, surName, name, relationship,
+							   country, state, location, minlocation, created_on, profile_pic);		
 					logger.info("execution_Id: "+execution_Id);
 			   } else {
 			       long execution_Id01 = userFrndsContacts.data_update_usrFrndsContacts(database, phoneNumber, user_Id,isContacts,isFriend);

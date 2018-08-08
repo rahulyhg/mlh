@@ -70,12 +70,16 @@ org.apache.log4j.Logger logger = AndroidLogger.getLogger(UserFrndsContacts.class
 		   if(cursor01.moveToFirst()) {
 		      while(!cursor01.isAfterLast() ) {
 			    String phNumber=cursor01.getString(0);
+			    try {
 			    ContentValues contentValues = new ContentValues();
 		        if(phoneNumber !=null){ contentValues.put(UserFrndsContacts.COLUMN_02_PHONENUMBER, mCountryCode+mobile); }
 		        if(user_Id !=null){ contentValues.put(UserFrndsContacts.COLUMN_03_USERID, user_Id); }
 		        if(isContacts !=null){ contentValues.put(UserFrndsContacts.COLUMN_04_ISCONTACTS, isContacts); }
 		        if(isFriend !=null){ contentValues.put(UserFrndsContacts.COLUMN_05_ISFRIEND, isFriend); }
 		        execution_Id = db.update(UserFrndsContacts.TBL_NAME, contentValues, UserFrndsContacts.COLUMN_02_PHONENUMBER+" = ? ", new String[] { phNumber } );
+		        logger.info("execution_Id: "+execution_Id);
+			    }
+			    catch(Exception e){ logger.error("Exception: "+e.getMessage());}
 			    cursor01.moveToNext();
 		      }
 		    }

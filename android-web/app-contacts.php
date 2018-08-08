@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,54 +18,66 @@
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/app-contacts.js"></script>
  <script type="text/javascript">
  var AndroidSQLiteUsrFrndsInfo;
+ var CONTACTS_JSONDATA;
 $(document).ready(function(){
+try {
  bgstyle();
  $(".lang_"+USR_LANG).css('display','block');
- loadContacts();
+ CONTACTS_JSONDATA = loadContactsFromBG();
+ displayContacts(CONTACTS_JSONDATA);
+ searchDataInContacts('');
+ } catch(err) { alert(err.message); }
 });
-function loadContacts(){
+function loadContactsFromBG(){
  if(AndroidSQLiteUsrFrndsInfo!==undefined){
   var num=AndroidSQLiteUsrFrndsInfo.data_count_UserFrndsInfo();
-  var data=AndroidSQLiteUsrFrndsInfo.data_get_UserFrndsInfo('0', num);
- // document.getElementById("appContacts").innerHTML=data;
-   data=JSON.parse(data);
+  var jsonData=AndroidSQLiteUsrFrndsInfo.data_get_UserFrndsInfo('0', num);
+  jsonData=JSON.parse(jsonData);
+  return jsonData;
+}
+}
+
+function displayContacts(jsonData){  
    var content='';
-   for(var index01=0;index01<data.length;index01++){
-     var frnd_Id=data[index01].frnd_Id;
-     var youCall=data[index01].youCall;
+   for(var index01=0;index01<jsonData.length;index01++){
+     var frnd_Id=jsonData[index01].frnd_Id;
+     var youCall=jsonData[index01].youCall;
 	     content+='<div class="list-group-item pad0">';
-		 content+='<div class="container-fluid mtop10p mbot10p">';
+		 content+='<div class="container-fluid" style="background-color:'+CURRENT_LIGHT_COLOR+';">';
 		 content+='<div class="row">';
 		 content+='<div align="center" class="col-xs-12 lineh22p">';
-		 content+='<h5 class="uppercase"><b>'+youCall+'</b></h5>';
+		 content+='<h5 class="uppercase mtop10p"><b>'+youCall+'</b></h5>';
 		 content+='</div>';
 		 content+='</div>';
-		 
-	 for(var index02=0;index02<data[index01].accounts.length;index02++){
-	   var contactId=data[index01].accounts[index02].contactId;
-       var phoneNumber=data[index01].accounts[index02].phoneNumber;
-       var isContacts=data[index01].accounts[index02].isContacts;
-       var isFriend=data[index01].accounts[index02].isFriend;
-       var user_Id=data[index01].accounts[index02].user_Id;
-       var userName=data[index01].accounts[index02].userName;
-       var surName=data[index01].accounts[index02].surName;
-       var name=data[index01].accounts[index02].name;
-       var country=data[index01].accounts[index02].country;
-       var state=data[index01].accounts[index02].state;
-       var location=data[index01].accounts[index02].location;
-       var minlocation=data[index01].accounts[index02].minlocation;
-       var createdOn=data[index01].accounts[index02].createdOn;
-       var profile_pic=data[index01].accounts[index02].profile_pic;
-	   
-	     content+='<div class="row">';
-		 content+='<div class="col-xs-3">';
+		 content+='</div>';
+	 var data=jsonData[index01].data;
+	 if(data!==undefined){
+	 for(var index02=0;index02<data.length;index02++){
+	   var contactId=data[index02].contactId;
+       var phoneNumber=data[index02].phoneNumber;
+       var isContacts=data[index02].isContacts;
+       var isFriend=data[index02].isFriend;
+       var user_Id=data[index02].user_Id;
+       var userName=data[index02].userName;
+       var surName=data[index02].surName;
+       var name=data[index02].name;
+       var country=data[index02].country;
+       var state=data[index02].state;
+       var location=data[index02].location;
+       var minlocation=data[index02].minlocation;
+       var createdOn=data[index02].createdOn;
+       var profile_pic=data[index02].profile_pic;
+	     content+='<div class="container-fluid mtop10p mbot10p">';
+	     // content+='<div class="row">';
+		 content+='<div class="col-xs-12" style="border:1px dotted '+CURRENT_DARK_COLOR+';padding-top:10px;padding-bottom:10px;">';
+		 content+='<div class="col-xs-3 pad0">';
 		 if(profile_pic===undefined || profile_pic.length==0){
 		 content+='<img src="'+PROJECT_URL+'images/avatar/0.jpg" class="img-rel-profile"/>';
 		 } else {
 		 content+='<img src="'+profile_pic+'" class="img-rel-profile"/>';
 		 }
 		 content+='</div>';
-		 content+='<div class="col-xs-7 lineh22p">';
+		 content+='<div class="col-xs-6 pad0 lineh22p">';
 		 if(surName!=undefined && name!=undefined){
 		 content+='<div class="uppercase"><b>'+surName+' '+name+'</b></div>';
 		 }
@@ -77,41 +90,70 @@ function loadContacts(){
 		 content+='</div>';
 		 }
 		 if(user_Id==undefined){
-		 content+='<div class="mtop10p"><button class="btn btn-success">';
-		 content+='<i class="fa fa-whatsapp" aria-hidden="true"></i>&nbsp;Invite from Whatsapp</button></div>';
+		 content+='<div class="mtop10p"><button class="btn btn-default">';
+		 content+='<span class="fs12 custom-lgt-font" style="color:'+CURRENT_DARK_COLOR+'">';
+		 content+='<i class="fa fa-whatsapp" aria-hidden="true"></i>&nbsp;<b>Invite from WhatsApp</b></button>';
+		 content+='</span>';
+		 content+='</div>';
+		 } else {
+		    if(isFriend=='NO'){
+			   content+='<div class="mtop10p"><button class="btn btn-default">';
+			   content+='<span class="fs12 custom-lgt-font" style="color:'+CURRENT_DARK_COLOR+'">';
+		       content+='<i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;<b>Send Friendship Request</b></button>';
+		       content+='</span>';
+		       content+='</div>';
+			}
 		 }
 		 content+='</div>';
-		 content+='<div class="col-xs-2">';
-		 content+='<span class="pull-right lineh45p">';
+		 content+='<div class="col-xs-3 pad0">';
+		 content+='<span class="pull-right lineh22p">';
 		 if(isContacts=='YES'){
-		 content+='<i class="fa fa-2x fa-book custom-font" style="color:'+CURRENT_DARK_COLOR+'" data-toggle="tooltip" ';
+		 content+='<i class="fa fa-book custom-font" style="color:'+CURRENT_DARK_COLOR+'" data-toggle="tooltip" ';
 		 content+='title="Person is in your Address Book" aria-hidden="true"></i><br/>';
 		 } else {
-		 content+='<i class="fa fa-2x fa-book custom-lgt-font" style="color:'+CURRENT_LIGHT_COLOR+'" data-toggle="tooltip"';
+		 content+='<i class="fa fa-book custom-lgt-font" style="color:'+CURRENT_LIGHT_COLOR+'" data-toggle="tooltip"';
 		 content+='title="Person is not In Address Book" aria-hidden="true"></i><br/>';
 		 }
-		 if(user_Id!=undefined){
-		 content+='<i class="fa fa-2x fa-university custom-font" style="color:'+CURRENT_DARK_COLOR+'" data-toggle="tooltip" ';
-		 content+='title="Person is in MyLocalHook" aria-hidden="true"></i>';
+		 if(isFriend=='YES'){
+		 content+='<i class="fa fa-user custom-font" style="color:'+CURRENT_DARK_COLOR+'" data-toggle="tooltip" ';
+		 content+='title="Person is your Friend on MyLocalHook" aria-hidden="true"></i><br/>';
 		 } else {
-		 content+='<i class="fa fa-2x fa-university custom-lgt-font" style="color:'+CURRENT_LIGHT_COLOR+'" data-toggle="tooltip" ';
-		 content+='title="Person is not in MyLocalHook" aria-hidden="true"></i>';
+		 content+='<i class="fa fa-user custom-lgt-font" style="color:'+CURRENT_LIGHT_COLOR+'" data-toggle="tooltip"';
+		 content+='title="Person is not your Friend on MyLocalHook" aria-hidden="true"></i><br/>';
 		 }
+		 if(user_Id!=undefined){
+		 content+='<i class="fa fa-university custom-font" style="color:'+CURRENT_DARK_COLOR+'" data-toggle="tooltip" ';
+		 content+='title="Person is in MyLocalHook" aria-hidden="true"></i><br/>';
+		 } else {
+		 content+='<i class="fa fa-university custom-lgt-font" style="color:'+CURRENT_LIGHT_COLOR+'" data-toggle="tooltip" ';
+		 content+='title="Person is not in MyLocalHook" aria-hidden="true"></i><br/>';
+		 }
+		 
+		
 		 content+='</span>';
 		 content+='</div>';
 		 content+='</div>';
+		// content+='</div>';
+		content+='</div>';
+	 }
+	 } else {
+	    content+='<div class="container-fluid">';
+		content+='<div class="row">';
+		content+='<div align="center" class="col-xs-12 lineh22p">';
+		content+='<h4>No Data is Available</h4>';
+		content+='</div>';
+		content+='</div>';
+		content+='</div>';
 	 }
 	 content+='</div>';
-	 content+='</div>';
    }
-   
   document.getElementById("loadData").innerHTML=content;
- }
 }
-function loadUserProfileTbl(){
- document.getElementById("loadData").innerHTML=AndroidSQLiteUsrFrndsInfo.data_get_userFrndProfileList('0','0');
+
+function searchDataInContacts(searchData){
+
 }
- </script>
+</script>
  <script>
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip(); 
@@ -119,26 +161,28 @@ $(document).ready(function(){
 </script>
  <style>
 .hgt-aapc01 { color:#989898; }
-.img-rel-profile {  width:80px;height:80px;border-radius:50%;background-color:#e7e7e7; }
+.img-rel-profile {  width:60px;height:60px;border-radius:50%;background-color:#e7e7e7; }
  </style>
 </head>
 <body>
-<!-- {"data":[{"user_Id":"USR273782437846","username":"geetha","surName":"Nellutla","name":"Geetha Rani ",
-	           "phoneNumber":"+91|9959633209","minlocation":"L. B. Nagar","location":"Ranga Reddy District",
-	          "state":"Telangana","country":"India","IsFriend":"NO"},{...}]} -->
  <?php include_once 'templates/api/api_loading.php'; ?>
  <?php include_once 'templates/api/api_header_init.php'; ?>
- <!--a href="http://192.168.1.4/mlh/android-web/app-contacts.php">
- <button class="btn btn-primary">Reload</button>
- </a>
- <div id="appContacts"></div-->
+ 
+    <div class="container-fluid">
+	  <div class="row">
+	  <div class="col-xs-12 pad0">
+	    <div class="input-group">
+		  <span class="input-group-addon custom-bg" onclick="window.location.reload();"><i class="glyphicon glyphicon-refresh"></i></span>
+		  <input id="searchUserContacts" type="text" class="form-control" placeholder="Search People"/>
+		  <span class="input-group-addon custom-bg" onclick="javascript:searchDataInContacts();"><i class="glyphicon glyphicon-search"></i></span>
+		</div>
+	  </div>
+	  </div>
+	</div>
 	<div id="loadData" class="list-group pad0"></div>
  
  <!--button class="btn btn-primary" onclick="javascript:loadUserProfileTbl();">Tbl</button>
  <button class="btn btn-danger" onclick="javascript:alert(AndroidSQLiteUsrFrndsInfo.data_count_UserFrndsInfo());">Contacts</button>
- <button class="btn btn-success" onclick="javascript:loadContacts();">loadContacts</button>
- <div id="loadData">
- 
- </div-->
+ <button class="btn btn-success" onclick="javascript:loadContacts();">loadContacts</button-->
  </body>
 </html>

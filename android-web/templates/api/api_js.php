@@ -19,26 +19,6 @@ function core_anchorScrolling(){
   });
 }
 
-/* Search Data Results From JSON */
-/* Start: */
-var SEARCHDATA_RESULT_FROMJSON;
-function searchDataFromJSON(data, searchFieldDivId, params){
-$('#'+searchFieldDivId).keyup(function(){
-var searchField=$('#'+searchFieldDivId).val().trim();
-var regex = new RegExp(searchField, "gi");
-var i=0;var content='';SEARCHDATA_RESULT_FROMJSON=[];
-$.each( data, function( key, val ) {
- var existence=false;var arry=[];
- for(var index=0;index<params.length;index++){
-   if(val[params[index]]!=null && val[params[index]].search(regex) != -1){
-       SEARCHDATA_RESULT_FROMJSON[SEARCHDATA_RESULT_FROMJSON.length]=data[i];break;
-    }
- }
- i++;
-});
-});
-}
-/* End: */
 
 /* Select Option - Get Value By Text (Using ForLoop) */
 function selectOpt_getValueByText(select_id,text){
