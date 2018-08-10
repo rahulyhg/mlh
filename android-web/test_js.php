@@ -1,38 +1,20 @@
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<style>
+.hlLetterString { background-color:yellow;color:#000;}
+</style>
 <script type="text/javascript">
-$(document).ready(function(){
-var data = [{ "name": "Anup", "city":"Hyderabad"},
-			{ "name": "Kittu","city":"Mumbai"},
-			{ "name": "Phani","city":"Delhi",
-			"accounts":[{"location": "Phani","city":"Kolkatta"},
-					  { "location": "Kittu","city":"Bangalore"},
-					  { "location": "Anup","city":"Chennai"}]}];
-searchDataFromJSON(data, 'search',["name","city"]);
-});
-
-/* Search Data Results From JSON */
-/* Start: */
-var SEARCHDATA_RESULT_FROMJSON;
-function searchDataFromJSON(data, searchFieldDivId, params){
-$('#'+searchFieldDivId).keyup(function(){
-var searchField=$('#'+searchFieldDivId).val().trim();
-var regex = new RegExp(searchField, "gi");
-var i=0;var content='';SEARCHDATA_RESULT_FROMJSON=[];
-$.each( data, function( key, val ) {
- var existence=false;var arry=[];
- for(var index=0;index<params.length;index++){
-   if(val[params[index]]!=null && val[params[index]].search(regex) != -1){
-       SEARCHDATA_RESULT_FROMJSON[SEARCHDATA_RESULT_FROMJSON.length]=data[i];break;
-    }
+function highlightLetterInAString(innerHTML,text) {
+ var content='';
+ if(text.length>0){
+  var index = innerHTML.toLowerCase().indexOf(text.toLowerCase());
+  if (index >= 0) { 
+   content = innerHTML.substring(0,index) + "<span class='hlLetterString'>" + innerHTML.substring(index,index+text.length) + "</span>" + innerHTML.substring(index + text.length);
+  }
+ } else {
+    content= innerHTML;
  }
- i++;
-});
-});
+ return content;
 }
-/* End: */
-function searchBtn(){
-  document.getElementById("result").innerHTML=JSON.stringify(SEARCHDATA_RESULT_FROMJSON);
-}
+document.write(highlightLetterInAString('This is a FoX','fo'));
 </script>
-<input id="search" type="text"/><button onclick="javascript:searchBtn();">Search</button><br/>
 <span id="result"></span>

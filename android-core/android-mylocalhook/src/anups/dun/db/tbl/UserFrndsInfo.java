@@ -97,7 +97,7 @@ public class UserFrndsInfo {
 		 return dataCount;
 	}
 	
-	public String data_getAll_UsrFrndsInfo(Database database, String limit_start, String limit_end){
+	public String data_getAll_UsrFrndsInfo(Database database){
 	   JSONArray jsonArrayObject01 = new JSONArray();
 	   try {
 	   SQLiteDatabase db = database.getReadableDatabase();
@@ -212,7 +212,4 @@ public class UserFrndsInfo {
 		return jsonArrayObject01.toString();
 	}
 	
-	public void data_search_UsrFrndsInfo(Database database){
-		
-	}
 }

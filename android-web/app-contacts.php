@@ -24,20 +24,19 @@ try {
  bgstyle();
  $(".lang_"+USR_LANG).css('display','block');
  CONTACTS_JSONDATA = loadContactsFromBG();
- displayContacts(CONTACTS_JSONDATA);
- searchDataInContacts('');
+ displayContacts(CONTACTS_JSONDATA,'');
  } catch(err) { alert(err.message); }
 });
 function loadContactsFromBG(){
  if(AndroidSQLiteUsrFrndsInfo!==undefined){
   var num=AndroidSQLiteUsrFrndsInfo.data_count_UserFrndsInfo();
-  var jsonData=AndroidSQLiteUsrFrndsInfo.data_get_UserFrndsInfo('0', num);
+  var jsonData=AndroidSQLiteUsrFrndsInfo.data_get_UserFrndsInfo();
   jsonData=JSON.parse(jsonData);
   return jsonData;
 }
 }
 
-function displayContacts(jsonData){  
+function displayContacts(jsonData,searchText){  
    var content='';
    for(var index01=0;index01<jsonData.length;index01++){
      var frnd_Id=jsonData[index01].frnd_Id;
@@ -46,27 +45,27 @@ function displayContacts(jsonData){
 		 content+='<div class="container-fluid" style="background-color:'+CURRENT_LIGHT_COLOR+';">';
 		 content+='<div class="row">';
 		 content+='<div align="center" class="col-xs-12 lineh22p">';
-		 content+='<h5 class="uppercase mtop10p"><b>'+youCall+'</b></h5>';
+		 content+='<h5 class="uppercase mtop10p"><b>'+highlightLetterInAString(youCall,searchText)+'</b></h5>';
 		 content+='</div>';
 		 content+='</div>';
 		 content+='</div>';
-	 var data=jsonData[index01].data;
-	 if(data!==undefined){
-	 for(var index02=0;index02<data.length;index02++){
-	   var contactId=data[index02].contactId;
-       var phoneNumber=data[index02].phoneNumber;
-       var isContacts=data[index02].isContacts;
-       var isFriend=data[index02].isFriend;
-       var user_Id=data[index02].user_Id;
-       var userName=data[index02].userName;
-       var surName=data[index02].surName;
-       var name=data[index02].name;
-       var country=data[index02].country;
-       var state=data[index02].state;
-       var location=data[index02].location;
-       var minlocation=data[index02].minlocation;
-       var createdOn=data[index02].createdOn;
-       var profile_pic=data[index02].profile_pic;
+	 var accountData=jsonData[index01].data;
+	 if(accountData!==undefined){
+	 for(var index02=0;index02<accountData.length;index02++){
+	   var contactId=accountData[index02].contactId;
+       var phoneNumber=accountData[index02].phoneNumber;
+       var isContacts=accountData[index02].isContacts;
+       var isFriend=accountData[index02].isFriend;
+       var user_Id=accountData[index02].user_Id;
+       var userName=accountData[index02].userName;
+       var surName=accountData[index02].surName;
+       var name=accountData[index02].name;
+       var country=accountData[index02].country;
+       var state=accountData[index02].state;
+       var location=accountData[index02].location;
+       var minlocation=accountData[index02].minlocation;
+       var createdOn=accountData[index02].createdOn;
+       var profile_pic=accountData[index02].profile_pic;
 	     content+='<div class="container-fluid mtop10p mbot10p">';
 	     // content+='<div class="row">';
 		 content+='<div class="col-xs-12" style="border:1px dotted '+CURRENT_DARK_COLOR+';padding-top:10px;padding-bottom:10px;">';
@@ -79,7 +78,7 @@ function displayContacts(jsonData){
 		 content+='</div>';
 		 content+='<div class="col-xs-6 pad0 lineh22p">';
 		 if(surName!=undefined && name!=undefined){
-		 content+='<div class="uppercase"><b>'+surName+' '+name+'</b></div>';
+		 content+='<div class="uppercase"><b>'+highlightLetterInAString(surName,searchText)+' '+highlightLetterInAString(name,searchText)+'</b></div>';
 		 }
 		 if(minlocation!=undefined && location!=undefined && state!=undefined && country!=undefined){
 		 content+='<div class="fs13 mtop2p mbot2p">'+minlocation+', '+location+', '+state+', '+country+'</div>';
@@ -150,8 +149,11 @@ function displayContacts(jsonData){
   document.getElementById("loadData").innerHTML=content;
 }
 
-function searchDataInContacts(searchData){
-
+function searchDataInContacts(){
+ var search = document.getElementById("searchUserContacts").value;
+ var jsonData = AndroidSQLiteUsrFrndsInfo.data_get_searchUserFrndsInfo(search);
+ jsonData=JSON.parse(jsonData);
+ displayContacts(jsonData,search);
 }
 </script>
  <script>
