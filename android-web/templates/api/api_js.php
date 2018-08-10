@@ -8,8 +8,22 @@ body::-webkit-scrollbar-track { -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3
 body::-webkit-scrollbar { width: 6px;background-color: #F5F5F5; }        
 body::-webkit-scrollbar-thumb { background-color: #000000; }
 body { overflow-x:hidden; }
+.hlLetterString { background-color:yellow;color:#000;}
 </style>
 <script type="text/javascript">
+/* Highlight Letter on Search */
+function highlightLetterInAString(innerHTML,text) {
+ var content='';
+ if(text.length>0){
+  var index = innerHTML.toLowerCase().indexOf(text.toLowerCase());
+  if (index >= 0) { 
+   content = innerHTML.substring(0,index) + "<span class='hlLetterString'>" + innerHTML.substring(index,index+text.length) + "</span>" + innerHTML.substring(index + text.length);
+  }
+ } else {
+    content= innerHTML;
+ }
+ return content;
+}
 /* Anchor Scrolling */
 function core_anchorScrolling(){
   $("a").on('click', function(event) {
@@ -76,6 +90,7 @@ function js_getHashMap(key){
 function urlTransfer(url){
  window.location.href=url;
 }
+
 /* AJAX */
 function js_ajax(method,url,data,fn_output){
  $.ajax({type: method, url: url,data:data,success: function(response) { fn_output(response); } }); 
