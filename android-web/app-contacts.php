@@ -23,17 +23,20 @@ $(document).ready(function(){
 try {
  bgstyle();
  $(".lang_"+USR_LANG).css('display','block');
- CONTACTS_JSONDATA = loadContactsFromBG();
- displayContacts(CONTACTS_JSONDATA,'');
+ setTimeout(function(){ 
+   CONTACTS_JSONDATA = loadContactsFromBG();
+   displayContacts(CONTACTS_JSONDATA,'');
+  },10);
  } catch(err) { alert(err.message); }
 });
+
 function loadContactsFromBG(){
  if(AndroidSQLiteUsrFrndsInfo!==undefined){
   var num=AndroidSQLiteUsrFrndsInfo.data_count_UserFrndsInfo();
   var jsonData=AndroidSQLiteUsrFrndsInfo.data_get_UserFrndsInfo();
   jsonData=JSON.parse(jsonData);
   return jsonData;
-}
+ }
 }
 
 function displayContacts(jsonData,searchText){  
@@ -150,10 +153,12 @@ function displayContacts(jsonData,searchText){
 }
 
 function searchDataInContacts(){
+ setTimeout(function(){ 
  var search = document.getElementById("searchUserContacts").value;
  var jsonData = AndroidSQLiteUsrFrndsInfo.data_get_searchUserFrndsInfo(search);
  jsonData=JSON.parse(jsonData);
  displayContacts(jsonData,search);
+ },10);
 }
 </script>
  <script>
