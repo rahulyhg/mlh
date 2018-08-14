@@ -6,6 +6,7 @@ import android.content.Intent;
 import anups.dun.constants.BusinessConstants;
 import anups.dun.js.AppSessionManagement;
 import anups.dun.notify.ws.WSIntervalHour;
+import anups.dun.notify.ws.util.Notifications;
 import anups.dun.util.AndroidLogger;
 import anups.dun.util.PushNotification;
 import anups.dun.web.templates.URLGenerator;
@@ -19,19 +20,7 @@ public class BRIntervalHour  extends BroadcastReceiver{
    AppSessionManagement appSessionManager = new AppSessionManagement(context);
    String user_Id=appSessionManager.getAndroidSession("AUTH_USER_ID");
    if(user_Id==null){
-	 String directURL=urlGenerator.defaultPage();
-	 boolean inapp=false;
-		 String contentTitle="MyLocalHook SignIn/Register";
-		 String bigContentTitle="SignIn/Register App"; // Big Title Details:
-		 String contentText="MyLocalHook is waiting for you."; // You have recieved new message
-		 String ticker="MyLocalHook SignIn/Register"; // New Message Alert!
-	 	
-		 String[] events = new String[3];
-	 	     events[0] = new String("You are not SignIn/Register");
-	 	     events[1] = new String("MyLocalHook is waiting for you.");
-	 	     events[2] = new String("SignIn/Register Right Now");
-	 	 new PushNotification().display_unclosableNotification(BusinessConstants.UNCLOSEDNOTIFICATION_AUTHREMINDER,
-	 		context, directURL, inapp, contentTitle, bigContentTitle, contentText, ticker, events);
+	 new Notifications(context).notify_show_signInRegister();
    }
    
    String[] params=new String[1];

@@ -37,6 +37,7 @@ import anups.dun.js.AppSQLiteManagement;
 import anups.dun.js.AppSessionManagement;
 import anups.dun.media.AndroidWebScreenVideo;
 import anups.dun.notify.ws.WSUserFrndsContacts;
+import anups.dun.notify.ws.util.Notifications;
 import anups.dun.notify.ws.WSGoogleAds;
 import anups.dun.util.AndroidLogger;
 import anups.dun.util.GPSTracker;
@@ -331,6 +332,11 @@ protected void onCreate(Bundle savedInstanceState) {
  
  /* Get UserID from SESSION */
  String USER_ID=appSessionManagement.getAndroidSession(BusinessConstants.AUTH_USER_ID);
+ if(USER_ID==null){ /* Show SignIn/Register Popup Notification */
+	 new Notifications(this).notify_show_signInRegister();
+ } else { /* Hide SignIn/Register Popup Notification */
+	 new Notifications(this).notify_hide_signInRegister();
+ }
  logger.info("USER_ID: "+USER_ID);
  
  /* Triggering Broadcast Receiver from Activity */

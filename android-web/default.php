@@ -54,8 +54,7 @@ $(document).ready(function(){
 	  STAY CONNECTED TO YOUR LOCAL ENVIRONMENT BY CONNECTING TO PEOPLE AROUND YOU</h5>
    </div>
    <div align="center" class="col-md-12" style="margin-top:120px;">
-     <a href="<?php echo $_SESSION["PROJECT_URL"]; ?>/app-contacts.php">
-     <!--a href="<?php echo $_SESSION["PROJECT_URL"]; ?>initializer/start"-->
+     <a href="<?php echo $_SESSION["PROJECT_URL"]; ?>initializer/start"-->
      <button class="btn btn-default">
 	 <b>START MY JOURNEY</b>&nbsp;&nbsp;<i class="fa fa-arrow-right"></i></button>
 	 </a>
