@@ -23,6 +23,7 @@ function mainMenuSelection(id){
   if(id==='dn_'+USR_LANG+'_logout'){ logout(); }
 }
 function logout(){
+ var AndroidSession;
   if(AndroidSession!==undefined){
     AndroidSession.setAndroidSession("AUTH_USER_ID",null);
   }
