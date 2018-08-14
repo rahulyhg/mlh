@@ -35,7 +35,7 @@ if(isset($_GET["action"])){
        $phoneNumber=$_GET["phoneNumber"];
        $authObj=new user_authentication();
 	   $query=$authObj->query_getuserInfoByPhoneNumber($countrycode,$phoneNumber);
-	   $dbObj=new Database();
+	   $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
 	   echo $dbObj->getJSONData($query);
 	  } else { echo 'MISSING_PHONENUMBER'; }
     } else { echo 'MISSING_COUNTRYCODE'; }
@@ -52,7 +52,7 @@ if(isset($_GET["action"])){
          *  2) If userId=0, check username exists or not for all rows
          */
 		 $authpObj=new user_authentication();
-		 $dbObj=new Database();
+		 $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
 		 if($user_Id=='0'){ /* check username exists or not for all rows */
 		    $query=$authpObj->query_checkUsernameAvailability($username);
 			$jsonData=$dbObj->getJSONData($query);
@@ -78,15 +78,12 @@ if(isset($_GET["action"])){
   /* Action Events used By auth-part-04.php/auth-part-04.js, auth-part-05.php/auth-part-05.js, ::: START */
   else if($_GET["action"]==='UPDATE_EXISTING_USERACCOUNT') {
     $usrauthObj=new user_authentication();
-    $dbObj=new Database();
+    $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
     if(isset($_GET["user_Id"])){
 	   $user_Id=$_GET["user_Id"]; 
 	   $username='';               if(isset($_GET["username"])) { $username=$_GET["username"]; }
 	   $surName='';                if(isset($_GET["surName"])) { $surName=$_GET["surName"]; }
 	   $name='';                   if(isset($_GET["name"])) { $name=$_GET["name"]; }
-	   $mcountrycode=''; 			if(isset($_GET["mcountrycode"])) { $mcountrycode=$_GET["mcountrycode"];  }
-	   $mobile=''; 			    if(isset($_GET["mobile"])) { $mobile=$_GET["mobile"];  }
-	   $mob_val='';				if(isset($_GET["mob_val"])) { $mob_val=$_GET["mob_val"];  }
 	   $dob='';  					if(isset($_GET["dob"])) {  $dob=$_GET["dob"];  }
 	   $gender=''; 			    if(isset($_GET["gender"])) { $gender=$_GET["gender"];  }
 	   $profile_pic='';  		if(isset($_GET["profile_pic"])) { $profile_pic=$_GET["profile_pic"]; }
@@ -99,9 +96,9 @@ if(isset($_GET["action"])){
        $user_tz='';  				if(isset($_GET["user_tz"])) { $user_tz=$_GET["user_tz"];  }
 	   $acc_active='';		if(isset($_GET["acc_active"])) { $acc_active=$_GET["acc_active"]; }
 	   
-	  $updateQuery=$usrauthObj->query_updateUserInfo($user_Id,$username,$surName,$name,$mcountrycode,$mobile,
-	                      $mob_val,$dob,$gender,$profile_pic,$about_me,$minlocation,$location,$state,$country,$isAdmin,
-						  $user_tz,$acc_active);
+	  $updateQuery=$usrauthObj->query_updateUserInfo($user_Id,$username,$surName,$name,
+							    $dob,$gender,$profile_pic,$about_me,$minlocation,$location,$state,$country,$isAdmin,
+								$user_tz,$acc_active);
 	  echo $updateQuery;
 	  echo $dbObj->addupdateData($updateQuery);
 	} else { echo 'MISSING_USERID';  }
@@ -116,8 +113,8 @@ if(isset($_GET["action"])){
 	 isset($_GET["state"]) && isset($_GET["country"]) && isset($_GET["user_tz"])){
 	$idObj=new identity();
 	$usrauthObj=new user_authentication();
-	$dbObj=new Database();
-	
+	$dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
+	$contact_Id='';
 	$user_Id=$idObj->user_account_id();    
 	$username=$_GET["username"];       
 	$surName=$_GET["surName"];
@@ -138,7 +135,7 @@ if(isset($_GET["action"])){
 	$user_tz=$_GET["user_tz"];     
 	$acc_active='Y';   
 	
-	$addQuery=$usrauthObj->query_addNewUser($user_Id,$username,$surName,$name,$mcountrycode,$mobile,$mob_val,
+	$addQuery=$usrauthObj->query_addNewUser($contact_Id,$user_Id,$username,$surName,$name,$mcountrycode,$mobile,$mob_val,
 			                       $dob,$gender,$profile_pic,$about_me,$minlocation,$location,$state,$country,$created_On,
 								   $isAdmin,$user_tz,$acc_active);
     echo $dbObj->addupdateData($addQuery);

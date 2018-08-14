@@ -13,7 +13,7 @@ if(isset($_GET["action"])){
   if(isset($_GET["user_Id"])){
    $user_Id=$_GET["user_Id"];
    $subObj=new app_subscription();
-   $dbObj=new Database();
+   $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
    $query01=$subObj->query_getCategoriesSubscription();
    $jsonData01=$dbObj->getJSONData($query01);
    $dejsonData01=json_decode($jsonData01);
@@ -40,7 +40,7 @@ if(isset($_GET["action"])){
    $user_Id=$_GET["user_Id"];
    $sub_random=rand(1111,9999);
    $subObj=new app_subscription();
-   $dbObj=new Database();
+   $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
    $idObj=new identity();
    echo $_SESSION["AUTH_USER_SUBSCRIPTIONS_LIST"].'<br/>';
    $subscriptionListJsonData=$_SESSION["AUTH_USER_SUBSCRIPTIONS_LIST"];

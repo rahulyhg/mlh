@@ -13,6 +13,7 @@ function loadDataByPhoneNumberAndCountryCode(){
  */
 js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.user.authentication.php',
 {action:'USERINFO_BY_PHONENUMBER',countrycode:AUTH_USER_COUNTRYCODE, phoneNumber:AUTH_USER_PHONENUMBER},function(response){
+console.log(response);
 response=JSON.parse(response);
 if(response.length>0){
   var user_Id=response[0].user_Id;
@@ -60,6 +61,7 @@ function checkUserAvailability(){
   if(username.length>0){
    js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.user.authentication.php',
    { action:'CHECK_USERNAME_AVAILABILITY',user_Id:user_Id, username:username },function(response){ 
+      console.log("checkUserAvailability: "+response);
       if(response=='USERNAME_NOT_EXISTS') {   /* keep in Session and Move Forward  */
 		display_availabilityMsg();
 		document.getElementById("username_"+USR_LANG+"_setupDisplay").innerHTML=username;
