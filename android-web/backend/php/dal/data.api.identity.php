@@ -48,16 +48,8 @@ class tbl_identity {
   $selectQuery="SELECT count(*) FROM newsfeed_user_votes WHERE vote_Id='".$id."';";
   return $selectQuery;
  }
- /* Table - (10) subs_dom_info ::: domain_Id */
- function query_checkId_subs_dom_info($id) {
-  $selectQuery="SELECT count(*) FROM subs_dom_info WHERE domain_Id='".$id."';";
-  return $selectQuery;
- }
- /* Table - (11) subs_subdom_info ::: subdomain_Id */
- function query_checkId_subs_subdom_info($id) {
-  $selectQuery="SELECT count(*) FROM subs_subdom_info WHERE subdomain_Id='".$id."';";
-  return $selectQuery;
- }
+ /* Table - (10) subs_dom_info ::: domain_Id (15) (AUTO-GENERATE DOMAIN KEY) */
+ /* Table - (11) subs_subdom_info ::: subdomain_Id (15) (AUTO-GENERATE DOMAIN KEY) */
  /* Table - (12) unionprof_account ::: union_Id */
  function query_checkId_unionprof_account($id) {
   $selectQuery="SELECT count(*) FROM unionprof_account WHERE union_Id='".$id."';";
@@ -73,9 +65,14 @@ class tbl_identity {
   $selectQuery="SELECT count(*) FROM unionprof_branch_req WHERE req_branch_Id='".$id."';";
   return $selectQuery;
  }
- /* Table - (15) unionprof_calndar ::: calendar_Id */
- function query_checkId_unionprof_calndar($id) {
-  $selectQuery="SELECT count(*) FROM unionprof_calndar WHERE calendar_Id='".$id."';";
+ /* Table - (15) unionprof_calndar_union ::: calendar_Id */
+ function query_checkId_unionprof_calndar_union($id) {
+  $selectQuery="SELECT count(*) FROM unionprof_calndar_union WHERE calendar_Id='".$id."';";
+  return $selectQuery;
+ }
+ /* Table - (15) unionprof_calndar_branch ::: calendar_Id */
+ function query_checkId_unionprof_calndar_branch($id) {
+  $selectQuery="SELECT count(*) FROM unionprof_calndar_branch WHERE calendar_Id='".$id."';";
   return $selectQuery;
  }
  /* Table - (16) unionprof_faq_branch ::: faq_Id */
