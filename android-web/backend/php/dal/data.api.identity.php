@@ -1,6 +1,6 @@
 <?php
 
-class tbl_identity {
+class DataIdentity {
 /* DATABASE - mlh_basic
  * TABLES */
  /* Table - (1) move_info ::: move_Id */
@@ -135,7 +135,7 @@ class tbl_identity {
  }
  /* Table - (29) user_frnds_req ::: rel_Id */
  function query_checkId_user_frnds_req($id) {
-  $selectQuery="SELECT count(*) FROM user_frnds_req WHERE rel_Id='".$id."';";
+  $selectQuery="SELECT count(*) FROM user_frnds_req WHERE req_Id='".$id."';";
   return $selectQuery;
  }
  /* Table - (30) user_info ::: user_Id (SAME ID of user_account is being used) */
