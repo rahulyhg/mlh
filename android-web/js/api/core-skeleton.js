@@ -1,3 +1,30 @@
+function upload_picture_100X100_WithNext(div_Id,img_src,next_url){ /* Profile pic - 100px X 100px */
+IMG_URL='';
+var content='<div>';
+    content+='<input type="file" id="p100X100_fileElem" accept="image/*" ';
+	content+='onchange="handleFiles(this.id,\'p100X100_div_cropping\',\'p100X100-img-crop\'';
+	content+=',this.files,\'p100X100_fileSelect\',\'p100X100_pic_done\',90,90,100,100,\'circle\')">';
+	content+='<img id="p100X100_fileSelect" class="profile_pic_img1 mtop15p mbot15p" ';
+	content+='src="'+img_src+'" ';
+	content+='onclick="javascript:imgClick(\'p100X100_fileElem\');"/>';
+	content+='<div id="p100X100-img-crop" class="mtop15px"></div>';
+	content+='<div id="p100X100_div_cropping" align="center"></div>';
+	content+='<div id="p100X100_pic_done" align="center" style="margin-top:30px;">';
+	content+='<div class="btn-group">';
+	content+='<button align="center" class="col-md-12 btn btn-default custom-font" ';
+	content+=' style="background-color:#fff;color:'+CURRENT_DARK_COLOR+';font-weight: bold;"';
+	content+='onclick="javascript:upload_picture_100X100(\''+div_Id+'\',\''+img_src+'\');">';
+	content+='<b>Edit Picture</b>';
+	content+='</button>';
+	content+='<button align="center" class="btn custom-bg" style="background-color:'+CURRENT_DARK_COLOR+';color:#fff;"';
+	content+=' onclick="javascript:window.location.href=\''+next_url+'\';">';
+	content+='<b>Next</b></button>';
+	content+='</div>';
+	content+='</div>';
+	content+='</div>';
+ document.getElementById(div_Id).innerHTML=content;
+}
+
 function upload_picture_100X100(div_Id,img_src){ /* Profile pic - 100px X 100px */
 IMG_URL='';
 var content='<div align="center">';
@@ -13,7 +40,8 @@ var content='<div align="center">';
 	content+=' style="background-color:#fff;color:'+CURRENT_DARK_COLOR+';font-weight: bold;';
 	content+=' margin-top:15px;" ';
 	content+='onclick="javascript:upload_picture_100X100(\''+div_Id+'\',\''+img_src+'\');">';
-	content+='<b>Edit Picture</b></button>';
+	content+='<b>Edit Picture</b>';
+	content+='</button>';
 	content+='</div>';
  document.getElementById(div_Id).innerHTML=content;
 }
