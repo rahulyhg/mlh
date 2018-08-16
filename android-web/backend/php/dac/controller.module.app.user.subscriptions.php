@@ -41,8 +41,7 @@ if(isset($_GET["action"])){
    $sub_random=rand(1111,9999);
    $subObj=new app_subscription();
    $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
-   $idObj=new Identity();
-   // echo $_SESSION["AUTH_USER_SUBSCRIPTIONS_LIST"].'<br/>';
+   $idObj=new Identity(); // echo $_SESSION["AUTH_USER_SUBSCRIPTIONS_LIST"].'<br/>';
    $subscriptionListJsonData=$_SESSION["AUTH_USER_SUBSCRIPTIONS_LIST"];
    $subscriptionListdeJsonData=json_decode($subscriptionListJsonData);
    $domainData=$subscriptionListdeJsonData->{'domains'};
@@ -58,9 +57,8 @@ if(isset($_GET["action"])){
 	   if($subscribed=='YES'){
 		$sub_Id='SUB'.$user_Id.$sub_random.sprintf("%03d", $i2);
 		$queryBuilder.=$subObj->query_setUserSubscription($sub_Id,$user_Id,$domain_Id,$subdomain_Id);
-	   } else {
-	    $queryBuilder.=$subObj->query_removeUserSubscription($user_Id,$domain_Id,$subdomain_Id);
-	   }
+	   } 
+	   else { $queryBuilder.=$subObj->query_removeUserSubscription($user_Id,$domain_Id,$subdomain_Id); }
 	}
    }
    echo $dbObj->addupdateData($queryBuilder);
