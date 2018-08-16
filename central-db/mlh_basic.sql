@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 15, 2018 at 05:51 PM
+-- Generation Time: Aug 16, 2018 at 01:23 PM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.4.3
 
@@ -331,6 +331,7 @@ CREATE TABLE IF NOT EXISTS `unionprof_branch` (
   `country` varchar(25) NOT NULL,
   `createdOn` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `admin_Id` varchar(15) NOT NULL,
+  `publicInvitation` varchar(1) NOT NULL COMMENT 'Enable/Disable',
   PRIMARY KEY (`branch_Id`),
   KEY `union_Id` (`union_Id`),
   KEY `admin_Id` (`admin_Id`)
