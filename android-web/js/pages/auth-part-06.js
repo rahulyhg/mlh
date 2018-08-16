@@ -130,7 +130,9 @@ console.log("SUBSCRIPTION_COUNTER: "+SUBSCRIPTION_COUNTER);
 	   js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.user.subscriptions.php',
         { action:'SET_USER_SUBSCRIPTION', user_Id:AUTH_USER_ID },
        function(response){ console.log(response);
-	      window.location.href=PROJECT_URL+'newsfeed/latest-news';
+	     if(response==='Success'){
+	        window.location.href=PROJECT_URL+'newsfeed/latest-news';
+		 }
 	    }); 
     });
  } else { alert_display_warning('W011'); }

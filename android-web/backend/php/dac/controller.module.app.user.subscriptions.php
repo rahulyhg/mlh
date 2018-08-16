@@ -41,8 +41,8 @@ if(isset($_GET["action"])){
    $sub_random=rand(1111,9999);
    $subObj=new app_subscription();
    $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
-   $idObj=new identity();
-   echo $_SESSION["AUTH_USER_SUBSCRIPTIONS_LIST"].'<br/>';
+   $idObj=new Identity();
+   // echo $_SESSION["AUTH_USER_SUBSCRIPTIONS_LIST"].'<br/>';
    $subscriptionListJsonData=$_SESSION["AUTH_USER_SUBSCRIPTIONS_LIST"];
    $subscriptionListdeJsonData=json_decode($subscriptionListJsonData);
    $domainData=$subscriptionListdeJsonData->{'domains'};
