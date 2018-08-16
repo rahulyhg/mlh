@@ -54,8 +54,8 @@ class user_authentication {
   /* PAGES UTILIZED : auth-part-05.php ,,, */
     $sql="INSERT INTO user_account(user_Id,username,surName,name,dob,gender,";
 	$sql.="profile_pic,about_me,minlocation,location,state,country,created_On,isAdmin,user_tz,acc_active) ";
-	$sql.="VALUES ('".$user_Id."','".$username."','".$surName."','".$name."','".$mcountrycode."','".$mobile."',";
-	$sql.="'".$mob_val."','".$dob."','".$gender."','".$profile_pic."','".$about_me."','".$minlocation."','".$location."','".$state."',";
+	$sql.="VALUES ('".$user_Id."','".$username."','".$surName."','".$name."','";
+	$sql.=$dob."','".$gender."','".$profile_pic."','".$about_me."','".$minlocation."','".$location."','".$state."',";
 	$sql.="'".$country."','".$created_On."','".$isAdmin."','".$user_tz."','".$acc_active."');";
 	$sql.="INSERT INTO user_contact(contact_Id, user_Id, mcountrycode, mobile, mob_val) ";
 	$sql.="VALUES ('".$contact_Id."','".$user_Id."','".$mcountrycode."','".$mobile."','".$mob_val."');";

@@ -99,7 +99,6 @@ if(isset($_GET["action"])){
 	  $updateQuery=$usrauthObj->query_updateUserInfo($user_Id,$username,$surName,$name,
 							    $dob,$gender,$profile_pic,$about_me,$minlocation,$location,$state,$country,$isAdmin,
 								$user_tz,$acc_active);
-	  echo $updateQuery;
 	  echo $dbObj->addupdateData($updateQuery);
 	} else { echo 'MISSING_USERID';  }
  }
@@ -111,10 +110,10 @@ if(isset($_GET["action"])){
      isset($_GET["mcountrycode"]) && isset($_GET["mobile"]) && isset($_GET["dob"]) && isset($_GET["gender"]) && 
 	 isset($_GET["profile_pic"]) && isset($_GET["minlocation"]) &&  isset($_GET["location"]) && 
 	 isset($_GET["state"]) && isset($_GET["country"]) && isset($_GET["user_tz"])){
-	$idObj=new identity();
+	$idObj=new Identity();
 	$usrauthObj=new user_authentication();
 	$dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
-	$contact_Id='';
+	$contact_Id=$idObj->user_contact_id();
 	$user_Id=$idObj->user_account_id();    
 	$username=$_GET["username"];       
 	$surName=$_GET["surName"];
@@ -138,10 +137,12 @@ if(isset($_GET["action"])){
 	$addQuery=$usrauthObj->query_addNewUser($contact_Id,$user_Id,$username,$surName,$name,$mcountrycode,$mobile,$mob_val,
 			                       $dob,$gender,$profile_pic,$about_me,$minlocation,$location,$state,$country,$created_On,
 								   $isAdmin,$user_tz,$acc_active);
-    echo $dbObj->addupdateData($addQuery);
-	
-	/* Session: */
-	$_SESSION["AUTH_USER_ID"]=$user_Id;
+	echo $addQuery;
+    $status=$dbObj->addupdateData($addQuery);
+	echo $status;
+	if($status=='Success') {
+	  $_SESSION["AUTH_USER_ID"]=$user_Id; /* Session: */ 
+	}
    } else {
 		    $content='MISSING ';
 			if(!isset($_GET["username"])) { $content.='USERNAME, '; }
