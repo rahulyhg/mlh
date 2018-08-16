@@ -1,4 +1,4 @@
-function upload_picture_100X100_WithNext(div_Id,img_src,next_url){ /* Profile pic - 100px X 100px */
+function upload_picture_100X100_WithNext(div_Id,img_src,nextBtnId){ /* Profile pic - 100px X 100px */
 IMG_URL='';
 var content='<div>';
     content+='<input type="file" id="p100X100_fileElem" accept="image/*" ';
@@ -16,8 +16,8 @@ var content='<div>';
 	content+='onclick="javascript:upload_picture_100X100(\''+div_Id+'\',\''+img_src+'\');">';
 	content+='<b>Edit Picture</b>';
 	content+='</button>';
-	content+='<button align="center" class="btn custom-bg" style="background-color:'+CURRENT_DARK_COLOR+';color:#fff;"';
-	content+=' onclick="javascript:window.location.href=\''+next_url+'\';">';
+	content+='<button id="'+nextBtnId+'" align="center" class="btn custom-bg" ';
+	content+='style="background-color:'+CURRENT_DARK_COLOR+';color:#fff;">';
 	content+='<b>Next</b></button>';
 	content+='</div>';
 	content+='</div>';

@@ -6,8 +6,8 @@ $(document).ready(function(){
  $(".lang_"+USR_LANG).css('display','block');
  sel_tmpl('tmpl_button');
  cloudservers_auth(); // Get CloudName from Cloudinary
- upload_picture_100X100_WithNext('userprofilepic-media-content',PROJECT_URL+'images/avatar/0.jpg', 
- PROJECT_URL+'subscribe/categories');
+ upload_picture_100X100_WithNext('userprofilepic-media-content',PROJECT_URL+'images/avatar/0.jpg','authpart05NextBtn');
+ $("#authpart05NextBtn").click(function(){ reg_profile_img(); });
 });
 function sel_tmpl(id){
 var arry=["tmpl_button","tmpl_avatar","tmpl_profilepic"];
@@ -35,7 +35,7 @@ if(AUTH_USER_ID==='0'){ /* New User Account */
        mcountrycode: AUTH_USER_COUNTRYCODE, mobile:AUTH_USER_PHONENUMBER, dob: AUTH_USER_DOB, gender: AUTH_USER_GENDER,
        profile_pic: profile_pic, minlocation: AUTH_USER_LOCALITY, location: AUTH_USER_LOCATION, 
 	   state: AUTH_USER_STATE, country: AUTH_USER_COUNTRY, user_tz: AUTH_USER_TIMEZONE },
-	   function(resp){  console.log(resp);window.location.href=PROJECT_URL+"subscribe/categories";  });
+	   function(resp){  console.log(resp);/*window.location.href=PROJECT_URL+"subscribe/categories"; */ });
 }
 else {  /* Update Existing Account */
   js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.user.authentication.php',
@@ -44,7 +44,7 @@ else {  /* Update Existing Account */
 	   mobile:AUTH_USER_PHONENUMBER, mob_val:'Y',  dob: AUTH_USER_DOB, gender: AUTH_USER_GENDER, 
 	   profile_pic: profile_pic, about_me:'', minlocation: AUTH_USER_LOCALITY, location: AUTH_USER_LOCATION, 
 	   state: AUTH_USER_STATE, country: AUTH_USER_COUNTRY, isAdmin:'N', user_tz: AUTH_USER_TIMEZONE, 
-	   acc_active:'Y' },function(resp){  console.log(resp);window.location.href=PROJECT_URL+"subscribe/categories";  });
+	   acc_active:'Y' },function(resp){  console.log(resp);/*window.location.href=PROJECT_URL+"subscribe/categories"; */ });
    }
 }
 
