@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <?php include_once 'templates/api/api_params.php'; ?>
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,7 +10,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+<?php include_once 'templates\pages\app-community-profile/community-membership-requests.php'; ?>
 <div class="jumbotron text-center">
   <h1>My First Bootstrap Page</h1>
   <p>Resize this responsive page to see the effect!</p> 

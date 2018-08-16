@@ -16,7 +16,8 @@ public class AppAndroidService {
   public String userDumpFriendsService(){ /* SERVICE_USRDUMPFRNDS*/
     AppAndroidServiceURL appAndroidServiceURL = new AppAndroidServiceURL();
     URLRequestService urlRequestService = new URLRequestService();
-    String response = urlRequestService.sendPostRequest(AppAndroidServiceURL.SERVICE_URL, appAndroidServiceURL.userDumpFriendsServiceParameters());
+    String response = urlRequestService.sendPostRequest(AppAndroidServiceURL.SERVICE_URL, 
+            appAndroidServiceURL.userDumpFriendsServiceParameters());
     return response;
   }
   

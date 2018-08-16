@@ -43,7 +43,7 @@ if(isset($_POST["action"])){
     $content.='"status":"ACTIVATE_DEBUG",'; // ACTIVATE_PROD, ACTIVATE_DEBUG, ACTIVATE_NO
 	$content.='"debug_Id":"ca-app-pub-3940256099942544/1033173712",';
 	$content.='"prod_Id":"ca-app-pub-9032115287615251/7844041725",';
-	$content.='"prodExeceptionUsers":["USR924357814934","USR273782437846"]';
+	$content.='"prodExeceptionUsers":["USR924357814934","USR273782437846"],';
 	$content.='"duration_in_seconds":100';
 	$content.='}';
 	$content.='}';

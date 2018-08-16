@@ -2,13 +2,11 @@
 session_start();
 require_once '../api/app.initiator.php';
 require_once '../api/app.database.php';
-require_once '../dal/data.module.app.search.php';
-require_once '../dal/data.module.app.notifications.php';
-require_once '../dal/data.module.user.friends.php';
-require_once '../lal/logic.dom.php';
+require_once '../dal/data.module.app.user.search.php';
+require_once '../dal/data.module.app.user.friends.php';
 require_once '../lal/logic.appIdentity.php';
 
-$logger=Logger::getLogger("controller.page.app.search.php");
+$logger=Logger::getLogger("controller.module.app.user.search.php");
 
 if(isset($_GET["action"])){
 if($_GET["action"]=='SEARCH_COUNT_USERS'){
@@ -17,7 +15,7 @@ if($_GET["action"]=='SEARCH_COUNT_USERS'){
    $searchQuery=$_GET["searchKeyword"];
    $appSearchObj=new app_Search();
    $query=$appSearchObj->query_count_getSearchedUserList($user_Id,$searchQuery);
-   $dbObj=new Database();
+   $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
    $jsonData=$dbObj->getJSONData($query);
    $dejsonData=json_decode($jsonData);
    echo $dejsonData[0]->{'totalData'};
@@ -37,7 +35,7 @@ else if($_GET["action"]=='SEARCH_DATA_USERS'){
    $limit_end=$_GET["limit_end"];
    $appSearchObj=new app_Search();
    $query=$appSearchObj->query_getSearchedUserList($user_Id,$searchQuery,$limit_start,$limit_end);
-   $dbObj=new Database();
+   $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
    echo $dbObj->getJSONData($query);
   } else { 
     $content='Missing ';
@@ -54,7 +52,7 @@ else if($_GET["action"]=='SEARCH_COUNT_COMMUNITY'){
    $searchQuery=$_GET["searchKeyword"];
    $appSearchObj=new app_Search();
    $query=$appSearchObj->query_count_getSearchedCommunityList($searchQuery);
-   $dbObj=new Database();
+   $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
    $jsonData=$dbObj->getJSONData($query);
    $dejsonData=json_decode($jsonData);
    echo $dejsonData[0]->{'count(*)'};
@@ -73,7 +71,7 @@ else if($_GET["action"]=='SEARCH_DATA_COMMUNITY'){
    $limit_end=$_GET["limit_end"];
    $appSearchObj=new app_Search();
    $query=$appSearchObj->query_getSearchedCommunityList($searchQuery,$limit_start,$limit_end);
-   $dbObj=new Database();
+   $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
    $domObj=new module_dom();
    $jsonData=$dbObj->getJSONData($query);
    $dejsonData=json_decode($jsonData);
@@ -126,7 +124,7 @@ else if($_GET["action"]=='SEARCH_COUNT_NEWSFEED'){
    $searchQuery=$_GET["searchKeyword"];
    $appSearchObj=new app_Search();
    $query=$appSearchObj->query_count_getSearchedNewsFeedList($searchQuery);
-   $dbObj=new Database();
+   $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
    $jsonData=$dbObj->getJSONData($query);
    $dejsonData=json_decode($jsonData);
    echo $dejsonData[0]->{'count(*)'};
@@ -145,7 +143,7 @@ else if($_GET["action"]=='SEARCH_DATA_NEWSFEED'){
    $limit_end=$_GET["limit_end"];
    
    $appSearchObj=new app_Search();
-   $dbObj=new Database();
+   $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
    $domObj=new module_dom();
    
    $query=$appSearchObj->query_getSearchedNewsFeedList($searchQuery,$limit_start,$limit_end);
@@ -208,7 +206,7 @@ else if($_GET["action"]=='SEARCH_COUNT_MOVEMENT'){
    $searchQuery=$_GET["searchKeyword"];
    $appSearchObj=new app_Search();
    $query=$appSearchObj->query_count_getSearchedMovementList($searchQuery);
-   $dbObj=new Database();
+   $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
    $jsonData=$dbObj->getJSONData($query);
    $dejsonData=json_decode($jsonData);
    echo $dejsonData[0]->{'totalData'};
@@ -223,7 +221,7 @@ else if($_GET["action"]=='SEARCH_DATA_MOVEMENT'){
    $limit_end=$_GET["limit_end"];
    $appSearchObj=new app_Search();
    $query=$appSearchObj->query_getSearchedMovementList($searchQuery,$limit_start,$limit_end);
-   $dbObj=new Database();
+   $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
    echo $dbObj->getJSONData($query);
   } else { 
     $content='Missing ';
@@ -255,7 +253,7 @@ else if($_GET["action"]=="SEND_USERFRND_REQUESTS") {
 			 $cal_event="N";
 			 $userObj=new user_friends();
 			 $notifyObj=new app_notifications();
-			 $dbObj=new Database();
+			 $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
 			 $insertQuery=$userObj->query_sendUserFrndRequests($req_Id,$from_userId,$to_userId,$usr_frm_call_to);
 			 $notifyQuery=$notifyObj->query_addNotify_sendFriendRequest($notify_Id,$to_userId,$from_userId,
 			                   $notifyHeader,$notifyTitle,$notifyMsg,$notifyType,$notifyURL,$notify_ts,
@@ -274,7 +272,7 @@ else if($_GET["action"]=='ACCEPT_FRNDREQUEST_TO_ME'){
   if(isset($_GET["requestFrom"]) && isset($_GET["user_Id"])){
 	$idObj=new identity();
     $reqObj=new user_friends();
-    $dbObj=new Database();
+    $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
 	$notifyObj=new app_notifications();
     $from_userId=$_GET["requestFrom"];
     $to_userId=$_GET["user_Id"];
@@ -302,7 +300,7 @@ else if($_GET["action"]=='DELETE_A_REQUEST_SENT'){
 		 $from_userId=$_GET["from_userId"];
 		 $to_userId=$_GET["to_userId"];
 	     $reqObj=new user_friends();
-		 $dbObj=new Database();
+		 $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
 		 /* Delete row in user_frnds_req */
 		 $deleteQuery=$reqObj->query_deleteFrndRequestToMe($from_userId,$to_userId);
 		 echo $dbObj->addupdateData($deleteQuery);
@@ -323,7 +321,7 @@ else if($_GET["action"]=='UNFRIEND_A_PERSON'){
 		$frnd2=$_GET["frnd2"];
 		$frndObj=new user_friends();
 		$query=$frndObj->query_unfriendAperson($frnd1,$frnd2);
-		$dbObj=new Database();
+		$dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
 		echo $dbObj->addupdateData($query);
 	  } else {
 			$content='Missing ';

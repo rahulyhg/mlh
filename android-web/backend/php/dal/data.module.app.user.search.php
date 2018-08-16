@@ -47,19 +47,19 @@ function query_getSearchedCommunityList($searchQuery,$limit_start,$limit_end){
 
 /* NewsFeed */
 function query_count_getSearchedNewsFeedList($searchQuery){
- $sql="SELECT count(*) FROM dash_info_union, union_account WHERE (dash_info_union.artTitle LIKE '%".$searchQuery."%' OR ";
- $sql.=" dash_info_union.artShrtDesc LIKE  '%".$searchQuery."%' OR dash_info_union.artDesc LIKE '%".$searchQuery."%') ";
- $sql.=" AND dash_info_union.union_Id=union_account.union_Id; ";
+ $sql="SELECT count(*) FROM newsfeed_info, union_account WHERE (newsfeed_info.artTitle LIKE '%".$searchQuery."%' OR ";
+ $sql.=" newsfeed_info.artShrtDesc LIKE  '%".$searchQuery."%' OR newsfeed_info.artDesc LIKE '%".$searchQuery."%') ";
+ $sql.=" AND newsfeed_info.bizUnionId=union_account.union_Id; ";
  return $sql;
 }
 
 function query_getSearchedNewsFeedList($searchQuery,$limit_start,$limit_end){
- $sql="SELECT dash_info_union.union_Id, union_account.domain_Id, union_account.subdomain_Id, union_account.unionName, ";
- $sql.="dash_info_union.info_Id, dash_info_union.artTitle, dash_info_union.artShrtDesc, dash_info_union.artDesc, ";
- $sql.="dash_info_union.createdOn, dash_info_union.images, dash_info_union.status ";
- $sql.="FROM dash_info_union, union_account WHERE (dash_info_union.artTitle LIKE '%".$searchQuery."%' OR ";
- $sql.=" dash_info_union.artShrtDesc LIKE  '%".$searchQuery."%' OR dash_info_union.artDesc LIKE '%".$searchQuery."%') ";
- $sql.=" AND dash_info_union.union_Id=union_account.union_Id ";
+ $sql="SELECT newsfeed_info.bizUnionId, union_account.domain_Id, union_account.subdomain_Id, union_account.unionName, ";
+ $sql.="newsfeed_info.info_Id, newsfeed_info.artTitle, newsfeed_info.artShrtDesc, newsfeed_info.artDesc, ";
+ $sql.="newsfeed_info.createdOn, newsfeed_info.images, newsfeed_info.status ";
+ $sql.="FROM newsfeed_info, union_account WHERE (newsfeed_info.artTitle LIKE '%".$searchQuery."%' OR ";
+ $sql.=" newsfeed_info.artShrtDesc LIKE  '%".$searchQuery."%' OR newsfeed_info.artDesc LIKE '%".$searchQuery."%') ";
+ $sql.=" AND newsfeed_info.bizUnionId=union_account.union_Id ";
  $sql.="LIMIT ".$limit_start.",".$limit_end.";";
  return $sql;
 }

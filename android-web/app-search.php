@@ -46,7 +46,7 @@ function hzTabSelection(id){
 }
 /* Search People load On Scroll */
 function searchpeopleInitializer(){
- js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.page.app.search.php',
+ js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.module.app.user.search.php',
  { action:'SEARCH_COUNT_USERS', searchKeyword:SEARCH_KEYWORD, user_Id:AUTH_USER_ID },function(totalData){
    console.log("searchpeopleInitializer: "+totalData);
    if(totalData=='0'){
@@ -67,7 +67,7 @@ function searchpeopleInitializer(){
  });
 }
 function searchpeoplecontentData(div_view, appendContent,limit_start,limit_end){
-  js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.page.app.search.php',
+  js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.module.app.user.search.php',
   { action:'SEARCH_DATA_USERS', searchKeyword:SEARCH_KEYWORD, user_Id:AUTH_USER_ID, limit_start:limit_start,limit_end:limit_end },
   function(response){
     var content='';
@@ -86,8 +86,9 @@ function searchpeoplecontentData(div_view, appendContent,limit_start,limit_end){
 	  var param_youSentfrndRequest=response[index].youSentfrndRequest; 
 	  
 	   content+=uiTemplate_displayPeople_WithFriendsNonFriendsDiff(param_userId, param_profilepic, param_surName, param_name,
- param_minlocation,param_location,param_state,param_country,param_isFriend,param_youRecFrndRequest,param_youSentfrndRequest);
-	  // content+=uiTemplate_userDisplayWithoutCloseButton(surName, name, profile_pic, minlocation, location,state,country);
+								param_minlocation,param_location,param_state,param_country,param_isFriend,
+								param_youRecFrndRequest,param_youSentfrndRequest);
+
 	}
 	content+=appendContent;
 	document.getElementById(div_view).innerHTML=content;
@@ -95,7 +96,7 @@ function searchpeoplecontentData(div_view, appendContent,limit_start,limit_end){
 }
 /* Search NewsFeed load On Scroll */ 
 function searchNewsFeedInitializer(){
- js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.page.app.search.php',
+ js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.module.app.user.search.php',
  { action:'SEARCH_COUNT_NEWSFEED', searchKeyword:SEARCH_KEYWORD },function(totalData){
    console.log("searchNewsFeedInitializer: "+totalData);
    if(totalData=='0'){
@@ -144,7 +145,7 @@ function searchNewsFeedcontentData(div_view, appendContent,limit_start,limit_end
 //  
 /* Search Community load On Scroll */
 function searchCommunityInitializer(){
- js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.page.app.search.php',
+ js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.module.app.user.search.php',
  { action:'SEARCH_COUNT_COMMUNITY', searchKeyword:SEARCH_KEYWORD },function(totalData){
    if(totalData=='0'){
      document.getElementById("searchCommunityDataload0").innerHTML='<div align="center" style="color:#ccc;">No Community found</div>';
@@ -165,7 +166,7 @@ function searchCommunityInitializer(){
  });
 }
 function searchCommunitycontentData(div_view, appendContent,limit_start,limit_end){
-  js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.page.app.search.php',
+  js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.module.app.user.search.php',
  { action:'SEARCH_DATA_COMMUNITY', projectURL: PROJECT_URL, lang: USR_LANG, user_Id: AUTH_USER_ID, 
  searchKeyword:SEARCH_KEYWORD, limit_start:limit_start, limit_end:limit_end },
  function(response){
@@ -194,7 +195,7 @@ function searchCommunitycontentData(div_view, appendContent,limit_start,limit_en
 }
 /* Search Movement load On Scroll */ 
 function searchMovementInitializer(){
- js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.page.app.search.php',
+ js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.module.app.user.search.php',
  { action:'SEARCH_COUNT_MOVEMENT', searchKeyword:SEARCH_KEYWORD },function(totalData){
    if(totalData=='0'){
      document.getElementById("searchMovementDataload0").innerHTML='<div align="center" style="color:#ccc;">No Movement found</div>';
@@ -215,7 +216,7 @@ function searchMovementInitializer(){
  });
 }
 function searchMovementcontentData(div_view, appendContent,limit_start,limit_end){
-  js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.page.app.search.php',
+  js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.module.app.user.search.php',
  { action:'SEARCH_DATA_MOVEMENT', searchKeyword:SEARCH_KEYWORD, limit_start:limit_start, limit_end:limit_end },
  function(response){
    var content=uiTemplate_simpleMovementDisplay();
