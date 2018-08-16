@@ -5,8 +5,6 @@ if($_SESSION["AUTHENTICATION_STATUS"]=='INCOMPLETED'){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<?php include_once 'templates/api/api_params.php'; ?>
-<?php include_once 'templates/api/api_js.php'; ?>
  <title>Authentication</title>
  <meta charset="utf-8">
  <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,6 +17,8 @@ if($_SESSION["AUTHENTICATION_STATUS"]=='INCOMPLETED'){
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/bg-styles-common.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/auth-part-01-bg-styles.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/auth-part-01.js"></script>
+ <?php include_once 'templates/api/api_js.php'; ?>
+ <?php include_once 'templates/api/api_params.php'; ?>
  <style>
  body { background-color:#0ba0da; }
  @font-face { font-family: "mlhfont001";src: url("fonts/BAUHS93.TTF"); }
