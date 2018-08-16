@@ -6,9 +6,12 @@ if(Android===undefined){ window.location.href="android.php"; }
 </script-->
 <?php 
 session_start();
+session_unset();
 if(!isset($_SESSION["USR_LANG"])) { $_SESSION["USR_LANG"]='english'; } 
 if(!isset($_SESSION["AUTHENTICATION_STATUS"])){ $_SESSION["AUTHENTICATION_STATUS"]='INCOMPLETED'; }
 if($_SESSION["AUTHENTICATION_STATUS"]=='INCOMPLETED'){
+/* SET params to Empty */
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
