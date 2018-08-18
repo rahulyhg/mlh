@@ -18,8 +18,7 @@
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/load-data-on-scroll.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/ui-templates.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/bg-styles-common.js"></script>
- <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/app-notifications-bg-styles.js"></script>
- <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/app-notifications.js"></script>
+ <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/app-user-profile-bg-styles.js"></script>
  <link rel="stylesheet" href="<?php echo $_SESSION["PROJECT_URL"]; ?>styles/api/hz-scrollableTabs.css">
  <?php include_once 'templates/api/api_params.php'; ?>
 <style>
@@ -28,8 +27,10 @@ body { background-color:#eee; }
 <script type="text/javascript">
 var PROFILE_USER_ID='<?php if(isset($_GET["user_Id"])) { echo $_GET["user_Id"]; } ?>';
 $(document).ready(function(){ 
+bgstyle();
+$(".lang_"+USR_LANG).css('display','block');
   startAppProgressLoader();
-  hzTabSelection("usrSubscriptionPeopleHzTab");
+  hzTabSelection("usrProfileHzTab");
   loadDataofUser(); 
 });
 function loadDataofUser(){
@@ -131,58 +132,32 @@ function loadDataofUser(){
     });
 }
 function hzTabSelection(id){     
- var arryHzTab=["usrSubscriptionPeopleHzTab","usrCommunityHzTab","usrMovementHzTab"];
- var arryTabDataViewer=["usrSubscriptionPeopleDisplayDivision","usrCommunityDisplayDivision","usrMovementDisplayDivision"];
+ var arryHzTab=["usrProfileHzTab","usrSubscriptionHzTab","usrFriendsHzTab","usrCommunityHzTab","usrMovementHzTab"];
+ var arryTabDataViewer=["usrProfileDisplayDivision","usrSubscriptionDisplayDivision","usrFriendsDisplayDivision","usrCommunityDisplayDivision","usrMovementDisplayDivision"];
  hzTabSelector(id,arryHzTab,arryTabDataViewer);
 }
 </script>
 </head>
 <body>
   <?php include_once 'templates/api/api_loading.php'; ?>
-  <div id="wrapper" class="toggled">
-	<!-- Core Skeleton : Side and Top Menu -->
-	<div id="sidebar-wrapper">
-	  <?php include_once 'templates/api/api_sidewrapper.php'; ?>
-	</div>
-	<div id="page-content-wrapper">
-	  <?php include_once 'templates/api/api_header_simple.php'; ?>
+  <?php include_once 'templates/api/api_header_simple.php'; ?>
 	  <div id="app-page-content pad0">
 	   <!-- AppBody Content -->
 	   <?php include_once 'templates/api/api_progressbar.php'; ?>
 	   
 	   <div id="app-actual-content" class="hide-block">
-		<div class="container-fluid pad0">
-		    <div class="mtop15p">
-				<div id="app-user-profilepic" class="col-xs-3">
-					
-				</div>
-				<div class="col-xs-9">
-					<h5 id="app-user-title" style="color:#000;"><b></b></h5>
-					<span id="app-user-area" class="f12" style="font-weight:300;"></span>
-				</div>
-				<div id="app-profile-my" class="col-xs-12 mtop15p hide-block">
-					<button class="btn btn-default pull-right"><b>Edit your Profile</b></button>
-				</div>
-				<div id="app-profile-frnd" class="col-xs-12 mtop15p hide-block"> 
-					<button class="btn btn-default pull-right">
-					 <i class="fa fa-check"></i>&nbsp;<b>Your Friend</b>
-					</button>
-				</div>
-				<div id="app-profile-unknown" class="col-xs-12 mtop15p hide-block">
-					<button class="btn btn-default pull-right"><b>Add Friend</b></button>
-				</div>
-			</div>
-		</div>
 		<div class="container-fluid">
-		   <div class="scroller-divison row white-bg mtop15p">
+		   <div class="scroller-divison row white-bg">
 		    <div class="scroller scroller-left col-xs-1" style="height:41px;">
 			   <i class="glyphicon glyphicon-chevron-left"></i>
 			</div>
 			<div class="scrollTabwrapper col-xs-10">
 				<ul class="nav nav-tabs scrollTablist" id="myTab" style="border-bottom:0px;">
-					<li><a id="usrSubscriptionPeopleHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>1. User Subscription</b></a></li>
-					<li><a id="usrCommunityHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>2. Community</b></a></li>
-					<li><a id="usrMovementHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>3. Movements</b></a></li>
+				  <li><a id="usrProfileHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>User Profile</b></a></li>
+				  <li><a id="usrSubscriptionHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>User Subscriptions</b></a></li>
+				  <li><a id="usrFriendsHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>User Friends</b></a></li>
+				  <li><a id="usrCommunityHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>Community</b></a></li>
+				  <li><a id="usrMovementHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>Movements</b></a></li>
 				</ul>
 			</div>
 			<div class="scroller scroller-right col-xs-1" style="height:41px;">
@@ -191,19 +166,15 @@ function hzTabSelection(id){
 		   </div>
 		</div>
 		
-		 <div id="usrSubscriptionPeopleDisplayDivision" class="container-fluid mtop15p mbot15p hide-block">
-		 </div>
-  
-		<div id="usrCommunityDisplayDivision" class="container-fluid mtop15p hide-block">
+		<div id="usrProfileDisplayDivision" class="container-fluid mtop15p mbot15p hide-block"></div>
+		<div id="usrSubscriptionDisplayDivision" class="container-fluid mtop15p mbot15p hide-block"></div>
+		<div id="usrFriendsDisplayDivision" class="container-fluid mtop15p mbot15p hide-block"></div>
+		<div id="usrCommunityDisplayDivision" class="container-fluid mtop15p hide-block"></div>
+		<div id="usrMovementDisplayDivision" class="container-fluid mtop15p hide-block"></div>
 		
-		</div>
-  
-		<div id="usrMovementDisplayDivision" class="container-fluid mtop15p hide-block">
-		
-		</div>
 	   </div>
 	</div>
-  </div>
+ 
 		
   <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/hz-scrollableTabs.js"></script>
 </body>

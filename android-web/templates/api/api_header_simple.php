@@ -44,55 +44,12 @@ window.location.href=PROJECT_URL+'app/search/'+searchKeywrd;
 }
 </script>
 <nav id="header_bot" class="navbar" style="margin-bottom:0px;border-radius:0px;">
-	
 	<div id="applogo-header">
 		<a class="navbar-brand a-custom" style="cursor:pointer;" onclick="javascript:sideMenuToggle();">
-			<span class="glyphicon glyphicon-align-justify white-font"></span>
+		  <i class="fa fa-arrow-left white-font" aria-hidden="true" onclick="javascript:window.history.back();"></i>
 		</a>
 		<div class="container-fluid" style="padding-left:0px;padding-right:0px;">
-		
-		   <!--div class="row"--> 
-			  <div id="div_app_logo" class="col-md-2 col-sm-4 col-xs-5" style="padding-left:0px;"></div>
-
-			  <!--div id="notify-icon-div" class="col-md-4 col-xs-12">
-			     <div class="pull-right">
-				     <a href="#" id="notify-hookrequest" data-toggle="tooltip" data-placement="bottom"  title="Hook Requests" onclick="javascript:notify_hookrequest_effect_stop();">
-					     <i id="notify-hookrequest-icon" class="fa fa-anchor fa-notify-icon white-font" aria-hidden="true"></i>
-					     <span id="notify-hookrequest-badge" class="badge badge-notify3">3</span>
-					 </a>
-					 
-				     <a href="#" id="notify-friendrequest" data-toggle="tooltip" data-placement="bottom"  title="Friend Requests" onclick="javascript:notify_friendrequest_effect_stop();">
-					     <i id="notify-friendrequest-icon" class="fa fa-user fa-notify-icon white-font" aria-hidden="true"></i>
-					     <span id="notify-friendrequest-badge" class="badge badge-notify3">3</span>
-					 </a>
-
-					 <a href="#" id="notify-communityrequest" data-toggle="tooltip" data-placement="bottom"  title="Community Requests" onclick="javascript:notify_communityrequest_effect_stop();">
-					     <i id="notify-communityrequest-icon" class="fa fa-users fa-notify-icon white-font" aria-hidden="true"></i>
-					     <span id="notify-communityrequest-badge" class="badge badge-notify3">3</span>
-					 </a>
-					 
-					 <a href="#" id="notify-movementrequest" data-toggle="tooltip" data-placement="bottom"  title="Movement Requests" onclick="javascript:notify_movementrequest_effect_stop();">
-					     <i id="notify-movementrequest-icon" class="fa fa-hand-paper-o fa-notify-icon white-font" aria-hidden="true"></i>
-					     <span id="notify-movementrequest-badge" class="badge badge-notify3">3</span>
-					 </a>
-					 
-					 <a href="#" id="notify-messagesrequest" data-toggle="tooltip" data-placement="bottom"  title="Messages" onclick="javascript:notify_messagesrequest_effect_stop();">
-						 <i id="notify-messagesrequest-icon" class="fa fa-envelope fa-notify-icon white-font" aria-hidden="true"></i>
-						 <span id="notify-messagesrequest-badge" class="badge badge-notify2">3</span>
-					 </a>
-					 
-					 <a href="#" id="notify-notificationsrequest" data-toggle="tooltip" data-placement="bottom"  title="Notifications" onclick="javascript:notify_notificationrequest_effect_stop();">
-						 <i id="notify-notificationsrequest-icon" class="fa fa-bell fa-notify-icon white-font" aria-hidden="true"></i>
-						 <span id="notify-notificationsrequest-badge" class="badge badge-notify1">3</span>
-					 </a>
-				 <div>
-			  </div>
-		   </div>
-		   
-		</div-->
-	      <!--/div-->
-		  
-	  </div>
-   </div>
-   
+		  <div id="div_app_logo" class="col-md-2 col-sm-4 col-xs-5" style="padding-left:0px;"></div> 
+	    </div>
+    </div>
 </nav>
