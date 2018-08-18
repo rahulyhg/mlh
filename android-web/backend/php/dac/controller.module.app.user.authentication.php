@@ -165,6 +165,14 @@ if(isset($_GET["action"])){
  } 
   /* Action Events used By auth-part-05.php/auth-part-05.js ::: END */
   
+  else if($_GET["action"]==='GET_USERACCOUNT_PROFILE'){
+    if(isset($_GET["user_Id"])){
+	 $user_Id=$_GET["user_Id"];
+	 
+	} 
+	else { echo 'MISSING_USERID'; }
+  }
+  
   else { echo 'NO_ACTION'; }
 } 
 else { echo 'MISSING_ACTION'; }

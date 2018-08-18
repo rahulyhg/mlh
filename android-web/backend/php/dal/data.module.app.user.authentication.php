@@ -61,7 +61,10 @@ class user_authentication {
 	$sql.="VALUES ('".$contact_Id."','".$user_Id."','".$mcountrycode."','".$mobile."','".$mob_val."');";
 	return $sql;
   }
-  
+ 
+  function query_getUserInfoByUserId($user_Id){
+    $sql="SELECT * FROM user_account ";
+  }
 }
 
 ?>

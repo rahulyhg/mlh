@@ -13,13 +13,14 @@
  <link rel="stylesheet" href="<?php echo $_SESSION["PROJECT_URL"]; ?>styles/api/core-skeleton.css">
  <link rel="stylesheet" href="<?php echo $_SESSION["PROJECT_URL"]; ?>styles/api/simple-sidebar.css"> 
  <link rel="stylesheet" href="<?php echo $_SESSION["PROJECT_URL"]; ?>styles/api/fontawesome.min.css">
+ <link rel="stylesheet" href="<?php echo $_SESSION["PROJECT_URL"]; ?>styles/api/hz-scrollableTabs.css">
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/jquery.min.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/bootstrap.min.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/load-data-on-scroll.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/ui-templates.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/bg-styles-common.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/app-user-profile-bg-styles.js"></script>
- <link rel="stylesheet" href="<?php echo $_SESSION["PROJECT_URL"]; ?>styles/api/hz-scrollableTabs.css">
+ <script src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyBjU25YPL1vrAwVKShgU6T-G9DwHYHRvtk"></script>
  <?php include_once 'templates/api/api_params.php'; ?>
 <style>
 body { background-color:#eee; }
@@ -166,11 +167,21 @@ function hzTabSelection(id){
 		   </div>
 		</div>
 		
-		<div id="usrProfileDisplayDivision" class="container-fluid mtop15p mbot15p hide-block"></div>
-		<div id="usrSubscriptionDisplayDivision" class="container-fluid mtop15p mbot15p hide-block"></div>
-		<div id="usrFriendsDisplayDivision" class="container-fluid mtop15p mbot15p hide-block"></div>
-		<div id="usrCommunityDisplayDivision" class="container-fluid mtop15p hide-block"></div>
-		<div id="usrMovementDisplayDivision" class="container-fluid mtop15p hide-block"></div>
+		<div id="usrProfileDisplayDivision" class="container-fluid mtop15p mbot15p hide-block">
+		  <?php include_once 'templates/pages/app-user-profile/user-profile.php'; ?>
+		</div>
+		<div id="usrSubscriptionDisplayDivision" class="container-fluid mtop15p mbot15p hide-block">
+		User Subscription
+		</div>
+		<div id="usrFriendsDisplayDivision" class="container-fluid mtop15p mbot15p hide-block">
+		User Friends
+		</div>
+		<div id="usrCommunityDisplayDivision" class="container-fluid mtop15p hide-block">
+		User Community
+		</div>
+		<div id="usrMovementDisplayDivision" class="container-fluid mtop15p hide-block">
+		User Movement
+		</div>
 		
 	   </div>
 	</div>
