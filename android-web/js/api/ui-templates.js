@@ -81,7 +81,7 @@ function uiTemplate_displayPeople_frndUnFrnd(param_userId){
 /* One User Sending Request to Other User */
 function send_relationship_request(user_Id){
  document.getElementById("searchpeople_btnsView_"+user_Id).innerHTML=uiTemplate_displayPeople_reqSentDelRequest(user_Id);
- js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.search.php',
+ js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.user.authentication.php',
  {action:'SEND_USERFRND_REQUESTS', projectURL: PROJECT_URL, from_user_Id:AUTH_USER_ID, to_user_Id:user_Id },function(resp){
   console.log(resp);
  });
@@ -89,7 +89,7 @@ function send_relationship_request(user_Id){
 /* Delete a Request that previously Sent */
 function delete_relationship_request(user_Id){
 document.getElementById("searchpeople_btnsView_"+user_Id).innerHTML=uiTemplate_displayPeople_sendReqHidePeople(user_Id);
-js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.search.php',
+js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.user.authentication.php',
 {action:'DELETE_A_REQUEST_SENT',from_userId:AUTH_USER_ID, to_userId:user_Id },function(resp){
    console.log(resp);
 });
@@ -97,7 +97,7 @@ js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.search.php',
 /* AcceptRequestRecievedByMe */
 function acceptReqToMe(user_Id){
 document.getElementById("searchpeople_btnsView_"+user_Id).innerHTML=uiTemplate_displayPeople_frndUnFrnd(user_Id);
-js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.search.php',
+js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.user.authentication.php',
 {action:'ACCEPT_FRNDREQUEST_TO_ME',requestFrom:user_Id, user_Id:AUTH_USER_ID },function(resp){ 
  console.log(resp);
 });
@@ -105,7 +105,7 @@ js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.search.php',
 /* UnFriend a Person */
 function unfriendAperson(user_Id){  
 document.getElementById("searchpeople_btnsView_"+user_Id).innerHTML=uiTemplate_displayPeople_sendReqHidePeople(user_Id);
-js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.page.app.search.php',
+js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.user.authentication.php',
 {action:'UNFRIEND_A_PERSON',frnd1:user_Id, frnd2:AUTH_USER_ID },function(resp){ console.log(resp); });
 }
 

@@ -97,7 +97,7 @@ function searchpeoplecontentData(div_view, appendContent,limit_start,limit_end){
 /* Search NewsFeed load On Scroll */ 
 function searchNewsFeedInitializer(){
  js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.module.app.user.search.php',
- { action:'SEARCH_COUNT_NEWSFEED', searchKeyword:SEARCH_KEYWORD },function(totalData){
+ { action:'SEARCH_COUNT_NEWSFEED', searchKeyword:SEARCH_KEYWORD,user_Id: AUTH_USER_ID,  },function(totalData){
    console.log("searchNewsFeedInitializer: "+totalData);
    if(totalData=='0'){
      document.getElementById("searchNewsFeedDataload0").innerHTML='<div align="center" style="color:#ccc;">No NewsFeed found</div>';
@@ -115,7 +115,7 @@ function searchNewsFeedInitializer(){
 }
 function searchNewsFeedcontentData(div_view, appendContent,limit_start,limit_end){
   js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.page.app.search.php',
-  { action:'SEARCH_DATA_NEWSFEED', projectURL:PROJECT_URL, lang: USR_LANG, user_Id: AUTH_USER_ID, 
+  { action:'SEARCH_DATA_NEWSFEED', projectURL:PROJECT_URL, user_Id: AUTH_USER_ID, 
   searchKeyword:SEARCH_KEYWORD, limit_start:limit_start, limit_end:limit_end },
   function(response){
     console.log("response: "+response);
@@ -142,11 +142,11 @@ function searchNewsFeedcontentData(div_view, appendContent,limit_start,limit_end
 	document.getElementById(div_view).innerHTML=content;
   });
 }
-//  
 /* Search Community load On Scroll */
 function searchCommunityInitializer(){
  js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.module.app.user.search.php',
  { action:'SEARCH_COUNT_COMMUNITY', searchKeyword:SEARCH_KEYWORD },function(totalData){
+   console.log("searchCommunityInitializer: "+totalData);
    if(totalData=='0'){
      document.getElementById("searchCommunityDataload0").innerHTML='<div align="center" style="color:#ccc;">No Community found</div>';
    } else {
@@ -196,7 +196,8 @@ function searchCommunitycontentData(div_view, appendContent,limit_start,limit_en
 /* Search Movement load On Scroll */ 
 function searchMovementInitializer(){
  js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.module.app.user.search.php',
- { action:'SEARCH_COUNT_MOVEMENT', searchKeyword:SEARCH_KEYWORD },function(totalData){
+ { action:'SEARCH_COUNT_MOVEMENT', user_Id: AUTH_USER_ID, searchKeyword:SEARCH_KEYWORD },function(totalData){
+   console.log("searchMovementInitializer: "+totalData);
    if(totalData=='0'){
      document.getElementById("searchMovementDataload0").innerHTML='<div align="center" style="color:#ccc;">No Movement found</div>';
    } else {
@@ -217,7 +218,8 @@ function searchMovementInitializer(){
 }
 function searchMovementcontentData(div_view, appendContent,limit_start,limit_end){
   js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.module.app.user.search.php',
- { action:'SEARCH_DATA_MOVEMENT', searchKeyword:SEARCH_KEYWORD, limit_start:limit_start, limit_end:limit_end },
+ { action:'SEARCH_DATA_MOVEMENT', user_Id: AUTH_USER_ID, searchKeyword:SEARCH_KEYWORD, 
+   limit_start:limit_start, limit_end:limit_end },
  function(response){
    var content=uiTemplate_simpleMovementDisplay();
        content+=appendContent;

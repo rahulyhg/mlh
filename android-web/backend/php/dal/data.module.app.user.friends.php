@@ -56,9 +56,13 @@ class user_friends {
 	return $sql;
   }
   
+  /* Starts from Here */
   function query_sendUserFrndRequests($req_Id,$fromUserId,$toUserId,$usr_frm_call_to){
-    $sql="INSERT INTO user_frnds_req(req_Id, from_userId,  to_userId,usr_frm_call_to, req_on) ";
-	$sql.="VALUES ('".$req_Id."','".$fromUserId."','".$toUserId."','".$usr_frm_call_to."','".date("Y-m-d H:i:s")."')";
+	$sql="INSERT INTO user_frnds_req(req_Id, from_userId,  to_userId,usr_frm_call_to, req_on) ";
+    $sql.="SELECT * FROM ( ";
+    $sql.="SELECT '".$req_Id."','".$fromUserId."','".$toUserId."','".$usr_frm_call_to."','".date("Y-m-d H:i:s")."') ";
+	$sql.="As Tbl1 WHERE (SELECT count(*) FROM user_frnds_req WHERE (from_userId='".$fromUserId."' AND ";
+	$sql.="to_userId='".$toUserId."') OR (from_userId='".$toUserId."' AND to_userId='".$fromUserId."'))=0 ";
 	return $sql;
   }
 
