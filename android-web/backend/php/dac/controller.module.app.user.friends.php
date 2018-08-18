@@ -121,7 +121,7 @@ if(isset($_GET["action"])){
     $from_userId=$_GET["requestFrom"];
     $to_userId=$_GET["user_Id"];
     $rel_Id=$idObj->user_frnds_id();
-		 $rel_from=date("Y-m-d H:i:s");
+	$rel_from=date("Y-m-d H:i:s");
 		 $rel_tz='Asia/Kolkata';
 		 $frnd1_call_frnd2='My LocalHook Friend';
 		 $frnd2_call_frnd1='My LocalHook Friend';
@@ -146,9 +146,6 @@ if(isset($_GET["action"])){
 		 /* Delete row in user_frnds_req */
 		 $deleteQuery=$reqObj->query_deleteFrndRequestToMe($from_userId,$to_userId);
 		 echo $dbObj->addupdateData($deleteQuery);
-		 /* Delete Notification */
-		 $notifyQuery=$notifyObj->query_deleteNotify_acceptDeleteRequest($to_userId,$from_userId);
-		 echo $dbObj->addupdateData($notifyQuery);
 		} else {
 		    $content='Missing ';
 			if(isset($_GET["from_userId"])){ $content.='from_userId, '; }

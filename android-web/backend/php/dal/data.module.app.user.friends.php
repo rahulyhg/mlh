@@ -67,13 +67,14 @@ class user_friends {
   }
 
   function query_addUserFrnds($rel_Id, $rel_from, $rel_tz, $frnd1, $frnd2, $frnd1_call_frnd2, $frnd2_call_frnd1){
-    $sql="INSERT INTO user_frnds(rel_Id, rel_from, rel_tz, frnd1, frnd2, frnd1_call_frnd2, frnd2_call_frnd1) ";
-	$sql.="VALUES ('".$rel_Id."','".date("Y-m-d H:i:s")."','".$rel_tz."','".$frnd1."','".$frnd2."','".$frnd1_call_frnd2."','".$frnd2_call_frnd1."');";
+    $sql="INSERT INTO user_frnds(rel_Id, rel_from, rel_tz, frnd1, frnd2, frnd1_call_frnd2, frnd2_call_frnd1,notify) ";
+	$sql.="VALUES ('".$rel_Id."','".date("Y-m-d H:i:s")."','".$rel_tz."','".$frnd1."','".$frnd2."','".$frnd1_call_frnd2."','".$frnd2_call_frnd1."','Y');";
    return $sql;
   }
   
   function query_deleteFrndRequestToMe($from_userId,$to_userId){
-   $sql="DELETE FROM `user_frnds_req` WHERE from_userId='".$from_userId."' AND to_userId='".$to_userId."'";
+   $sql="DELETE FROM user_frnds_req WHERE (from_userId='".$from_userId."' AND to_userId='".$to_userId."') ";
+   $sql.=" OR (from_userId='".$to_userId."' AND to_userId='".$from_userId."'); ";
    return $sql;
   }
   
