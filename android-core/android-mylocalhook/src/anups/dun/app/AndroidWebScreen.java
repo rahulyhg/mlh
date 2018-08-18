@@ -288,22 +288,8 @@ protected void onCreate(Bundle savedInstanceState) {
     database.close();
     
    /* Contacts */
-   new WSUserFrndsContacts(this).execute("");
-   
- /* Adding UserFrndsProfile based Data in Rows */
- // UserFrndsProfile userFrndsInfo = new UserFrndsProfile();
- // UserFrndsContacts userFrndsContacts = new UserFrndsContacts();
- // long frnd_Id=userFrndsInfo.data_add_usrFrndInfo(database, "surName", "name", "youCall", "relationship", 
-	//	  								"country", "state", "location",  "minlocation");
-//  long contact_Id=userFrndsContacts.data_add_userFrndsContacts(database, frnd_Id, "1234567890");
- // logger.info("userFrndsContacts: "+userFrndsContacts.data_getAll_UsrFrndContacts(database));
- /*
- userFrndsInfo.viewUsrFrndInfoList(database);
- userFrndsInfo.updateUsrFrndInfo(database, 2, null, "surName1", null, "youCall01", null, null, null, "state01", null, "minlocation01");
- userFrndsInfo.getUsrFrndInfo(database, 2);
- userFrndsInfo.deleteUsrFrndInfo(database, 2);
- userFrndsInfo.viewUsrFrndInfoList(database); */
- // 
+   // new WSUserFrndsContacts(this).execute("");
+ 
  }
  catch(Exception e){ logger.error("Exception: "+e.getMessage()); }
  
@@ -381,7 +367,7 @@ protected void onCreate(Bundle savedInstanceState) {
         	Intent intent = getIntent();
         	// Bundle extras = intent.getExtras();
         	Uri data = intent.getData();
-        	String directURL="http://192.168.1.4/mlh/android-web/app-contacts.php";
+        	String directURL="file:///android_asset/www/app-default.html";
         	// String directURL="file:///android_asset/www/app-default.html";
         	/* if(extras != null) {
         		directURL = extras.getString("DIRECT_URL");

@@ -20,7 +20,7 @@
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/ui-templates.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/bg-styles-common.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/app-user-profile-bg-styles.js"></script>
- <script src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyBjU25YPL1vrAwVKShgU6T-G9DwHYHRvtk"></script>
+ <script src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyBLYTwBBtnRDyew0qLZTjCJp0mgR5koP5A"></script>
  <?php include_once 'templates/api/api_params.php'; ?>
 <style>
 body { background-color:#eee; }
