@@ -1,62 +1,6 @@
 <?php 
 class user_friends {
   
-  /* Find Friends */
-  function query_count_searchPeopleByLocation($user_Id,$minlocation,$location,$state,$country){
-    $sql="SELECT ";
- 	$sql.="count(DISTINCT user_account.user_Id) As searchResult ";
- 	$sql.=" FROM user_account WHERE user_account.acc_active='Y' AND";
-	
-		if(strlen($minlocation)>0) { $sql.=" minlocation='".$minlocation."' AND"; }
-		if(strlen($location)>0) { $sql.=" location='".$location."' AND"; }
-		if(strlen($state)>0) { $sql.=" state='".$state."' AND"; }
-		if(strlen($country)>0) { $sql.=" country='".$country."' AND"; }
-		$sql=chop($sql,'AND');
-	return $sql;
- }
- 
-  function query_searchPeopleByLocation($user_Id,$minlocation,$location,$state,$country,$limit_start,$limit_end){
-    $sql="SELECT ";
- 	$sql.="DISTINCT user_account.user_Id, ";
-	$sql.="user_account.username, user_account.surName, user_account.name, user_account.profile_pic, ";
-	$sql.="user_account.minlocation, user_account.location, user_account.state, user_account.country, ";
-    $sql.="IF(user_Id in (SELECT frnd1 FROM `user_frnds` WHERE frnd2='".$user_Id."' UNION ";
-    $sql.="SELECT frnd2 FROM user_frnds WHERE frnd1='".$user_Id."'),'YES','NO') As isFriend, ";
-	$sql.="IF(user_Id in (SELECT from_userId FROM user_frnds_req WHERE to_userId='".$user_Id."'),'YES','NO') As youRecFrndRequest, ";
-    $sql.="IF(user_Id in (SELECT to_userId FROM user_frnds_req WHERE from_userId='".$user_Id."'),'YES','NO') As youSentfrndRequest ";
- 	$sql.=" FROM user_account WHERE user_account.acc_active='Y' AND";
-	
-	if(strlen($minlocation)>0) { $sql.=" user_account.minlocation='".$minlocation."' AND"; } 
-	if(strlen($location)>0) { $sql.=" user_account.location='".$location."' AND"; }
-	if(strlen($state)>0) { $sql.=" user_account.state='".$state."' AND"; }
-	if(strlen($country)>0) { $sql.=" user_account.country='".$country."' AND"; }
-	$sql=chop($sql,'AND');
-	$sql.="LIMIT ".$limit_start.", ".$limit_end.";";
-    return $sql;
-  }
-
-  function query_count_frndrequestsToMe($user_Id){
-    $sql="SELECT count(*) ";
-    $sql.="FROM user_account, user_frnds_req ";
-    $sql.="WHERE user_frnds_req.to_userId='".$user_Id."' ";
-    $sql.="AND user_account.user_Id=user_frnds_req.from_userId ";
-    $sql.="ORDER BY req_on ASC ";
-	return $sql;
-  }
-
-  function query_frndrequestsToMe($user_Id,$limit_start,$limit_end){
-    $sql="SELECT ";
-    $sql.="user_frnds_req.from_userId, user_account.user_Id, user_account.surName, user_account.name, ";
-    $sql.="user_account.profile_pic, user_account.minlocation, user_account.location, user_account.state, ";
-    $sql.="user_account.country, user_frnds_req.req_on, user_frnds_req.req_tz ";
-    $sql.="FROM user_account, user_frnds_req ";
-    $sql.="WHERE user_frnds_req.to_userId='".$user_Id."' ";
-    $sql.="AND user_account.user_Id=user_frnds_req.from_userId ";
-    $sql.="ORDER BY req_on ASC LIMIT ".$limit_start.", ".$limit_end;
-	return $sql;
-  }
-  
-  /* Starts from Here */
   function query_sendUserFrndRequests($req_Id,$fromUserId,$toUserId,$usr_frm_call_to){
 	$sql="INSERT INTO user_frnds_req(req_Id, from_userId,  to_userId,usr_frm_call_to, req_on) ";
     $sql.="SELECT * FROM ( ";
