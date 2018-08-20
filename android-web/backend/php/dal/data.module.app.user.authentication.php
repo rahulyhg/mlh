@@ -62,8 +62,15 @@ class user_authentication {
 	return $sql;
   }
  
-  function query_getUserInfoByUserId($user_Id){
-    $sql="SELECT * FROM user_account ";
+  function query_getUserInfoByUserId($profile_user_Id,$user_Id){
+    $sql="SELECT user_Id, username, surName, name, dob, gender, profile_pic, about_me, minlocation, ";
+	$sql.="location, state, country, created_On, isAdmin, user_tz, acc_active, ";
+	$sql.="(SELECT IF((SELECT count(*) FROM user_frnds WHERE (frnd1='".$profile_user_Id."' AND frnd2 ='".$user_Id."') ";
+	$sql.="OR (frnd1='".$user_Id."' AND frnd2 ='".$profile_user_Id."'))>0,'YES','NO')) As isFriend, ";
+	$sql.="(SELECT IF((SELECT count(*) FROM user_frnds_req WHERE (from_userId='".$profile_user_Id."' AND to_userId ='".$user_Id."') ";
+	$sql.="OR (from_userId='".$user_Id."' AND to_userId ='".$profile_user_Id."'))>0,'YES','NO')) As frndRequest ";
+	$sql.="FROM user_account WHERE user_Id='".$profile_user_Id."';";
+	return $sql;
   }
 }
 

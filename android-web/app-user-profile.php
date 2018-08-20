@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
  <?php include_once 'templates/api/api_js.php'; ?>
- <title>NewsFeed</title>
+ <title>User Profile</title>
  <meta charset="utf-8">
  <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="shortcut icon" type="image/x-icon" href="<?php echo $_SESSION["PROJECT_URL"]; ?>images/favicon.ico"/>
@@ -26,13 +26,12 @@
 body { background-color:#eee; }
 </style>
 <script type="text/javascript">
-var PROFILE_USER_ID='<?php if(isset($_GET["user_Id"])) { echo $_GET["user_Id"]; } ?>';
+var APP_USERPROFILE_ID='<?php  if(isset($_GET["user_Id"])) { echo $_GET["user_Id"]; } ?>';
 $(document).ready(function(){ 
 bgstyle();
 $(".lang_"+USR_LANG).css('display','block');
   startAppProgressLoader();
   hzTabSelection("usrProfileHzTab");
-  loadDataofUser(); 
 });
 function loadDataofUser(){
  // if(PROFILE_USER_ID==AUTH_USER_ID){  }

@@ -166,9 +166,14 @@ if(isset($_GET["action"])){
   /* Action Events used By auth-part-05.php/auth-part-05.js ::: END */
   
   else if($_GET["action"]==='GET_USERACCOUNT_PROFILE'){
-    if(isset($_GET["user_Id"])){
+    if(isset($_GET["profile_user_Id"]) && isset($_GET["user_Id"]) ){
+	 $profile_user_Id=$_GET["profile_user_Id"];
 	 $user_Id=$_GET["user_Id"];
-	 
+	 $userAuthObj = new user_authentication();
+	 $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
+	 $query = $userAuthObj->query_getUserInfoByUserId($profile_user_Id,$user_Id);
+	 $jsonData=$dbObj->getJSONData($query);
+	 echo $jsonData;
 	} 
 	else { echo 'MISSING_USERID'; }
   }
