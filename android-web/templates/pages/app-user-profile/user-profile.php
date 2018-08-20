@@ -14,6 +14,92 @@ $(document).ready(function(){
  initMap();
  loadUserDataByUserId(); 
 });
+function ui_btn_MeEditProfile(){
+var content='<div class="container-fluid mbot15p">';
+	content+='<div class="row">';
+	content+='<div class="col-xs-12">';
+	content+='<div class="btn-group pull-right">';
+	content+='<button class="btn btn-default custom-font" style="color:'+CURRENT_DARK_COLOR+';">';
+	content+='<b><i class="fa fa-check" aria-hidden="true"></i>&nbsp;Me</b>';
+	content+='</button>';
+	content+='<button class="btn custom-bg" style="background-color:'+CURRENT_DARK_COLOR+';color:#fff;">';
+	content+='<b><i class="fa fa-user" aria-hidden="true"></i>&nbsp;Edit Profile</b>';
+	content+='</button>';
+	content+='</div>';
+	content+='</div>';
+	content+='</div>';
+	content+='</div>';
+ return content;
+}
+function ui_btn_friends(){
+var content='<div class="container-fluid mbot15p">';
+    content+='<div class="row">';
+	content+='<div class="col-xs-12">';
+	content+='<div class="btn-group pull-right">';
+	content+='<button class="btn btn-default custom-font" style="color:'+CURRENT_DARK_COLOR+';">';
+	content+='<b><i class="fa fa-check" aria-hidden="true"></i>&nbsp;Friends</b>';
+    content+='</button>';
+	content+='</div>';
+	content+='</div>';
+	content+='</div>';
+	content+='</div>';
+ return content;
+}
+function ui_btn_sendFriendRequest(){
+var content='<div class="container-fluid mbot15p">';
+	content+='<div class="row">';
+    content+='<div class="col-xs-12">';
+	content+='<div class="btn-group pull-right">';
+	content+='<button class="btn custom-bg" style="background-color:'+CURRENT_DARK_COLOR+';color:#fff;">';
+	content+='<b><i class="fa fa-user" aria-hidden="true"></i>&nbsp;Send Friend Request</b>';
+	content+='</button>';
+	content+='</div>';
+    content+='</div>';
+    content+='</div>';
+    content+='</div>';
+ return content;
+}
+function ui_btn_requestSentDeleteRequest(){
+var content='<div class="container-fluid mbot15p">';
+	content+='<div class="row">';
+	content+='<div class="col-xs-12">';
+	content+='<div class="btn-group pull-right">';
+    content+='<button class="btn btn-default custom-font" style="color:'+CURRENT_DARK_COLOR+';">';
+	content+='<b><i class="fa fa-check" aria-hidden="true"></i>&nbsp;Request Sent</b>';
+	content+='</button>';
+	content+='<button class="btn custom-bg" style="background-color:'+CURRENT_DARK_COLOR+';color:#fff;">';
+	content+='<b>Delete Request&nbsp;<i class="fa fa-close" aria-hidden="true"></i>&nbsp;</b>';
+	content+='</button>';
+	content+='</div>';
+	content+='</div>';
+	content+='</div>';
+	content+='</div>';
+  return content;
+}
+function ui_display_Profile(user_Id,username,surName,name,dob,gender,profile_pic,about_me,minlocation,location,
+			state,country,created_On,isAdmin,user_tz,acc_active,isFriend,frndRequest){
+var content='<div class="container-fluid mbot15p">';
+	content+='<div class="col-xs-4">';
+	content+='<img src="'+profile_pic+'" style="width:80px;height:80px;background-color:#eee;border-radius:50%;"/>';
+	content+='</div>';
+	content+='<div class="col-xs-8">';
+	content+='<div><h5><b>'+surName+' '+name+'</b></h5></div>';
+	content+='<div style="line-height:22px;">'+minlocation+', '+location+', '+state+', '+country+'</div>';
+	content+='</div>';
+	content+='</div>';
+      if(APP_USERPROFILE_ID===AUTH_USER_ID){ content+=ui_btn_MeEditProfile(); } 
+ else {      if(isFriend==='YES' && frndRequest=='NO'){ content+=ui_btn_friends(); } 
+		else if(isFriend==='NO' && frndRequest=='NO'){ content+=ui_btn_sendFriendRequest(); } 
+		else if(isFriend==='NO' && frndRequest=='YES'){ content+=ui_btn_requestSentDeleteRequest(); }
+      }
+	content+='<div class="list-group mbot15p">';
+	content+='<div class="list-group-item"><h5><b>About SurName Name</b></h5></div>';
+	content+='<div class="list-group-item">';
+	content+='<div align="center" style="color:#ccc;">No more Description</div>';
+	content+='</div>';
+	content+='</div>';
+  return content;
+}
 function loadUserDataByUserId(){
  console.log("user_Id: "+APP_USERPROFILE_ID); // APP_USERPROFILE_ID from app-user-profile.php
  js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.user.authentication.php',
@@ -39,82 +125,9 @@ function loadUserDataByUserId(){
 	var acc_active=response[0].user_tz;
 	var isFriend=response[0].isFriend;
 	var frndRequest=response[0].frndRequest; 
-	var content='<div class="container-fluid mbot15p">';
-		content+='<div class="col-xs-4">';
-		content+='<img src="'+profile_pic+'" style="width:80px;height:80px;background-color:#eee;border-radius:50%;"/>';
-		content+='</div>';
-		content+='<div class="col-xs-8">';
-		content+='<div><h5><b>'+surName+' '+name+'</b></h5></div>';
-		content+='<div style="line-height:22px;">'+minlocation+', '+location+', '+state+', '+country+'</div>';
-		content+='</div>';
-		content+='</div>';
-		if(APP_USERPROFILE_ID===AUTH_USER_ID){
-		content+='<div class="container-fluid mbot15p">';
-		content+='<div class="row">';
-		content+='<div class="col-xs-12">';
-		content+='<div class="btn-group pull-right">';
-	    content+='<button class="btn btn-default custom-font" style="color:'+CURRENT_DARK_COLOR+';">';
-		content+='<b><i class="fa fa-check" aria-hidden="true"></i>&nbsp;Me</b>';
-		content+='</button>';
-		content+='<button class="btn custom-bg" style="background-color:'+CURRENT_DARK_COLOR+';color:#fff;">';
-		content+='<b><i class="fa fa-user" aria-hidden="true"></i>&nbsp;Edit Profile</b>';
-		content+='</button>';
-		content+='</div>';
-		content+='</div>';
-		content+='</div>';
-		content+='</div>';
-		} else {
-		// isFriend frndRequest  YES  NO
-		if(isFriend==='YES' && frndRequest=='NO'){
-		content+='<div class="container-fluid mbot15p">';
-		content+='<div class="row">';
-		content+='<div class="col-xs-12">';
-		content+='<div class="btn-group pull-right">';
-		content+='<button class="btn btn-default custom-font" style="color:'+CURRENT_DARK_COLOR+';">';
-		content+='<b><i class="fa fa-check" aria-hidden="true"></i>&nbsp;Friends</b>';
-		content+='</button>';
-		content+='</div>';
-		content+='</div>';
-		content+='</div>';
-		content+='</div>';
-		}
-		else if(isFriend==='NO' && frndRequest=='NO'){
-		content+='<div class="container-fluid mbot15p">';
-		content+='<div class="row">';
-        content+='<div class="col-xs-12">';
-	    content+='<div class="btn-group pull-right">';
-		content+='<button class="btn custom-bg" style="background-color:'+CURRENT_DARK_COLOR+';color:#fff;">';
-		content+='<b><i class="fa fa-user" aria-hidden="true"></i>&nbsp;Send Friend Request</b>';
-		content+='</button>';
-	    content+='</div>';
-        content+='</div>';
-        content+='</div>';
-        content+='</div>';
-		}
-		else if(isFriend==='NO' && frndRequest=='YES'){
-		content+='<div class="container-fluid mbot15p">';
-		content+='<div class="row">';
-		content+='<div class="col-xs-12">';
-		content+='<div class="btn-group pull-right">';
-		content+='<button class="btn btn-default custom-font" style="color:'+CURRENT_DARK_COLOR+';">';
-		content+='<b><i class="fa fa-check" aria-hidden="true"></i>&nbsp;Request Sent</b>';
-		content+='</button>';
-		content+='<button class="btn custom-bg" style="background-color:'+CURRENT_DARK_COLOR+';color:#fff;">';
-		content+='<b>Delete Request&nbsp;<i class="fa fa-close" aria-hidden="true"></i>&nbsp;</b>';
-		content+='</button>';
-		content+='</div>';
-		content+='</div>';
-		content+='</div>';
-		content+='</div>';
-		}
-		}
-		content+='<div class="list-group mbot15p">';
-		content+='<div class="list-group-item"><h5><b>About SurName Name</b></h5></div>';
-		content+='<div class="list-group-item">';
-		content+='<div align="center" style="color:#ccc;">No more Description</div>';
-		content+='</div>';
-		content+='</div>';
-	document.getElementById("user-profile-general-content").innerHTML=content;
+	document.getElementById("user-profile-general-content").innerHTML=ui_display_Profile(user_Id,username,surName,
+	name,dob,gender,profile_pic,about_me,minlocation,location,state,country,created_On,isAdmin,user_tz,acc_active,
+	isFriend,frndRequest);
 	stopAppProgressLoader(); });
 }
 function initMap() {
