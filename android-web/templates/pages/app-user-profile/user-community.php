@@ -24,10 +24,11 @@ function community_subMenuHgl(id){
 	  }
    }
  }
- if(id==='community_subMenu_userCreated'){ community_count_userBeingOwner(); }
+      if(id==='community_subMenu_userCreated'){ community_count_userBeingOwner(); }
+ else if(id==='community_subMenu_userBeingMember'){ community_count_userBeingMember(); }
+ else if(id==='community_subMenu_userSubscription'){ community_count_userSubscription(); }
 }
-// 
-// 
+/* Community Where UserBeingOwner */
 function community_count_userBeingOwner(){
   js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.community.professional.php',
   { action:'GETCOUNT_PROFESSIONALCOMMUNITY_USERBEINGOWNER',user_Id:APP_USERPROFILE_ID},function(total_data){
@@ -64,6 +65,48 @@ function community_data_userBeingOwner(div_view, appendContent,limit_start,limit
 	*/
   });
 } // 
+
+/* Community Where UserBeingMember */
+function community_count_userBeingMember(){
+js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.community.professional.php',
+  { action:'GETCOUNT_PROFESSIONALCOMMUNITY_USERBEINGMEMBER',user_Id:APP_USERPROFILE_ID},function(total_data){
+    scroll_loadInitializer('community_userBeingMember_content',10,community_data_userBeingMember,total_data);  });
+}
+function community_data_userBeingMember(div_view, appendContent,limit_start,limit_end){
+js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.community.professional.php',
+  { action:'GETDATA_PROFESSIONALCOMMUNITY_USERBEINGMEMBER',user_Id:APP_USERPROFILE_ID,
+  limit_start:limit_start, limit_end:limit_end },function(response){ 
+    console.log(response);
+	response=JSON.parse(response);
+	var content='';  
+		for(var index=0;index<response.length;index++){
+		  var union_Id=response[index].union_Id;
+		  var domain_Id=response[index].domain_Id;
+		  var domainName=response[index].domainName;
+		  var subdomain_Id=response[index].subdomain_Id;
+		  var subdomainName=response[index].subdomainName;
+		  var unionName=response[index].unionName;
+		  var profile_pic=response[index].profile_pic;
+		  var created_On=response[index].created_On;
+		  var mainbranch=response[index].mainbranch;
+		  var members=response[index].members;
+		  var subscribers=response[index].subscribers;
+		 content+=ui_communitiesList(union_Id, domain_Id, domainName, subdomain_Id, subdomainName, unionName,
+						profile_pic, created_On, mainbranch, members, subscribers);
+		}
+    	content+=appendContent; 
+		document.getElementById(div_view).innerHTML=content; 
+  });
+}
+
+/* Community Where UserSubscribed */
+function community_count_userSubscription(){
+
+}
+function community_data_userSubscription(div_view, appendContent,limit_start,limit_end){
+
+}
+
 function ui_communitiesList(union_Id, domain_Id, domainName, subdomain_Id, subdomainName, unionName,
 						profile_pic, created_On, mainbranch, members, subscribers){
  var content='<div class="list-group">';

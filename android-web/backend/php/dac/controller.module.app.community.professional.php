@@ -86,6 +86,32 @@ if(isset($_GET["action"])){
    }
    
   }
+  else if($_GET["action"]=='GETCOUNT_PROFESSIONALCOMMUNITY_USERBEINGMEMBER'){
+   if(isset($_GET["user_Id"])){
+     $user_Id=$_GET["user_Id"];
+     $profComObj = new ProfessionalCommunity();
+     $query=$profComObj->query_listOfCommunity_count_userBeingMember($user_Id);
+	 $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
+	 $jsonData=$dbObj->getJSONData($query);
+	 $dejsonData=json_decode($jsonData);
+	 echo $dejsonData[0]->{'count(*)'};
+   } else { echo 'MISSING_USER_ID'; }
+  }
+  else if($_GET["action"]=='GETDATA_PROFESSIONALCOMMUNITY_USERBEINGMEMBER'){
+   if(isset($_GET["user_Id"]) && isset($_GET["limit_start"]) && isset($_GET["limit_end"])){
+     $user_Id=$_GET["user_Id"];
+	 $limit_start=$_GET["limit_start"];
+	 $limit_end=$_GET["limit_end"];
+     $profComObj = new ProfessionalCommunity();
+     $query=$profComObj->query_listOfCommunity_data_userBeingMember($user_Id,$limit_start,$limit_end);
+	 $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
+	 echo $dbObj->getJSONData($query);
+   } else {
+     echo 'MISSING_USER_ID';
+   }
+   
+  }
+  
   else { echo 'NO_ACTION'; }
 }
 else { echo 'MISSING_ACTION'; }
