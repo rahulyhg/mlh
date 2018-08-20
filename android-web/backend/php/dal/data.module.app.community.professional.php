@@ -1,8 +1,10 @@
 <?php
 class ProfessionalCommunity {
+ 
  /**************************************************************************************************************************/
- /******************************************* GET COMMUNITY PROFILE DATA ***************************************************/
+ /************************************************ COMMUNITY ***************************************************************/
  /**************************************************************************************************************************/
+
  function query_getCommunityProfileData($union_Id){
   // unionprof_account  unionprof_branch  unionprof_mem  unionprof_mem_perm  unionprof_mem_req  unionprof_mem_roles
   // unionprof_sup  user_account  newsfeed_info  move_info  subs_dom_info  	subs_subdom_info
@@ -27,10 +29,26 @@ class ProfessionalCommunity {
   return $sql;
  }
  
- /**************************************************************************************************************************/
- /************************************************ COMMUNITY ***************************************************************/
- /**************************************************************************************************************************/
+ function query_listOfCommunity_count_userBeingOwner($user_Id){
+  $sql="SELECT * FROM unionprof_account ";
+  $sql.="WHERE unionprof_account.admin_Id='".$user_Id."';";
+  return $sql;
+ }
  
+ function query_listOfCommunity_data_userBeingOwner($user_Id,$limit_start,$limit_end){
+  $sql="SELECT unionprof_account.union_Id, unionprof_account.domain_Id, ";
+  $sql.="(SELECT domainName FROM subs_dom_info WHERE subs_dom_info.domain_Id=unionprof_account.domain_Id) As domainName, ";
+  $sql.="unionprof_account.subdomain_Id, (SELECT subdomainName FROM subs_subdom_info WHERE ";
+  $sql.="subs_subdom_info.subdomain_Id=unionprof_account.subdomain_Id) As subdomainName, ";
+  $sql.="unionprof_account.unionName, unionprof_account.profile_pic, unionprof_account.created_On, ";
+  $sql.="(SELECT CONCAT(minlocation,location,state,country) FROM unionprof_branch WHERE ";
+  $sql.="unionprof_branch.branch_Id=unionprof_account.main_branch_Id) As mainbranch, ";
+  $sql.="(SELECT count(*) FROM unionprof_mem WHERE unionprof_mem.union_Id=unionprof_account.union_Id AND ";
+  $sql.="unionprof_mem.branch_Id=unionprof_account.main_branch_Id) As members, ";
+  $sql.="(SELECT count(*) FROM unionprof_sup WHERE unionprof_sup.union_Id=unionprof_account.union_Id) As subscribers ";
+  $sql.="FROM unionprof_account WHERE unionprof_account.admin_Id='".$user_Id."' LIMIT ".$limit_start.",".$limit_end.";";
+  return $sql;
+ }
  function query_createCommunity($union_Id,$domain_Id,$subdomain_Id,$main_branch_Id,$unionName,$unionURLName,$aboutUnion,
 								$profile_pic, $admin_Id){
  /* FUNCTION DESCRIPTION : This Function is used to Create Community

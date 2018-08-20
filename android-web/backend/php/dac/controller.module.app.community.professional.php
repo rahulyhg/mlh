@@ -8,7 +8,7 @@ require_once '../lal/logic.appIdentity.php';
 $logger=Logger::getLogger("controller.module.app.community.professional.php");
 
 if(isset($_GET["action"])){
-  if($_GET["action"]==='CREATE_PROFESSIONAL_COMMUNITY'){
+  if($_GET["action"]==='CREATE_PROFESSIONALCOMMUNITY'){
     $idObj=new identity();
 	$profComObj=new ProfessionalCommunity();
 	$dbObj=new Database();
@@ -49,7 +49,7 @@ if(isset($_GET["action"])){
     echo $dbObj->addupdateData($queryBuilder);
 	/* Add Permissions Query */
   }
-  else if($_GET["action"]==='GETDATA_PROFESSIONAL_COMMUNITY'){
+  else if($_GET["action"]==='GETDATA_PROFESSIONALCOMMUNITY'){
     if(isset($_GET["union_Id"])){
 	   $union_Id=$_GET["union_Id"];
 	   $comObj=new ProfessionalCommunity();
@@ -57,6 +57,34 @@ if(isset($_GET["action"])){
 	   $query=$comObj->query_getCommunityProfileData($union_Id);
 	   echo $dbObj->getJSONData($query);
 	} else { echo 'MISSING_UNION_ID'; }
+  }
+  else if($_GET["action"]=='GETCOUNT_PROFESSIONALCOMMUNITY_USERBEINGOWNER'){
+   if(isset($_GET["user_Id"])){
+     $user_Id=$_GET["user_Id"];
+     $profComObj = new ProfessionalCommunity();
+     $query=$profComObj->query_listOfCommunity_count_userBeingOwner($user_Id);
+	 $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
+	 $jsonData=$dbObj->getJSONData($query);
+	 $dejsonData=json_decode($jsonData);
+	 echo $dejsonData[0]->{'count(*)'};
+   } else {
+     echo 'MISSING_USER_ID';
+   }
+   
+  }
+  else if($_GET["action"]=='GETDATA_PROFESSIONALCOMMUNITY_USERBEINGOWNER'){
+   if(isset($_GET["user_Id"]) && isset($_GET["limit_start"]) && isset($_GET["limit_end"])){
+     $user_Id=$_GET["user_Id"];
+	 $limit_start=$_GET["limit_start"];
+	 $limit_end=$_GET["limit_end"];
+     $profComObj = new ProfessionalCommunity();
+     $query=$profComObj->query_listOfCommunity_data_userBeingOwner($user_Id,$limit_start,$limit_end);
+	 $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
+	 echo $dbObj->getJSONData($query);
+   } else {
+     echo 'MISSING_USER_ID';
+   }
+   
   }
   else { echo 'NO_ACTION'; }
 }

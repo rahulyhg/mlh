@@ -165,6 +165,8 @@ if(isset($_GET["action"])){
  } 
   /* Action Events used By auth-part-05.php/auth-part-05.js ::: END */
   
+  /* Action "GET_USERACCOUNT_PROFILE" is used in app-user-profile to display Data */
+  /* Start: */
   else if($_GET["action"]==='GET_USERACCOUNT_PROFILE'){
     if(isset($_GET["profile_user_Id"]) && isset($_GET["user_Id"]) ){
 	 $profile_user_Id=$_GET["profile_user_Id"];
@@ -177,7 +179,7 @@ if(isset($_GET["action"])){
 	} 
 	else { echo 'MISSING_USERID'; }
   }
-  
+  /* End: */
   else { echo 'NO_ACTION'; }
 } 
 else { echo 'MISSING_ACTION'; }
