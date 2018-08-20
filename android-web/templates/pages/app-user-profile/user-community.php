@@ -99,12 +99,37 @@ js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.community.profe
   });
 }
 
-/* Community Where UserSubscribed */
+/* Community Where UserSubscribed */ 
 function community_count_userSubscription(){
-
+ js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.community.professional.php',
+  { action:'GETCOUNT_PROFESSIONALCOMMUNITY_USERSUBSCRIPTION',user_Id:APP_USERPROFILE_ID},function(total_data){
+    scroll_loadInitializer('community_userSubscription_content',10,community_data_userSubscription,total_data);  });
 }
 function community_data_userSubscription(div_view, appendContent,limit_start,limit_end){
-
+js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.community.professional.php',
+  { action:'GETDATA_PROFESSIONALCOMMUNITY_USERSUBSCRIPTION',user_Id:APP_USERPROFILE_ID,
+  limit_start:limit_start, limit_end:limit_end },function(response){ 
+    console.log(response);
+	response=JSON.parse(response);
+	var content='';  
+		for(var index=0;index<response.length;index++){
+		  var union_Id=response[index].union_Id;
+		  var domain_Id=response[index].domain_Id;
+		  var domainName=response[index].domainName;
+		  var subdomain_Id=response[index].subdomain_Id;
+		  var subdomainName=response[index].subdomainName;
+		  var unionName=response[index].unionName;
+		  var profile_pic=response[index].profile_pic;
+		  var created_On=response[index].created_On;
+		  var mainbranch=response[index].mainbranch;
+		  var members=response[index].members;
+		  var subscribers=response[index].subscribers;
+		 content+=ui_communitiesList(union_Id, domain_Id, domainName, subdomain_Id, subdomainName, unionName,
+						profile_pic, created_On, mainbranch, members, subscribers);
+		}
+    	content+=appendContent; 
+		document.getElementById(div_view).innerHTML=content; 
+  });
 }
 
 function ui_communitiesList(union_Id, domain_Id, domainName, subdomain_Id, subdomainName, unionName,
