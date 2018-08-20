@@ -477,3 +477,4 @@ function uiTemplate_simpleMovementDisplay(){
     content+='</div>';
   return content;
 }
+
