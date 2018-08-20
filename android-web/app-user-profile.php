@@ -76,13 +76,13 @@ function hzTabSelection(id){
 		  <?php include_once 'templates/pages/app-user-profile/user-profile.php'; ?>
 		</div>
 		<div id="usrSubscriptionDisplayDivision" class="container-fluid mtop15p mbot15p hide-block">
-		User Subscription
+		  <?php include_once 'templates/pages/app-user-profile/user-subscription.php'; ?>
 		</div>
 		<div id="usrFriendsDisplayDivision" class="container-fluid mtop15p mbot15p hide-block">
-		User Friends
+		  
 		</div>
-		<div id="usrCommunityDisplayDivision" class="container-fluid mtop15p hide-block">
-		User Community
+		<div id="usrCommunityDisplayDivision" class="container-fluid hide-block">
+		  <?php include_once 'templates/pages/app-user-profile/user-community.php'; ?>
 		</div>
 		<div id="usrMovementDisplayDivision" class="container-fluid mtop15p hide-block">
 		User Movement

@@ -27,6 +27,10 @@ function bgstyle_common1() {
  $(".custom-bg-solid1pxtopborder").css("border-top","1px solid #e88800");
  $(".custom-bg-solid1pxbottomborder").css("border-bottom","1px solid #e88800");
  
+ $(".custom-bg-solid2pxfullborder").css("border","2px solid #e88800");
+ $(".custom-bg-solid2pxtopborder").css("border-top","2px solid #e88800");
+ $(".custom-bg-solid2pxbottomborder").css("border-bottom","2px solid #e88800");
+ 
  $("#sidebar-wrapper").css("background-color","#ffc068");
  
  $(".custom-lgt-bg,.btn-custom-lgt-bg").css("background-color","#ffc068");
@@ -71,6 +75,10 @@ function bgstyle_common2() {
  $(".custom-bg-solid1pxtopborder").css("border-top","1px solid #e72e10");
  $(".custom-bg-solid1pxbottomborder").css("border-bottom","1px solid #e72e10");
  
+ $(".custom-bg-solid2pxfullborder").css("border","2px solid #e72e10");
+ $(".custom-bg-solid2pxtopborder").css("border-top","2px solid #e72e10");
+ $(".custom-bg-solid2pxbottomborder").css("border-bottom","2px solid #e72e10");
+ 
  $("#sidebar-wrapper").css("background-color","#ffb0a3");
  
  $(".custom-lgt-bg,.btn-custom-lgt-bg").css("background-color","#ffb0a3");
@@ -114,6 +122,10 @@ function bgstyle_common3() {
  $(".custom-bg-solid1pxfullborder").css("border","1px solid #0ba0da");
  $(".custom-bg-solid1pxtopborder").css("border-top","1px solid #0ba0da");
  $(".custom-bg-solid1pxbottomborder").css("border-bottom","1px solid #0ba0da");
+ 
+ $(".custom-bg-solid2pxfullborder").css("border","2px solid #0ba0da");
+ $(".custom-bg-solid2pxtopborder").css("border-top","2px solid #0ba0da");
+ $(".custom-bg-solid2pxbottomborder").css("border-bottom","2px solid #0ba0da");
  
  $("#sidebar-wrapper").css("background-color","#aad9ff");
  

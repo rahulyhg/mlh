@@ -1,10 +1,7 @@
 <style>
 a[href^="http://maps.google.com/maps"]{display:none !important}
 a[href^="https://maps.google.com/maps"]{display:none !important}
-
-.gmnoprint a, .gmnoprint span, .gm-style-cc {
-    display:none;
-}
+.gmnoprint a, .gmnoprint span, .gm-style-cc { display:none; }
 body { overflow-y: hidden; }
 </style>
 <script type="text/javascript">
@@ -93,9 +90,12 @@ var content='<div class="container-fluid mbot15p">';
 		else if(isFriend==='NO' && frndRequest=='YES'){ content+=ui_btn_requestSentDeleteRequest(); }
       }
 	content+='<div class="list-group mbot15p">';
-	content+='<div class="list-group-item"><h5><b>About SurName Name</b></h5></div>';
+	content+='<div class="list-group-item"><h5><b>About '+surName+' '+name+'</b></h5></div>';
 	content+='<div class="list-group-item">';
-	content+='<div align="center" style="color:#ccc;">No more Description</div>';
+	content+='<div align="center" style="color:#ccc;">';
+	     if(about_me.length===0){ content+='No more Description'; } 
+	else { content+=about_me; }
+	content+='</div>';
 	content+='</div>';
 	content+='</div>';
   return content;
