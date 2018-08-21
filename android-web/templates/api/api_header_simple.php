@@ -44,9 +44,9 @@ window.location.href=PROJECT_URL+'app/search/'+searchKeywrd;
 }
 </script>
 <nav id="header_bot" class="navbar" style="margin-bottom:0px;border-radius:0px;">
-	<div id="applogo-header">
-		<a class="navbar-brand a-custom" style="cursor:pointer;" onclick="javascript:sideMenuToggle();">
-		  <i class="fa fa-arrow-left white-font" aria-hidden="true" onclick="javascript:window.history.back();"></i>
+	<div id="applogo-header" onclick="javascript:window.history.back();">
+		<a class="navbar-brand a-custom" style="cursor:pointer;">
+		  <i class="fa fa-arrow-left white-font" aria-hidden="true"></i>
 		</a>
 		<div class="container-fluid" style="padding-left:0px;padding-right:0px;">
 		  <div id="div_app_logo" class="col-md-2 col-sm-4 col-xs-5" style="padding-left:0px;"></div> 

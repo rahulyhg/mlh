@@ -41,7 +41,7 @@ class ProfessionalCommunity {
   $sql.="unionprof_account.subdomain_Id, (SELECT subdomainName FROM subs_subdom_info WHERE ";
   $sql.="subs_subdom_info.subdomain_Id=unionprof_account.subdomain_Id) As subdomainName, ";
   $sql.="unionprof_account.unionName, unionprof_account.profile_pic, unionprof_account.created_On, ";
-  $sql.="(SELECT CONCAT(minlocation,location,state,country) FROM unionprof_branch WHERE ";
+  $sql.="(SELECT CONCAT(minlocation,',',location,',',state,',',country) FROM unionprof_branch WHERE ";
   $sql.="unionprof_branch.branch_Id=unionprof_account.main_branch_Id) As mainbranch, ";
   $sql.="(SELECT count(*) FROM unionprof_mem WHERE unionprof_mem.union_Id=unionprof_account.union_Id AND ";
   $sql.="unionprof_mem.branch_Id=unionprof_account.main_branch_Id) As members, ";
@@ -62,7 +62,7 @@ class ProfessionalCommunity {
   $sql.="unionprof_account.subdomain_Id, (SELECT subdomainName FROM subs_subdom_info WHERE ";
   $sql.="subs_subdom_info.subdomain_Id=unionprof_account.subdomain_Id) As subdomainName, ";
   $sql.="unionprof_account.unionName, unionprof_account.profile_pic, unionprof_account.created_On, ";
-  $sql.="(SELECT CONCAT(minlocation,location,state,country) FROM unionprof_branch WHERE ";
+  $sql.="(SELECT CONCAT(minlocation,',',location,',',state,',',country) FROM unionprof_branch WHERE ";
   $sql.="unionprof_branch.branch_Id=unionprof_account.main_branch_Id) As mainbranch, ";
   $sql.="(SELECT count(*) FROM unionprof_mem WHERE unionprof_mem.union_Id=unionprof_account.union_Id AND ";
   $sql.="unionprof_mem.branch_Id=unionprof_account.main_branch_Id) As members, ";
@@ -85,7 +85,7 @@ class ProfessionalCommunity {
   $sql.="unionprof_account.subdomain_Id, (SELECT subdomainName FROM subs_subdom_info WHERE ";
   $sql.="subs_subdom_info.subdomain_Id=unionprof_account.subdomain_Id) As subdomainName, ";
   $sql.="unionprof_account.unionName, unionprof_account.profile_pic, unionprof_account.created_On, ";
-  $sql.="(SELECT CONCAT(minlocation,location,state,country) FROM unionprof_branch WHERE ";
+  $sql.="(SELECT CONCAT(minlocation,',',location,',',state,',',country) FROM unionprof_branch WHERE ";
   $sql.="unionprof_branch.branch_Id=unionprof_account.main_branch_Id) As mainbranch, ";
   $sql.="(SELECT count(*) FROM unionprof_mem WHERE unionprof_mem.union_Id=unionprof_account.union_Id AND ";
   $sql.="unionprof_mem.branch_Id=unionprof_account.main_branch_Id) As members, ";
