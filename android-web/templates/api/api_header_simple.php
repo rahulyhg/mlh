@@ -21,30 +21,19 @@ function goToByScroll(id){
   id = id.replace("link", "");
   $('html,body').animate({ scrollTop: $("#"+id).offset().top},'slow');
 }
-function sideMenuToggle(){
-  if($("#wrapper").hasClass("toggled")) {  $("#wrapper").removeClass("toggled"); } 
-  else { $("#wrapper").addClass("toggled"); }
-}
-
 </script>
 <script type="text/javascript">
 $(document).ready(function(){
    $('[data-toggle="tooltip"]').tooltip(); 
-//  console.log("Timestamp: "+js_getTimeStamp());
-//  notify_hookrequest();
-//  notify_friendrequest();
-//  notify_communityrequest();
-//  notify_movementrequest();
-//  notify_messagesrequest();
-//  notify_notificationrequest();
 });
-function searchDataOnMLH(){
-var searchKeywrd=document.getElementById("searchKeywrd").value;
-window.location.href=PROJECT_URL+'app/search/'+searchKeywrd;
+
+function goBackPreviousURL(){
+  show_toggleMLHLoader('body');
+  window.history.back();
 }
 </script>
 <nav id="header_bot" class="navbar" style="margin-bottom:0px;border-radius:0px;">
-	<div id="applogo-header" onclick="javascript:window.history.back();">
+	<div id="applogo-header" onclick="javascript:goBackPreviousURL();">
 		<a class="navbar-brand a-custom" style="cursor:pointer;">
 		  <i class="fa fa-arrow-left white-font" aria-hidden="true"></i>
 		</a>

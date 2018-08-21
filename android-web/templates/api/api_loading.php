@@ -1,21 +1,26 @@
 <style>
-#mlh-loader { position:fixed;width:100px;height:100px;display:none;z-index:2000; }
 @media screen and (min-width: 1280px) { 
+ #mlh-loader { position:fixed;width:100px;height:100px;display:none;z-index:2000; }
  #mlh-loader { margin-left:42%;margin-top:12%; }
 }
 @media (min-width: 1025px) and (max-width: 1280px) { 
+ #mlh-loader { position:fixed;width:100px;height:100px;display:none;z-index:2000; }
  #mlh-loader { margin-left:42%;margin-top:12%; }
 }
 @media (min-width: 768px) and (max-width: 1024px) { 
+ #mlh-loader { position:fixed;width:100px;height:100px;display:none;z-index:2000; }
  #mlh-loader { margin-left:42%;margin-top:20%; }
 }
 @media (min-width: 481px) and (max-width: 767px) { 
+ #mlh-loader { position:fixed;width:100px;height:100px;display:none;z-index:2000; }
  #mlh-loader { margin-left:40%;margin-top:25%; }
 }
 @media (min-width: 325px) and (max-width: 480px) {
+ #mlh-loader { position:fixed;width:150px;height:150px;display:none;z-index:2000; }
  #mlh-loader { margin-left:35%;margin-top:40%; }
 }
 @media (min-width: 290px) and (max-width: 324px) {
+ #mlh-loader { position:fixed;width:100px;height:100px;display:none;z-index:2000; }
  #mlh-loader { margin-left:24%;margin-top:30%; }
 }
 </style>
