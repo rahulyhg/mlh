@@ -32,7 +32,15 @@ function community_subMenuHgl(id){
 function community_count_userBeingOwner(){
   js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.community.professional.php',
   { action:'GETCOUNT_PROFESSIONALCOMMUNITY_USERBEINGOWNER',user_Id:APP_USERPROFILE_ID},function(total_data){
-    scroll_loadInitializer('community_userBeingOwner_content',10,community_data_userBeingOwner,total_data);  });
+   if(total_data==='0'){
+     var content='<div align="center">';
+		 content+='<span style="color:#ccc;">No community is created by the user.</span>';
+		 content+='</div>';
+	 document.getElementById("community_userBeingOwner_content0").innerHTML=content; 
+   } else {
+    scroll_loadInitializer('community_userBeingOwner_content',10,community_data_userBeingOwner,total_data);
+   }
+ });
 }
 function community_data_userBeingOwner(div_view, appendContent,limit_start,limit_end){
   js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.community.professional.php',
@@ -70,7 +78,15 @@ function community_data_userBeingOwner(div_view, appendContent,limit_start,limit
 function community_count_userBeingMember(){
 js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.community.professional.php',
   { action:'GETCOUNT_PROFESSIONALCOMMUNITY_USERBEINGMEMBER',user_Id:APP_USERPROFILE_ID},function(total_data){
-    scroll_loadInitializer('community_userBeingMember_content',10,community_data_userBeingMember,total_data);  });
+   if(total_data==='0'){
+     var content='<div align="center">';
+		 content+='<span style="color:#ccc;">User is not a Member of any community.</span>';
+		 content+='</div>';
+	 document.getElementById("community_userBeingMember_content0").innerHTML=content; 
+   } else {
+    scroll_loadInitializer('community_userBeingMember_content',10,community_data_userBeingMember,total_data);
+	}
+	});
 }
 function community_data_userBeingMember(div_view, appendContent,limit_start,limit_end){
 js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.community.professional.php',
@@ -103,7 +119,15 @@ js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.community.profe
 function community_count_userSubscription(){
  js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.community.professional.php',
   { action:'GETCOUNT_PROFESSIONALCOMMUNITY_USERSUBSCRIPTION',user_Id:APP_USERPROFILE_ID},function(total_data){
-    scroll_loadInitializer('community_userSubscription_content',10,community_data_userSubscription,total_data);  });
+    if(total_data==='0'){
+     var content='<div align="center">';
+		 content+='<span style="color:#ccc;">User didn\'t subscribed any community.</span>';
+		 content+='</div>';
+	 document.getElementById("community_userSubscription_content0").innerHTML=content; 
+   } else {
+    scroll_loadInitializer('community_userSubscription_content',10,community_data_userSubscription,total_data);
+	}
+	});
 }
 function community_data_userSubscription(div_view, appendContent,limit_start,limit_end){
 js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.community.professional.php',
@@ -137,6 +161,11 @@ function ui_communitiesList(union_Id, domain_Id, domainName, subdomain_Id, subdo
  var content='<div class="list-group">';
      content+='<div class="list-group-item pad0">';
 	 content+='<div class="container-fluid pad0 mtop15p mbot15p">';
+	 content+='<div class="col-xs-12 mbot15p">';
+	 content+='<span class="label fs12 custom-bg" style="background-color:'+CURRENT_DARK_COLOR+';"><b>'+domainName.toUpperCase();
+	 content+='&nbsp;/&nbsp;'+subdomainName.toUpperCase()+'</b></span>';
+	 content+='</div>';
+
 	 content+='<div class="col-xs-4">';
 	 content+='<img src="'+profile_pic+'" style="width:80px;height:80px;border-radius:50%;"/>';
 	 content+='</div>';
@@ -145,8 +174,8 @@ function ui_communitiesList(union_Id, domain_Id, domainName, subdomain_Id, subdo
 	 if(mainbranch!==null){
 	 content+='<div>'+mainbranch+'</div>';
 	 }
-	 content+='<div class="pull-right mbot5p">created on </div>';
-	 content+='<div class="pull-right">'+get_stdDateTimeFormat01(created_On)+'</div>';
+	 content+='<div class="pull-right mbot5p" style="color:#a9a6a6;">created on </div>';
+	 content+='<div class="pull-right" style="color:#a9a6a6;">'+get_stdDateTimeFormat01(created_On)+'</div>';
 	 content+='</div>';
 	 content+='</div>';
 	 content+='</div>';
@@ -188,12 +217,18 @@ return content;
 </div>
 <div class="row">
  <div id="community_userBeingOwner_content0" class="col-xs-12 mtop15p hide-block">
-   
+    <div align="center">
+      <img src="<?php echo $_SESSION["PROJECT_URL"]?>images/load.gif" class="profile_pic_img1"/>
+    </div>
  </div>
  <div id="community_userBeingMember_content0" class="col-xs-12 mtop15p hide-block">
-   
+    <div align="center">
+      <img src="<?php echo $_SESSION["PROJECT_URL"]?>images/load.gif" class="profile_pic_img1"/>
+    </div>
  </div>
  <div id="community_userSubscription_content0" class="col-xs-12 mtop15p hide-block">
-   
+    <div align="center">
+      <img src="<?php echo $_SESSION["PROJECT_URL"]?>images/load.gif" class="profile_pic_img1"/>
+    </div>
  </div>
 </div>

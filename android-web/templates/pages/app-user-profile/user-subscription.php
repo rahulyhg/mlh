@@ -2,13 +2,14 @@
 $(document).ready(function(){
 js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.user.subscriptions.php',
  { action:'GET_SESSION_DOMAINSUBSCRIPTION', user_Id:APP_USERPROFILE_ID },function(response){
-   console.log("Response: "+response);
    ui_display_subscriptions(response);
  });
 });
 function ui_display_subscriptions(response){
 response=JSON.parse(response);
-var content='';
+var content='<div align="center">';
+    content+='<h5><b>The following are the Categories that user is interested:</b></h5>';
+	content+='</div>';
 for(var i1=0;i1<response.domains.length;i1++){
  var domain_Id = response.domains[i1].domain_Id;
  var domainName = response.domains[i1].domainName;
@@ -61,4 +62,8 @@ document.getElementById("app-user-subscription-content").innerHTML=content;
 }
 function collapseDomain(Id){ $('#'+Id).collapse("toggle"); }
 </script>
-<div id="app-user-subscription-content"></div>
+<div id="app-user-subscription-content">
+ <div align="center">
+  <img src="<?php echo $_SESSION["PROJECT_URL"]?>images/load.gif" class="profile_pic_img1"/>
+ </div>
+</div>
