@@ -28,16 +28,21 @@ body { background-color:#eee; }
 <script type="text/javascript">
 var APP_USERPROFILE_ID='<?php  if(isset($_GET["user_Id"])) { echo $_GET["user_Id"]; } ?>';
 $(document).ready(function(){ 
-bgstyle();
-$(".lang_"+USR_LANG).css('display','block');
+  bgstyle();
+  $(".lang_"+USR_LANG).css('display','block');
   startAppProgressLoader();
-  hzTabSelection("usrProfileHzTab");
+  mainTab_userProfile();
 });
 function hzTabSelection(id){     
  var arryHzTab=["usrProfileHzTab","usrSubscriptionHzTab","usrFriendsHzTab","usrCommunityHzTab","usrMovementHzTab"];
  var arryTabDataViewer=["usrProfileDisplayDivision","usrSubscriptionDisplayDivision","usrFriendsDisplayDivision","usrCommunityDisplayDivision","usrMovementDisplayDivision"];
  hzTabSelector(id,arryHzTab,arryTabDataViewer);
+ 
 }
+function mainTab_userProfile(){ hzTabSelection("usrProfileHzTab"); }
+function mainTab_userSubscription(){ hzTabSelection("usrSubscriptionHzTab");loadUserSubscriptions(); }
+function mainTab_userCommunity(){ hzTabSelection("usrCommunityHzTab");community_subMenuHgl('community_subMenu_userCreated'); }
+function mainTab_userMovements(){ hzTabSelection("usrMovementHzTab");movement_count_userParticipated(); }
 </script>
 </head>
 <body>
@@ -55,15 +60,15 @@ function hzTabSelection(id){
 			</div>
 			<div class="scrollTabwrapper col-xs-10">
 				<ul class="nav nav-tabs scrollTablist" id="myTab" style="border-bottom:0px;">
-				  <li><a id="usrProfileHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>User Profile</b></a></li>
-				  <li><a id="usrSubscriptionHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>User Subscriptions</b></a></li>
+				  <li><a id="usrProfileHzTab" href="#" onclick="javascript:mainTab_userProfile();"><b>User Profile</b></a></li>
+				  <li><a id="usrSubscriptionHzTab" href="#" onclick="javascript:mainTab_userSubscription();"><b>User Subscriptions</b></a></li>
 				 <?php if(isset($_GET["user_Id"]) && isset($_SESSION["AUTH_USER_ID"])){
-				   if($_GET["user_Id"]==$_SESSION["AUTH_USER_ID"]){
+					   if($_GET["user_Id"]==$_SESSION["AUTH_USER_ID"]){
 				 ?>
  				  <li><a id="usrFriendsHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>User Friends</b></a></li>
 				 <?php } } ?>
-  				  <li><a id="usrCommunityHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>Community</b></a></li>
-				  <li><a id="usrMovementHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>Movements</b></a></li>
+  				  <li><a id="usrCommunityHzTab" href="#" onclick="javascript:mainTab_userCommunity();"><b>Community</b></a></li>
+				  <li><a id="usrMovementHzTab" href="#" onclick="javascript:mainTab_userMovements();"><b>Movements</b></a></li>
 				</ul>
 			</div>
 			<div class="scroller scroller-right col-xs-1" style="height:41px;">

@@ -125,9 +125,11 @@ function loadUserDataByUserId(){
 	var acc_active=response[0].user_tz;
 	var isFriend=response[0].isFriend;
 	var frndRequest=response[0].frndRequest; 
-	document.getElementById("user-profile-general-content").innerHTML=ui_display_Profile(user_Id,username,surName,
-	name,dob,gender,profile_pic,about_me,minlocation,location,state,country,created_On,isAdmin,user_tz,acc_active,
-	isFriend,frndRequest);
+	if(document.getElementById("user-profile-general-content")!=null){
+	  document.getElementById("user-profile-general-content").innerHTML=ui_display_Profile(user_Id,username,surName,
+	    name,dob,gender,profile_pic,about_me,minlocation,location,state,country,created_On,isAdmin,user_tz,acc_active,
+	    isFriend,frndRequest);
+	}
 	stopAppProgressLoader(); });
 }
 function initMap() {

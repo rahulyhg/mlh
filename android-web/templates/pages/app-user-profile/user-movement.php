@@ -3,15 +3,19 @@ function movement_count_userParticipated(){
  js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.community.movement.php',
 	{ action:'GETCOUNT_USERPARTICIPATEDMOVEMENTS', user_Id:APP_USERPROFILE_ID },
 	function(total_data){ 
+	  try {
 	  console.log("Movement Total Data: "+total_data);
 	  if(total_data==='0'){
         var content='<div align="center">';
             content+='<span style="color:#aba8a8;">User didn\'t participated in any of the Movement.</span>';
 		    content+='</div>';
-	    document.getElementById("user-movement-content0").innerHTML=content; 
+		if(document.getElementById("user-movement-content0")!=null){
+	     document.getElementById("user-movement-content0").innerHTML=content; 
+		}
       } else {
        scroll_loadInitializer('user-movement-content',10,movement_data_userParticipated,total_data);
       }
+	 } catch(err){ console.log(err); }
 	});
 }
 function movement_data_userParticipated(div_view, appendContent,limit_start,limit_end){
@@ -49,14 +53,13 @@ function movement_data_userParticipated(div_view, appendContent,limit_start,limi
 							move_img,move_status,openOn,displayLevel);
 	 }
 	 content+=appendContent;
-	 document.getElementById(div_view).innerHTML=content;
+	 if(document.getElementById(div_view)!=null){
+	   document.getElementById(div_view).innerHTML=content;
+	 }
 	});
 
 }
 
-$(document).ready(function(){
-movement_count_userParticipated();
-});
 function ui_movementContent(move_Id,domain_Id,domainName,subdomain_Id,subdomainName,union_Id,unionName,
 					minlocation,location,state,country,branch_Id,createdOn,petitionTitle,issue_desc,
 					move_img,move_status,openOn,displayLevel){

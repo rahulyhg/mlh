@@ -1,8 +1,4 @@
 <script type="text/javascript">
-// custom-bg-solid1pxfullborder
-$(document).ready(function(){
- community_subMenuHgl('community_subMenu_userCreated');
-});
 function community_subMenuHgl(id){
  var arry=["community_subMenu_userCreated","community_subMenu_userBeingMember","community_subMenu_userSubscription"];
  var arry_content=["community_userBeingOwner_content0","community_userBeingMember_content0",
@@ -67,11 +63,6 @@ function community_data_userBeingOwner(div_view, appendContent,limit_start,limit
 		}
     	content+=appendContent; 
 		document.getElementById(div_view).innerHTML=content; 
-	/*
-	 [{"union_Id":"UPA533731685151","domain_Id":"09-ITS","domainName":"IT and Software","subdomain_Id":"ITS-01-SN",
-	 "subdomainName":"Social Network","unionName":"MyLocalHook",
-	 "profile_pic":"","created_On":"2018-06-25 23:46:51","mainbranch":null,"members":"0","subscribers":"1"}]
-	*/
   });
 } // 
 
@@ -88,12 +79,12 @@ js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.community.profe
    } else {
     scroll_loadInitializer('community_userBeingMember_content',10,community_data_userBeingMember,total_data);
 	}
-	});
+ });
 }
 function community_data_userBeingMember(div_view, appendContent,limit_start,limit_end){
 js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.community.professional.php',
   { action:'GETDATA_PROFESSIONALCOMMUNITY_USERBEINGMEMBER',user_Id:APP_USERPROFILE_ID,
-  limit_start:limit_start, limit_end:limit_end },function(response){ 
+  limit_start:limit_start, limit_end:limit_end },function(response){
     console.log(response);
 	response=JSON.parse(response);
 	var content='';  
@@ -129,7 +120,7 @@ function community_count_userSubscription(){
    } else {
     scroll_loadInitializer('community_userSubscription_content',10,community_data_userSubscription,total_data);
 	}
-	});
+ }); 
 }
 function community_data_userSubscription(div_view, appendContent,limit_start,limit_end){
 js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.community.professional.php',

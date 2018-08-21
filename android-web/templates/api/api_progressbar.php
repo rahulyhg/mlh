@@ -1,23 +1,25 @@
 <script type="text/javascript">
 var APPBODYCONTENT_PROGRESSBAR;
 function startAppProgressLoader(){
-document.body.style.backgroundColor=CURRENT_DARK_COLOR;
-if($('#app-progress-content').hasClass('hide-block')){ $('#app-progress-content').removeClass('hide-block'); }
-if(!$('#app-progress-content').hasClass('hide-block')){ $('#app-actual-content').addClass('hide-block'); }
-var count=1;
-var progress=false; /* true - 100 to 1 false - 1 to 100 */
-APPBODYCONTENT_PROGRESSBAR=setInterval(function(){ 
-var content='<div class="progress-bar progress-bar-info progress-bar-striped" ';
-    content+='role="progressbar" aria-valuenow="'+count+'" ';
-    content+='aria-valuemin="0" aria-valuemax="100" style="width:'+count+'%">';
-    content+='<span class="sr-only">'+count+'% Complete</span>';
-    content+='</div>';
-document.getElementById("appProgressDisplay").innerHTML=content;
-if(progress==false){ count++; }
-else {  count--; }
-if(count>1 && count>=100){ progress=true; }
-if(count==1) { progress=false; }
-}, 10);
+  document.body.style.backgroundColor=CURRENT_DARK_COLOR;
+  if($('#app-progress-content').hasClass('hide-block')){ $('#app-progress-content').removeClass('hide-block'); }
+  if(!$('#app-progress-content').hasClass('hide-block')){ $('#app-actual-content').addClass('hide-block'); }
+  var count=1;
+  var progress=false; /* true - 100 to 1 false - 1 to 100 */
+  APPBODYCONTENT_PROGRESSBAR=setInterval(function(){ 
+    var content='<div class="progress-bar progress-bar-info progress-bar-striped" ';
+        content+='role="progressbar" aria-valuenow="'+count+'" ';
+        content+='aria-valuemin="0" aria-valuemax="100" style="width:'+count+'%">';
+        content+='<span class="sr-only">'+count+'% Complete</span>';
+        content+='</div>';
+    if(document.getElementById("appProgressDisplay") != null){
+       document.getElementById("appProgressDisplay").innerHTML=content;
+    }
+    if(progress==false){ count++; }
+    else {  count--; }
+    if(count>1 && count>=100){ progress=true; }
+    if(count==1) { progress=false; }
+  }, 10);
 }
 
 function stopAppProgressLoader(){

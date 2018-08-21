@@ -28,8 +28,7 @@ $(document).ready(function(){
 });
 
 function goBackPreviousURL(){
-  show_toggleMLHLoader('body');
-  window.history.back();
+window.history.back();
 }
 </script>
 <nav id="header_bot" class="navbar" style="margin-bottom:0px;border-radius:0px;">

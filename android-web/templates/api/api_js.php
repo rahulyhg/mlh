@@ -88,15 +88,13 @@ function js_getHashMap(key){
 }
 
 function urlTransfer(url){
- throw new Error("Something went badly wrong!");
  window.location.href=url;
 }
 
 /* AJAX */
 
 function js_ajax(method,url,data,fn_output){
- var myajax = $.ajax({type: method, url: url,data:data,
- success: function(response) { fn_output(response); } }); 
+ $.ajax({type: method, url: url,data:data, success: function(response) { fn_output(response); } }); 
 }
 /* SESSION MANAGEMENT */
 /*
