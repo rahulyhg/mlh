@@ -30,7 +30,7 @@ class ProfessionalCommunity {
  }
  
  function query_listOfCommunity_count_userBeingOwner($user_Id){
-  $sql="SELECT * FROM unionprof_account ";
+  $sql="SELECT count(*) FROM unionprof_account ";
   $sql.="WHERE unionprof_account.admin_Id='".$user_Id."';";
   return $sql;
  }

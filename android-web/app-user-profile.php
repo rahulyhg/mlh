@@ -84,7 +84,7 @@ function hzTabSelection(id){
 		<div id="usrCommunityDisplayDivision" class="container-fluid hide-block">
 		  <?php include_once 'templates/pages/app-user-profile/user-community.php'; ?>
 		</div>
-		<div id="usrMovementDisplayDivision" class="container-fluid mtop15p hide-block">
+		<div id="usrMovementDisplayDivision" class="container-fluid hide-block">
 		  <?php include_once 'templates/pages/app-user-profile/user-movement.php'; ?>
 		</div>
 		

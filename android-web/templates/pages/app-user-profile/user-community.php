@@ -32,6 +32,7 @@ function community_subMenuHgl(id){
 function community_count_userBeingOwner(){
   js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.community.professional.php',
   { action:'GETCOUNT_PROFESSIONALCOMMUNITY_USERBEINGOWNER',user_Id:APP_USERPROFILE_ID},function(total_data){
+  console.log("community_count_userBeingMember(total_data): "+total_data);
    if(total_data==='0'){
      var content='<div align="center">';
 		 content+='<span style="color:#ccc;">No community is created by the user.</span>';
@@ -78,6 +79,7 @@ function community_data_userBeingOwner(div_view, appendContent,limit_start,limit
 function community_count_userBeingMember(){
 js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.community.professional.php',
   { action:'GETCOUNT_PROFESSIONALCOMMUNITY_USERBEINGMEMBER',user_Id:APP_USERPROFILE_ID},function(total_data){
+  console.log("community_count_userBeingMember(total_data): "+total_data);
    if(total_data==='0'){
      var content='<div align="center">';
 		 content+='<span style="color:#ccc;">User is not a Member of any community.</span>';
