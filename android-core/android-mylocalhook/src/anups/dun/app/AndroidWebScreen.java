@@ -326,10 +326,10 @@ protected void onCreate(Bundle savedInstanceState) {
  logger.info("USER_ID: "+USER_ID);
  
  /* Triggering Broadcast Receiver from Activity */
-// Intent triggerWS = new Intent();
-// triggerWS.setAction("anups.dun.services.OnBootCompleted");
-// sendBroadcast(triggerWS);
- 
+ /* Intent triggerWS = new Intent();
+         triggerWS.setAction("anups.dun.services.OnBootCompleted");
+         sendBroadcast(triggerWS);
+ */
 
  // NetworkUtility networkUtility = new NetworkUtility(this);
  // logger.info("IMEI: "+networkUtility.getDeviceIMEI());

@@ -27,6 +27,8 @@ body { background-color:#eee; }
 </style>
 <script type="text/javascript">
 var APP_USERPROFILE_ID='<?php  if(isset($_GET["user_Id"])) { echo $_GET["user_Id"]; } ?>';
+</script>
+<script type="text/javascript">
 $(document).ready(function(){ 
   bgstyle();
   $(".lang_"+USR_LANG).css('display','block');
@@ -37,7 +39,6 @@ function hzTabSelection(id){
  var arryHzTab=["usrProfileHzTab","usrSubscriptionHzTab","usrFriendsHzTab","usrCommunityHzTab","usrMovementHzTab"];
  var arryTabDataViewer=["usrProfileDisplayDivision","usrSubscriptionDisplayDivision","usrFriendsDisplayDivision","usrCommunityDisplayDivision","usrMovementDisplayDivision"];
  hzTabSelector(id,arryHzTab,arryTabDataViewer);
- 
 }
 function mainTab_userProfile(){ hzTabSelection("usrProfileHzTab"); }
 function mainTab_userSubscription(){ hzTabSelection("usrSubscriptionHzTab");loadUserSubscriptions(); }
@@ -76,7 +77,7 @@ function mainTab_userMovements(){ hzTabSelection("usrMovementHzTab");movement_co
 			</div>
 		   </div>
 		</div>
-		
+	
 		<div id="usrProfileDisplayDivision" class="container-fluid mtop15p mbot15p hide-block">
 		  <?php include_once 'templates/pages/app-user-profile/user-profile.php'; ?>
 		</div>

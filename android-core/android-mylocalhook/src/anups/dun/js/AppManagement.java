@@ -17,6 +17,7 @@ import android.widget.Toast;
 import anups.dun.app.AndroidWebScreen;
 import anups.dun.media.AndroidWebScreenVideo;
 import anups.dun.util.CRUDContacts;
+import anups.dun.util.GPSTracker;
 import anups.dun.web.templates.URLGenerator;
 
 public class AppManagement extends ActionBarActivity {
@@ -100,4 +101,12 @@ public class AppManagement extends ActionBarActivity {
 		mContext.startActivity(intent);
 	}
 	
+	@JavascriptInterface
+	public String getUserMobileGPSPosition(){
+		GPSTracker gpsTracker = new GPSTracker(mContext);
+		StringBuilder jsonData = new StringBuilder();
+		jsonData.append("{").append("\"latitude\":\"").append(gpsTracker.latitude).append("\",");
+		jsonData.append("\"longitude\":\"").append(gpsTracker.longitude).append("\"}");
+	  return jsonData.toString();
+	}
 }

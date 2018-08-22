@@ -7,8 +7,8 @@ js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.user.subscripti
 }
 function ui_display_subscriptions(response){
  response=JSON.parse(response);
- var content='<div align="center">';
-     content+='<h5><b>The following are the Categories that user is interested:</b></h5>';
+ var content='<div>';
+     content+='<h5><b>The Categories that the user is interested:</b></h5>';
 	 content+='</div>';
  for(var i1=0;i1<response.domains.length;i1++){
     var domain_Id = response.domains[i1].domain_Id;

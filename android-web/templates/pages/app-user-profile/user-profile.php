@@ -5,8 +5,6 @@ a[href^="https://maps.google.com/maps"]{display:none !important}
 body { overflow-y: hidden; }
 </style>
 <script type="text/javascript">
-var GLOBAL_MAP;
-var GLOBAL_ZOOMLEVEL;
 $(document).ready(function(){ 
  initMap();
  loadUserDataByUserId(); 
@@ -90,7 +88,7 @@ var content='<div class="container-fluid mbot15p">';
 		else if(isFriend==='NO' && frndRequest=='YES'){ content+=ui_btn_requestSentDeleteRequest(); }
       }
 	content+='<div class="list-group mbot15p">';
-	content+='<div class="list-group-item"><h5><b>About '+surName+' '+name+'</b></h5></div>';
+	content+='<div class="list-group-item custom-font" style="color:'+CURRENT_DARK_COLOR+';"><h5><b>About '+surName+' '+name+'</b></h5></div>';
 	content+='<div class="list-group-item">';
 	content+='<div align="center" style="color:#ccc;">';
 	     if(about_me.length===0){ content+='No more Description'; } 
@@ -132,24 +130,45 @@ function loadUserDataByUserId(){
 	}
 	stopAppProgressLoader(); });
 }
+var GLOBAL_MAP;
+var GLOBAL_ZOOMLEVEL;
+var GPS_CURRENTMOBILEDEVICE_JSONDATA;
+setInterval(function(){ latestGPSPositions(); },1000);
+var GLOBAL_MARKER1;
+var GLOBAL_MARKER2;
+var GLOBAL_POSITION1;
+var GLOBAL_POSITION2;
+function currentUserMobileGPS(){
+ var userMobileDevice=JSON.parse(Android.getUserMobileGPSPosition());
+ var currentPosition={lat:parseFloat(userMobileDevice.latitude),lng:parseFloat(userMobileDevice.longitude)};
+ return currentPosition;
+}
+function latestGPSPositions(){
+  GLOBAL_POSITION1=currentUserMobileGPS();
+  GLOBAL_POSITION2={ lat: GLOBAL_POSITION2.lat+0.000010, lng: GLOBAL_POSITION2.lng+0.000010 };
+  GLOBAL_MARKER1.setPosition( GLOBAL_POSITION1 );
+  GLOBAL_MARKER2.setPosition( GLOBAL_POSITION2 );
+  GLOBAL_MAP.setCenter(GLOBAL_POSITION2);
+}
 function initMap() {
+ GLOBAL_POSITION1=currentUserMobileGPS();
+ GLOBAL_POSITION2={ lat: 17.2993189, lng: 78.4298416 };
  GLOBAL_ZOOMLEVEL=18;
  GLOBAL_MAP = new google.maps.Map(document.getElementById('userActualGeoLocationMap'), 
-					{ scrollwheel: false, zoomControl: false, zoom: GLOBAL_ZOOMLEVEL });
- var pos1 = { lat: 17.2983179, lng: 78.4298406 };
- var pos2 = { lat: 17.2993189, lng: 78.4298416 };
- GLOBAL_MAP.setCenter(pos2);
+					{ zoom: GLOBAL_ZOOMLEVEL });
+
+ GLOBAL_MAP.setCenter(GLOBAL_POSITION2);
  
  /* Marker Icons : http://maps.google.com/mapfiles/ms/icons/green-dot.png
   *				   http://maps.google.com/mapfiles/ms/icons/blue-dot.png
   *				   http://maps.google.com/mapfiles/ms/icons/red-dot.png
   */
- var marker1 = new google.maps.Marker({ icon:'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
- position: pos1,animation: google.maps.Animation.BOUNCE, map: GLOBAL_MAP });
- marker1.setMap(GLOBAL_MAP);
- var marker2 = new google.maps.Marker({ icon:'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
- position: pos2,animation: google.maps.Animation.BOUNCE, map: GLOBAL_MAP });
- marker2.setMap(GLOBAL_MAP);
+ GLOBAL_MARKER1 = new google.maps.Marker({ icon:'https://www.robotwoods.com/dev/misc/bluecircle.png',
+ position: GLOBAL_POSITION1, map: GLOBAL_MAP });
+ GLOBAL_MARKER1.setMap(GLOBAL_MAP);
+ GLOBAL_MARKER2 = new google.maps.Marker({ icon:'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
+ position: GLOBAL_POSITION2, map: GLOBAL_MAP });
+ GLOBAL_MARKER2.setMap(GLOBAL_MAP);
 }
 function zoomIn() {
  if(GLOBAL_ZOOMLEVEL<18) { GLOBAL_ZOOMLEVEL=GLOBAL_ZOOMLEVEL+1; GLOBAL_MAP.setZoom(GLOBAL_ZOOMLEVEL); }
@@ -164,34 +183,10 @@ function zoomOut() {
 </div>
 
 <div class="list-group mbot15p">
-  <div class="list-group-item">
+  <div class="list-group-item custom-font">
     <b>User Current Geolocation&nbsp;<i class="fa fa-angle-double-down pull-right" aria-hidden="true"></i></b>
   </div>
   <div class="list-group-item pad0">
     <div id="userActualGeoLocationMap" style="width:100%;height:400px;background-color:#eee;"></div>
-  </div>
-  <div class="list-group-item pad0">
-  <div class="container-fluid pad0">
-    <button class="btn btn-default col-xs-6" onclick="javascript:zoomOut();">
-	  <b><i class="fa fa-search-minus" aria-hidden="true"></i>&nbsp;Zoom-Out</b>
-	</button>
-    <button class="btn btn-default col-xs-6" onclick="javascript:zoomIn();">
-	  <b><i class="fa fa-search-plus" aria-hidden="true"></i>&nbsp;Zoom-In</b>
-	</button>
-   </div>
-  </div>
-  <div class="list-group-item pad0">
-    <div class="container-fluid">
-	  <div class="col-xs-6">
-		       <div align="right" class="mtop15p"><img src="http://maps.google.com/mapfiles/ms/icons/blue-dot.png"/></div>
-			   <div align="right" class="mtop15p" style="line-height:22px;">
-				  <b>Your Location</b>&nbsp;last updated on 15 August 1991, 10:12:10 PM
-			   </div>
-	  </div>
-	  <div class="col-xs-6" style="border-left:1px solid #eee;">
-		       <div align="left" class="mtop15p"><img src="http://maps.google.com/mapfiles/ms/icons/green-dot.png"/></div>
-			   <div align="left" class="mtop15p"><b>SurName Name's Location</b>&nbsp;last updated on 15 August 1991, 10:12:10 PM</div>
-	  </div>
-	</div>
   </div>
 </div>
