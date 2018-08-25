@@ -1,11 +1,7 @@
 package anups.dun.js;
 
-import java.io.File;
-
-import android.app.AlertDialog;
 import android.content.ContentResolver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -16,12 +12,12 @@ import android.webkit.JavascriptInterface;
 import android.widget.Toast;
 import anups.dun.app.AndroidWebScreen;
 import anups.dun.media.AndroidWebScreenVideo;
+import anups.dun.util.AndroidLogger;
 import anups.dun.util.CRUDContacts;
 import anups.dun.util.GPSTracker;
 import anups.dun.web.templates.URLGenerator;
 
 public class AppManagement extends ActionBarActivity {
-	
 	Context mContext;
 	public AppManagement(Context c) {  mContext = c; }
 
@@ -81,17 +77,6 @@ public class AppManagement extends ActionBarActivity {
 		ContentResolver contentResolver = mContext.getContentResolver();
 	    CRUDContacts crudContacts = new CRUDContacts();
 	    return crudContacts.fetchContacts(contentResolver);
-	}
-	
-	@JavascriptInterface
-	public boolean doesPermissionExist(String permission){ 
-		boolean status=((AndroidWebScreen) mContext).doesPermissionExist(permission);
-		return status;
-	}
-	
-	@JavascriptInterface
-	public void makeAPermission(String permission){
-		((AndroidWebScreen) mContext).makeAPermission(permission);
 	}
 	
 	@JavascriptInterface

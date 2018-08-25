@@ -35,7 +35,8 @@ public class Database extends SQLiteOpenHelper {
 	}
 
     public SQLiteDatabase connectDatabase(){
-      String externalDir = AndroidWebScreen.appSessionManagement.getAndroidSession(BusinessConstants.ANDROID_PROJECTPATH);
+      AppSessionManagement appSessionManagement = new AppSessionManagement(context);
+      String externalDir = appSessionManagement.getAndroidSession(BusinessConstants.ANDROID_PROJECTPATH);
 	  DATABASE_FILEPATH=externalDir+"//"+DATABASE_FILE;
 	  SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase(DATABASE_FILEPATH, null);
 	  return db;

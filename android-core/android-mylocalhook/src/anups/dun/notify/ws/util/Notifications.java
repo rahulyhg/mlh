@@ -1,9 +1,13 @@
 package anups.dun.notify.ws.util;
 
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
+import android.widget.Toast;
 import anups.dun.constants.BusinessConstants;
+import anups.dun.js.AppSessionManagement;
 import anups.dun.util.PushNotification;
 import anups.dun.web.templates.URLGenerator;
 
@@ -38,6 +42,7 @@ public class Notifications {
  }
  
  public void notify_show_signInRegister(){
+	 try {
 	 URLGenerator urlGenerator = new URLGenerator();
 	 String directURL=urlGenerator.defaultPage();
 	 boolean inapp=false;
@@ -50,16 +55,28 @@ public class Notifications {
 	 	     events[0] = new String("You are not SignIn/Register");
 	 	     events[1] = new String("MyLocalHook is waiting for you.");
 	 	     events[2] = new String("SignIn/Register Right Now");
-	 	 new PushNotification().display_unclosableNotification(BusinessConstants.UNCLOSEDNOTIFICATION_AUTHREMINDER,
+	 NotificationCompat.Builder  mBuilder= new PushNotification().display_unclosableNotification(BusinessConstants.UNCLOSEDNOTIFICATION_AUTHREMINDER,
 	 		context, directURL, inapp, contentTitle, bigContentTitle, contentText, ticker, events);
+	 }
+	 catch(Exception e){
+		 Toast.makeText(context, "Exception: "+e, Toast.LENGTH_LONG).show();
+	 }
  }
  
  public void notify_hide_signInRegister(){
-	NotificationCompat.Builder  mBuilder = new NotificationCompat.Builder(context);
+	 try {
+	/*	 NotificationCompat.Builder  mBuilder = new NotificationCompat.Builder(context);
 								mBuilder.setOngoing(false);
 	NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 						mNotificationManager.notify(BusinessConstants.UNCLOSEDNOTIFICATION_AUTHREMINDER, mBuilder.build());  
-						mNotificationManager.cancel(BusinessConstants.UNCLOSEDNOTIFICATION_AUTHREMINDER);
+						mNotificationManager.cancel(BusinessConstants.UNCLOSEDNOTIFICATION_AUTHREMINDER);			
+	*/
+		 NotificationManager notificationManager = (NotificationManager)  context.getSystemService(Context.NOTIFICATION_SERVICE);
+		                     notificationManager.cancel(BusinessConstants.UNCLOSEDNOTIFICATION_AUTHREMINDER);	
+	 }
+	 catch(Exception e){
+		 Toast.makeText(context, "Exception: "+e, Toast.LENGTH_LONG).show();
+	 }
  }
  
 }

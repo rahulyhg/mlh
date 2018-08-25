@@ -84,7 +84,7 @@ public class PushNotification {
 		   mNotificationManager.notify(notifyId, mBuilder.build());
 		}
 	
-	public void display_unclosableNotification(int notifyId,Context context,String directURL, boolean inapp,
+	public NotificationCompat.Builder display_unclosableNotification(int notifyId,Context context,String directURL, boolean inapp,
 			String contentTitle, String bigContentTitle, String contentText, String ticker,String[] events) {
 		
 		/* Invoking the default notification service */
@@ -142,6 +142,7 @@ public class PushNotification {
 		  // int notifyId=new Random().nextInt(10 - 1 + 1) + 1;
 		   /* notificationID allows you to update the notification later on. */
 		   mNotificationManager.notify(notifyId, mBuilder.build());
+		   return mBuilder;
 		}
 	
 }

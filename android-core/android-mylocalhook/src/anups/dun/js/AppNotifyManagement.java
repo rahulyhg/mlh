@@ -13,7 +13,12 @@ public class AppNotifyManagement extends ActionBarActivity {
 		new Notifications(mContext).notify_hide_versionStatus();
     }
 	@JavascriptInterface
+	public void startNotification_authReminder() {
+		new Notifications(mContext).notify_show_signInRegister();
+    }
+	@JavascriptInterface
 	public void shutdownNotification_authReminder() {
 		new Notifications(mContext).notify_hide_signInRegister();
     }
+	
 }

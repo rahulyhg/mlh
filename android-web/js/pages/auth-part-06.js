@@ -119,6 +119,8 @@ function getListOfCategories(){
 }
 
 function subscribe(){
+
+show_toggleMLHLoader('body');
 console.log("SUBSCRIPTION_COUNTER: "+SUBSCRIPTION_COUNTER);
  if(SUBSCRIPTION_COUNTER>0) {
     var sessionData=JSON.stringify(SUBSCRIPTION_JSONDATA_BUILDER);
@@ -129,11 +131,17 @@ console.log("SUBSCRIPTION_COUNTER: "+SUBSCRIPTION_COUNTER);
     js_session(sessionJSON,function(response){
 	   js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.user.subscriptions.php',
         { action:'SET_USER_SUBSCRIPTION', user_Id:AUTH_USER_ID },
-       function(response){ console.log(response);
+       function(response){
 	     if(response==='Success'){
+		    try {
+		      AndroidSession.setAndroidSession('AUTH_USER_ID',AUTH_USER_ID);
+			  AndroidNotify.shutdownNotification_authReminder();
+			} catch(err){ alert("AndroidNotify: "+err); }
+			hide_toggleMLHLoader('body');
 	        window.location.href=PROJECT_URL+'newsfeed/latest-news';
 		 }
 	    }); 
     });
  } else { alert_display_warning('W011'); }
+ 
 }

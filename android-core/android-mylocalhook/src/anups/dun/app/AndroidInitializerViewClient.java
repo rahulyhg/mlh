@@ -7,15 +7,13 @@ import android.net.Uri;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import anups.dun.util.NetworkUtility;
-public class AndroidWebViewClient extends WebViewClient {
-   
+
+public class AndroidInitializerViewClient extends WebViewClient {
 	Context context;
-	
-	public AndroidWebViewClient(Context context){
+	public AndroidInitializerViewClient(Context context){
 		this.context=context;
 	}
-
-    public boolean shouldOverrideUrlLoading(WebView view, String url) {
+	public boolean shouldOverrideUrlLoading(WebView view, String url) {
 
     	if (url.startsWith("tel:")) { 
             Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse(url)); 
@@ -51,7 +49,7 @@ public class AndroidWebViewClient extends WebViewClient {
     	 }
     }
 
-    // Show loader on url load
+    //Show loader on url load
     public void onPageStarted(WebView view, String url, Bitmap favicon) {
       
     }

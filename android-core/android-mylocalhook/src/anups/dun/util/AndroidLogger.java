@@ -14,13 +14,13 @@ import anups.dun.constants.BusinessConstants;
 
 public class AndroidLogger {
 
+	private static org.apache.log4j.Logger logger = AndroidLogger.getLogger(AndroidLogger.class);
 	public static LogConfigurator logConfigurator = new LogConfigurator();
-	public static org.apache.log4j.Logger getLogger(Class clazz) {
-		
-		
-		// Environment.getExternalStorageDirectory()
-		 Logger log = Logger.getLogger(clazz);
-		 try {
+	public static final long LOGGER_FILESIZE=2097152; // 1 MB  (1048576)  2MB (2097152)
+	
+    public static org.apache.log4j.Logger getLogger(Class clazz) {
+	  Logger log = Logger.getLogger(clazz);
+	  try {
      	//   log.setLevel(Level.ERROR);
 	    String filePath=BusinessConstants.EXTERNALMEMORYPATH+"/"+"mylocalhook";
 	    if(BusinessConstants.EXTERNALMEMORYPATH==null){
@@ -35,10 +35,25 @@ public class AndroidLogger {
         logConfigurator.setMaxFileSize(1024 * 1024 * 5);
         logConfigurator.setImmediateFlush(true);
         logConfigurator.configure();
-		 }
-		 catch(Exception e){ 
-		  
-		 }
-        return log;
+	  }
+	  catch(Exception e){  }
+     return log;
     }
+
+	public static void regulateLoggerFile(){
+        String filePath=BusinessConstants.EXTERNALMEMORYPATH+"/mylocalhook/logs/log.txt";
+ 	    if(BusinessConstants.EXTERNALMEMORYPATH==null){
+ 		  filePath=BusinessConstants.INTERNALMEMORYPATH+"/mylocalhook/logs/log.txt";
+ 	    }
+ 	   File file = new File(filePath);
+ 	   long fileSize = Integer.parseInt(String.valueOf(file.length()));
+ 	   logger.info("Logger File Size: "+fileSize);
+ 	   if(fileSize>LOGGER_FILESIZE){ /* Delete File */
+ 		  boolean deleted = file.delete();
+ 		  if(deleted) { logger.info("Deleted Logger"); }
+ 		  else { logger.info("Not Deleted Logger"); } 
+ 	   } 
+    }
+	
+	
 }

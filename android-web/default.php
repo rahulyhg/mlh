@@ -35,16 +35,33 @@ if($_SESSION["AUTHENTICATION_STATUS"]=='INCOMPLETED'){
  </style>
 <script type="text/javascript">
 var Android;
+var AndroidPermissions;
 var AndroidDatabase;
 var AndroidSQLiteUsrFrndsInfo;
 $(document).ready(function(){
  $(".lang_"+USR_LANG).css('display','block');
 });
+function makeOutPermissions(){
+ var arryPerm=["android.permission.WRITE_EXTERNAL_STORAGE","android.permission.READ_EXTERNAL_STORAGE",
+			  "android.permission.READ_CONTACTS","android.permission.WRITE_CONTACTS","android.permission.CAMERA"]; 
+ try {
+ AndroidPermissions.makeAPermission(arryPerm.toString());
+ } catch(err) { alert("MakeAPermission: "+err); }
+ var permissionPage=false;
+ for(var index=0;index<arryPerm.length;index++){
+    try {
+     if(AndroidPermissions.doesPermissionExist(arryPerm[index])===false){ 
+	   permissionPage=true;
+	   break; 
+	 }
+	} catch(err) { alert("DoesPermissionExist: "+err); }
+ }
+ if(!permissionPage){ Android.loadAndroidWebScreen(Android.getDefaultPage()+'initializer/start'); }
+}
 </script>
 </head>
 <body>
  <?php include_once 'templates/api/api_loading.php'; ?>
- <!--?php include_once 'templates/api/api_header_init.php'; ?-->
  <div id="auth-part01" class="container-fluid">
    <div align="center" class="col-md-12">
     <h3 style="font-family:'mlhfont001';color:#fff;line-height:50px;">
@@ -57,10 +74,8 @@ $(document).ready(function(){
 	  STAY CONNECTED TO YOUR LOCAL ENVIRONMENT BY CONNECTING TO PEOPLE AROUND YOU</h5>
    </div>
    <div align="center" class="col-md-12" style="margin-top:120px;">
-     <a href="<?php echo $_SESSION["PROJECT_URL"]; ?>initializer/start"-->
-     <button class="btn btn-default">
+     <button class="btn btn-default" onclick="javascript:makeOutPermissions();">
 	 <b>START MY JOURNEY</b>&nbsp;&nbsp;<i class="fa fa-arrow-right"></i></button>
-	 </a>
    </div>
  </div>
 </body>

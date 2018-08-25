@@ -1110,10 +1110,11 @@ containing a value of this type.
         public static final int abc_split_action_bar_is_narrow=0x7f060002;
     }
     public static final class color {
-        public static final int abc_search_url_text_holo=0x7f07001a;
+        public static final int abc_search_url_text_holo=0x7f07001c;
         public static final int abc_search_url_text_normal=0x7f070000;
         public static final int abc_search_url_text_pressed=0x7f070002;
         public static final int abc_search_url_text_selected=0x7f070001;
+        public static final int blue=0x7f07001a;
         public static final int common_action_bar_splitter=0x7f07000c;
         /**  Sign-in Button Colors 
          */
@@ -1126,8 +1127,8 @@ containing a value of this type.
         public static final int common_signin_btn_light_text_disabled=0x7f070009;
         public static final int common_signin_btn_light_text_focused=0x7f07000a;
         public static final int common_signin_btn_light_text_pressed=0x7f070008;
-        public static final int common_signin_btn_text_dark=0x7f07001b;
-        public static final int common_signin_btn_text_light=0x7f07001c;
+        public static final int common_signin_btn_text_dark=0x7f07001d;
+        public static final int common_signin_btn_text_light=0x7f07001e;
         public static final int wallet_bright_foreground_disabled_holo_light=0x7f070012;
         /** 
          Wallet colors to support consistent Wallet fragment holo dark UI in client application
@@ -1146,8 +1147,9 @@ containing a value of this type.
         public static final int wallet_hint_foreground_holo_light=0x7f070014;
         public static final int wallet_holo_blue_light=0x7f070018;
         public static final int wallet_link_text_light=0x7f070019;
-        public static final int wallet_primary_text_holo_light=0x7f07001d;
-        public static final int wallet_secondary_text_holo_dark=0x7f07001e;
+        public static final int wallet_primary_text_holo_light=0x7f07001f;
+        public static final int wallet_secondary_text_holo_dark=0x7f070020;
+        public static final int white=0x7f07001b;
     }
     public static final class dimen {
         /**  Default height of an action bar. 
@@ -1364,7 +1366,7 @@ containing a value of this type.
         public static final int powered_by_google_light=0x7f020075;
     }
     public static final class id {
-        public static final int VideoView=0x7f0a0050;
+        public static final int VideoView=0x7f0a004f;
         public static final int action_bar=0x7f0a002e;
         public static final int action_bar_activity_content=0x7f0a0001;
         public static final int action_bar_container=0x7f0a002d;
@@ -1376,7 +1378,7 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f0a0002;
         public static final int action_menu_presenter=0x7f0a0003;
         public static final int action_mode_close_button=0x7f0a0036;
-        public static final int action_settings=0x7f0a0051;
+        public static final int action_settings=0x7f0a0050;
         public static final int activity_chooser_view_content=0x7f0a0037;
         public static final int always=0x7f0a000f;
         public static final int beginning=0x7f0a0016;
@@ -1413,7 +1415,6 @@ containing a value of this type.
         public static final int none=0x7f0a0019;
         public static final int normal=0x7f0a0007;
         public static final int production=0x7f0a001f;
-        public static final int progressBar=0x7f0a004f;
         public static final int progress_circular=0x7f0a0004;
         public static final int progress_horizontal=0x7f0a0005;
         public static final int radio=0x7f0a0041;
@@ -1497,9 +1498,10 @@ containing a value of this type.
         public static final int abc_popup_menu_item_layout=0x7f030014;
         public static final int abc_search_dropdown_item_icons_2line=0x7f030015;
         public static final int abc_search_view=0x7f030016;
-        public static final int activity_androidwebscreen=0x7f030017;
-        public static final int activity_androidwebscreenvideo=0x7f030018;
-        public static final int support_simple_spinner_dropdown_item=0x7f030019;
+        public static final int activity_androidinitializer=0x7f030017;
+        public static final int activity_androidwebscreen=0x7f030018;
+        public static final int activity_androidwebscreenvideo=0x7f030019;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001a;
     }
     public static final class menu {
         public static final int main=0x7f0d0000;
@@ -1875,6 +1877,7 @@ containing a value of this type.
         public static final int Widget_AppCompat_ProgressBar=0x7f0c000a;
         public static final int Widget_AppCompat_ProgressBar_Horizontal=0x7f0c0009;
         public static final int Widget_AppCompat_Spinner_DropDown_ActionBar=0x7f0c0022;
+        public static final int noAnimTheme=0x7f0c0089;
     }
     public static final class styleable {
         /**  ============================================ 

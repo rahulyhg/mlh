@@ -8,7 +8,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.telephony.TelephonyManager;
-import anups.dun.app.AndroidWebScreen;
 
 public class NetworkUtility {
 	org.apache.log4j.Logger logger = AndroidLogger.getLogger(NetworkUtility.class);
@@ -17,6 +16,7 @@ public class NetworkUtility {
 		this.context=context;
 	}
 	
+	@SuppressWarnings("deprecation")
 	public boolean checkInternetConnection() {   
 	  ConnectivityManager con_manager = (ConnectivityManager) 
       context.getSystemService(Context.CONNECTIVITY_SERVICE);

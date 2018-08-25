@@ -52,7 +52,7 @@ public class AndroidWebChromeClient extends WebChromeClient {
     // For Lollipop
     public boolean onShowFileChooser(ValueCallback<Uri[]> filePath, WebChromeClient.FileChooserParams fileChooserParams) throws IOException {
     	webscreenObject.FILE_CHOOSER_VERSION="ANDROID_LOLLIPOP";
-    	// Toast.makeText(webscreenObject.getBaseContext(), "Android Lollipop", Toast.LENGTH_LONG).show();
+    	// Toast.makeText(androidWebScreen.getBaseContext(), "Android Lollipop", Toast.LENGTH_LONG).show();
     	// Double check that we don't have any existing callbacks
         if (webscreenObject.mFilePathCallback != null) {
         	webscreenObject.mFilePathCallback.onReceiveValue(null);
@@ -102,7 +102,7 @@ public class AndroidWebChromeClient extends WebChromeClient {
     // For Android 5.0+
     public boolean onShowFileChooser(WebView view, ValueCallback<Uri[]> filePath, WebChromeClient.FileChooserParams fileChooserParams) {
     	webscreenObject.FILE_CHOOSER_VERSION="ANDROID_5.0";
-    	// Toast.makeText(webscreenObject.getBaseContext(), "Android 5.0+", Toast.LENGTH_LONG).show();
+    	// Toast.makeText(androidWebScreen.getBaseContext(), "Android 5.0+", Toast.LENGTH_LONG).show();
     	// Double check that we don't have any existing callbacks
         if (webscreenObject.mFilePathCallback != null) {
         	webscreenObject.mFilePathCallback.onReceiveValue(null);
@@ -126,7 +126,7 @@ public class AndroidWebChromeClient extends WebChromeClient {
             }
         }
 
-       // Toast.makeText(webscreenObject.getBaseContext(), "takePictureIntent: "+takePictureIntent, Toast.LENGTH_LONG).show();
+       // Toast.makeText(androidWebScreen.getBaseContext(), "takePictureIntent: "+takePictureIntent, Toast.LENGTH_LONG).show();
         
         Intent contentSelectionIntent = new Intent(Intent.ACTION_GET_CONTENT);
         contentSelectionIntent.addCategory(Intent.CATEGORY_OPENABLE);
@@ -144,7 +144,7 @@ public class AndroidWebChromeClient extends WebChromeClient {
         chooserIntent.putExtra(Intent.EXTRA_INTENT, contentSelectionIntent);
         chooserIntent.putExtra(Intent.EXTRA_TITLE, "Image Chooser");
         chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, intentArray);
-       // webscreenObject.startActivityForResult(Intent.createChooser(chooserIntent, "Select images"), 1);
+       // androidWebScreen.startActivityForResult(Intent.createChooser(chooserIntent, "Select images"), 1);
         webscreenObject.startActivityForResult(chooserIntent, 1);
         return true;
 
@@ -154,9 +154,9 @@ public class AndroidWebChromeClient extends WebChromeClient {
     // openFileChooser for Android 3.0+
     public void openFileChooser(ValueCallback<Uri> uploadMsg, String acceptType) {
     	webscreenObject.FILE_CHOOSER_VERSION="ANDROID_3.0";
-    	// Toast.makeText(webscreenObject.getBaseContext(), "Android 3.0+", Toast.LENGTH_LONG).show();
+    	// Toast.makeText(androidWebScreen.getBaseContext(), "Android 3.0+", Toast.LENGTH_LONG).show();
     	webscreenObject.mUploadMessage = uploadMsg;
-    	// Toast.makeText(webscreenObject.getBaseContext(), "mUploadMessage: "+webscreenObject.mUploadMessage, Toast.LENGTH_LONG).show();
+    	// Toast.makeText(androidWebScreen.getBaseContext(), "mUploadMessage: "+androidWebScreen.mUploadMessage, Toast.LENGTH_LONG).show();
         try {
             File imageStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "DirectoryNameHere");
 
@@ -207,7 +207,7 @@ public class AndroidWebChromeClient extends WebChromeClient {
     // openFileChooser for Android < 3.0
     public void openFileChooser(ValueCallback<Uri> uploadMsg) {
     	webscreenObject.FILE_CHOOSER_VERSION="ANDROID<3.0";
-    	// Toast.makeText(webscreenObject.getBaseContext(), "Android <3.0", Toast.LENGTH_LONG).show();
+    	// Toast.makeText(androidWebScreen.getBaseContext(), "Android <3.0", Toast.LENGTH_LONG).show();
     	 openFileChooser(uploadMsg, "");
     }
 
@@ -216,7 +216,7 @@ public class AndroidWebChromeClient extends WebChromeClient {
        https://code.google.com/p/android/issues/detail?id=62220
        however newer versions of KitKat fixed it on some devices */
     public void openFileChooser(ValueCallback<Uri> uploadMsg, String acceptType, String capture) {
-    	// Toast.makeText(webscreenObject.getBaseContext(), "Android Other Versions", Toast.LENGTH_LONG).show();
+    	// Toast.makeText(androidWebScreen.getBaseContext(), "Android Other Versions", Toast.LENGTH_LONG).show();
     	 openFileChooser(uploadMsg, acceptType);
     }
 
