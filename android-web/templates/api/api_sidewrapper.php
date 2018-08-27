@@ -22,17 +22,6 @@ function mainMenuSelection(id){
   }
   if(id==='dn_'+USR_LANG+'_logout'){ logout(); }
 }
-function logout(){
- var AndroidSession;
-  if(AndroidSession!==undefined){
-    AndroidSession.setAndroidSession("AUTH_USER_ID",null);
-  }
-  $.ajax({type: "POST", url: PROJECT_URL+'backend/php/api/app.session.php',
-      data:{ action:'DestroySession' },success: function(resp) { 
-      window.location.href=PROJECT_URL; } 
-  });
-		 
-}
 </script>
 <span class="lang_english">
 	<ul class="sidebar-nav">

@@ -3,15 +3,12 @@ package anups.dun.app;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.view.Window;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.widget.Toast;
 import anups.dun.constants.BusinessConstants;
 import anups.dun.js.AppManagement;
 import anups.dun.js.AppNotifyManagement;
@@ -20,9 +17,8 @@ import anups.dun.js.AppSessionManagement;
 import anups.dun.notify.ws.util.Notifications;
 import anups.dun.util.AndroidLogger;
 import anups.dun.util.NetworkUtility;
-import anups.dun.web.templates.URLGenerator;
 
-@SuppressLint("NewApi")
+@SuppressLint({ "NewApi", "SetJavaScriptEnabled" })
 public class AndroidInitializerScreen extends Activity {
 	org.apache.log4j.Logger logger = AndroidLogger.getLogger(AndroidInitializerScreen.class);
 	public WebView webView;
@@ -34,8 +30,6 @@ public class AndroidInitializerScreen extends Activity {
     	super.onCreate(savedInstanceState);
     	requestWindowFeature(Window.FEATURE_NO_TITLE);
     	setContentView(R.layout.activity_androidinitializer);
-    	
-    	
     }
 
     @Override
@@ -60,7 +54,7 @@ public class AndroidInitializerScreen extends Activity {
       webView.addJavascriptInterface(appNotifyManagement, "AndroidNotify");
       webView.addJavascriptInterface(appSessionManagement, "AndroidSession"); 
       webView.addJavascriptInterface(appSQLiteManagement, "AndroidDatabase"); 
-      
+    
       webView.setWebViewClient(new AndroidInitializerViewClient(this));
       webView.setWebChromeClient(new AndroidInitializerChromeClient(this));
       
@@ -69,41 +63,19 @@ public class AndroidInitializerScreen extends Activity {
           webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
       }
       
-  	try {
-  	
-      Toast.makeText(this.getApplicationContext(), "AndroidInitializerScreen", Toast.LENGTH_LONG).show();
-  	
-  	
-  	String USER_ID=appSessionManagement.getAndroidSession(BusinessConstants.AUTH_USER_ID);
-  	logger.info("USER_ID: "+USER_ID);
-  	
-  	if(USER_ID==null){ /* Show SignIn/Register Popup Notification */
-  		 new Notifications(this.getApplicationContext()).notify_show_signInRegister();
-  		 final Intent intent = new Intent(this, AndroidWebScreen.class);
-  		 final Handler handler = new Handler();
-		        handler.postDelayed( new Runnable() {
-  			    public void run() {
-  			    	intent.setData(Uri.parse(new URLGenerator().defaultPage()));
-  			        startActivity(intent);
-  			    }
-  			}, 3000);
-		       
-		 NetworkUtility networkUtility=new NetworkUtility(this);
+  	  try {
+         NetworkUtility networkUtility=new NetworkUtility(this);
 		 if(networkUtility.checkInternetConnection()) {
-		    webView.loadUrl("file:///android_asset/www/app-default.html");
+			/* Show SignIn/Register Popup Notification */
+			String USER_ID=appSessionManagement.getAndroidSession(BusinessConstants.AUTH_USER_ID);
+			logger.info("USER_ID: "+USER_ID);
+			if(USER_ID==null){
+		      new Notifications(this.getApplicationContext()).notify_show_signInRegister();
+			}
+			webView.loadUrl("file:///android_asset/www/app-default.html");
 		 }
-  			
-  		 
-  	} else {
-  		NetworkUtility networkUtility=new NetworkUtility(this);
-		if(networkUtility.checkInternetConnection()) {
-		  webView.loadUrl(new URLGenerator().latestNews());
-		}
-  	}
-  	
-  	
-  	}
-  	catch(Exception e){  logger.info("Exception: "+e); }
+		 else{  webView.loadUrl("file:///android_asset/www/network_state.html");  }
+      } catch(Exception e){  logger.info("Exception: "+e); }
     }
 
     @Override

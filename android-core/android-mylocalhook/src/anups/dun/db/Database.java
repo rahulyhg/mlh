@@ -1,10 +1,7 @@
 package anups.dun.db;
 
-import anups.dun.app.AndroidWebScreen;
 import anups.dun.constants.BusinessConstants;
-import anups.dun.db.tbl.UserFrndsContacts;
 import anups.dun.db.tbl.UserFrndsInfo;
-import anups.dun.db.tbl.UserFrndsProfile;
 import anups.dun.js.AppSessionManagement;
 import android.content.Context;
 import android.database.Cursor;

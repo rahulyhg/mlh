@@ -13,6 +13,7 @@ import anups.dun.mlh.basic.data.AppAndroidServiceData;
  */
 public class AppAndroidServiceURL {
   public static final String SERVICE_URL="http://localhost/mlh/android-web/backend/php/dac/controller.module.app.android.service.php";
+  
   public String userDumpFriendsServiceParameters(){
      AppAndroidServiceData appAndroidServiceData = new AppAndroidServiceData();
      AppAndroidServiceData.UserDumpFriendsService userDumpFriendsService = appAndroidServiceData.new UserDumpFriendsService();
@@ -27,5 +28,6 @@ public class AppAndroidServiceURL {
      params.append("]");
      return params.toString();
   }
+  
   
 }

@@ -1,18 +1,13 @@
 package anups.dun.db;
 
-import java.io.File;
-import java.util.HashMap;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.os.Environment;
 import anups.dun.constants.BusinessConstants;
 import anups.dun.js.AppSessionManagement;
-import anups.dun.services.OnBootCompleted;
 import anups.dun.util.AndroidLogger;
 
 public class DB extends SQLiteOpenHelper {
@@ -44,8 +39,6 @@ public class DB extends SQLiteOpenHelper {
 	public static final String MLHTBL_USERFRNDS_STATE = "state";
 	public static final String MLHTBL_USERFRNDS_LOCATION = "location";
 	public static final String MLHTBL_USERFRNDS_MINLOCATION = "minlocation";
-	
-	private HashMap hp;
 	private static DB sInstance;
 	public Context context;
 	public static String DATABASE_FILEPATH;

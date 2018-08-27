@@ -42,6 +42,17 @@ function searchDataOnMLH(){
 var searchKeywrd=document.getElementById("searchKeywrd").value;
 window.location.href=PROJECT_URL+'app/search/'+searchKeywrd;
 }
+function logout(){
+ var AndroidSession;
+  if(AndroidSession!==undefined){
+    AndroidSession.deleteAndroidSession("AUTH_USER_ID");
+  }
+  $.ajax({type: "POST", url: PROJECT_URL+'backend/php/api/app.session.php',
+      data:{ action:'DestroySession' },success: function(resp) { 
+      window.location.href=PROJECT_URL; } 
+  });
+		 
+}
 </script>
 <nav id="header_bot" class="navbar" style="margin-bottom:0px;border-radius:0px;">
 	
@@ -53,6 +64,8 @@ window.location.href=PROJECT_URL+'app/search/'+searchKeywrd;
 			  <li><a href="<?php echo $_SESSION["PROJECT_URL"]; ?>app/create-community"><i class="fa fa-bank" aria-hidden="true"></i>&nbsp;&nbsp;Create Community</a></li>
 			  <li><a href="<?php echo $_SESSION["PROJECT_URL"]; ?>app/write-newsfeed"><i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;&nbsp;Write NewsFeed</a></li>
 			  <li><a href="<?php echo $_SESSION["PROJECT_URL"]; ?>app/create-movement"><i class="fa fa-thumbs-up" aria-hidden="true"></i>&nbsp;&nbsp;Create Movement</a></li>
+		      <li onclick="javascript:logout();"><a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i>&nbsp;&nbsp;logout</a></li>
+		      
 		   </ul>
 		</div>
 		<a class="navbar-brand a-custom" style="cursor:pointer;" onclick="javascript:sideMenuToggle();">

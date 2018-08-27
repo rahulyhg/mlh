@@ -41,6 +41,7 @@ var AndroidSQLiteUsrFrndsInfo;
 $(document).ready(function(){
  $(".lang_"+USR_LANG).css('display','block');
 });
+
 function makeOutPermissions(){
  var arryPerm=["android.permission.WRITE_EXTERNAL_STORAGE","android.permission.READ_EXTERNAL_STORAGE",
 			  "android.permission.READ_CONTACTS","android.permission.WRITE_CONTACTS","android.permission.CAMERA"]; 
@@ -56,7 +57,7 @@ function makeOutPermissions(){
 	 }
 	} catch(err) { alert("DoesPermissionExist: "+err); }
  }
- if(!permissionPage){ Android.loadAndroidWebScreen(Android.getDefaultPage()+'initializer/start'); }
+ if(!permissionPage){ window.location.href=PROJECT_URL+'initializer/start';  }
 }
 </script>
 </head>

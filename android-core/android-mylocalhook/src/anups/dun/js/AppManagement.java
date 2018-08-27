@@ -12,7 +12,6 @@ import android.webkit.JavascriptInterface;
 import android.widget.Toast;
 import anups.dun.app.AndroidWebScreen;
 import anups.dun.media.AndroidWebScreenVideo;
-import anups.dun.util.AndroidLogger;
 import anups.dun.util.CRUDContacts;
 import anups.dun.util.GPSTracker;
 import anups.dun.web.templates.URLGenerator;
@@ -26,6 +25,12 @@ public class AppManagement extends ActionBarActivity {
       URLGenerator urlGenerator=new URLGenerator();
       return urlGenerator.defaultPage();
     }
+	
+	@JavascriptInterface
+	public String latestNews(){
+	  URLGenerator urlGenerator=new URLGenerator();
+	  return urlGenerator.latestNews();
+	}
 	
 	@JavascriptInterface
 	public String checkPlayStoreUpdate(String playstoreversion) {

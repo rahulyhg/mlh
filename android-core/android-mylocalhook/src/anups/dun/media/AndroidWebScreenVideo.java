@@ -16,6 +16,7 @@ import anups.dun.app.R;
 public class AndroidWebScreenVideo extends Activity {
 
 	// Declare variables
+	@SuppressWarnings("deprecation")
 	ProgressDialog pDialog;
 	VideoView videoview;
 

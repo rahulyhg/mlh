@@ -7,9 +7,7 @@ import android.content.Context;
 import android.support.v7.app.ActionBarActivity;
 import android.webkit.JavascriptInterface;
 import anups.dun.db.Database;
-import anups.dun.db.tbl.UserFrndsContacts;
 import anups.dun.db.tbl.UserFrndsInfo;
-import anups.dun.db.tbl.UserFrndsProfile;
 import anups.dun.util.AndroidLogger;
 
 @SuppressLint("DefaultLocale")

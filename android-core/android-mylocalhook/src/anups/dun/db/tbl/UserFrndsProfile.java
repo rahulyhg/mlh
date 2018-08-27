@@ -1,8 +1,5 @@
 package anups.dun.db.tbl;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;

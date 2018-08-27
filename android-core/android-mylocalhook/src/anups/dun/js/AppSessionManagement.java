@@ -1,17 +1,13 @@
 package anups.dun.js;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.webkit.JavascriptInterface;
-import android.widget.Toast;
-import anups.dun.app.AndroidWebScreen;
-import anups.dun.media.AndroidWebScreenVideo;
 
 public class AppSessionManagement extends ActionBarActivity {
+	@SuppressWarnings("unused")
 	private Context mContext;
 	SharedPreferences pref;
 	Editor editor;

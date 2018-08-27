@@ -53,10 +53,7 @@ public class WSUtility {
 		if (responseCode == HttpURLConnection.HTTP_OK) { //success
 			BufferedReader in = new BufferedReader(new InputStreamReader(
 					con.getInputStream()));
-			String inputLine;
-			
-
-			while ((inputLine = in.readLine()) != null) {
+			for (String inputLine="";(inputLine = in.readLine()) != null;) {
 				response.append(inputLine);
 			}
 			in.close();
@@ -66,6 +63,7 @@ public class WSUtility {
 		} else {
 			logger.info("POST request not worked");
 		}
+		logger.info("Response: "+response);
 	 } catch(Exception e){ logger.error("Exception WSPOSTUtility: "+e.getMessage()); }
 	 return response.toString();
 	}

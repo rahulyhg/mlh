@@ -3,7 +3,6 @@ package anups.dun.js;
 import android.content.Context;
 import android.support.v7.app.ActionBarActivity;
 import android.webkit.JavascriptInterface;
-import android.widget.Toast;
 import anups.dun.app.AndroidWebScreen;
 import anups.dun.util.AndroidLogger;
 

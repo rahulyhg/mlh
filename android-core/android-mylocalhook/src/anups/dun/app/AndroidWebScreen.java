@@ -1,13 +1,9 @@
 package anups.dun.app;
 
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.provider.Settings;
 import android.text.Html;
-import android.transition.Fade;
-import android.transition.Slide;
-import android.transition.TransitionInflater;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -24,28 +20,17 @@ import android.view.Window;
 import android.webkit.ValueCallback;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
-import anups.dun.alarm.AlarmIntervalDay;
-import anups.dun.alarm.AlarmIntervalHour;
 import anups.dun.app.R;
 import anups.dun.constants.BusinessConstants;
 import anups.dun.db.Database;
 import anups.dun.db.js.AppSQLiteUsrFrndsContactsInfo;
-import anups.dun.db.tbl.UserFrndsContacts;
-import anups.dun.db.tbl.UserFrndsProfile;
 import anups.dun.js.AppManagement;
 import anups.dun.js.AppNotifyManagement;
 import anups.dun.js.AppPermissions;
 import anups.dun.js.AppSQLiteManagement;
 import anups.dun.js.AppSessionManagement;
 import anups.dun.media.AndroidWebScreenVideo;
-import anups.dun.notify.ws.WSUserFrndsContacts;
-import anups.dun.notify.ws.util.Notifications;
-import anups.dun.notify.ws.WSGoogleAds;
 import anups.dun.util.AndroidLogger;
-import anups.dun.util.GPSTracker;
 import anups.dun.util.NetworkUtility;
 import anups.dun.web.templates.URLGenerator;
 import java.io.File;
@@ -184,14 +169,14 @@ public void makeAPermission(String[] permissions){
 	  requestPermissions(permissions,REQUEST_CODE_ASK_PERMISSIONS);  // 
 }
 
+@SuppressWarnings("deprecation")
 @Override
 public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
 	boolean permissionDenied = false;
 	for(int index=0;index<permissions.length;index++){
 	  switch (requestCode) {
         case REQUEST_CODE_ASK_PERMISSIONS:
-        	Toast.makeText(this, permissions[index]+" -> "+grantResults[index], Toast.LENGTH_LONG).show();
-            if (grantResults[index] == PackageManager.PERMISSION_DENIED) { // Permission Granted
+        	if (grantResults[index] == PackageManager.PERMISSION_DENIED) { // Permission Granted
             	permissionDenied = true;
             }
          break;

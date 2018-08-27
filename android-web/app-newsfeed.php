@@ -1,4 +1,5 @@
 <?php session_start();
+include_once 'templates/api/api_params.php';
 if(isset($_SESSION["AUTH_USER_ID"])) {
  ?>
 <!DOCTYPE html>
@@ -20,7 +21,6 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/ui-templates.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/app-newsfeed-bg-styles.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/app-newsfeed.js"></script>
- <?php include_once 'templates/api/api_params.php'; ?>
 <style>
 /* CSS : Start */
 body { background-color:#f7f7f7; }
@@ -93,4 +93,5 @@ a.newsfeed-content { color:#000; }
  </div>
 </body>
 </html>
-<?php } else { header("location:".$_SESSION["PROJECT_URL"]."initializer/start"); } ?>
+<?php 
+} else { header("location:".$_SESSION["PROJECT_URL"]); } ?>

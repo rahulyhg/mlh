@@ -79,20 +79,20 @@
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
             android:theme="@android:style/Theme.Translucent" ></activity>
         
-         <receiver android:name="anups.dun.br.BRIntervalDay">
+         <receiver android:name="anups.dun.br.BRIntervalDay" android:exported ="false">
              <intent-filter>
-                 <action android:name="anups.dun.broadcast.recievers.BRIntervalDay" />
-            </intent-filter>
+    			<action android:name="anups.dun.br.BRIntervalDay" />
+			 </intent-filter>
          </receiver>
-         <receiver android:name="anups.dun.br.BRIntervalHour">
+         <receiver android:name="anups.dun.br.BRIntervalHour" android:exported ="false">
              <intent-filter>
-                 <action android:name="anups.dun.broadcast.recievers.BRIntervalHour" />
-            </intent-filter>
+    			<action android:name="anups.dun.br.BRIntervalHour" />
+			 </intent-filter>
          </receiver>
-         <receiver android:name="anups.dun.br.BRIntervalMinute">
+         <receiver android:name="anups.dun.br.BRIntervalMinute" android:exported ="false">
              <intent-filter>
-                 <action android:name="anups.dun.broadcast.recievers.BRIntervalMinute" />
-            </intent-filter>
+    			<action android:name="anups.dun.br.BRIntervalMinute" />
+			 </intent-filter>
          </receiver>
          
          <receiver android:name="anups.dun.services.OnBootCompleted"

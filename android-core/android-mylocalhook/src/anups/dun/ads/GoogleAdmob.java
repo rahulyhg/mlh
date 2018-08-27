@@ -5,11 +5,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
-
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
-
 import android.app.Activity;
 import anups.dun.constants.BusinessConstants;
 import anups.dun.js.AppSessionManagement;
@@ -22,10 +20,12 @@ public class GoogleAdmob {  // GoogleAdmobInterstitial
     //	ca-app-pub-3940256099942544/8691691433 // Interstitial Video
     //	ca-app-pub-3940256099942544/5224354917 // Rewarded Video
     private static int scheduleTime=200;
-    private static ScheduledFuture loaderHandler;
+    @SuppressWarnings("rawtypes")
+	private static ScheduledFuture loaderHandler;
     static boolean newAdInitimater;
     static Runnable loader;
-    public static void loadInterstitial(final Activity activity) {
+    @SuppressWarnings("unused")
+	public static void loadInterstitial(final Activity activity) {
     	
     	 loader = new Runnable() {
             @Override

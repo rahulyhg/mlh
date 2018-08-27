@@ -4,24 +4,23 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
 import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.view.View;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
-import android.widget.FrameLayout;
-import android.widget.ProgressBar;
 import android.widget.Toast;
-import android.widget.VideoView;
 import anups.dun.app.R;
 
+@TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
+@SuppressLint("SimpleDateFormat")
 public class AndroidWebChromeClient extends WebChromeClient {
 
 	AndroidWebScreen webscreenObject;
@@ -197,7 +196,7 @@ public class AndroidWebChromeClient extends WebChromeClient {
             Intent chooserIntent = Intent.createChooser(i, webscreenObject.getString(R.string.image_chooser));
             chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Parcelable[]{webscreenObject.captureIntent});
 
-            webscreenObject.startActivityForResult(chooserIntent, webscreenObject.INPUT_FILE_REQUEST_CODE);
+            webscreenObject.startActivityForResult(chooserIntent, AndroidWebScreen.INPUT_FILE_REQUEST_CODE);
         } catch (Exception e) {
             Toast.makeText(webscreenObject.getBaseContext(), "Camera Exception:" + e, Toast.LENGTH_LONG).show();
         }

@@ -71,11 +71,13 @@ if(isset($_POST["action"])){
 	  $gps_latitude=$_POST["gps_latitude"];
 	  $gps_longitude=$_POST["gps_longitude"];
 	  $content='[]';
-	  if($user_Id!='null'){
 	  $limit_start='0';
 	  $limit_end='5';
 	  $notifyObj=new AppAndroidService();
+	  $query=$notifyObj->query_set_userGeoLocation($user_Id, $gps_latitude, $gps_longitude);
 	  $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
+	  $dbObj->addupdateData($query);
+	  /*
 	  $query1=$notifyObj->query_notify_usrFrndsReqReciever($user_Id);
 	  $query2=$notifyObj->query_notify_onAcceptUserFrndReq($user_Id);
 	  $query3=$notifyObj->query_notify_reqLocalBranch($user_Id);
@@ -99,7 +101,7 @@ if(isset($_POST["action"])){
 	  $sqlArray["unionSubscriberNewsFeed"]=$query9;
 	  $sqlArray["unionMovements"]=$query10;
 	  $content=$dbObj->getBulkJSONData($sqlArray);
-	  }
+	  */
 	  echo $content;
 	}
 	 else {

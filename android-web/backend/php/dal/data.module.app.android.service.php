@@ -1,6 +1,13 @@
 <?php
 class AppAndroidService {
 
+  function query_set_userGeoLocation($user_Id, $usr_latitude, $usr_longitude){
+    $sql="INSERT INTO user_profile_geo(user_Id, cur_lat, cur_long, geoUpdatedOn) ";
+	$sql.="VALUES ('".$user_Id."','".$usr_latitude."','".$usr_longitude."','".date('Y-m-d H:i:s')."') ";
+	$sql.="ON DUPLICATE KEY UPDATE cur_lat='".$usr_latitude."', cur_long='".$usr_longitude."', ";
+	$sql.="geoUpdatedOn='".date('Y-m-d H:i:s')."'; ";
+    return $sql;
+  }
   /***************************************************************************************************************************
    ******************************************** SERVICE USR DUMP FRNDS *******************************************************
    ***************************************************************************************************************************/

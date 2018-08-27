@@ -3,12 +3,10 @@ package anups.dun.br;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import anups.dun.constants.BusinessConstants;
 import anups.dun.js.AppSessionManagement;
 import anups.dun.notify.ws.WSIntervalHour;
 import anups.dun.notify.ws.util.Notifications;
 import anups.dun.util.AndroidLogger;
-import anups.dun.util.PushNotification;
 import anups.dun.web.templates.URLGenerator;
 
 public class BRIntervalHour  extends BroadcastReceiver{
