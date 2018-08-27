@@ -72,6 +72,11 @@ class user_authentication {
 	$sql.="FROM user_account WHERE user_Id='".$profile_user_Id."';";
 	return $sql;
   }
+
+  function query_getUserGeoLocation($user_Id){
+    $sql="SELECT * FROM user_profile_geo WHERE user_Id='".$user_Id."';";
+	return $sql;
+  }
 }
 
 ?>

@@ -144,15 +144,34 @@ function currentUserMobileGPS(){
  return currentPosition;
 }
 function latestGPSPositions(){
-  GLOBAL_POSITION1=currentUserMobileGPS();
-  GLOBAL_POSITION2={ lat: GLOBAL_POSITION2.lat+0.000010, lng: GLOBAL_POSITION2.lng+0.000010 };
-  GLOBAL_MARKER1.setPosition( GLOBAL_POSITION1 );
-  GLOBAL_MARKER2.setPosition( GLOBAL_POSITION2 );
-  GLOBAL_MAP.setCenter(GLOBAL_POSITION2);
+ // GET_USER_GEOLOCATION user_Id
+ js_ajax("GET",PROJECT_URL+"backend/php/dac/controller.module.app.user.authentication.php",
+ { action:'GET_USER_GEOLOCATION', user_Id:APP_USERPROFILE_ID },function(response){
+   response=JSON.parse(response);
+   if(response.length>0){
+    var user_Id=response[0].user_Id;
+    var cur_lat=response[0].cur_lat;
+    var cur_long=response[0].cur_long;
+    var geoUpdatedOn=response[0].geoUpdatedOn;
+   GLOBAL_POSITION1=currentUserMobileGPS();
+   GLOBAL_POSITION2={ lat: parseFloat(cur_lat), lng: parseFloat(cur_long) };
+   GLOBAL_MARKER1.setPosition( GLOBAL_POSITION1 );
+   GLOBAL_MARKER2.setPosition( GLOBAL_POSITION2 );
+   GLOBAL_MAP.setCenter(GLOBAL_POSITION2);
+   }
+ });
 }
 function initMap() {
+js_ajax("GET",PROJECT_URL+"backend/php/dac/controller.module.app.user.authentication.php",
+ { action:'GET_USER_GEOLOCATION', user_Id:APP_USERPROFILE_ID },function(response){
+   response=JSON.parse(response);
+   if(response.length>0){
+    var user_Id=response[0].user_Id;
+    var cur_lat=response[0].cur_lat;
+    var cur_long=response[0].cur_long;
+    var geoUpdatedOn=response[0].geoUpdatedOn;
  GLOBAL_POSITION1=currentUserMobileGPS();
- GLOBAL_POSITION2={ lat: 17.2993189, lng: 78.4298416 };
+ GLOBAL_POSITION2={ lat: parseFloat(cur_lat), lng: parseFloat(cur_long) };
  GLOBAL_ZOOMLEVEL=18;
  GLOBAL_MAP = new google.maps.Map(document.getElementById('userActualGeoLocationMap'), 
 					{ zoom: GLOBAL_ZOOMLEVEL });
@@ -169,6 +188,8 @@ function initMap() {
  GLOBAL_MARKER2 = new google.maps.Marker({ icon:'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
  position: GLOBAL_POSITION2, map: GLOBAL_MAP });
  GLOBAL_MARKER2.setMap(GLOBAL_MAP);
+ }
+ });
 }
 function zoomIn() {
  if(GLOBAL_ZOOMLEVEL<18) { GLOBAL_ZOOMLEVEL=GLOBAL_ZOOMLEVEL+1; GLOBAL_MAP.setZoom(GLOBAL_ZOOMLEVEL); }

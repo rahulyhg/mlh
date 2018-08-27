@@ -180,6 +180,18 @@ if(isset($_GET["action"])){
 	else { echo 'MISSING_USERID'; }
   }
   /* End: */
+  
+  else if($_GET["action"]==='GET_USER_GEOLOCATION'){
+    if(isset($_GET["user_Id"])){
+	  $user_Id=$_GET["user_Id"];
+	  $authObj = new user_authentication();
+	  $query=$authObj->query_getUserGeoLocation($user_Id);
+	  $dbObj = new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
+	  $jsonData=$dbObj->getJSONData($query);
+	  echo $jsonData;
+	} else { echo 'MISSING_USER_ID'; } 
+  }
+  
   else { echo 'NO_ACTION'; }
 } 
 else { echo 'MISSING_ACTION'; }
