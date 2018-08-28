@@ -41,6 +41,7 @@ function hzTabSelection(id){
  hzTabSelector(id,arryHzTab,arryTabDataViewer);
 }
 function mainTab_userProfile(){ hzTabSelection("usrProfileHzTab"); }
+function mainTab_userMyFriends(){ hzTabSelection("usrFriendsHzTab");user_count_myFriends(); }
 function mainTab_userSubscription(){ hzTabSelection("usrSubscriptionHzTab");loadUserSubscriptions(); }
 function mainTab_userCommunity(){ hzTabSelection("usrCommunityHzTab");community_subMenuHgl('community_subMenu_userCreated'); }
 function mainTab_userMovements(){ hzTabSelection("usrMovementHzTab");movement_count_userParticipated(); }
@@ -66,7 +67,7 @@ function mainTab_userMovements(){ hzTabSelection("usrMovementHzTab");movement_co
 				 <?php if(isset($_GET["user_Id"]) && isset($_SESSION["AUTH_USER_ID"])){
 					   if($_GET["user_Id"]==$_SESSION["AUTH_USER_ID"]){
 				 ?>
- 				  <li><a id="usrFriendsHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>User Friends</b></a></li>
+ 				  <li><a id="usrFriendsHzTab" href="#" onclick="javascript:mainTab_userMyFriends();"><b>User Friends</b></a></li>
 				 <?php } } ?>
   				  <li><a id="usrCommunityHzTab" href="#" onclick="javascript:mainTab_userCommunity();"><b>Community</b></a></li>
 				  <li><a id="usrMovementHzTab" href="#" onclick="javascript:mainTab_userMovements();"><b>Movements</b></a></li>
@@ -85,7 +86,7 @@ function mainTab_userMovements(){ hzTabSelection("usrMovementHzTab");movement_co
 		  <?php include_once 'templates/pages/app-user-profile/user-subscription.php'; ?>
 		</div>
 		<div id="usrFriendsDisplayDivision" class="container-fluid mtop15p mbot15p hide-block">
-		  
+		  <?php include_once 'templates/pages/app-user-profile/user-friends.php'; ?>
 		</div>
 		<div id="usrCommunityDisplayDivision" class="container-fluid hide-block">
 		  <?php include_once 'templates/pages/app-user-profile/user-community.php'; ?>

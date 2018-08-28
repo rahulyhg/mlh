@@ -87,8 +87,6 @@ function initOthersMap(){
           { action:'GET_USER_GEOLOCATION', user_Id:APP_USERPROFILE_ID },
 		  function(response){
 		      try {
-			    Android.showToast(response);
-				response=JSON.parse(response);
 				if(response.length>0){
 					var user_Id=response[0].user_Id;
 					var cur_lat=response[0].cur_lat;
@@ -97,8 +95,6 @@ function initOthersMap(){
 					GLOBAL_POSITION1=currentUserMobileGPS();
 					
 					GLOBAL_POSITION2={ lat: parseFloat(cur_lat), lng: parseFloat(cur_long) };
-					Android.showToast(JSON.stringify(GLOBAL_POSITION1));
-					Android.showToast("GLOBAL_POSITION2: "+JSON.stringify(GLOBAL_POSITION2)+" cur_lat: "+parseFloat(cur_lat)+" cur_long: "+parseFloat(cur_long));
 					GLOBAL_ZOOMLEVEL=18;
 					GLOBAL_MAP = new google.maps.Map(document.getElementById('userActualGeoLocationMap'), 
 									{ zoom: GLOBAL_ZOOMLEVEL });

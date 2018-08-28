@@ -98,6 +98,27 @@ class user_friends {
 	$sql.="(SELECT frnd2 As frnd FROM user_frnds WHERE frnd1='".$user_Id."');";
 	return $sql;
   }
-}
 
+  /* List of Friends */
+  function query_count_allFriendsOfUser($user_Id){
+    $sql="SELECT count(*) FROM user_frnds WHERE frnd1='".$user_Id."' OR frnd2='".$user_Id."'; ";
+	return $sql;
+  }
+  function query_data_allFriendsOfUser($user_Id){
+    $sql="SELECT * FROM (";
+    $sql.="(SELECT user_account.user_Id, user_account.username, user_account.surName, ";
+	$sql.="user_account.name, user_account.profile_pic, user_account.about_me, user_account.minlocation, ";
+	$sql.=" user_account.location, user_account.state, user_account.country, user_account.created_On ";
+	$sql.="FROM user_frnds, user_account WHERE user_frnds.frnd1='".$user_Id."' AND ";
+	$sql.=" user_frnds.frnd2=user_account.user_Id) UNION ";
+	$sql.="(SELECT user_account.user_Id, user_account.username, user_account.surName, ";
+	$sql.="user_account.name, user_account.profile_pic, user_account.about_me, user_account.minlocation, ";
+	$sql.=" user_account.location, user_account.state, user_account.country, user_account.created_On ";
+	$sql.=" FROM user_frnds, user_account WHERE user_frnds.frnd2='".$user_Id."' ";
+	$sql.=" AND user_frnds.frnd1=user_account.user_Id)) As Tbl ORDER BY surName ASC; ";
+	return $sql;
+  }
+    
+  
+}
 ?>

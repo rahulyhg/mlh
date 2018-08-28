@@ -8,7 +8,35 @@ require_once '../lal/logic.appIdentity.php';
 $logger=Logger::getLogger("controller.module.app.user.friends.php");
 
 if(isset($_GET["action"])){
-   if($_GET["action"]=="SEND_USERFRND_REQUESTS") {
+       if($_GET["action"]=="GET_COUNT_MYFRIENDSLIST") {
+	      if(isset($_GET["user_Id"])){
+			$user_Id=$_GET["user_Id"];
+			$frndObj=new user_friends();
+			$query=$frndObj->query_count_allFriendsOfUser($user_Id);
+			$dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
+			$jsonData=$dbObj->getJSONData($query);
+			$dejsonData=json_decode($jsonData);
+			echo $dejsonData[0]->{'count(*)'};
+		  } else { echo 'MISSING_USER_ID'; }
+	   } 
+  else if($_GET["action"]=="GET_DATA_MYFRIENDSLIST") {
+	      if(isset($_GET["user_Id"]) && isset($_GET["limit_start"]) && isset($_GET["limit_end"])){
+			$user_Id=$_GET["user_Id"];
+			$user_Id=$_GET["user_Id"];
+			$frndObj=new user_friends();
+			$query=$frndObj->query_data_allFriendsOfUser($user_Id);
+			$dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
+			echo $dbObj->getJSONData($query);
+		  } else { 
+		     $content='Missing ';
+			 if(!isset($_GET["user_Id"])){ $content.='user_Id, '; }
+			 if(!isset($_GET["limit_start"])){ $content.='limit_start, '; }
+			 if(!isset($_GET["limit_end"])){ $content.='limit_end, '; }
+			 $content=chop($content,', ');
+		     echo $content; 
+		  }
+	   }
+  else if($_GET["action"]=="SEND_USERFRND_REQUESTS") {
 	   if(isset($_GET["projectURL"]) && isset($_GET["from_user_Id"]) && isset($_GET["to_user_Id"])){
 	         $projectURL=$_GET["projectURL"];
 	         $idObj=new Identity();
