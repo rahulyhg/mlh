@@ -14,13 +14,20 @@ var GLOBAL_MARKER2;
 var GLOBAL_POSITION;
 var GLOBAL_POSITION1;
 var GLOBAL_POSITION2;
-// setInterval(function(){ latestGPSPositions(); },1000);
+ setInterval(function(){ latestGPSPositions(); },1000);
 function currentUserMobileGPS(){
  var userMobileDevice=JSON.parse(Android.getUserMobileGPSPosition());
  var currentPosition={lat:parseFloat(userMobileDevice.latitude),lng:parseFloat(userMobileDevice.longitude)};
  return currentPosition;
 }
-function latestGPSPositions(){
+
+function latestGPSPositions_Own(){
+  GLOBAL_POSITION=currentUserMobileGPS();
+  GLOBAL_MARKER.setPosition( GLOBAL_POSITION );
+  GLOBAL_MAP.setCenter(GLOBAL_POSITION);
+}
+
+function latestGPSPositions_Other(){
  js_ajax("GET",PROJECT_URL+"backend/php/dac/controller.module.app.user.authentication.php",
  { action:'GET_USER_GEOLOCATION', user_Id:APP_USERPROFILE_ID },function(response){
    response=JSON.parse(response);
@@ -29,13 +36,24 @@ function latestGPSPositions(){
     var cur_lat=response[0].cur_lat;
     var cur_long=response[0].cur_long;
     var geoUpdatedOn=response[0].geoUpdatedOn;
-   GLOBAL_POSITION1=currentUserMobileGPS();
-   GLOBAL_POSITION2={ lat: parseFloat(cur_lat), lng: parseFloat(cur_long) };
-   GLOBAL_MARKER1.setPosition( GLOBAL_POSITION1 );
-   GLOBAL_MARKER2.setPosition( GLOBAL_POSITION2 );
-   GLOBAL_MAP.setCenter(GLOBAL_POSITION2);
+    GLOBAL_POSITION1=currentUserMobileGPS();
+    GLOBAL_POSITION2={ lat: parseFloat(cur_lat), lng: parseFloat(cur_long) };
+    GLOBAL_MARKER1.setPosition( GLOBAL_POSITION1 );
+    GLOBAL_MARKER2.setPosition( GLOBAL_POSITION2 );
+    GLOBAL_MAP.setCenter(GLOBAL_POSITION2);
    }
  });
+}
+
+function latestGPSPositions(){
+ if(Android!==undefined){
+    if(APP_USERPROFILE_ID === AUTH_USER_ID){ /* User is viewing his own profile */
+	  latestGPSPositions_Own();
+	}
+	else { /* User is viewing other's profile */
+	  latestGPSPositions_Other();
+	}
+ }
 }
 function initMap() {
 /* Check APP_USERPROFILE_ID == AUTH_USER_ID */
@@ -104,9 +122,7 @@ function initOthersMap(){
 	});
 }
 </script>
-<div id="user-profile-general-content">
-
-</div>
+<div id="user-profile-general-content"></div>
 
 <div id="user-profile-map-div" class="list-group mbot15p hide-block">
   <div class="list-group-item custom-font">
