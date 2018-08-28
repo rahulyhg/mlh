@@ -31,7 +31,7 @@ function user_data_myFriends(div_view, appendContent,limit_start,limit_end){
        content+='<div class="container-fluid mtop15p mbot15p">';
 	   content+='<div class="row">';
 	   content+='<div class="col-xs-12">';
-	   content+='<i class="fa fa-close pull-right"></i>';
+	   content+='<i onclick="javascript:unfriendAperson(\''+user_Id+'\');" class="fa fa-close pull-right"></i>';
 	   content+='</div>';
 	   content+='</div>';
 	   content+='<div class="row">';
@@ -57,9 +57,116 @@ function user_data_myFriends(div_view, appendContent,limit_start,limit_end){
 	 document.getElementById(div_view).innerHTML=content;
   });
 }
+
+/* AcceptRequestRecievedByMe */
+function acceptReqToMe(user_Id){
+document.getElementById("searchpeople_btnsView_"+user_Id).innerHTML=ui_frndUnFrnd(user_Id);
+js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.user.friends.php',
+{action:'ACCEPT_FRNDREQUEST_TO_ME',requestFrom:user_Id, user_Id:AUTH_USER_ID },function(resp){ 
+ console.log(resp);
+});
+}
+/* UnFriend a Person */
+function unfriendAperson(user_Id){  
+document.getElementById("searchpeople_btnsView_"+user_Id).innerHTML=ui_sendReqHidePeople(user_Id);
+js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.user.friends.php',
+{action:'UNFRIEND_A_PERSON',frnd1:user_Id, frnd2:AUTH_USER_ID },function(resp){ console.log(resp); });
+}
+
+function subMenu_userFriends(id){
+ var arry=["usrFrndSubMenu_Requests","usrFrndSubMenu_myFriends"];
+ for(var index=0;index<arry.length;index++){
+   if(arry[index]===id){ 
+     if(!$('#'+arry[index]).hasClass('custom-font custom-bg-solid2pxfullborder')){
+	   $('#'+arry[index]).addClass('custom-font custom-bg-solid2pxfullborder');
+	   $('#'+arry[index]).css('color',CURRENT_DARK_COLOR);
+	   $('#'+arry[index]).css('border-bottom','2px solid '+CURRENT_DARK_COLOR);
+	   if($('#'+arry[index]+'_content').hasClass('hide-block')){ $('#'+arry[index]+'_content').removeClass('hide-block'); }
+	 } 
+   } else {
+      if($('#'+arry[index]).hasClass('custom-font custom-bg-solid2pxfullborder')){
+	   $('#'+arry[index]).removeClass('custom-font custom-bg-solid2pxfullborder');
+	   $('#'+arry[index]).css('color','#000');
+	   $('#'+arry[index]).css('border-bottom','0px');
+	   if(!$('#'+arry[index]+'_content').hasClass('hide-block')){ $('#'+arry[index]+'_content').addClass('hide-block'); }
+	  } 
+   }
+ }
+      if(id==='usrFrndSubMenu_Requests'){ subMenu_userFriendRequests('usrFrndSubMenu_recievedRequests'); }
+ else if(id==='usrFrndSubMenu_myFriends'){ user_count_myFriends(); }
+}
+
+function subMenu_userFriendRequests(id){
+  var arry=["usrFrndSubMenu_recievedRequests","usrFrndSubMenu_sentRequests"];
+  for(var index=0;index<arry.length;index++){
+   if(arry[index]===id){ 
+     if(!$('#'+arry[index]).hasClass('custom-font custom-bg-solid2pxfullborder')){
+	   $('#'+arry[index]).addClass('custom-font custom-bg-solid2pxfullborder');
+	   $('#'+arry[index]).css('color',CURRENT_DARK_COLOR);
+	   $('#'+arry[index]).css('border-bottom','2px solid '+CURRENT_DARK_COLOR);
+	   if($('#'+arry[index]+'_content').hasClass('hide-block')){ $('#'+arry[index]+'_content').removeClass('hide-block'); }
+	 } 
+   } else {
+      if($('#'+arry[index]).hasClass('custom-font custom-bg-solid2pxfullborder')){
+	   $('#'+arry[index]).removeClass('custom-font custom-bg-solid2pxfullborder');
+	   $('#'+arry[index]).css('color','#000');
+	   $('#'+arry[index]).css('border-bottom','0px');
+	   if(!$('#'+arry[index]+'_content').hasClass('hide-block')){ $('#'+arry[index]+'_content').addClass('hide-block'); }
+	  } 
+   }
+ }
+      if(id==='usrFrndSubMenu_recievedRequests'){ }
+ else if(id==='usrFrndSubMenu_sentRequests'){ }
+}
 </script>
+<div class="row">
+<div class="col-xs-12">
+<div class="list-group" style="margin-bottom:0px;">
+<div class="list-group-item pad0">
+  <div class="container-fluid pad0">
+    <div id="usrFrndSubMenu_Requests" align="center" class="col-xs-6" style="margin-top:10px;" onclick="javascript:subMenu_userFriends(this.id);">
+	  <div style="padding-bottom:10px;"><b>My Friend Requests</b></div>
+	</div>
+	<div id="usrFrndSubMenu_myFriends" align="center" class="col-xs-6" style="margin-top:10px;" onclick="javascript:subMenu_userFriends(this.id);">
+	  <div style="padding-bottom:10px;"><b>My Friends</b></div>
+	</div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+<div id="usrFrndSubMenu_Requests_content" class="hide-block">
+<div class="list-group" style="margin-bottom:0px;">
+<div class="list-group-item pad0">
+  <div class="container-fluid pad0">
+    <div id="usrFrndSubMenu_recievedRequests" align="center" class="col-xs-6" style="margin-top:10px;" onclick="javascript:subMenu_userFriendRequests(this.id);">
+	  <div style="margin-bottom:10px;"><b>Recieved Requests</b></div>
+	</div>
+	<div id="usrFrndSubMenu_sentRequests" align="center" class="col-xs-6" style="margin-top:10px;" onclick="javascript:subMenu_userFriendRequests(this.id);">
+	  <div style="margin-bottom:10px;"><b>Sent Requests</b></div>
+	</div>
+  </div>
+</div>
+</div>
+<div id="usrFrndSubMenu_recievedRequests_content" class="hide-block">
+<div id="loadUserRecievedRequests0">
+ <div align="center" class="mtop15p">
+  <img src="<?php echo $_SESSION["PROJECT_URL"]?>images/load.gif" class="profile_pic_img1"/>
+ </div>
+</div>
+</div>
+<div id="usrFrndSubMenu_sentRequests_content" class="hide-block">
+<div id="loadUserSentRequests0" class="hide-block">
+ <div align="center" class="mtop15p">
+  <img src="<?php echo $_SESSION["PROJECT_URL"]?>images/load.gif" class="profile_pic_img1"/>
+ </div>
+</div>
+</div>
+</div>
+<div id="usrFrndSubMenu_myFriends_content" class="container-fluid mtop15p mbot15p hide-block">
 <div id="loadUserFriends0">
  <div align="center" class="mtop15p">
   <img src="<?php echo $_SESSION["PROJECT_URL"]?>images/load.gif" class="profile_pic_img1"/>
  </div>
+</div>
 </div>

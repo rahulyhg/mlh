@@ -41,7 +41,7 @@ function hzTabSelection(id){
  hzTabSelector(id,arryHzTab,arryTabDataViewer);
 }
 function mainTab_userProfile(){ hzTabSelection("usrProfileHzTab"); }
-function mainTab_userMyFriends(){ hzTabSelection("usrFriendsHzTab");user_count_myFriends(); }
+function mainTab_userMyFriends(){ hzTabSelection("usrFriendsHzTab");subMenu_userFriends('usrFrndSubMenu_myFriends'); }
 function mainTab_userSubscription(){ hzTabSelection("usrSubscriptionHzTab");loadUserSubscriptions(); }
 function mainTab_userCommunity(){ hzTabSelection("usrCommunityHzTab");community_subMenuHgl('community_subMenu_userCreated'); }
 function mainTab_userMovements(){ hzTabSelection("usrMovementHzTab");movement_count_userParticipated(); }
@@ -85,7 +85,7 @@ function mainTab_userMovements(){ hzTabSelection("usrMovementHzTab");movement_co
 		<div id="usrSubscriptionDisplayDivision" class="container-fluid mtop15p mbot15p hide-block">
 		  <?php include_once 'templates/pages/app-user-profile/user-subscription.php'; ?>
 		</div>
-		<div id="usrFriendsDisplayDivision" class="container-fluid mtop15p mbot15p hide-block">
+		<div id="usrFriendsDisplayDivision" class="hide-block">
 		  <?php include_once 'templates/pages/app-user-profile/user-friends.php'; ?>
 		</div>
 		<div id="usrCommunityDisplayDivision" class="container-fluid hide-block">

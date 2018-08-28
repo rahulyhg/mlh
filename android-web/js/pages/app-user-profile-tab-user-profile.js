@@ -49,11 +49,13 @@ var content='<div class="container-fluid mbot15p">';
 	content+='<div style="line-height:22px;">'+minlocation+', '+location+', '+state+', '+country+'</div>';
 	content+='</div>';
 	content+='</div>';
+	content+='<div id="UserProfileButtons">';
       if(APP_USERPROFILE_ID===AUTH_USER_ID){ content+=ui_btn_MeEditProfile(); } 
  else {      if(isFriend==='YES' && frndRequest=='NO'){ content+=ui_btn_friends(); } 
-		else if(isFriend==='NO' && frndRequest=='NO'){ content+=ui_btn_sendFriendRequest(); } 
-		else if(isFriend==='NO' && frndRequest=='YES'){ content+=ui_btn_requestSentDeleteRequest(); }
+		else if(isFriend==='NO' && frndRequest=='NO'){ content+=ui_btn_sendFriendRequest(user_Id); } 
+		else if(isFriend==='NO' && frndRequest=='YES'){ content+=ui_btn_requestSentDeleteRequest(user_Id); }
       }
+	content+='</div>';
 	content+='<div class="list-group mbot15p">';
 	content+='<div class="list-group-item custom-font" style="color:'+CURRENT_DARK_COLOR+';"><h5><b>About '+surName+' '+name+'</b></h5></div>';
 	content+='<div class="list-group-item">';
@@ -99,12 +101,13 @@ var content='<div class="container-fluid mbot15p">';
  return content;
 }
 
-function ui_btn_sendFriendRequest(){
+function ui_btn_sendFriendRequest(user_Id){
 var content='<div class="container-fluid mbot15p">';
 	content+='<div class="row">';
     content+='<div class="col-xs-12">';
 	content+='<div class="btn-group pull-right">';
-	content+='<button class="btn custom-bg" style="background-color:'+CURRENT_DARK_COLOR+';color:#fff;">';
+	content+='<button class="btn custom-bg" style="background-color:'+CURRENT_DARK_COLOR+';color:#fff;"';
+	content+=' onclick="javascript:send_relationship_request(\''+user_Id+'\');">';
 	content+='<b><i class="fa fa-user" aria-hidden="true"></i>&nbsp;Send Friend Request</b>';
 	content+='</button>';
 	content+='</div>';
@@ -114,7 +117,7 @@ var content='<div class="container-fluid mbot15p">';
  return content;
 }
 
-function ui_btn_requestSentDeleteRequest(){
+function ui_btn_requestSentDeleteRequest(user_Id){
 var content='<div class="container-fluid mbot15p">';
 	content+='<div class="row">';
 	content+='<div class="col-xs-12">';
@@ -122,7 +125,8 @@ var content='<div class="container-fluid mbot15p">';
     content+='<button class="btn btn-default custom-font" style="color:'+CURRENT_DARK_COLOR+';">';
 	content+='<b><i class="fa fa-check" aria-hidden="true"></i>&nbsp;Request Sent</b>';
 	content+='</button>';
-	content+='<button class="btn custom-bg" style="background-color:'+CURRENT_DARK_COLOR+';color:#fff;">';
+	content+='<button class="btn custom-bg" style="background-color:'+CURRENT_DARK_COLOR+';color:#fff;"';
+	content+=' onclick="javascript:delete_relationship_request(\''+user_Id+'\');">';
 	content+='<b>Delete Request&nbsp;<i class="fa fa-close" aria-hidden="true"></i>&nbsp;</b>';
 	content+='</button>';
 	content+='</div>';
@@ -130,6 +134,23 @@ var content='<div class="container-fluid mbot15p">';
 	content+='</div>';
 	content+='</div>';
   return content;
+}
+
+/* One User Sending Request to Other User */
+function send_relationship_request(user_Id){
+ js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.user.friends.php',
+ {action:'SEND_USERFRND_REQUESTS', projectURL: PROJECT_URL, from_user_Id:AUTH_USER_ID, to_user_Id:user_Id },function(resp){
+  console.log(resp);
+  document.getElementById("UserProfileButtons").innerHTML=ui_btn_requestSentDeleteRequest(user_Id);
+ });
+}
+/* Delete a Request that previously Sent */
+function delete_relationship_request(user_Id){
+js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.user.friends.php',
+{action:'DELETE_A_REQUEST_SENT',from_userId:AUTH_USER_ID, to_userId:user_Id },function(resp){
+   console.log(resp);
+   document.getElementById("UserProfileButtons").innerHTML=ui_btn_sendFriendRequest(user_Id);
+});
 }
 
 /*****************************************************************************************************************************/

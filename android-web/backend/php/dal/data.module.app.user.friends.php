@@ -29,44 +29,7 @@ class user_friends {
   }  
 
   /* My Friends */
-  function query_count_userFrndsList_acceptedByMe($user_Id){
-  /* controller: controller.page.app.myfriends.php, action: FRNDS_LIST_COUNT */
-    $sql="SELECT count(*) FROM user_frnds,user_account ";
-	$sql.="WHERE user_frnds.frnd1=user_account.user_Id AND user_frnds.frnd2='".$user_Id."';";
-	return $sql;
-  }
-  
-  function query_count_userFrndsList_acceptedByFrnds($user_Id){
-  /* controller: controller.page.app.myfriends.php, action: FRNDS_LIST_COUNT */
-    $sql="SELECT count(*) FROM user_frnds,user_account ";
-	$sql.="WHERE user_frnds.frnd2=user_account.user_Id AND user_frnds.frnd1='".$user_Id."';";
-    return $sql;
-  }
-  
-  function query_userFrndsList_acceptedByMe($user_Id,$limit_start,$limit_end){
-  /* controller: controller.page.app.myfriends.php, action: FRNDS_LIST */
-    $sql="SELECT ";
-	$sql.="user_frnds.frnd1, user_account.user_Id, user_account.surName,";
-	$sql.="user_account.name, user_account.profile_pic, user_account.minlocation, ";
-	$sql.="user_account.location, user_account.state, user_account.country ";
-	$sql.="FROM user_frnds,user_account ";
-	$sql.="WHERE user_frnds.frnd1=user_account.user_Id AND user_frnds.frnd2='".$user_Id."' ";
-	$sql.="LIMIT ".$limit_start.",".$limit_end.";";
-	return $sql;
-  }
-  
-  function query_userFrndsList_acceptedByFrnds($user_Id,$limit_start,$limit_end){
-  /* controller: controller.page.app.myfriends.php, action: FRNDS_LIST */
-    $sql="SELECT ";
-	$sql.="user_frnds.frnd2, user_account.user_Id, user_account.surName,";
-	$sql.="user_account.name, user_account.profile_pic, user_account.minlocation, ";
-	$sql.="user_account.location, user_account.state, user_account.country ";
-	$sql.="FROM user_frnds,user_account ";
-	$sql.="WHERE user_frnds.frnd2=user_account.user_Id AND user_frnds.frnd1='".$user_Id."' ";
-	$sql.="LIMIT ".$limit_start.",".$limit_end.";";
-    return $sql;
-  }
-
+ 
   function query_deleteFrnd($myUser_Id, $frnd_Id){
   /* controller: controller.page.app.myfriends.php, action: DELETE_FRND */
     $sql="DELETE FROM user_frnds ";
@@ -119,6 +82,24 @@ class user_friends {
 	return $sql;
   }
     
+  /* List of Pending FriendRequests */
+  /* Recieved Friend Requests */
+  function query_count_recievedFriendRequests($to_userId){
+    $sql="";
+	$sql="";
+  }
+  
+  function query_data_recievedFriendRequests($to_userId,$limit_start,$limit_end){
+  
+  }
+  /* Sent Friend Requests */
+  function query_count_sentFriendRequests($from_userId){
+  
+  }
+  
+  function query_data_sentFriendRequests($from_userId,$limit_start,$limit_end){
+  
+  }
   
 }
 ?>
