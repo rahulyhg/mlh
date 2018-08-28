@@ -99,4 +99,5 @@ public class AppManagement extends ActionBarActivity {
 		jsonData.append("\"longitude\":\"").append(gpsTracker.longitude).append("\"}");
 	  return jsonData.toString();
 	}
+
 }

@@ -119,7 +119,6 @@ function getListOfCategories(){
 }
 
 function subscribe(){
-
 show_toggleMLHLoader('body');
 console.log("SUBSCRIPTION_COUNTER: "+SUBSCRIPTION_COUNTER);
  if(SUBSCRIPTION_COUNTER>0) {
@@ -134,8 +133,12 @@ console.log("SUBSCRIPTION_COUNTER: "+SUBSCRIPTION_COUNTER);
        function(response){
 	     if(response==='Success'){
 		    try {
-		      AndroidSession.setAndroidSession('AUTH_USER_ID',AUTH_USER_ID);
-			  AndroidNotify.shutdownNotification_authReminder();
+			  if(AndroidSession!==undefined){
+		        AndroidSession.setAndroidSession('AUTH_USER_ID',AUTH_USER_ID);
+			  }
+			  if(AndroidNotify!==undefined){
+			    AndroidNotify.shutdownNotification_authReminder();
+			  }
 			} catch(err){ alert("AndroidNotify: "+err); }
 			hide_toggleMLHLoader('body');
 	        window.location.href=PROJECT_URL+'newsfeed/latest-news';
