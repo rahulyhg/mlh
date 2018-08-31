@@ -28,7 +28,8 @@ if(response.length>0){
   var country=response[0].country;
   var state=response[0].state;
   var location=response[0].location;
-  var minlocation=response[0].minlocation;
+  var minlocation=response[0].minlocation; // AUTH_USER_ISADMIN
+  var isAdmin=response[0].isAdmin;
   var user_tz=response[0].user_tz;
   document.getElementById("reg_"+USR_LANG+"_userId").value=user_Id;
   document.getElementById("reg_"+USR_LANG+"_username").value=username;
@@ -44,11 +45,12 @@ if(response.length>0){
 	  sessionJSON+='{"key":"AUTH_USER_COUNTRY","value":"'+country+'"},';
 	  sessionJSON+='{"key":"AUTH_USER_STATE","value":"'+state+'"},';
 	  sessionJSON+='{"key":"AUTH_USER_LOCATION","value":"'+location+'"},';
-	  sessionJSON+='{"key":"AUTH_USER_LOCALITY","value":"'+minlocation+'"}';
+	  sessionJSON+='{"key":"AUTH_USER_LOCALITY","value":"'+minlocation+'"},';
+	  sessionJSON+='{"key":"AUTH_USER_ISADMIN","value":"'+isAdmin+'"}';
 	  sessionJSON+='],';
 	  sessionJSON+='"session_get":["AUTH_USER_ID","AUTH_USER_USERNAME",';
 	  sessionJSON+='"AUTH_USER_TIMEZONE","AUTH_USER_SURNAME","AUTH_USER_FULLNAME","AUTH_USER_GENDER","AUTH_USER_DOB",';
-	  sessionJSON+='"AUTH_USER_COUNTRY","AUTH_USER_STATE","AUTH_USER_LOCATION","AUTH_USER_LOCALITY",';
+	  sessionJSON+='"AUTH_USER_COUNTRY","AUTH_USER_STATE","AUTH_USER_LOCATION","AUTH_USER_LOCALITY", "AUTH_USER_ISADMIN", ';
 	  sessionJSON+='"AUTH_USER_COUNTRYCODE","AUTH_USER_PHONENUMBER" ]}';
      js_session(sessionJSON,function(response){ });
  }

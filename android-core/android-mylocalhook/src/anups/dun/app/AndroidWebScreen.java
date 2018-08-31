@@ -20,6 +20,7 @@ import android.view.Window;
 import android.webkit.ValueCallback;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import anups.dun.alarm.AlarmIntervalHour;
 import anups.dun.app.R;
 import anups.dun.constants.BusinessConstants;
 import anups.dun.db.Database;
@@ -272,11 +273,11 @@ protected void onCreate(Bundle savedInstanceState) {
  
  /* Alarm Services: */
  // AlarmIntervalDay.getInstance(this);
- // AlarmIntervalHour.getInstance(this);
+  
  
  /* Alarm Trigger for every Hour */
  // AlarmManager manager = (AlarmManager)this.getSystemService(Context.ALARM_SERVICE);
- // Intent alarmIntent = new Intent(this, OnBootCompleted.class);
+ // Intent alarmIntent = new Intent(this, StartupService.class);
  // logger.info("Alarm triggered");
  // PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
  // manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+AlarmManager.INTERVAL_FIFTEEN_MINUTES, AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
@@ -293,7 +294,7 @@ protected void onCreate(Bundle savedInstanceState) {
  
  /* Triggering Broadcast Receiver from Activity */
   Intent triggerWS = new Intent();
-         triggerWS.setAction("anups.dun.services.OnBootCompleted");
+         triggerWS.setAction("anups.dun.services.StartupService");
          sendBroadcast(triggerWS);
  
 

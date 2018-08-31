@@ -41,10 +41,7 @@ public class AndroidLogger {
     }
 
 	public static void regulateLoggerFile(){
-        String filePath=BusinessConstants.EXTERNALMEMORYPATH+"/mylocalhook/logs/log.txt";
- 	    if(BusinessConstants.EXTERNALMEMORYPATH==null){
- 		  filePath=BusinessConstants.INTERNALMEMORYPATH+"/mylocalhook/logs/log.txt";
- 	    }
+        String filePath=BusinessConstants.INTERNALMEMORYPATH+"/mylocalhook/logs/log.txt";
  	   File file = new File(filePath);
  	   long fileSize = Integer.parseInt(String.valueOf(file.length()));
  	   logger.info("Logger File Size: "+fileSize);

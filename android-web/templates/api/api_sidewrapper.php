@@ -10,7 +10,7 @@ if($("#wrapper").hasClass('toggled')) { $("#wrapper").removeClass('toggled');}
 }
 
 function mainMenuSelection(id){
-  var arr_id=["dn_"+USR_LANG+"_search","dn_"+USR_LANG+"_notifications","dn_"+USR_LANG+"_explore","dn_"+USR_LANG+"_newsfeed",
+  var arr_id=["dn_"+USR_LANG+"_adminDashboard","dn_"+USR_LANG+"_search","dn_"+USR_LANG+"_notifications","dn_"+USR_LANG+"_explore","dn_"+USR_LANG+"_newsfeed",
 			  "dn_"+USR_LANG+"_mylocalhook","dn_"+USR_LANG+"_platform","dn_"+USR_LANG+"_myprofile","dn_"+USR_LANG+"_mymessages",
 			  "dn_"+USR_LANG+"_mycalendar","dn_"+USR_LANG+"_myfriends","dn_"+USR_LANG+"_mycommunity","dn_"+USR_LANG+"_mymovements",
 			  "dn_"+USR_LANG+"_findfriends","dn_"+USR_LANG+"_findcommunity","dn_"+USR_LANG+"_findmovements","dn_"+USR_LANG+"_logout"];
@@ -30,6 +30,15 @@ function mainMenuSelection(id){
 					<img src="<?php echo $_SESSION["AUTH_USER_PROFILEPIC"]; ?>" class="img-profilepic"/>
 				</a>
 			</div>
+		<?php if(isset($_SESSION["AUTH_USER_ISADMIN"]) && $_SESSION["AUTH_USER_ISADMIN"]=='Y'){	 ?>
+		<li>
+			<a id="dn_english_adminDashboard" href="<?php echo $_SESSION["PROJECT_URL"]?>app/adminDashBoard" onclick="javascript:mainMenuSelection(this.id);">
+				<div class="f14">
+					<i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;<span><b>Admin Dashboard</b></span>
+				</div>
+			</a>
+		</li>	
+		<?php } ?>
 		<li>
 			<a id="dn_english_search" href="<?php echo $_SESSION["PROJECT_URL"]?>app/search" onclick="javascript:mainMenuSelection(this.id);">
 				<div class="f14">

@@ -30,6 +30,7 @@ if(!isset($_SESSION["PROJECT_MODE"])){ $_SESSION["PROJECT_MODE"]='DEBUG'; }
  var AUTH_USER_PROFILEPIC='<?php if(isset($_SESSION["AUTH_USER_PROFILEPIC"])) { echo $_SESSION["AUTH_USER_PROFILEPIC"]; } ?>';
  var AUTH_USER_TIMEZONE='<?php if(isset($_SESSION["AUTH_USER_TIMEZONE"])) { echo $_SESSION["AUTH_USER_TIMEZONE"]; } ?>';
  var AUTH_USER_SUBSCRIPTIONS_LIST='<?php if(isset($_SESSION["AUTH_USER_SUBSCRIPTIONS_LIST"])) { echo $_SESSION["AUTH_USER_SUBSCRIPTIONS_LIST"]; } ?>';
+ var AUTH_USER_ISADMIN='<?php if(isset($_SESSION["AUTH_USER_ISADMIN"])) { echo $_SESSION["AUTH_USER_ISADMIN"]; } ?>';
 /* New Things to Add */
  var AUTH_USER_FRIENDS='<?php if(isset($_SESSION["AUTH_USER_FRIENDS"])) { echo $_SESSION["AUTH_USER_FRIENDS"]; } ?>';
 /* User created Community List */
@@ -52,6 +53,7 @@ console.log("[api_params] AUTH_USER_LOCATION: "+AUTH_USER_LOCATION);
 console.log("[api_params] AUTH_USER_PROFILEPIC: "+AUTH_USER_PROFILEPIC);
 console.log("[api_params] AUTH_USER_TIMEZONE: "+AUTH_USER_TIMEZONE);
 console.log("[api_params] AUTH_USER_SUBSCRIPTIONS_LIST: "+AUTH_USER_SUBSCRIPTIONS_LIST);
+console.log("[api_params] AUTH_USER_ISADMIN: "+AUTH_USER_ISADMIN);
 console.log("[api_params] AUTH_USER_FRIENDS: "+AUTH_USER_FRIENDS);
 console.log("[api_params] AUTH_USER_COMMUNITIES_CREATED: "+AUTH_USER_COMMUNITIES_CREATED);
 // alert(AUTH_USER_SUBSCRIPTIONS+" "+AUTH_USER_SUBSCRIPTIONS_LIST);

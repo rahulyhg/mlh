@@ -23,7 +23,8 @@ if(isset($_GET["action"])){
   }
   else if($_GET["action"]==='MOBILE_SMS_BALANCE'){
      $smsObj=new mobileSMS();
-	 echo $smsObj->getMobileSMSBalance();
+	 $content=$smsObj->getMobileSMSBalance();
+	 echo $content;
   }
   /* Action Events used By auth-part-01.php/auth-part-01.js ::: END */
  

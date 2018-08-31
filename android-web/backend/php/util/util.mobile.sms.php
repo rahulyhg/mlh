@@ -21,7 +21,7 @@ class mobileSMS {
    function getMobileSMSBalance(){
       $url='http://apps.smslane.com/vendorsms/CheckBalance.aspx?user='.$this->user.'&password='.$this->pwd;
 	  $balance=file_get_contents($url);
-	  $content='{"msg_balance":"'.str_replace("Success#","",$balance).'"}';
+	  $content='{"bal_smslance":"'.str_replace("Success#","",$balance).'"}';
 	  return $content;
    }
 }

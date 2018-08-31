@@ -1,29 +1,33 @@
 package anups.dun.br;
 
+import android.app.ActivityManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Looper;
+import android.widget.Toast;
+import anups.dun.alarm.AlarmOnceTrigger;
 import anups.dun.js.AppSessionManagement;
 import anups.dun.notify.ws.WSIntervalHour;
 import anups.dun.notify.ws.util.Notifications;
+import anups.dun.services.BGServiceHour;
+import anups.dun.services.BGServiceMinute;
 import anups.dun.util.AndroidLogger;
 import anups.dun.web.templates.URLGenerator;
 
 public class BRIntervalHour  extends BroadcastReceiver{
  org.apache.log4j.Logger logger = AndroidLogger.getLogger(BRIntervalHour.class);
 
+ 
+ 
  @Override
  public void onReceive(Context context, Intent intent) {
-   URLGenerator urlGenerator=new URLGenerator();
-   AppSessionManagement appSessionManager = new AppSessionManagement(context);
-   String user_Id=appSessionManager.getAndroidSession("AUTH_USER_ID");
-   if(user_Id==null){
-	 new Notifications(context).notify_show_signInRegister();
-   }
+	 logger.info("BRIntervalHour Started...");
+    
+	  // AlarmOnceTrigger.getInstance(context);
    
-   String[] params=new String[1];
-			params[0]=urlGenerator.ws_intervalHour(user_Id);
-   new WSIntervalHour(context).execute(params);
+   
+  
+  }
  }
-
-}
