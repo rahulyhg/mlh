@@ -112,6 +112,65 @@ if(isset($_GET["action"])){
 			echo $content;
 	  }
 }
+  else if($_GET["action"]=='GET_COUNT_RECEIVEDFRIENDREQUESTS'){
+   if(isset($_GET["to_userId"])){
+     $to_userId=$_GET["to_userId"];
+     $frndObj = new user_friends();
+	 $query=$frndObj->query_count_recievedFriendRequests($to_userId);
+	 $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
+	 $jsonData=$dbObj->getJSONData($query);
+	 $dejsonData=json_decode($jsonData);
+	 echo $dejsonData[0]->{'count(*)'};
+   } else { echo 'MISSING_TO_USERID'; }
+     
+  }
+  else if($_GET["action"]=='GET_DATA_RECEIVEDFRIENDREQUESTS'){
+   if(isset($_GET["to_userId"]) && isset($_GET["limit_start"]) && isset($_GET["limit_end"])){
+    $to_userId=$_GET["to_userId"];
+	$limit_start=$_GET["limit_start"];
+	$limit_end=$_GET["limit_end"];
+    $frndObj = new user_friends();
+	 $query=$frndObj->query_data_recievedFriendRequests($to_userId,$limit_start,$limit_end);
+	 $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
+	 echo $dbObj->getJSONData($query);
+   } else {
+       $content='Missing';
+	   if(!isset($_GET["to_userId"])){ $content.=' to_userId,'; }
+	   if(!isset($_GET["limit_start"])){ $content.=' limit_start,'; }
+	   if(!isset($_GET["limit_end"])){ $content.=' limit_end,'; }
+	   $content=chop($content,',');
+      echo $content; 
+    }
+  }
+  else if($_GET["action"]=='GET_COUNT_SENTFRIENDREQUESTS'){
+    if(isset($_GET["from_userId"])){
+     $from_userId=$_GET["from_userId"];
+	 $frndObj = new user_friends();
+	 $query=$frndObj->query_count_sentFriendRequests($from_userId);
+	 $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
+	 $jsonData=$dbObj->getJSONData($query);
+	 $dejsonData=json_decode($jsonData);
+	 echo $dejsonData[0]->{'count(*)'};
+	} else { echo 'MISSING_FROM_USERID'; } 
+  }
+  else if($_GET["action"]=='GET_DATA_SENTFRIENDREQUESTS'){
+   if(isset($_GET["from_userId"]) && isset($_GET["limit_start"]) && isset($_GET["limit_end"])){
+     $from_userId=$_GET["from_userId"];
+	 $limit_start=$_GET["limit_start"];
+	 $limit_end=$_GET["limit_end"];
+     $frndObj = new user_friends();
+	 $query=$frndObj->query_data_sentFriendRequests($from_userId,$limit_start,$limit_end);
+	 $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
+	 echo $dbObj->getJSONData($query);
+   } else {
+       $content='Missing';
+	   if(!isset($_GET["from_userId"])){ $content.=' from_userId,'; }
+	   if(!isset($_GET["limit_start"])){ $content.=' limit_start,'; }
+	   if(!isset($_GET["limit_end"])){ $content.=' limit_end,'; }
+	   $content=chop($content,',');
+      echo $content; 
+    }
+  }
   else { echo 'INVALID_ACTION'; }
 }  
 else { echo 'MISSING_ACTION'; }

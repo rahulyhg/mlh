@@ -1,4 +1,7 @@
 <script type="text/javascript">
+/****************************************************************************************************************************/
+/********************************************* My Friends Menu **************************************************************/
+/****************************************************************************************************************************/
 function user_count_myFriends(){
   js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.module.app.user.friends.php',
   { action:'GET_COUNT_MYFRIENDSLIST', user_Id: AUTH_USER_ID },function(total_data){
@@ -25,13 +28,14 @@ function user_data_myFriends(div_view, appendContent,limit_start,limit_end){
 	 var state=response[index].state;
 	 var country=response[index].country;
 	 var created_On=response[index].created_On;
-	   content+='<div class="col-xs-12">';
+	   content+='<div id="userFrndsInfoDetails-'+user_Id+'" class="col-xs-12">';
        content+='<div class="list-group">';
 	   content+='<div class="list-group-item pad0">';
        content+='<div class="container-fluid mtop15p mbot15p">';
 	   content+='<div class="row">';
 	   content+='<div class="col-xs-12">';
-	   content+='<i onclick="javascript:unfriendAperson(\''+user_Id+'\');" class="fa fa-close pull-right"></i>';
+	   content+='<i onclick="javascript:unfriendAperson(\''+user_Id+'\',\'userFrndsInfoDetails-'+user_Id+'\');" ';
+	   content+='class="fa fa-close pull-right"></i>';
 	   content+='</div>';
 	   content+='</div>';
 	   content+='<div class="row">';
@@ -67,10 +71,10 @@ js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.user.friends.ph
 });
 }
 /* UnFriend a Person */
-function unfriendAperson(user_Id){  
-document.getElementById("searchpeople_btnsView_"+user_Id).innerHTML=ui_sendReqHidePeople(user_Id);
-js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.user.friends.php',
-{action:'UNFRIEND_A_PERSON',frnd1:user_Id, frnd2:AUTH_USER_ID },function(resp){ console.log(resp); });
+function unfriendAperson(user_Id, unFrnd_Id){   // 
+ $('#'+unFrnd_Id).hide(1000);
+ js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.user.friends.php',
+  {action:'UNFRIEND_A_PERSON',frnd1:user_Id, frnd2:AUTH_USER_ID },function(resp){ console.log(resp); });
 }
 
 function subMenu_userFriends(id){
@@ -115,8 +119,134 @@ function subMenu_userFriendRequests(id){
 	  } 
    }
  }
-      if(id==='usrFrndSubMenu_recievedRequests'){ }
- else if(id==='usrFrndSubMenu_sentRequests'){ }
+      if(id==='usrFrndSubMenu_recievedRequests'){  user_count_recievedFrndRequests(); }
+ else if(id==='usrFrndSubMenu_sentRequests'){ user_count_sendFrndRequests(); }
+}
+
+/****************************************************************************************************************************/
+/********************************** My Friends Requests Menu : Recieved Requests ********************************************/
+/****************************************************************************************************************************/
+function user_count_recievedFrndRequests(){
+ js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.module.app.user.friends.php',
+  { action:'GET_COUNT_RECEIVEDFRIENDREQUESTS', to_userId: AUTH_USER_ID },function(total_data){
+    scroll_loadInitializer('loadUserRecievedRequests',10,user_data_recievedFrndRequests,total_data);
+  });
+}
+function user_data_recievedFrndRequests(div_view, appendContent,limit_start,limit_end){
+  js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.module.app.user.friends.php',
+  { action:'GET_DATA_RECEIVEDFRIENDREQUESTS', to_userId: AUTH_USER_ID, limit_start:limit_start, limit_end:limit_end},
+  function(response){
+    console.log(response);
+	 response=JSON.parse(response);
+	 var content='';
+	 if(response.length>0){
+	 for(var index=0;index<response.length;index++){
+	 var user_Id=response[index].user_Id;
+	 var username=response[index].username;
+	 var surName=response[index].surName;
+	 var name=response[index].name;
+	 var profile_pic=response[index].profile_pic;
+	 var about_me=response[index].about_me;
+	 var minlocation=response[index].minlocation;
+	 var location=response[index].location;
+	 var state=response[index].state;
+	 var country=response[index].country;
+	 var created_On=response[index].created_On;
+	   content+='<div id="userRecFrndsReqDetails-'+user_Id+'" class="col-xs-12">';
+       content+='<div class="list-group">';
+	   content+='<div class="list-group-item pad0">';
+       content+='<div class="container-fluid mtop15p mbot15p">';
+	   content+='<div class="row">';
+	   content+='<div class="col-xs-12">';
+	   content+='<i onclick="javascript:unfriendAperson(\''+user_Id+'\',\'userRecFrndsReqDetails-'+user_Id+'\');" ';
+	   content+='class="fa fa-close pull-right"></i>';
+	   content+='</div>';
+	   content+='</div>';
+	   content+='<div class="row">';
+	   content+='<div class="col-xs-5">';
+	   content+='<img src="'+profile_pic+'" class="profile_pic_img"/>';
+	   content+='</div>';
+	   content+='<div class="col-xs-7">';
+	   content+='<h5 style="line-height:22px;"><b>'+surName+' '+name+'</b></h5>';
+	   content+='<div>'+minlocation+', '+location+', '+state+', '+country+'</div>';
+	   content+='</div>';
+	   content+='</div>';
+	   content+='</div>';
+       content+='</div>';
+       content+='</div>';
+       content+='</div>';
+	 }
+	 } else {
+	   content+='<div align="center" class="mtop15p">';
+	   content+='<span style="color:#ccc;">You haven\'t Received any Friend Requests</span>';
+	   content+='</div>';
+	 }
+	 content+=appendContent;
+	 document.getElementById(div_view).innerHTML=content;
+  });
+}
+/****************************************************************************************************************************/
+/*********************************** My Friends Requests Menu : Sent Requests ***********************************************/
+/****************************************************************************************************************************/
+function user_count_sendFrndRequests(){
+ js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.module.app.user.friends.php',
+  { action:'GET_COUNT_SENTFRIENDREQUESTS', from_userId: AUTH_USER_ID },function(total_data){
+    scroll_loadInitializer('loadUserSentRequests',10,user_data_sendFrndRequests,total_data);
+  });
+}
+function user_data_sendFrndRequests(div_view, appendContent,limit_start,limit_end){
+ js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.module.app.user.friends.php',
+  { action:'GET_DATA_SENTFRIENDREQUESTS', from_userId: AUTH_USER_ID, limit_start:limit_start, limit_end:limit_end },
+  function(response){
+    console.log(response);
+	 response=JSON.parse(response);
+	 var content='';
+	 if(response.length>0){
+	 for(var index=0;index<response.length;index++){
+	 var user_Id=response[index].user_Id;
+	 var username=response[index].username;
+	 var surName=response[index].surName;
+	 var name=response[index].name;
+	 var profile_pic=response[index].profile_pic;
+	 var about_me=response[index].about_me;
+	 var minlocation=response[index].minlocation;
+	 var location=response[index].location;
+	 var state=response[index].state;
+	 var country=response[index].country;
+	 var created_On=response[index].created_On;
+	   content+='<div id="userSentFrndsReqDetails-'+user_Id+'" class="col-xs-12">';
+       content+='<div class="list-group">';
+	   content+='<div class="list-group-item pad0">';
+       content+='<div class="container-fluid mtop15p mbot15p">';
+	   content+='<div class="row">';
+	   content+='<div class="col-xs-12">';
+	   content+='<i onclick="javascript:unfriendAperson(\''+user_Id+'\',\'userSentFrndsReqDetails-'+user_Id+'\');" ';
+	   content+='class="fa fa-close pull-right"></i>';
+	   content+='</div>';
+	   content+='</div>';
+	   content+='<div class="row">';
+	   content+='<div class="col-xs-5">';
+	   content+='<img src="'+profile_pic+'" class="profile_pic_img"/>';
+	   content+='</div>';
+	   content+='<div class="col-xs-7">';
+	   content+='<h5 style="line-height:22px;"><b>'+surName+' '+name+'</b></h5>';
+	   content+='<div>'+minlocation+', '+location+', '+state+', '+country+'</div>';
+	   content+='</div>';
+	   content+='</div>';
+	   content+='</div>';
+       content+='</div>';
+       content+='</div>';
+       content+='</div>';
+	 }
+	 } else {
+	   content+='<div align="center" class="mtop15p">';
+	   content+='<span style="color:#ccc;">You didn\'t sent any Friend Requests</span>';
+	   content+='</div>';
+	 }
+	 content+=appendContent;
+	 document.getElementById(div_view).innerHTML=content;
+	 
+   });
 }
 </script>
 <div class="row">
@@ -156,7 +286,7 @@ function subMenu_userFriendRequests(id){
 </div>
 </div>
 <div id="usrFrndSubMenu_sentRequests_content" class="hide-block">
-<div id="loadUserSentRequests0" class="hide-block">
+<div id="loadUserSentRequests0">
  <div align="center" class="mtop15p">
   <img src="<?php echo $_SESSION["PROJECT_URL"]?>images/load.gif" class="profile_pic_img1"/>
  </div>

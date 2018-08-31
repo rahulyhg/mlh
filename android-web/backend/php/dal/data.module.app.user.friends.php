@@ -85,20 +85,32 @@ class user_friends {
   /* List of Pending FriendRequests */
   /* Recieved Friend Requests */
   function query_count_recievedFriendRequests($to_userId){
-    $sql="";
-	$sql="";
+    $sql="SELECT count(*) FROM user_frnds_req, user_account WHERE user_frnds_req.to_userId='".$to_userId."' AND ";
+	$sql.="user_account.user_Id=user_frnds_req.from_userId;";
+	return $sql;
   }
   
   function query_data_recievedFriendRequests($to_userId,$limit_start,$limit_end){
-  
+    $sql="SELECT user_account.user_Id, user_account.username, user_account.surName, ";
+	$sql.="user_account.name, user_account.profile_pic, user_account.about_me, user_account.minlocation, ";
+	$sql.="user_account.location, user_account.state, user_account.country, user_account.created_On FROM ";
+	$sql.="user_frnds_req, user_account WHERE user_frnds_req.to_userId='".$to_userId."' AND ";
+	$sql.="user_account.user_Id=user_frnds_req.from_userId LIMIT ".$limit_start.", ".$limit_end;
+	return $sql;
   }
   /* Sent Friend Requests */
   function query_count_sentFriendRequests($from_userId){
-  
+    $sql="SELECT count(*) FROM user_frnds_req, user_account WHERE user_frnds_req.from_userId='".$from_userId."' AND ";
+	$sql.="user_account.user_Id=user_frnds_req.to_userId;";
   }
   
   function query_data_sentFriendRequests($from_userId,$limit_start,$limit_end){
-  
+    $sql="SELECT user_account.user_Id, user_account.username, user_account.surName, ";
+	$sql.="user_account.name, user_account.profile_pic, user_account.about_me, user_account.minlocation, ";
+	$sql.="user_account.location, user_account.state, user_account.country, user_account.created_On FROM ";
+	$sql.="user_frnds_req, user_account WHERE user_frnds_req.from_userId='".$from_userId."' AND ";
+	$sql.="user_account.user_Id=user_frnds_req.to_userId LIMIT ".$limit_start.", ".$limit_end;
+	return $sql;
   }
   
 }
