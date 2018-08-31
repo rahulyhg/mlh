@@ -5,7 +5,22 @@
 function user_count_myFriends(){
   js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.module.app.user.friends.php',
   { action:'GET_COUNT_MYFRIENDSLIST', user_Id: AUTH_USER_ID },function(total_data){
-    scroll_loadInitializer('loadUserFriends',10,user_data_myFriends,total_data);
+    total_data=parseInt(total_data);
+    if(total_data===0){
+	   var content='<div align="center">';
+	       content+='<span style="color:#ccc;">You have no Friends</span>';
+	       content+='</div>';
+	   document.getElementById('loadUserFriends0').innerHTML=content;
+	} else {
+	   var content='<div align="center">';
+	       content+='<span style="color:#808080;"><b>You have ';
+		   content+='<span style="color:'+CURRENT_DARK_COLOR+';">'+total_data+'</span>';
+		   if(total_data===1){ content+=' Friend.</b></span>'; }
+		   else { content+=' Friends.</b></span>'; }
+	       content+='</div>';
+	   document.getElementById('loadUserFriendsCount').innerHTML=content;
+      scroll_loadInitializer('loadUserFriends',10,user_data_myFriends,total_data);
+	}
   });
 }
 function user_data_myFriends(div_view, appendContent,limit_start,limit_end){
@@ -52,10 +67,6 @@ function user_data_myFriends(div_view, appendContent,limit_start,limit_end){
        content+='</div>';
        content+='</div>';
 	 }
-	 } else {
-	   content+='<div align="center">';
-	   content+='<span style="color:#ccc;">You have no Friends</span>';
-	   content+='</div>';
 	 }
 	 content+=appendContent;
 	 document.getElementById(div_view).innerHTML=content;
@@ -63,10 +74,18 @@ function user_data_myFriends(div_view, appendContent,limit_start,limit_end){
 }
 
 /* AcceptRequestRecievedByMe */
-function acceptReqToMe(user_Id){
+function acceptReqToMe(user_Id,accept_Id){
+$('#'+accept_Id).hide(1000);
 document.getElementById("searchpeople_btnsView_"+user_Id).innerHTML=ui_frndUnFrnd(user_Id);
 js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.user.friends.php',
 {action:'ACCEPT_FRNDREQUEST_TO_ME',requestFrom:user_Id, user_Id:AUTH_USER_ID },function(resp){ 
+ console.log(resp);
+});
+}
+function dismissWithdrawRequest(user_Id,decline_Id){
+$('#'+decline_Id).hide(1000);
+js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.user.friends.php',
+{action:'DELETE_A_REQUEST_SENT',from_userId:user_Id, to_userId:AUTH_USER_ID },function(resp){ 
  console.log(resp);
 });
 }
@@ -120,7 +139,7 @@ function subMenu_userFriendRequests(id){
    }
  }
       if(id==='usrFrndSubMenu_recievedRequests'){  user_count_recievedFrndRequests(); }
- else if(id==='usrFrndSubMenu_sentRequests'){ user_count_sendFrndRequests(); }
+ else if(id==='usrFrndSubMenu_sentRequests'){ user_count_sentFrndRequests(); }
 }
 
 /****************************************************************************************************************************/
@@ -129,7 +148,24 @@ function subMenu_userFriendRequests(id){
 function user_count_recievedFrndRequests(){
  js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.module.app.user.friends.php',
   { action:'GET_COUNT_RECEIVEDFRIENDREQUESTS', to_userId: AUTH_USER_ID },function(total_data){
-    scroll_loadInitializer('loadUserRecievedRequests',10,user_data_recievedFrndRequests,total_data);
+    total_data=parseInt(total_data);
+    if(total_data===0){
+	   var content='<div align="center" class="mtop15p">';
+	       content+='<span style="color:#ccc;">You haven\'t Received any Friend Requests</span>';
+	       content+='</div>';
+	   document.getElementById("loadUserRecievedRequests0").innerHTML=content;
+	}
+   else {
+        var content='<div>';
+	        content+='<span style="color:#808080;"><b>Your have recieved ';
+			content+='<span style="color:'+CURRENT_DARK_COLOR+';">'+total_data+'</span> ';
+			if(total_data===1){ content+='Friend Request.</b></span>&nbsp;'; }
+			else { content+='Friend Requests.</b></span>&nbsp;'; }
+	        content+='</div>';
+	   document.getElementById('loadUserRecievedRequestsCount').innerHTML=content;
+	    scroll_loadInitializer('loadUserRecievedRequests',10,user_data_recievedFrndRequests,total_data);
+	 }
+    
   });
 }
 function user_data_recievedFrndRequests(div_view, appendContent,limit_start,limit_end){
@@ -157,12 +193,6 @@ function user_data_recievedFrndRequests(div_view, appendContent,limit_start,limi
 	   content+='<div class="list-group-item pad0">';
        content+='<div class="container-fluid mtop15p mbot15p">';
 	   content+='<div class="row">';
-	   content+='<div class="col-xs-12">';
-	   content+='<i onclick="javascript:unfriendAperson(\''+user_Id+'\',\'userRecFrndsReqDetails-'+user_Id+'\');" ';
-	   content+='class="fa fa-close pull-right"></i>';
-	   content+='</div>';
-	   content+='</div>';
-	   content+='<div class="row">';
 	   content+='<div class="col-xs-5">';
 	   content+='<img src="'+profile_pic+'" class="profile_pic_img"/>';
 	   content+='</div>';
@@ -171,15 +201,21 @@ function user_data_recievedFrndRequests(div_view, appendContent,limit_start,limi
 	   content+='<div>'+minlocation+', '+location+', '+state+', '+country+'</div>';
 	   content+='</div>';
 	   content+='</div>';
+	   content+='<div class="row">';
+	   content+='<div class="btn-group pull-right">';
+	   content+='<button class="btn custom-bg" style="background-color:'+CURRENT_DARK_COLOR+';color:#fff;" ';
+	   content+='onclick="javascript:acceptReqToMe(\''+user_Id+'\',\'userRecFrndsReqDetails-'+user_Id+'\');">';
+	   content+='<b>Accept</b></button>';
+	   content+='<button class="btn btn-default custom-font" style="color:'+CURRENT_DARK_COLOR+';" ';
+	   content+='onclick="javascript:dismissWithdrawRequest(\''+user_Id+'\',\'userRecFrndsReqDetails-'+user_Id+'\');">';
+	   content+='<b>Dismiss</b></button>';
+	   content+='</div>';
+	   content+='</div>';
 	   content+='</div>';
        content+='</div>';
        content+='</div>';
        content+='</div>';
 	 }
-	 } else {
-	   content+='<div align="center" class="mtop15p">';
-	   content+='<span style="color:#ccc;">You haven\'t Received any Friend Requests</span>';
-	   content+='</div>';
 	 }
 	 content+=appendContent;
 	 document.getElementById(div_view).innerHTML=content;
@@ -188,13 +224,28 @@ function user_data_recievedFrndRequests(div_view, appendContent,limit_start,limi
 /****************************************************************************************************************************/
 /*********************************** My Friends Requests Menu : Sent Requests ***********************************************/
 /****************************************************************************************************************************/
-function user_count_sendFrndRequests(){
+function user_count_sentFrndRequests(){
  js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.module.app.user.friends.php',
   { action:'GET_COUNT_SENTFRIENDREQUESTS', from_userId: AUTH_USER_ID },function(total_data){
-    scroll_loadInitializer('loadUserSentRequests',10,user_data_sendFrndRequests,total_data);
+  total_data=parseInt(total_data);
+  if(total_data===0){
+     var content='<div align="center" class="mtop15p">';
+	     content+='<span style="color:#ccc;">You didn\'t sent any Friend Requests</span>';
+	     content+='</div>';
+	 document.getElementById("loadUserSentRequests0").innerHTML=content;
+  } else {
+     var content='<div align="center">';
+	     content+='<span style="color:#808080;"><b>Your have sent ';
+		 content+='<span style="color:'+CURRENT_DARK_COLOR+';"><b>'+total_data+'</b></span> ';
+		 if(total_data===1){ content+='Friend Request.</b></span>&nbsp;'; }
+		 else { content+='Friend Requests.</b></span>&nbsp;'; }
+	     content+='</div>';
+	 document.getElementById("loadUserSentRequestsCount").innerHTML=content;
+      scroll_loadInitializer('loadUserSentRequests',10,user_data_sendFrndRequests,total_data);
+	}
   });
 }
-function user_data_sendFrndRequests(div_view, appendContent,limit_start,limit_end){
+function user_data_sentFrndRequests(div_view, appendContent,limit_start,limit_end){
  js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.module.app.user.friends.php',
   { action:'GET_DATA_SENTFRIENDREQUESTS', from_userId: AUTH_USER_ID, limit_start:limit_start, limit_end:limit_end },
   function(response){
@@ -218,9 +269,9 @@ function user_data_sendFrndRequests(div_view, appendContent,limit_start,limit_en
        content+='<div class="list-group">';
 	   content+='<div class="list-group-item pad0">';
        content+='<div class="container-fluid mtop15p mbot15p">';
-	   content+='<div class="row">';
+	    content+='<div class="row">';
 	   content+='<div class="col-xs-12">';
-	   content+='<i onclick="javascript:unfriendAperson(\''+user_Id+'\',\'userSentFrndsReqDetails-'+user_Id+'\');" ';
+	   content+='<i onclick="javascript:dismissWithdrawRequest(\''+user_Id+'\',\'userSentFrndsReqDetails-'+user_Id+'\');" ';
 	   content+='class="fa fa-close pull-right"></i>';
 	   content+='</div>';
 	   content+='</div>';
@@ -238,10 +289,6 @@ function user_data_sendFrndRequests(div_view, appendContent,limit_start,limit_en
        content+='</div>';
        content+='</div>';
 	 }
-	 } else {
-	   content+='<div align="center" class="mtop15p">';
-	   content+='<span style="color:#ccc;">You didn\'t sent any Friend Requests</span>';
-	   content+='</div>';
 	 }
 	 content+=appendContent;
 	 document.getElementById(div_view).innerHTML=content;
@@ -279,6 +326,11 @@ function user_data_sendFrndRequests(div_view, appendContent,limit_start,limit_en
 </div>
 </div>
 <div id="usrFrndSubMenu_recievedRequests_content" class="hide-block">
+<div class="alert alert-warning">
+  <strong>Note!</strong> Once you Decline / Delete the Recieved Request, the Request will be deleted 
+  and not shown to the User Sent under "Sent Request Tab".</a>.
+</div>
+<div id="loadUserRecievedRequestsCount" class="mbot10p"></div>
 <div id="loadUserRecievedRequests0">
  <div align="center" class="mtop15p">
   <img src="<?php echo $_SESSION["PROJECT_URL"]?>images/load.gif" class="profile_pic_img1"/>
@@ -286,6 +338,11 @@ function user_data_sendFrndRequests(div_view, appendContent,limit_start,limit_en
 </div>
 </div>
 <div id="usrFrndSubMenu_sentRequests_content" class="hide-block">
+<div class="alert alert-warning">
+  <strong>Note!</strong> Once the Request Reciever deletes the Request you sent / You withdraw your Request, 
+  then it is permanently deleted and will not be available to you.</a>.
+</div>
+<div id="loadUserSentRequestsCount" class="mbot10p"></div>
 <div id="loadUserSentRequests0">
  <div align="center" class="mtop15p">
   <img src="<?php echo $_SESSION["PROJECT_URL"]?>images/load.gif" class="profile_pic_img1"/>
@@ -294,6 +351,7 @@ function user_data_sendFrndRequests(div_view, appendContent,limit_start,limit_en
 </div>
 </div>
 <div id="usrFrndSubMenu_myFriends_content" class="container-fluid mtop15p mbot15p hide-block">
+<div id="loadUserFriendsCount" class="mbot10p"></div>
 <div id="loadUserFriends0">
  <div align="center" class="mtop15p">
   <img src="<?php echo $_SESSION["PROJECT_URL"]?>images/load.gif" class="profile_pic_img1"/>
