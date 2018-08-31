@@ -241,7 +241,7 @@ function user_count_sentFrndRequests(){
 		 else { content+='Friend Requests.</b></span>&nbsp;'; }
 	     content+='</div>';
 	 document.getElementById("loadUserSentRequestsCount").innerHTML=content;
-      scroll_loadInitializer('loadUserSentRequests',10,user_data_sendFrndRequests,total_data);
+      scroll_loadInitializer('loadUserSentRequests',10,user_data_sentFrndRequests,total_data);
 	}
   });
 }

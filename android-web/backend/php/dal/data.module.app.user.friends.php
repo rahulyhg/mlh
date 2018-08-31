@@ -102,6 +102,7 @@ class user_friends {
   function query_count_sentFriendRequests($from_userId){
     $sql="SELECT count(*) FROM user_frnds_req, user_account WHERE user_frnds_req.from_userId='".$from_userId."' AND ";
 	$sql.="user_account.user_Id=user_frnds_req.to_userId;";
+	return $sql;
   }
   
   function query_data_sentFriendRequests($from_userId,$limit_start,$limit_end){
