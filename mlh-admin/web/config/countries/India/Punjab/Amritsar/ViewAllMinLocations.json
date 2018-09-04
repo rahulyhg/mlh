@@ -1,0 +1,11 @@
+{
+  "minLocations" :[{"minlocationName":"Ajnala","minlocationValue":"Ajnala"},
+				   {"minlocationName":"Raja Sansi","minlocationValue":"Raja Sansi"},
+				   {"minlocationName":"Majitha","minlocationValue":"Majitha"},
+				   {"minlocationName":"Amritsar North","minlocationValue":"Amritsar North"},
+				   {"minlocationName":"Amritsar West","minlocationValue":"Amritsar West"},
+				   {"minlocationName":"Amritsar Central","minlocationValue":"Amritsar Central"},
+				   {"minlocationName":"Amritsar East","minlocationValue":"Amritsar East"},
+				   {"minlocationName":"Amristar South","minlocationValue":"Amristar South"},
+				   {"minlocationName":"Attari","minlocationValue":"Attari"}]
+}

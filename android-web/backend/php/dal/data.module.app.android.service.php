@@ -70,8 +70,8 @@ class AppAndroidService {
   function query_notify_usrFrndsReqReciever($user_Id){
   /* Notification Query to User recieved Friendship Request */
     $sql="SELECT ";
-    $sql.=" user_frnds_req.from_userId, user_account.username, user_account.surName, user_account.name,";
-    $sql.="  user_frnds_req.req_on ";
+    $sql.=" user_frnds_req.req_Id, user_frnds_req.from_userId, user_account.username, user_account.surName, ";
+    $sql.=" user_account.name, user_frnds_req.req_on, user_frnds_req.notify ";
     $sql.=" FROM user_account, user_frnds_req WHERE user_account.user_Id=user_frnds_req.from_userId AND ";
     $sql.=" user_frnds_req.to_userId='".$user_Id."' ORDER BY user_frnds_req.req_on DESC LIMIT 0 , 1;";
 	return $sql;

@@ -1,0 +1,8 @@
+{
+  "minLocations" :[{"minlocationName":"Kannad","minlocationValue":"Kannad"},
+				   {"minlocationName":"Aurangabad Central","minlocationValue":"Aurangabad Central"},
+				   {"minlocationName":"Aurangabad West","minlocationValue":"Aurangabad West"},
+				   {"minlocationName":"Aurangabad East","minlocationValue":"Aurangabad East"},
+				   {"minlocationName":"Gangapur","minlocationValue":"Gangapur"},
+				   {"minlocationName":"Vaijapur","minlocationValue":"Vaijapur"}]
+}

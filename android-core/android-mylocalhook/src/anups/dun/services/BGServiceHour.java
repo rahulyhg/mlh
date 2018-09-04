@@ -13,34 +13,23 @@ import anups.dun.js.AppSessionManagement;
 import anups.dun.notify.ws.WSIntervalHour;
 import anups.dun.notify.ws.util.Notifications;
 import anups.dun.util.AndroidLogger;
+import anups.dun.util.UtilityServices;
 import anups.dun.web.templates.URLGenerator;
 
 @SuppressLint("NewApi")
 public class BGServiceHour extends Service {
 	org.apache.log4j.Logger logger = AndroidLogger.getLogger(BGServiceHour.class);
 	
-	private boolean isServiceRunning(Context context, Class<?> serviceClass) {
-	    ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-	    for(ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
-	      if(serviceClass.getName().equals(service.service.getClassName())) { return true; }
-	    }
-	   return false;
-	}
-	
 	@Override
 	  public int onStartCommand(Intent intent, int flags, int startId) {
-		 boolean bgService = isServiceRunning(this, BGServiceMinute.class);
+		 boolean bgService = new UtilityServices(getApplicationContext()).isServiceRunning(BGServiceMinute.class);
 		   logger.info("IsServiceRunning (BGServiceMinute): "+bgService);
 		   if(!bgService){
-			   final Context context=this;
-			   final Handler handler = new Handler(Looper.getMainLooper());
-			    handler.postDelayed(new Runnable() {
+			   new Handler().postDelayed(new Runnable() {
 			      @Override
 			      public void run() {
 			    	  logger.info("Called StartupService...");
-			    	  AppSessionManagement appSessionManager = new AppSessionManagement(context.getApplicationContext());
-                                           appSessionManager.setAndroidSession(BusinessConstants.BGSERVICE_EXECUTION_STATUS,null);
-			    	  Intent triggerWS = new Intent(context, BGServiceMinute.class);
+			    	  Intent triggerWS = new Intent(getApplicationContext(), BGServiceMinute.class);
 			    	         startService(triggerWS);
 			      }
 			    }, 1000);		

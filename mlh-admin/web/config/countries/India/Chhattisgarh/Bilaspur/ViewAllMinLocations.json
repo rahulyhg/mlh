@@ -1,0 +1,10 @@
+{
+  "minLocations" :[{"minlocationName":"Kota","minlocationValue":"Kota"},
+			       {"minlocationName":"Lormi","minlocationValue":"Lormi"},
+				   {"minlocationName":"Mungeli","minlocationValue":"Mungeli"},
+				   {"minlocationName":"Takhatpur","minlocationValue":"Takhatpur"},
+				   {"minlocationName":"Bilha","minlocationValue":"Bilha"},
+				   {"minlocationName":"Bilaspur Region","minlocationValue":"Bilaspur Region"},
+				   {"minlocationName":"Beltara","minlocationValue":"Beltara"},
+				   {"minlocationName":"Masturi","minlocationValue":"Masturi"}]
+}

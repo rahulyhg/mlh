@@ -1,0 +1,11 @@
+{
+  "minLocations" :[{"minlocationName":"Armur","minlocationValue":"Armur"},
+				   {"minlocationName":"Bodhan","minlocationValue":"Bodhan"},
+				   {"minlocationName":"Jukkal","minlocationValue":"Jukkal"},
+				   {"minlocationName":"Banswada","minlocationValue":"Banswada"},
+				   {"minlocationName":"Yellareddy","minlocationValue":"Yellareddy"},
+				   {"minlocationName":"Kamareddy","minlocationValue":"Kamareddy"},
+				   {"minlocationName":"Nizamabad (Urban)","minlocationValue":"Nizamabad (Urban)"},
+				   {"minlocationName":"Nizamabad (Rural)","minlocationValue":"Nizamabad (Rural)"},
+				   {"minlocationName":"Balkonda","minlocationValue":"Balkonda"}]
+}

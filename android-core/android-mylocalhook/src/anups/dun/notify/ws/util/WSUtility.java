@@ -28,6 +28,7 @@ public class WSUtility {
 	    	if(in!=null) {  try { in.close(); } catch(Exception e){ logger.error("BufferedReader Close Exception: "+e.getMessage()); } }
 	    	if(con!=null) {  try { con.disconnect(); } catch(Exception e){ logger.error("HttpURLConnection Disconnect Exception: "+e.getMessage()); } }
 	  }
+	logger.info("Response: "+response.toString());
     return response.toString();
   }
   
@@ -62,9 +63,9 @@ public class WSUtility {
 			
 		} else {
 			logger.info("POST request not worked");
-		}
-		logger.info("Response: "+response);
+		}	
 	 } catch(Exception e){ logger.error("Exception WSPOSTUtility: "+e.getMessage()); }
+	 logger.info("Response: "+response);
 	 return response.toString();
 	}
 

@@ -32,10 +32,18 @@ public class URLGenerator {
    return stringBuilder.toString();
  }
  
+ public String notified_frndRequestReceived(String req_Id){
+  StringBuilder stringBuilder=new StringBuilder(PROJECT_URL); 
+                stringBuilder.append("backend/php/dac/controller.module.app.user.notifications.php"); 
+                stringBuilder.append("?action=NOTIFY_FRIENDREQUESTRECEIVED&req_Id=").append(req_Id);
+  return stringBuilder.toString();          
+ }
+ 
  public String[] ws_userFrndInfoDetails(String user_Id, String phoneNumbersList){
    String[] params = new String[2];
    params[0] = PROJECT_URL + "backend/php/dac/controller.module.app.android.service.php";
    params[1] = "action=SERVICE_USRDUMPFRNDS&user_Id="+user_Id+"&phoneNumbersList="+phoneNumbersList;
    return params;
  }
+ 
 }

@@ -1,0 +1,11 @@
+{
+  "minLocations" :[{"minlocationName":"Patan","minlocationValue":"Patan"},
+				   {"minlocationName":"Durg Rural","minlocationValue":"Durg Rural"},
+				   {"minlocationName":"Durg City","minlocationValue":"Durg City"},
+				   {"minlocationName":"Bhilai Nagar","minlocationValue":"Bhilai Nagar"},
+				   {"minlocationName":"Vaishali Nagar","minlocationValue":"Vaishali Nagar"},
+				   {"minlocationName":"Ahiwara","minlocationValue":"Ahiwara"},
+				   {"minlocationName":"Saja","minlocationValue":"Saja"},
+				   {"minlocationName":"Bemetara","minlocationValue":"Bemetara"},
+				   {"minlocationName":"Nawagarh","minlocationValue":"Nawagarh"}]
+}

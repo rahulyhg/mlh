@@ -1,0 +1,10 @@
+{
+  "minLocations" :[{"minlocationName":"Sarvagnanagar","minlocationValue":"Sarvagnanagar"},
+				   {"minlocationName":"C.V. Raman Nagar","minlocationValue":"C.V. Raman Nagar"},
+				   {"minlocationName":"Shivajinagar","minlocationValue":"Shivajinagar"},
+				   {"minlocationName":"Shanti Nagar","minlocationValue":"Shanti Nagar"},
+				   {"minlocationName":"Gandhi Nagar","minlocationValue":"Gandhi Nagar"},
+				   {"minlocationName":"Rajaji Nagar","minlocationValue":"Rajaji Nagar"},
+				   {"minlocationName":"Chamarajapet","minlocationValue":"Chamarajapet"},
+				   {"minlocationName":"Mahadevapura","minlocationValue":"Mahadevapura"}]
+}

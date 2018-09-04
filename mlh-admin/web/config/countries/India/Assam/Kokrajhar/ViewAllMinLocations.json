@@ -1,0 +1,12 @@
+{
+  "minLocations" :[{"minlocationName":"Gossaigaon","minlocationValue":"Gossaigaon"},
+				   {"minlocationName":"Kokrajhar East","minlocationValue":"Kokrajhar East"},
+				   {"minlocationName":"Kokrajhar West","minlocationValue":"Kokrajhar West"},
+				   {"minlocationName":"Sidli","minlocationValue":"Sidli"},
+				   {"minlocationName":"Bijni","minlocationValue":"Bijni"},
+				   {"minlocationName":"Sorbhog","minlocationValue":"Sorbhog"},
+				   {"minlocationName":"Bhabanipur","minlocationValue":"Bhabanipur"},
+				   {"minlocationName":"Tamulpur","minlocationValue":"Tamulpur"},
+				   {"minlocationName":"Barama","minlocationValue":"Barama"},
+				   {"minlocationName":"Chapaguri","minlocationValue":"Chapaguri"}]
+}

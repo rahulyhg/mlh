@@ -1,0 +1,16 @@
+{
+  "minLocations" :[{"minlocationName":"Almora Region","minlocationValue":"Almora Region"},
+				   {"minlocationName":"Dwarahat","minlocationValue":"Dwarahat"},
+				   {"minlocationName":"Jageshwar","minlocationValue":"Jageshwar"},
+				   {"minlocationName":"Ranikhet","minlocationValue":"Ranikhet"},
+				   {"minlocationName":"Salt","minlocationValue":"Salt"},
+				   {"minlocationName":"Someshwar","minlocationValue":"Someshwar"},
+				   {"minlocationName":"Bageshwar","minlocationValue":"Bageshwar"},
+				   {"minlocationName":"Kapkot","minlocationValue":"Kapkot"},
+				   {"minlocationName":"Champawat","minlocationValue":"Champawat"},
+				   {"minlocationName":"Lohaghat","minlocationValue":"Lohaghat"},
+				   {"minlocationName":"Dharchula","minlocationValue":"Dharchula"},
+				   {"minlocationName":"Didihat","minlocationValue":"Didihat"},
+				   {"minlocationName":"Gangolihat","minlocationValue":"Gangolihat"},
+				   {"minlocationName":"Pithoragarh","minlocationValue":"Pithoragarh"}]
+}

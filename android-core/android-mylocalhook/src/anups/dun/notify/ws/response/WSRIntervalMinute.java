@@ -5,9 +5,12 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import android.content.Context;
+import anups.dun.notify.minute.NotifiedFrndRequestReceived;
 import anups.dun.util.AndroidLogger;
+import anups.dun.util.DateAndTimeUtility;
 import anups.dun.util.PushNotification;
 import anups.dun.util.Utility;
+import anups.dun.web.templates.URLGenerator;
 
 public class WSRIntervalMinute {
 /*
@@ -59,9 +62,6 @@ public class WSRIntervalMinute {
 	 }
 	 
 	 public void funcTrigger_usrFrndReqRecieved(){
-	 /*
-	    "usrFrndReqRecieved": [{ "from_userId": "USR113561617186", "username": "Achuth", "surName": "Achuytham", "name": "Achuytham", "req_on": "2018-06-01 16:29:12" }],
-	  */
 		 String notifyURL="";
 		 JSONParser jsonParser = new JSONParser();
 		 try {
@@ -69,21 +69,31 @@ public class WSRIntervalMinute {
 		   JSONArray jsonObjectArry = (JSONArray)jsonObject.get("usrFrndReqRecieved");
 		   for(int index=0;index<jsonObjectArry.size();index++) {
 			 JSONObject jobj=(JSONObject) jsonParser.parse(jsonObjectArry.get(index).toString());
+			 String req_Id=(String) jobj.get("req_Id");
 			 String from_userId=(String) jobj.get("from_userId");
 			 String username=(String) jobj.get("username");
 			 String surName=(String) jobj.get("surName");
 			 String name=(String) jobj.get("name");
-			 String req_on=new Utility().dateFormatSetup((String) jobj.get("req_on"));
-			 boolean inapp=true;
-			 String contentTitle="You recieved 1 Friendship Request";
-				String bigContentTitle="You recieved 1 Friendship Request"; // Big Title Details:
-				String contentText=surName+" "+name+" sent you Friendship Request on "+req_on; // You have recieved new message
-				String ticker="New Friendship Request"; // New Message Alert!
-				String[] events = new String[1];
+			 String req_on=new DateAndTimeUtility().dateFormatSetup((String) jobj.get("req_on"));
+			 String notify=(String) jobj.get("notify");
+
+			 if(!"Y".equalsIgnoreCase(notify)){
+			   boolean inapp=true;
+			   String contentTitle="You recieved 1 Friendship Request";
+			   String bigContentTitle="You recieved 1 Friendship Request"; // Big Title Details:
+			   String contentText=surName+" "+name+" sent you Friendship Request on "+req_on; // You have recieved new message
+			   String ticker="New Friendship Request"; // New Message Alert!
+			   String[] events = new String[1];
 					     events[0] = new String(surName+" "+name+" sent you Friendship Request on "+req_on);
-			 new PushNotification().display_closableNotification(context, notifyURL, inapp,
-				 contentTitle, bigContentTitle,  contentText, ticker, events);
+			   new PushNotification().display_closableNotification(context, notifyURL, inapp,
+				    contentTitle, bigContentTitle,  contentText, ticker, events);
+			   /* Mention It is Notified */
+			   String[] params=new String[1];
+			 		    params[0]=new URLGenerator().notified_frndRequestReceived(req_Id);
+			   new NotifiedFrndRequestReceived().execute(params);
+			 }
 		   }
+		  
 		 }
 		 catch(Exception e){ logger.error("Exception: "+e.getMessage());}
 	 }

@@ -247,12 +247,7 @@ protected void onCreate(Bundle savedInstanceState) {
  if(appSessionManagement.getAndroidSession(BusinessConstants.ANDROID_PROJECTPATH)==null){
    createProjectPath(appSessionManagement);
  }
- 
- /* Regulates the Logger File Size upto 2 MB */
- AndroidLogger.regulateLoggerFile();
- 
- 
- 
+
   try {
 	  
     /* Creating Database Schema If it is not created */
@@ -282,10 +277,7 @@ protected void onCreate(Bundle savedInstanceState) {
  // PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
  // manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+AlarmManager.INTERVAL_FIFTEEN_MINUTES, AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
 
- 
- 
- /* Initially, Setting Service Execution to null */
- appSessionManagement.setAndroidSession(BusinessConstants.BGSERVICE_EXECUTION_STATUS,null); 
+
  
  /* Get UserID from SESSION */
  String USER_ID=appSessionManagement.getAndroidSession(BusinessConstants.AUTH_USER_ID);

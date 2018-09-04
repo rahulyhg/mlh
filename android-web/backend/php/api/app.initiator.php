@@ -8,7 +8,7 @@
 	 Logger::configure('../../../backend/config/log-config.xml'); 
 	
  /* Database Credentials */
-$DB_MLHBASIC_SERVERNAME="localhost:3306";
+$DB_MLHBASIC_SERVERNAME="192.168.1.4:3306";
 $DB_MLHBASIC_NAME="mlh_basic";
 $DB_MLHBASIC_USER="root";
 $DB_MLHBASIC_PASSWORD="";
