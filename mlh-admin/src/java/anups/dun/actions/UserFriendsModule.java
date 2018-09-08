@@ -25,14 +25,15 @@ public class UserFriendsModule extends HttpServlet {
     PrintWriter out = response.getWriter();
     String action= (String) request.getParameter("action");
     if("RECEIVE_USERFRIEND_REQUEST".equalsIgnoreCase(action)){ 
-        String from_userId = (String) request.getParameter("from_userId");
-        String to_userId = (String) request.getParameter("to_userId");
-        new UserFriendsService().service_recieveFriendrequestFromUser(from_userId, to_userId); 
+      String projectURL = (String) request.getParameter("projectURL");
+      String from_userId = (String) request.getParameter("from_userId");
+      String to_userId = (String) request.getParameter("to_userId");
+      new UserFriendsService().service_recieveFriendrequestFromUser(projectURL,from_userId, to_userId); 
     }
     else if("ACCEPT_USERFRIEND_REQUEST".equalsIgnoreCase(action)){ 
-        String from_userId = (String) request.getParameter("from_userId");
-        String to_userId = (String) request.getParameter("to_userId");
-        new UserFriendsService().service_acceptFriendrequest(from_userId, to_userId);
+      String from_userId = (String) request.getParameter("from_userId");
+      String to_userId = (String) request.getParameter("to_userId");
+      new UserFriendsService().service_acceptFriendrequest(from_userId, to_userId);
     }
     out.close();
   }

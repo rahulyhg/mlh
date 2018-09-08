@@ -13,7 +13,10 @@ class user_friends {
 
   function query_addUserFrnds($rel_Id, $rel_from, $rel_tz, $frnd1, $frnd2, $frnd1_call_frnd2, $frnd2_call_frnd1){
     $sql="INSERT INTO user_frnds(rel_Id, rel_from, rel_tz, frnd1, frnd2, frnd1_call_frnd2, frnd2_call_frnd1,notify) ";
-	$sql.="VALUES ('".$rel_Id."','".date("Y-m-d H:i:s")."','".$rel_tz."','".$frnd1."','".$frnd2."','".$frnd1_call_frnd2."','".$frnd2_call_frnd1."','Y');";
+	$sql.="SELECT * FROM ( ";
+	$sql.="'".$rel_Id."','".date("Y-m-d H:i:s")."','".$rel_tz."','".$frnd1."','".$frnd2."','".$frnd1_call_frnd2."','".$frnd2_call_frnd1."','Y')";
+	$sql.="As Tbl1 WHERE (SELECT count(*) FROM user_frnds WHERE (frnd1='".$fromUserId."' AND ";
+	$sql.="frnd2='".$toUserId."') OR (frnd1='".$toUserId."' AND frnd2='".$fromUserId."'))=0 ";
    return $sql;
   }
   

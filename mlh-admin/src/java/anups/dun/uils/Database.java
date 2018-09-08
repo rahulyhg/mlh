@@ -7,13 +7,13 @@ package anups.dun.uils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -29,10 +29,8 @@ public class Database {
   private static final String PASS = "";
   
   public JSONArray readDataFromQuery(String query){
-   HashMap<String,String> hMap = new HashMap<String,String>();
-   ArrayList<HashMap<String,String>> arrayList = new ArrayList<HashMap<String,String>>();
    Connection conn = null;
-   Statement stmt = null;
+   Statement  stmt = null;
    JSONArray jsonArray = new JSONArray();
     try{
       Class.forName("com.mysql.jdbc.Driver");
@@ -40,7 +38,6 @@ public class Database {
       stmt = conn.createStatement();
       ResultSet rs = stmt.executeQuery(query);
       ResultSetMetaData rsmd = rs.getMetaData();
-      
       while(rs.next()){
           int columns=rsmd.getColumnCount();
           JSONObject jsonObject = new JSONObject();

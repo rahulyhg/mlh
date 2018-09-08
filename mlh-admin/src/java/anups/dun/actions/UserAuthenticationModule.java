@@ -5,7 +5,6 @@
  */
 package anups.dun.actions;
 
-import anups.dun.modules.domain.DomainService;
 import anups.dun.modules.user.authentication.UserInformationService;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -25,8 +24,15 @@ public class UserAuthenticationModule extends HttpServlet {
    response.setContentType("text/html;charset=UTF-8");
   PrintWriter out = response.getWriter();
   String action= (String) request.getParameter("action");
-  if("GETUSERIDLIST".equalsIgnoreCase(action)){ 
-    out.println(new UserInformationService().service_getUserIdList());
+  if("GET_COUNT_USERIDLIST".equalsIgnoreCase(action)){ 
+    out.println(new UserInformationService().service_count_getUserIdList());
+  } else if("GET_DATA_USERIDLIST".equalsIgnoreCase(action)){ 
+    String limit_start = (String) request.getParameter("limit_start");
+    String limit_end = (String) request.getParameter("limit_end");
+    out.println(new UserInformationService().service_data_getUserIdList(limit_start, limit_end));
+  } else if("GETUSERINFORMATIONBYID".equalsIgnoreCase(action)){
+    String user_Id = (String) request.getParameter("user_Id");
+    out.println(new UserInformationService().service_getUserInformation(user_Id));
   }
   out.close();
   }

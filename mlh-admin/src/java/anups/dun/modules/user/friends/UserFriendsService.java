@@ -5,7 +5,7 @@
  */
 package anups.dun.modules.user.friends;
 
-import anups.dun.uils.Database;
+import anups.dun.uils.WSUtility;
 
 /**
  *
@@ -13,17 +13,16 @@ import anups.dun.uils.Database;
  */
 public class UserFriendsService {
     
- public void service_recieveFriendrequestFromUser(String from_userId, String to_userId){
-  String query=new UserFriendsQueries().query_recieveFriendrequestFromUser(from_userId, to_userId);
-  new Database().insertUpdateDeleteDataFromQuery(query);  
+ public String service_recieveFriendrequestFromUser(String projectURL, 
+         String from_userId, String to_userId){
+   UserFriendsURL userFriendsURL = new UserFriendsURL();
+   String url = userFriendsURL.url_recieveFriendrequestFromUser(projectURL, from_userId, to_userId);
+   return new WSUtility().httpGETRequest(url);
  } 
  
- public void service_acceptFriendrequest(String from_userId, String to_userId){
-     UserFriendsQueries userFriendsQueries = new UserFriendsQueries();
-     Database database = new Database();
-     String query1=userFriendsQueries.query_deleteFriendrequest(from_userId, to_userId);
-     database.insertUpdateDeleteDataFromQuery(query1);
-     String query2=userFriendsQueries.query_addToFriendList(from_userId, to_userId);
-     database.insertUpdateDeleteDataFromQuery(query2);
+ public String service_acceptFriendrequest(String from_userId, String to_userId){
+   UserFriendsURL userFriendsURL = new UserFriendsURL();
+   String url = userFriendsURL.url_addToFriendList(from_userId,to_userId);
+   return new WSUtility().httpGETRequest(url);
  }
 }

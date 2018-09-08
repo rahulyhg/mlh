@@ -12,11 +12,11 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="styles/api/core-skeleton.css">
 <title>Administrator Dashboard</title>
 <%@include file="templates/api_js.jsp" %>
 <script type="text/javascript">
 $(document).ready(function(){
- selopt_build_domainList("subdomain_add_categoryName");   // For Domain Module
  selopt_build_userIdList("notifyTesting_my_userId","");  // For User Module
 });
 function selopt_build_domainList(selOptId){
@@ -38,7 +38,8 @@ function selopt_reset_domainList(selOptId){
   for(var index=selOptElement.length;index>0;index--) { selOptElement.remove(index); }
 }
 function selopt_build_userIdList(selOptId,expectionId){
- js_ajax("GET",PROJECT_URL+"/userAuthenticationModule",{ action:'GETUSERIDLIST' },function(response){
+ js_ajax("GET",PROJECT_URL+"/userAuthenticationModule",{ action:'GET_DATA_USERIDLIST',limit_start:'0', limit_end:'100' },
+ function(response){
     console.log(response);
   response=JSON.parse(response);
   var selOptElement=document.getElementById(selOptId);
@@ -150,11 +151,16 @@ function selopt_reset_minlocationOption(selOptLocalityId){
   var localityElement=document.getElementById(selOptLocalityId);
   for(var index=localityElement.length;index>0;index--) { localityElement.remove(index); }
 }
+function redirectURL_userInformation(){
+ var user_Id=document.getElementById("notifyTesting_my_userId").value;
+ window.open(PROJECT_URL+'userInfo.jsp?AUTH_USER_ID='+user_Id);
+}
 /* NOTIFICATION TESTING MODULE */
 var NOTIFY_MYUSERID;
 function notify_myUserId_fix(){
  NOTIFY_MYUSERID=document.getElementById("notifyTesting_my_userId").value;
  document.getElementById("notifyTesting_my_userId").disabled=true;
+ if($("#settings_userInfoBtn").hasClass('hide-block')){ $("#settings_userInfoBtn").removeClass('hide-block'); }
  notify_load_recieveFriendRequest();
  notify_load_acceptFrndRequest();
  notify_load_requestLocalBranch();
@@ -162,10 +168,12 @@ function notify_myUserId_fix(){
 function notify_myUserId_release(){
  NOTIFY_MYUSERID=undefined;
  document.getElementById("notifyTesting_my_userId").disabled=false;
+ if(!$("#settings_userInfoBtn").hasClass('hide-block')){ $("#settings_userInfoBtn").addClass('hide-block'); }
  notify_reset_recieveFriendRequest();
  notify_reset_acceptFrndRequest();
  notify_reset_requestLocalBranch();
 }
+
 /* Receive Friend Request */
 function notify_load_recieveFriendRequest(){
  selopt_build_userIdList("notifyTesting_recieveFrndRequest_userId",NOTIFY_MYUSERID);
@@ -173,13 +181,41 @@ function notify_load_recieveFriendRequest(){
 function notify_reset_recieveFriendRequest(){
   selopt_reset_userIdList("notifyTesting_recieveFrndRequest_userId"); 
 }
+function notify_recieveFrndRequest_modal(){
+  var user_Id=document.getElementById("notifyTesting_recieveFrndRequest_userId").value;
+  var content='<div class="modal-dialog">';
+      content+='<div class="modal-content">';
+      content+='<div class="modal-header">';
+      content+='<button type="button" class="close" data-dismiss="modal">&times;</button>';
+      content+='<h4 class="modal-title">Notification Alert</h4>';
+      content+='</div>';
+      content+='<div class="modal-body">';
+      content+='<div class="container-fluid">';
+      content+='<div class="row">';
+      content+='<div class="col-xs-12">';
+      content+='<p>You will received Notification from USER-ID ('+user_Id+')</p><br/>';
+      content+='<a target="_blank" href="'+PROJECT_URL+'userInfo.jsp?AUTH_USER_ID='+user_Id+'">';
+      content+='<button class="btn btn-default pull-right">View User Information</button>';
+      content+='</a>';
+      content+='</div>';
+      content+='</div>';
+      content+='</div>';
+      content+='</div>';
+      content+='</div>';
+      content+='</div>';
+  document.getElementById("indexModal").innerHTML=content;
+  $('#indexModal').modal('show');
+}
 function notify_recieveFrndRequest_sendNotification(){
+  notify_recieveFrndRequest_modal();
   var from_userId=document.getElementById("notifyTesting_recieveFrndRequest_userId").value;
   js_ajax("GET",PROJECT_URL+'/userFriendsModule',
-  { action:'RECEIVE_USERFRIEND_REQUEST',from_userId:from_userId, to_userId:NOTIFY_MYUSERID },function(response){
+  { action:'RECEIVE_USERFRIEND_REQUEST',projectURL:PROJECT_WS_URL, from_userId:from_userId, to_userId:NOTIFY_MYUSERID },
+  function(response){
         console.log(response);
   });    
 }
+
 /* Accept Friend Request */
 function notify_load_acceptFrndRequest(){
  selopt_build_userIdList("notifyTesting_acceptFrndRequest_userId",NOTIFY_MYUSERID);
@@ -190,7 +226,8 @@ function notify_reset_acceptFrndRequest(){
 function notify_acceptFrndRequest_sendNotification(){
  var from_userId=document.getElementById("notifyTesting_acceptFrndRequest_userId").value;  
  js_ajax("GET",PROJECT_URL+'/userFriendsModule',
-  { action:'ACCEPT_USERFRIEND_REQUEST',from_userId:from_userId, to_userId:NOTIFY_MYUSERID },function(response){
+  { action:'ACCEPT_USERFRIEND_REQUEST', from_userId:from_userId, 
+      to_userId:NOTIFY_MYUSERID },function(response){
         console.log(response);
   });   
 }
@@ -220,7 +257,8 @@ function notify_requestLocalBranch_sendNotification(){
 </style>
 </head>
 <body>
-
+<div id="indexModal" class="modal fade" role="dialog"></div>
+    
  <div class="jumbotron text-center">
   <h1>My First Bootstrap Page</h1>
   <p>Resize this responsive page to see the effect!</p> 
@@ -228,8 +266,6 @@ function notify_requestLocalBranch_sendNotification(){
   
 <div class="container-fluid">
   <div class="row">
-      
-    <div class="col-sm-3"><%@include file="templates/temp_categories.jsp" %></div>
     
     <div class="col-sm-9">
       <div class="panel panel-primary">

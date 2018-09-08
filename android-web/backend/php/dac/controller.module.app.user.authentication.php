@@ -193,6 +193,36 @@ if(isset($_GET["action"])){
 	} else { echo 'MISSING_USER_ID'; } 
   }
   
+  /* Action Events used by Admin DashBoard ::: START */
+  else if($_GET["action"]==='GET_COUNT_USERIDLIST'){
+    $authObj = new user_authentication();
+	$query = $authObj->query_count_getUserIdList();
+	$dbObj = new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
+	$jsonData = $dbObj->getJSONData($query);
+	$dejsonData=json_decode($jsonData);
+	echo $dejsonData[0]->{'count(*)'};
+  }
+  else if($_GET["action"]==='GET_DATA_USERIDLIST'){
+   if(isset($_GET["limit_start"]) && isset($_GET["limit_end"])){
+    $limit_start = $_GET["limit_start"];
+	$limit_end = $_GET["limit_end"];
+    $authObj = new user_authentication();
+	$query = $authObj->query_data_getUserIdList($limit_start,$limit_end);
+	$dbObj = new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
+	echo $dbObj->getJSONData($query);
+   }
+  }
+  else if($_GET["action"]==='GET_DATA_USERINFORMATION'){
+    if(isset($_GET["user_Id"])){
+	  $user_Id=$_GET["user_Id"];
+	  $authObj = new user_authentication();
+	  $query=$authObj->query_getUserAccountInformation($user_Id);
+	  $dbObj = new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
+	  echo $dbObj->getJSONData($query);
+	} else {  echo 'MISSING_USER_ID'; }
+  }
+  /* Action Events used by Admin DashBoard ::: END */
+  
   else { echo 'NO_ACTION'; }
 } 
 else { echo 'MISSING_ACTION'; }

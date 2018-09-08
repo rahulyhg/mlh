@@ -13,12 +13,16 @@
           <option value="">Select User Id</option>
        </select>
     </div>
+    <div id="settings_userInfoBtn" class="form-group hide-block">
+       <button class="btn btn-default form-control" onclick="javascript:redirectURL_userInformation();"><b>User Information</b></button>
+     </div>
     <div class="form-group mtop15p">
       <div class="btn-group pull-right">
          <button class="btn btn-success" onclick="javascript:notify_myUserId_fix();"><b>Fix</b></button>
          <button class="btn btn-danger" onclick="javascript:notify_myUserId_release();"><b>Release</b></button>
       </div>
     </div>
+     
+    </div>
   </div>
-</div>
 <!-- Settings ::: END -->

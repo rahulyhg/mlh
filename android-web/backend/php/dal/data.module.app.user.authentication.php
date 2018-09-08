@@ -4,13 +4,13 @@ class user_authentication {
 
   function query_getuserInfoByPhoneNumber($countrycode, $phoneNumber){
   /* PAGES UTILIZED : auth-part-02.php */
-    $query01="SELECT user_Id FROM user_contact WHERE mcountrycode=\"".$countrycode."\" AND mobile=\"".$phoneNumber."\"";
+    $query01="SELECT user_Id FROM user_contacts WHERE mcountrycode=\"".$countrycode."\" AND mobile=\"".$phoneNumber."\"";
     $query02="SELECT user_account.user_Id, user_account.username, user_account.surName, user_account.name, user_account.dob,";
 	$query02.="user_account.gender, user_account.profile_pic, user_account.about_me, user_account.minlocation, ";
 	$query02.="user_account.location, user_account.state, user_account.country, user_account.created_On, ";
 	$query02.="user_account.isAdmin, user_account.user_tz, user_account.acc_active, ";
 	$query02.="(SELECT GROUP_CONCAT('{\"mcountrycode\":\"',".$countrycode.",'\",\"mobile\":\"',".$phoneNumber.",'\"') ";
-	$query02.="FROM user_contact WHERE user_contact.user_Id=(".$query01.")) As contactData ";
+	$query02.="FROM user_contacts WHERE user_contacts.user_Id=(".$query01.")) As contactData ";
 	$query02.="FROM user_account WHERE user_account.user_Id=(".$query01.");";
     return $query02;
   }
@@ -57,7 +57,7 @@ class user_authentication {
 	$sql.="VALUES ('".$user_Id."','".$username."','".$surName."','".$name."','";
 	$sql.=$dob."','".$gender."','".$profile_pic."','".$about_me."','".$minlocation."','".$location."','".$state."',";
 	$sql.="'".$country."','".$created_On."','".$isAdmin."','".$user_tz."','".$acc_active."');";
-	$sql.="INSERT INTO user_contact(contact_Id, user_Id, mcountrycode, mobile, mob_val) ";
+	$sql.="INSERT INTO user_contacts(contact_Id, user_Id, mcountrycode, mobile, mob_val) ";
 	$sql.="VALUES ('".$contact_Id."','".$user_Id."','".$mcountrycode."','".$mobile."','".$mob_val."');";
 	return $sql;
   }
@@ -76,6 +76,26 @@ class user_authentication {
   function query_getUserGeoLocation($user_Id){
     $sql="SELECT * FROM user_profile_geo WHERE user_Id='".$user_Id."';";
 	return $sql;
+  }
+    
+  function query_count_getUserIdList(){
+    $sql="SELECT count(*) FROM user_account;";
+	return $sql;
+  }
+  
+  function query_data_getUserIdList($limit_start,$limit_end){
+    $sql="SELECT user_Id FROM user_account LIMIT ".$limit_start.",".$limit_end.";";
+	return $sql;
+  }
+  
+  function query_getUserAccountInformation($user_Id){
+   $sql="SELECT user_Id, username, surName, name, dob, gender, profile_pic, about_me, minlocation, ";
+   $sql.="location, state, country, created_On, isAdmin, user_tz, acc_active, ";
+   $sql.="(SELECT CONCAT('[',GROUP_CONCAT('{\"mcountrycode\":\"',mcountrycode,'\",\"mobile\":\"',mobile,'\"}'),']') ";
+   $sql.="As contacts ";
+   $sql.="FROM user_contacts WHERE user_Id='".$user_Id."') As user_contacts ";
+   $sql.=" FROM user_account WHERE user_Id='".$user_Id."';";
+   return $sql;
   }
 }
 
