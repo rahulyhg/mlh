@@ -15,7 +15,9 @@
     <servlet>
         <servlet-name>CommunityProfessionalModule</servlet-name>
         <servlet-class>anups.dun.actions.CommunityProfessionalModule</servlet-class>
+        <load-on-startup>1</load-on-startup>  
     </servlet>
+    
     <servlet-mapping>
         <servlet-name>DomainModule</servlet-name>
         <url-pattern>/domainModule</url-pattern>
@@ -32,6 +34,9 @@
         <servlet-name>CommunityProfessionalModule</servlet-name>
         <url-pattern>/communityProfessionalModule</url-pattern>
     </servlet-mapping>
+    <listener>
+        <listener-class>anups.dun.actions.ApplicationStartupModule</listener-class>
+    </listener>
     <session-config>
         <session-timeout>
             30

@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package anups.dun.uils;
+package anups.dun.utils;
 
+import anups.dun.modules.user.friends.UserFriendsURL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -14,6 +15,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import org.apache.log4j.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -22,6 +24,7 @@ import org.json.simple.JSONObject;
  * @author N.L.N.Rao
  */
 public class Database {
+ public static final Logger logger = Logger.getLogger(Database.class);  
     // JDBC driver name and database URL
   private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
   private static final String DB_URL = "jdbc:mysql://192.168.1.4:3306/mlh_basic";

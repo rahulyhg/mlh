@@ -5,13 +5,17 @@
  */
 package anups.dun.modules.community.professional;
 
-import anups.dun.uils.Database;
+import anups.dun.actions.UserAuthenticationModule;
+import anups.dun.utils.Database;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author N.L.N.Rao
  */
 public class CommunityInformationService {
+ public static final Logger logger = Logger.getLogger(CommunityInformationService.class);
+ 
  public String service_getCommunityIdList(){
   String query=new CommunityInformationQueries().query_getCommunityIdList();
   return new Database().readDataFromQuery(query).toString();

@@ -5,11 +5,14 @@
  */
 package anups.dun.modules.user.authentication;
 
+import org.apache.log4j.Logger;
+
 /**
  *
  * @author N.L.N.Rao
  */
 public class UserInformationURL {
+  public static final Logger logger = Logger.getLogger(UserInformationURL.class); 
   private static final String URL="http://192.168.1.4/mlh/android-web/backend/php/dac/controller.module.app.user.authentication.php";
   
   public String url_count_getUserIdList(){

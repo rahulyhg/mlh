@@ -1,0 +1,10 @@
+2018-09-08 22:04:12 DEBUG ApplicationStartupModule:32 - Sample debug message
+2018-09-08 22:04:12 INFO  ApplicationStartupModule:33 - Sample info message
+2018-09-08 22:04:12 WARN  ApplicationStartupModule:34 - Sample warn message
+2018-09-08 22:04:12 ERROR ApplicationStartupModule:35 - Sample error message
+2018-09-08 22:04:12 FATAL ApplicationStartupModule:36 - Sample fatal message
+2018-09-08 22:04:20 DEBUG ApplicationStartupModule:32 - Sample debug message
+2018-09-08 22:04:20 INFO  ApplicationStartupModule:33 - Sample info message
+2018-09-08 22:04:20 WARN  ApplicationStartupModule:34 - Sample warn message
+2018-09-08 22:04:20 ERROR ApplicationStartupModule:35 - Sample error message
+2018-09-08 22:04:20 FATAL ApplicationStartupModule:36 - Sample fatal message

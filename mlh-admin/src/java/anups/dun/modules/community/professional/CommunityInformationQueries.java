@@ -5,16 +5,19 @@
  */
 package anups.dun.modules.community.professional;
 
+import anups.dun.actions.UserAuthenticationModule;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author N.L.N.Rao
  */
 public class CommunityInformationQueries {
-    
+public static final Logger logger = Logger.getLogger(CommunityInformationQueries.class);
+   
  public String query_getCommunityIdList(){
   StringBuilder query = new StringBuilder();
   query.append("SELECT union_Id FROM unionprof_account;");

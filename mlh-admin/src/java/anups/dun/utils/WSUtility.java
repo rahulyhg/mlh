@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package anups.dun.uils;
+package anups.dun.utils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,12 +11,14 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author N.L.N.Rao
  */
 public class WSUtility {
+  public static final Logger logger = Logger.getLogger(WSUtility.class); 
   private final String USER_AGENT = "Mozilla/5.0";
   public String httpGETRequest(String url) {
    StringBuilder response = new StringBuilder();

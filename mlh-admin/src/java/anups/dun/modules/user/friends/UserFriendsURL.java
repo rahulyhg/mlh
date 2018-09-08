@@ -5,11 +5,14 @@
  */
 package anups.dun.modules.user.friends;
 
+import org.apache.log4j.Logger;
+
 /**
  *
  * @author N.L.N.Rao
  */
 public class UserFriendsURL {
+ public static final Logger logger = Logger.getLogger(UserFriendsURL.class); 
   private static final String URL="http://192.168.1.4/mlh/android-web/backend/php/dac/controller.module.app.user.friends.php";
 
   public String url_recieveFriendrequestFromUser(String projectURL, String from_userId, String to_userId){

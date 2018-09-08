@@ -5,14 +5,17 @@
  */
 package anups.dun.modules.user.friends;
 
-import anups.dun.uils.WSUtility;
+import anups.dun.modules.user.authentication.UserInformationURL;
+import anups.dun.utils.WSUtility;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author N.L.N.Rao
  */
 public class UserFriendsService {
-    
+public static final Logger logger = Logger.getLogger(UserFriendsService.class); 
+     
  public String service_recieveFriendrequestFromUser(String projectURL, 
          String from_userId, String to_userId){
    UserFriendsURL userFriendsURL = new UserFriendsURL();

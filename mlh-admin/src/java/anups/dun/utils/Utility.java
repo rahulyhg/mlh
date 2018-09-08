@@ -3,18 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package anups.dun.uils;
+package anups.dun.utils;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author N.L.N.Rao
  */
 public class Utility {
+ public static final Logger logger = Logger.getLogger(Utility.class);  
   public String getProjectPath() throws UnsupportedEncodingException {
     String path = this.getClass().getClassLoader().getResource("").getPath();
     String fullPath = URLDecoder.decode(path, "UTF-8");

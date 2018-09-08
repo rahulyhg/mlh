@@ -6,8 +6,10 @@
 package anups.dun.modules.user.authentication;
 
 import anups.dun.modules.domain.DomainQueries;
-import anups.dun.uils.Database;
-import anups.dun.uils.WSUtility;
+import anups.dun.modules.domain.DomainService;
+import anups.dun.utils.Database;
+import anups.dun.utils.WSUtility;
+import org.apache.log4j.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -16,7 +18,7 @@ import org.json.simple.JSONObject;
  * @author N.L.N.Rao
  */
 public class UserInformationService {
-    
+ public static final Logger logger = Logger.getLogger(UserInformationService.class);   
   public String service_count_getUserIdList(){
    WSUtility wsUtility = new WSUtility();
    UserInformationURL userInformationURL = new UserInformationURL();
@@ -39,5 +41,9 @@ public class UserInformationService {
    String url = userInformationURL.url_data_getUserAccountInformation(user_Id);
    String response = wsUtility.httpGETRequest(url);
    return response;
+  }
+  
+  public static void main(String args[]){
+      System.out.println(System.getProperty("user.dir"));
   }
 }
