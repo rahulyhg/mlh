@@ -1,5 +1,6 @@
 <?php session_start();
-  if(isset($_SESSION["AUTH_USER_ID"])) {
+include_once 'templates/api/api_params.php';
+if(isset($_SESSION["AUTH_USER_ID"])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +23,6 @@
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/bg-styles-common.js"></script>
  <link rel="stylesheet" href="<?php echo $_SESSION["PROJECT_URL"]; ?>styles/api/hz-scrollableTabs.css">
  <?php include_once 'templates/api/api_js.php'; ?>
- <?php include_once 'templates/api/api_params.php'; ?>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/app-community-create-bg-styles.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/ui-templates.js"></script>
  <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
@@ -38,26 +38,15 @@
 .mbot15p { margin-bottom:15px; }
 </style>
 <script type="text/javascript">
-function hzTabSelection(id){
- var arryHzTab=["communityMemRequestsHzTab","communityDashboardHzTab","communityProfileHzTab","communityBranchHzTab","communityMemRolesHzTab",
-				"communityNewsFeedHzTab","communityMovementsHzTab","communityMembersHzTab","communitySupportersHzTab"];
- var arryTabDataViewer=["communityMemRequestsDisplayDivision","communityDashboardDisplayDivision","communityProfileDisplayDivision","communityBranchDisplayDivision","communityMemRolesDisplayDivision",
-						"communityNewsFeedDisplayDivision","communityMovementsDisplayDivision","communityMembersDisplayDivision","communitySupportersDisplayDivision"];
- hzTabSelector(id,arryHzTab,arryTabDataViewer);
- 
- if(id==="communityProfileHzTab"){
-  menuCommunityProfile("communityProfile_statistics");
- } 
- 
-}
 $(document).ready(function(){
+console.log("Loaded..");
 sideWrapperToggle();
 bgstyle();
 mainMenuSelection("dn_"+USR_LANG+"_mycommunity");
 $(".lang_"+USR_LANG).css('display','block');
 var union_Id='<?php if(isset($_GET["1"])){ echo $_GET["1"]; }?>';
 generateTabList();
-hzTabSelection('communityProfileHzTab');
+hzTabSelection('communityProfileHzTab','-320');
 loadCommunity_profile(union_Id);
 loadCommunity_newsFeed();
 loadCommunity_movement();
@@ -82,7 +71,7 @@ function loadCommunity_movement(){
 function loadCommunity_profile(union_Id){
 js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.community.professional.php',
 { action:'GETDATA_PROFESSIONAL_COMMUNITY', union_Id:union_Id },function(response){
-  console.log(response);
+  console.log("response: "+response);
   response=JSON.parse(response);
   var domain_Id=response[0].domain_Id;
   var domainName=response[0].domainName;
@@ -122,18 +111,30 @@ $('#joinAsMemberModal').modal();
 }
 
 function generateTabList(){ 
- var content='<ul class="nav scrollTablist" id="myTab" style="border-bottom:0px;">';
-	 content+='<li><a id="communityMemRequestsHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>Membership Requests</b></a></li>';
-	 content+='<li><a id="communityDashboardHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>Member Dashboard</b></a></li>';
-	 content+='<li><a id="communityProfileHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>Community Profile</b></a></li>';
-	 content+='<li><a id="communityBranchHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>Branches</b></a></li>';
-	 content+='<li><a id="communityMemRolesHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>Member Roles</b></a></li>';
-	 content+='<li><a id="communityNewsFeedHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>NewsFeed</b></a></li>';
-	 content+='<li><a id="communityMovementsHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>Movements</b></a></li>';
-	 content+='<li><a id="communityMembersHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>Members</b></a></li>';
-	 content+='<li><a id="communitySupportersHzTab" href="#" onclick="javascript:hzTabSelection(this.id);"><b>Subscribers</b></a></li>';
+ var content='<ul class="nav scrollTablist" id="communityProfileTab" style="border-bottom:0px;">';
+	 content+='<li><a id="communityMemRequestsHzTab" href="#" onclick="javascript:hzTabSelection(this.id,\'\');"><b>Membership Requests</b></a></li>';
+	 content+='<li><a id="communityDashboardHzTab" href="#" onclick="javascript:hzTabSelection(this.id,\'\');"><b>Member Dashboard</b></a></li>';
+	 content+='<li><a id="communityProfileHzTab" href="#" onclick="javascript:hzTabSelection(this.id,\'\');"><b>Community Profile</b></a></li>';
+	 content+='<li><a id="communityBranchHzTab" href="#" onclick="javascript:hzTabSelection(this.id,\'\');"><b>Branches</b></a></li>';
+	 content+='<li><a id="communityMemRolesHzTab" href="#" onclick="javascript:hzTabSelection(this.id,\'\');"><b>Member Roles</b></a></li>';
+	 content+='<li><a id="communityNewsFeedHzTab" href="#" onclick="javascript:hzTabSelection(this.id,\'\');"><b>NewsFeed</b></a></li>';
+	 content+='<li><a id="communityMovementsHzTab" href="#" onclick="javascript:hzTabSelection(this.id,\'\');"><b>Movements</b></a></li>';
+	 content+='<li><a id="communityMembersHzTab" href="#" onclick="javascript:hzTabSelection(this.id,\'\');"><b>Members</b></a></li>';
+	 content+='<li><a id="communitySupportersHzTab" href="#" onclick="javascript:hzTabSelection(this.id,\'\');"><b>Subscribers</b></a></li>';
 	 content+='</ul>'; 
   document.getElementById("communityProfileScrollableTab").innerHTML=content;
+}
+function hzTabSelection(id,orientation){
+ var arryHzTab=["communityMemRequestsHzTab","communityDashboardHzTab","communityProfileHzTab","communityBranchHzTab",
+                "communityMemRolesHzTab","communityNewsFeedHzTab","communityMovementsHzTab","communityMembersHzTab",
+				"communitySupportersHzTab"];
+ var arryTabDataViewer=["communityMemRequestsDisplayDivision","communityDashboardDisplayDivision","communityProfileDisplayDivision","communityBranchDisplayDivision","communityMemRolesDisplayDivision",
+						"communityNewsFeedDisplayDivision","communityMovementsDisplayDivision","communityMembersDisplayDivision","communitySupportersDisplayDivision"];
+ hzTabSelector(id,arryHzTab,arryTabDataViewer);
+ if(orientation.length>0){
+   $('#communityProfileTab').css('left',orientation+'px');
+ }
+ if(id==="communityProfileHzTab"){ menuCommunityProfile("communityProfile_statistics"); } 
 }
 </script>
 </head>
@@ -286,4 +287,4 @@ function generateTabList(){
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/hz-scrollableTabs.js"></script>
 </body>
 </html>
-<?php }?>
+<?php } else { header("Location: ".$_SESSION["PROJECT_URL"]); } ?>

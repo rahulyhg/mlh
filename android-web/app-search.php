@@ -1,4 +1,5 @@
 <?php session_start();
+include_once 'templates/api/api_params.php';
 if(isset($_SESSION["AUTH_USER_ID"])) {
  ?>
 <!DOCTYPE html>
@@ -28,7 +29,6 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
  .img-min-profilepic { margin-top:4%;margin-bottom:4%;width:70px;height:70px;border-radius: 50%; }
  .label-newsfeed { font-size: 10px;padding: 5px; }
  </style>
- <?php include_once 'templates/api/api_params.php'; ?>
 </head>
 <body>
  <?php include_once 'templates/api/api_loading.php'; ?>
