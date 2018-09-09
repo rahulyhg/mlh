@@ -2,7 +2,7 @@
 $(document).ready(function(){
 sideWrapperToggle();
 mainMenuSelection("dn_"+USR_LANG+"_newsfeed");
-bgstyle();
+bgstyle(3);
 $(".lang_"+USR_LANG).css('display','block');
 /* Set Session */
 var sessionJSON='{"session_set" : [ { "key" : "AUTHENTICATION_STATUS" , "value" : "COMPLETED" }],';

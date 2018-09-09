@@ -11,7 +11,7 @@ if($("#wrapper").hasClass('toggled')) { $("#wrapper").removeClass('toggled');}
 
 function mainMenuSelection(id){
   var arr_id=["dn_"+USR_LANG+"_adminDashboard","dn_"+USR_LANG+"_search","dn_"+USR_LANG+"_notifications","dn_"+USR_LANG+"_explore","dn_"+USR_LANG+"_newsfeed",
-			  "dn_"+USR_LANG+"_mylocalhook","dn_"+USR_LANG+"_platform","dn_"+USR_LANG+"_myprofile","dn_"+USR_LANG+"_mymessages",
+			  "dn_"+USR_LANG+"_mylocalhook","dn_"+USR_LANG+"_platform","dn_"+USR_LANG+"_socialHub","dn_"+USR_LANG+"_mymessages",
 			  "dn_"+USR_LANG+"_mycalendar","dn_"+USR_LANG+"_myfriends","dn_"+USR_LANG+"_mycommunity","dn_"+USR_LANG+"_mymovements",
 			  "dn_"+USR_LANG+"_findfriends","dn_"+USR_LANG+"_findcommunity","dn_"+USR_LANG+"_findmovements","dn_"+USR_LANG+"_logout"];
   // "dn_settings"
@@ -75,9 +75,9 @@ function mainMenuSelection(id){
 			</a>
 		</li>
 		<li>
-			<a id="dn_english_myprofile" href="<?php echo $_SESSION["PROJECT_URL"]?>app/myprofile" onclick="javascript:mainMenuSelection(this.id);">
+			<a id="dn_english_socialHub" href="<?php echo $_SESSION["PROJECT_URL"]?>app/socialHub" onclick="javascript:mainMenuSelection(this.id);">
 				<div class="f14">
-				   <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;<b>My Profile</b>
+				   <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;<b>Social Hub</b>
 				</div>
 			</a>
 		</li>

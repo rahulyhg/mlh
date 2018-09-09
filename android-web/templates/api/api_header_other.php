@@ -12,7 +12,7 @@ function sideMenuToggle(){
 		</a>
 		<div class="container-fluid" style="padding-left:0px;padding-right:0px;">
 		
-		<div id="div_app_logo" class="col-md-2 col-sm-4 col-xs-5" style="padding-left:0px;"></div>
+		<div id="div_app_logo" class="col-md-2 col-sm-4 col-xs-10" style="padding-left:0px;"></div>
 		
 	  </div>
    </div>

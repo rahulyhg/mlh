@@ -1,8 +1,7 @@
 var CURRENT_DARK_COLOR;
 var CURRENT_LIGHT_COLOR;
-function bgstyle() {
+function bgstyle(number) {
  //var number=Math.floor((Math.random()*3)+1);
- var number=3;
       if(number===1){ bgstyle1(); } /* Yellow */ /* This works as an Interface */
  else if(number===2){ bgstyle2(); } /* Red */  /* This works as an Interface */
  else if(number===3){ bgstyle3(); } /* Blue */  /* This works as an Interface */

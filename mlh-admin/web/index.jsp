@@ -299,6 +299,5 @@ function notify_requestLocalBranch_sendNotification(){
     </div>
   </div>
 </div>
-</div>
 </body>
 </html>

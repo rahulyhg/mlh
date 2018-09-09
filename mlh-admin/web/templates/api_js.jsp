@@ -1,4 +1,4 @@
-<%@page import="anups.dun.uils.Utility"%>
+<%@page import="anups.dun.utils.Utility"%>
 <% StringBuffer url = request.getRequestURL();
 String uri = request.getRequestURI();
 String ctx = request.getContextPath();

@@ -30,8 +30,6 @@ if($_SESSION["AUTHENTICATION_STATUS"]=='INCOMPLETED'){
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/bg-styles-common.js"></script>
  <style>
  body { background-color:#0ba0da; }
- @font-face { font-family: "mlhfont001";src: url("fonts/BAUHS93.TTF"); }
- @font-face { font-family: "mlhfont002";src: url("fonts/Boogaloo-Regular.otf"); }
  </style>
 <script type="text/javascript">
 var Android;

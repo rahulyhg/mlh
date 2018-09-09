@@ -30,7 +30,7 @@ body { background-color:#eee; }
 </style>
 <script type="text/javascript">
 $(document).ready(function(){ 
-  bgstyle();
+  bgstyle(3);
   $(".lang_"+USR_LANG).css('display','block');
   startAppProgressLoader();
   mainTab_userProfile();

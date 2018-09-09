@@ -20,7 +20,10 @@ public static final Logger logger = Logger.getLogger(UserFriendsService.class);
          String from_userId, String to_userId){
    UserFriendsURL userFriendsURL = new UserFriendsURL();
    String url = userFriendsURL.url_recieveFriendrequestFromUser(projectURL, from_userId, to_userId);
-   return new WSUtility().httpGETRequest(url);
+   logger.info("URL: "+url);
+   String response = new WSUtility().httpGETRequest(url);
+   logger.info("response: "+response);
+   return response;
  } 
  
  public String service_acceptFriendrequest(String from_userId, String to_userId){

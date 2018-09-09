@@ -2,7 +2,7 @@ $(document).ready(function(){
 console.log("Search Keyword: "+SEARCH_KEYWORD);
  sideWrapperToggle();
  mainMenuSelection("dn_"+USR_LANG+"_search");
- bgstyle();
+ bgstyle(3);
  $(".lang_"+USR_LANG).css('display','block');
  hzTabSelection('searchPeopleHzTab');
  searchpeopleInitializer();

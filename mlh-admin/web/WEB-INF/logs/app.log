@@ -8,3 +8,12 @@
 2018-09-08 22:04:20 WARN  ApplicationStartupModule:34 - Sample warn message
 2018-09-08 22:04:20 ERROR ApplicationStartupModule:35 - Sample error message
 2018-09-08 22:04:20 FATAL ApplicationStartupModule:36 - Sample fatal message
+2018-09-08 22:31:38 INFO  UserFriendsService:23 - URL: http://192.168.1.4/mlh/android-web/backend/php/dac/controller.module.app.user.friends.php?action=SEND_USERFRND_REQUESTS&projectURL=http://localhost/mlh/android-web/&from_user_Id=USR113561617186&to_user_Id=USR924357814934
+2018-09-08 22:31:39 INFO  UserFriendsService:25 - response: Success
+2018-09-08 22:31:39 INFO  UserFriendsModule:38 - Test
+2018-09-08 22:31:50 INFO  UserFriendsService:23 - URL: http://192.168.1.4/mlh/android-web/backend/php/dac/controller.module.app.user.friends.php?action=SEND_USERFRND_REQUESTS&projectURL=http://localhost/mlh/android-web/&from_user_Id=USR255798352927&to_user_Id=USR924357814934
+2018-09-08 22:31:50 INFO  UserFriendsService:25 - response: Success
+2018-09-08 22:31:50 INFO  UserFriendsModule:38 - Test
+2018-09-08 22:33:07 INFO  UserFriendsService:23 - URL: http://192.168.1.4/mlh/android-web/backend/php/dac/controller.module.app.user.friends.php?action=SEND_USERFRND_REQUESTS&projectURL=http://localhost/mlh/android-web/&from_user_Id=USR461726196865&to_user_Id=USR924357814934
+2018-09-08 22:33:07 INFO  UserFriendsService:25 - response: Success
+2018-09-08 22:33:07 INFO  UserFriendsModule:38 - Test

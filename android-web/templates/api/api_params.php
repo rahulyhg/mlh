@@ -2,6 +2,14 @@
 if(!isset($_SESSION["PROJECT_URL"])){ $_SESSION["PROJECT_URL"]="http://".$_SERVER["HTTP_HOST"]."/mlh/android-web/"; }
 if(!isset($_SESSION["PROJECT_MODE"])){ $_SESSION["PROJECT_MODE"]='DEBUG'; }
 ?>
+<style>
+@font-face { font-family: "mlhfont001";src: url("fonts/BAUHS93.TTF"); }
+@font-face { font-family: "mlhfont002";src: url("fonts/Boogaloo-Regular.otf"); }
+@font-face { font-family: "mlhfont003";src: url("fonts/kurale-regular.otf"); }
+@font-face { font-family: "mlhfont004";src: url("fonts/Acratica.otf"); }
+@font-face { font-family: "mlhfont005";src: url("fonts/madpakke.otf"); }
+@font-face { font-family: "mlhfont006";src: url("fonts/decalled.ttf"); }
+</style>
 <script type="text/javascript">
  /* Android Javascript Interface Objects */
  var Android;
