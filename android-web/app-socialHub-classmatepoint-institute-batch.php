@@ -38,12 +38,13 @@ function generateTabList(){
  var content='<ul class="nav scrollTablist" id="socialhubclassmatepointTab" style="border-bottom:0px;">';
 	 content+='<li><a id="cpointBatchProfileHzTab" href="#" onclick="javascript:hzTabSelection(this.id,\'\');"><b>Batch Profile</b></a></li>';
 	 content+='<li><a id="cpointMembersHzTab" href="#" onclick="javascript:hzTabSelection(this.id,\'\');"><b>Members</b></a></li>';
+	 content+='<li><a id="cpointMemberRequestHzTab" href="#" onclick="javascript:hzTabSelection(this.id,\'\');"><b>Member Request</b></a></li>';
 	 content+='</ul>'; 
   document.getElementById("socialHubClassmatePointScrollableTab").innerHTML=content;
 }
 function hzTabSelection(id,orientation){
- var arryHzTab=["cpointBatchProfileHzTab","cpointMembersHzTab"];
- var arryTabDataViewer=["cpointBatchProfileDisplayDivision","cpointMembersDisplayDivision"];
+ var arryHzTab=["cpointBatchProfileHzTab","cpointMembersHzTab","cpointMemberRequestHzTab"];
+ var arryTabDataViewer=["cpointBatchProfileDisplayDivision","cpointMembersDisplayDivision","cpointMemberRequestDisplayDivision"];
  hzTabSelector(id,arryHzTab,arryTabDataViewer);
  if(orientation.length>0){
    $('#communityProfileTab').css('left',orientation+'px');
@@ -99,10 +100,13 @@ function hzTabSelection(id,orientation){
  <div id="cpointBatchProfileDisplayDivision" class="hide-block">
   <?php include_once 'templates/pages/app-socialhub/classmatepoint/batch/batch-profile-view.php'; ?>
  </div>  
- 
- 
+
  <div id="cpointMembersDisplayDivision" class="hide-block">
    <?php include_once 'templates/pages/app-socialhub/classmatepoint/batch/members-view.php';  ?>
+ </div>
+ 
+ <div id="cpointMemberRequestDisplayDivision" class="hide-block">
+   <?php include_once 'templates/pages/app-socialhub/classmatepoint/batch/members-request.php';  ?>
  </div>
  <!-- END -->
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/hz-scrollableTabs.js"></script>

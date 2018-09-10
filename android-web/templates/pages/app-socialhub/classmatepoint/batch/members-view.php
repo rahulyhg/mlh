@@ -4,10 +4,7 @@
     <!-- -->
 	<div class="list-group">
 	<div class="list-group-item pad0">
-	  <div class="container-fluid mbot15p">
-	  <div class="row">
-	    <div class="col-xs-12 mbot15p"></div>
-	  </div>
+	  <div class="container-fluid mtop15p mbot15p">
 	  <div class="row">
 	  <div align="center" class="col-xs-5">
 	    <img src="<?php echo $_SESSION["PROJECT_URL"]; ?>images/logo-blue.jpg" class="profile_pic_img3"/>
@@ -24,10 +21,7 @@
 	
 	<div class="list-group">
 	<div class="list-group-item pad0">
-	  <div class="container-fluid mbot15p">
-	  <div class="row">
-	    <div class="col-xs-12 mbot15p"></div>
-	  </div>
+	  <div class="container-fluid mtop15p mbot15p">
 	  <div class="row">
 	  <div align="center" class="col-xs-5">
 	    <img src="<?php echo $_SESSION["PROJECT_URL"]; ?>images/logo-blue.jpg" class="profile_pic_img3"/>
