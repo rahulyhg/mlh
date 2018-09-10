@@ -47,6 +47,22 @@
 </div>
  
 <div class="container-fluid">
+<div class="col-xs-12 hide-block">
+<button class="btn custom-bg pull-right"><b>Send Join Request</b></button>
+</div>
+<div class="col-xs-12">
+<div class="btn-group pull-right">
+<button class="btn custom-font btn-default"><b><i class="fa fa-check"></i>&nbsp;You are Member</b></button>
+<a class="a-custom" href="<?php echo $_SESSION["PROJECT_URL"]; ?>app/socialHub/classmatepoint/institute/batchchat/12345">
+<button class="btn custom-bg">
+<b><i class="fa fa-envelope"></i>&nbsp;Join Chat</b>
+</button>
+</a>
+</div>
+</div>
+</div>
+
+<div class="container-fluid mtop15p">
 <div class="row">
 <div class="col-xs-12">
 

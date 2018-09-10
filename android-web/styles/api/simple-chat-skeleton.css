@@ -1,0 +1,39 @@
+body { font-size:12px;}
+blockquote { margin-top:1%;font-size:14px;font-weight:bold; }
+blockquote { border-left-color:#000; }
+blockquote footer { color:#000; }
+.blockquote-reverse { border-right-color:#000; }
+.blockquote-reverse footer { color:#000; }
+.chat-input-fixed-bottom { position: fixed;right: 0;left: 0;z-index: 1030;bottom: 0;margin-bottom: 0;border-width: 1px 0 0; }
+#screen { position: relative;overflow-y: scroll; }
+.appchat_logo { width:100px;margin-top:10px; }
+#message { height:54px;max-height:54px;overflow-y:scroll; }
+.emojionearea { height:53px; }
+.emojionearea-editor, .emojionearea .emojionearea-editor { height:54px; }
+.emojionearea:not(.emojionearea-inline) .emojionearea-editor { min-height:50px; }
+.emojionearea .emojionearea-editor { max-height:50px; } 
+#chat_msg_settings { display:none; }
+.scrollbar::-webkit-scrollbar-track, .emojionearea-scroll-area::-webkit-scrollbar-track { -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);background-color: #F5F5F5; }
+.scrollbar::-webkit-scrollbar, .emojionearea-scroll-area::-webkit-scrollbar { width: 6px; background-color: #F5F5F5; }
+.scrollbar::-webkit-scrollbar-thumb, .emojionearea-scroll-area::-webkit-scrollbar-thumb { background-color: #000000; }
+.modal { top:0; }
+.modal-dialog { top:175; }
+.emojionearea,.emojionearea-picker,.emojionearea-picker-position-top,.emojionearea-filters-position-top { z-index:6000; }
+#toreply_msg { border:1px solid #e5e5e5;max-height: 100px;overflow-y: scroll;margin-bottom:10px; }
+#toreply_msg::-webkit-scrollbar-track { -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);background-color: #F5F5F5; }
+#toreply_msg::-webkit-scrollbar { width: 6px; background-color: #F5F5F5; }
+#toreply_msg::-webkit-scrollbar-thumb { background-color: #ccc;}
+.pad-l5 { padding-left:5px; }
+.pad-r5 { padding-right:5px; }
+.jumbotron { margin-bottom:5px;margin-top:5px;margin-left:5px;margin-right:5px;padding-top: 10px;padding-bottom: 0px;
+  padding-left:5px;padding-right:5px; border-radius:5px; }
+.jumbotron p { font-size:12px; }
+.jumbotron-red { background-color:#f44336;color:#fff; }
+.jumbotron-silver { background-color:#dcd1d0;color:#000; }
+.jumbotron-me { background-color:#fff;color:#000; }
+.jumbotron-time1 { color:#ddd; }
+.jumbotron-time2,.jumbotron-timeme { color:#504c4c; }
+.mtop5 { margin-top:5px; }
+.mbot15 { margin-bottom:10px; }
+.curpoint { cursor:pointer; }
+.imgb1 { border:1px solid #ccc; }

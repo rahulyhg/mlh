@@ -30,7 +30,7 @@ RewriteRule app/socialHub/classmatepoint/institution/home/([^/]+)$ app-socialHub
 RewriteRule app/socialHub/classmatepoint/institute/home/([^/]+)$ app-socialHub-classmatepoint-institute-home.php [NC,L]
 RewriteRule app/socialHub/classmatepoint/institute/batches/([^/]+)$ app-socialHub-classmatepoint-institute-batchList.php [NC,L]
 RewriteRule app/socialHub/classmatepoint/institute/batch/([^/]+)/([^/]+)$ app-socialHub-classmatepoint-institute-batch.php [NC,L]
-
+RewriteRule app/socialHub/classmatepoint/institute/batchchat/([^/]+)$ app-socialHub-classmatepoint-institute-batch-chat.php [NC,L]
 # User Profile - app/user/<userId>
 # CommunityProfile - app/community/<union_Id>
 # Movement Profile - app/movement/<move_Id>

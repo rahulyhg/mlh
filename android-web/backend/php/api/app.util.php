@@ -8,8 +8,7 @@
 
 class Utils
 {
-    function randomNumber($size)
-    {
+    function randomNumber($size){
         $num="";
         for($index=0;$index<$size;$index++) {
             $num.=rand(1,9);
