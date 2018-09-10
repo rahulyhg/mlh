@@ -29,30 +29,9 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
  <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script-->
 <script type="text/javascript">
 $(document).ready(function(){
- sideWrapperToggle();
- mainMenuSelection("dn_"+USR_LANG+"_socialHub");
  bgstyle(2);
  $(".lang_"+USR_LANG).css('display','block');
- generateTabList();
- hzTabSelection('cpointUniversityHzTab','');
 });
-function generateTabList(){ 
- var content='<ul class="nav scrollTablist" id="socialhubclassmatepointTab" style="border-bottom:0px;">';
-	 content+='<li><a id="cpointUniversityHzTab" href="#" onclick="javascript:hzTabSelection(this.id,\'\');"><b>University</b></a></li>';
-	 content+='<li><a id="cpointCollegesHzTab" href="#" onclick="javascript:hzTabSelection(this.id,\'\');"><b>Undergraduate Colleges</b></a></li>';
-	 content+='<li><a id="cpointSchoolsHzTab" href="#" onclick="javascript:hzTabSelection(this.id,\'\');"><b>Schools</b></a></li>';
-	 content+='</ul>'; 
-  document.getElementById("socialHubClassmatePointScrollableTab").innerHTML=content;
-}
-function hzTabSelection(id,orientation){
- var arryHzTab=["cpointUniversityHzTab","cpointCollegesHzTab","cpointSchoolsHzTab"];
- var arryTabDataViewer=["cpointUniversityDisplayDivision","cpointCollegesDisplayDivision","cpointSchoolsDisplayDivision"];
- hzTabSelector(id,arryHzTab,arryTabDataViewer);
- if(orientation.length>0){
-   $('#communityProfileTab').css('left',orientation+'px');
- }
-// if(id==="communityProfileHzTab"){ menuCommunityProfile("communityProfile_statistics"); } 
-}
 </script>
 <style>
 .classmatepoint_div,.fansclub_div,.publicparliament_div { margin-top:5px;background-color:#fff;padding-top:2px;
@@ -68,21 +47,14 @@ function hzTabSelection(id,orientation){
 </head>
 <body>
  <?php include_once 'templates/api/api_loading.php'; ?>
- <div id="wrapper" class="toggled">
- <!-- Core Skeleton : Side and Top Menu -->
- <div id="sidebar-wrapper">
- <?php include_once 'templates/api/api_sidewrapper.php'; ?>
- </div>
- <div id="page-content-wrapper">
- <?php include_once 'templates/api/api_header_simple.php'; ?>
- <div id="app-page-content">
  <!-- START -->
  <style>
 
  </style>
+ <?php include_once 'templates/api/api_header_simple.php'; ?>
  <script type="text/javascript">
  $(document).ready(function(){
-   load_breadcrumb();
+  // load_breadcrumb();
  });
  function load_breadcrumb(){
    var content='<a href="'+PROJECT_URL+'app/socialHub/home" style="color:'+CURRENT_DARK_COLOR+';">Social Hub</a> / ';
@@ -91,17 +63,24 @@ function hzTabSelection(id,orientation){
        content+='<a href="'+PROJECT_URL+'app/socialHub/classmatepoint/institute/home/12345" style="color:'+CURRENT_DARK_COLOR+';">Sri Indu Institute of Engineering and Technology</a> / ';
        content+='<a href="#" class="active" style="color:#797777;"><b>Batches</b></a>'; 
   document.getElementById("load_page_breadcrumb").innerHTML=content;
+  if($('#load_page_breadcrumb').hasClass('hide-block')){ $('#load_page_breadcrumb').removeClass('hide-block'); }
  }
  </script>
+ <div id="load_page_breadcrumb" class="custom-breadcrumb hide-block"></div>
  
- <div id="load_page_breadcrumb" class="custom-breadcrumb"></div>
- 
- <div class="list-group" style="margin-bottom:0px;">
- <div align="center" class="list-group-item pad0" style="border-radius:0px;background-color:#e7e7e7;">
+  
+ <div align="center" class="container-fluid">
+ <div class="row">
+ <div class="col-xs-12 custom-lgt-bg">
+ <div class="mtop5p mbot5p" style="line-height:22px;"><b>Sri Indu Institute of Engineering and Technology</b></div>
+ </div>
+ </div>
+ <div class="row">
+ <div class="col-xs-12" style="background-color:#e7e7e7;">
  <div class="mtop5p mbot5p" style="line-height:22px;"><b>B.Tech in Electrical and Electronics Engineering</b></div>
  </div>
  </div>
-  
+ </div>
  <!--div class="container-fluid mtop15p mbot15p">
  <div class="row">
  <div class="col-xs-12"><button class="btn custom-lgt-bg pull-right"><b>(+)&nbsp;Create a Batch</b></button></div>
@@ -112,6 +91,7 @@ function hzTabSelection(id,orientation){
    <div class="row">
  <div class="col-xs-12">
     <!-- -->
+	<a class="a-custom" href="<?php echo $_SESSION["PROJECT_URL"]; ?>app/socialHub/classmatepoint/institute/batch/12345/12345">
 	<div class="list-group">
 	<div class="list-group-item pad0">
 	  <div class="container-fluid mtop15p mbot15p">
@@ -142,16 +122,14 @@ function hzTabSelection(id,orientation){
 	  </div>
 	</div>
 	</div>
-	</div>
+	</a>
+ </div>
 	
 	<!-- -->
  </div> 
  </div>
  
  <!-- END -->
- </div>
- </div>
- </div>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/hz-scrollableTabs.js"></script>
 </body>
 <?php } else { header("Location: ".$_SESSION["PROJECT_URL"]); } ?>

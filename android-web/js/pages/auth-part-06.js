@@ -1,5 +1,5 @@
 $(document).ready(function(){
- bgstyle();
+ bgstyle(3);
  $(".lang_"+USR_LANG).css('display','block');
  getListOfCategories();
 });

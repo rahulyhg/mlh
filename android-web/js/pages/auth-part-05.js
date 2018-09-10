@@ -2,7 +2,7 @@ var AVATAR_URL;
 var IMG_URL;
 
 $(document).ready(function(){
- bgstyle();
+ bgstyle(3);
  $(".lang_"+USR_LANG).css('display','block');
  sel_tmpl('tmpl_button');
  cloudservers_auth(); // Get CloudName from Cloudinary

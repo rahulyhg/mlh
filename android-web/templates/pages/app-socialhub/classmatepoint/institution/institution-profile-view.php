@@ -147,22 +147,6 @@ Description on University
 </div>
 
 
-
-<div class="list-group">
-<div class="list-group-item pad0">
-<div class="container-fluid">
-<div class="row">
-<div align="center" class="col-xs-6" style="border-right:1px solid #e7e7e7;">
-<h5><b>University</b></h5>
-</div>
-<div align="center" class="col-xs-6">
-<h5><b>Department</b></h5>
-</div>
-</div>
-</div>
-</div>
-</div>
-
 <div class="container-fluid">
 <div class="row">
 <div class="col-xs-12">
@@ -246,26 +230,3 @@ Description on the list of Student Wings
 </div>
 </div>
 
-<div class="container-fluid">
-<div class="row">
-<div class="col-xs-12">
-
-<div class="list-group">
-<div class="list-group-item pad0">
-<div class="container-fluid">
-<div class="col-xs-8" style="border-right:1px solid #e7e7e7;">
-<h5 style="line-height:20px;"><b>Electrical and Electronic Engineering</b></h5>
-</div>
-<div align="center" class="col-xs-4">
-<div>
-<h5><b>MEMBERS</b></h5>
-</div>
-<div><h5><b>1235678</b></h5></div>
-</div>
-</div>
-</div>
-</div>
-
-</div>
-</div>
-</div>

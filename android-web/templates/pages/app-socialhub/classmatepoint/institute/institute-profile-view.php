@@ -4,7 +4,7 @@
      <img src="<?php echo $_SESSION["PROJECT_URL"]; ?>images/logo-yellow.jpg" class="mtop15p profile_pic_img"/>
    </div>
    <div align="center" class="col-xs-12 mtop15p">
-     <h5><b>OSMANIA UNIVERSITY</b></h5>
+     <h5 style="line-height:22px;"><b>Sri Indu Institute of Engineering and Technology</b></h5>
    </div>
   </div>
  </div>

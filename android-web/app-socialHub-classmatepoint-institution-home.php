@@ -29,8 +29,6 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
  <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script-->
 <script type="text/javascript">
 $(document).ready(function(){
- sideWrapperToggle();
- mainMenuSelection("dn_"+USR_LANG+"_socialHub");
  bgstyle(2);
  $(".lang_"+USR_LANG).css('display','block');
  generateTabList();
@@ -68,28 +66,21 @@ function hzTabSelection(id,orientation){
 </head>
 <body>
  <?php include_once 'templates/api/api_loading.php'; ?>
- <div id="wrapper" class="toggled">
- <!-- Core Skeleton : Side and Top Menu -->
- <div id="sidebar-wrapper">
- <?php include_once 'templates/api/api_sidewrapper.php'; ?>
- </div>
- <div id="page-content-wrapper">
- <?php include_once 'templates/api/api_header_simple.php'; ?>
- <div id="app-page-content">
  
  <script type="text/javascript">
  $(document).ready(function(){
-   load_breadcrumb();
+  // load_breadcrumb();
  });
  function load_breadcrumb(){
    var content='<a href="'+PROJECT_URL+'app/socialHub/home" style="color:'+CURRENT_DARK_COLOR+';">Social Hub</a> / ';
        content+='<a href="'+PROJECT_URL+'app/socialHub/classmatepoint/home" style="color:'+CURRENT_DARK_COLOR+';">Classmate Point</a> / ';
        content+='<a href="#" class="active" style="color:#797777;">Osmania University</a> ';
    document.getElementById("load_page_breadcrumb").innerHTML=content;
+   if($('#load_page_breadcrumb').hasClass('hide-block')){ $('#load_page_breadcrumb').removeClass('hide-block'); }
  }
  </script>
- 
- <div id="load_page_breadcrumb" class="custom-breadcrumb"></div>
+ <?php include_once 'templates/api/api_header_simple.php'; ?>
+ <div id="load_page_breadcrumb" class="custom-breadcrumb hide-block"></div>
 
  <!-- START -->  
  <div class="container-fluid">
@@ -117,9 +108,6 @@ function hzTabSelection(id,orientation){
    <?php include_once 'templates/pages/app-socialhub/classmatepoint/institution/listOfCourses-view.php';  ?>
  </div>
  <!-- END -->
- </div>
- </div>
- </div>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/hz-scrollableTabs.js"></script>
 </body>
 <?php } else { header("Location: ".$_SESSION["PROJECT_URL"]); } ?>

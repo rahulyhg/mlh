@@ -30,6 +30,7 @@ $(document).ready(function(){
 function goBackPreviousURL(){
 window.history.back();
 }
+// href="#load_page_breadcrumb"
 </script>
 <nav id="header_bot" class="navbar" style="margin-bottom:0px;border-radius:0px;">
 	<div id="applogo-header" onclick="javascript:goBackPreviousURL();">
@@ -38,6 +39,7 @@ window.history.back();
 		</a>
 		<div class="container-fluid" style="padding-left:0px;padding-right:0px;">
 		  <div id="div_app_logo" class="col-md-2 col-sm-4 col-xs-10" style="padding-left:0px;"></div> 
+		  
 	    </div>
     </div>
 </nav>
