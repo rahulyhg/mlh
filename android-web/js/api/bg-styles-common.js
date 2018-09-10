@@ -15,10 +15,12 @@ function bgstyle_bodyBgLight1(){
 function bgstyle_common1() {
  CURRENT_DARK_COLOR="#e88800";
  CURRENT_LIGHT_COLOR="#ffc068";
- $("#header_bot").css("background-color","#e88800");
- $(".custom-font").css("color","#e88800");
+ $("#header_bot").css("background-color",CURRENT_DARK_COLOR);
+ $(".custom-font").css("color",CURRENT_DARK_COLOR);
  
- $(".custom-bg,.btn-custom-bg,.slider-handle").css("background-color","#e88800");
+ $(".custom-breadcrumb>a").css("color",CURRENT_DARK_COLOR);
+  
+ $(".custom-bg,.btn-custom-bg,.slider-handle").css("background-color",CURRENT_DARK_COLOR);
  $(".custom-bg,.btn-custom-bg").css("color","#fff");
  $(".custom-bg,.btn-custom-bg").css("font-weight","bold");
  
@@ -65,6 +67,8 @@ function bgstyle_common2() {
  CURRENT_LIGHT_COLOR="#ffb0a3";
  $("#header_bot").css("background-color","#e72e10");
  $(".custom-font").css("color","#e72e10");
+ 
+ $(".custom-breadcrumb>a").css("color",CURRENT_DARK_COLOR);
  
  $(".custom-bg,.btn-custom-bg,.slider-handle").css("background-color","#e72e10");
  $(".custom-bg,.btn-custom-bg").css("color","#fff");
@@ -113,6 +117,7 @@ function bgstyle_common3() {
  CURRENT_LIGHT_COLOR="#aad9ff";
  $("#header_bot").css("background-color","#0ba0da");
  $(".custom-font").css("color","#0ba0da");
+ $(".custom-breadcrumb>a").css("color",CURRENT_DARK_COLOR);
  
  $(".custom-bg,.btn-custom-bg,.slider-handle").css("background-color","#0ba0da");
  $(".custom-bg,.btn-custom-bg").css("color","#fff");

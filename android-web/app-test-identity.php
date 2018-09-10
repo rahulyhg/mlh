@@ -17,6 +17,8 @@
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/db.identity.js"></script>
  <script type="text/javascript">
    $(document).ready(function(){
+      var data=JSON.stringify(window.history);
+      document.getElementById("testDiv").innerHTML=data;
       console.log("unionprof_account_Id : "+newsfeed_info_Id()+" length: "+newsfeed_info_Id().length);
 	  console.log("newsfeed_move_Id : "+newsfeed_move_Id()+" length: "+newsfeed_move_Id().length);
 	  console.log("newsfeed_user_fav_Id : "+newsfeed_user_fav_Id()+" length: "+newsfeed_user_fav_Id().length);
@@ -36,6 +38,7 @@
  </script>
 </head>
 <body>
-
+<a href="http://localhost/mlh/android-web/app-test-identity.php"><button>Test</button></a>
+<div id="testDiv"></div>
 </body>
 </html>

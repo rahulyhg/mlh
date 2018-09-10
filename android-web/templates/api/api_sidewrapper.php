@@ -75,7 +75,7 @@ function mainMenuSelection(id){
 			</a>
 		</li>
 		<li>
-			<a id="dn_english_socialHub" href="<?php echo $_SESSION["PROJECT_URL"]?>app/socialHub" onclick="javascript:mainMenuSelection(this.id);">
+			<a id="dn_english_socialHub" href="<?php echo $_SESSION["PROJECT_URL"]?>app/socialHub/home" onclick="javascript:mainMenuSelection(this.id);">
 				<div class="f14">
 				   <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;<b>Social Hub</b>
 				</div>

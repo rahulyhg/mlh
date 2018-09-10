@@ -16,6 +16,15 @@
   <p>Resize this responsive page to see the effect!</p> 
 </div>
   
+  <section class="carousel price_carousel">   <!--Price section -->
+<div class="wrapper" >
+  <ul  class="list">
+    <li>TEXT TEXT </li>
+    <li>TEXT TEXT TEXT TEXT TEXT</li>
+    <li>TEXT TEXT TEXT TEXT TEXT</li>
+ </ul>
+ </div>
+ 
 <div class="container">
   <div class="row">
     <div class="col-sm-4">

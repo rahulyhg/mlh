@@ -23,7 +23,7 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/bg-styles-common.js"></script>
  <link rel="stylesheet" href="<?php echo $_SESSION["PROJECT_URL"]; ?>styles/api/hz-scrollableTabs.css">
  <?php include_once 'templates/api/api_js.php'; ?>
- <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/app-socialhub-bg-styles.js"></script>
+ <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/app-socialhub-classmatepoint-bg-styles.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/ui-templates.js"></script>
  <!--link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
  <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script-->
@@ -33,7 +33,25 @@ $(document).ready(function(){
  mainMenuSelection("dn_"+USR_LANG+"_socialHub");
  bgstyle(2);
  $(".lang_"+USR_LANG).css('display','block');
+ generateTabList();
+ hzTabSelection('cpointInstituteProfileHzTab','');
 });
+function generateTabList(){ 
+ var content='<ul class="nav scrollTablist" id="socialhubclassmatepointTab" style="border-bottom:0px;">';
+	 content+='<li><a id="cpointInstituteProfileHzTab" href="#" onclick="javascript:hzTabSelection(this.id,\'\');"><b>Institute Profile</b></a></li>';
+	 content+='<li><a id="cpointClassroomsHzTab" href="#" onclick="javascript:hzTabSelection(this.id,\'\');"><b>Classrooms</b></a></li>';
+	 content+='</ul>'; 
+  document.getElementById("socialHubClassmatePointScrollableTab").innerHTML=content;
+}
+function hzTabSelection(id,orientation){
+ var arryHzTab=["cpointInstituteProfileHzTab","cpointClassroomsHzTab"];
+ var arryTabDataViewer=["cpointInstituteProfileDisplayDivision","cpointClassroomsDisplayDivision"];
+ hzTabSelector(id,arryHzTab,arryTabDataViewer);
+ if(orientation.length>0){
+   $('#communityProfileTab').css('left',orientation+'px');
+ }
+// if(id==="communityProfileHzTab"){ menuCommunityProfile("communityProfile_statistics"); } 
+}
 </script>
 <style>
 .classmatepoint_div,.fansclub_div,.publicparliament_div { margin-top:5px;background-color:#fff;padding-top:2px;
@@ -55,78 +73,43 @@ $(document).ready(function(){
  <?php include_once 'templates/api/api_sidewrapper.php'; ?>
  </div>
  <div id="page-content-wrapper">
- <?php include_once 'templates/api/api_header_other.php'; ?>
+ <?php include_once 'templates/api/api_header_simple.php'; ?>
  <div id="app-page-content">
- <!-- START -->
- <div class="list-group">
- <div class="list-group-item" style="background-color:#e7e7e7;border-radius:0px;">
- <div><span style="font-size:16px;"><b>Social Hub</b></span> is a platform to connect and interact 
- with people and participate in Activities.</div>
- </div>
- </div>
+ <!-- START -->  
+ <script type="text/javascript">
+ $(document).ready(function(){
+   load_breadcrumb();
+ });
+ function load_breadcrumb(){
+   var content='<a href="'+PROJECT_URL+'app/socialHub/home" style="color:'+CURRENT_DARK_COLOR+';">Social Hub</a> / ';
+       content+='<a href="'+PROJECT_URL+'app/socialHub/classmatepoint/home" style="color:'+CURRENT_DARK_COLOR+';">Classmate Point</a> / ';
+       content+='<a href="'+PROJECT_URL+'app/socialHub/classmatepoint/institution/home/12345" style="color:'+CURRENT_DARK_COLOR+';">Osmania University</a> / ';
+       content+='<a href="#" class="active" style="color:#797777;">Sri Indu Institute of Engineering and Technology</a>';
+   document.getElementById("load_page_breadcrumb").innerHTML=content;
+ }
+ </script>
+ 
+ <div id="load_page_breadcrumb" class="custom-breadcrumb"></div>
+
  <div class="container-fluid">
- <div class="row">
- <div class="col-xs-12">
- <a class="a-custom" href="<?php echo $_SESSION["PROJECT_URL"]; ?>app/socialHub/classmatepoint/home">
- <div class="list-group">
- <div class="list-group-item pad0">
- <div class="container-fluid">
- <div class="row">
- <div align="center" class="col-xs-12">
- <div class="classmatepoint_div mtop15p mbot15p">
- <span class="classmatepoint_font01">Classmate</span><span class="classmatepoint_font02">point</span>
+ <div class="scroller-divison row">
+  <div class="scroller scroller-left col-xs-1" style="height:41px;">
+    <i class="glyphicon glyphicon-chevron-left"></i>
+  </div>
+  <div id="socialHubClassmatePointScrollableTab" class="scrollTabwrapper col-xs-10"></div>
+  <div class="scroller scroller-right col-xs-1" style="height:41px;">
+	<i class="glyphicon glyphicon-chevron-right"></i>
+  </div>
  </div>
  </div>
- </div>
- </div>
- </div>
- <div class="list-group-item">
- It is a point where you can find your classmates, stay connected and share the Activities. 
- </div>
- </div>
- </a>
- </div> 
- </div>
- <div class="row">
- <div class="col-xs-12">
- <div class="list-group">
- <div class="list-group-item pad0">
- <div class="container-fluid">
- <div class="row">
- <div align="center" class="col-xs-12">
- <div class="fansclub_div mtop15p mbot15p">
- <span class="fansclub_font01">fans</span><span class="fansclub_font02"><i>club</i></span>
- </div>
- </div>
- </div>
- </div>
- </div>
- <div class="list-group-item">
- It is a club where you can club with co-fans and participate in Activities.
- </div>
- </div>
- </div> 
- </div>
- <div class="row">
- <div class="col-xs-12">
- <div class="list-group">
- <div class="list-group-item pad0">
- <div class="container-fluid">
- <div class="row">
- <div align="center" class="col-xs-12">
- <div class="publicparliament_div publicparliament_font mtop15p mbot15p">
- <span class="publicparliament_color01">Public</span><span class="publicparliament_color02">Parliament</span>
- </div>
- </div>
- </div>
- </div>
- </div>
- <div class="list-group-item">
- It is a platform where public can interact and participate in Political Activities.
- </div>
- </div>
- </div> 
- </div>
+
+ <div id="cpointInstituteProfileDisplayDivision" class="hide-block">
+  <?php include_once 'templates/pages/app-socialhub/classmatepoint/institute/institute-profile-view.php'; ?>
+ </div>  
+ 
+ 
+ <div id="cpointClassroomsDisplayDivision" class="hide-block">
+   <?php include_once 'templates/pages/app-socialhub/classmatepoint/institute/listOfClassrooms-view.php';  ?>
  </div>
  <!-- END -->
  </div>

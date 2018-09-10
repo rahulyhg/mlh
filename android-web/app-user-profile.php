@@ -23,7 +23,7 @@
  <script src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyBLYTwBBtnRDyew0qLZTjCJp0mgR5koP5A"></script>
  <?php include_once 'templates/api/api_params.php'; ?>
 <script type="text/javascript">
-var APP_USERPROFILE_ID='<?php  if(isset($_GET["user_Id"])) { echo $_GET["user_Id"]; } ?>';
+var APP_USERPROFILE_ID='<?php  if(isset($_GET["1"])) { echo $_GET["1"]; } ?>';
 </script>
 <style>
 body { background-color:#eee; }
@@ -64,8 +64,8 @@ function mainTab_userMovements(){ hzTabSelection("usrMovementHzTab");movement_co
 				<ul class="nav nav-tabs scrollTablist" id="myTab" style="border-bottom:0px;">
 				  <li><a id="usrProfileHzTab" href="#" onclick="javascript:mainTab_userProfile();"><b>User Profile</b></a></li>
 				  <li><a id="usrSubscriptionHzTab" href="#" onclick="javascript:mainTab_userSubscription();"><b>User Subscriptions</b></a></li>
-				 <?php if(isset($_GET["user_Id"]) && isset($_SESSION["AUTH_USER_ID"])){
-					   if($_GET["user_Id"]==$_SESSION["AUTH_USER_ID"]){
+				 <?php if(isset($_GET["1"]) && isset($_SESSION["AUTH_USER_ID"])){
+					   if($_GET["1"]==$_SESSION["AUTH_USER_ID"]){
 				 ?>
  				  <li><a id="usrFriendsHzTab" href="#" onclick="javascript:mainTab_userMyFriends();"><b>User Friends</b></a></li>
 				 <?php } } ?>
