@@ -22,11 +22,7 @@ public class AndroidLogger {
 	  Logger log = Logger.getLogger(clazz);
 	  try {
      	//   log.setLevel(Level.ERROR);
-	    String filePath=BusinessConstants.EXTERNALMEMORYPATH+"/"+"mylocalhook";
-	    if(BusinessConstants.EXTERNALMEMORYPATH==null){
-		   filePath=BusinessConstants.INTERNALMEMORYPATH+"/"+"mylocalhook";
-	    }
-        
+	    String filePath=BusinessConstants.INTERNALMEMORYPATH+"/"+"mylocalhook";
         logConfigurator.setFileName(filePath+"/logs/log.txt");
         logConfigurator.setRootLevel(Level.ALL);
         logConfigurator.setLevel("org.apache", Level.ALL);

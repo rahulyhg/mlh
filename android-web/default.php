@@ -41,32 +41,27 @@ $(document).ready(function(){
 });
 
 function makeOutPermissions(){
- var permissionPage=false;
- if(AndroidPermissions!==undefined){
- var arryPerm=["android.permission.WRITE_EXTERNAL_STORAGE","android.permission.READ_EXTERNAL_STORAGE",
-			  "android.permission.READ_CONTACTS","android.permission.WRITE_CONTACTS","android.permission.CAMERA",
-			  "android.permission.INTERNET","android.permission.ACCESS_NETWORK_STATE",
-		      "android.permission.ACCESS_WIFI_STATE","android.permission.ACCESS_COARSE_LOCATION",
-			  "android.permission.ACCESS_FINE_LOCATION"]; 
- try {
-   AndroidPermissions.makeAPermission(arryPerm.toString());
- } catch(err) { alert("MakeAPermission: "+err); }
- for(var index=0;index<arryPerm.length;index++){
-    try {
-     if(AndroidPermissions.doesPermissionExist(arryPerm[index])===false){ 
-	   permissionPage=true;
-	   break; 
-	 }
-	} catch(err) { alert("DoesPermissionExist: "+err); }
- }
- }
- if(!permissionPage){ 
-   if(Android!==undefined){
-      Android.loadAndroidWebScreen(PROJECT_URL+'initializer/start');
-   }else {
-      window.location.href=PROJECT_URL+'initializer/start';
-   }   
- }
+ var url=PROJECT_URL+'initializer/start';
+ if(Android!==undefined && AndroidPermissions!==undefined){
+  if(Android.getAndroidVersion()>=23){
+    var arryPerm=["android.permission.WRITE_EXTERNAL_STORAGE","android.permission.READ_EXTERNAL_STORAGE",
+			      "android.permission.READ_CONTACTS","android.permission.WRITE_CONTACTS","android.permission.CAMERA",
+			      "android.permission.INTERNET","android.permission.ACCESS_NETWORK_STATE",
+		          "android.permission.ACCESS_WIFI_STATE","android.permission.ACCESS_COARSE_LOCATION",
+			      "android.permission.ACCESS_FINE_LOCATION"]; 
+	var permissionPage=false;
+    for(var index=0;index<arryPerm.length;index++){
+       try {
+         if(AndroidPermissions.doesPermissionExist(arryPerm[index])===false){ 
+	        permissionPage=true;break; 
+	     }
+	   } catch(err) { alert("DoesPermissionExist: "+err); }
+    }
+	Android.showToast("permissionPage: "+permissionPage);
+	if(!permissionPage){ Android.loadAndroidWebScreen(url);  }
+	else {  AndroidPermissions.makeAPermission(arryPerm.toString()); }
+  }	 else { window.location.href=url; }		  
+ } else { window.location.href=url; }	
 }
 </script>
 </head>

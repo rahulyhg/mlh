@@ -7,8 +7,32 @@ $idObj=new Identity();
 if(isset($_GET["action"])) {
 /* DATABASE - mlh_basic
  * TABLES */
+      /* Table - (1) cmp_batch_account ::: batch_Id (25) */
+	  if($_GET["action"]=='CLSMTEPORT_BATCH_ACCOUNT') { echo $idObj->cmp_batch_account_id(); }
+	  /* Table - (2) cmp_batch_members ::: member_Id (15) */
+ else if($_GET["action"]=='CLSMTEPORT_BATCH_MEMBERS') { echo $idObj->cmp_batch_members_id(); }
+      /* Table - (3) cmp_batch_mem_chat ::: chat_Id (25) */
+ else if($_GET["action"]=='CLSMTEPORT_BATCH_CHAT') { echo $idObj->cmp_batch_mem_chat_id(); }
+      /* Table - (4) cmp_batch_mem_req ::: request_Id (15) */	
+ else if($_GET["action"]=='CLSMTEPORT_BATCH_MEM_REQ') { echo $idObj->cmp_batch_mem_req_id(); }
+      /* Table - (5) cmp_sch_account ::: cmp_sch_Id (15) */
+ else if($_GET["action"]=='CLSMTEPORT_SCH_ACCOUNT') { echo $idObj->cmp_sch_account_id(); }
+      /* Table - (6) cmp_sch_coursemap ::: cmp_map_Id (25) */
+ else if($_GET["action"]=='CLSMTEPORT_SCH_COURSEMAP') { echo $idObj->cmp_sch_coursemap_id(); }
+	  /* Table - (7) cmp_uni_account ::: cmp_u_Id (15) */
+ else if($_GET["action"]=='CLSMTEPORT_UNI_ACCOUNT') { echo $idObj->cmp_uni_account_id(); }
+	  /* Table - (8) cmp_uni_courses ::: cmp_course_Id (15) */
+ else if($_GET["action"]=='CLSMTEPORT_UNI_COURSES') { echo $idObj->cmp_uni_courses_id(); }
+	  /* Table - (9) ent_fc_account ::: celeb_Id (15) */
+ else if($_GET["action"]=='ENT_FANCLUB_ACCOUNT') { echo $idObj->ent_fc_account_id(); }
+	  /* Table - (10) ent_fc_aw ::: 	artOfWork_Id (35) */
+ else if($_GET["action"]=='ENT_FANCLUB_ARTWORK') { echo $idObj->ent_fc_aw_id(); }
+	  /* Table - (11) ent_fc_occmap ::: occMap_Id (25) */
+ else if($_GET["action"]=='ENT_FANCLUB_OCCMAP') { echo $idObj->ent_fc_occmap_id(); }
+	  /* Table - (12) ent_occupations ::: occupation_Id (25) */
+ else if($_GET["action"]=='ENT_FANCLUB_OCCUPATIONS') { echo $idObj->ent_occupations_id(); }
 	  /* Table - (1) move_info ::: move_Id */
-      if($_GET["action"]=='MOVE_INFO') { echo $idObj->move_info_id(); } 
+ else if($_GET["action"]=='MOVE_INFO') { echo $idObj->move_info_id(); } 
 	  /* Table - (2) move_sign ::: sign_Id */
  else if($_GET["action"]=='MOVE_SIGN') { echo $idObj->move_sign_id(); }   
 	  /* Table - (3) move_views ::: view_Id */

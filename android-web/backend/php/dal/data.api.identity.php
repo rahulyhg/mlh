@@ -3,6 +3,66 @@
 class DataIdentity {
 /* DATABASE - mlh_basic
  * TABLES */
+ /* Table - (1) cmp_batch_account ::: batch_Id (25) */
+ function query_checkId_cmp_batch_account($id) {
+  $selectQuery="SELECT count(*) FROM cmp_batch_account WHERE batch_Id='".$id."';";
+  return $selectQuery;
+ }
+ /* Table - (2) cmp_batch_members ::: member_Id (15) */
+ function query_checkId_cmp_batch_members($id) {
+  $selectQuery="SELECT count(*) FROM cmp_batch_members WHERE member_Id='".$id."';";
+  return $selectQuery;
+ }
+ /* Table - (3) cmp_batch_mem_chat ::: chat_Id (25) */
+ function query_checkId_cmp_batch_mem_chat($id) {
+  $selectQuery="SELECT count(*) FROM cmp_batch_mem_chat WHERE chat_Id='".$id."';";
+  return $selectQuery;
+ }
+ /* Table - (4) cmp_batch_mem_req ::: request_Id (15) */
+ function query_checkId_cmp_batch_mem_req($id) {
+  $selectQuery="SELECT count(*) FROM cmp_batch_mem_req WHERE request_Id='".$id."';";
+  return $selectQuery;
+ }
+ /* Table - (5) cmp_sch_account ::: cmp_sch_Id (15) */
+ function query_checkId_cmp_sch_account($id) {
+  $selectQuery="SELECT count(*) FROM cmp_sch_account WHERE cmp_sch_Id='".$id."';";
+  return $selectQuery;
+ }
+ /* Table - (6) cmp_sch_coursemap ::: cmp_map_Id (25) */
+ function query_checkId_cmp_sch_coursemap($id) {
+  $selectQuery="SELECT count(*) FROM cmp_sch_coursemap WHERE cmp_map_Id='".$id."';";
+  return $selectQuery;
+ }
+ /* Table - (7) cmp_uni_account ::: cmp_u_Id (15) */
+ function query_checkId_cmp_uni_account($id) {
+  $selectQuery="SELECT count(*) FROM cmp_uni_account WHERE cmp_u_Id='".$id."';";
+  return $selectQuery;
+ }
+ /* Table - (8) cmp_uni_courses ::: cmp_course_Id (15) */
+ function query_checkId_cmp_uni_courses($id) {
+  $selectQuery="SELECT count(*) FROM cmp_uni_courses WHERE cmp_course_Id='".$id."';";
+  return $selectQuery;
+ }
+ /* Table - (9) ent_fc_account ::: celeb_Id (15) */
+ function query_checkId_ent_fc_account($id) {
+  $selectQuery="SELECT count(*) FROM ent_fc_account WHERE celeb_Id='".$id."';";
+  return $selectQuery;
+ }
+ /* Table - (10) ent_fc_aw ::: 	artOfWork_Id (35) */
+ function query_checkId_ent_fc_aw($id) {
+  $selectQuery="SELECT count(*) FROM ent_fc_aw WHERE artOfWork_Id='".$id."';";
+  return $selectQuery;
+ }
+ /* Table - (11) ent_fc_occmap ::: occMap_Id (25) */
+ function query_checkId_ent_fc_occmap($id) {
+  $selectQuery="SELECT count(*) FROM ent_fc_occmap WHERE occMap_Id='".$id."';";
+  return $selectQuery;
+ }
+ /* Table - (12) ent_occupations ::: occupation_Id (25) */
+ function query_checkId_ent_occupations($id) {
+  $selectQuery="SELECT count(*) FROM ent_occupations WHERE occupation_Id='".$id."';";
+  return $selectQuery;
+ }
  /* Table - (1) move_info ::: move_Id */
  function query_checkId_move_info($id) {
   $selectQuery="SELECT count(*) FROM move_info WHERE move_Id='".$id."';";
@@ -112,7 +172,6 @@ class DataIdentity {
   return $selectQuery;
  }
  /* Table - (24) unionprof_profile_geo ::: union_Id (SAME ID of unionprof_account is being used) */
- 
  /* Table - (25) unionprof_sup ::: support_Id */
  function query_checkId_unionprof_sup($id) {
   $selectQuery="SELECT count(*) FROM unionprof_sup WHERE support_Id='".$id."';";

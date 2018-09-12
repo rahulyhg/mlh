@@ -19,6 +19,8 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/core-skeleton.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/bootstrap.min.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/jquery-ui.js"></script>
+ <script type="text/javascript" src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/croppie.js"></script>
+ <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/file-upload.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/load-data-on-scroll.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/bg-styles-common.js"></script>
  <link rel="stylesheet" href="<?php echo $_SESSION["PROJECT_URL"]; ?>styles/api/hz-scrollableTabs.css">
@@ -28,9 +30,12 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
  <!--link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
  <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script-->
 <script type="text/javascript">
+var IMG_URL;
 $(document).ready(function(){
  bgstyle(2);
  $(".lang_"+USR_LANG).css('display','block');
+ cloudservers_auth(); // Get CloudName from Cloudinary
+ upload_picture_100X100('createInstitution_profilepic_div',PROJECT_URL+'images/icons/0.png');
 });
 </script>
 <style>
@@ -51,7 +56,7 @@ $(document).ready(function(){
  <!-- START -->
  <script type="text/javascript">
  $(document).ready(function(){
-  // load_breadcrumb();
+  
  });
  function load_breadcrumb(){
    var content='<a href="'+PROJECT_URL+'app/socialHub/home" style="color:'+CURRENT_DARK_COLOR+';">Social Hub</a> / ';
@@ -65,42 +70,82 @@ $(document).ready(function(){
  
  <div class="container-fluid mtop10p">
      <div class="col-xs-12">
-	    <h5 class="uppercase"><b>Create Institution</b></h5><hr/>
+	    <h4><b>Create Institution</b></h4><hr/>
 	 </div>
+	 
+	 <div id="createInstitution_profilepic_div" align="center" class="col-xs-12 mbot50p"></div>
+	 
 	 <div class="col-xs-12">
+	 
 	   <div class="form-group">
 	     <label>Institution Board</label>
-		 <select class="form-control">
+		 <select id="createInstitution_institutionBoard" class="form-control">
 		   <option value="">Select Institution Board</option>
 		   <option value="">University Board</option>
 		   <option value="">College Board</option>
 		   <option value="">SSC Board</option>
 		 </select>
 	   </div>
-	   <div class="form-group">
-	     <label>Institution Name</label>
-		 <input type="text" class="form-control" placeholder="Enter Institution Name"/>
-	   </div>
-	   <div class="form-group">
-	     <label>Established Year</label>
-		 <select class="form-control">
-		   <option value="">Select Established Year</option>
-		 </select>
-	   </div>
+	   
 	   <div class="form-group">
 	     <label>Institution Type</label>
-		 <select class="form-control">
+		 <select id="createInstitution_institutionType" class="form-control">
 		   <option value="">Select Institution Type</option>
 		   <option value="">Public</option>
 		   <option value="">Private</option>
 		 </select>
 	   </div>
+	   
+	   <div class="form-group">
+	     <label>Institution Name</label>
+		 <input id="createInstitution_institutionName" type="text" class="form-control" placeholder="Enter Institution Name"/>
+	   </div>
+	   
+	   <div class="form-group">
+	     <label>Established Year</label>
+		 <select id="createInstitution_establishedYear" class="form-control">
+		   <option value="">Select Established Year</option>
+		 </select>
+	   </div>
+	   
 	   <div class="form-group">
 	     <label>About Institution</label>
-		 <textarea class="form-control" style="height:120px;" placeholder="Description on Institution"></textarea>
+		 <textarea id="createInstitution_aboutInstitution" class="form-control" style="height:120px;" placeholder="Description on Institution"></textarea>
 	   </div>
+<script type="text/javascript">
+var foundersView=1;
+function addFounder(){
+ foundersView++;
+ var content='<input id="createInstitution_founderName'+foundersView+'" class="form-control mtop10p" ';
+     content+='placeholder="Enter Founder Name # '+foundersView+'"/>';
+     content+='<div id="addFounders_div'+(foundersView+1)+'"></div>';
+ document.getElementById("addFounders_div"+foundersView).innerHTML=content;
+if(foundersView==5){ if(!$('#addFoundersBttn').hasClass('hide-block')){ $('#addFoundersBttn').addClass('hide-block'); } }
+}
+function createInstitution(){
+  var institutionBoard = document.getElementById("createInstitution_institutionBoard").value;
+  var institutionType = document.getElementById("createInstitution_institutionType").value;
+  var institutionName = document.getElementById("createInstitution_institutionName").value;
+  var establishedYear = document.getElementById("createInstitution_establishedYear").value;
+  var aboutInstitution = document.getElementById("createInstitution_aboutInstitution").value;
+  var founderName1 = document.getElementById("createInstitution_founderName1").value;
+  var founderName2 = document.getElementById("createInstitution_founderName2").value;
+  var founderName3 = document.getElementById("createInstitution_founderName3").value;
+  var founderName4 = document.getElementById("createInstitution_founderName4").value;
+  var founderName5 = document.getElementById("createInstitution_founderName5").value;
+  
+}
+</script>   
 	   <div class="form-group">
-		 <button class="btn custom-bg form-control"><b>Create Institution</b></button>
+	     <label>Founder Name</label>
+		 <input id="createInstitution_founderName1" class="form-control" placeholder="Enter Founder Name # 1"/>
+		 <div id="addFounders_div2"></div>
+		 <button id="addFoundersBttn" class="btn btn-default mtop15p mbot15p custom-font pull-right" 
+		  onclick="javascript:addFounder();"><b>(+) Add Founder</b></button>
+	   </div>
+	   
+	   <div class="form-group">
+		   <button class="btn custom-bg form-control" onclick="javascript:createInstitution();"><b>Create Institution</b></button>
 	   </div>
 	 </div>
  </div>

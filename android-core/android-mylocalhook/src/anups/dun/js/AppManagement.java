@@ -92,6 +92,11 @@ public class AppManagement extends ActionBarActivity {
 	}
 	
 	@JavascriptInterface
+	public int getAndroidVersion(){
+	  return android.os.Build.VERSION.SDK_INT;
+	}
+	
+	@JavascriptInterface
 	public String getUserMobileGPSPosition(){
 		GPSTracker gpsTracker = new GPSTracker(mContext);
 		StringBuilder jsonData = new StringBuilder();

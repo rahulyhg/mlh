@@ -131,10 +131,7 @@ public  class AndroidWebScreen extends Activity  {
     }
 
 public void createProjectPath(AppSessionManagement appSessionManagement){
-  String filePath=BusinessConstants.EXTERNALMEMORYPATH+"/"+"mylocalhook";
-  if(BusinessConstants.EXTERNALMEMORYPATH==null){
-      filePath=BusinessConstants.INTERNALMEMORYPATH+"/"+"mylocalhook";
-  }
+  String filePath=BusinessConstants.INTERNALMEMORYPATH+"/"+"mylocalhook";
   File externalDir = new File(filePath);
   if(!externalDir.exists()) { externalDir.mkdir();  }
   
@@ -235,11 +232,11 @@ protected void onCreate(Bundle savedInstanceState) {
  requestWindowFeature(Window.FEATURE_NO_TITLE);
  setContentView(R.layout.activity_androidwebscreen);
 
- AppManagement appManagement = new AppManagement(this.getApplicationContext());
+ AppManagement appManagement = new AppManagement(this);
  AppPermissions appPermissions = new AppPermissions(this);
- AppNotifyManagement appNotifyManagement = new AppNotifyManagement(this.getApplicationContext());
- AppSessionManagement appSessionManagement = new AppSessionManagement(this.getApplicationContext());
- AppSQLiteManagement appSQLiteManagement = new AppSQLiteManagement(this.getApplicationContext());
+ AppNotifyManagement appNotifyManagement = new AppNotifyManagement(this);
+ AppSessionManagement appSessionManagement = new AppSessionManagement(this);
+ AppSQLiteManagement appSQLiteManagement = new AppSQLiteManagement(this);
  
  AppSQLiteUsrFrndsContactsInfo appSQLiteUsrFrndsInfo = new AppSQLiteUsrFrndsContactsInfo(this.getApplicationContext());
  
@@ -248,21 +245,21 @@ protected void onCreate(Bundle savedInstanceState) {
    createProjectPath(appSessionManagement);
  }
 
-  try {
+  // try {
 	  
     /* Creating Database Schema If it is not created */
-    Database database =Database.getInstance(this);
-    SQLiteDatabase sqLiteDatabase = database.connectDatabase();
-    		database.onCreate(sqLiteDatabase);
-    		database.getListOfTablesInDatabase(sqLiteDatabase);
-    sqLiteDatabase.close();
-    database.close();
+  //  Database database =Database.getInstance(this);
+ //   SQLiteDatabase sqLiteDatabase = database.connectDatabase();
+  //  		database.onCreate(sqLiteDatabase);
+  //  		database.getListOfTablesInDatabase(sqLiteDatabase);
+  //  sqLiteDatabase.close();
+  //  database.close();
     
    /* Contacts */
    // new WSUserFrndsContacts(this).execute("");
  
- }
- catch(Exception e){ logger.error("Exception: "+e.getMessage()); }
+// }
+// catch(Exception e){ logger.error("Exception: "+e.getMessage()); }
  
  
  
@@ -331,7 +328,6 @@ protected void onCreate(Bundle savedInstanceState) {
         	
         	 if(data!=null){
         		directURL = data.toString();
-        		
         	}
         	 logger.info("intent: "+intent);
         	 logger.info("extras: "+extras);

@@ -90,6 +90,11 @@ footer { bottom: 0;width: 100%;height: 30px; }
 .mbot15p {margin-bottom:15px;}
 .mbot20p { margin-bottom:20px; }
 .mbot30p { margin-bottom:30px; }
+.mbot35p { margin-bottom:35px; }
+.mbot40p { margin-bottom:40px; }
+.mbot45p { margin-bottom:45px; }
+.mbot50p { margin-bottom:50px; }
+
 .a { text-decoration:none; }
 .a-custom,.a-custom:hover,.a-custom:focus { text-decoration:none;color:#000; }
 .curpoint { cursor:pointer; }

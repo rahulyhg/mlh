@@ -14,8 +14,202 @@ class Identity {
    else { $output='ID_NOT_EXIST'; }
    return $output;
  }
-/* DATABASE - mlh_basic
+/* DATABASE - mlh_basic 
  * TABLES */
+ /* Table - (1) cmp_batch_account ::: batch_Id (25) */
+ function id_cmp_batch_account($id) {
+   $dataObj=new DataIdentity();
+   $selectQuery=$dataObj->query_checkId_cmp_batch_account($id);
+   $idObj = new Identity();
+   return $idObj->mlhbasic_tbl_PrimaryId_status($selectQuery);
+ }
+ function cmp_batch_account_id() {
+  $num="CBA";
+  for($index=0;$index<22;$index++) { $num.=rand(1,9); }
+  /* Check Exists or not, If not exist return */
+  $checkObj=new Identity();
+  $output=$checkObj->id_cmp_batch_account($num);
+  if($output==='ID_ALREADY_EXIST') { cmp_batch_account_id(); } 
+  else { return $num; }
+ }
+ /* Table - (2) cmp_batch_members ::: member_Id (15) */
+ function id_cmp_batch_members($id) {
+   $dataObj=new DataIdentity();
+   $selectQuery=$dataObj->query_checkId_cmp_batch_members($id);
+   $idObj = new Identity();
+   return $idObj->mlhbasic_tbl_PrimaryId_status($selectQuery);
+ }
+ function cmp_batch_members_id() {
+  $num="BMI";
+  for($index=0;$index<12;$index++) { $num.=rand(1,9); }
+  /* Check Exists or not, If not exist return */
+  $checkObj=new Identity();
+  $output=$checkObj->id_cmp_batch_members($num);
+  if($output==='ID_ALREADY_EXIST') { cmp_batch_members_id(); } 
+  else { return $num; }
+ }
+ /* Table - (3) cmp_batch_mem_chat ::: chat_Id (25) */
+ function id_cmp_batch_mem_chat($id) {
+   $dataObj=new DataIdentity();
+   $selectQuery=$dataObj->query_checkId_cmp_batch_mem_chat($id);
+   $idObj = new Identity();
+   return $idObj->mlhbasic_tbl_PrimaryId_status($selectQuery);
+ }
+ function cmp_batch_mem_chat_id() {
+  $num="BMC";
+  for($index=0;$index<22;$index++) { $num.=rand(1,9); }
+  /* Check Exists or not, If not exist return */
+  $checkObj=new Identity();
+  $output=$checkObj->id_cmp_batch_mem_chat($num);
+  if($output==='ID_ALREADY_EXIST') { cmp_batch_mem_chat_id(); } 
+  else { return $num; }
+ }
+ /* Table - (4) cmp_batch_mem_req ::: request_Id (15) */
+ function id_cmp_batch_mem_req($id) {
+   $dataObj=new DataIdentity();
+   $selectQuery=$dataObj->query_checkId_cmp_batch_mem_req($id);
+   $idObj = new Identity();
+   return $idObj->mlhbasic_tbl_PrimaryId_status($selectQuery);
+ }
+ function cmp_batch_mem_req_id() {
+  $num="BMR";
+  for($index=0;$index<12;$index++) { $num.=rand(1,9); }
+  /* Check Exists or not, If not exist return */
+  $checkObj=new Identity();
+  $output=$checkObj->id_cmp_batch_mem_req($num);
+  if($output==='ID_ALREADY_EXIST') { cmp_batch_mem_req_id(); } 
+  else { return $num; }
+ }
+ /* Table - (5) cmp_sch_account ::: cmp_sch_Id (15) */
+ function id_cmp_sch_account($id) {
+   $dataObj=new DataIdentity();
+   $selectQuery=$dataObj->query_checkId_cmp_sch_account($id);
+   $idObj = new Identity();
+   return $idObj->mlhbasic_tbl_PrimaryId_status($selectQuery);
+ }
+ function cmp_sch_account_id() {
+  $num="SA";
+  for($index=0;$index<13;$index++) { $num.=rand(1,9); }
+  /* Check Exists or not, If not exist return */
+  $checkObj=new Identity();
+  $output=$checkObj->id_cmp_sch_account($num);
+  if($output==='ID_ALREADY_EXIST') { cmp_sch_account_id(); } 
+  else { return $num; }
+ }
+ /* Table - (6) cmp_sch_coursemap ::: cmp_map_Id (25) */
+ function id_cmp_sch_coursemap($id) {
+   $dataObj=new DataIdentity();
+   $selectQuery=$dataObj->query_checkId_cmp_sch_coursemap($id);
+   $idObj = new Identity();
+   return $idObj->mlhbasic_tbl_PrimaryId_status($selectQuery);
+ }
+ function cmp_sch_coursemap_id() {
+  $num="SAC";
+  for($index=0;$index<22;$index++) { $num.=rand(1,9); }
+  /* Check Exists or not, If not exist return */
+  $checkObj=new Identity();
+  $output=$checkObj->id_cmp_sch_coursemap($num);
+  if($output==='ID_ALREADY_EXIST') { cmp_sch_coursemap_id(); } 
+  else { return $num; }
+ }
+ /* Table - (7) cmp_uni_account ::: cmp_u_Id (15) */
+ function id_cmp_uni_account($id) {
+   $dataObj=new DataIdentity();
+   $selectQuery=$dataObj->query_checkId_cmp_uni_account($id);
+   $idObj = new Identity();
+   return $idObj->mlhbasic_tbl_PrimaryId_status($selectQuery);
+ }
+ function cmp_uni_account_id() {
+  $num="CUA";
+  for($index=0;$index<12;$index++) { $num.=rand(1,9); }
+  /* Check Exists or not, If not exist return */
+  $checkObj=new Identity();
+  $output=$checkObj->id_cmp_uni_account($num);
+  if($output==='ID_ALREADY_EXIST') { cmp_uni_account_id(); } 
+  else { return $num; }
+ }
+ /* Table - (8) cmp_uni_courses ::: cmp_course_Id (15) */
+ function id_cmp_uni_courses($id) {
+   $dataObj=new DataIdentity();
+   $selectQuery=$dataObj->query_checkId_cmp_uni_courses($id);
+   $idObj = new Identity();
+   return $idObj->mlhbasic_tbl_PrimaryId_status($selectQuery);
+ }
+ function cmp_uni_courses_id() {
+  $num="CUC";
+  for($index=0;$index<12;$index++) { $num.=rand(1,9); }
+  /* Check Exists or not, If not exist return */
+  $checkObj=new Identity();
+  $output=$checkObj->id_cmp_uni_courses($num);
+  if($output==='ID_ALREADY_EXIST') { cmp_uni_courses_id(); } 
+  else { return $num; }
+ }
+ /* Table - (9) ent_fc_account ::: celeb_Id (15) */
+ function id_ent_fc_account($id) {
+   $dataObj=new DataIdentity();
+   $selectQuery=$dataObj->query_checkId_ent_fc_account($id);
+   $idObj = new Identity();
+   return $idObj->mlhbasic_tbl_PrimaryId_status($selectQuery);
+ }
+ function ent_fc_account_id() {
+  $num="FA";
+  for($index=0;$index<13;$index++) { $num.=rand(1,9); }
+  /* Check Exists or not, If not exist return */
+  $checkObj=new Identity();
+  $output=$checkObj->id_ent_fc_account($num);
+  if($output==='ID_ALREADY_EXIST') { ent_fc_account_id(); } 
+  else { return $num; }
+ }
+ /* Table - (10) ent_fc_aw ::: 	artOfWork_Id (35) */
+ function id_ent_fc_aw($id) {
+   $dataObj=new DataIdentity();
+   $selectQuery=$dataObj->query_checkId_ent_fc_aw($id);
+   $idObj = new Identity();
+   return $idObj->mlhbasic_tbl_PrimaryId_status($selectQuery);
+ }
+ function ent_fc_aw_id() {
+  $num="FAW";
+  for($index=0;$index<32;$index++) { $num.=rand(1,9); }
+  /* Check Exists or not, If not exist return */
+  $checkObj=new Identity();
+  $output=$checkObj->id_ent_fc_aw($num);
+  if($output==='ID_ALREADY_EXIST') { ent_fc_aw_id(); } 
+  else { return $num; }
+ }
+ /* Table - (11) ent_fc_occmap ::: occMap_Id (25) */
+ function id_ent_fc_occmap($id) {
+   $dataObj=new DataIdentity();
+   $selectQuery=$dataObj->query_checkId_ent_fc_occmap($id);
+   $idObj = new Identity();
+   return $idObj->mlhbasic_tbl_PrimaryId_status($selectQuery);
+ }
+ function ent_fc_occmap_id() {
+  $num="FOM";
+  for($index=0;$index<22;$index++) { $num.=rand(1,9); }
+  /* Check Exists or not, If not exist return */
+  $checkObj=new Identity();
+  $output=$checkObj->id_ent_fc_occmap($num);
+  if($output==='ID_ALREADY_EXIST') { ent_fc_occmap_id(); } 
+  else { return $num; }
+ }
+ /* Table - (12) ent_occupations ::: occupation_Id (25) */
+ function id_ent_occupations($id) {
+   $dataObj=new DataIdentity();
+   $selectQuery=$dataObj->query_checkId_ent_occupations($id);
+   $idObj = new Identity();
+   return $idObj->mlhbasic_tbl_PrimaryId_status($selectQuery);
+ }
+ function ent_occupations_id() {
+  $num="FOC";
+  for($index=0;$index<22;$index++) { $num.=rand(1,9); }
+  /* Check Exists or not, If not exist return */
+  $checkObj=new Identity();
+  $output=$checkObj->id_ent_occupations($num);
+  if($output==='ID_ALREADY_EXIST') { ent_occupations_id(); } 
+  else { return $num; }
+ }
+ 
+ 
  /* Table - (1) move_info ::: move_Id (8) */
  function id_move_info($id) {
    $dataObj=new DataIdentity();
