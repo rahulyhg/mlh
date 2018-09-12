@@ -36,6 +36,7 @@ $(document).ready(function(){
  $(".lang_"+USR_LANG).css('display','block');
  cloudservers_auth(); // Get CloudName from Cloudinary
  upload_picture_100X100('createInstitution_profilepic_div',PROJECT_URL+'images/icons/0.png');
+ build_establishedYear();
 });
 </script>
 <style>
@@ -56,7 +57,7 @@ $(document).ready(function(){
  <!-- START -->
  <script type="text/javascript">
  $(document).ready(function(){
-  
+   
  });
  function load_breadcrumb(){
    var content='<a href="'+PROJECT_URL+'app/socialHub/home" style="color:'+CURRENT_DARK_COLOR+';">Social Hub</a> / ';
@@ -78,40 +79,46 @@ $(document).ready(function(){
 	 <div class="col-xs-12">
 	 
 	   <div class="form-group">
-	     <label>Institution Board</label>
+	     <label>Institution Board <span class="red-font">*</span></label>
 		 <select id="createInstitution_institutionBoard" class="form-control">
 		   <option value="">Select Institution Board</option>
-		   <option value="">University Board</option>
-		   <option value="">College Board</option>
-		   <option value="">SSC Board</option>
+		   <option value="UNIVERSITY_BOARD">University Board</option>
+		   <option value="COLLEGE_BOARD">College Board</option>
+		   <option value="SSC_BOARD">SSC Board</option>
 		 </select>
 	   </div>
 	   
 	   <div class="form-group">
-	     <label>Institution Type</label>
+	     <label>Institution Type <span class="red-font">*</span></label>
 		 <select id="createInstitution_institutionType" class="form-control">
 		   <option value="">Select Institution Type</option>
-		   <option value="">Public</option>
-		   <option value="">Private</option>
+		   <option value="PUBLIC">Public</option>
+		   <option value="PRIVATE">Private</option>
 		 </select>
 	   </div>
 	   
 	   <div class="form-group">
-	     <label>Institution Name</label>
+	     <label>Institution Name <span class="red-font">*</span></label>
 		 <input id="createInstitution_institutionName" type="text" class="form-control" placeholder="Enter Institution Name"/>
 	   </div>
 	   
 	   <div class="form-group">
-	     <label>Established Year</label>
+	     <label>Established Year <span class="red-font">*</span></label>
 		 <select id="createInstitution_establishedYear" class="form-control">
 		   <option value="">Select Established Year</option>
 		 </select>
 	   </div>
 	   
 	   <div class="form-group">
-	     <label>About Institution</label>
+	     <label>About Institution <span class="red-font">*</span></label>
 		 <textarea id="createInstitution_aboutInstitution" class="form-control" style="height:120px;" placeholder="Description on Institution"></textarea>
 	   </div>
+	   
+	   <div class="form-group">
+	     <label>Website</label>
+		 <input id="createInstitution_web_url" class="form-control" placeholder="Enter Institute Website"/>
+	   </div>
+	   
 <script type="text/javascript">
 var foundersView=1;
 function addFounder(){
@@ -122,22 +129,69 @@ function addFounder(){
  document.getElementById("addFounders_div"+foundersView).innerHTML=content;
 if(foundersView==5){ if(!$('#addFoundersBttn').hasClass('hide-block')){ $('#addFoundersBttn').addClass('hide-block'); } }
 }
+function build_establishedYear(){
+ var year = new Date().getFullYear();
+ var options='<option value="">Select Established Year</option>';
+ for(var index=year;index>1500;index--){
+   options+='<option value="'+index+'">'+index+'</option>';
+ }
+ document.getElementById("createInstitution_establishedYear").innerHTML=options;
+}
 function createInstitution(){
   var institutionBoard = document.getElementById("createInstitution_institutionBoard").value;
   var institutionType = document.getElementById("createInstitution_institutionType").value;
   var institutionName = document.getElementById("createInstitution_institutionName").value;
   var establishedYear = document.getElementById("createInstitution_establishedYear").value;
   var aboutInstitution = document.getElementById("createInstitution_aboutInstitution").value;
-  var founderName1 = document.getElementById("createInstitution_founderName1").value;
-  var founderName2 = document.getElementById("createInstitution_founderName2").value;
-  var founderName3 = document.getElementById("createInstitution_founderName3").value;
-  var founderName4 = document.getElementById("createInstitution_founderName4").value;
-  var founderName5 = document.getElementById("createInstitution_founderName5").value;
-  
+  var web_url = document.getElementById("createInstitution_web_url").value;
+  console.log("createInstitution_founderName3: "+document.getElementById("createInstitution_founderName3"));
+  var founderName1 = "";
+  if(document.getElementById("createInstitution_founderName1")!==null) {
+    founderName1 = document.getElementById("createInstitution_founderName1").value;
+  }
+  /* Optional ::: */
+  var founderName2 = "";
+  if(document.getElementById("createInstitution_founderName2")!==null) {
+    founderName2 = document.getElementById("createInstitution_founderName2").value;
+  }
+  var founderName3 = "";
+  if(document.getElementById("createInstitution_founderName3")!==null) {
+    founderName3 = document.getElementById("createInstitution_founderName3").value;
+  }
+  var founderName4 = "";
+  if(document.getElementById("createInstitution_founderName4")!==null) {
+    founderName4 = document.getElementById("createInstitution_founderName4").value;
+  }
+  var founderName5 = "";
+  if(document.getElementById("createInstitution_founderName5")!==null) {
+    founderName5 = document.getElementById("createInstitution_founderName5").value;
+  }
+  /* Execution ::: */
+  if(IMG_URL!=undefined && IMG_URL.length>0){
+  if(institutionBoard.length>0){
+  if(institutionType.length>0){
+  if(institutionName.length>0){
+  if(establishedYear.length>0){	 
+  if(aboutInstitution.length>0){
+  if(founderName1.length>0){
+    js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.socialhub.classmateportal.php',
+    { action:'CREATE_INSTITUTION', institutionName:institutionName, institutionType:institutionType, profile_pic:IMG_URL,
+	 institutionBoard:institutionBoard ,aboutinstitution:aboutInstitution, establishedOn:establishedYear, 
+	 foundedBy1:founderName1, foundedBy2:founderName2, foundedBy3:founderName3, foundedBy4:founderName4, 
+	 foundedBy5:founderName5, web_url:web_url, createdBy:AUTH_USER_ID },function(response){ console.log(response);
+       alert_display_success('S002',PROJECT_URL+'app/socialHub/classmatepoint/home');
+	 });
+  } else { alert_display_warning('W024'); } // Founder Name
+  } else { alert_display_warning('W023'); }  // About Institution
+  } else { alert_display_warning('W022'); } // Established Year
+  } else { alert_display_warning('W021'); } // Institution Name
+  } else { alert_display_warning('W020'); } // Institution Type
+  } else { alert_display_warning('W019'); } // Institution Board
+  } else { alert_display_warning('W018'); } // Profile Picture
 }
 </script>   
 	   <div class="form-group">
-	     <label>Founder Name</label>
+	     <label>Founder Name <span class="red-font">*</span></label>
 		 <input id="createInstitution_founderName1" class="form-control" placeholder="Enter Founder Name # 1"/>
 		 <div id="addFounders_div2"></div>
 		 <button id="addFoundersBttn" class="btn btn-default mtop15p mbot15p custom-font pull-right" 

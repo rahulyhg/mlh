@@ -1,20 +1,20 @@
 <?php
 class ClassmatePortalAccount{
+ /* ClassmatePortal Module ::: Institution */
   function query_add_institutionAccount($cmp_u_Id, $domain_Id, $subdomain_Id, $institutionName, 
            $institutionType, $institutionBoard, $aboutinstitution, $profile_pic, $establishedOn, 
-           $foundedBy1, $foundedBy2, $foundedBy3, $foundedBy4, $foundedBy5){
+           $foundedBy1, $foundedBy2, $foundedBy3, $foundedBy4, $foundedBy5,$web_url,$createdBy){
    $sql="INSERT INTO cmp_uni_account(cmp_u_Id, domain_Id, subdomain_Id, institutionName, ";
    $sql.="institutionType, institutionBoard, aboutinstitution, profile_pic, establishedOn, ";
-   $sql.="foundedBy1, foundedBy2, foundedBy3, foundedBy4, foundedBy5 ) SELECT * FROM (";
-   $sql.="SELECT '".$cmp_u_Id."', '".$domain_Id."', '".$subdomain_Id."', '".$institutionName."', '";
+   $sql.="foundedBy1, foundedBy2, foundedBy3, foundedBy4, foundedBy5, web_url, createdBy) VALUES (";
+   $sql.="'".$cmp_u_Id."', '".$domain_Id."', '".$subdomain_Id."', '".$institutionName."', '";
    $sql.=$institutionType."','".$institutionBoard."', '".$aboutinstitution."', '".$profile_pic."','";
    $sql.=$establishedOn."','".$foundedBy1."', '".$foundedBy2."', '".$foundedBy3."','";
-   $sql.=$foundedBy4."', '".$foundedBy5."'";
-   $sql.=") As Tbl WHERE (SELECT count(*) FROM cmp_uni_account WHERE institutionName='".$institutionName."' AND ";
-   $sql.="institutionType='".$institutionType."' AND  institutionBoard='".$institutionBoard."' )=0;";
+   $sql.=$foundedBy4."', '".$foundedBy5."','".$web_url."','".$createdBy."');";
    return $sql;  
   }
   
+  /* ClassmatePortal Module ::: Institute */
   function query_add_instituteBatchAccount($batch_Id, $cmp_u_Id, $cmp_sch_Id, $cmp_course_Id, $batchFrom,
     $batchTo, $admin_Id){
    $sql="INSERT INTO cmp_batch_account(batch_Id, cmp_u_Id, cmp_sch_Id, cmp_course_Id, batchFrom,";

@@ -15,5 +15,12 @@
   "W014": { "english":"Select SubCategory."},
   "W015": { "english":"Mention your Designation in the Community."},
   "W016": { "english":"Missing Community Profile Picture."},
-  "W017": { "english":"Missing your Description about Community." }
+  "W017": { "english":"Missing your Description about Community." },
+  "W018": { "english":"Missing Institution Profile Picture." },
+  "W019": { "english":"Choose your Institution Board." },
+  "W020": { "english":"Choose your Institution Type." },
+  "W021": { "english":"Choose your Institution Name." },
+  "W022": { "english":"Choose Institution Established Year." },
+  "W023": { "english":"Mention about your Institution." },
+  "W024": { "english":"Please Enter Institution Founder Name." }
 }
