@@ -37,7 +37,7 @@ $(document).ready(function(){
 function generateTabList(){ 
  var content='<ul class="nav scrollTablist" id="socialhubclassmatepointTab" style="border-bottom:0px;">';
 	 content+='<li><a id="cpointUniversityHzTab" href="#" onclick="javascript:hzTabSelection(this.id,\'\');"><b>University</b></a></li>';
-	 content+='<li><a id="cpointCollegesHzTab" href="#" onclick="javascript:hzTabSelection(this.id,\'\');"><b>Undergraduate Colleges</b></a></li>';
+	 content+='<li><a id="cpointCollegesHzTab" href="#" onclick="javascript:hzTabSelection(this.id,\'\');"><b>Colleges</b></a></li>';
 	 content+='<li><a id="cpointSchoolsHzTab" href="#" onclick="javascript:hzTabSelection(this.id,\'\');"><b>Schools</b></a></li>';
 	 content+='</ul>'; 
   document.getElementById("socialHubClassmatePointScrollableTab").innerHTML=content;
@@ -102,127 +102,15 @@ function hzTabSelection(id,orientation){
  </div>
 
  <div id="cpointUniversityDisplayDivision" class="container-fluid mtop15p hide-block">
- <div class="row">
- <div class="col-xs-12">
-    <!-- -->
-	<a href="<?php echo $_SESSION["PROJECT_URL"]; ?>app/socialHub/classmatepoint/institution/home/123456" class="a-custom">
-	<div class="list-group">
-	<div class="list-group-item pad0">
-	  <div class="container-fluid mtop15p mbot15p">
-	  <div class="row">
-	  <div align="center" class="col-xs-12">
-	    <div><img src="<?php echo $_SESSION["PROJECT_URL"]; ?>images/logo-blue.jpg" class="profile_pic_img"/></div>
-		<div class="mtop15p"><b>Osmania University</b></div>
-	  </div>
-	  </div>
-	  </div>
-	</div>
-	<div class="list-group-item pad0">
-	  <div class="container-fluid">
-	  <div class="row">
-	  <div align="center" class="col-xs-6" style="border-right:1px solid #ccc;">
-	    <div class="mtop15p"><h5><b>STUDENTS</b></h5></div>
-	  </div>
-	  <div align="center" class="col-xs-6">
-	    <div class="mtop15p"><h5><b>PROFESSORS</b></h5></div>
-	  </div>
-	  </div>
-	  </div>
-	</div>
-	<div class="list-group-item pad0">
-	  <div class="container-fluid">
-	  <div class="row">
-	  <div align="center" class="col-xs-6" style="border-right:1px solid #ccc;">
-		<div class="mbot15p"><b>12345</b></div>
-	  </div>
-	  <div align="center" class="col-xs-6">
-		<div class="mbot15p"><b>12345</b></div>
-	  </div>
-	  </div>
-	  </div>
-	</div>
-	</div>
-	</a>
-	<!-- -->
- </div> 
- </div>
-
+   <?php include_once 'templates/pages/app-socialhub/classmatepoint/university.php'; ?>
  </div>
  
  <div id="cpointCollegesDisplayDivision" class="container-fluid mtop15p hide-block">
- <div class="row">
- <div class="col-xs-12">
-     <!-- -->
-	<a href="<?php echo $_SESSION["PROJECT_URL"]; ?>app/socialHub/classmatepoint/institution/home/123456" class="a-custom">
-	<div class="list-group">
-	<div class="list-group-item pad0">
-	  <div class="container-fluid mtop15p mbot15p">
-	  <div class="row">
-	  <div align="center" class="col-xs-12">
-	    <div><img src="<?php echo $_SESSION["PROJECT_URL"]; ?>images/logo-yellow.jpg" class="profile_pic_img"/></div>
-		<div class="mtop15p"><b>Board of Intermediate Education</b></div>
-	  </div>
-	  </div>
-	  </div>
-	</div>
-	<div class="list-group-item pad0">
-	  <div class="container-fluid">
-	  <div class="row">
-	  <div align="center" class="col-xs-6" style="border-right:1px solid #ccc;">
-	    <div class="mtop15p"><h5><b>STUDENTS</b></h5></div>
-		<div class="mbot15p"><b>12345</b></div>
-	  </div>
-	  <div align="center" class="col-xs-6" style="border-right:1px solid #ccc;">
-	    <div class="mtop15p"><h5><b>PROFESSORS</b></h5></div>
-		<div class="mbot15p"><b>12345</b></div>
-	  </div>
-	  </div>
-	  </div>
-	</div>
-	</div>
-	</a>
-	<!-- -->
- </div> 
- </div>
-
+   <?php include_once 'templates/pages/app-socialhub/classmatepoint/colleges.php'; ?>
  </div>
  
  <div id="cpointSchoolsDisplayDivision" class="container-fluid mtop15p hide-block">
- <div class="row">
- <div class="col-xs-12">
-    <!-- -->
-	<a href="<?php echo $_SESSION["PROJECT_URL"]; ?>app/socialHub/classmatepoint/institution/home/123456" class="a-custom">
-	<div class="list-group">
-	<div class="list-group-item pad0">
-	  <div class="container-fluid mtop15p mbot15p">
-	  <div class="row">
-	  <div align="center" class="col-xs-12">
-	    <div><img src="<?php echo $_SESSION["PROJECT_URL"]; ?>images/logo-orange.jpg" class="profile_pic_img"/></div>
-		<div class="mtop15p"><b>Board of Secondary Education</b></div>
-	  </div>
-	  </div>
-	  </div>
-	</div>
-	<div class="list-group-item pad0">
-	  <div class="container-fluid">
-	  <div class="row">
-	  <div align="center" class="col-xs-6" style="border-right:1px solid #ccc;">
-	    <div class="mtop15p"><h5><b>STUDENTS</b></h5></div>
-		<div class="mbot15p"><b>12345</b></div>
-	  </div>
-	  <div align="center" class="col-xs-6" style="border-right:1px solid #ccc;">
-	    <div class="mtop15p"><h5><b>PROFESSORS</b></h5></div>
-		<div class="mbot15p"><b>12345</b></div>
-	  </div>
-	  </div>
-	  </div>
-	</div>
-	</div>
-	</a>
-    <!-- -->
- </div> 
- </div>
-
+   <?php include_once 'templates/pages/app-socialhub/classmatepoint/schools.php'; ?>
  </div>
  <!-- END -->
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/hz-scrollableTabs.js"></script>

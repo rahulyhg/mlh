@@ -17,6 +17,7 @@ body { padding-right: 0 !important }
 .padbot15 { padding-bottom:15px; }
 .padtop35 { padding-top:35px; }
 .grey-font { color:#aaa; }
+.grey-lgt-font { color:#777; }
 .lang_english,.lang_telugu { display:none; }
 .dnone{ display:none; } 
 .dblock { display:block; }

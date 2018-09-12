@@ -36,9 +36,10 @@ $(document).ready(function(){
 });
 </script>
 <style>
-.classmatepoint_div,.fansclub_div,.publicparliament_div { margin-top:5px;background-color:#fff;padding-top:2px;
+
+.classmatepoint_div,.fansclub_div,.publicparliament_div { margin-top:5px;padding-top:2px;
  padding-bottom:2px;padding-right:10px;padding-left:10px;border-radius:6px; }
-.classmatepoint_font01 { color:#E91E63;font-family:'mlhfont002';font-size:26px;letter-spacing:1px; }
+.classmatepoint_font01 { color:#E91E63;font-family:'mlhfont002';font-size:26px;letter-spacing:1px; } 
 .classmatepoint_font02 { color:#009688;font-family:'mlhfont001';font-size:24px;letter-spacing:1px; }
 .fansclub_font02 { color:#9C27B0;font-family:'mlhfont003';font-weight:bold;font-size:26px;letter-spacing:1px; }
 .fansclub_font01 { color:#118aea;font-family:'mlhfont004';font-size:30px;letter-spacing:2px; }
@@ -60,7 +61,8 @@ $(document).ready(function(){
  <!-- START -->
  <div class="list-group">
  <div class="list-group-item" style="background-color:#e7e7e7;border-radius:0px;">
- <div><span style="font-size:16px;"><b>Social Hub</b></span> is a platform to connect and interact 
+ <!-- background-color:#e7e7e7; -->
+ <div style="color:#222425;"><span style="font-size:16px;"><b>Social Hub</b></span> is a platform to connect and interact 
  with people and participate in Activities.</div>
  </div>
  </div>
@@ -80,15 +82,12 @@ $(document).ready(function(){
  </div>
  </div>
  </div>
- <div class="list-group-item">
- It is a point where you can find your classmates, stay connected and share the Activities. 
- </div>
  </div>
  </a>
  </div> 
- </div>
- <div class="row">
- <div class="col-xs-12">
+ 
+ <div align="center" class="col-xs-12">
+ <a class="a-custom" href="<?php echo $_SESSION["PROJECT_URL"]; ?>app/socialHub/classmatepoint/home">
  <div class="list-group">
  <div class="list-group-item pad0">
  <div class="container-fluid">
@@ -101,13 +100,10 @@ $(document).ready(function(){
  </div>
  </div>
  </div>
- <div class="list-group-item">
- It is a club where you can club with co-fans and participate in Activities.
  </div>
+ </a>
  </div>
- </div> 
- </div>
- <div class="row">
+ 
  <div class="col-xs-12">
  <div class="list-group">
  <div class="list-group-item pad0">
@@ -121,17 +117,44 @@ $(document).ready(function(){
  </div>
  </div>
  </div>
- <div class="list-group-item">
- It is a platform where public can interact and participate in Political Activities.
- </div>
  </div>
  </div> 
+ 
+ <div align="center" class="col-xs-12">
+ <a class="a-custom" href="<?php echo $_SESSION["PROJECT_URL"]; ?>app/socialHub/classmatepoint/home">
+ <div class="list-group">
+ <div class="list-group-item pad0">
+ <div class="container-fluid">
+ <div class="row">
+ <div align="center" class="col-xs-12">
+ <div class="fansclub_div mtop15p mbot15p">
+ <span class="fansclub_font01">Startup</span><span class="fansclub_font02"><i>Streets</i></span>
  </div>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+ </a>
+ </div>
+ 
+ </div>
+ 
  </div>
  <!-- END -->
  </div>
  </div>
  </div>
+ 
+ <!--div class="list-group-item grey-font">
+ It is a point where you can find your classmates, stay connected and share the Activities. 
+ </div-->
+ <!--div class="list-group-item grey-font">
+ It is a platform where public can interact and participate in Political Activities.
+ </div-->
+ <!--div class="list-group-item grey-font">
+ It is a club where you can club with co-fans and participate in Activities.
+ </div-->
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/hz-scrollableTabs.js"></script>
 </body>
 <?php } else { header("Location: ".$_SESSION["PROJECT_URL"]); } ?>
