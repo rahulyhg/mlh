@@ -36,10 +36,46 @@ if(isset($_GET["action"])){
            $foundedBy1, $foundedBy2, $foundedBy3, $foundedBy4, $foundedBy5, $web_url, $createdBy);
     $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
 	echo $dbObj->addupdateData($query);
-    } else {
-	
+    } else { $content='Missing';
+	   if(isset($_GET["institutionName"])){ $content.=' institutionName,'; }
+	   if(isset($_GET["institutionType"])){ $content.=' institutionType,'; }
+	   if(isset($_GET["institutionBoard"])){ $content.=' institutionBoard,'; }
+	   if(isset($_GET["aboutinstitution"])){ $content.=' aboutinstitution,'; }
+	   if(isset($_GET["profile_pic"])){ $content.=' profile_pic,'; }
+	   if(isset($_GET["establishedOn"])){ $content.=' establishedOn,'; }
+	   if(isset($_GET["foundedBy1"])){ $content.=' foundedBy1,'; }
+	   if(isset($_GET["foundedBy2"])){ $content.=' foundedBy2,'; }
+	   if(isset($_GET["foundedBy3"])){ $content.=' foundedBy3,'; } 
+	   if(isset($_GET["foundedBy4"])){ $content.=' foundedBy4,'; }
+	   if(isset($_GET["foundedBy5"])){ $content.=' foundedBy5,'; }
+	   if(isset($_GET["web_url"])){  $content.=' web_url,'; }
+	   $content=chop($content,',');
+	   echo $content;
 	}
   }
+  else if($_GET["action"]==='GET_COUNT_INSTITUTIONS'){
+    if(isset($_GET["institutionBoard"])){
+	  $institutionBoard = $_GET["institutionBoard"];
+      $classmatePortalAccount = new ClassmatePortalAccount();
+	  $query=$classmatePortalAccount->query_count_getInstitutionList($institutionBoard);
+	  $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
+	  $jsonData=$dbObj->getJSONData($query);
+	  $dejsonData=json_decode($jsonData);
+	  echo $dejsonData[0]->{'count(*)'};
+	} else { echo 'MISSING_INSTITUTIONBOARD'; }
+  }
+  else if($_GET["action"]==='GET_DATA_INSTITUTIONS'){
+    if(isset($_GET["institutionBoard"]) && isset($_GET["limit_start"]) && isset($_GET["limit_end"])){
+	  $institutionBoard = $_GET["institutionBoard"];
+	  $limit_start = $_GET["limit_start"];
+	  $limit_end = $_GET["limit_end"];
+	  $classmatePortalAccount = new ClassmatePortalAccount();
+	  $query=$classmatePortalAccount->query_data_getInstitutionList($institutionBoard,$limit_start,$limit_end);
+	  $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
+	  echo $dbObj->getJSONData($query);
+	} else { echo 'MISSING_INSTITUTIONBOARD'; }
+  }
+
 }
 else { echo 'MISSING_ACTION'; }
 ?>

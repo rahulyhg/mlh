@@ -49,7 +49,6 @@ function hzTabSelection(id,orientation){
  if(orientation.length>0){
    $('#communityProfileTab').css('left',orientation+'px');
  }
-// if(id==="communityProfileHzTab"){ menuCommunityProfile("communityProfile_statistics"); } 
 }
 </script>
 <style>

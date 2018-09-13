@@ -23,9 +23,7 @@ function searchpeopleInitializer(){
  js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.module.app.user.search.php',
  { action:'SEARCH_COUNT_USERS', searchKeyword:SEARCH_KEYWORD, user_Id:AUTH_USER_ID },function(totalData){
    console.log("searchpeopleInitializer: "+totalData);
-   if(totalData=='0'){
-     document.getElementById("searchPeopleDataload0").innerHTML='<div align="center" style="color:#ccc;">No People found</div>';
-   } else {
+   if(parseInt(totalData)>0){
       var content='<div align="left" class="mbot15p" style="font-size:12px;">';
 		  content+='<span style="color:#808080;">';
 		  content+='<b>Your Search Results:</b> ';
@@ -37,6 +35,9 @@ function searchpeopleInitializer(){
 		  content+='</div>';
 	  document.getElementById("searchPeopleDataResults").innerHTML=content; 
 	scroll_loadInitializer('searchPeopleDataload',10,searchpeoplecontentData,totalData);
+    } else {
+	 var content='<div align="center" style="color:#ccc;">No People found</div>';
+     document.getElementById("searchPeopleDataload0").innerHTML=content; 
    }
  });
 }

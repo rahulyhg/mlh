@@ -13,7 +13,32 @@ class ClassmatePortalAccount{
    $sql.=$foundedBy4."', '".$foundedBy5."','".$web_url."','".$createdBy."');";
    return $sql;  
   }
-  
+  function query_count_getInstitutionList($institutionBoard){
+    $sql="SELECT count(*) FROM cmp_uni_account WHERE institutionBoard='".$institutionBoard."';";
+	return $sql;  
+  }
+  function query_data_getInstitutionList($institutionBoard,$limit_start,$limit_end){
+    $sql="SELECT cmp_uni_account.cmp_u_Id, cmp_uni_account.domain_Id, ";
+    $sql.="(SELECT domainName FROM subs_dom_info WHERE subs_dom_info.domain_Id=cmp_uni_account.domain_Id) As domainName, ";
+    $sql.="cmp_uni_account.subdomain_Id, (SELECT subdomainName FROM subs_subdom_info WHERE ";
+	$sql.="subs_subdom_info.subdomain_Id=cmp_uni_account.subdomain_Id) As subdomainName, cmp_uni_account.institutionName, ";
+	$sql.="cmp_uni_account.institutionType, cmp_uni_account.institutionBoard, cmp_uni_account.aboutinstitution, ";
+	$sql.="cmp_uni_account.profile_pic, cmp_uni_account.establishedOn, cmp_uni_account.foundedBy1, ";
+	$sql.="cmp_uni_account.foundedBy2, cmp_uni_account.foundedBy3, cmp_uni_account.foundedBy4, cmp_uni_account.foundedBy5, ";
+	$sql.="cmp_uni_account.web_url, (SELECT CONCAT('{\"user_Id\":\"',user_Id,'\",\"surName\":\"',surName,'\",";
+	$sql.="\"name\":\"',name,'\",\"profile_pic\":\"',profile_pic,'\",\"minlocation\":\"',minlocation,'\",\"location\":\"',";
+	$sql.="location,'\",\"state\":\"',state,'\",\"country\":\"',country,'\"}') FROM  user_account ";
+    $sql.="WHERE user_account.user_Id=cmp_uni_account.createdBy ) As createdBy, ";
+	$sql.="(SELECT count(*) FROM  cmp_batch_account, cmp_batch_members ";
+    $sql.="WHERE cmp_batch_account.batch_Id = cmp_batch_members.batch_Id AND ";
+    $sql.="cmp_batch_account.cmp_u_Id = cmp_uni_account.cmp_u_Id AND  cmp_batch_members.memType = 'PROFESSOR') As students, ";
+	$sql.="(SELECT count(*) FROM  cmp_batch_account, cmp_batch_members ";
+    $sql.="WHERE cmp_batch_account.batch_Id = cmp_batch_members.batch_Id AND ";
+    $sql.="cmp_batch_account.cmp_u_Id = cmp_uni_account.cmp_u_Id AND  cmp_batch_members.memType = 'PROFESSOR') As professors ";
+	$sql.="FROM cmp_uni_account WHERE cmp_uni_account.institutionBoard='".$institutionBoard."' ";
+	$sql.="LIMIT ".$limit_start.",".$limit_end.";";
+	return $sql;  
+  }
   /* ClassmatePortal Module ::: Institute */
   function query_add_instituteBatchAccount($batch_Id, $cmp_u_Id, $cmp_sch_Id, $cmp_course_Id, $batchFrom,
     $batchTo, $admin_Id){

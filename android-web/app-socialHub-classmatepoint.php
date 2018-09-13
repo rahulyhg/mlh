@@ -84,8 +84,16 @@ function hzTabSelection(id,orientation){
  
  <div class="list-group" style="margin-bottom:0px;">
  <div class="list-group-item" style="background-color:#e7e7e7;border-radius:0px;">
- <div><span style="font-size:16px;"><b>Classmate Point</b></span>&nbsp; is a point where you can find your classmates, 
- stay connected and share the Activities.</div>
+   <div class="container-fluid">
+   <div class="row">
+    <div class="col-xs-12"><span style="font-size:16px;">
+      <b>Classmate Point</b></span>&nbsp; is a point where you can find your classmates, 
+      stay connected and share the Activities.
+	  <a href="<?php echo $_SESSION["PROJECT_URL"]; ?>app/socialHub/classmatepoint/institution/create" class="a-custom">
+       <button class="btn btn-default mtop10p pull-right"><b>Create Institution</b></button></a>
+    </div>
+   </div>
+  </div>
  </div>
  </div>
 	 
@@ -100,7 +108,149 @@ function hzTabSelection(id,orientation){
   </div>
  </div>
  </div>
-
+<script type="text/javascript">
+$(document).ready(function(){
+universityDataInitializer();
+collegeDataInitializer();
+schoolDataInitializer();
+});
+function universityDataInitializer(){
+js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.socialhub.classmateportal.php',
+{ action:'GET_COUNT_INSTITUTIONS', institutionBoard:'UNIVERSITY_BOARD' },function(total_data){
+  total_data=parseInt(total_data);
+  if(total_data>0){
+    var content='<div align="left" class="mbot15p" style="font-size:12px;">';
+		  content+='<span style="color:#808080;">';
+		  content+='<b>Your Search Results:</b> ';
+		  content+='</span>';
+		  content+='<span style="color:'+CURRENT_DARK_COLOR+'"><b>';
+		  if(total_data==1){ content+=total_data+' University Found'; }
+		  else { content+=total_data+' Universities Found'; }
+		  content+='</b></span>';
+		  content+='</div>';
+	document.getElementById("universityDataResults").innerHTML=content; 
+    scroll_loadInitializer('classmatepoint_university',10,universityContentData,total_data);
+  } else {
+    var content='<div align="center" style="color:#ccc;">No University found</div>';
+    document.getElementById("classmatepoint_university0").innerHTML=content;
+  }
+});
+}
+function universityContentData(div_view, appendContent,limit_start,limit_end){ 
+ js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.socialhub.classmateportal.php',
+ { action:'GET_DATA_INSTITUTIONS', institutionBoard:'UNIVERSITY_BOARD', limit_start:limit_start, limit_end:limit_end },
+ function(response){
+   var content=institutionResponseBuilder(response);
+	   content+=appendContent;
+   document.getElementById(div_view).innerHTML=content;
+   
+ });
+}
+function collegeDataInitializer(){
+js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.socialhub.classmateportal.php',
+{ action:'GET_COUNT_INSTITUTIONS', institutionBoard:'COLLEGE_BOARD' },function(total_data){
+ total_data=parseInt(total_data);
+ if(total_data>0){
+   var content='<div align="left" class="mbot15p" style="font-size:12px;">';
+		  content+='<span style="color:#808080;">';
+		  content+='<b>Your Search Results:</b> ';
+		  content+='</span>';
+		  content+='<span style="color:'+CURRENT_DARK_COLOR+'"><b>';
+		  if(total_data==1){ content+=total_data+' College Found'; }
+		  else { content+=total_data+' Colleges Found'; }
+		  content+='</b></span>';
+		  content+='</div>';
+	document.getElementById("collegeDataResults").innerHTML=content; 
+    scroll_loadInitializer('classmatepoint_colleges',10,collegeContentData,total_data);
+ } else {
+    var content='<div align="center" style="color:#ccc;">No College found</div>';
+    document.getElementById("classmatepoint_colleges0").innerHTML=content;
+  }
+});
+}
+function collegeContentData(div_view, appendContent,limit_start,limit_end){ 
+ js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.socialhub.classmateportal.php',
+ { action:'GET_DATA_INSTITUTIONS', institutionBoard:'COLLEGE_BOARD', limit_start:limit_start, limit_end:limit_end },
+ function(response){
+   var content=institutionResponseBuilder(response);
+	   content+=appendContent;
+   document.getElementById(div_view).innerHTML=content;
+ });
+}
+function schoolDataInitializer(){
+js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.socialhub.classmateportal.php',
+{ action:'GET_COUNT_INSTITUTIONS', institutionBoard:'SSC_BOARD' },function(total_data){
+ total_data=parseInt(total_data);
+ if(total_data>0){
+   var content='<div align="left" class="mbot15p" style="font-size:12px;">';
+		  content+='<span style="color:#808080;">';
+		  content+='<b>Your Search Results:</b> ';
+		  content+='</span>';
+		  content+='<span style="color:'+CURRENT_DARK_COLOR+'"><b>';
+		  if(total_data==1){ content+=total_data+' School Found'; }
+		  else { content+=total_data+' Schools Found'; }
+		  content+='</b></span>';
+		  content+='</div>';
+   document.getElementById("schoolDataResults").innerHTML=content; 
+   scroll_loadInitializer('classmatepoint_schools',10,schoolContentData,total_data);
+   
+ } else {
+    var content='<div align="center" style="color:#ccc;">No School found</div>';
+    document.getElementById("classmatepoint_schools0").innerHTML=content;
+  }
+});
+}
+function schoolContentData(div_view, appendContent,limit_start,limit_end){ 
+ js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.socialhub.classmateportal.php',
+ { action:'GET_DATA_INSTITUTIONS', institutionBoard:'SSC_BOARD', limit_start:limit_start, limit_end:limit_end },
+ function(response){
+   var content=institutionResponseBuilder(response);
+	   content+=appendContent;
+   document.getElementById(div_view).innerHTML=content;
+ });
+}
+function institutionResponseBuilder(response){
+response=JSON.parse(response);
+var content='<div class="col-xs-12">';
+for(var index=0;index<response.length;index++){
+ var cmp_u_Id=response[index].cmp_u_Id;
+ var institutionName=response[index].institutionName;
+ var profile_pic=response[index].profile_pic;
+ var students=response[index].students;
+ var professors=response[index].professors;
+ content+='<a href="'+PROJECT_URL+'app/socialHub/classmatepoint/institution/home/'+cmp_u_Id+'" class="a-custom">';
+ content+='<div class="list-group">';
+ content+='<div class="list-group-item pad0" style="background-color:#f5f5f5;">';
+ content+='<div class="container-fluid mtop15p mbot15p">';
+ content+='<div class="row">';
+ content+='<div align="center" class="col-xs-12">';
+ content+='<div><img src="'+profile_pic+'" class="profile_pic_img3"/></div>';
+ content+='<div class="mtop15p"><b>'+institutionName+'</b></div>';
+ content+='</div>';
+ content+='</div>';
+ content+='</div>';
+ content+='</div>';
+ content+='<div class="list-group-item pad0">';
+ content+='<div class="container-fluid">';
+ content+='<div class="row">';
+ content+='<div align="center" class="col-xs-6" style="border-right:1px solid #ccc;">';
+ content+='<div class="mtop15p"><h5><b>Students</b></h5></div>';
+ content+='<div class="mbot15p grey-lgt-font"><b>'+students+'</b></div>';
+ content+='</div>';
+ content+='<div align="center" class="col-xs-6">';
+ content+='<div class="mtop15p"><h5><b>Professors</b></h5></div>';
+ content+='<div class="mbot15p grey-lgt-font"><b>'+professors+'</b></div>';
+ content+='</div>';
+ content+='</div>';
+ content+='</div>';
+ content+='</div>';
+ content+='</div>';
+ content+='</a>';
+}
+content+='</div>';
+return content;
+}
+</script>
  <div id="cpointUniversityDisplayDivision" class="container-fluid mtop15p hide-block">
    <?php include_once 'templates/pages/app-socialhub/classmatepoint/university.php'; ?>
  </div>
