@@ -1,13 +1,18 @@
 <script type="text/javascript">
 var APPBODYCONTENT_PROGRESSBAR;
-function startAppProgressLoader(){
+function startAppProgressLoader(progressType){ // progressType=info,success,warning,danger
   document.body.style.backgroundColor=CURRENT_DARK_COLOR;
   if($('#app-progress-content').hasClass('hide-block')){ $('#app-progress-content').removeClass('hide-block'); }
   if(!$('#app-progress-content').hasClass('hide-block')){ $('#app-actual-content').addClass('hide-block'); }
   var count=1;
   var progress=false; /* true - 100 to 1 false - 1 to 100 */
   APPBODYCONTENT_PROGRESSBAR=setInterval(function(){ 
-    var content='<div class="progress-bar progress-bar-info progress-bar-striped" ';
+    var content='<div class="progress-bar ';
+	     if(progressType==='info'){ content+='progress-bar-info '; }
+	else if(progressType==='success'){ content+='progress-bar-success '; }
+	else if(progressType==='warning'){ content+='progress-bar-warning '; }
+	else if(progressType==='danger'){ content+='progress-bar-danger '; }
+	    content+=' progress-bar-striped" ';
         content+='role="progressbar" aria-valuenow="'+count+'" ';
         content+='aria-valuemin="0" aria-valuemax="100" style="width:'+count+'%">';
         content+='<span class="sr-only">'+count+'% Complete</span>';

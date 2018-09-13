@@ -92,8 +92,8 @@ $(document).ready(function(){
 	     <label>Institution Type <span class="red-font">*</span></label>
 		 <select id="createInstitution_institutionType" class="form-control">
 		   <option value="">Select Institution Type</option>
-		   <option value="PUBLIC">Public</option>
-		   <option value="PRIVATE">Private</option>
+		   <option value="Public">Public</option>
+		   <option value="Private">Private</option>
 		 </select>
 	   </div>
 	   

@@ -32,7 +32,7 @@ body { background-color:#eee; }
 $(document).ready(function(){ 
   bgstyle(3);
   $(".lang_"+USR_LANG).css('display','block');
-  startAppProgressLoader();
+  startAppProgressLoader('info');
   mainTab_userProfile();
 });
 function hzTabSelection(id){     

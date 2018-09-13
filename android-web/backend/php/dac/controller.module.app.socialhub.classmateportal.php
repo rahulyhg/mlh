@@ -75,7 +75,15 @@ if(isset($_GET["action"])){
 	  echo $dbObj->getJSONData($query);
 	} else { echo 'MISSING_INSTITUTIONBOARD'; }
   }
-
+  else if($_GET["action"]==='GET_DATA_INSTITUTIONBYID'){
+    if($_GET["institutionId"]){
+	  $institutionId = $_GET["institutionId"];
+	  $classmatePortalAccount = new ClassmatePortalAccount();
+	  $query=$classmatePortalAccount->query_data_getInstitutionDataById($institutionId);
+	  $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
+	  echo $dbObj->getJSONData($query);
+	} else {  echo 'MISSING_INSTITUTIONID'; }
+  }
 }
 else { echo 'MISSING_ACTION'; }
 ?>

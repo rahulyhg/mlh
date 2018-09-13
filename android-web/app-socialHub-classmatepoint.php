@@ -37,7 +37,7 @@ $(document).ready(function(){
 function generateTabList(){ 
  var content='<ul class="nav scrollTablist" id="socialhubclassmatepointTab" style="border-bottom:0px;">';
 	 content+='<li><a id="cpointUniversityHzTab" href="#" onclick="javascript:hzTabSelection(this.id,\'\');"><b>University</b></a></li>';
-	 content+='<li><a id="cpointCollegesHzTab" href="#" onclick="javascript:hzTabSelection(this.id,\'\');"><b>Colleges</b></a></li>';
+	 content+='<li><a id="cpointCollegesHzTab" href="#" onclick="javascript:hzTabSelection(this.id,\'\');"><b>Intermediate</b></a></li>';
 	 content+='<li><a id="cpointSchoolsHzTab" href="#" onclick="javascript:hzTabSelection(this.id,\'\');"><b>Schools</b></a></li>';
 	 content+='</ul>'; 
   document.getElementById("socialHubClassmatePointScrollableTab").innerHTML=content;
