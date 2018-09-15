@@ -218,7 +218,7 @@ for(var index=0;index<response.length;index++){
  var profile_pic=response[index].profile_pic;
  var students=response[index].students;
  var professors=response[index].professors;
- content+='<a href="'+PROJECT_URL+'app/socialHub/classmatepoint/institution/home/'+cmp_u_Id+'" class="a-custom">';
+ content+='<a href="'+PROJECT_URL+'app/socialHub/classmatepoint/institution/home/viewProfile/'+cmp_u_Id+'" class="a-custom">';
  content+='<div class="list-group">';
  content+='<div class="list-group-item pad0" style="background-color:#f5f5f5;">';
  content+='<div class="container-fluid mtop15p mbot15p">';

@@ -66,7 +66,7 @@ function hzTabSelection(id,orientation){
 <body>
  <?php include_once 'templates/api/api_loading.php'; ?>
  <!-- START -->  
- <script type="text/javascript">
+ <!--script type="text/javascript">
  $(document).ready(function(){
  //  load_breadcrumb();
  });
@@ -78,7 +78,7 @@ function hzTabSelection(id,orientation){
    document.getElementById("load_page_breadcrumb").innerHTML=content;
    if($('#load_page_breadcrumb').hasClass('hide-block')){ $('#load_page_breadcrumb').removeClass('hide-block'); }
  }
- </script>
+ </script-->
  <?php include_once 'templates/api/api_header_simple.php'; ?>
  <div id="load_page_breadcrumb" class="custom-breadcrumb hide-block"></div>
 

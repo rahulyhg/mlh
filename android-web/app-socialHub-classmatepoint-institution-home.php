@@ -28,12 +28,23 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
  <!--link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
  <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script-->
 <script type="text/javascript">
+var TAB_POINT='<?php if(isset($_GET["1"])){ echo $_GET["1"]; } ?>';
+var INSTITUTION_ID='<?php if(isset($_GET["2"])){ echo $_GET["2"]; } ?>';
+var INSTITUTION_BOARD;
 $(document).ready(function(){
  bgstyle(2);
  $(".lang_"+USR_LANG).css('display','block');
+ startAppProgressLoader('danger');
  generateTabList();
- hzTabSelection('cpointUniversityProfileHzTab','');
+ tabPointDisplayer();
 });
+function tabPointDisplayer(){
+      if(TAB_POINT==='viewProfile'){  hzTabSelection('cpointUniversityProfileHzTab',''); }
+ else if(TAB_POINT==='newsfeed'){ hzTabSelection('cpointNewsFeedHzTab',''); }
+ else if(TAB_POINT==='listOfColleges'){ hzTabSelection('cpointCollegesHzTab','-80'); }
+ else if(TAB_POINT==='courses'){ hzTabSelection('cpointCoursesHzTab','-200'); }
+ else if(TAB_POINT==='movements'){ hzTabSelection('cpointMovementsHzTab','-240'); } 
+}
 function generateTabList(){ 
  var content='<ul class="nav scrollTablist" id="socialhubclassmatepointTab" style="border-bottom:0px;">';
      content+='<li><a id="cpointNewsFeedHzTab" href="#" onclick="javascript:hzTabSelection(this.id,\'\');"><b>NewsFeed</b></a></li>';
@@ -45,66 +56,20 @@ function generateTabList(){
   document.getElementById("socialHubClassmatePointScrollableTab").innerHTML=content;
 }
 function hzTabSelection(id,orientation){ 
- var arryHzTab=["cpointNewsFeedHzTab","cpointUniversityProfileHzTab","cpointCollegesHzTab","cpointCoursesHzTab","cpointMovementsHzTab"];
+ var arryHzTab=["cpointNewsFeedHzTab","cpointUniversityProfileHzTab","cpointCollegesHzTab","cpointCoursesHzTab",
+				"cpointMovementsHzTab"];
  var arryTabDataViewer=["cpointNewsFeedProfileDisplayDivision","cpointUniversityProfileDisplayDivision",
  "cpointCollegesDisplayDivision","cpointCoursesDisplayDivision","cpointMovementsDisplayDivision"];
  hzTabSelector(id,arryHzTab,arryTabDataViewer);
  if(orientation.length>0){
-   $('#communityProfileTab').css('left',orientation+'px');
+   $('#socialhubclassmatepointTab').css('left',orientation+'px');
  }
+ if(id==='cpointNewsFeedHzTab'){  }
+ else if(id==='cpointUniversityProfileHzTab'){ load_data_institutionProfile(); }
+ else if(id==='cpointCollegesHzTab'){ instituteDataInitializer(); }
+ else if(id==='cpointCoursesHzTab'){  }
+ else if(id==='cpointMovementsHzTab'){  }
 }
-</script>
-<style>
-.classmatepoint_div,.fansclub_div,.publicparliament_div { margin-top:5px;background-color:#fff;padding-top:2px;
- padding-bottom:2px;padding-right:10px;padding-left:10px;border-radius:6px; }
-.classmatepoint_font01 { color:#E91E63;font-family:'mlhfont002';font-size:26px;letter-spacing:1px; }
-.classmatepoint_font02 { color:#009688;font-family:'mlhfont001';font-size:24px;letter-spacing:1px; }
-.fansclub_font02 { color:#9C27B0;font-family:'mlhfont003';font-weight:bold;font-size:26px;letter-spacing:1px; }
-.fansclub_font01 { color:#118aea;font-family:'mlhfont004';font-size:30px;letter-spacing:2px; }
-.publicparliament_font { font-family:'mlhfont006';font-size:26px;letter-spacing:2px; }
-.publicparliament_color01 { color:#ec3427; }
-.publicparliament_color02 { color:#04bd0c; }
-</style>
-</head>
-<body>
- <?php include_once 'templates/api/api_loading.php'; ?>
- 
- <script type="text/javascript">
- $(document).ready(function(){
-  // load_breadcrumb();
- });
- function load_breadcrumb(){
-   var content='<a href="'+PROJECT_URL+'app/socialHub/home" style="color:'+CURRENT_DARK_COLOR+';">Social Hub</a> / ';
-       content+='<a href="'+PROJECT_URL+'app/socialHub/classmatepoint/home" style="color:'+CURRENT_DARK_COLOR+';">Classmate Point</a> / ';
-       content+='<a href="#" class="active" style="color:#797777;">Osmania University</a> ';
-   document.getElementById("load_page_breadcrumb").innerHTML=content;
-   if($('#load_page_breadcrumb').hasClass('hide-block')){ $('#load_page_breadcrumb').removeClass('hide-block'); }
- }
- </script>
- <?php include_once 'templates/api/api_header_simple.php'; ?>
- <div id="load_page_breadcrumb" class="custom-breadcrumb hide-block"></div>
-
- <?php include_once 'templates/api/api_progressbar.php'; ?>
- <div id="app-profile-body" class="hide-block">
- <!-- START -->  
- <div class="container-fluid">
- <div class="scroller-divison row">
-  <div class="scroller scroller-left col-xs-1" style="height:41px;">
-    <i class="glyphicon glyphicon-chevron-left"></i>
-  </div>
-  <div id="socialHubClassmatePointScrollableTab" class="scrollTabwrapper col-xs-10"></div>
-  <div class="scroller scroller-right col-xs-1" style="height:41px;">
-	<i class="glyphicon glyphicon-chevron-right"></i>
-  </div>
- </div>
- </div>
-<script type="text/javascript">
-var INSTITUTION_ID='<?php if(isset($_GET["1"])){ echo $_GET["1"]; } ?>';
-var INSTITUTION_BOARD;
-$(document).ready(function(){
-  startAppProgressLoader('danger');
-  load_data_institutionProfile();
-});
 function load_data_institutionProfile(){
  js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.socialhub.classmateportal.php',
  { action:'GET_DATA_INSTITUTIONBYID', institutionId:INSTITUTION_ID },function(response){
@@ -147,7 +112,7 @@ function load_data_institutionProfile(){
        content+='</div>';
        content+='<div align="center" class="col-xs-12 mtop15p">';
        content+='<h5 id="instprofile_institutionName">';
-	   content+='<span class="uppercase"><b>'+institutionName+'</b></span>';
+	   content+='<span><b>'+institutionName+'</b></span>';
 	   content+='</h5>';
        content+='</div>';
        content+='</div>';
@@ -293,60 +258,142 @@ function load_data_institutionProfile(){
 	document.getElementById("cpointUniversityProfileDisplayDivision").innerHTML=content;
  });
 }
+function instituteDataInitializer(){
+ js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.socialhub.classmateportal.php',
+ { action:'GET_COUNT_INSTITUTES', institutionId:INSTITUTION_ID },function(total_data){
+   total_data=parseInt(total_data);
+   stopAppProgressLoader();
+   if($('#app-profile-body').hasClass('hide-block')){ $('#app-profile-body').removeClass('hide-block'); }
+   if(total_data>0){
+   var content='<div class="row">';
+       content+='<div class="col-xs-8">';
+       content+='<div align="left" class="mtop10p" style="font-size:12px;">';
+	   content+='<span style="color:#808080;"><b>Your Search Results:</b></span>';
+	   content+='<span class="custom-font" style="color:'+CURRENT_DARK_COLOR+'"><b>';
+	   if(total_data==1){ content+=total_data+' College Found'; }
+	   else { content+=total_data+' Colleges Found'; }
+	   content+='</span>';
+	   content+='</div>';
+       content+='</div>';
+       content+='<div class="col-xs-4">';
+	   content+='<a href="PROJECT_URLapp/socialHub/classmatepoint/institute/create/1234567">';
+       content+='<button class="btn btn-default pull-right"><b>Add College</b></button>';
+	   content+='</a>';
+       content+='</div>';
+       content+='</div>';
+   document.getElementById("cpointCollegesResults").innerHTML=content; 
+   scroll_loadInitializer('cpointCollegesResultsData',10,instituteContentData,total_data);
+   
+ } else {
+    var content='<div align="center" style="color:#ccc;">No College found</div>';
+    document.getElementById("cpointCollegesResultsData0").innerHTML=content;
+  }
+ });
+}
+function instituteContentData(div_view, appendContent,limit_start,limit_end){
+ js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.socialhub.classmateportal.php',
+ { action:'GET_DATA_INSTITUTES', institutionId:INSTITUTION_ID, limit_start:limit_start, limit_end:limit_end },
+ function(response){
+   console.log("instituteContentData: "+response);
+   response=JSON.parse(response);
+   var content='<div class="row">';
+   for(var index=0;index<response.length;index++){
+    var cmp_sch_Id=response[index].cmp_sch_Id;
+	var instituteName=response[index].instituteName;
+	var profile_pic=response[index].profile_pic;
+	var students=response[index].students;
+	var professors=response[index].professors;
+	   content+='<div class="col-xs-12">';
+	   content+='<a class="a-custom" href="'+PROJECT_URL+'app/socialHub/classmatepoint/institute/home/'+cmp_sch_Id+'">';
+	   content+='<div class="list-group">';
+	   content+='<div class="list-group-item pad0">';
+	   content+='<div class="container-fluid mtop15p mbot15p">';
+	   content+='<div class="row">';
+	   content+='<div align="center" class="col-xs-12">';
+	   content+='<div><img src="'+profile_pic+'" class="profile_pic_img"/></div>';
+	   content+='<div class="mtop15p"><b>'+instituteName+'</b></div>';
+	   content+='</div>';
+	   content+='</div>';
+	   content+='</div>';
+	   content+='</div>';
+	   content+='<div class="list-group-item pad0">';
+	   content+='<div class="container-fluid">';
+	   content+='<div class="row">';
+	   content+='<div align="center" class="col-xs-6" style="border-right:1px solid #ccc;">';
+	   content+='<div class="mtop15p"><h5><b>Students</b></h5></div>';
+	   content+='<div class="grey-lgt-font mbot15p"><b>'+students+'</b></div>';
+	   content+='</div>';
+	   content+='<div align="center" class="col-xs-6" style="border-right:1px solid #ccc;">';
+	   content+='<div class="mtop15p"><h5><b>Professors</b></h5></div>';
+	   content+='<div class="grey-lgt-font mbot15p"><b>'+professors+'</b></div>';
+	   content+='</div>';
+	   content+='</div>';
+	   content+='</div>';
+	   content+='</div>';
+	   content+='</div>';
+	   content+='</a>';
+       content+='</div>';
+   }
+	
+   
+       
+	   
+       content+='</div>';
+	   content+=appendContent;
+   document.getElementById(div_view).innerHTML=content;
+ });
+}
 </script>
 
+<style>
+.classmatepoint_div,.fansclub_div,.publicparliament_div { margin-top:5px;background-color:#fff;padding-top:2px;
+ padding-bottom:2px;padding-right:10px;padding-left:10px;border-radius:6px; }
+.classmatepoint_font01 { color:#E91E63;font-family:'mlhfont002';font-size:26px;letter-spacing:1px; }
+.classmatepoint_font02 { color:#009688;font-family:'mlhfont001';font-size:24px;letter-spacing:1px; }
+.fansclub_font02 { color:#9C27B0;font-family:'mlhfont003';font-weight:bold;font-size:26px;letter-spacing:1px; }
+.fansclub_font01 { color:#118aea;font-family:'mlhfont004';font-size:30px;letter-spacing:2px; }
+.publicparliament_font { font-family:'mlhfont006';font-size:26px;letter-spacing:2px; }
+.publicparliament_color01 { color:#ec3427; }
+.publicparliament_color02 { color:#04bd0c; }
+</style>
+</head>
+<body>
+ <?php include_once 'templates/api/api_loading.php'; ?>
+ 
+ <!--script type="text/javascript">
+ $(document).ready(function(){
+  // load_breadcrumb();
+ });
+ function load_breadcrumb(){
+   var content='<a href="'+PROJECT_URL+'app/socialHub/home" style="color:'+CURRENT_DARK_COLOR+';">Social Hub</a> / ';
+       content+='<a href="'+PROJECT_URL+'app/socialHub/classmatepoint/home" style="color:'+CURRENT_DARK_COLOR+';">Classmate Point</a> / ';
+       content+='<a href="#" class="active" style="color:#797777;">Osmania University</a> ';
+   document.getElementById("load_page_breadcrumb").innerHTML=content;
+   if($('#load_page_breadcrumb').hasClass('hide-block')){ $('#load_page_breadcrumb').removeClass('hide-block'); }
+ }
+ </script-->
+ <?php include_once 'templates/api/api_header_simple.php'; ?>
+ <div id="load_page_breadcrumb" class="custom-breadcrumb hide-block"></div>
+
+ <?php include_once 'templates/api/api_progressbar.php'; ?>
+ <div id="app-profile-body" class="hide-block">
+ <!-- START -->  
+ <div class="container-fluid">
+ <div class="scroller-divison row">
+  <div class="scroller scroller-left col-xs-1" style="height:41px;">
+    <i class="glyphicon glyphicon-chevron-left"></i>
+  </div>
+  <div id="socialHubClassmatePointScrollableTab" class="scrollTabwrapper col-xs-10"></div>
+  <div class="scroller scroller-right col-xs-1" style="height:41px;">
+	<i class="glyphicon glyphicon-chevron-right"></i>
+  </div>
+ </div>
+ </div>
  <div id="cpointNewsFeedProfileDisplayDivision" class="hide-block"></div>  
  <div id="cpointUniversityProfileDisplayDivision" class="hide-block"></div>  
  <div id="cpointCollegesDisplayDivision" class="hide-block">
-     <div class="container-fluid mtop15p">
-       <div class="row">
-         <div class="col-xs-8">
-           <div align="left" class="mtop10p" style="font-size:12px;">
-		     <span style="color:#808080;"><b>Your Search Results:</b></span>
-		     <span class="custom-font"><b>0 Colleges Found</b></span>
-	       </div>
-         </div>
-         <div class="col-xs-4">
-           <button class="btn btn-default pull-right"><b>Add College</b></button>
-         </div>
-       </div>
-     </div>
-     <div class="container-fluid mtop15p ">
-      <div class="row">
-        <div class="col-xs-12">
-        <!-- -->
-	<a class="a-custom" href="<?php echo $_SESSION["PROJECT_URL"]; ?>app/socialHub/classmatepoint/institute/home/12345">
-	<div class="list-group">
-	<div class="list-group-item pad0">
-	  <div class="container-fluid mtop15p mbot15p">
-	  <div class="row">
-	  <div align="center" class="col-xs-12">
-	    <div><img src="<?php echo $_SESSION["PROJECT_URL"]; ?>images/logo-yellow.jpg" class="profile_pic_img"/></div>
-		<div class="mtop15p"><b>Board of Intermediate Education</b></div>
-	  </div>
-	  </div>
-	  </div>
-	</div>
-	<div class="list-group-item pad0">
-	  <div class="container-fluid">
-	  <div class="row">
-	  <div align="center" class="col-xs-6" style="border-right:1px solid #ccc;">
-	    <div class="mtop15p"><h5><b>Students</b></h5></div>
-		<div class="grey-lgt-font mbot15p"><b>12345</b></div>
-	  </div>
-	  <div align="center" class="col-xs-6" style="border-right:1px solid #ccc;">
-	    <div class="mtop15p"><h5><b>Professors</b></h5></div>
-		<div class="grey-lgt-font mbot15p"><b>12345</b></div>
-	  </div>
-	  </div>
-	  </div>
-	</div>
-	</div>
-	</a>
- </div> 
- </div>
-
-    </div>
+     <div id="cpointCollegesResults" class="container-fluid mtop15p"></div>
+     <div id="cpointCollegesResultsData0" class="container-fluid mtop15p "></div>
  </div>
  <div id="cpointCoursesDisplayDivision" class="hide-block">
    <?php include_once 'templates/pages/app-socialhub/classmatepoint/institution/listOfCourses-view.php';  ?>

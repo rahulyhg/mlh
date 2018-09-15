@@ -31,7 +31,7 @@ class ClassmatePortalAccount{
     $sql.="WHERE user_account.user_Id=cmp_uni_account.createdBy ) As createdBy, ";
 	$sql.="(SELECT count(*) FROM  cmp_batch_account, cmp_batch_members ";
     $sql.="WHERE cmp_batch_account.batch_Id = cmp_batch_members.batch_Id AND ";
-    $sql.="cmp_batch_account.cmp_u_Id = cmp_uni_account.cmp_u_Id AND  cmp_batch_members.memType = 'PROFESSOR') As students, ";
+    $sql.="cmp_batch_account.cmp_u_Id = cmp_uni_account.cmp_u_Id AND  cmp_batch_members.memType = 'STUDENT') As students, ";
 	$sql.="(SELECT count(*) FROM  cmp_batch_account, cmp_batch_members ";
     $sql.="WHERE cmp_batch_account.batch_Id = cmp_batch_members.batch_Id AND ";
     $sql.="cmp_batch_account.cmp_u_Id = cmp_uni_account.cmp_u_Id AND  cmp_batch_members.memType = 'PROFESSOR') As professors ";
@@ -62,8 +62,40 @@ class ClassmatePortalAccount{
 	$sql.="FROM cmp_uni_account WHERE cmp_uni_account.cmp_u_Id='".$institutionId."' AND cmp_uni_account.approved='Y';";
 	return $sql;  
   }
+  function query_data_getInstitutionNameById($institutionId){
+    $sql="SELECT institutionName FROM cmp_uni_account WHERE cmp_u_Id='".$institutionId."';";
+	return $sql;  
+  }
   
   /* ClassmatePortal Module ::: Institute */
+  function query_add_instituteAccount($cmp_sch_Id, $instituteName, $instituteType, $cmp_u_Id, $profile_pic, $establishedOn, 
+   $aboutInstitute, $foundedBy1, $foundedBy2, $foundedBy3, $foundedBy4, $foundedBy5, $web_url, $createdBy){
+   $sql="INSERT INTO cmp_sch_account(cmp_sch_Id, instituteName, instituteType, cmp_u_Id, profile_pic, establishedOn, ";
+   $sql.="aboutInstitute, foundedBy1, foundedBy2, foundedBy3, foundedBy4, foundedBy5, web_url, createdBy, approved) ";
+   $sql.="VALUES ('".$cmp_sch_Id."','".$instituteName."','".$instituteType."','".$cmp_u_Id."','".$profile_pic."','";
+   $sql.=$establishedOn."','".$aboutInstitute."','".$foundedBy1."','".$foundedBy2."','".$foundedBy3."','".$foundedBy4;
+   $sql.="','".$foundedBy5."','".$web_url."','".$createdBy."','N');";
+   return $sql;
+  }
+  
+  function query_count_getInstituteList($cmp_u_Id){
+    $sql="SELECT count(*) FROM cmp_sch_account WHERE cmp_u_Id='".$cmp_u_Id."';";
+	return $sql;
+  }
+  
+  function query_data_getSimpleInstituteList($cmp_u_Id,$limit_start,$limit_end){
+    $sql="SELECT cmp_sch_account.instituteName, cmp_sch_account.profile_pic, ";
+	$sql.="(SELECT count(*) FROM  cmp_batch_account, cmp_batch_members ";
+    $sql.="WHERE cmp_batch_account.batch_Id = cmp_batch_members.batch_Id AND ";
+    $sql.="cmp_batch_account.cmp_u_Id = cmp_sch_account.cmp_u_Id AND  cmp_batch_members.memType = 'STUDENT') As students, ";
+	$sql.="(SELECT count(*) FROM  cmp_batch_account, cmp_batch_members ";
+    $sql.="WHERE cmp_batch_account.batch_Id = cmp_batch_members.batch_Id AND ";
+    $sql.="cmp_batch_account.cmp_u_Id = cmp_sch_account.cmp_u_Id AND  cmp_batch_members.memType = 'PROFESSOR') As professors ";
+    $sql.="FROM cmp_sch_account WHERE cmp_u_Id='".$cmp_u_Id."' AND approved='Y';";
+	return $sql;
+  }
+  
+  
   function query_add_instituteBatchAccount($batch_Id, $cmp_u_Id, $cmp_sch_Id, $cmp_course_Id, $batchFrom,
     $batchTo, $admin_Id){
    $sql="INSERT INTO cmp_batch_account(batch_Id, cmp_u_Id, cmp_sch_Id, cmp_course_Id, batchFrom,";
@@ -73,15 +105,6 @@ class ClassmatePortalAccount{
    $sql.=") As Tbl WHERE (SELECT count(*) FROM cmp_batch_account WHERE cmp_u_Id='".$cmp_u_Id."' AND ";
    $sql.="cmp_sch_Id='".$cmp_sch_Id."' AND  cmp_course_Id='".$cmp_course_Id."' )=0;";
    return $sql;
-  }
-  
-  function query_count_getInstituteList($cmp_u_Id){
-    $sql="SELECT count(*) FROM cmp_sch_account WHERE cmp_u_Id='".$cmp_u_Id."';";
-	return $sql;
-  }
-  
-  function query_data_getInstituteList($cmp_u_Id,$limit_start,$limit_end){
-   
   }
   
    function query_add_institutionCourses($cmp_course_Id, $courseName, $duration, $begMonth, $endMonth){

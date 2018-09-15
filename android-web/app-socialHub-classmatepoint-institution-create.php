@@ -145,10 +145,7 @@ function createInstitution(){
   var aboutInstitution = document.getElementById("createInstitution_aboutInstitution").value;
   var web_url = document.getElementById("createInstitution_web_url").value;
   console.log("createInstitution_founderName3: "+document.getElementById("createInstitution_founderName3"));
-  var founderName1 = "";
-  if(document.getElementById("createInstitution_founderName1")!==null) {
-    founderName1 = document.getElementById("createInstitution_founderName1").value;
-  }
+  var founderName1 = document.getElementById("createInstitution_founderName1").value;
   /* Optional ::: */
   var founderName2 = "";
   if(document.getElementById("createInstitution_founderName2")!==null) {

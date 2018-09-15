@@ -84,6 +84,83 @@ if(isset($_GET["action"])){
 	  echo $dbObj->getJSONData($query);
 	} else {  echo 'MISSING_INSTITUTIONID'; }
   }
+  else if($_GET["action"]==='GET_DATA_INSTITUTIONNAMEBYID'){
+    if($_GET["institutionId"]){
+	  $institutionId = $_GET["institutionId"];
+	  $classmatePortalAccount = new ClassmatePortalAccount();
+	  $query=$classmatePortalAccount->query_data_getInstitutionNameById($institutionId);
+	  $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
+	  echo $dbObj->getJSONData($query);
+	} else {  echo 'MISSING_INSTITUTIONID'; }
+  }
+  else if($_GET["action"]==='CREATE_INSTITUTE'){
+   if(isset($_GET["instituteName"]) && isset($_GET["instituteType"]) && isset($_GET["cmp_u_Id"]) &&
+    isset($_GET["profile_pic"]) && isset($_GET["establishedOn"]) && isset($_GET["aboutInstitute"]) &&
+	isset($_GET["foundedBy1"]) && isset($_GET["foundedBy2"]) && isset($_GET["foundedBy3"]) &&
+	isset($_GET["foundedBy4"]) && isset($_GET["foundedBy5"]) && isset($_GET["web_url"]) && 
+	isset($_GET["createdBy"])){
+    $idObj = new Identity();
+    $cmp_sch_Id = $idObj->cmp_sch_account_id();
+	$instituteName=$_GET["instituteName"];
+	$instituteType=$_GET["instituteType"];
+	$cmp_u_Id=$_GET["cmp_u_Id"];
+	$profile_pic=$_GET["profile_pic"];
+	$establishedOn=$_GET["establishedOn"]; 
+    $aboutInstitute=$_GET["aboutInstitute"];
+    $foundedBy1=$_GET["foundedBy1"];
+    $foundedBy2=$_GET["foundedBy2"];
+    $foundedBy3=$_GET["foundedBy3"];
+    $foundedBy4=$_GET["foundedBy4"];
+    $foundedBy5=$_GET["foundedBy5"];
+    $web_url=$_GET["web_url"];
+    $createdBy=$_GET["createdBy"];
+	$classmatePortalAccount = new ClassmatePortalAccount();
+	$query=$classmatePortalAccount->query_add_instituteAccount($cmp_sch_Id, $instituteName, $instituteType, 
+	   $cmp_u_Id, $profile_pic, $establishedOn,  $aboutInstitute, $foundedBy1, $foundedBy2, $foundedBy3, 
+	   $foundedBy4, $foundedBy5, $web_url, $createdBy);
+	$dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
+	echo $dbObj->addupdateData($query);
+	} else {  $content='Missing';
+	   if(!isset($_GET["instituteName"])){ $content.=' instituteName,'; }
+	   if(!isset($_GET["instituteType"])){ $content.=' instituteType,'; }
+	   if(!isset($_GET["cmp_u_Id"])){ $content.=' cmp_u_Id,'; }
+       if(!isset($_GET["profile_pic"])){ $content.=' profile_pic,'; }
+	   if(!isset($_GET["establishedOn"])){ $content.=' establishedOn,'; }
+	   if(!isset($_GET["aboutInstitute"])){ $content.=' aboutInstitute,'; }
+	   if(!isset($_GET["foundedBy1"])){ $content.=' foundedBy1,'; }
+	   if(!isset($_GET["foundedBy2"])){ $content.=' foundedBy2,'; }
+	   if(!isset($_GET["foundedBy3"])){ $content.=' foundedBy3,'; }
+	   if(!isset($_GET["foundedBy4"])){ $content.=' foundedBy4,'; }
+	   if(!isset($_GET["foundedBy5"])){ $content.=' foundedBy5,'; } 
+	   if(!isset($_GET["web_url"])){ $content.=' web_url,'; }
+	   if(!isset($_GET["createdBy"])){ $content.=' createdBy,'; }
+	   $content=chop($content,',');
+	   echo $content;
+	}
+  }
+  else if($_GET["action"]==='GET_COUNT_INSTITUTES'){
+    if(isset($_GET["institutionId"])){
+	  $institutionId = $_GET["institutionId"];
+	  $classmatePortalAccount = new ClassmatePortalAccount();
+	  $query=$classmatePortalAccount->query_count_getInstituteList($institutionId);;
+	  $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
+	  $jsonData=$dbObj->getJSONData($query);
+	  $dejsonData=json_decode($jsonData);
+	  echo $dejsonData[0]->{'count(*)'};
+	} else {  echo 'MISSING_INSTITUTIONID'; }
+    
+  }
+  else if($_GET["action"]==='GET_DATA_INSTITUTES'){
+    if(isset($_GET["institutionId"]) && isset($_GET["limit_start"]) && isset($_GET["limit_end"])){
+	  $cmp_u_Id = $_GET["institutionId"];
+	  $limit_start = $_GET["limit_start"];
+	  $limit_end = $_GET["limit_end"];
+	  $classmatePortalAccount = new ClassmatePortalAccount();
+	  $query = $classmatePortalAccount->query_data_getSimpleInstituteList($cmp_u_Id,$limit_start,$limit_end);
+	  $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
+	  echo $dbObj->getJSONData($query);
+	} else { echo 'MISSING_INSTITUTIONID'; }
+  }
 }
 else { echo 'MISSING_ACTION'; }
 ?>

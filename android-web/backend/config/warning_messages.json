@@ -19,8 +19,20 @@
   "W018": { "english":"Missing Institution Profile Picture." },
   "W019": { "english":"Choose your Institution Board." },
   "W020": { "english":"Choose your Institution Type." },
-  "W021": { "english":"Choose your Institution Name." },
+  "W021": { "english":"Mention your Institution Name." },
   "W022": { "english":"Choose Institution Established Year." },
   "W023": { "english":"Mention about your Institution." },
-  "W024": { "english":"Please Enter Institution Founder Name." }
+  "W024": { "english":"Please Enter Institution Founder Name." },
+  "W025": { "english":"Missing Institute Profile Picture."},
+  "W026": { "english":"Mention your Institute Name."},
+  "W027": { "english":"Mention your Institute Type."},
+  "W028": { "english":"Choose Institute Established Year."},
+  "W029": { "english":"Describe your Institute."},
+  "W030": { "english":"Please Enter Institute Founder Name."},
+  "W031": { "english":""},
+  "W032": { "english":""},
+  "W033": { "english":""},
+  "W034": { "english":""},
+  "W035": { "english":""},
+  "W036": { "english":""}
 }
