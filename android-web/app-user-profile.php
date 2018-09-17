@@ -24,6 +24,7 @@
  <?php include_once 'templates/api/api_params.php'; ?>
 <script type="text/javascript">
 var APP_USERPROFILE_ID='<?php  if(isset($_GET["1"])) { echo $_GET["1"]; } ?>';
+alert(APP_USERPROFILE_ID);
 </script>
 <style>
 body { background-color:#eee; }
@@ -32,12 +33,13 @@ body { background-color:#eee; }
 $(document).ready(function(){ 
   bgstyle(3);
   $(".lang_"+USR_LANG).css('display','block');
-  startAppProgressLoader('info');
+ // startAppProgressLoader('info');
   mainTab_userProfile();
 });
 function hzTabSelection(id){     
  var arryHzTab=["usrProfileHzTab","usrSubscriptionHzTab","usrFriendsHzTab","usrCommunityHzTab","usrMovementHzTab"];
- var arryTabDataViewer=["usrProfileDisplayDivision","usrSubscriptionDisplayDivision","usrFriendsDisplayDivision","usrCommunityDisplayDivision","usrMovementDisplayDivision"];
+ var arryTabDataViewer=["usrProfileDisplayDivision","usrSubscriptionDisplayDivision","usrFriendsDisplayDivision",
+ "usrCommunityDisplayDivision","usrMovementDisplayDivision"];
  hzTabSelector(id,arryHzTab,arryTabDataViewer);
 }
 function mainTab_userProfile(){ hzTabSelection("usrProfileHzTab"); }

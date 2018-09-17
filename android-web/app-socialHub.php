@@ -105,6 +105,7 @@ $(document).ready(function(){
  </div>
  
  <div class="col-xs-12">
+ <a class="a-custom" href="<?php echo $_SESSION["PROJECT_URL"]; ?>app/socialHub/publicparliament/home">
  <div class="list-group">
  <div class="list-group-item pad0">
  <div class="container-fluid">
@@ -118,6 +119,7 @@ $(document).ready(function(){
  </div>
  </div>
  </div>
+ </a>
  </div> 
  
  <div align="center" class="col-xs-12">
