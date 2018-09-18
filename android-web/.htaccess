@@ -35,7 +35,8 @@ RewriteRule app/socialHub/classmatepoint/institute/batch/([^/]+)/([^/]+)$ app-so
 RewriteRule app/socialHub/classmatepoint/institute/batchchat/([^/]+)$ app-socialHub-classmatepoint-institute-batch-chat.php?1=$1 [NC,L]
 
 RewriteRule app/socialHub/publicparliament/home app-socialHub-publicparliament.php [NC,L]
-
+RewriteRule app/socialHub/publicparliament/unionsAndAssociations/home app-socialHub-publicparliament-unionsAndAssociations-home.php [NC,L]
+RewriteRule app/socialHub/publicparliament/unionsAndAssociations/list/([^/]+)/([^/]+)$ app-socialHub-publicparliament-unionsAndAssociations-list.php?1=$1&2=$2 [NC,L]
 # User Profile - app/user/<userId>
 # CommunityProfile - app/community/<union_Id>
 # Movement Profile - app/movement/<move_Id>
@@ -83,4 +84,3 @@ RewriteRule ([^/]+)/admin/([^/]+)/([^/]+)/([^/]+)$ admin/$2/$3/$4 [NC,L]
 RewriteRule ([^/]+)/images/([^/]+)$ images/$2 [NC,L]
 RewriteRule ([^/]+)/images/([^/]+)/([^/]+)$ images/$2/$3 [NC,L]
 RewriteRule ([^/]+)/fonts/([^/]+)$ fonts/$2 [NC,L]
-

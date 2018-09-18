@@ -5,6 +5,7 @@ class ProfessionalCommunity {
  /************************************************ COMMUNITY ***************************************************************/
  /**************************************************************************************************************************/
 
+ 
  function query_getCommunityProfileData($union_Id){
   // unionprof_account  unionprof_branch  unionprof_mem  unionprof_mem_perm  unionprof_mem_req  unionprof_mem_roles
   // unionprof_sup  user_account  newsfeed_info  move_info  subs_dom_info  	subs_subdom_info
@@ -26,6 +27,27 @@ class ProfessionalCommunity {
   $sql.="unionprof_account.subdomain_Id=subs_subdom_info.subdomain_Id ";
   $sql.="AND unionprof_account.main_branch_Id=unionprof_branch.branch_Id AND ";
   $sql.="unionprof_account.admin_Id=user_account.user_Id AND unionprof_account.union_Id='".$union_Id."';";
+  return $sql;
+ }
+ 
+ function query_listOfCommunity_count_byDomainSubdomain($domain_Id,$subdomain_Id){
+  $sql="SELECT unionprof_account.domain_Id, ";
+  $sql.="(SELECT domainName FROM subs_dom_info WHERE domain_Id=unionprof_account.domain_Id) As domainName, ";
+  $sql.="unionprof_account.subdomain_Id, ";
+  $sql.="(SELECT subdomainName FROM subs_subdom_info WHERE subdomain_Id=unionprof_account.subdomain_Id) As subdomainName, ";
+  $sql.=" count(*) As total_data ";
+  $sql.="FROM unionprof_account WHERE domain_Id='".$domain_Id."' AND subdomain_Id='".$subdomain_Id."';";
+  return $sql;
+ }
+ 
+ function query_listOfCommunity_data_byDomainSubdomain($domain_Id,$subdomain_Id,$limit_start,$limit_end){
+  $sql="SELECT  ";
+  $sql.="unionName, profile_pic, ";
+  $sql.="(SELECT count(*) FROM unionprof_branch WHERE union_Id=unionprof_account.union_Id) As branches, ";
+  $sql.="(SELECT count(*) FROM unionprof_mem WHERE union_Id=unionprof_account.union_Id) As members, ";
+  $sql.="(SELECT count(*) FROM unionprof_sup WHERE union_Id=unionprof_account.union_Id) As subscribers ";
+  $sql.="FROM unionprof_account WHERE domain_Id='".$domain_Id."' AND subdomain_Id='".$subdomain_Id."' ";
+  $sql.="LIMIT ".$limit_start.",".$limit_end.";";
   return $sql;
  }
  

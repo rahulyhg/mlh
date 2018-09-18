@@ -65,6 +65,7 @@ if(isset($_GET["action"])){
   }
   else { echo 'MISSING_USERID'; }
  }
+ 
  else { echo 'INVALID_ACTION'; }
 } 
 else { echo 'MISSING_ACTION'; }

@@ -53,17 +53,19 @@ $(document).ready(function(){
  <div class="row">
  <div class="col-xs-12">
  <div class="list-group">
+ <div class="list-group-item" style="background-color:#f8f8f8;">
+  <h5><b>Unions and Associations</b></h5>
+ </div>
  <div class="list-group-item pad0">
  <div class="container-fluid mtop15p">
  <div class="row">
  <div class="col-xs-12">
-   <h5><b>Unions and Associations</b></h5><hr/>
+ Find Unions and Associations around you in various categories and sub-categories.
  </div>
  <div class="col-xs-12">
- 
- </div>
- <div class="col-xs-12">
-  <button class="btn btn-default pull-right mbot15p"><b>View Unions and Associations</b></button>
+  <a href="<?php echo $_SESSION["PROJECT_URL"]; ?>app/socialHub/publicparliament/unionsAndAssociations/home">
+   <button class="btn btn-default pull-right mtop15p mbot15p"><b>View Unions and Associations</b></button>
+  </a>
  </div>
  </div>
  </div>
@@ -77,17 +79,17 @@ $(document).ready(function(){
  <div class="row">
  <div class="col-xs-12">
  <div class="list-group">
+ <div class="list-group-item" style="background-color:#f8f8f8;">
+  <h5><b>Political Parties</b></h5>
+ </div>
  <div class="list-group-item pad0">
  <div class="container-fluid mtop15p">
  <div class="row">
  <div class="col-xs-12">
-   <h5><b>Political Parties</b></h5><hr/>
+ Find the Political Parties in different States and Nation participating in State Assemblies and National Parliament.
  </div>
  <div class="col-xs-12">
- 
- </div>
- <div class="col-xs-12">
-  <button class="btn btn-default pull-right mbot15p"><b>View Political Parties</b></button>
+  <button class="btn btn-default pull-right mtop15p mbot15p"><b>View Political Parties</b></button>
  </div>
  </div>
  </div>
@@ -101,17 +103,17 @@ $(document).ready(function(){
  <div class="row">
  <div class="col-xs-12">
  <div class="list-group">
+ <div class="list-group-item" style="background-color:#f8f8f8;">
+  <h5><b>Political Representatives</b></h5>
+ </div>
  <div class="list-group-item pad0">
  <div class="container-fluid mtop15p">
  <div class="row">
  <div class="col-xs-12">
-   <h5><b>Political Representatives</b></h5><hr/>
+ Find Political Representatives particpating in State Assembly and National Parliament.
  </div>
  <div class="col-xs-12">
- 
- </div>
- <div class="col-xs-12">
-  <button class="btn btn-default pull-right mbot15p"><b>View Political Representatives</b></button>
+  <button class="btn btn-default pull-right mtop15p mbot15p"><b>View Political Representatives</b></button>
  </div>
  </div>
  </div>

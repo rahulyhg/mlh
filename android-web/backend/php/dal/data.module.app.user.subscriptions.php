@@ -11,7 +11,9 @@ class app_subscription {
    $sql="SELECT subdomain_Id, subdomainName, ";
    $sql.="(SELECT IF((SELECT count(*) FROM user_subscription WHERE user_subscription.user_Id='".$user_Id."'";
    $sql.=" AND user_subscription.domain_Id='".$domain_Id."' AND ";
-   $sql.="user_subscription.subdomain_Id=subs_subdom_info.subdomain_Id)>0, 'YES','NO')) As subscribed ";
+   $sql.="user_subscription.subdomain_Id=subs_subdom_info.subdomain_Id)>0, 'YES','NO')) As subscribed, ";
+   $sql.="(SELECT count(*) FROM unionprof_account WHERE domain_Id='".$domain_Id."' AND ";
+   $sql.="subdomain_Id=subs_subdom_info.subdomain_Id) As communities ";
    $sql.=" FROM subs_subdom_info WHERE domain_Id='".$domain_Id."';";
    return $sql;
  }

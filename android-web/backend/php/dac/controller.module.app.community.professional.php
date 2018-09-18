@@ -135,6 +135,40 @@ if(isset($_GET["action"])){
      echo 'MISSING_USER_ID';
    }  
   }
+  else if($_GET["action"]=='GET_COUNT_PROFESSIONALCOMMUNITYBYCATEGORIES'){
+    if(isset($_GET["domain_Id"]) && isset($_GET["subdomain_Id"])){
+	  $domain_Id=$_GET["domain_Id"];
+	  $subdomain_Id=$_GET["subdomain_Id"];
+	  $professionalCommunity = new ProfessionalCommunity();
+	  $query = $professionalCommunity->query_listOfCommunity_count_byDomainSubdomain($domain_Id,$subdomain_Id);
+	  $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
+	  $jsonData=$dbObj->getJSONData($query);
+	  echo $jsonData;
+	} else { $content='Missing';
+	    if(!isset($_GET["domain_Id"])){ $content.=' domain_Id,'; }
+		if(!isset($_GET["subdomain_Id"])){ $content.=' subdomain_Id,'; }
+		$content=chop($content,',');
+		echo $content;
+	}
+  }
+  else if($_GET["action"]=='GET_DATA_PROFESSIONALCOMMUNITYBYCATEGORIES'){
+    if(isset($_GET["domain_Id"]) && isset($_GET["subdomain_Id"]) && isset($_GET["limit_start"]) && isset($_GET["limit_end"])){
+	  $domain_Id=$_GET["domain_Id"];
+	  $subdomain_Id=$_GET["subdomain_Id"];
+	  $limit_start=$_GET["limit_start"];
+	  $limit_end=$_GET["limit_end"];
+	  $professionalCommunity = new ProfessionalCommunity();
+	  $query = $professionalCommunity->query_listOfCommunity_data_byDomainSubdomain($domain_Id,$subdomain_Id,$limit_start,$limit_end);
+	  $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
+	  $jsonData=$dbObj->getJSONData($query);
+	  echo $jsonData;
+	} else { $content='Missing';
+	    if(!isset($_GET["domain_Id"])){ $content.=' domain_Id,'; }
+		if(!isset($_GET["subdomain_Id"])){ $content.=' subdomain_Id,'; }
+		$content=chop($content,',');
+		echo $content;
+	}
+  }
   else { echo 'NO_ACTION'; }
 }
 else { echo 'MISSING_ACTION'; }
