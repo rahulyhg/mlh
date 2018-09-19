@@ -99,8 +99,9 @@ class user_authentication {
   }
   
   function query_autoComplete_getAllUsers($searchTerm){
-    $sql="SELECT user_Id, surName, name, profile_pic FROM user_account WHERE surName='".$searchTerm."' OR ";
-	$sql.="name='".$searchTerm."';";
+    $sql="SELECT user_Id, CONCAT(surName,' ', name) As name, profile_pic, minlocation, location, state, country ";
+	$sql.="FROM user_account WHERE surName LIKE '%".$searchTerm."5' OR ";
+	$sql.="name LIKE '%".$searchTerm."%';";
 	return $sql;
   }
 }

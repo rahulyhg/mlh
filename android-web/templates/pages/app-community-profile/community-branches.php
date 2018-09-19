@@ -1,6 +1,8 @@
 <div class="container-fluid mtop15p">
     <div align="right" class="col-xs-12 mbot15p">
-	  <button class="btn btn-default"><b>Create New Branch</b></button>
+	  <button class="btn btn-default">
+	    <a class="a-custom" href="<?php echo $_SESSION["PROJECT_URL"]; ?>app/community/createNewBranch"><b>Create New Branch</b></a>
+	  </button>
 	  <button class="btn btn-default" onclick="javascript:invoke_requestBranchModal();"><b>Request Local Branch</b></button>
 	</div>
 </div>
