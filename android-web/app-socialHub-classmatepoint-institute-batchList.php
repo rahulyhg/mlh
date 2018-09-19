@@ -29,7 +29,7 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
  <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script-->
 <script type="text/javascript">
 $(document).ready(function(){
- bgstyle(2);
+ bgstyle(3);
  $(".lang_"+USR_LANG).css('display','block');
 });
 </script>

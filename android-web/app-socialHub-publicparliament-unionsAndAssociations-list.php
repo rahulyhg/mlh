@@ -30,7 +30,7 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
 var DOMAIN_ID='<?php if(isset($_GET["1"])){ echo $_GET["1"]; } ?>';
 var SUBDOMAIN_ID='<?php if(isset($_GET["2"])){ echo $_GET["2"]; } ?>';
 $(document).ready(function(){
- bgstyle(2);
+ bgstyle(3);
  $(".lang_"+USR_LANG).css('display','block');
  get_count_CommunitiesByCategories();
 });

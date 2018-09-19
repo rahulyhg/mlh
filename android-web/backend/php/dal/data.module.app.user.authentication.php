@@ -97,6 +97,12 @@ class user_authentication {
    $sql.=" FROM user_account WHERE user_Id='".$user_Id."';";
    return $sql;
   }
+  
+  function query_autoComplete_getAllUsers($searchTerm){
+    $sql="SELECT user_Id, surName, name, profile_pic FROM user_account WHERE surName='".$searchTerm."' OR ";
+	$sql.="name='".$searchTerm."';";
+	return $sql;
+  }
 }
 
 ?>

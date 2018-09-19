@@ -223,6 +223,17 @@ if(isset($_GET["action"])){
   }
   /* Action Events used by Admin DashBoard ::: END */
   
+  /* ALL MEMBERS SELECTIONS */
+  else if($_GET["action"]==='GET_AUTOCOMPLETE_USERS'){
+    if(isset($_GET["searchTerm"])){
+	 $searchTerm=$_GET["searchTerm"];
+	 $userAuthenticationObj = new user_authentication();
+	 $query = $userAuthenticationObj->query_autoComplete_getAllUsers($searchTerm);
+	 $dbObj = new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
+	 echo $dbObj->getJSONData($query);
+	} else { echo 'Missing searchTerm'; }
+    
+  }
   else { echo 'NO_ACTION'; }
 } 
 else { echo 'MISSING_ACTION'; }

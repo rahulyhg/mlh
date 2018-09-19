@@ -68,7 +68,7 @@ a.newsfeed-content { color:#000; }
 		 <div id="publicNewsFeedlist" class="container-fluid mtop20p mbot15p" style="padding:0px;">
             <div id="publicNewsFeedlist0" align="center">
 			   <img src="images/load.gif" style="width:150px;height:150px;"/>
-			   <a href="http://192.168.1.4/mlh/android-web/app/community/UPA533731685151#">
+			   <a href="http://192.168.1.4/mlh/android-web/app/community/general/viewprofile/UPA533731685151">
 			     <button>CommunityProfile</button>
 			   </a>
 		    </div>

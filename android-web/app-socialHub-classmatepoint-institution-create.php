@@ -32,7 +32,7 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
 <script type="text/javascript">
 var IMG_URL;
 $(document).ready(function(){
- bgstyle(2);
+ bgstyle(3);
  $(".lang_"+USR_LANG).css('display','block');
  cloudservers_auth(); // Get CloudName from Cloudinary
  upload_picture_100X100('createInstitution_profilepic_div',PROJECT_URL+'images/icons/0.png');

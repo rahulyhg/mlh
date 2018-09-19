@@ -31,7 +31,7 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
 $(document).ready(function(){
  sideWrapperToggle();
  mainMenuSelection("dn_"+USR_LANG+"_socialHub");
- bgstyle(2);
+ bgstyle(3);
  $(".lang_"+USR_LANG).css('display','block');
 });
 </script>

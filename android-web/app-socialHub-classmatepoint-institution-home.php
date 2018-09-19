@@ -32,9 +32,9 @@ var TAB_POINT='<?php if(isset($_GET["1"])){ echo $_GET["1"]; } ?>';
 var INSTITUTION_ID='<?php if(isset($_GET["2"])){ echo $_GET["2"]; } ?>';
 var INSTITUTION_BOARD;
 $(document).ready(function(){
- bgstyle(2);
+ bgstyle(3);
  $(".lang_"+USR_LANG).css('display','block');
- startAppProgressLoader('danger');
+ startAppProgressLoader('info');
  generateTabList();
  tabPointDisplayer();
 });

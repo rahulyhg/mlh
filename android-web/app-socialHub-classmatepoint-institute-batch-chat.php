@@ -38,7 +38,7 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
  <link rel="stylesheet" type="text/css" href="styles/api/simple-chat-skeleton.css"/>
 <script type="text/javascript">
 $(document).ready(function(){
- bgstyle(2);
+ bgstyle(3);
  layout_setup();
  $(".lang_"+USR_LANG).css('display','block');
 });

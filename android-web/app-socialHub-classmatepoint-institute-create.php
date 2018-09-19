@@ -32,7 +32,7 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
 <script type="text/javascript">
 var INSTITUTION_ID='<?php if(isset($_GET["1"])){ echo $_GET["1"]; } ?>';
 $(document).ready(function(){
- bgstyle(2);
+ bgstyle(3);
  $(".lang_"+USR_LANG).css('display','block');
  build_establishedYear();
  build_countryOption('createInstitute_country');
