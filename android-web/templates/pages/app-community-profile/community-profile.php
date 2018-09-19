@@ -134,9 +134,21 @@ function menuCommunityProfile(id){
 
 <script type="text/javascript">
 function autocomplete_load_branches(){
- var availableTags = [ "ActionScript","AppleScript","Asp","BASIC","C","C++","Clojure","COBOL","ColdFusion","Erlang",
+/* var availableTags = [ "ActionScript","AppleScript","Asp","BASIC","C","C++","Clojure","COBOL","ColdFusion","Erlang",
       "Fortran","Groovy","Haskell","Java","JavaScript","Lisp","Perl","PHP","Python","Ruby","Scala","Scheme"];
- $("#communityProfile_searchByBranch").autocomplete({ source: availableTags });
+ $("#communityProfile_searchByBranch").autocomplete({ source: availableTags }); */
+ var options = {
+    url: PROJECT_URL+"resources/res.json",
+    getValue: "name",
+    list: { match: { enabled: true },maxNumberOfElements: 10 },
+    template: { type: "custom",
+				method: function(value, item) {
+				 var content='';
+					return "<img src='" + (item.image)+ "' style='width:60px;height:60px;border-radius:50%;'>" + value;
+			    } } };
+$("#communityProfile_searchByBranch").easyAutocomplete(options);
+$(".easy-autocomplete").css('width','100%');
+$(".easy-autocomplete-container").css('margin-top','30px');
 }
 </script>
 	<div id="communityProfile_comOwners_content" class="col-xs-12 hide-block">
