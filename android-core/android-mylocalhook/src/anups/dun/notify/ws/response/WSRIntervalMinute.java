@@ -3,13 +3,11 @@ package anups.dun.notify.ws.response;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-
 import android.content.Context;
 import anups.dun.notify.minute.NotifiedFrndRequestReceived;
 import anups.dun.util.AndroidLogger;
 import anups.dun.util.DateAndTimeUtility;
 import anups.dun.util.PushNotification;
-import anups.dun.util.Utility;
 import anups.dun.web.templates.URLGenerator;
 
 public class WSRIntervalMinute {
@@ -89,7 +87,7 @@ public class WSRIntervalMinute {
 				    contentTitle, bigContentTitle,  contentText, ticker, events);
 			   /* Mention It is Notified */
 			   String[] params=new String[1];
-			 		    params[0]=new URLGenerator().notified_frndRequestReceived(req_Id);
+			 		    params[0]=new URLGenerator(context).notified_frndRequestReceived(req_Id);
 			   new NotifiedFrndRequestReceived().execute(params);
 			 }
 		   }

@@ -8,11 +8,8 @@ import android.os.IBinder;
 import anups.dun.constants.BusinessConstants;
 import anups.dun.js.AppSessionManagement;
 import anups.dun.notify.ws.WSIntervalMinute;
-import anups.dun.notify.ws.response.WSRIntervalMinute;
-import anups.dun.notify.ws.util.WSUtility;
 import anups.dun.util.AndroidLogger;
 import anups.dun.util.GPSTracker;
-import anups.dun.util.UtilityServices;
 import anups.dun.web.templates.URLGenerator;
 
 @SuppressLint("NewApi")
@@ -25,7 +22,7 @@ public class BGServiceMinute extends Service {
     /* Regulates the Logger File Size upto 2 MB */
     // AndroidLogger.regulateLoggerFile();
     /* Minute Service */
-	URLGenerator urlGenerator =new URLGenerator();
+	URLGenerator urlGenerator =new URLGenerator(this.getApplicationContext());
 	String user_Id=appSessionManager.getAndroidSession(BusinessConstants.AUTH_USER_ID);
 	logger.info("user_Id: "+user_Id);
 	if(user_Id!=null){

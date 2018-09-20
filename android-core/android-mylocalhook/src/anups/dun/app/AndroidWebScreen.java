@@ -11,7 +11,6 @@ import android.content.ClipData;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Build;
 import android.view.KeyEvent;
@@ -20,10 +19,8 @@ import android.view.Window;
 import android.webkit.ValueCallback;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import anups.dun.alarm.AlarmIntervalHour;
 import anups.dun.app.R;
 import anups.dun.constants.BusinessConstants;
-import anups.dun.db.Database;
 import anups.dun.db.js.AppSQLiteUsrFrndsContactsInfo;
 import anups.dun.js.AppManagement;
 import anups.dun.js.AppNotifyManagement;
@@ -33,6 +30,7 @@ import anups.dun.js.AppSessionManagement;
 import anups.dun.media.AndroidWebScreenVideo;
 import anups.dun.util.AndroidLogger;
 import anups.dun.util.NetworkUtility;
+import anups.dun.util.PropertyUtility;
 import anups.dun.web.templates.URLGenerator;
 import java.io.File;
 
@@ -130,28 +128,9 @@ public  class AndroidWebScreen extends Activity  {
       
     }
 
-public void createProjectPath(AppSessionManagement appSessionManagement){
-  String filePath=BusinessConstants.INTERNALMEMORYPATH+"/"+"mylocalhook";
-  File externalDir = new File(filePath);
-  if(!externalDir.exists()) { externalDir.mkdir();  }
-  
-  appSessionManagement.setAndroidSession(BusinessConstants.ANDROID_PROJECTPATH, filePath);
-  
-   /* String filePath=Environment.getExternalStorageDirectory().toString()+"/"+"mylocalhook";
-    logger.info("State: "+Environment.getExternalStorageState()+"  filePath: " +filePath);
-    File externalDir = new File(filePath);
-    if(!externalDir.exists()){
-    	try{
-    	if(externalDir.mkdir()) { logger.info("Made a Directory: "); }
-    	else {  logger.info("Not Made a Directory: "); }
-    	; 
-    	}
-    	catch(Exception e){ logger.error("Made a Directory Exception: "+e); }
-    }
-    else {
-    	Toast.makeText(getBaseContext(), "Not Made a Directory: ", Toast.LENGTH_LONG).show();
-    } */
-}
+
+
+
 
 final private int REQUEST_CODE_ASK_PERMISSIONS = 123;
 
@@ -208,7 +187,7 @@ public void onRequestPermissionsResult(int requestCode, String[] permissions, in
 	    		builder.setNegativeButton("App Permission Settings Video", new DialogInterface.OnClickListener() {  
 	                public void onClick(DialogInterface dialog, int id) {  
 	                		Intent intent = new Intent(AndroidWebScreen.this, AndroidWebScreenVideo.class);
-	                		intent.putExtra("VIDEO_URL", URLGenerator.PROJECT_URL + "videos/AppPermissionGrants.mp4");
+	                		intent.putExtra("VIDEO_URL", new URLGenerator(AndroidWebScreen.this.getApplicationContext()).PROJECT_URL + "videos/AppPermissionGrants.mp4");
 	                		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 	                		startActivity(intent);
 	                }  
@@ -240,11 +219,15 @@ protected void onCreate(Bundle savedInstanceState) {
  
  AppSQLiteUsrFrndsContactsInfo appSQLiteUsrFrndsInfo = new AppSQLiteUsrFrndsContactsInfo(this.getApplicationContext());
  
- /* Set Project Path */
- if(appSessionManagement.getAndroidSession(BusinessConstants.ANDROID_PROJECTPATH)==null){
-   createProjectPath(appSessionManagement);
+ /* App Settings :: */
+ /* Set Project Path And PropertyFiles */
+ try {
+ PropertyUtility propertyUtility = new PropertyUtility(this.getApplicationContext());
+ String propertyFile = propertyUtility.initializePropertyFile(appSessionManagement);
+ propertyUtility.readPropertyFile(appSessionManagement, propertyFile);
+ } catch(Exception e){
+	 logger.error("Exception: "+e);
  }
-
   // try {
 	  
     /* Creating Database Schema If it is not created */
@@ -326,9 +309,8 @@ protected void onCreate(Bundle savedInstanceState) {
         	Uri data = intent.getData();
         	String directURL="file:///android_asset/www/app-default.html";
         	
-        	 if(data!=null){
-        		directURL = data.toString();
-        	}
+        	if(data!=null){ directURL = data.toString(); }
+        	
         	 logger.info("intent: "+intent);
         	 logger.info("extras: "+extras);
         	 logger.info("data: "+data);

@@ -12,10 +12,8 @@ import android.webkit.JavascriptInterface;
 import android.widget.Toast;
 import anups.dun.app.AndroidWebScreen;
 import anups.dun.media.AndroidWebScreenVideo;
-import anups.dun.services.BGServiceMinute;
 import anups.dun.util.CRUDContacts;
 import anups.dun.util.GPSTracker;
-import anups.dun.util.UtilityServices;
 import anups.dun.web.templates.URLGenerator;
 
 public class AppManagement extends ActionBarActivity {
@@ -24,12 +22,12 @@ public class AppManagement extends ActionBarActivity {
 
 	@JavascriptInterface
 	public String getDefaultPage() {
-      return new URLGenerator().defaultPage();
+      return new URLGenerator(mContext).defaultPage();
     }
 	
 	@JavascriptInterface
 	public String latestNews(){
-	  return new URLGenerator().latestNews();
+	  return new URLGenerator(mContext).latestNews();
 	}
 	
 	@JavascriptInterface

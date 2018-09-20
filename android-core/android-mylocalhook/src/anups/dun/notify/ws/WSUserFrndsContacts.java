@@ -1,9 +1,6 @@
 package anups.dun.notify.ws;
 
 import java.util.ArrayList;
-
-import org.apache.commons.lang3.StringUtils;
-
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
@@ -115,7 +112,7 @@ protected String doInBackground(String... arg0) {
 	logger.info("phoneNumberList: "+phoneNumberList);
 	
 	/* */
-	String[] params = new URLGenerator().ws_userFrndInfoDetails(user_Id, phoneNumberList);
+	String[] params = new URLGenerator(context).ws_userFrndInfoDetails(user_Id, phoneNumberList);
 	 WSUtility wsUtility = new WSUtility();
 	 String response = wsUtility.HttpURLPOSTResponse(params);
 	 logger.info("response: "+response);

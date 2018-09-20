@@ -1,8 +1,16 @@
 package anups.dun.web.templates;
 
+import android.content.Context;
+import anups.dun.js.AppSessionManagement;
+
 public class URLGenerator {
- public static final String PROJECT_URL="http://192.168.1.4/mlh/android-web/";
+ public AppSessionManagement appSessionManagement;
+ public String PROJECT_URL;
  // public static final String PROJECT_URL="http://192.168.43.47/mlh/android-web/";
+ public URLGenerator(Context context){
+	 appSessionManagement =new AppSessionManagement(context);
+	 PROJECT_URL= (String) appSessionManagement.getAndroidSession("PROPERTY_PROJECT_URL");
+ }
  public String defaultPage(){
 	 return PROJECT_URL+"default.php";
  }

@@ -1,13 +1,10 @@
 package anups.dun.notify.ws.util;
 
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
-import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 import android.widget.Toast;
 import anups.dun.constants.BusinessConstants;
-import anups.dun.js.AppSessionManagement;
 import anups.dun.util.PushNotification;
 import anups.dun.web.templates.URLGenerator;
 
@@ -43,7 +40,7 @@ public class Notifications {
  
  public void notify_show_signInRegister(){
 	 try {
-	 URLGenerator urlGenerator = new URLGenerator();
+	 URLGenerator urlGenerator = new URLGenerator(context);
 	 String directURL=urlGenerator.defaultPage();
 	 boolean inapp=false;
 		 String contentTitle="MyLocalHook SignIn/Register";

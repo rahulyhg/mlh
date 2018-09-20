@@ -1,14 +1,10 @@
 package anups.dun.services;
 
 import android.annotation.SuppressLint;
-import android.app.ActivityManager;
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.IBinder;
-import android.os.Looper;
-import anups.dun.constants.BusinessConstants;
 import anups.dun.js.AppSessionManagement;
 import anups.dun.notify.ws.WSIntervalHour;
 import anups.dun.notify.ws.util.Notifications;
@@ -34,7 +30,7 @@ public class BGServiceHour extends Service {
 			      }
 			    }, 1000);		
 		    }
-		   URLGenerator urlGenerator=new URLGenerator();
+		   URLGenerator urlGenerator=new URLGenerator(this.getApplicationContext());
 		   AppSessionManagement appSessionManager = new AppSessionManagement(this);
 		   String user_Id=appSessionManager.getAndroidSession("AUTH_USER_ID");
 		   if(user_Id==null){
