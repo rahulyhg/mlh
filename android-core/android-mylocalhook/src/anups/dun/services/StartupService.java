@@ -18,11 +18,11 @@ public class StartupService extends BroadcastReceiver{
 	  logger.info("StartupService Initialized...");
 	  /* Triggering Minute Service */
 	 boolean isServiceRunning = new UtilityServices(context.getApplicationContext()).isServiceRunning(BGServiceMinute.class);
-	  logger.info("BGServiceRunning(Status): "+isServiceRunning);
-	  if(!isServiceRunning){
-           context.startService(new Intent(context, BGServiceMinute.class));
+     logger.info("BGServiceRunning(Status): "+isServiceRunning);
+	  if(isServiceRunning){
+		  context.stopService(new Intent(context, BGServiceMinute.class));
 	  }
-	  
+		  context.startService(new Intent(context, BGServiceMinute.class));
       /* Triggering Hour Service */ 
       AlarmIntervalHour.getInstance(context);
 	   

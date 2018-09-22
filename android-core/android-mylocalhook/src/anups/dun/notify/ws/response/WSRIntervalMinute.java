@@ -80,8 +80,8 @@ public class WSRIntervalMinute {
 
 			 if(!"Y".equalsIgnoreCase(notify)){
 			   boolean inapp = true;
-			   String contentTitle = "You recieved 1 Friendship Request";
-			   String bigContentTitle = "You recieved 1 Friendship Request"; // Big Title Details:
+			   String contentTitle = "You recieved a Friendship Request";
+			   String bigContentTitle = "You recieved a Friendship Request"; // Big Title Details:
 			   String contentText = surName+" "+name+" sent you Friendship Request on "+req_on; // You have recieved new message
 			   String ticker = "New Friendship Request"; // New Message Alert!
 			   String[] events = new String[1];
@@ -110,30 +110,34 @@ public class WSRIntervalMinute {
 		  
 		   */
 		 String notifyURL = "";
-		 JSONParser jsonParser = new JSONParser();
 		 try {
-		   JSONObject jsonObject = (JSONObject)jsonParser.parse(response);
-		   JSONArray jsonObjectArry = (JSONArray)jsonObject.get("usrFrndReqAccepted");
-		   for(int index=0;index<jsonObjectArry.size();index++) {
-			   JSONObject jobj = (JSONObject) jsonParser.parse(jsonObjectArry.get(index).toString());
-			   String rel_Id = (String) jobj.get("rel_Id");
-			   String rel_from = (String) jobj.get("rel_from");
-			   String rel_tz = (String) jobj.get("rel_tz");
-			   
-			   JSONArray requestSentObjectArry = (JSONArray)jsonObject.get("requestSent");
-			   JSONObject requestSentObject = (JSONObject) jsonParser.parse(requestSentObjectArry.get(0).toString());
-			   String frnd1_userId = (String) requestSentObject.get("frnd1");
-			   String frnd1_surName = (String) requestSentObject.get("surName");
-			   String frnd1_name = (String) requestSentObject.get("name");
-			   String frnd1_call_frnd2 = (String) requestSentObject.get("frnd1_call_frnd2");
-			   
-			   JSONArray requestReceivedObjectArry = (JSONArray)jsonObject.get("requestrecieved");
-			   JSONObject requestReceivedObject = (JSONObject) jsonParser.parse(requestReceivedObjectArry.get(0).toString());
-			   String frnd2_userId = (String) requestReceivedObject.get("frnd2");
-			   String frnd2_surName = (String) requestReceivedObject.get("surName");
-			   String frnd2_name = (String) requestReceivedObject.get("name");
-			   String frnd2_call_frnd1 = (String) requestReceivedObject.get("frnd2_call_frnd1");
-			   String notify = (String) jobj.get("notify");
+			 JSONParser jsonParser = new JSONParser();
+			 JSONObject jsonObject = (JSONObject)jsonParser.parse(response);
+			 JSONArray jsonObjectArry = (JSONArray)jsonObject.get("usrFrndReqAccepted");
+			 for(int index=0;index<jsonObjectArry.size();index++) {
+				JSONObject jobj = (JSONObject) jsonParser.parse(jsonObjectArry.get(index).toString());
+				   
+				   String rel_Id = (String) jobj.get("rel_Id");
+				   String rel_from = (String) jobj.get("rel_from");
+				   String rel_tz = (String) jobj.get("rel_tz");
+				   
+				   String requestSent = jobj.get("requestSent").toString().replaceAll("'", "\"");
+				   JSONArray requestSentObjectArry = (JSONArray) jsonParser.parse(requestSent);
+				   JSONObject requestSentObject = (JSONObject) requestSentObjectArry.get(0);
+				   String frnd1_userId = (String) requestSentObject.get("frnd1");
+				   String frnd1_surName = (String) requestSentObject.get("surName");
+				   String frnd1_name = (String) requestSentObject.get("name");
+				   String frnd1_call_frnd2 = (String) requestSentObject.get("frnd1_call_frnd2");
+				   
+				   String requestrecieved = jobj.get("requestrecieved").toString().replaceAll("'", "\"");
+				   JSONArray requestrecievedObjectArry = (JSONArray) jsonParser.parse(requestrecieved);
+				   JSONObject requestrecievedObject = (JSONObject) requestrecievedObjectArry.get(0);
+				   String frnd2_userId = (String) requestrecievedObject.get("frnd2");
+				   String frnd2_surName = (String) requestrecievedObject.get("surName");
+				   String frnd2_name = (String) requestrecievedObject.get("name");
+				   String frnd2_call_frnd1 = (String) requestrecievedObject.get("frnd2_call_frnd1");
+
+			       String notify = (String) jobj.get("notify");
 			   
 			   if(!"Y".equalsIgnoreCase(notify)){
 				   String contentTitle = "Now, ";

@@ -14,9 +14,16 @@ if(isset($_GET["action"])){
 	  $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
 	  echo $dbObj->addupdateData($query);
 	}
-	else {
-	  echo 'MISSING_REQUEST ID';
-	}
+	else { echo 'MISSING_REQUEST ID'; }
+  } else if($_GET["action"]=='NOTIFY_FRIENDREQUESTACCEPTED'){
+     if(isset($_GET["rel_Id"])){
+	   $rel_Id=$_GET["rel_Id"];
+	   $usrNotifyObj=new UserNotifications();
+	   $query=$usrNotifyObj->query_notified_friendRequestAccepted($rel_Id);
+	   $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
+	   echo $dbObj->addupdateData($query);
+	 }
+	 else { echo 'MISSING_REQUEST ID'; }
   }
 }
 ?>

@@ -50,7 +50,7 @@ public class URLGenerator {
  public String notified_frndRequestAccepted(String rel_Id){
 	  StringBuilder stringBuilder=new StringBuilder(PROJECT_URL); 
 	                stringBuilder.append("backend/php/dac/controller.module.app.user.notifications.php"); 
-	                stringBuilder.append("?action=NOTIFY_FRIENDREQUESTACCEPTED&reL_Id=").append(rel_Id);
+	                stringBuilder.append("?action=NOTIFY_FRIENDREQUESTACCEPTED&rel_Id=").append(rel_Id);
 	  return stringBuilder.toString();          
 	 }
  

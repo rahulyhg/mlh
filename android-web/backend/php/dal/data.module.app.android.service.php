@@ -73,21 +73,22 @@ class AppAndroidService {
     $sql.=" user_frnds_req.req_Id, user_frnds_req.from_userId, user_account.username, user_account.surName, ";
     $sql.=" user_account.name, user_frnds_req.req_on, user_frnds_req.notify, user_frnds_req.watched ";
     $sql.=" FROM user_account, user_frnds_req WHERE user_account.user_Id=user_frnds_req.from_userId AND ";
-    $sql.=" user_frnds_req.to_userId='".$user_Id."' ORDER BY user_frnds_req.req_on DESC LIMIT 0 , 1;";
+    $sql.=" user_frnds_req.to_userId='".$user_Id."' AND user_frnds_req.notify='N' ORDER BY user_frnds_req.req_on ";
+	$sql.="DESC LIMIT 0 , 10;";
 	return $sql;
   }  
   
   function query_notify_onAcceptUserFrndReq($user_Id){
   /* Notification Query to Users(Sender/Reciever) as reciever accepts Friendship */
    $sql="SELECT user_frnds.rel_Id, user_frnds.rel_from, user_frnds.rel_tz, ";
-   $sql.=" (SELECT CONCAT('[{\"frnd1\":\"',user_frnds.frnd1,'\",\"surName\":',user_account.surName,'\",";
-   $sql.="\"name\":\"',user_account.name,'\",\"frnd1_call_frnd2\":\"',user_frnds.frnd1_call_frnd2,'\"}]') ";
+   $sql.=" (SELECT CONCAT('[{\'frnd1\':\'',user_frnds.frnd1,'\',\'surName\':\'',user_account.surName,'\',";
+   $sql.="\'name\':\'',user_account.name,'\',\'frnd1_call_frnd2\':\'',user_frnds.frnd1_call_frnd2,'\'}]') ";
    $sql.=" FROM user_account WHERE user_account.user_Id=user_frnds.frnd1) As requestSent, ";
-   $sql.=" (SELECT CONCAT('[{\"frnd2\":\"',user_frnds.frnd2,'\",\"surName\":',user_account.surName,'\",\"name\":\"',";
-   $sql.=" user_account.name,'\",\"frnd2_call_frnd1\":\"',user_frnds.frnd2_call_frnd1,'\"}]') FROM user_account WHERE ";
+   $sql.=" (SELECT CONCAT('[{\'frnd2\':\'',user_frnds.frnd2,'\',\'surName\':\'',user_account.surName,'\',\'name\':\'',";
+   $sql.=" user_account.name,'\',\'frnd2_call_frnd1\':\'',user_frnds.frnd2_call_frnd1,'\'}]') FROM user_account WHERE ";
    $sql.=" user_account.user_Id=user_frnds.frnd2) As requestrecieved, user_frnds.notify FROM user_frnds ";
-   $sql.=" WHERE (user_frnds.frnd1='".$user_Id."' OR user_frnds.frnd2='".$user_Id."') AND notify='Y' ";
-   $sql.="  ORDER BY user_frnds.rel_from DESC LIMIT 0 , 1; ";
+   $sql.=" WHERE (user_frnds.frnd1='".$user_Id."' OR user_frnds.frnd2='".$user_Id."') AND user_frnds.notify='N' ";
+   $sql.="  ORDER BY user_frnds.rel_from DESC LIMIT 0 , 10; ";
    return $sql;
   }
   
