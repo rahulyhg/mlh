@@ -4,7 +4,9 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import android.content.Context;
-import anups.dun.notify.minute.NotifiedFrndRequestReceived;
+import anups.dun.constants.BusinessConstants;
+import anups.dun.js.AppSessionManagement;
+import anups.dun.notify.minute.NotifiedUpdateOnCentralServer;
 import anups.dun.util.AndroidLogger;
 import anups.dun.util.DateAndTimeUtility;
 import anups.dun.util.PushNotification;
@@ -66,44 +68,104 @@ public class WSRIntervalMinute {
 		   JSONObject jsonObject = (JSONObject)jsonParser.parse(response);
 		   JSONArray jsonObjectArry = (JSONArray)jsonObject.get("usrFrndReqRecieved");
 		   for(int index=0;index<jsonObjectArry.size();index++) {
-			 JSONObject jobj=(JSONObject) jsonParser.parse(jsonObjectArry.get(index).toString());
-			 String req_Id=(String) jobj.get("req_Id");
-			 String from_userId=(String) jobj.get("from_userId");
-			 String username=(String) jobj.get("username");
-			 String surName=(String) jobj.get("surName");
-			 String name=(String) jobj.get("name");
-			 String req_on=new DateAndTimeUtility().dateFormatSetup((String) jobj.get("req_on"));
-			 String notify=(String) jobj.get("notify");
+			 JSONObject jobj = (JSONObject) jsonParser.parse(jsonObjectArry.get(index).toString());
+			 String req_Id = (String) jobj.get("req_Id");
+			 String from_userId = (String) jobj.get("from_userId");
+			 String username = (String) jobj.get("username");
+			 String surName = (String) jobj.get("surName");
+			 String name = (String) jobj.get("name");
+			 String req_on = new DateAndTimeUtility().dateFormatSetup((String) jobj.get("req_on"));
+			 String notify = (String) jobj.get("notify");
+			 String watched = (String) jobj.get("watched");
 
 			 if(!"Y".equalsIgnoreCase(notify)){
-			   boolean inapp=true;
-			   String contentTitle="You recieved 1 Friendship Request";
-			   String bigContentTitle="You recieved 1 Friendship Request"; // Big Title Details:
-			   String contentText=surName+" "+name+" sent you Friendship Request on "+req_on; // You have recieved new message
-			   String ticker="New Friendship Request"; // New Message Alert!
+			   boolean inapp = true;
+			   String contentTitle = "You recieved 1 Friendship Request";
+			   String bigContentTitle = "You recieved 1 Friendship Request"; // Big Title Details:
+			   String contentText = surName+" "+name+" sent you Friendship Request on "+req_on; // You have recieved new message
+			   String ticker = "New Friendship Request"; // New Message Alert!
 			   String[] events = new String[1];
 					     events[0] = new String(surName+" "+name+" sent you Friendship Request on "+req_on);
 			   new PushNotification().display_closableNotification(context, notifyURL, inapp,
 				    contentTitle, bigContentTitle,  contentText, ticker, events);
 			   /* Mention It is Notified */
-			   String[] params=new String[1];
-			 		    params[0]=new URLGenerator(context).notified_frndRequestReceived(req_Id);
-			   new NotifiedFrndRequestReceived().execute(params);
+			   String[] params = new String[1];
+			 		    params[0] = new URLGenerator(context).notified_frndRequestReceived(req_Id);
+			   new NotifiedUpdateOnCentralServer().execute(params);
 			 }
 		   }
 		  
 		 }
-		 catch(Exception e){ logger.error("Exception: "+e.getMessage());}
+		 catch(Exception e){ logger.error("Exception: "+e.getMessage()); }
 	 }
 	 
 	 public void funcTrigger_usrFrndReqAccepted(){
-	 /*
-	  "usrFrndReqAccepted":[{"rel_Id":"FREL113163289416289671228",
-	  "rel_from":"2018-07-03 18:01:27",
-	  "rel_tz":"Asia\/Kolkata",
-	  "requestSent":"[{\"frnd1\":\"USR255798352927\",\"surName\":Srirambhatla\",\"name\":\"Saiteja\",\"frnd1_call_frnd2\":\"My LocalHook Friend\"}]",
-	  "requestrecieved":"[{\"frnd2\":\"USR924357814934\",\"surName\":Nellutla\",\"name\":\"Anup Chakravarthi\",\"frnd2_call_frnd1\":\"My LocalHook Friend\"}]"}]
-	  */
+		 /* "usrFrndReqAccepted":[{"rel_Id":"FREL113163289416289671228",
+		 						"rel_from":"2018-07-03 18:01:27",
+		 						"rel_tz":"Asia\/Kolkata",
+		 						"requestSent":"[{\"frnd1\":\"USR255798352927\",\"surName\":Srirambhatla\",\"name\":\"Saiteja\",
+		 						\"frnd1_call_frnd2\":\"My LocalHook Friend\"}]",
+		 						"requestrecieved":"[{\"frnd2\":\"USR924357814934\",\"surName\":Nellutla\",\"name\":\"Anup Chakravarthi\",
+		 						\"frnd2_call_frnd1\":\"My LocalHook Friend\"}]","notify":"Y"} 
+		  
+		   */
+		 String notifyURL = "";
+		 JSONParser jsonParser = new JSONParser();
+		 try {
+		   JSONObject jsonObject = (JSONObject)jsonParser.parse(response);
+		   JSONArray jsonObjectArry = (JSONArray)jsonObject.get("usrFrndReqAccepted");
+		   for(int index=0;index<jsonObjectArry.size();index++) {
+			   JSONObject jobj = (JSONObject) jsonParser.parse(jsonObjectArry.get(index).toString());
+			   String rel_Id = (String) jobj.get("rel_Id");
+			   String rel_from = (String) jobj.get("rel_from");
+			   String rel_tz = (String) jobj.get("rel_tz");
+			   
+			   JSONArray requestSentObjectArry = (JSONArray)jsonObject.get("requestSent");
+			   JSONObject requestSentObject = (JSONObject) jsonParser.parse(requestSentObjectArry.get(0).toString());
+			   String frnd1_userId = (String) requestSentObject.get("frnd1");
+			   String frnd1_surName = (String) requestSentObject.get("surName");
+			   String frnd1_name = (String) requestSentObject.get("name");
+			   String frnd1_call_frnd2 = (String) requestSentObject.get("frnd1_call_frnd2");
+			   
+			   JSONArray requestReceivedObjectArry = (JSONArray)jsonObject.get("requestrecieved");
+			   JSONObject requestReceivedObject = (JSONObject) jsonParser.parse(requestReceivedObjectArry.get(0).toString());
+			   String frnd2_userId = (String) requestReceivedObject.get("frnd2");
+			   String frnd2_surName = (String) requestReceivedObject.get("surName");
+			   String frnd2_name = (String) requestReceivedObject.get("name");
+			   String frnd2_call_frnd1 = (String) requestReceivedObject.get("frnd2_call_frnd1");
+			   String notify = (String) jobj.get("notify");
+			   
+			   if(!"Y".equalsIgnoreCase(notify)){
+				   String contentTitle = "Now, ";
+				   String contentText = "Now, ";
+				   String bigContentTitle = "Now, ";
+				   String ticker = "You had New Friend"; // New Message Alert!
+				   String[] events = new String[2];
+						    events[0] = new String("You had New Friend");
+				   AppSessionManagement appSessionManagement = new AppSessionManagement(context);
+				   if(appSessionManagement.getAndroidSession(BusinessConstants.AUTH_USER_ID).equalsIgnoreCase(frnd1_userId)){
+					   contentTitle = "you and "+frnd2_surName+" "+frnd2_name+" are friends.";
+					   contentText = "you and "+frnd2_surName+" "+frnd2_name+" are friends.";
+					   bigContentTitle = "you and "+frnd2_surName+" "+frnd2_name+" are friends.";
+					   events[1] = new String("you and "+frnd2_surName+" "+frnd2_name+" are friends.");
+				   } else {
+					   contentTitle = "you and "+frnd1_surName+" "+frnd1_name+" are friends.";
+					   contentText = "you and "+frnd1_surName+" "+frnd1_name+" are friends.";
+					   bigContentTitle = "you and "+frnd1_surName+" "+frnd1_name+" are friends.";
+					   events[1] = new String("you and "+frnd1_surName+" "+frnd1_name+" are friends.");
+				   }
+				   boolean inapp = true;
+				   new PushNotification().display_closableNotification(context, notifyURL, inapp,
+					    contentTitle, bigContentTitle,  contentText, ticker, events);
+				   /* Mention It is Notified */
+				   String[] params = new String[1];
+				 		    params[0] = new URLGenerator(context).notified_frndRequestAccepted(rel_Id);
+				   new NotifiedUpdateOnCentralServer().execute(params);
+			   }
+		   }
+		 }
+		 catch(Exception e){ logger.error("Exception: "+e.getMessage()); }
+	  
 	 }
 	 
 	 public void funcTrigger_usrReqUnionLocalBranch(){

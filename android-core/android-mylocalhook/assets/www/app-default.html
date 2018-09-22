@@ -32,17 +32,20 @@ if(count==1) { progress=false; }
 
 $(document).ready(function(){
  progressLoader();
+ if(AndroidSession!==undefined && Android!==undefined) {
  setTimeout(function(){ 
   try {
    var AUTH_USER_ID = AndroidSession.getAndroidSession("AUTH_USER_ID");
-   if(AUTH_USER_ID===undefined){ Android.loadAndroidWebScreen(Android.getDefaultPage()); }
+   if(AUTH_USER_ID===undefined){ Android.loadAndroidWebScreen('DEFAULT'); }
    else { Android.loadAndroidWebScreen(Android.latestNews()); } 
   } catch(err){ alert(err); }
  },3000);
+ }
 });
+
 </script>
 <style>
-.footer { position: fixed;left: 0;bottom: 0;width: 100%;text-align: center; }
+.footer { position: fixed;left: 0;bottom: 40px;width: 100%;text-align: center; }
 .item-1,.item-2,.item-3 { color:#fff;width:60%;font-size: 14px;animation-duration: 20s;
     font-weight:bold;animation-timing-function: ease-in-out;animation-iteration-count: infinite; }
 
@@ -91,6 +94,8 @@ $(document).ready(function(){
    <div class="col-md-4 col-sm-3 col-xs-1"></div>
    </div>
 </div>
-<div class="footer"></div>
+<div class="footer">
+
+</div>
 </body>
 </html>

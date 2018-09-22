@@ -141,7 +141,11 @@ console.log("SUBSCRIPTION_COUNTER: "+SUBSCRIPTION_COUNTER);
 			  }
 			} catch(err){ alert("AndroidNotify: "+err); }
 			hide_toggleMLHLoader('body');
-	        window.location.href=PROJECT_URL+'newsfeed/latest-news';
+			if(Android!==undefined){
+	        Android.loadAndroidWebScreen(PROJECT_URL+'newsfeed/latest-news');
+			} else {
+			  window.location.href=PROJECT_URL+'newsfeed/latest-news';
+			}
 		 }
 	    }); 
     });

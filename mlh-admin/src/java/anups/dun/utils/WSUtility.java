@@ -42,7 +42,7 @@ public class WSUtility {
    return response.toString(); 
   }
   
-  public void httpPOSTRequest(String url, String urlParameters){
+  public String httpPOSTRequest(String url, String urlParameters){
     StringBuilder response = new StringBuilder();
     BufferedReader in = null;
     try {
@@ -66,5 +66,6 @@ public class WSUtility {
         try { in.close(); } 
         catch(Exception e ){ e.printStackTrace(); } 
       }
+    return response.toString();
   }
 }

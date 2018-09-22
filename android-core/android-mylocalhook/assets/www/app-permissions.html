@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>MyLocalHook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="styles/bootstrap.min.css">
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+<style>
+body { background-color:#0ba0da;color:#fff; }
+@font-face { font-family: "mlhfont001";src: url("fonts/BAUHS93.TTF"); }
+@font-face { font-family: "mlhfont002";src: url("fonts/Boogaloo-Regular.otf"); }
+.f12 { font-size:12px; }
+.f10 { font-size:10px; }
+.mtop15p { margin-top:15px; }
+.mtop25p { margin-top:25px; }
+.footer { position: fixed;left: 0;bottom: 5%;width: 100%; }
+</style>
+<script type="text/javascript">
+var Android;
+var AndroidSession;
+var AndroidPermissions;
+var AndroidDatabase;
+var AndroidSQLiteUsrFrndsInfo;
+function goToNext(){
+ Android.loadAndroidWebScreen('DEFAULT');
+}
+function makeOutPermissions(){
+  if(Android.getAndroidVersion()>=23){
+    var arryPerm=["android.permission.WRITE_EXTERNAL_STORAGE","android.permission.READ_EXTERNAL_STORAGE",
+			      "android.permission.READ_CONTACTS","android.permission.WRITE_CONTACTS","android.permission.CAMERA",
+			      "android.permission.INTERNET","android.permission.ACCESS_NETWORK_STATE",
+		          "android.permission.ACCESS_WIFI_STATE","android.permission.ACCESS_COARSE_LOCATION",
+			      "android.permission.ACCESS_FINE_LOCATION"]; 
+	var permissionPage=false;
+    for(var index=0;index<arryPerm.length;index++){
+       try {
+         if(AndroidPermissions.doesPermissionExist(arryPerm[index])===false){ 
+	        permissionPage=true;break; 
+	     }
+	   } catch(err) { alert("DoesPermissionExist: "+err); }
+    }
+	if(!permissionPage){ goToNext(); }
+	else {  AndroidPermissions.makeAPermission(arryPerm.toString()); }
+  }	 else { goToNext(); }		  
+}
+
+</script>
+<style>
+.footer { position: fixed;left: 0;bottom: 40px;width: 100%;text-align: center; }
+.item-1,.item-2,.item-3 { color:#fff;width:60%;font-size: 14px;animation-duration: 20s;
+    font-weight:bold;animation-timing-function: ease-in-out;animation-iteration-count: infinite; }
+
+.item-1{ animation-name: anim-1; }
+.item-2{ animation-name: anim-2; }
+.item-3{ animation-name: anim-3; }
+
+@keyframes anim-1 {
+    0%, 8.3% { left: -100%; opacity: 0; }
+  8.3%,25% { left: 25%; opacity: 1; }
+  33.33%, 100% { left: 110%; opacity: 0; }
+}
+
+@keyframes anim-2 {
+	0%, 33.33% { left: -100%; opacity: 0; }
+  41.63%, 58.29% { left: 25%; opacity: 1; }
+  66.66%, 100% { left: 110%; opacity: 0; }
+}
+
+@keyframes anim-3 {
+	0%, 66.66% { left: -100%; opacity: 0; }
+  74.96%, 91.62% { left: 25%; opacity: 1; }
+  100% { left: 110%; opacity: 0; }
+}
+</style>
+</head>
+<body>
+<div align="center" class="container-fluid" style="padding:5px;margin-top:10px;">
+  <img src="images/logo-blue-flat.png" style="width:110px;height:auto;"/>
+</div>
+
+  <div class="container-fluid mtop15p" style="margin-top:100px;">
+    <div align="center" class="col-xs-12">
+	  <i class="fa fa-5x fa-university" aria-hidden="true"></i>
+	</div>
+	<div align="center" class="col-xs-12 mtop15p">
+		<h4 style="line-height:32px;font-family:mlhfont002;text-transform:uppercase;">
+		World's First Advanced Social Network where the platform 
+		can be customized based on user Opinion.</h4>
+	</div>
+	<div align="center" class="col-xs-12 mtop25p">
+	  <div class="col-xs-2"></div>
+	  <div class="col-xs-8">
+	    <button class="btn btn-default form-control" onclick="javascript:makeOutPermissions();"><b>Continue</b></button>
+	  </div>
+	  <div class="col-xs-2"></div>
+	<div>
+	<div align="center" class="col-xs-12 mtop25p">
+	 <span class="f12">By continuing, you are considered as you are agreeing to MyLocalHook's
+	 <b>Terms of Service and Privacy Policy.</b></span>
+	</div>
+	
+  </div>
+<div class="footer">
+ <div align="center" class="container-fluid">
+   <div class="row">
+     <div class="col-xs-12">
+	  <img src="images/anups-logo-blue.jpg" style="width:250px;height:auto;"/>
+	 </div>
+   </div>
+ </div>
+</div>
+</body>
+</html>

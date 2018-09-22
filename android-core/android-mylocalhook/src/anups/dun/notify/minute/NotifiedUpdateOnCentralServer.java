@@ -3,7 +3,7 @@ package anups.dun.notify.minute;
 import android.os.AsyncTask;
 import anups.dun.notify.ws.util.WSUtility;
 
-public class NotifiedFrndRequestReceived extends AsyncTask<String, String, String>{
+public class NotifiedUpdateOnCentralServer extends AsyncTask<String, String, String>{
 
 	@Override
 	protected String doInBackground(String... params) {

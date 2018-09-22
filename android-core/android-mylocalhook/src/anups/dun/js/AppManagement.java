@@ -10,16 +10,33 @@ import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
 import android.webkit.JavascriptInterface;
 import android.widget.Toast;
+import anups.dun.app.AndroidInitializerScreen;
 import anups.dun.app.AndroidWebScreen;
 import anups.dun.media.AndroidWebScreenVideo;
+import anups.dun.util.AndroidLogger;
 import anups.dun.util.CRUDContacts;
 import anups.dun.util.GPSTracker;
+import anups.dun.util.PropertyUtility;
 import anups.dun.web.templates.URLGenerator;
 
 public class AppManagement extends ActionBarActivity {
+  org.apache.log4j.Logger logger = AndroidLogger.getLogger(AppManagement.class);
 	Context mContext;
 	public AppManagement(Context c) {  mContext = c; }
 
+	@JavascriptInterface
+	public void loadProjectPropertiesFile(){
+	  logger.info("loadProjectPropertiesFile (Javascript)...");
+	  try {
+        AppSessionManagement appSessionManagement = new AppSessionManagement(mContext);
+	    PropertyUtility propertyUtility = new PropertyUtility(this.getApplicationContext());
+	    String propertyFile = propertyUtility.initializePropertyFile(appSessionManagement);
+		       propertyUtility.readPropertyFile(appSessionManagement, propertyFile);
+      } catch(Exception e){
+		 logger.error("Exception: "+e);
+	  }
+	}
+	
 	@JavascriptInterface
 	public String getDefaultPage() {
       return new URLGenerator(mContext).defaultPage();
@@ -85,7 +102,7 @@ public class AppManagement extends ActionBarActivity {
 	@JavascriptInterface
 	public void loadAndroidWebScreen(String directURL){
 		Intent intent = new Intent(mContext, AndroidWebScreen.class);
-			   intent.setData(Uri.parse(directURL));
+		   intent.setData(Uri.parse(directURL));
 		mContext.startActivity(intent);
 	}
 	

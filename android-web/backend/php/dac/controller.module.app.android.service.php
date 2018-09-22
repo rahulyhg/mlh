@@ -80,29 +80,33 @@ if(isset($_POST["action"])){
 	  
 	  $query1=$notifyObj->query_notify_usrFrndsReqReciever($user_Id);
 	  $query2=$notifyObj->query_notify_onAcceptUserFrndReq($user_Id);
-	 /* $query3=$notifyObj->query_notify_reqLocalBranch($user_Id);
+	  $query3=$notifyObj->query_notify_reqLocalBranch($user_Id);
 	  $query4=$notifyObj->query_notify_unionMemberReqReciever($user_Id);
 	  $query5=$notifyObj->query_notify_onAcceptUnionMemberReq($user_Id);
 	  $query6=$notifyObj->query_notify_unionMemberOnRoleChange($user_Id);
 	  $query7=$notifyObj->query_notify_unionMemberRolePermissionChange($user_Id);
 	  $query8=$notifyObj->query_notify_unionMemberNewsFeedNotification($user_Id);
 	  $query9=$notifyObj->query_notify_unionSupporterNewsFeedNotification($user_Id);
-	  $query10=$notifyObj->query_notify_movementNotification($user_Id); */
+	  $query10=$notifyObj->query_notify_movementNotification($user_Id);
 
+	  // echo $query10;
+	  
+	  
 	  $sqlArray=array();
 	  $sqlArray["usrFrndReqRecieved"]=$query1;
 	  $sqlArray["usrFrndReqAccepted"]=$query2;
-	/*  $sqlArray["usrReqUnionLocalBranch"]=$query3;
+	  $sqlArray["usrReqUnionLocalBranch"]=$query3;
 	  $sqlArray["unionMemReqRecieved"]=$query4;
 	  $sqlArray["unionMemReqAccepted"]=$query5;
 	  $sqlArray["unionMemOnRoleChange"]=$query6;
 	  $sqlArray["unionMemRolePermUpdated"]=$query7;
 	  $sqlArray["unionMemNewsFeed"]=$query8;
 	  $sqlArray["unionSubscriberNewsFeed"]=$query9;
-	  $sqlArray["unionMovements"]=$query10; */
-	  $content=$dbObj->getBulkJSONData($sqlArray);
+	  $sqlArray["unionMovements"]=$query10;
+	  $content=$dbObj->getBulkJSONData($sqlArray); 
 
 	  echo $content;
+	  
 	}
 	 else {
 	    echo 'MISSING_USERID';

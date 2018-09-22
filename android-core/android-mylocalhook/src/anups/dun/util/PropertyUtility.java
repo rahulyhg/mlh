@@ -17,7 +17,7 @@ import anups.dun.constants.BusinessConstants;
 import anups.dun.js.AppSessionManagement;
 
 public class PropertyUtility {
- org.apache.log4j.Logger logger = AndroidLogger.getLogger(AndroidWebScreen.class);
+ org.apache.log4j.Logger logger = AndroidLogger.getLogger(PropertyUtility.class);
  private Context context;
  public PropertyUtility(Context context){  this.context=context; }
  
@@ -46,7 +46,7 @@ public class PropertyUtility {
 	 File externalDir = new File(propertyFileName);
 	 if(!externalDir.exists()){
 	   StringBuilder projectpropBuilder = new StringBuilder();
-	   projectpropBuilder.append("PROJECT_URL=").append("http://www.mylocalhook.com/default.php");
+	   projectpropBuilder.append("PROJECT_URL=").append("http://www.mylocalhook.com/");
 	   generateFile(propertyFileName, projectpropBuilder.toString());
 	 }
 	 return propertyFileName;
@@ -67,7 +67,7 @@ public class PropertyUtility {
 		   		      properties.load(new StringReader(sb.toString()));
 		 for(Entry<Object, Object> e : properties.entrySet()) {
 			appSessionManagement.setAndroidSession("PROPERTY_"+e.getKey().toString(), e.getValue().toString()); 
-			logger.info("PropertiesFile: "+appSessionManagement.getAndroidSession("PROPERTY_"+e.getKey().toString()));
+			logger.info("PROPERTY_"+e.getKey().toString()+": "+appSessionManagement.getAndroidSession("PROPERTY_"+e.getKey().toString()));
 		  }
 		}
 		catch(Exception e){  Toast.makeText(context, "IOException: "+e, Toast.LENGTH_LONG).show();   }

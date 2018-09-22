@@ -202,6 +202,19 @@ public void onRequestPermissionsResult(int requestCode, String[] permissions, in
 }
 
 // public static  appSessionManagement;
+public boolean permissionsExist(){
+	String[] permissions={"android.permission.WRITE_EXTERNAL_STORAGE","android.permission.READ_EXTERNAL_STORAGE",
+      "android.permission.READ_CONTACTS","android.permission.WRITE_CONTACTS","android.permission.CAMERA",
+      "android.permission.INTERNET","android.permission.ACCESS_NETWORK_STATE",
+      "android.permission.ACCESS_WIFI_STATE","android.permission.ACCESS_COARSE_LOCATION",
+      "android.permission.ACCESS_FINE_LOCATION"};
+	boolean permissionRecognizer = true;
+	for(int index=0;index<permissions.length;index++){
+	  if(doesPermissionExist(permissions[index])==false){ permissionRecognizer=false;break; }
+	}
+  return permissionRecognizer;
+}
+
 
 @SuppressLint("SetJavaScriptEnabled")
 @Override
@@ -214,19 +227,21 @@ protected void onCreate(Bundle savedInstanceState) {
  AppManagement appManagement = new AppManagement(this);
  AppPermissions appPermissions = new AppPermissions(this);
  AppNotifyManagement appNotifyManagement = new AppNotifyManagement(this);
- AppSessionManagement appSessionManagement = new AppSessionManagement(this);
+ AppSessionManagement appSessionManagement = new AppSessionManagement(this.getApplicationContext());
  AppSQLiteManagement appSQLiteManagement = new AppSQLiteManagement(this);
  
  AppSQLiteUsrFrndsContactsInfo appSQLiteUsrFrndsInfo = new AppSQLiteUsrFrndsContactsInfo(this.getApplicationContext());
  
  /* App Settings :: */
  /* Set Project Path And PropertyFiles */
- try {
- PropertyUtility propertyUtility = new PropertyUtility(this.getApplicationContext());
- String propertyFile = propertyUtility.initializePropertyFile(appSessionManagement);
- propertyUtility.readPropertyFile(appSessionManagement, propertyFile);
- } catch(Exception e){
+ if(permissionsExist()){
+   try {
+    PropertyUtility propertyUtility = new PropertyUtility(this.getApplicationContext());
+    String propertyFile = propertyUtility.initializePropertyFile(appSessionManagement);
+    propertyUtility.readPropertyFile(appSessionManagement, propertyFile);
+   } catch(Exception e){
 	 logger.error("Exception: "+e);
+   }
  }
   // try {
 	  
@@ -308,9 +323,15 @@ protected void onCreate(Bundle savedInstanceState) {
             Bundle extras = intent.getExtras();
         	Uri data = intent.getData();
         	String directURL="file:///android_asset/www/app-default.html";
-        	
-        	if(data!=null){ directURL = data.toString(); }
-        	
+        	if(!permissionsExist()){
+        		directURL="file:///android_asset/www/app-permissions.html";
+        	} else {
+        	if(data!=null){
+        	  if("DEFAULT".equalsIgnoreCase(data.toString())) { 
+        		directURL = appSessionManagement.getAndroidSession("PROPERTY_PROJECT_URL"); 
+        	  } else { directURL = data.toString(); }
+        	}
+        	}
         	 logger.info("intent: "+intent);
         	 logger.info("extras: "+extras);
         	 logger.info("data: "+data);

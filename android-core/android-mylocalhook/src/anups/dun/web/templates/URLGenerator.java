@@ -6,7 +6,7 @@ import anups.dun.js.AppSessionManagement;
 public class URLGenerator {
  public AppSessionManagement appSessionManagement;
  public String PROJECT_URL;
- // public static final String PROJECT_URL="http://192.168.43.47/mlh/android-web/";
+
  public URLGenerator(Context context){
 	 appSessionManagement =new AppSessionManagement(context);
 	 PROJECT_URL= (String) appSessionManagement.getAndroidSession("PROPERTY_PROJECT_URL");
@@ -46,6 +46,13 @@ public class URLGenerator {
                 stringBuilder.append("?action=NOTIFY_FRIENDREQUESTRECEIVED&req_Id=").append(req_Id);
   return stringBuilder.toString();          
  }
+ 
+ public String notified_frndRequestAccepted(String rel_Id){
+	  StringBuilder stringBuilder=new StringBuilder(PROJECT_URL); 
+	                stringBuilder.append("backend/php/dac/controller.module.app.user.notifications.php"); 
+	                stringBuilder.append("?action=NOTIFY_FRIENDREQUESTACCEPTED&reL_Id=").append(rel_Id);
+	  return stringBuilder.toString();          
+	 }
  
  public String[] ws_userFrndInfoDetails(String user_Id, String phoneNumbersList){
    String[] params = new String[2];

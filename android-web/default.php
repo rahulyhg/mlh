@@ -39,7 +39,10 @@ var AndroidSQLiteUsrFrndsInfo;
 $(document).ready(function(){
  $(".lang_"+USR_LANG).css('display','block');
 });
-
+function goToNext(){
+ var url=PROJECT_URL+'initializer/start';
+ window.location.href=url;
+}
 function makeOutPermissions(){
  var url=PROJECT_URL+'initializer/start';
  if(Android!==undefined && AndroidPermissions!==undefined){
@@ -79,7 +82,7 @@ function makeOutPermissions(){
 	  STAY CONNECTED TO YOUR LOCAL ENVIRONMENT BY CONNECTING TO PEOPLE AROUND YOU</h5>
    </div>
    <div align="center" class="col-md-12" style="margin-top:120px;">
-     <button class="btn btn-default" onclick="javascript:makeOutPermissions();">
+     <button class="btn btn-default" onclick="javascript:goToNext();">
 	 <b>START MY JOURNEY</b>&nbsp;&nbsp;<i class="fa fa-arrow-right"></i></button>
    </div>
  </div>
