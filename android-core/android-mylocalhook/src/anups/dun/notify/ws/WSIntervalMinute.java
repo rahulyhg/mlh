@@ -25,9 +25,11 @@ public class WSIntervalMinute  extends AsyncTask<String, String, String>{
   WSRIntervalMinute wsr=new WSRIntervalMinute(context,response);
   				    wsr.funcTrigger_usrFrndReqRecieved();
 			   		wsr.funcTrigger_usrFrndReqAccepted();
+			   		
   new Handler().postDelayed(new Runnable(){
 	@Override
 	public void run() {   
+	 context.stopService(new Intent(context.getApplicationContext(),BGServiceMinute.class));
 	 context.startService(new Intent(context.getApplicationContext(),BGServiceMinute.class));
 	}
   }, 60000);

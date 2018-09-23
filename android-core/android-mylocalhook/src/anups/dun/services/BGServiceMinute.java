@@ -52,17 +52,10 @@ public class BGServiceMinute extends Service {
    SERVICE_START_ID=startId;
    SERVICE_INTENT=intent;
    logger.info("intent: "+intent+" flags: "+flags+" startId: "+startId);
-   new Handler().postDelayed(new Runnable(){
-		@Override
-		public void run() { trigger_minuteService(); }
-	  }, 1000);
-   recallService();
+   trigger_minuteService();
    return Service.START_REDELIVER_INTENT;
   }
 
-  private void recallService(){
-	 
-  }
   @Override
   public IBinder onBind(Intent intent) {
     return null;

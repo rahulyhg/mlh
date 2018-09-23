@@ -4,7 +4,7 @@ require_once '../api/app.initiator.php';
 require_once '../api/app.database.php';
 require_once '../dal/data.module.app.android.service.php';
 
-$logger=Logger::getLogger("controller.module.app.notifications.php");
+$logger=Logger::getLogger("controller.module.app.android.service.php");
 
 if(isset($_POST["action"])){ 
   if($_POST["action"]=='SERVICE_USRDUMPFRNDS'){

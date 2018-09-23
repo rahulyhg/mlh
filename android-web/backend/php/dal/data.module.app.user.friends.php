@@ -2,10 +2,10 @@
 class user_friends {
   
   function query_sendUserFrndRequests($req_Id,$fromUserId,$toUserId,$usr_frm_call_to){
-	$sql="INSERT INTO user_frnds_req(req_Id, from_userId,  to_userId,usr_frm_call_to, req_on, notify) ";
+	$sql="INSERT INTO user_frnds_req(req_Id, from_userId,  to_userId,usr_frm_call_to, req_on, notify, watched) ";
     $sql.="SELECT * FROM ( ";
     $sql.="SELECT '".$req_Id."','".$fromUserId."','".$toUserId."','".$usr_frm_call_to."','".date("Y-m-d H:i:s");
-	$sql.="','N') ";
+	$sql.="','N','N') ";
 	$sql.="As Tbl1 WHERE (SELECT count(*) FROM user_frnds_req WHERE (from_userId='".$fromUserId."' AND ";
 	$sql.="to_userId='".$toUserId."') OR (from_userId='".$toUserId."' AND to_userId='".$fromUserId."'))=0 ";
 	return $sql;
@@ -13,10 +13,13 @@ class user_friends {
 
   function query_addUserFrnds($rel_Id, $rel_from, $rel_tz, $frnd1, $frnd2, $frnd1_call_frnd2, $frnd2_call_frnd1){
     $sql="INSERT INTO user_frnds(rel_Id, rel_from, rel_tz, frnd1, frnd2, frnd1_call_frnd2, frnd2_call_frnd1,notify) ";
-	$sql.="SELECT * FROM ( ";
-	$sql.="'".$rel_Id."','".date("Y-m-d H:i:s")."','".$rel_tz."','".$frnd1."','".$frnd2."','".$frnd1_call_frnd2."','".$frnd2_call_frnd1."','Y')";
-	$sql.="As Tbl1 WHERE (SELECT count(*) FROM user_frnds WHERE (frnd1='".$fromUserId."' AND ";
-	$sql.="frnd2='".$toUserId."') OR (frnd1='".$toUserId."' AND frnd2='".$fromUserId."'))=0 ";
+	$sql.="SELECT rel_Id, rel_from, rel_tz, frnd1, frnd2, frnd1_call_frnd2, frnd2_call_frnd1,notify FROM ( ";
+	$sql.="SELECT '".$rel_Id."' As rel_Id,'".date("Y-m-d H:i:s")."' As rel_from,'".$rel_tz."' As rel_tz";
+	$sql.=",'".$frnd1."' As frnd1,'".$frnd2."' As frnd2,'".$frnd1_call_frnd2."' As frnd1_call_frnd2,";
+	$sql.="'".$frnd2_call_frnd1."' As frnd2_call_frnd1,'N' As notify)";
+	$sql.="As Tbl1 WHERE (SELECT count(*) FROM user_frnds WHERE (frnd1='".$frnd1."' AND ";
+	$sql.="frnd2='".$frnd2."') OR (frnd1='".$frnd2."' AND frnd2='".$frnd1."'))=0 ";
+	echo $sql;
    return $sql;
   }
   

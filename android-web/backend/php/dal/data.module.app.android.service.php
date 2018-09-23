@@ -80,7 +80,7 @@ class AppAndroidService {
   
   function query_notify_onAcceptUserFrndReq($user_Id){
   /* Notification Query to Users(Sender/Reciever) as reciever accepts Friendship */
-   $sql="SELECT user_frnds.rel_Id, user_frnds.rel_from, user_frnds.rel_tz, ";
+   $sql="SELECT DISTINCT user_frnds.rel_Id, user_frnds.rel_from, user_frnds.rel_tz, ";
    $sql.=" (SELECT CONCAT('[{\'frnd1\':\'',user_frnds.frnd1,'\',\'surName\':\'',user_account.surName,'\',";
    $sql.="\'name\':\'',user_account.name,'\',\'frnd1_call_frnd2\':\'',user_frnds.frnd1_call_frnd2,'\'}]') ";
    $sql.=" FROM user_account WHERE user_account.user_Id=user_frnds.frnd1) As requestSent, ";
@@ -94,14 +94,14 @@ class AppAndroidService {
   
   function query_notify_reqLocalBranch($user_Id){
   /* Request to Local Branch */
-    $sql="SELECT CONCAT('[{\"user_Id\":\"',user_account.user_Id,'\",\"surName\":\"', user_account.surName, ";
-    $sql.="'\",\"name\":\"', user_account.name,'\"}]') As requestedBy, unionprof_account.unionName, ";
+    $sql="SELECT CONCAT('[{\'user_Id\':\'',user_account.user_Id,'\',\'surName\':\'', user_account.surName, ";
+    $sql.="'\',\'name\':\'', user_account.name,'\'}]') As requestedBy, unionprof_account.unionName, ";
     $sql.="unionprof_branch_req.minlocation, unionprof_branch_req.location, ";
     $sql.="unionprof_branch_req.state, unionprof_branch_req.country, unionprof_branch_req.reqOn ";
     $sql.="FROM unionprof_account, unionprof_branch_req, user_account ";
     $sql.="WHERE unionprof_account.union_Id=unionprof_branch_req.union_Id AND ";
     $sql.="unionprof_branch_req.reqBy=user_account.user_Id AND unionprof_account.admin_Id='".$user_Id."' ";
-	$sql.=" ORDER BY reqOn DESC LIMIT 0,1 ";
+	$sql.=" ORDER BY reqOn DESC LIMIT 0,10 ";
     return $sql;
   }
 

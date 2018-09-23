@@ -4,6 +4,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import android.content.Context;
+import anups.dun.app.AndroidWebScreen;
 import anups.dun.constants.BusinessConstants;
 import anups.dun.js.AppSessionManagement;
 import anups.dun.notify.minute.NotifiedUpdateOnCentralServer;
@@ -13,6 +14,7 @@ import anups.dun.util.PushNotification;
 import anups.dun.web.templates.URLGenerator;
 
 public class WSRIntervalMinute {
+	org.apache.log4j.Logger logger = AndroidLogger.getLogger(WSRIntervalMinute.class);
 /*
   RESPONSE:
  {"usrFrndReqRecieved":[{"from_userId":"USR113561617186","username":"Achuth","surName":"Achuytham","name":"Achuytham","req_on":"2018-06-01 16:29:12"}],
@@ -52,7 +54,6 @@ public class WSRIntervalMinute {
  "displayLevel":"UNION_LEVEL","status":"ACTIVE"}],"unionMovements":[{"union_Id":"UPA533731685151","unionName":"MyLocalHook","move_Id":"12345","petitionTitle":"Petition",
  "createdOn":"2018-07-12 00:00:00","openOn":"0000-00-00 00:00:00"}]}
  */
-	org.apache.log4j.Logger logger = AndroidLogger.getLogger(WSRIntervalMinute.class);
 	 private Context context;
 	 private String response;
 		
@@ -114,6 +115,7 @@ public class WSRIntervalMinute {
 			 JSONParser jsonParser = new JSONParser();
 			 JSONObject jsonObject = (JSONObject)jsonParser.parse(response);
 			 JSONArray jsonObjectArry = (JSONArray)jsonObject.get("usrFrndReqAccepted");
+			 logger.info("jsonObjectArry(Size): "+jsonObjectArry.size());
 			 for(int index=0;index<jsonObjectArry.size();index++) {
 				JSONObject jobj = (JSONObject) jsonParser.parse(jsonObjectArry.get(index).toString());
 				   
