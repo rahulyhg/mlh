@@ -11,6 +11,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.webkit.JavascriptInterface;
 import android.widget.Toast;
 import anups.dun.app.AndroidInitializerScreen;
+import anups.dun.app.AndroidQRCodeScanner;
 import anups.dun.app.AndroidWebScreen;
 import anups.dun.media.AndroidWebScreenVideo;
 import anups.dun.util.AndroidLogger;
@@ -73,7 +74,7 @@ public class AppManagement extends ActionBarActivity {
 	public void showToast(String toast) {
         Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show();
     }
-	
+
 	
 	@JavascriptInterface
 	public void showVideo(String videoURL) {

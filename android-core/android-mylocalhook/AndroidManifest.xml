@@ -34,14 +34,24 @@
          android:name="com.google.android.geo.API_KEY"
          android:value="AIzaSyBLYTwBBtnRDyew0qLZTjCJp0mgR5koP5A" />
 	 
+	 
+	 
+	 <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true"/>
+	 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" 
+        android:supportsRtl="true"
         android:hardwareAccelerated="true">
+        <meta-data
+            android:name="com.google.android.gms.vision.DEPENDENCIES"
+            android:value="barcode"/><!--  AndroidInitializerScreen -->
         <activity
-            android:name="anups.dun.app.AndroidInitializerScreen"
+            android:name="anups.dun.app.AndroidQRCodeScanner"
             android:configChanges="orientation|keyboardHidden"
             android:hardwareAccelerated="true"
             android:label="@string/app_name" >
@@ -69,6 +79,7 @@
 				<data android:scheme="http" android:host="mylocalhook.com"/>
 			</intent-filter>
         </activity>
+       
          <activity android:name="anups.dun.media.AndroidWebScreenVideo"
                    android:configChanges="keyboardHidden|orientation|screenSize" />
          <meta-data

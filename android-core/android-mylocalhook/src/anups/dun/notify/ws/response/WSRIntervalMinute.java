@@ -1,5 +1,7 @@
 package anups.dun.notify.ws.response;
 
+import java.text.SimpleDateFormat;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -62,10 +64,36 @@ public class WSRIntervalMinute {
 	  this.response=response;
 	 }
 	 
+	 public void funcTrigger_categoriesCookiesUpdate(){
+	  try {
+		AppSessionManagement appSessionManagement = new AppSessionManagement(context);
+		JSONParser jsonParser = new JSONParser();
+		JSONObject jsonObject = (JSONObject)jsonParser.parse(response);
+		JSONArray jsonObjectArry = (JSONArray)jsonObject.get("cookies_CategoryUpdates");
+		if(jsonObjectArry.size()>0){
+	      JSONObject jobj = (JSONObject) jsonParser.parse(jsonObjectArry.get(0).toString());
+		  String cookies_Id = (String) jobj.get("cookies_Id");
+		  String cookie = (String) jobj.get("cookie");
+		  String serverlastupdated = (String) jobj.get("lastupdated");
+		  String appLastUpdated = (String) appSessionManagement.getAndroidSession(BusinessConstants.COOKIES_CATEGORIES_APPLASTUPDATED);
+		  boolean downloadCategories = false;
+		  if(appLastUpdated==null){ downloadCategories = true; }
+		  else if("TS1_AFTER_TS2".equalsIgnoreCase(new DateAndTimeUtility().timestampComparator(serverlastupdated, appLastUpdated))){ downloadCategories = true; }
+	      logger.info("serverlastupdated: "+serverlastupdated);
+	      logger.info("appLastUpdated: "+appLastUpdated);
+	      logger.info("downloadCategories: "+downloadCategories);
+		  if(downloadCategories){ /* Call a Web-service to Download a File from Web Server */
+			  
+		  }
+		}
+	  } catch(Exception e){ logger.error("Exception: "+e);}
+	 }
+	 
 	 public void funcTrigger_usrFrndReqRecieved(){
 		 String notifyURL="";
-		 JSONParser jsonParser = new JSONParser();
+		 
 		 try {
+		   JSONParser jsonParser = new JSONParser();
 		   JSONObject jsonObject = (JSONObject)jsonParser.parse(response);
 		   JSONArray jsonObjectArry = (JSONArray)jsonObject.get("usrFrndReqRecieved");
 		   for(int index=0;index<jsonObjectArry.size();index++) {

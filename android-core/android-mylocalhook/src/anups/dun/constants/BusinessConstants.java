@@ -29,6 +29,7 @@ public class BusinessConstants {
  
  /* SESSION LIST */
  public static final String AUTH_USER_ID="AUTH_USER_ID";
+ public static final String COOKIES_CATEGORIES_APPLASTUPDATED="COOKIES_CATEGORIES_APPLASTUPDATED";
  
  /* PERMISSIONS LIST */
  

@@ -66,6 +66,10 @@ class AppAndroidService {
   /***************************************************************************************************************************
    ******************************************* USER FRIENDSHIP NOTIFICATIONS *************************************************
    ***************************************************************************************************************************/
+  function query_cookies_categoriesUpdate(){
+    $sql="SELECT * FROM app_cookies WHERE cookie='CATEGORIES';";
+	return $sql;
+  }
   
   function query_notify_usrFrndsReqReciever($user_Id){
   /* Notification Query to User recieved Friendship Request */

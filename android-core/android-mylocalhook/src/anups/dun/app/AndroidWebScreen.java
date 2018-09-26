@@ -231,7 +231,7 @@ protected void onCreate(Bundle savedInstanceState) {
  AppSQLiteManagement appSQLiteManagement = new AppSQLiteManagement(this);
  
  AppSQLiteUsrFrndsContactsInfo appSQLiteUsrFrndsInfo = new AppSQLiteUsrFrndsContactsInfo(this.getApplicationContext());
- 
+  
  /* App Settings :: */
  /* Set Project Path And PropertyFiles */
  if(permissionsExist()){

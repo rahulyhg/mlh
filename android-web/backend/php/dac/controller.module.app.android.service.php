@@ -77,7 +77,7 @@ if(isset($_POST["action"])){
 	  $query=$notifyObj->query_set_userGeoLocation($user_Id, $gps_latitude, $gps_longitude);
 	  $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
 	  $dbObj->addupdateData($query);
-	  
+	  $query0=$notifyObj->query_cookies_categoriesUpdate();
 	  $query1=$notifyObj->query_notify_usrFrndsReqReciever($user_Id);
 	  $query2=$notifyObj->query_notify_onAcceptUserFrndReq($user_Id);
 	  $query3=$notifyObj->query_notify_reqLocalBranch($user_Id);
@@ -93,6 +93,7 @@ if(isset($_POST["action"])){
 	  
 	  
 	  $sqlArray=array();
+	  $sqlArray["cookies_CategoryUpdates"]=$query0;
 	  $sqlArray["usrFrndReqRecieved"]=$query1;
 	  $sqlArray["usrFrndReqAccepted"]=$query2;
 	  $sqlArray["usrReqUnionLocalBranch"]=$query3;
