@@ -1,7 +1,6 @@
 package anups.dun.app;
 
 import android.Manifest;
-import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Vibrator;
@@ -36,14 +35,15 @@ import android.widget.TextView;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-
+/*
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.barcode.Barcode;
-import com.google.android.gms.vision.barcode.BarcodeDetector;
+import com.google.android.gms.vision.barcode.BarcodeDetector; */
 
 public class AndroidQRCodeScanner extends Activity {
+	/*
  org.apache.log4j.Logger logger = AndroidLogger.getLogger(AndroidQRCodeScanner.class);
  SurfaceView cameraPreview;
  TextView txtResult;
@@ -56,9 +56,9 @@ public class AndroidQRCodeScanner extends Activity {
      switch (requestCode) {
          case RequestCameraPermissionID: {
              if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                 if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                      return;
-                 }
+                // if (AndroidQRCodeScanner.this.checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                 //     return;
+              //   }
                  try {
                      cameraSource.start(cameraPreview.getHolder());
                  } catch (IOException e) {
@@ -79,7 +79,7 @@ public class AndroidQRCodeScanner extends Activity {
   cameraPreview = (SurfaceView) findViewById(R.id.cameraPreview);
   txtResult = (TextView) findViewById(R.id.txtResult);
 
-  barcodeDetector = new BarcodeDetector.Builder(this.getApplicationContext())
+  barcodeDetector = new BarcodeDetector.Builder(this)
           .setBarcodeFormats(Barcode.QR_CODE)
           .build();
   cameraSource = new CameraSource
@@ -90,12 +90,13 @@ public class AndroidQRCodeScanner extends Activity {
   cameraPreview.getHolder().addCallback(new SurfaceHolder.Callback() {
       @Override
       public void surfaceCreated(SurfaceHolder surfaceHolder) {
-          if (checkSelfPermission(android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+        //  if (checkSelfPermission(android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
               //Request permission
-              requestPermissions(
-                      new String[]{Manifest.permission.CAMERA},RequestCameraPermissionID);
-              return;
-          }
+         //     requestPermissions(
+        //              new String[]{Manifest.permission.CAMERA},RequestCameraPermissionID);
+        //      return;
+        //  } 
+    	  
           try {
               cameraSource.start(cameraPreview.getHolder());
           } catch (IOException e) {
@@ -139,5 +140,5 @@ public class AndroidQRCodeScanner extends Activity {
       }
   });
  }
-
+*/
 }

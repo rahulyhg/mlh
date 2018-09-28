@@ -61,132 +61,59 @@ function layout_setup() {
  <div class="topscreen">
    <?php include_once 'templates/api/api_header_simple.php'; ?>
  </div>
- <div id="screen" class="col-xs-12 middlescreen custom-lgt-bg">
-  <!-- MESSAGE # 1 ::: START -->
-  <div class="jumbotron jumbotron-red"> 
+ <div id="screen" class="col-xs-12 middlescreen">
+  
      <div class="container-fluid ">
+	    <!-- MESSAGE # 1 ::: START --> 
 	    <div class="row">
-		  <div class="col-xs-2 col-md-4">
-		    <img class="profile_pic_img2 imgb1" src="<?php echo $_SESSION["PROJECT_URL"]; ?>images/logo.jpg"/>
+		  <div class="col-xs-3 col-md-4">
+		    <img class="profile_pic_img3" src="<?php echo $_SESSION["PROJECT_URL"]; ?>images/avatar/3.jpg"/>
 		  </div>
-		  <div class="col-xs-10 col-md-8">
-		    <div><h5><b>Nellutla Laxmi Narasimha Rao</b></h5></div>
+		  <div class="col-xs-9 col-md-8">
+		    <div class="jumbotron custom-bg" >
+		    <div style="width:100%;text-align:justify;">
+			    Hi, how are you? I am fine. Hi, how are you?
+			    I am fine. Hi, how are you? I am fine. Hi, how are you? I am fine.
+		    </div> 
+			</div>
+			<div align="right" class="mtop10p mbot10p">12:44 P.M.<hr/></div>
 		  </div>
 		</div>
-		<div class="row pad-l5 pad-r5">
-		  <div class="col-xs-12 col-md-12" style="width:100%;">
-		  <span class="pull-right" style="text-align:justify;">
-			Hi, how are you? I am fine. Hi, how are you?
-			I am fine. Hi, how are you? I am fine. Hi, how are you? I am fine.
-		  </span>
-		  </div> 
-		</div>	
+		<!-- MESSAGE # 1 ::: END -->
+		<!-- MESSAGE # 2 ::: START -->
 		<div class="row">
-		  <div align="right" class="jumbotron-time1 mbot10p">12:44 P.M.</div>
-		</div>
-	 </div>
-  </div>
-  <!-- MESSAGE # 1 ::: END -->
-  <!-- MESSAGE # 2 ::: START -->
-  <div class="jumbotron jumbotron-silver"> 
-    <div class="container-fluid ">
-	    <div class="row">
-		  <div class="col-xs-2 col-md-4">
-		    <img class="profile_pic_img2 imgb1" src="<?php echo $_SESSION["PROJECT_URL"]; ?>images/logo.jpg"/>
+		  <div class="col-xs-9 col-md-8">
+		    <div class="jumbotron custom-bg-solid1pxfullborder" style="background-color:#fff;">
+		    <div style="width:100%;text-align:justify;">
+			    Hi, how are you? I am fine. Hi, how are you?
+			    I am fine. Hi, how are you? I am fine. Hi, how are you? I am fine.
+		    </div> 
+			</div>
+			<div align="left" class="mtop10p mbot10p">12:44 P.M.<hr/></div>
 		  </div>
-		  <div class="col-xs-10 col-md-8">
-		    <div><h5><b>Ajay Devarakonda</b></h5></div>
+		  <div class="col-xs-3 col-md-4">
+		    <img class="profile_pic_img3" src="<?php echo $_SESSION["PROJECT_URL"]; ?>images/avatar/2.jpg"/>
 		  </div>
 		</div>
-		<div class="row pad-l5 pad-r5">
-		  <div class="col-xs-12 col-md-12" style="width:100%;">
-		  <span class="pull-right" style="text-align:justify;">
-			Hi, how are you? I am fine. Hi, how are you?
-			I am fine. Hi, how are you? I am fine. Hi, how are you? I am fine.
-		  </span>
-		  </div> 
-		</div>	
+		<!-- MESSAGE # 2 ::: END -->
+		<!-- MESSAGE # 3 ::: START -->
 		<div class="row">
-		  <div align="right" class="jumbotron-time2 mbot10p">12:44 P.M.</div>
+		  <div class="col-xs-3 col-md-4">
+		    <img class="profile_pic_img3" src="<?php echo $_SESSION["PROJECT_URL"]; ?>images/avatar/2.jpg"/>
+		  </div>
+		  <div class="col-xs-9 col-md-8">
+		    <div class="jumbotron custom-lgt-bg" style="">
+		    <div style="width:100%;text-align:justify;color:#606c71;">
+			    Hi, how are you? I am fine. Hi, how are you?
+			    I am fine. Hi, how are you? I am fine. Hi, how are you? I am fine.
+		    </div> 
+			</div>
+			<div align="right" class="mtop10p mbot10p">12:44 P.M.<hr/></div>
+		  </div>
+		  
 		</div>
+		<!-- MESSAGE # 3 ::: END -->
 	 </div>
-  </div>
-  <!-- MESSAGE # 2 ::: END -->
-  <!-- MESSAGE # 3 ::: START -->
-  <div class="jumbotron jumbotron-red"> 
-     <div class="container-fluid ">
-	    <div class="row">
-		  <div class="col-xs-2 col-md-4">
-		    <img class="profile_pic_img2 imgb1" src="<?php echo $_SESSION["PROJECT_URL"]; ?>images/logo.jpg"/>
-		  </div>
-		  <div class="col-xs-10 col-md-8">
-		    <div><h5><b>Nellutla Laxmi Narasimha Rao</b></h5></div>
-		  </div>
-		</div>
-		<div class="row pad-l5 pad-r5">
-		  <div class="col-xs-12 col-md-12" style="width:100%;">
-		  <span class="pull-right" style="text-align:justify;">
-			Hi, how are you? I am fine. Hi, how are you?
-			I am fine. Hi, how are you? I am fine. Hi, how are you? I am fine.
-		  </span>
-		  </div> 
-		</div>	
-		<div class="row">
-		  <div align="right" class="jumbotron-time1 mbot10p">12:44 P.M.</div>
-		</div>
-	 </div>
-  </div>
-  <!-- MESSAGE # 3 ::: END -->
-  <!-- MESSAGE # 4 ::: START -->
-  <div class="jumbotron jumbotron-silver"> 
-    <div class="container-fluid ">
-	    <div class="row">
-		  <div class="col-xs-2 col-md-4">
-		    <img class="profile_pic_img2 imgb1" src="<?php echo $_SESSION["PROJECT_URL"]; ?>images/logo.jpg"/>
-		  </div>
-		  <div class="col-xs-10 col-md-8">
-		    <div><h5><b>Ajay Devarakonda</b></h5></div>
-		  </div>
-		</div>
-		<div class="row pad-l5 pad-r5">
-		  <div class="col-xs-12 col-md-12" style="width:100%;">
-		  <span class="pull-right" style="text-align:justify;">
-			Hi, how are you? I am fine. Hi, how are you?
-			I am fine. Hi, how are you? I am fine. Hi, how are you? I am fine.
-		  </span>
-		  </div> 
-		</div>	
-		<div class="row">
-		  <div align="right" class="jumbotron-time2 mbot10p">12:44 P.M.</div>
-		</div>
-	 </div>
-  </div>
-  <!-- MESSAGE # 4 ::: END -->
-  <!-- MESSAGE # 5 ::: START -->
-  <div class="jumbotron jumbotron-me"> 
-    <div class="container-fluid ">
-	    <div class="row">
-		  <div class="col-xs-2 col-md-4">
-		    <img class="profile_pic_img2 imgb1" src="<?php echo $_SESSION["PROJECT_URL"]; ?>images/logo.jpg"/>
-		  </div>
-		  <div class="col-xs-10 col-md-8">
-		    <div><h5><b>Me</b></h5></div>
-		  </div>
-		</div>
-		<div class="row pad-l5 pad-r5">
-		  <div class="col-xs-12 col-md-12" style="width:100%;">
-		  <span class="pull-right" style="text-align:justify;">
-			Hi, how are you? I am fine. Hi, how are you?
-			I am fine. Hi, how are you? I am fine. Hi, how are you? I am fine.
-		  </span>
-		  </div> 
-		</div>	
-		<div class="row">
-		  <div align="right" class="jumbotron-timeme mbot10p">12:44 P.M.</div>
-		</div>
-	 </div>
-  </div>
-  <!-- MESSAGE # 5 ::: END -->
  </div>
  <div class="bottomscreen chat-input-fixed-bottom" style="background-color:#fff;">
    <div class="col-md-12 col-xs-10 pad0">

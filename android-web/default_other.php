@@ -1,3 +1,10 @@
 <script type="text/javascript">
-window.location.href="http://192.168.1.4/m-android/";
+var Android;
+try {
+var encryption = Android.chatMasking_encryption('Anup Zindabad','2010-09-19 12:10:10');
+Android.showToast(encryption);
+var decryption = Android.chatMasking_decryption(encryption,'2010-09-19 12:10:10');
+Android.showToast(decryption);
+} catch(err){ alert(err); }
 </script>
+Hello

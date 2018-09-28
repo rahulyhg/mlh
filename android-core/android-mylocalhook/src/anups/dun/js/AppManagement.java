@@ -1,5 +1,7 @@
 package anups.dun.js;
 
+import javax.crypto.SecretKey;
+
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -17,6 +19,7 @@ import anups.dun.media.AndroidWebScreenVideo;
 import anups.dun.util.AndroidLogger;
 import anups.dun.util.CRUDContacts;
 import anups.dun.util.GPSTracker;
+import anups.dun.util.Masking;
 import anups.dun.util.PropertyUtility;
 import anups.dun.web.templates.URLGenerator;
 
@@ -121,4 +124,21 @@ public class AppManagement extends ActionBarActivity {
 	  return jsonData.toString();
 	}
 
+	@JavascriptInterface
+	public String chatMasking_encryption(String plainMsg, String timestamp){
+		String encryption = null;
+		try {
+			encryption = Masking.encryptMsg(timestamp,plainMsg);
+		} catch(Exception e){ }
+		return encryption;
+	}
+	
+	@JavascriptInterface
+	public String chatMasking_decryption(String encryptMsg, String timestamp){
+		String decryption = null;
+		try {
+			decryption = Masking.decryptMsg(timestamp, encryptMsg);
+		} catch(Exception e){}
+		return decryption;
+	}
 }

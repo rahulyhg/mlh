@@ -25,14 +25,14 @@ blockquote footer { color:#000; }
 #toreply_msg::-webkit-scrollbar-thumb { background-color: #ccc;}
 .pad-l5 { padding-left:5px; }
 .pad-r5 { padding-right:5px; }
-.jumbotron { margin-bottom:5px;margin-top:5px;margin-left:5px;margin-right:5px;padding-top: 10px;padding-bottom: 0px;
+.jumbotron { margin-bottom:5px;margin-top:5px;margin-left:5px;margin-right:5px;padding-top: 10px;padding-bottom: 10px;
   padding-left:5px;padding-right:5px; border-radius:5px; }
 .jumbotron p { font-size:12px; }
 .jumbotron-red { background-color:#f44336;color:#fff; }
-.jumbotron-silver { background-color:#dcd1d0;color:#000; }
-.jumbotron-me { background-color:#fff;color:#000; }
+.jumbotron-silver { background-color:#eee;color:#000; }
+.jumbotron-me { background-color:#ddd;color:#000; }
 .jumbotron-time1 { color:#ddd; }
-.jumbotron-time2,.jumbotron-timeme { color:#504c4c; }
+.jumbotron-time2,.jumbotron-timeme { color:#607d8b; }
 .mtop5 { margin-top:5px; }
 .mbot15 { margin-bottom:10px; }
 .curpoint { cursor:pointer; }
