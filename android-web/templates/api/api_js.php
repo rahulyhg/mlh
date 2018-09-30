@@ -124,6 +124,16 @@ function js_session(sessionJSON,fn_output) {
  js_ajax("POST",PROJECT_URL+'backend/php/api/app.session.php',sessionData,fn_output);
 }
 
+function div_display_warning(div_Id,warning_Id){
+js_ajax("GET",PROJECT_URL+'backend/config/warning_messages.json',{},function(response){
+var content='<div class="alert alert-warning alert-dismissible" style="margin-bottom:0px;">';
+    content+='<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
+    content+='<strong>Warning!</strong> '+response[warning_Id][USR_LANG];
+    content+='</div>';
+ document.getElementById(div_Id).innerHTML=content;
+});
+}
+
 function alert_display_warning(warning_Id){
 js_ajax("GET",PROJECT_URL+'backend/config/warning_messages.json',{},function(response){
 var content='<div class="modal-dialog">';
@@ -146,6 +156,16 @@ var modalDivision = document.createElement("div");
 });
 }
 
+function div_display_success(div_Id,success_Id){
+js_ajax("GET",PROJECT_URL+'backend/config/success_messages.json',{},function(response){
+var content='<div class="alert alert-success alert-dismissible" style="margin-bottom:0px;">';
+    content+='<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
+    content+='<strong>Success!</strong> '+response[success_Id][USR_LANG];
+    content+='</div>';
+ document.getElementById(div_Id).innerHTML=content;
+});
+}
+
 function alert_display_success(success_Id,success_url){
 js_ajax("GET",PROJECT_URL+'backend/config/success_messages.json',{},function(response){
 var content='<div class="modal-dialog">';
@@ -154,7 +174,7 @@ var content='<div class="modal-dialog">';
     content+='<div class="alert alert-success alert-dismissible" style="margin-bottom:0px;">';
     content+='<a href="#" onclick="javascript:urlTransfer(\''+success_url+'\');" class="close" data-dismiss="modal" ';
 	content+='aria-label="close">&times;</a>';
-    content+='<strong>Warning!</strong> '+response[success_Id][USR_LANG];
+    content+='<strong>Success!</strong> '+response[success_Id][USR_LANG];
     content+='</div>';
     content+='</div>';
     content+='</div>';

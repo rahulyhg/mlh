@@ -344,7 +344,33 @@ function instituteContentData(div_view, appendContent,limit_start,limit_end){
  });
 }
 </script>
-
+<script type="text/javascript">
+function viewAddCourseModal(){
+ $('#institutionCourseFormModal').modal();
+ /* Autocomplete */
+}
+function addCourse(){
+ var courseName = document.getElementById("institution_addCourseName").value;
+ var courseDuration = document.getElementById("institution_addCourseDuration").value;
+ var courseStarts = document.getElementById("institution_addCourseStarts").value;
+ var courseEnds = document.getElementById("institution_addCourseEnds").value;
+ if(courseName.length>0){
+ if(courseDuration.length>0){
+ if(courseStarts.length>0){
+ if(courseEnds.length>0){
+  $('#institutionCourseFormModal').modal('hide');
+  js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.module.app.socialhub.classmateportal.php',
+  { action:'CREATE_COURSE', courseName:courseName, institution_Id:INSTITUTION_ID, duration:courseDuration, 
+    begMonth:courseStarts, endMonth:courseEnds },function(response){
+    console.log(response); 
+	alert_display_success('S004','#');
+   });
+ } else  {  div_display_warning('errSuccessMessages','W034'); }
+ } else  {  div_display_warning('errSuccessMessages','W033'); }
+ } else  {  div_display_warning('errSuccessMessages','W032'); }
+ } else  {  div_display_warning('errSuccessMessages','W031'); }
+}
+</script>
 <style>
 .classmatepoint_div,.fansclub_div,.publicparliament_div { margin-top:5px;background-color:#fff;padding-top:2px;
  padding-bottom:2px;padding-right:10px;padding-left:10px;border-radius:6px; }
@@ -358,6 +384,110 @@ function instituteContentData(div_view, appendContent,limit_start,limit_end){
 </style>
 </head>
 <body>
+ <div id="institutionCourseFormModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+	<div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	    <h4 class="modal-title"><b>Add Course</b></h4>
+      </div>
+      <div class="modal-body">
+	    <div class="container-fluid">
+		
+		  <div class="row">
+		    <div class="col-xs-12">
+			  <div id="errSuccessMessages" class="form-group">
+			  </div>
+			</div>
+		  </div>
+
+		  <div class="row">
+		    <div class="col-xs-12">
+			  <div class="form-group">
+				<label>Course Name</label>
+				<input id="institution_addCourseName" type="text" class="form-control" placeholder="Enter Course Name"/>
+			  </div>
+			</div>
+		  </div>
+		
+		  <div class="row">
+		    <div class="col-xs-12">
+			  <div class="form-group">
+				  <label>Course Duration</label>
+				  <select id="institution_addCourseDuration" class="form-control">
+					<option value="">Select Course Duration</option>
+					<option value="1">1 year</option>
+					<option value="2">2 years</option>
+					<option value="3">3 years</option>
+					<option value="4">4 years</option>
+					<option value="5">5 years</option>
+					<option value="6">6 years</option>
+					<option value="7">7 years</option>
+					<option value="8">8 years</option>
+					<option value="9">9 years</option>
+				  </select>
+			  </div>
+			</div>
+		</div>
+		
+		<div class="row">
+		    <div class="col-xs-6">
+				<div class="form-group">
+				  <div class="row"></div>
+				  <label>Start in Month</label>
+				  <select id="institution_addCourseStarts" class="form-control">
+					<option value="">Select Month</option>
+					<option value="January">January</option>
+					<option value="Februrary">February</option>
+					<option value="March">March</option>
+					<option value="April">April</option>
+					<option value="May">May</option>
+					<option value="June">June</option>
+					<option value="July">July</option>
+					<option value="August">August</option>
+					<option value="September">September</option>
+					<option value="October">October</option>
+					<option value="November">November</option>
+					<option value="December">December</option>
+				  </select>
+				</div>
+		    </div>
+			 <div class="col-xs-6">
+				<div class="form-group">
+				  <div class="row"></div>
+				  <label>Ends in Month</label>
+				  <select id="institution_addCourseEnds" class="form-control">
+					<option value="">Select Month</option>
+					<option value="January">January</option>
+					<option value="Februrary">February</option>
+					<option value="March">March</option>
+					<option value="April">April</option>
+					<option value="May">May</option>
+					<option value="June">June</option>
+					<option value="July">July</option>
+					<option value="August">August</option>
+					<option value="September">September</option>
+					<option value="October">October</option>
+					<option value="November">November</option>
+					<option value="December">December</option>
+				  </select>
+				</div>
+		    </div>
+		</div>
+		
+		<div class="row">
+		    <div class="col-xs-12">
+		      <div class="form-group">
+			     <button class="btn custom-bg form-control" onclick="addCourse();"><b>Add Course</b></button>
+		      </div>
+			</div>
+		 </div>
+		 
+	    </div>
+      </div>
+    </div>
+  </div>
+ </div>
  <?php include_once 'templates/api/api_loading.php'; ?>
  
  <!--script type="text/javascript">
@@ -392,13 +522,26 @@ function instituteContentData(div_view, appendContent,limit_start,limit_end){
  <div id="cpointNewsFeedProfileDisplayDivision" class="hide-block"></div>  
  <div id="cpointUniversityProfileDisplayDivision" class="hide-block"></div>  
  <div id="cpointCollegesDisplayDivision" class="hide-block">
+     <div align="right" id="cpointAddColleges" class="container-fluid mtop15p">
+	  <div class="col-xs-12">
+	   <a href="<?php echo $_SESSION["PROJECT_URL"];?>app/socialHub/classmatepoint/institute/create/<?php if(isset($_GET["2"])){ echo $_GET["2"]; } ?>">
+	   <button class="btn btn-default"><b>Add Institute</b></button>
+	   </a>
+	  </div>
+	 </div>
      <div id="cpointCollegesResults" class="container-fluid mtop15p"></div>
      <div id="cpointCollegesResultsData0" class="container-fluid mtop15p "></div>
  </div>
  <div id="cpointCoursesDisplayDivision" class="hide-block">
+   <div id="cpointAddCourses" class="container-fluid mtop15p">
+    <div align="right" class="col-xs-12">
+	   <button class="btn btn-default" onclick="javascript:viewAddCourseModal();"><b>Add Course</b></button>
+	</div>
+   </div>
    <?php include_once 'templates/pages/app-socialhub/classmatepoint/institution/listOfCourses-view.php';  ?>
  </div>
  <div id="cpointMovementsDisplayDivision" class="hide-block">
+ 
  </div>
  </div>
  <!-- END -->

@@ -29,10 +29,10 @@
   "W028": { "english":"Choose Institute Established Year."},
   "W029": { "english":"Describe your Institute."},
   "W030": { "english":"Please Enter Institute Founder Name."},
-  "W031": { "english":""},
-  "W032": { "english":""},
-  "W033": { "english":""},
-  "W034": { "english":""},
+  "W031": { "english":"Please Enter Course Name."},
+  "W032": { "english":"Please Select Duration of Course."},
+  "W033": { "english":"Please Select Course Start Month."},
+  "W034": { "english":"Please Select Course End Month."},
   "W035": { "english":""},
   "W036": { "english":""}
 }

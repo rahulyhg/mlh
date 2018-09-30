@@ -79,7 +79,7 @@ class ClassmatePortalAccount{
   }
   
   function query_count_getInstituteList($cmp_u_Id){
-    $sql="SELECT count(*) FROM cmp_sch_account WHERE cmp_u_Id='".$cmp_u_Id."';";
+    $sql="SELECT count(*) FROM cmp_sch_account WHERE cmp_u_Id='".$cmp_u_Id."' AND approved='Y';";
 	return $sql;
   }
   
@@ -109,13 +109,26 @@ class ClassmatePortalAccount{
   
    function query_add_institutionCourses($cmp_course_Id, $courseName, $duration, $begMonth, $endMonth){
    $sql="INSERT INTO cmp_uni_courses(cmp_course_Id,courseName, duration, begMonth, ";
-   $sql.="endMonth) SELECT * FROM (";
-   $sql.="SELECT '".$cmp_course_Id."', '".$courseName."', '".$duration."', '".$begMonth."', '";
-   $sql.=$endMonth."'";
+   $sql.="endMonth, approved) SELECT * FROM (";
+   $sql.="SELECT '".$cmp_course_Id."' As cmp_course_Id, '".$courseName."' As courseName, '";
+   $sql.=$duration."' As duration, '".$begMonth."' As begMonth, '";
+   $sql.=$endMonth."' As endMonth, 'N' As approved ";
    $sql.=") As Tbl WHERE (SELECT count(*) FROM cmp_uni_courses WHERE courseName='".$courseName."' AND ";
    $sql.="duration='".$duration."' )=0;";
    return $sql;  
   }
+  
+  function query_autocomplete_courses($searchQuery){
+    $sql="SELECT cmp_course_Id, courseName, duration, begMonth, endMonth FROM cmp_uni_courses ";
+	$sql.="WHERE courseName='".$searchQuery."' AND approved='Y';";
+	return $sql;  
+  }
+  
+   function query_add_institutionCourseMap($cmp_map_Id, $cmp_u_Id, $cmp_course_Id){
+    $sql="INSERT INTO cmp_uni_coursemap(cmp_map_Id, cmp_u_Id, cmp_course_Id, approved) ";
+	$sql.="VALUES ('".$cmp_map_Id."','".$cmp_u_Id."','".$cmp_course_Id."','N');";
+	return $sql;  
+   }
   
    function query_add_instituteBatchMembers($member_Id, $batch_Id, $user_Id, $memType, $isAdmin, $memAddedOn){
    $sql="INSERT INTO cmp_batch_members(member_Id,batch_Id, user_Id, memType, isAdmin, ";

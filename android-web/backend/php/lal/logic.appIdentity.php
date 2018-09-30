@@ -144,6 +144,23 @@ class Identity {
   if($output==='ID_ALREADY_EXIST') { cmp_uni_courses_id(); } 
   else { return $num; }
  }
+ /* Table - (8) cmp_uni_coursesmap ::: cmp_map_Id (25) */
+ function id_cmp_uni_coursemap($id) {
+   $dataObj=new DataIdentity();
+   $selectQuery=$dataObj->query_checkId_cmp_uni_coursemap($id);
+   $idObj = new Identity();
+   return $idObj->mlhbasic_tbl_PrimaryId_status($selectQuery);
+ }
+ function cmp_uni_coursemap_id() {
+  $num="CUC";
+  for($index=0;$index<12;$index++) { $num.=rand(1,9); }
+  /* Check Exists or not, If not exist return */
+  $checkObj=new Identity();
+  $output=$checkObj->id_cmp_uni_coursemap($num);
+  if($output==='ID_ALREADY_EXIST') { cmp_uni_coursemap_id(); } 
+  else { return $num; }
+ }
+ 
  /* Table - (9) ent_fc_account ::: celeb_Id (15) */
  function id_ent_fc_account($id) {
    $dataObj=new DataIdentity();

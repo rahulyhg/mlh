@@ -46,7 +46,7 @@ $(document).ready(function(){
  layout_setup();
  $(".lang_"+USR_LANG).css('display','block');
  $("#sendBatchMsg").emojioneArea({ useSprite: false});
- setInterval(function(){ batchChatInitializer(); }, 2000);
+ batchChatInitializer();
 });
 function layout_setup() {
   var height=window.innerHeight;
@@ -71,17 +71,6 @@ function sendBatchMessages(){
    js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.module.app.socialhub.classmateportal.batch.chat.php',
    { action:'CLASSMATEBATCH_CHAT_NEWMESSAGE', chat_Id:chat_Id, batch_Id:BATCH_ID, user_Id:AUTH_USER_ID,sent_On:cur_ts,
      msg:encrypted_msg, reply_reference:'' },function(response){ }); 
-	/* var content='<div class="col-xs-3 col-md-4">';
-		content+='<img class="profile_pic_img3" src="'+AUTH_USER_PROFILEPIC+'"/>';
-		content+='</div>';
-		content+='<div class="col-xs-9 col-md-8">';
-		content+='<div class="jumbotron custom-bg-solid1pxfullborder" ';
-		content+='style="border:1px solid '+CURRENT_DARK_COLOR+';background-color:#fff;color:'+CURRENT_DARK_COLOR+';">';
-		content+='<div style="width:100%;text-align:justify;">'+msg+'</div>';
-		content+='</div>';
-		content+='<div align="right" class="mtop10p mbot10p">'+get_stdDateTimeFormat01(cur_ts)+'<hr/></div>';
-		content+='</div>'; 
-	document.getElementById("my_chat").innerHTML=content; */
  } catch(err){ alert(err); }
 }
 
@@ -90,6 +79,7 @@ function batchChatInitializer(){
  { action:'CLASSMATEBATCH_CHAT_ALL', batch_Id:BATCH_ID },function(response){ 
    console.log(response); 
    chat_content(response);
+   batchChatInitializer();
  });
 }
 

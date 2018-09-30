@@ -24,6 +24,8 @@ function fn_identity(action){
  function cmp_uni_account_Id() { return fn_identity("CLSMTEPORT_UNI_ACCOUNT"); }
 /* Table - (8) cmp_uni_courses ::: cmp_course_Id (15) */
  function cmp_uni_courses_Id() { return fn_identity("CLSMTEPORT_UNI_COURSES"); }
+/* Table - (8) cmp_uni_coursemap ::: cmp_map_Id (25) */
+ function cmp_uni_coursemap_Id() { return fn_identity("CLSMTEPORT_UNI_COURSESMAP"); }
 /* Table - (9) ent_fc_account ::: celeb_Id (15) */
  function ent_fc_account_Id() { return fn_identity("ENT_FANCLUB_ACCOUNT"); }
 /* Table - (10) ent_fc_aw ::: 	artOfWork_Id (35) */

@@ -23,6 +23,8 @@ if(isset($_GET["action"])) {
  else if($_GET["action"]=='CLSMTEPORT_UNI_ACCOUNT') { echo $idObj->cmp_uni_account_id(); }
 	  /* Table - (8) cmp_uni_courses ::: cmp_course_Id (15) */
  else if($_GET["action"]=='CLSMTEPORT_UNI_COURSES') { echo $idObj->cmp_uni_courses_id(); }
+      /* Table - (8) cmp_uni_coursemap ::: cmp_map_Id (25) */
+ else if($_GET["action"]=='CLSMTEPORT_UNI_COURSESMAP') { echo $idObj->cmp_uni_coursemap_id(); }
 	  /* Table - (9) ent_fc_account ::: celeb_Id (15) */
  else if($_GET["action"]=='ENT_FANCLUB_ACCOUNT') { echo $idObj->ent_fc_account_id(); }
 	  /* Table - (10) ent_fc_aw ::: 	artOfWork_Id (35) */
