@@ -71,6 +71,9 @@ a.newsfeed-content { color:#000; }
 			   <a href="<?php echo $_SESSION["PROJECT_URL"]; ?>app/community/general/viewprofile/UPA533731685151">
 			     <button>CommunityProfile</button>
 			   </a>
+			   <a href="http://192.168.1.4/mlh/android-web/app/socialHub/classmatepoint/institute/batchchat/134">
+				<button>Chat</button>
+			   </a>
 		    </div>
 		 </div>
 		 

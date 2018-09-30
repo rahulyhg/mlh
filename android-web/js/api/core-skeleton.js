@@ -46,6 +46,7 @@ var content='<div align="center">';
  document.getElementById(div_Id).innerHTML=content;
 }
 
+
 function build_categoryOption(category_Id){
 var industryElement=document.getElementById(category_Id);
 // Delete previous Options 

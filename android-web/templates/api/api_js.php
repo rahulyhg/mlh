@@ -12,6 +12,22 @@ body { overflow-x:hidden; }
 </style>
 <script type="text/javascript">
 /* Highlight Letter on Search */
+function getCurentTimestamp(){
+ var dateObj = new Date();
+ var date = dateObj.getDate();
+ var month = dateObj.getMonth().toString();
+ if(month.length==1){ month='0'+month; }
+ var year = dateObj.getFullYear();
+ var hour = dateObj.getHours().toString();
+ if(hour.length==1){ hour='0'+hour; }
+ var min = dateObj.getMinutes().toString();
+ if(min.length==1){ min='0'+min; }
+ var sec = dateObj.getSeconds().toString();
+ if(sec.length==1){ sec='0'+sec; }
+ var timestamp = year+"-"+month+"-"+date+" "+hour+":"+min+":"+sec;
+ return timestamp;
+}
+
 function highlightLetterInAString(innerHTML,text) {
  var content='';
  if(text.length>0){
