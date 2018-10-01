@@ -172,6 +172,15 @@ if(isset($_GET["action"])){
 	  echo $dbObj->getJSONData($query);
 	} else { echo 'MISSING_INSTITUTIONID'; }
   }
+  else if($_GET["action"]==='GET_DATA_INSTITUTEBYID'){ 
+    if($_GET["institute_Id"]){
+      $institute_Id = $_GET["institute_Id"];
+	  $classmatePortalAccount = new ClassmatePortalAccount();
+	  $query = $classmatePortalAccount->query_data_getInstituteDataById($institute_Id);
+	  $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
+	  echo $dbObj->getJSONData($query);
+	} else { echo 'MISSING_INSTITUTE_ID'; }
+  }
   else if($_GET["action"]==='CREATE_COURSE'){
     if(isset($_GET["course_Id"]) && isset($_GET["courseName"]) && isset($_GET["institution_Id"]) &&
 	  isset($_GET["institutionType"]) && isset($_GET["duration"]) &&

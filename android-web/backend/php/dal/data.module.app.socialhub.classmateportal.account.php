@@ -97,6 +97,10 @@ class ClassmatePortalAccount{
     $sql.="FROM cmp_sch_account WHERE cmp_u_Id='".$cmp_u_Id."' AND approved='Y';";
 	return $sql;
   }
+  function query_data_getInstituteDataById($institute_Id){
+    $sql="SELECT * FROM cmp_sch_account WHERE cmp_sch_Id='".$institute_Id."';";
+	return $sql;
+  }
   function query_add_instituteBatchAccount($batch_Id, $cmp_u_Id, $cmp_sch_Id, $cmp_course_Id, $batchFrom,
     $batchTo, $admin_Id){
    $sql="INSERT INTO cmp_batch_account(batch_Id, cmp_u_Id, cmp_sch_Id, cmp_course_Id, batchFrom,";

@@ -28,11 +28,14 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
  <!--link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
  <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script-->
 <script type="text/javascript">
+var INSTITUTE_ID = '<?php if(isset($_GET["1"])){ echo $_GET["1"]; } ?>';
 $(document).ready(function(){
  bgstyle(3);
  $(".lang_"+USR_LANG).css('display','block');
  generateTabList();
  hzTabSelection('cpointInstituteProfileHzTab','');
+ console.log("INSTITUTE_ID: "+INSTITUTE_ID);
+ load_data_instituteById();
 });
 function generateTabList(){ 
  var content='<ul class="nav scrollTablist" id="socialhubclassmatepointTab" style="border-bottom:0px;">';
@@ -50,6 +53,161 @@ function hzTabSelection(id,orientation){
  }
 // if(id==="communityProfileHzTab"){ menuCommunityProfile("communityProfile_statistics"); } 
 }
+function load_data_instituteById(){
+ js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.module.app.socialhub.classmateportal.php',
+ { action:'GET_DATA_INSTITUTEBYID',institute_Id:INSTITUTE_ID },function(response){
+   console.log("response: "+response);
+   response = JSON.parse(response);
+   var cmp_sch_Id = response[0].cmp_sch_Id;
+   var instituteName = response[0].instituteName;
+   var instituteType = response[0].instituteType;
+   var cmp_u_Id = response[0].cmp_u_Id;
+   var profile_pic = response[0].profile_pic;
+   var establishedOn = response[0].establishedOn;
+   var aboutInstitute = response[0].aboutInstitute;
+   var foundedBy1 = response[0].foundedBy1;
+   var foundedBy2 = response[0].foundedBy2;
+   var foundedBy3 = response[0].foundedBy3;
+   var foundedBy4 = response[0].foundedBy4;
+   var foundedBy5 = response[0].foundedBy5;
+   var createdBy = response[0].createdBy;
+   var approved = response[0].approved;
+
+   var content='<div class="container-fluid" style="background-color:#f5f5f5;">';
+	   content+='<div class="row">';
+	   content+='<div align="center" class="col-xs-12">';
+       content+='<img src="'+profile_pic+'" class="mtop15p profile_pic_img"/>';
+       content+='</div>';
+       content+='<div align="center" class="col-xs-12 mtop15p">';
+       content+='<h5 style="line-height:22px;"><b>'+instituteName+'</b></h5>';
+       content+='</div>';
+       content+='</div>';
+       content+='</div>';
+       content+='<div class="list-group">';
+       content+='<div class="list-group-item pad0">';
+       content+='<div class="container-fluid">';
+       content+='<div class="row">';
+       content+='<div class="col-xs-5" style="border-right:1px solid #e7e7e7;">';
+       content+='<div align="center" class="mbot10p">';
+       content+='<h5><b>Established in</b></h5>';
+       content+='<div class="grey-lgt-font">'+establishedOn+'</div>';
+       content+='</div>';
+       content+='</div>';
+       content+='<div class="col-xs-7">';
+       content+='<div align="center">';
+       content+='<h5><b>College Type</b></h5>';
+	   content+='<div class="grey-lgt-font">'+instituteType+'</div>';
+       content+='</div>';
+       content+='</div>';
+       content+='</div>';
+       content+='</div>';
+       content+='</div>';
+       content+='</div>';
+       content+='<div class="container-fluid">';
+       content+='<div class="row">';
+       content+='<div class="col-xs-12">';
+       content+='<div class="list-group">';
+       content+='<div class="list-group-item pad0">';
+	   content+='<div class="container-fluid">';
+       content+='<div class="col-xs-12">';
+       content+='<div><h5><b>About Institute</b></h5></div>';
+       content+='</div>';
+       content+='</div>';
+       content+='</div>';
+       content+='<div class="list-group-item" style="color:#aaa;">'+aboutInstitute+'</div>';
+	   content+='</div>';
+       content+='</div>';
+       content+='</div>';
+       content+='</div>';
+       content+='<div class="list-group">';
+       content+='<div class="list-group-item pad0">';
+       content+='<div class="container-fluid">';
+       content+='<div class="row">';
+       content+='<div align="center" class="col-xs-6" style="border-right:1px solid #ccc;">';
+       content+='<div class="mbot10p">';
+       content+='<h5><b>Students</b></h5>';
+       content+='<div class="grey-lgt-font">123456789</div>';
+       content+='</div>';
+       content+='</div>';
+       content+='<div align="center" class="col-xs-6">';
+       content+='<div class="mbot10p">';
+       content+='<h5><b>Professors</b></h5>';
+       content+='<div class="grey-lgt-font">123456789</div>';
+       content+='</div>';
+       content+='</div>';
+       content+='</div>';
+       content+='</div>';
+       content+='</div>';
+       content+='<div class="list-group-item pad0">';
+       content+='<div class="container-fluid">';
+       content+='<div class="row">';
+       content+='<div align="center" class="col-xs-6" style="border-right:1px solid #ccc;">';
+       content+='<div class="mbot10p">';
+       content+='<h5><b>Batches</b></h5>';
+       content+='<div class="grey-lgt-font">123456789</div>';
+       content+='</div>';
+       content+='</div>';
+       content+='<div align="center" class="col-xs-6">';
+       content+='<div class="mbot10p">';
+       content+='<h5><b>Courses</b></h5>';
+       content+='<div class="grey-lgt-font">123456789</div>';
+       content+='</div>';
+       content+='</div>';
+	   content+='</div>';
+       content+='</div>';
+       content+='</div>';
+       content+='</div>';
+       content+='<div class="container-fluid">';
+       content+='<div class="row">';
+       content+='<div class="col-xs-12">';
+       content+='<div class="list-group">';
+       content+='<div class="list-group-item pad0">';
+       content+='<div class="container-fluid">';
+       content+='<div class="col-xs-12">';
+       content+='<div><h5><b>Profile created by</b></h5></div>';
+       content+='</div>';
+       content+='</div>';
+       content+='</div>';
+       content+='<div class="list-group-item pad0">';
+       content+='<div class="container-fluid mtop15p mbot15p">';
+       content+='<div class="row">';
+       content+='<div align="center" class="col-xs-5">';
+       content+='<img src="http://192.168.1.4/mlh/android-web/images/avatar/3.jpg" class="profile_pic_img3"/>';
+       content+='</div>';
+       content+='<div class="col-xs-7 pad0">';
+       content+='<div><b>Nellutla Anup Chakravarthi</b></div>';
+       content+='<div class="grey-lgt-font mtop10p">Kuttanad, Mavelikara, Kerala, India</div>';
+       content+='</div>';
+       content+='</div>';
+       content+='</div>';
+       content+='</div>';
+       content+='</div>';
+       content+='</div>';
+       content+='</div>';
+       content+='</div>';
+       content+='<div class="container-fluid">';
+       content+='<div class="row">';
+       content+='<div class="col-xs-12">';
+       content+='<div class="list-group">';
+       content+='<div class="list-group-item pad0">';
+       content+='<div class="container-fluid">';
+       content+='<div class="col-xs-12"><div><h5><b>Founders</b></h5></div></div>';
+       content+='</div>';
+       content+='</div>';
+       content+='<div class="list-group-item pad0">';
+       content+='<div class="container-fluid mtop15p mbot15p">';
+       content+='<div class="row">';
+       content+='<div class="col-xs-12"><h5 class="grey-lgt-font"><b>Qryvdgjj</b></h5></div>';
+       content+='</div>';
+       content+='</div>';
+       content+='</div>';
+       content+='</div>';
+       content+='</div>';
+       content+='</div>';
+       content+='</div>';
+	document.getElementById("cpointInstituteProfileDisplayDivision").innerHTML=content;
+ });
+}   
 </script>
 <style>
 .classmatepoint_div,.fansclub_div,.publicparliament_div { margin-top:5px;background-color:#fff;padding-top:2px;
