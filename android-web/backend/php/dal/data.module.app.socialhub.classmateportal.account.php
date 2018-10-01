@@ -57,8 +57,10 @@ class ClassmatePortalAccount{
 	$sql.="(SELECT count(*) FROM  cmp_batch_account, cmp_batch_members ";
     $sql.="WHERE cmp_batch_account.batch_Id = cmp_batch_members.batch_Id AND ";
     $sql.="cmp_batch_account.cmp_u_Id = cmp_uni_account.cmp_u_Id AND  cmp_batch_members.memType = 'PROFESSOR') As professors, ";
-	$sql.="(SELECT count(*) FROM cmp_sch_account WHERE cmp_sch_account.cmp_u_Id=cmp_uni_account.cmp_u_Id) As colleges, ";
-	$sql.="(SELECT count(DISTINCT cmp_course_Id) FROM cmp_sch_coursemap WHERE cmp_sch_coursemap.cmp_u_Id=cmp_uni_account.cmp_u_Id) As courses ";
+	$sql.="(SELECT count(*) FROM cmp_sch_account WHERE cmp_sch_account.cmp_u_Id=cmp_uni_account.cmp_u_Id ";
+	$sql.=" AND cmp_sch_account.approved='Y') As colleges, ";
+	$sql.="(SELECT count(DISTINCT cmp_course_Id) FROM cmp_uni_coursemap WHERE ";
+	$sql.="(cmp_uni_coursemap.cmp_u_Id=cmp_uni_account.cmp_u_Id AND cmp_uni_coursemap.approved='Y')) As courses ";
 	$sql.="FROM cmp_uni_account WHERE cmp_uni_account.cmp_u_Id='".$institutionId."' AND cmp_uni_account.approved='Y';";
 	return $sql;  
   } 
@@ -85,7 +87,7 @@ class ClassmatePortalAccount{
 	return $sql;
   }
   function query_data_getSimpleInstituteList($cmp_u_Id,$limit_start,$limit_end){
-    $sql="SELECT cmp_sch_account.instituteName, cmp_sch_account.profile_pic, ";
+    $sql="SELECT cmp_sch_account.cmp_sch_Id, cmp_sch_account.instituteName, cmp_sch_account.profile_pic, ";
 	$sql.="(SELECT count(*) FROM  cmp_batch_account, cmp_batch_members ";
     $sql.="WHERE cmp_batch_account.batch_Id = cmp_batch_members.batch_Id AND ";
     $sql.="cmp_batch_account.cmp_u_Id = cmp_sch_account.cmp_u_Id AND  cmp_batch_members.memType = 'STUDENT') As students, ";

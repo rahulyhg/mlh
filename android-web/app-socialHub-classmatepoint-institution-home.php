@@ -55,14 +55,16 @@ function generateTabList(){
 	 content+='<li><a id="cpointCollegesHzTab" href="#" onclick="javascript:hzTabSelection(this.id,\'\');"><b>List of Colleges</b></a></li>';
 	 content+='<li><a id="cpointCoursesHzTab" href="#" onclick="javascript:hzTabSelection(this.id,\'\');"><b>Courses</b></a></li>';
 	 content+='<li><a id="cpointMovementsHzTab" href="#" onclick="javascript:hzTabSelection(this.id,\'\');"><b>Movements</b></a></li>';
+	 content+='<li><a id="cpointElectionsHzTab" href="#" onclick="javascript:hzTabSelection(this.id,\'\');"><b>Elections</b></a></li>';
 	 content+='</ul>'; 
   document.getElementById("socialHubClassmatePointScrollableTab").innerHTML=content;
 }
 function hzTabSelection(id,orientation){ 
  var arryHzTab=["cpointNewsFeedHzTab","cpointUniversityProfileHzTab","cpointCollegesHzTab","cpointCoursesHzTab",
-				"cpointMovementsHzTab"];
+				"cpointMovementsHzTab","cpointElectionsHzTab"];
  var arryTabDataViewer=["cpointNewsFeedProfileDisplayDivision","cpointUniversityProfileDisplayDivision",
- "cpointCollegesDisplayDivision","cpointCoursesDisplayDivision","cpointMovementsDisplayDivision"];
+ "cpointCollegesDisplayDivision","cpointCoursesDisplayDivision","cpointMovementsDisplayDivision",
+ "cpointElectionsDisplayDivision"];
  hzTabSelector(id,arryHzTab,arryTabDataViewer);
  if(orientation.length>0){
    $('#socialhubclassmatepointTab').css('left',orientation+'px');
@@ -75,6 +77,7 @@ function hzTabSelection(id,orientation){
 	coursesDataInitializer(); 
  } 
  else if(id==='cpointMovementsHzTab'){  }
+ else if(id==='cpointElectionsHzTab'){  }
 }
 
 function load_data_institutionProfile(){
@@ -394,14 +397,14 @@ function coursesContentData(div_view,appendContent,limit_start,limit_end){
 	   content+='<div class="row">';
 	   content+='<div class="col-xs-12">';
 	   content+='<div class="list-group">';
-	   content+='<div class="list-group-item pad0">';
+	   content+='<div class="list-group-item pad0" style="background-color:#f9f9f9;">';
 	   content+='<div class="container-fluid mtop15p mbot15p">';
 	   content+='<div class="row">';
 	   content+='<div align="center" class="col-xs-12">';
-	   content+='<div><b>'+courseName+'</b></div>';
+	   content+='<div><h5><b>'+courseName+'</b></h5></div>';
 	   content+='</div>';
 	   content+='</div>';
-	   content+='<div class="row mtop15p">';
+	   content+='<div class="row mtop15p fs12">';
 	   content+='<div align="left" class="col-xs-6">';
 	   content+='<div>Duration of course</div>';
 	   if(duration==='1'){
@@ -513,6 +516,9 @@ function coursesContentData(div_view,appendContent,limit_start,limit_end){
  <div id="cpointMovementsDisplayDivision" class="hide-block">
  
  </div>
+ <div align="center" id="cpointElectionsDisplayDivision" class="hide-block" style="margin-top:15%;">
+   <img src="<?php echo $_SESSION["PROJECT_URL"]; ?>images/other/cpoint_elections_logo.png" style="width:90%;height:auto;"/>
+ </div> 
  </div>
  <!-- END -->
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/hz-scrollableTabs.js"></script>
