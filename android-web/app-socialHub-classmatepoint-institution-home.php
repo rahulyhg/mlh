@@ -70,7 +70,10 @@ function hzTabSelection(id,orientation){
       if(id==='cpointNewsFeedHzTab'){  }
  else if(id==='cpointUniversityProfileHzTab'){ load_data_institutionProfile(); }
  else if(id==='cpointCollegesHzTab'){ instituteDataInitializer(); }
- else if(id==='cpointCoursesHzTab'){ if(INSTITUTION_BOARD==undefined){ load_data_institutionBoard(); } } 
+ else if(id==='cpointCoursesHzTab'){ 
+    if(INSTITUTION_BOARD==undefined){ load_data_institutionBoard(); } 
+	coursesDataInitializer(); 
+ } 
  else if(id==='cpointMovementsHzTab'){  }
 }
 
@@ -280,11 +283,6 @@ function instituteDataInitializer(){
 	   content+='</span>';
 	   content+='</div>';
        content+='</div>';
-       content+='<div class="col-xs-4">';
-	   content+='<a href="PROJECT_URLapp/socialHub/classmatepoint/institute/create/1234567">';
-       content+='<button class="btn btn-default pull-right"><b>Add College</b></button>';
-	   content+='</a>';
-       content+='</div>';
        content+='</div>';
    document.getElementById("cpointCollegesResults").innerHTML=content; 
    scroll_loadInitializer('cpointCollegesResultsData',10,instituteContentData,total_data);
@@ -348,9 +346,100 @@ function instituteContentData(div_view, appendContent,limit_start,limit_end){
    document.getElementById(div_view).innerHTML=content;
  });
 }
-</script>
-<script type="text/javascript">
-
+function coursesDataInitializer(){
+ js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.socialhub.classmateportal.php',
+ { action:'GET_COUNT_COURSES', institution_Id:INSTITUTION_ID },function(total_data){ 
+    console.log("total_data: "+total_data);
+    total_data=parseInt(total_data);
+   stopAppProgressLoader();
+   if($('#app-profile-body').hasClass('hide-block')){ $('#app-profile-body').removeClass('hide-block'); }
+   if(total_data>0){
+   var content='<div class="row">';
+       content+='<div class="col-xs-8">';
+       content+='<div align="left" class="mtop10p" style="font-size:12px;">';
+	   content+='<span style="color:#808080;"><b>Your Search Results:</b></span>';
+	   content+='<span class="custom-font" style="color:'+CURRENT_DARK_COLOR+'"><b>';
+	   if(total_data==1){ content+=total_data+' Course Found'; }
+	   else { content+=total_data+' Courses Found'; }
+	   content+='</span>';
+	   content+='</div>';
+       content+='</div>';
+       content+='</div>';
+   document.getElementById("cpointCoursesResults").innerHTML=content; 
+   scroll_loadInitializer('cpointCoursesResultsData',10,coursesContentData,total_data);
+   //   
+ } else {
+    var content='<div align="center" style="color:#ccc;">No College found</div>';
+    document.getElementById("cpointCoursesResultsData0").innerHTML=content;
+  }
+ });
+}
+function coursesContentData(div_view,appendContent,limit_start,limit_end){
+  js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.socialhub.classmateportal.php',
+ { action:'GET_DATA_COURSES', institution_Id:INSTITUTION_ID, limit_start: limit_start, limit_end:limit_end },
+ function(response){ 
+   console.log("Courses: "+response);
+   response = JSON.parse(response);
+   var content='';
+   for(var index=0;index<response.length;index++){
+    var cmp_course_Id = response[index].cmp_course_Id;
+    var courseName = response[index].courseName;
+    var duration = response[index].duration;
+    var begMonth = response[index].begMonth;
+    var endMonth = response[index].endMonth;
+	var students = response[index].students;
+    var professors = response[index].professors;
+	
+	   content+='<div class="container-fluid mtop15p ">';
+	   content+='<div class="row">';
+	   content+='<div class="col-xs-12">';
+	   content+='<div class="list-group">';
+	   content+='<div class="list-group-item pad0">';
+	   content+='<div class="container-fluid mtop15p mbot15p">';
+	   content+='<div class="row">';
+	   content+='<div align="center" class="col-xs-12">';
+	   content+='<div><b>'+courseName+'</b></div>';
+	   content+='</div>';
+	   content+='</div>';
+	   content+='<div class="row mtop15p">';
+	   content+='<div align="left" class="col-xs-6">';
+	   content+='<div>Duration of course</div>';
+	   if(duration==='1'){
+	   content+='<div style="color:#aaa;"><i>'+duration+' year</i></div>';
+	   } else {
+	   content+='<div style="color:#aaa;"><i>'+duration+' years</i></div>';
+	   }
+	   content+='</div>';
+	   content+='<div align="right" class="col-xs-6">';
+	   content+='<div>Starts in <span style="color:#aaa;"><i>'+begMonth+'</i></span></div>';
+	   content+='<div>Ends in <span style="color:#aaa;"><i>'+endMonth+'</i></span></div>';
+	   content+='</div>';
+	   content+='</div>';
+	   content+='</div>';
+	   content+='</div>';
+	   content+='<div class="list-group-item pad0">';
+	   content+='<div class="container-fluid">';
+	   content+='<div class="row">';
+	   content+=' <div align="center" class="col-xs-6" style="border-right:1px solid #ccc;">';
+	   content+='<div class="mtop15p"><h5><b>Students</b></h5></div>';
+	   content+='<div class="mbot15p" style="color:#aaa;">'+students+'</div>';
+	   content+='</div>';
+	   content+='<div align="center" class="col-xs-6">';
+	   content+='<div class="mtop15p"><h5><b>Professors</b></h5></div>';
+	   content+='<div class="mbot15p"  style="color:#aaa;">'+professors+'</div>';
+	   content+='</div>';
+	   content+='</div>';
+	   content+='</div>';
+	   content+='</div>';
+	   content+='</div>';
+	   content+='</div>';
+	   content+='</div>';
+	   content+='</div>';
+   }
+   content+=appendContent;
+   document.getElementById(div_view).innerHTML=content;
+ });
+}
 </script>
 <style>
 .classmatepoint_div,.fansclub_div,.publicparliament_div { margin-top:5px;background-color:#fff;padding-top:2px;
@@ -406,17 +495,20 @@ function instituteContentData(div_view, appendContent,limit_start,limit_end){
 	   </a>
 	  </div>
 	 </div>
-     <div id="cpointCollegesResults" class="container-fluid mtop15p"></div>
+	 <div id="cpointCollegesResults" class="container-fluid mtop15p"></div>
      <div id="cpointCollegesResultsData0" class="container-fluid mtop15p "></div>
  </div>
  <div id="cpointCoursesDisplayDivision" class="hide-block">
    <?php include_once 'templates/pages/app-socialhub/classmatepoint/institution/addCourse.php';  ?>
+   
    <div id="cpointAddCourses" class="container-fluid mtop15p">
     <div align="right" class="col-xs-12">
 	   <button class="btn btn-default" onclick="javascript:viewAddCourseModal();"><b>Add Course</b></button>
 	</div>
-   </div>
-   <?php include_once 'templates/pages/app-socialhub/classmatepoint/institution/listOfCourses-view.php';  ?>
+   </div> 
+   <div id="cpointCoursesResults" class="container-fluid mtop15p"></div>
+   <div id="cpointCoursesResultsData0" class="container-fluid mtop15p "></div>
+     <?php include_once 'templates/pages/app-socialhub/classmatepoint/institution/listOfCourses-view.php';  ?>
  </div>
  <div id="cpointMovementsDisplayDivision" class="hide-block">
  

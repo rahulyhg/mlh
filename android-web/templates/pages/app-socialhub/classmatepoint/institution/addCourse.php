@@ -57,14 +57,12 @@ function viewAddCourseModal(){
 $("#institution_addCourseName").easyAutocomplete(options);
 $(".easy-autocomplete").css('width','100%');
 }
-
 function disabled_courseForm(){
  document.getElementById("institution_addCourseName").disabled=true;
  document.getElementById("institution_addCourseDuration").disabled=true;
  document.getElementById("institution_addCourseStarts").disabled=true;
  document.getElementById("institution_addCourseEnds").disabled=true;
 }
-
 function enabled_courseForm(){
  AUTOCOMPLETE_COURSE_ID = undefined;
  AUTOCOMPLETE_COURSE_NAME = undefined;
@@ -80,7 +78,6 @@ function enabled_courseForm(){
  document.getElementById("institution_addCourseStarts").disabled=false;
  document.getElementById("institution_addCourseEnds").disabled=false;
 }
-
 function addCourse(){
  console.log("courseId: "+AUTOCOMPLETE_COURSE_ID);
  var courseName = document.getElementById("institution_addCourseName").value;
@@ -107,6 +104,7 @@ function addCourse(){
  } else  {  div_display_warning('errSuccessMessages','W032'); }
  } else  {  div_display_warning('errSuccessMessages','W031'); }
 }
+
 </script>
 <div id="institutionCourseFormModal" class="modal fade" role="dialog">
   <div class="modal-dialog">

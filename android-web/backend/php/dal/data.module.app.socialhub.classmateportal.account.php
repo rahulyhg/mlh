@@ -61,19 +61,16 @@ class ClassmatePortalAccount{
 	$sql.="(SELECT count(DISTINCT cmp_course_Id) FROM cmp_sch_coursemap WHERE cmp_sch_coursemap.cmp_u_Id=cmp_uni_account.cmp_u_Id) As courses ";
 	$sql.="FROM cmp_uni_account WHERE cmp_uni_account.cmp_u_Id='".$institutionId."' AND cmp_uni_account.approved='Y';";
 	return $sql;  
-  }
-  
+  } 
   function query_data_getInstitutionNameById($institutionId){
     $sql="SELECT institutionName FROM cmp_uni_account WHERE cmp_u_Id='".$institutionId."';";
 	return $sql;  
   }
-  
   function query_data_getInstitutionBoardById($institutionId){
     $sql="SELECT institutionBoard FROM cmp_uni_account WHERE cmp_u_Id='".$institutionId."';";
 	return $sql;  
   }
-  
-  /* ClassmatePortal Module ::: Institute */
+ /* ClassmatePortal Module ::: Institute */
   function query_add_instituteAccount($cmp_sch_Id, $instituteName, $instituteType, $cmp_u_Id, $profile_pic, $establishedOn, 
    $aboutInstitute, $foundedBy1, $foundedBy2, $foundedBy3, $foundedBy4, $foundedBy5, $web_url, $createdBy){
    $sql="INSERT INTO cmp_sch_account(cmp_sch_Id, instituteName, instituteType, cmp_u_Id, profile_pic, establishedOn, ";
@@ -83,12 +80,10 @@ class ClassmatePortalAccount{
    $sql.="','".$foundedBy5."','".$web_url."','".$createdBy."','N');";
    return $sql;
   }
-  
   function query_count_getInstituteList($cmp_u_Id){
     $sql="SELECT count(*) FROM cmp_sch_account WHERE cmp_u_Id='".$cmp_u_Id."' AND approved='Y';";
 	return $sql;
   }
-  
   function query_data_getSimpleInstituteList($cmp_u_Id,$limit_start,$limit_end){
     $sql="SELECT cmp_sch_account.instituteName, cmp_sch_account.profile_pic, ";
 	$sql.="(SELECT count(*) FROM  cmp_batch_account, cmp_batch_members ";
@@ -100,8 +95,6 @@ class ClassmatePortalAccount{
     $sql.="FROM cmp_sch_account WHERE cmp_u_Id='".$cmp_u_Id."' AND approved='Y';";
 	return $sql;
   }
-  
-  
   function query_add_instituteBatchAccount($batch_Id, $cmp_u_Id, $cmp_sch_Id, $cmp_course_Id, $batchFrom,
     $batchTo, $admin_Id){
    $sql="INSERT INTO cmp_batch_account(batch_Id, cmp_u_Id, cmp_sch_Id, cmp_course_Id, batchFrom,";
@@ -112,8 +105,7 @@ class ClassmatePortalAccount{
    $sql.="cmp_sch_Id='".$cmp_sch_Id."' AND  cmp_course_Id='".$cmp_course_Id."' )=0;";
    return $sql;
   }
-  
-   function query_add_institutionCourses($cmp_course_Id, $courseName, $duration, $begMonth, $endMonth, $institutionType){
+  function query_add_institutionCourses($cmp_course_Id, $courseName, $duration, $begMonth, $endMonth, $institutionType){
    $sql="INSERT INTO cmp_uni_courses(cmp_course_Id,courseName, duration, begMonth, ";
    $sql.="endMonth, institutionType, approved) SELECT * FROM (";
    $sql.="SELECT '".$cmp_course_Id."' As cmp_course_Id, '".$courseName."' As courseName, '";
@@ -123,20 +115,41 @@ class ClassmatePortalAccount{
    $sql.="duration='".$duration."' )=0;";
    return $sql;  
   }
-  
   function query_autocomplete_courses($searchQuery){
     $sql="SELECT cmp_course_Id, courseName, duration, begMonth, endMonth FROM cmp_uni_courses ";
 	$sql.="WHERE courseName LIKE '%".$searchQuery."%' AND approved='Y';";
 	return $sql;  
   }
-  
-   function query_add_institutionCourseMap($cmp_map_Id, $cmp_u_Id, $cmp_course_Id){
+  function query_count_institutionCourses($institution_Id){
+    $sql="SELECT count(cmp_uni_courses.cmp_course_Id) FROM cmp_uni_coursemap, cmp_uni_courses ";
+	$sql.="WHERE cmp_uni_coursemap.cmp_u_Id='".$institution_Id."' AND ";
+	$sql.="cmp_uni_courses.cmp_course_Id=cmp_uni_coursemap.cmp_course_Id AND ";
+	$sql.="cmp_uni_coursemap.approved='Y';";
+	return $sql;
+  }
+  function query_data_institutionCourses($institution_Id,$limit_start,$limit_end){
+	$sql="SELECT ";
+	$sql.="cmp_uni_courses.cmp_course_Id, cmp_uni_courses.courseName, cmp_uni_courses.duration, ";
+	$sql.="cmp_uni_courses.begMonth, cmp_uni_courses.endMonth, ";
+	$sql.="(SELECT count(*) FROM cmp_batch_members WHERE ";
+	$sql.="cmp_batch_members.memType='STUDENT' AND cmp_batch_members.batch_Id IN (SELECT batch_Id FROM "; 
+	$sql.="cmp_batch_account WHERE cmp_batch_account.cmp_u_Id='".$institution_Id."' AND ";
+	$sql.="cmp_batch_account.cmp_course_Id=cmp_uni_courses.cmp_course_Id)) As students, ";
+	$sql.="(SELECT count(*) FROM cmp_batch_members WHERE ";
+	$sql.="cmp_batch_members.memType='PROFESSOR' AND cmp_batch_members.batch_Id IN (SELECT batch_Id FROM "; 
+	$sql.="cmp_batch_account WHERE cmp_batch_account.cmp_u_Id='".$institution_Id."' AND ";
+	$sql.="cmp_batch_account.cmp_course_Id=cmp_uni_courses.cmp_course_Id)) As professors ";
+	$sql.="FROM cmp_uni_coursemap, cmp_uni_courses WHERE cmp_uni_coursemap.cmp_u_Id='".$institution_Id."' ";
+    $sql.="AND cmp_uni_courses.cmp_course_Id=cmp_uni_coursemap.cmp_course_Id AND cmp_uni_coursemap.approved='Y' ";
+	$sql.=" LIMIT ".$limit_start.",".$limit_end;
+	return $sql; // STUDENT  PROFESSOR
+  }
+  function query_add_institutionCourseMap($cmp_map_Id, $cmp_u_Id, $cmp_course_Id){
     $sql="INSERT INTO cmp_uni_coursemap(cmp_map_Id, cmp_u_Id, cmp_course_Id, approved) ";
 	$sql.="VALUES ('".$cmp_map_Id."','".$cmp_u_Id."','".$cmp_course_Id."','N');";
 	return $sql;  
-   }
-  
-   function query_add_instituteBatchMembers($member_Id, $batch_Id, $user_Id, $memType, $isAdmin, $memAddedOn){
+  }
+  function query_add_instituteBatchMembers($member_Id, $batch_Id, $user_Id, $memType, $isAdmin, $memAddedOn){
    $sql="INSERT INTO cmp_batch_members(member_Id,batch_Id, user_Id, memType, isAdmin, ";
    $sql.="memAddedOn) SELECT * FROM (";
    $sql.="SELECT '".$member_Id."', '".$batch_Id."', '".$user_Id."', '".$memType."','".$isAdmin."', '";
@@ -144,15 +157,14 @@ class ClassmatePortalAccount{
    $sql.=") As Tbl WHERE (SELECT count(*) FROM cmp_batch_members WHERE user_Id='".$user_Id."' )=0; ";
    return $sql;  
   }
-  
-   function query_add_batchMemberChat($chat_Id, $batch_Id, $msg_by, $sent_On, $msg, $reply_reference, $notify, $watched){
+  function query_add_batchMemberChat($chat_Id, $batch_Id, $msg_by, $sent_On, $msg, $reply_reference, $notify, $watched){
    $sql="INSERT INTO cmp_batch_mem_chat(chat_Id, batch_Id, msg_by, sent_On, msg, reply_reference, notify,  ";
    $sql.="watched) ";
    $sql.="VALUES ( '".$chat_Id."', '".$batch_Id."', '".$msg_by."', '".$sent_On."','".$msg."', '";
    $sql.=$reply_reference."','".$notify."','".$watched."');";
    return $sql;  
   }
-
+  
 }
 
 

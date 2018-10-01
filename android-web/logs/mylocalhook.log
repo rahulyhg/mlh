@@ -10023,3 +10023,201 @@ Monday 1st October 2018 04:24:57 PM [INFO] ::: [api.database.php]  Database conn
 Monday 1st October 2018 04:26:06 PM [INFO] ::: [api.database.php]  Database connected Successfully 
 Monday 1st October 2018 04:26:07 PM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_profile_geo(user_Id, cur_lat, cur_long, geoUpdatedOn) VALUES ('USR924357814934','17.2979784','78.5610299','2018-10-01 16:26:05') ON DUPLICATE KEY UPDATE cur_lat='17.2979784', cur_long='78.5610299', geoUpdatedOn='2018-10-01 16:26:05';  
 Monday 1st October 2018 04:26:08 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 04:29:04 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 04:29:05 PM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_profile_geo(user_Id, cur_lat, cur_long, geoUpdatedOn) VALUES ('USR924357814934','17.2979784','78.5610299','2018-10-01 16:29:03') ON DUPLICATE KEY UPDATE cur_lat='17.2979784', cur_long='78.5610299', geoUpdatedOn='2018-10-01 16:29:03';  
+Monday 1st October 2018 04:29:06 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 04:30:12 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 04:30:12 PM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_profile_geo(user_Id, cur_lat, cur_long, geoUpdatedOn) VALUES ('USR924357814934','17.2979784','78.5610299','2018-10-01 16:30:11') ON DUPLICATE KEY UPDATE cur_lat='17.2979784', cur_long='78.5610299', geoUpdatedOn='2018-10-01 16:30:11';  
+Monday 1st October 2018 04:30:13 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 04:33:05 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 04:33:05 PM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_profile_geo(user_Id, cur_lat, cur_long, geoUpdatedOn) VALUES ('USR924357814934','17.2979784','78.5610299','2018-10-01 16:33:04') ON DUPLICATE KEY UPDATE cur_lat='17.2979784', cur_long='78.5610299', geoUpdatedOn='2018-10-01 16:33:04';  
+Monday 1st October 2018 04:33:06 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 04:35:21 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 04:35:21 PM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_profile_geo(user_Id, cur_lat, cur_long, geoUpdatedOn) VALUES ('USR924357814934','17.2979784','78.5610299','2018-10-01 16:35:20') ON DUPLICATE KEY UPDATE cur_lat='17.2979784', cur_long='78.5610299', geoUpdatedOn='2018-10-01 16:35:20';  
+Monday 1st October 2018 04:35:22 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 04:37:04 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 04:37:04 PM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_profile_geo(user_Id, cur_lat, cur_long, geoUpdatedOn) VALUES ('USR924357814934','17.2979784','78.5610299','2018-10-01 16:37:03') ON DUPLICATE KEY UPDATE cur_lat='17.2979784', cur_long='78.5610299', geoUpdatedOn='2018-10-01 16:37:03';  
+Monday 1st October 2018 04:37:05 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 04:39:25 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 04:39:25 PM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_profile_geo(user_Id, cur_lat, cur_long, geoUpdatedOn) VALUES ('USR924357814934','17.2979784','78.5610299','2018-10-01 16:39:24') ON DUPLICATE KEY UPDATE cur_lat='17.2979784', cur_long='78.5610299', geoUpdatedOn='2018-10-01 16:39:24';  
+Monday 1st October 2018 04:39:26 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 04:42:35 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 04:42:35 PM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_profile_geo(user_Id, cur_lat, cur_long, geoUpdatedOn) VALUES ('USR924357814934','17.2979784','78.5610299','2018-10-01 16:42:34') ON DUPLICATE KEY UPDATE cur_lat='17.2979784', cur_long='78.5610299', geoUpdatedOn='2018-10-01 16:42:34';  
+Monday 1st October 2018 04:42:36 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 04:50:32 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 04:50:32 PM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_profile_geo(user_Id, cur_lat, cur_long, geoUpdatedOn) VALUES ('USR924357814934','17.2979784','78.5610299','2018-10-01 16:50:31') ON DUPLICATE KEY UPDATE cur_lat='17.2979784', cur_long='78.5610299', geoUpdatedOn='2018-10-01 16:50:31';  
+Monday 1st October 2018 04:50:33 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 04:51:37 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 04:51:38 PM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_profile_geo(user_Id, cur_lat, cur_long, geoUpdatedOn) VALUES ('USR924357814934','17.2979784','78.5610299','2018-10-01 16:51:36') ON DUPLICATE KEY UPDATE cur_lat='17.2979784', cur_long='78.5610299', geoUpdatedOn='2018-10-01 16:51:36';  
+Monday 1st October 2018 04:51:39 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 04:51:40 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 04:51:40 PM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_profile_geo(user_Id, cur_lat, cur_long, geoUpdatedOn) VALUES ('USR924357814934','17.2979784','78.5610299','2018-10-01 16:51:39') ON DUPLICATE KEY UPDATE cur_lat='17.2979784', cur_long='78.5610299', geoUpdatedOn='2018-10-01 16:51:39';  
+Monday 1st October 2018 04:51:41 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 04:52:40 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 04:52:40 PM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_profile_geo(user_Id, cur_lat, cur_long, geoUpdatedOn) VALUES ('USR924357814934','17.2979784','78.5610299','2018-10-01 16:52:39') ON DUPLICATE KEY UPDATE cur_lat='17.2979784', cur_long='78.5610299', geoUpdatedOn='2018-10-01 16:52:39';  
+Monday 1st October 2018 04:52:41 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 04:52:42 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 04:52:42 PM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_profile_geo(user_Id, cur_lat, cur_long, geoUpdatedOn) VALUES ('USR924357814934','17.2979784','78.5610299','2018-10-01 16:52:41') ON DUPLICATE KEY UPDATE cur_lat='17.2979784', cur_long='78.5610299', geoUpdatedOn='2018-10-01 16:52:41';  
+Monday 1st October 2018 04:52:43 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 04:57:09 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 04:57:10 PM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_profile_geo(user_Id, cur_lat, cur_long, geoUpdatedOn) VALUES ('USR924357814934','17.2979784','78.5610299','2018-10-01 16:57:08') ON DUPLICATE KEY UPDATE cur_lat='17.2979784', cur_long='78.5610299', geoUpdatedOn='2018-10-01 16:57:08';  
+Monday 1st October 2018 04:57:11 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:00:41 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:00:58 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:01:28 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:02:05 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:02:05 PM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_profile_geo(user_Id, cur_lat, cur_long, geoUpdatedOn) VALUES ('USR924357814934','17.2979784','78.5610299','2018-10-01 17:02:04') ON DUPLICATE KEY UPDATE cur_lat='17.2979784', cur_long='78.5610299', geoUpdatedOn='2018-10-01 17:02:04';  
+Monday 1st October 2018 05:02:06 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:06:11 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:13:02 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:13:47 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:14:19 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:15:21 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:29:17 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:29:39 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:29:47 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:29:48 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:29:49 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:29:50 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:29:51 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:29:52 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:29:55 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:29:59 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:30:00 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:30:01 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:30:02 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:30:03 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:30:04 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:36:09 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:36:09 PM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_profile_geo(user_Id, cur_lat, cur_long, geoUpdatedOn) VALUES ('USR924357814934','17.2979784','78.5610299','2018-10-01 17:36:08') ON DUPLICATE KEY UPDATE cur_lat='17.2979784', cur_long='78.5610299', geoUpdatedOn='2018-10-01 17:36:08';  
+Monday 1st October 2018 05:36:10 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:36:53 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:36:54 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:36:55 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:36:56 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:36:57 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:36:58 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:37:00 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:37:32 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:39:00 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:39:01 PM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_profile_geo(user_Id, cur_lat, cur_long, geoUpdatedOn) VALUES ('USR924357814934','17.2979784','78.5610299','2018-10-01 17:38:59') ON DUPLICATE KEY UPDATE cur_lat='17.2979784', cur_long='78.5610299', geoUpdatedOn='2018-10-01 17:38:59';  
+Monday 1st October 2018 05:39:02 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:41:01 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:41:01 PM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_profile_geo(user_Id, cur_lat, cur_long, geoUpdatedOn) VALUES ('USR924357814934','17.2979784','78.5610299','2018-10-01 17:41:00') ON DUPLICATE KEY UPDATE cur_lat='17.2979784', cur_long='78.5610299', geoUpdatedOn='2018-10-01 17:41:00';  
+Monday 1st October 2018 05:41:02 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:41:12 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:42:31 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:42:34 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:42:35 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:42:58 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:43:03 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:43:43 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:43:48 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:43:49 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:44:40 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:44:45 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:44:46 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:47:12 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:47:12 PM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_profile_geo(user_Id, cur_lat, cur_long, geoUpdatedOn) VALUES ('USR924357814934','17.2979784','78.5610299','2018-10-01 17:47:11') ON DUPLICATE KEY UPDATE cur_lat='17.2979784', cur_long='78.5610299', geoUpdatedOn='2018-10-01 17:47:11';  
+Monday 1st October 2018 05:47:13 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:48:31 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:48:36 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:48:37 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:48:42 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:48:42 PM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_profile_geo(user_Id, cur_lat, cur_long, geoUpdatedOn) VALUES ('USR924357814934','17.2979784','78.5610299','2018-10-01 17:48:41') ON DUPLICATE KEY UPDATE cur_lat='17.2979784', cur_long='78.5610299', geoUpdatedOn='2018-10-01 17:48:41';  
+Monday 1st October 2018 05:48:43 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:49:15 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:49:21 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:49:22 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:49:48 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:49:48 PM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_profile_geo(user_Id, cur_lat, cur_long, geoUpdatedOn) VALUES ('USR924357814934','17.2979784','78.5610299','2018-10-01 17:49:47') ON DUPLICATE KEY UPDATE cur_lat='17.2979784', cur_long='78.5610299', geoUpdatedOn='2018-10-01 17:49:47';  
+Monday 1st October 2018 05:49:49 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:50:50 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:50:50 PM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_profile_geo(user_Id, cur_lat, cur_long, geoUpdatedOn) VALUES ('USR924357814934','17.2979784','78.5610299','2018-10-01 17:50:49') ON DUPLICATE KEY UPDATE cur_lat='17.2979784', cur_long='78.5610299', geoUpdatedOn='2018-10-01 17:50:49';  
+Monday 1st October 2018 05:50:51 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:51:55 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:51:55 PM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_profile_geo(user_Id, cur_lat, cur_long, geoUpdatedOn) VALUES ('USR924357814934','17.2979784','78.5610299','2018-10-01 17:51:54') ON DUPLICATE KEY UPDATE cur_lat='17.2979784', cur_long='78.5610299', geoUpdatedOn='2018-10-01 17:51:54';  
+Monday 1st October 2018 05:51:56 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:52:32 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:53:15 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:53:15 PM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_profile_geo(user_Id, cur_lat, cur_long, geoUpdatedOn) VALUES ('USR924357814934','17.2979784','78.5610299','2018-10-01 17:53:14') ON DUPLICATE KEY UPDATE cur_lat='17.2979784', cur_long='78.5610299', geoUpdatedOn='2018-10-01 17:53:14';  
+Monday 1st October 2018 05:53:16 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:56:11 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:56:15 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:56:16 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:57:04 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:57:10 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:57:11 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:57:12 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:57:13 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:59:03 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:59:07 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:59:08 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:59:43 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:59:48 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 05:59:49 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:00:09 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:00:13 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:00:15 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:00:36 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:00:41 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:00:42 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:03:26 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:03:26 PM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_profile_geo(user_Id, cur_lat, cur_long, geoUpdatedOn) VALUES ('USR924357814934','17.2979784','78.5610299','2018-10-01 18:03:25') ON DUPLICATE KEY UPDATE cur_lat='17.2979784', cur_long='78.5610299', geoUpdatedOn='2018-10-01 18:03:25';  
+Monday 1st October 2018 06:03:27 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:04:09 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:04:18 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:04:19 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:04:20 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:04:29 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:04:29 PM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_profile_geo(user_Id, cur_lat, cur_long, geoUpdatedOn) VALUES ('USR924357814934','17.2979784','78.5610299','2018-10-01 18:04:28') ON DUPLICATE KEY UPDATE cur_lat='17.2979784', cur_long='78.5610299', geoUpdatedOn='2018-10-01 18:04:28';  
+Monday 1st October 2018 06:04:30 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:05:28 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:05:29 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:05:30 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:05:58 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:05:58 PM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_profile_geo(user_Id, cur_lat, cur_long, geoUpdatedOn) VALUES ('USR924357814934','17.2979784','78.5610299','2018-10-01 18:05:57') ON DUPLICATE KEY UPDATE cur_lat='17.2979784', cur_long='78.5610299', geoUpdatedOn='2018-10-01 18:05:57';  
+Monday 1st October 2018 06:05:58 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:05:59 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:05:59 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:06:00 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:06:30 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:06:31 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:06:32 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:07:15 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:07:17 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:07:18 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:11:14 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:11:14 PM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_profile_geo(user_Id, cur_lat, cur_long, geoUpdatedOn) VALUES ('USR924357814934','17.2979784','78.5610299','2018-10-01 18:11:13') ON DUPLICATE KEY UPDATE cur_lat='17.2979784', cur_long='78.5610299', geoUpdatedOn='2018-10-01 18:11:13';  
+Monday 1st October 2018 06:11:15 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:12:38 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:12:38 PM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_profile_geo(user_Id, cur_lat, cur_long, geoUpdatedOn) VALUES ('USR924357814934','17.2979784','78.5610299','2018-10-01 18:12:37') ON DUPLICATE KEY UPDATE cur_lat='17.2979784', cur_long='78.5610299', geoUpdatedOn='2018-10-01 18:12:37';  
+Monday 1st October 2018 06:12:39 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:14:40 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:16:56 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:17:57 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:19:34 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:19:35 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:19:36 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:19:49 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:22:46 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:24:49 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:25:30 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:26:20 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:26:47 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:28:30 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:28:34 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:28:36 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:28:37 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:29:48 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:29:49 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:29:50 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:40:46 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:40:46 PM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_profile_geo(user_Id, cur_lat, cur_long, geoUpdatedOn) VALUES ('USR924357814934','17.2979784','78.5610299','2018-10-01 18:40:45') ON DUPLICATE KEY UPDATE cur_lat='17.2979784', cur_long='78.5610299', geoUpdatedOn='2018-10-01 18:40:45';  
+Monday 1st October 2018 06:40:48 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:41:49 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:41:49 PM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_profile_geo(user_Id, cur_lat, cur_long, geoUpdatedOn) VALUES ('USR924357814934','17.2979784','78.5610299','2018-10-01 18:41:48') ON DUPLICATE KEY UPDATE cur_lat='17.2979784', cur_long='78.5610299', geoUpdatedOn='2018-10-01 18:41:48';  
+Monday 1st October 2018 06:41:50 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:42:51 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Monday 1st October 2018 06:42:51 PM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_profile_geo(user_Id, cur_lat, cur_long, geoUpdatedOn) VALUES ('USR924357814934','17.2979784','78.5610299','2018-10-01 18:42:50') ON DUPLICATE KEY UPDATE cur_lat='17.2979784', cur_long='78.5610299', geoUpdatedOn='2018-10-01 18:42:50';  
+Monday 1st October 2018 06:42:52 PM [INFO] ::: [api.database.php]  Database connected Successfully 

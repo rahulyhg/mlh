@@ -218,6 +218,35 @@ if(isset($_GET["action"])){
 	} else { echo 'MISSING_SEARCHQUERY'; }
    
   }
+  else if($_GET["action"]==='GET_COUNT_COURSES'){ 
+   if(isset($_GET["institution_Id"])){
+    $institution_Id = $_GET["institution_Id"];
+    $classmatePortalAccount = new ClassmatePortalAccount();
+    $query = $classmatePortalAccount->query_count_institutionCourses($institution_Id);
+	$dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
+	$jsonData = $dbObj->getJSONData($query);
+	$dejsonData = json_decode($jsonData);
+	echo $dejsonData[0]->{'count(cmp_uni_courses.cmp_course_Id)'};
+   }
+  }
+  else if($_GET["action"]==='GET_DATA_COURSES'){ 
+    if(isset($_GET["institution_Id"]) && isset($_GET["limit_start"]) && isset($_GET["limit_end"])){
+	    $institution_Id = $_GET["institution_Id"];
+	    $limit_start = $_GET["limit_start"];
+	    $limit_end = $_GET["limit_end"];
+	    $classmatePortalAccount = new ClassmatePortalAccount();
+        $query = $classmatePortalAccount->query_data_institutionCourses($institution_Id,$limit_start,$limit_end);
+        $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
+	    echo $dbObj->getJSONData($query);
+	} else { 
+	   $content='Missing ';
+	   if(!isset($_GET["limit_start"])){ $content.=' limit_start,'; }
+	   if(!isset($_GET["limit_end"])){ $content.=' limit_end,'; }
+	   $content=chop($content,',');
+	   echo $content;
+	}
+  }
+  
 }
 else { echo 'MISSING_ACTION'; }
 ?>
