@@ -62,8 +62,14 @@ class ClassmatePortalAccount{
 	$sql.="FROM cmp_uni_account WHERE cmp_uni_account.cmp_u_Id='".$institutionId."' AND cmp_uni_account.approved='Y';";
 	return $sql;  
   }
+  
   function query_data_getInstitutionNameById($institutionId){
     $sql="SELECT institutionName FROM cmp_uni_account WHERE cmp_u_Id='".$institutionId."';";
+	return $sql;  
+  }
+  
+  function query_data_getInstitutionBoardById($institutionId){
+    $sql="SELECT institutionBoard FROM cmp_uni_account WHERE cmp_u_Id='".$institutionId."';";
 	return $sql;  
   }
   
@@ -107,12 +113,12 @@ class ClassmatePortalAccount{
    return $sql;
   }
   
-   function query_add_institutionCourses($cmp_course_Id, $courseName, $duration, $begMonth, $endMonth){
+   function query_add_institutionCourses($cmp_course_Id, $courseName, $duration, $begMonth, $endMonth, $institutionType){
    $sql="INSERT INTO cmp_uni_courses(cmp_course_Id,courseName, duration, begMonth, ";
-   $sql.="endMonth, approved) SELECT * FROM (";
+   $sql.="endMonth, institutionType, approved) SELECT * FROM (";
    $sql.="SELECT '".$cmp_course_Id."' As cmp_course_Id, '".$courseName."' As courseName, '";
    $sql.=$duration."' As duration, '".$begMonth."' As begMonth, '";
-   $sql.=$endMonth."' As endMonth, 'N' As approved ";
+   $sql.=$endMonth."' As endMonth, '".$institutionType."' As institutionType, 'N' As approved ";
    $sql.=") As Tbl WHERE (SELECT count(*) FROM cmp_uni_courses WHERE courseName='".$courseName."' AND ";
    $sql.="duration='".$duration."' )=0;";
    return $sql;  
@@ -120,7 +126,7 @@ class ClassmatePortalAccount{
   
   function query_autocomplete_courses($searchQuery){
     $sql="SELECT cmp_course_Id, courseName, duration, begMonth, endMonth FROM cmp_uni_courses ";
-	$sql.="WHERE courseName='".$searchQuery."' AND approved='Y';";
+	$sql.="WHERE courseName LIKE '%".$searchQuery."%' AND approved='Y';";
 	return $sql;  
   }
   

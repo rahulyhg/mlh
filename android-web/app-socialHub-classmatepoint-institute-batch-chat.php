@@ -47,6 +47,10 @@ $(document).ready(function(){
  $(".lang_"+USR_LANG).css('display','block');
  $("#sendBatchMsg").emojioneArea({ useSprite: false});
  batchChatInitializer();
+ var msg = "Hello";
+ var cur_ts = getCurentTimestamp();
+ var encrypt = Android.chatMasking_encryption(msg,cur_ts);
+ Android.showToast('QCazpaHGSvHw7tcJDuKfmQ=='+" "+Android.chatMasking_decryption('WYCDZupOfNBMALG07bZY4w==','2018-10-01 12:14:38'));
 });
 function layout_setup() {
   var height=window.innerHeight;
@@ -88,16 +92,16 @@ function chat_content(response){
  var content='';
  if(response.length>0){
  for(var index=0;index<response.length;index++){
-   var chat_Id = response[index].chat_Id
-   var batch_Id = response[index].batch_Id
-   var msg_by = response[index].msg_by
-   var sent_On = response[index].sent_On
-   var msg = Android.chatMasking_decryption(response[index].msg,sent_On);
-   var reply_reference = response[index].reply_reference
-   var user_Id = response[index].user_Id
-   var username = response[index].username
-   var surName = response[index].surName
-   var name = response[index].name
+   var chat_Id = response[index].chat_Id;
+   var batch_Id = response[index].batch_Id;
+   var msg_by = response[index].msg_by;
+   var sent_On = response[index].sent_On;
+   var msg = Android.chatMasking_decryption(response[index].msg.trim(),sent_On);
+   var reply_reference = response[index].reply_reference;
+   var user_Id = response[index].user_Id;
+   var username = response[index].username;
+   var surName = response[index].surName;
+   var name = response[index].name;
    var profile_pic = response[index].profile_pic;
    
        content+='<div class="row">';

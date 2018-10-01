@@ -93,6 +93,17 @@ if(isset($_GET["action"])){
 	  echo $dbObj->getJSONData($query);
 	} else {  echo 'MISSING_INSTITUTIONID'; }
   }
+  else if($_GET["action"]==='GET_DATA_INSTITUTIONBOARDBYID'){
+    if($_GET["institutionId"]){
+	  $institutionId = $_GET["institutionId"];
+	  $classmatePortalAccount = new ClassmatePortalAccount();
+	  $query=$classmatePortalAccount->query_data_getInstitutionBoardById($institutionId);
+	  $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
+	  $jsonData = $dbObj->getJSONData($query);
+	  $dejsonData = json_decode($jsonData);
+	  echo $dejsonData[0]->{'institutionBoard'};
+	} else {  echo 'MISSING_INSTITUTIONID'; }
+  }
   else if($_GET["action"]==='CREATE_INSTITUTE'){
    if(isset($_GET["instituteName"]) && isset($_GET["instituteType"]) && isset($_GET["cmp_u_Id"]) &&
     isset($_GET["profile_pic"]) && isset($_GET["establishedOn"]) && isset($_GET["aboutInstitute"]) &&
@@ -162,35 +173,46 @@ if(isset($_GET["action"])){
 	} else { echo 'MISSING_INSTITUTIONID'; }
   }
   else if($_GET["action"]==='CREATE_COURSE'){
-    if(isset($_GET["courseName"]) && isset($_GET["institution_Id"]) && isset($_GET["duration"]) &&
+    if(isset($_GET["course_Id"]) && isset($_GET["courseName"]) && isset($_GET["institution_Id"]) &&
+	  isset($_GET["institutionType"]) && isset($_GET["duration"]) &&
 	 isset($_GET["begMonth"]) && isset($_GET["endMonth"]) ){
 	  $identity = new Identity();
-	  $cmp_course_Id = $identity->cmp_uni_courses_id();
+	  $cmp_course_Id = $_GET["course_Id"];
 	  $cmp_map_Id = $identity ->cmp_uni_coursemap_id();
 	  $courseName = $_GET["courseName"];
 	  $duration = $_GET["duration"];
 	  $begMonth = $_GET["begMonth"];
 	  $endMonth = $_GET["endMonth"];
 	  $cmp_u_Id = $_GET["institution_Id"];
+	  $institutionType = $_GET["institutionType"];
 	  $classmatePortalAccount = new ClassmatePortalAccount();
+	  $updateCoursesList = false;
+	  if($identity->id_cmp_uni_courses($cmp_course_Id)=='ID_ALREADY_EXIST'){ $updateCoursesList = true; }
+	  $query1  = '';
+	  if(!$updateCoursesList){
 	  $query1 = $classmatePortalAccount->query_add_institutionCourses($cmp_course_Id, $courseName, $duration, 
-				 $begMonth, $endMonth);
+				 $begMonth, $endMonth, $institutionType);
+	  }
 	  $query2 = $classmatePortalAccount->query_add_institutionCourseMap($cmp_map_Id, $cmp_u_Id, $cmp_course_Id);
+	  $query=$query1.$query2;
 	  $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
-	  echo $dbObj->addupdateData($query1);
-	  echo $dbObj->addupdateData($query2);
+	  echo $dbObj->addupdateData($query);
 	} else { $content='Missing';
+	   if(isset($_GET["course_Id"])){ $content.=' course_Id,'; }
 	   if(isset($_GET["courseName"])){ $content.=' courseName,'; }
+	   if(isset($_GET["duration"])){ $content.=' duration,'; }
+	   if(isset($_GET["duration"])){ $content.=' begMonth,'; }
+	   if(isset($_GET["duration"])){ $content.=' endMonth,'; }
 	   if(isset($_GET["institution_Id"])){ $content.=' institution_Id,'; }
 	   $content=chop($content,',');
 	   echo $content;
 	}
   }
-  else if($_GET["action"]==='GET_AUTOCOMPLETE_COURSES'){
+  else if($_GET["action"]==='GET_AUTOCOMPLETE_COURSES'){ 
     if(isset($_GET["searchQuery"])){
 	  $searchQuery=$_GET["searchQuery"];
 	  $classmatePortalAccount = new ClassmatePortalAccount();
-	  $query1 = $searchQuery->query_autocomplete_courses($searchQuery);
+	  $query = $classmatePortalAccount->query_autocomplete_courses($searchQuery);
 	  $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
 	  echo $dbObj->getJSONData($query);
 	} else { echo 'MISSING_SEARCHQUERY'; }

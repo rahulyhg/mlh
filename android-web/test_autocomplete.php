@@ -19,7 +19,12 @@
 var options = {
     url: "resources/res.json",
     getValue: "name",
-    list: { match: { enabled: true },maxNumberOfElements: 10 },
+    list: { 
+	onSelectItemEvent: function() { 
+       var selectedItemValue = $("#tags").getSelectedItemData().id;
+	   alert(selectedItemValue);
+	},
+	match: { enabled: true },maxNumberOfElements: 10 },
     template: { type: "custom",
 				method: function(value, item) {
 				 var content='';

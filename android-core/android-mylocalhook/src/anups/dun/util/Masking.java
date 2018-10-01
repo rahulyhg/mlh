@@ -42,19 +42,12 @@ public class Masking {
   * @return SHA256 of the password
   */
  private static SecretKeySpec generateKey(String timestamp) throws NoSuchAlgorithmException, UnsupportedEncodingException {
-	 int HIGH = 125;
-	  int LOW = 33;
-	  StringBuilder randomKey = new StringBuilder();
-	  for(int index=0;index<4;index++){
-	   int picker = new Random().nextInt(HIGH-LOW) + LOW;
-	   randomKey.append(Character.toString((char) picker));
-	  }
+
 	  timestamp = timestamp.replaceAll("-", "").replaceAll(":", "").replaceAll(" ", ""); 
 	  String ts = String.valueOf((Long.parseLong(timestamp)%19911015)%19880822).substring(0, 4);
-	  randomKey.append(ts);
-	  
+
 	 final MessageDigest digest = MessageDigest.getInstance(HASH_ALGORITHM);
-     byte[] bytes = timestamp.getBytes("UTF-8");
+     byte[] bytes = ts.getBytes("UTF-8");
      digest.update(bytes, 0, bytes.length);
      byte[] key = digest.digest();
      SecretKeySpec secretKeySpec = new SecretKeySpec(key, "AES");

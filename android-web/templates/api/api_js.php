@@ -14,8 +14,9 @@ body { overflow-x:hidden; }
 /* Highlight Letter on Search */
 function getCurentTimestamp(){
  var dateObj = new Date();
- var date = dateObj.getDate();
- var month = dateObj.getMonth().toString();
+ var date = dateObj.getDate().toString();
+ if(date.length==1){ date='0'+date; }
+ var month = (dateObj.getMonth()+1).toString();
  if(month.length==1){ month='0'+month; }
  var year = dateObj.getFullYear();
  var hour = dateObj.getHours().toString();
