@@ -2,5 +2,12 @@
   "W001": { "english":"Missing Category Id." },
   "W002": { "english":"Missing Category Name." },
   "W003": { "english":"Please check either Category Id or Category Name already Exists." },
-  "W004": { "english":"Data not stored due to Technical Issues. Please check logs." }
+  "W004": { "english":"Data not stored due to Technical Issues. Please check logs." },
+  "W005": { "english":"Missing DB_URL" },
+  "W006": { "english":"Missing Username" },
+  "W007": { "english":"" },
+  "W008": { "english":"" },
+  "W009": { "english":"" },
+  "W010": { "english":"" },
+  "W011": { "english":"" }
 }

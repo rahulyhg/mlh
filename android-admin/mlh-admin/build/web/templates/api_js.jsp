@@ -10,7 +10,8 @@ var USR_LANG = 'english';
 console.log(PROJECT_URL);
 function js_ajax(method,url,data,fn_output){
  $.ajax({type: method, url: url,data:data, success: function(response) { fn_output(response); } }); 
-}function div_display_warning(div_Id,warning_Id){
+}
+function div_display_warning(div_Id,warning_Id){
 js_ajax("GET",PROJECT_URL+'config/warning_messages.json',{},function(response){
 var content='<div class="alert alert-warning alert-dismissible" style="margin-bottom:0px;">';
     content+='<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';

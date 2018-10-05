@@ -42,12 +42,22 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response)
     out.println(crudService.createNewCategory(category_Id, categoryName));
    }
    else if("GENERATE_CATEGORIES_JSONFILE".equalsIgnoreCase(action)){
+    String db_url = (String) request.getParameter("db_url");
+    String username = (String) request.getParameter("username");
+    String password = (String) request.getParameter("password");
     GeneralUtility generalUtility = new GeneralUtility();
     
-    String command = generalUtility.getProjectPath()+"web/gen-build/build-JSON-categories/mlh-categories.bat";
+    StringBuilder command = new StringBuilder();
+    command.append("java -Xmx4G -Xms2G -jar ");
+    command.append(generalUtility.getProjectPath());
+    command.append("web/gen-build/build-JSON-categories/mlh-categories.jar ");
+    command.append(db_url).append(" ").append(username).append(" ").append(password).append(" ");
+    command.append(generalUtility.getProjectPath()).append("web/data/");
+    command.append(" categories.json");
+    out.println(command.toString());
     try {
     CommandService commandService = new CommandService();
-    commandService.runBatchFile(command);
+    commandService.runBatchFile(command.toString());
     } catch(Exception e ){ e.printStackTrace(); }
    }
   } finally {  out.close();  }

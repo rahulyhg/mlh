@@ -59,10 +59,25 @@ function addNewCategory(){
  } else { div_display_warning('alert_addNewCategory','W001'); }
 }
 function generate_categories_JSONFile(){
- js_ajax('GET',PROJECT_URL+'domainModule',{ action:'GENERATE_CATEGORIES_JSONFILE' },
- function(response){ 
-   console.log(response);
- });
+ var generateJSON_dbURL = document.getElementById("generateJSON_dbURL").value;
+ var generateJSON_username = document.getElementById("generateJSON_username").value;
+ var generateJSON_password = document.getElementById("generateJSON_password").value;
+ if(generateJSON_dbURL.length>0){
+ if(generateJSON_username.length>0){
+     if(generateJSON_password.length==0){ generateJSON_password = '-'; }
+  document.getElementById("generateJSON_dbURL").disabled=true;
+  document.getElementById("generateJSON_username").disabled=true;
+  document.getElementById("generateJSON_password").disabled=true;
+  js_ajax('GET',PROJECT_URL+'domainModule',{ action:'GENERATE_CATEGORIES_JSONFILE', db_url: generateJSON_dbURL,
+  username:generateJSON_username, password:generateJSON_password },
+  function(response){ console.log(response); });
+ } else { div_display_warning('div_alert_generateJSONFile','W006'); } 
+ } else { div_display_warning('div_alert_generateJSONFile','W005'); }
+}
+function reset_form_generateJSONFile(){
+ document.getElementById("generateJSON_dbURL").disabled=false;
+ document.getElementById("generateJSON_username").disabled=false;
+ document.getElementById("generateJSON_password").disabled=false; 
 }
 </script>
 </head>
@@ -119,13 +134,52 @@ function generate_categories_JSONFile(){
 <div class="panel-heading"><b>Generate Categories JSON File</b></div>
 <div class="panel-body">
 <div class="container-fluid">
-
+ 
 <div class="row">
 <div class="col-sm-12">
+<div id="div_alert_generateJSONFile" class="form-group">
+
+</div>
+</div>
+</div>
+    
+<div class="row">
+<div class="col-sm-12">
+<div class="form-group">
+<label>JDBC URL</label>
+<select id="generateJSON_dbURL" class="form-control">
+<option value="">Select JDBC URL</option>
+<option value="jdbc:mysql://192.168.1.4:3306/mlh_basic">jdbc:mysql://192.168.1.4:3306/mlh_basic</option>
+</select>
+</div>
+</div>
+</div>
+    
+<div class="row">
+<div class="col-sm-12">
+<div class="form-group">
+<label>Username</label>
+<input id="generateJSON_username" type="text" class="form-control" placeholder="Enter your Username" value="root"/>
+</div>
+</div>
+</div>
+    
+<div class="row">
+<div class="col-sm-12">
+<div class="form-group">
+<label>Password</label>
+<input id="generateJSON_password" type="password" class="form-control" placeholder="Enter your Password" value=""/>
+</div>
+</div>
+</div>
+    
+<div class="row">
+<div align="right" class="col-sm-12">
 
 <div class="btn-group">
-<button class="btn btn-default" onclick="javascript:generate_categories_JSONFile();"><b>Generate JSON File</b></button>
-<button class="btn btn-default"><b>Place File into Server</b></button>
+<button class="btn btn-success" onclick="javascript:generate_categories_JSONFile();"><b>Generate JSON File</b></button>
+<button class="btn btn-primary"><b>Place File into Server</b></button>
+<button class="btn btn-danger" onclick="javascript:reset_form_generateJSONFile();"><b>Reset</b></button>
 </div>
 
 </div>

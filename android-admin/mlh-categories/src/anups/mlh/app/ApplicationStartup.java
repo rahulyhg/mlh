@@ -40,10 +40,11 @@ public class ApplicationStartup {
   categoriesService.dumpDataIntoFile(FOLDERPATH,FILENAME,jsonArray.toJSONString());
   System.out.println("Build Categories.json Successfully...");
   System.out.println("Press any key to close Shell");
-   } catch(Exception e ){ e.printStackTrace(); }
   Scanner scanner = new Scanner(System.in);
   scanner.nextLine();
   scanner.close();
+   } catch(Exception e ){ e.printStackTrace(); }
+  
           
  }
     
