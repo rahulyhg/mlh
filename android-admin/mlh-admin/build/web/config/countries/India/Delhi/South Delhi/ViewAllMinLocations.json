@@ -1,0 +1,12 @@
+{
+  "minLocations" :[{"minlocationName":"Bijwasan","minlocationValue":"Bijwasan"},
+				   {"minlocationName":"Palam","minlocationValue":"Palam"},
+				   {"minlocationName":"Mehrauli","minlocationValue":"Mehrauli"},
+				   {"minlocationName":"Chhatarpur","minlocationValue":"Chhatarpur"},
+				   {"minlocationName":"Deoli","minlocationValue":"Deoli"},
+				   {"minlocationName":"Ambedkar Nagar","minlocationValue":"Ambedkar Nagar"},
+				   {"minlocationName":"Sangam Vihar","minlocationValue":"Sangam Vihar"},
+				   {"minlocationName":"Kalkaji","minlocationValue":"Kalkaji"},
+				   {"minlocationName":"Tughlakabad","minlocationValue":"Tughlakabad"},
+				   {"minlocationName":"Badarpur","minlocationValue":"Badarpur"}]
+}

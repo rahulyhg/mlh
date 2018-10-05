@@ -1,0 +1,15 @@
+{
+  "minLocations" :[{"minlocationName":"Koratla","minlocationValue":"Koratla"},
+				   {"minlocationName":"Jagtial","minlocationValue":"Jagtial"},
+				   {"minlocationName":"Dharmapuri","minlocationValue":"Dharmapuri"},
+				   {"minlocationName":"Ramagundam","minlocationValue":"Ramagundam"},
+				   {"minlocationName":"Manthani","minlocationValue":"Manthani"},
+				   {"minlocationName":"Peddapalle","minlocationValue":"Peddapalle"},
+				   {"minlocationName":"Karimnagar","minlocationValue":"Karimnagar"},
+				   {"minlocationName":"Choppadandi","minlocationValue":"Choppadandi"},
+				   {"minlocationName":"Vemulawada","minlocationValue":"Vemulawada"},
+				   {"minlocationName":"Sircilla","minlocationValue":"Sircilla"},
+				   {"minlocationName":"Manakondur","minlocationValue":"Manakondur"},
+				   {"minlocationName":"Huzurabad","minlocationValue":"Huzurabad"},
+				   {"minlocationName":"Husnabad","minlocationValue":"Husnabad"}]
+}

@@ -46,7 +46,7 @@ public class PropertyUtility {
 	 File externalDir = new File(propertyFileName);
 	 if(!externalDir.exists()){
 	   StringBuilder projectpropBuilder = new StringBuilder();
-	   projectpropBuilder.append("PROJECT_URL=").append("http://www.mylocalhook.com/");
+	   projectpropBuilder.append("PROJECT_URL=").append("http://mlh.kalyanaveena.com/");
 	   generateFile(propertyFileName, projectpropBuilder.toString());
 	 }
 	 return propertyFileName;

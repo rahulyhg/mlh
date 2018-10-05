@@ -1,0 +1,8 @@
+{
+  "minLocations" :[{"minlocationName":"Coimbatore North","minlocationValue":"Coimbatore North"},
+				   {"minlocationName":"Coimbatore South","minlocationValue":"Coimbatore South"},
+				   {"minlocationName":"Kaundampalayam","minlocationValue":"Kaundampalayam"},
+				   {"minlocationName":"Singanallur","minlocationValue":"Singanallur"},
+				   {"minlocationName":"Sulur","minlocationValue":"Sulur"},
+				   {"minlocationName":"Palladam","minlocationValue":"Palladam"}]
+}

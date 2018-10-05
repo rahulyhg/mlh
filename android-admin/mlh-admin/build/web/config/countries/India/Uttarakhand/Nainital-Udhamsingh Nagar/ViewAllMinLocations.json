@@ -1,0 +1,16 @@
+{
+  "minLocations" :[{"minlocationName":"Bhimtal","minlocationValue":"Bhimtal"},
+				   {"minlocationName":"Haldwani","minlocationValue":"Haldwani"},
+				   {"minlocationName":"Kaladhungi","minlocationValue":"Kaladhungi"},
+				   {"minlocationName":"Lalkuan","minlocationValue":"Lalkuan"},
+				   {"minlocationName":"Nainital","minlocationValue":"Nainital"},
+				   {"minlocationName":"Bajpur","minlocationValue":"Bajpur"},
+				   {"minlocationName":"Gadarpur","minlocationValue":"Gadarpur"},
+				   {"minlocationName":"Jaspur","minlocationValue":"Jaspur"},
+				   {"minlocationName":"Kashipur","minlocationValue":"Kashipur"},
+				   {"minlocationName":"Khatima","minlocationValue":"Khatima"},
+				   {"minlocationName":"Kichha","minlocationValue":"Kichha"},
+				   {"minlocationName":"Nanakmatta","minlocationValue":"Nanakmatta"},
+				   {"minlocationName":"Rudrapur","minlocationValue":"Rudrapur"},
+				   {"minlocationName":"Sitarganj","minlocationValue":"Sitarganj"}]
+}

@@ -1,0 +1,12 @@
+{
+  "minLocations" :[{"minlocationName":"Sirpur","minlocationValue":"Sirpur"},
+				   {"minlocationName":"Chennur","minlocationValue":"Chennur"},
+				   {"minlocationName":"Bellampalli","minlocationValue":"Bellampalli"},
+				   {"minlocationName":"Mancheriala","minlocationValue":"Mancheriala"},
+				   {"minlocationName":"Asifabad","minlocationValue":"Asifabad"},
+				   {"minlocationName":"Khanapur","minlocationValue":"Khanapur"},
+				   {"minlocationName":"Adilabad","minlocationValue":"Adilabad"},
+				   {"minlocationName":"Boath","minlocationValue":"Boath"},
+				   {"minlocationName":"Nirmal","minlocationValue":"Nirmal"},
+				   {"minlocationName":"Mudhole","minlocationValue":"Mudhole"}]
+}

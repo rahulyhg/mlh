@@ -1,0 +1,6 @@
+{ 
+  "W001": { "english":"Missing Category Id." },
+  "W002": { "english":"Missing Category Name." },
+  "W003": { "english":"Please check either Category Id or Category Name already Exists." },
+  "W004": { "english":"Data not stored due to Technical Issues. Please check logs." }
+}

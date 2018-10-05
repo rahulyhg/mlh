@@ -1,0 +1,10 @@
+{
+  "minLocations" :[{"minlocationName":"Navalgund","minlocationValue":"Navalgund"},
+				   {"minlocationName":"Kundgol","minlocationValue":"Kundgol"},
+				   {"minlocationName":"Dharwad Region","minlocationValue":"Dharwad Region"},
+				   {"minlocationName":"Hubli-Dharwad-East","minlocationValue":"Hubli-Dharwad-East"},
+				   {"minlocationName":"Hubli-Dharwad-Central","minlocationValue":"Hubli-Dharwad-Central"},
+				   {"minlocationName":"Hubli-Dharwad-West","minlocationValue":"Hubli-Dharwad-West"},
+				   {"minlocationName":"Kalghatgi","minlocationValue":"Kalghatgi"},
+				   {"minlocationName":"Shiggaon","minlocationValue":"Shiggaon"}]
+}

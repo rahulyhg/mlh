@@ -1,0 +1,11 @@
+{
+  "minLocations" :[{"minlocationName":"Phillaur","minlocationValue":"Phillaur"},
+				   {"minlocationName":"Nakodar","minlocationValue":"Nakodar"},
+				   {"minlocationName":"Shahkot","minlocationValue":"Shahkot"},
+				   {"minlocationName":"Kartarpur","minlocationValue":"Kartarpur"},
+				   {"minlocationName":"Jalandhar West","minlocationValue":"Jalandhar West"},
+				   {"minlocationName":"Jalandhar Central","minlocationValue":"Jalandhar Central"},
+				   {"minlocationName":"Jalandhar North","minlocationValue":"Jalandhar North"},
+				   {"minlocationName":"Jalandhar Cantonment","minlocationValue":"Jalandhar Cantonment"},
+				   {"minlocationName":"Adampur","minlocationValue":"Adampur"}]
+}

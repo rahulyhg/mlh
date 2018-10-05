@@ -239,6 +239,7 @@ protected void onCreate(Bundle savedInstanceState) {
     PropertyUtility propertyUtility = new PropertyUtility(this.getApplicationContext());
     String propertyFile = propertyUtility.initializePropertyFile(appSessionManagement);
     propertyUtility.readPropertyFile(appSessionManagement, propertyFile);
+    
    } catch(Exception e){
 	 logger.error("Exception: "+e);
    }

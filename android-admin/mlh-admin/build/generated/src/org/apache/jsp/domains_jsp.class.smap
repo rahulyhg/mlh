@@ -1,0 +1,17 @@
+SMAP
+domains_jsp.java
+JSP
+*S JSP
+*F
++ 0 domains.jsp
+domains.jsp
++ 1 api_js.jsp
+templates/api_js.jsp
+*L
+5,20:50
+1#1,5:69
+5,3:74
+8:77,3
+9,69:80
+24#0,183:148
+*E

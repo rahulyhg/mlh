@@ -1,0 +1,11 @@
+{
+  "minLocations" :[{"minlocationName":"Ferozepur City","minlocationValue":"Ferozepur City"},
+			       {"minlocationName":"Ferozepur Rural","minlocationValue":"Ferozepur Rural"},
+				   {"minlocationName":"Guru Har Sahai","minlocationValue":"Guru Har Sahai"},
+				   {"minlocationName":"Jalalabad","minlocationValue":"Jalalabad"},
+				   {"minlocationName":"Fazilka","minlocationValue":"Fazilka"},
+				   {"minlocationName":"Abohar","minlocationValue":"Abohar"},
+				   {"minlocationName":"Balluana","minlocationValue":"Balluana"},
+				   {"minlocationName":"Malout","minlocationValue":"Malout"},
+				   {"minlocationName":"Muktsar","minlocationValue":"Muktsar"}]
+}

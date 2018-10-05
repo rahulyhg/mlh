@@ -24,10 +24,10 @@ class Database
     }
     
     function addupdateData($sql) {
-       $result="Error";
+       $result="ERROR";
        $db=new Database($this->serverName,$this->databaseName,$this->userName,$this->password);
        $conn = $db->dbinteraction();
-       if ($conn->multi_query($sql) === true) { $result="Success";}
+       if ($conn->multi_query($sql) === true) { $result="SUCCESS";}
        $conn->close();
        $this->logger->info("Query(Status-".$result.") : ".$sql); 
        return $result;

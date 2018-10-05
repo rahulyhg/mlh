@@ -1,0 +1,16 @@
+{
+  "minLocations" :[{"minlocationName":"Chakrata","minlocationValue":"Chakrata"},
+				   {"minlocationName":"Dehradun Cantt","minlocationValue":"Dehradun Cantt"},
+				   {"minlocationName":"Mussoorie","minlocationValue":"Mussoorie"},
+				   {"minlocationName":"Raipur","minlocationValue":"Raipur"},
+				   {"minlocationName":"Rajpur Road","minlocationValue":"Rajpur Road"},
+				   {"minlocationName":"Sahaspur","minlocationValue":"Sahaspur"},
+				   {"minlocationName":"Vikasnagar","minlocationValue":"Vikasnagar"},
+				   {"minlocationName":"Dhanaulti","minlocationValue":"Dhanaulti"},
+				   {"minlocationName":"Ghansali","minlocationValue":"Ghansali"},
+				   {"minlocationName":"Pratapnagar","minlocationValue":"Pratapnagar"},
+				   {"minlocationName":"Tehri","minlocationValue":"Tehri"},
+				   {"minlocationName":"Gangotri","minlocationValue":"Gangotri"},
+				   {"minlocationName":"Purola","minlocationValue":"Purola"},
+				   {"minlocationName":"Yamunotri","minlocationValue":"Yamunotri"}]
+}

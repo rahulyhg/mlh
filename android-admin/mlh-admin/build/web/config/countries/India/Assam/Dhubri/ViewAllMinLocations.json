@@ -1,0 +1,12 @@
+{
+  "minLocations" :[{"minlocationName":"Mankachar","minlocationValue":"Mankachar"},
+				   {"minlocationName":"Salmara South","minlocationValue":"Salmara South"},
+				   {"minlocationName":"Dhubri Region","minlocationValue":"Dhubri Region"},
+				   {"minlocationName":"Gauripur","minlocationValue":"Gauripur"},
+				   {"minlocationName":"Golakganj","minlocationValue":"Golakganj"},
+				   {"minlocationName":"Bilasipara West","minlocationValue":"Bilasipara West"},
+				   {"minlocationName":"Bilasipara East","minlocationValue":"Bilasipara East"},
+				   {"minlocationName":"Goalpara East","minlocationValue":"Goalpara East"},
+				   {"minlocationName":"Goalpara West","minlocationValue":"Goalpara West"},
+				   {"minlocationName":"Jaleswar","minlocationValue":"Jaleswar"}]
+}

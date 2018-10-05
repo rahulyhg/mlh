@@ -10941,3 +10941,23 @@ Wednesday 3rd October 2018 10:17:51 PM [INFO] ::: [api.database.php]  Database c
 Wednesday 3rd October 2018 10:28:53 PM [INFO] ::: [api.database.php]  Database connected Successfully 
 Wednesday 3rd October 2018 10:28:53 PM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_profile_geo(user_Id, cur_lat, cur_long, geoUpdatedOn) VALUES ('USR273782437846','0.0','0.0','2018-10-03 22:28:52') ON DUPLICATE KEY UPDATE cur_lat='0.0', cur_long='0.0', geoUpdatedOn='2018-10-03 22:28:52';  
 Wednesday 3rd October 2018 10:28:54 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 4th October 2018 11:18:32 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 4th October 2018 11:18:33 AM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO user_profile_geo(user_Id, cur_lat, cur_long, geoUpdatedOn) VALUES ('USR924357814934','0.0','0.0','2018-10-04 11:18:31') ON DUPLICATE KEY UPDATE cur_lat='0.0', cur_long='0.0', geoUpdatedOn='2018-10-04 11:18:31';  
+Thursday 4th October 2018 11:18:34 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 4th October 2018 01:12:17 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 5th October 2018 06:28:20 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 5th October 2018 06:43:58 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 5th October 2018 06:43:58 AM [INFO] ::: [api.database.php]  Query(Status-Error) : INSERT INTO subs_dom_info(domain_Id, domainName) SELECT '1234' As domain_Id, '1234' As domainName FROM subs_dom_info WHERE (SELECT count(*) FROM subs_dom_info WHERE domainName='1234')=0  
+Friday 5th October 2018 06:44:42 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 5th October 2018 06:44:42 AM [INFO] ::: [api.database.php]  Query(Status-Error) : INSERT INTO subs_dom_info(domain_Id, domainName) SELECT '1234' As domain_Id, '1234' As domainName FROM subs_dom_info WHERE (SELECT count(*) FROM subs_dom_info WHERE domainName='1234')=0  
+Friday 5th October 2018 06:47:00 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 5th October 2018 06:47:00 AM [INFO] ::: [api.database.php]  Query(Status-Error) : INSERT INTO subs_dom_info(domain_Id, domainName) SELECT '1234' As domain_Id, '1234' As domainName FROM subs_dom_info WHERE (SELECT count(*) FROM subs_dom_info WHERE domain_Id='1234' AND domainName='1234')=0  
+Friday 5th October 2018 06:55:39 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 5th October 2018 06:55:39 AM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO subs_dom_info(domain_Id, domainName) VALUES('12344','12345'); 
+Friday 5th October 2018 07:11:48 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 5th October 2018 07:11:48 AM [INFO] ::: [api.database.php]  Query(Status-Success) : INSERT INTO subs_dom_info(domain_Id, domainName) VALUES('CDE','CDE'); 
+Friday 5th October 2018 06:15:01 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 5th October 2018 06:15:02 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 5th October 2018 06:15:02 PM [INFO] ::: [api.database.php]  Query(Status-ERROR) : INSERT INTO subs_dom_info(domain_Id, domainName) VALUES('01-TPI','Transportation'); 
+Friday 5th October 2018 06:15:58 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Friday 5th October 2018 06:20:02 PM [INFO] ::: [api.database.php]  Database connected Successfully 

@@ -1,0 +1,12 @@
+{
+  "minLocations" :[{"minlocationName":"Dudhnai","minlocationValue":"Dudhnai"},
+				   {"minlocationName":"Boko","minlocationValue":"Boko"},
+				   {"minlocationName":"Chaygaon","minlocationValue":"Chaygaon"},
+				   {"minlocationName":"Palasbari","minlocationValue":"Palasbari"},
+				   {"minlocationName":"Jalukbari","minlocationValue":"Jalukbari"},
+				   {"minlocationName":"Dispur","minlocationValue":"Dispur"},
+				   {"minlocationName":"Guwahati East","minlocationValue":"Guwahati East"},
+				   {"minlocationName":"Guwahati West","minlocationValue":"Guwahati West"},
+				   {"minlocationName":"Hajo","minlocationValue":"Hajo"},
+				   {"minlocationName":"Barkhetry","minlocationValue":"Barkhetry"}]
+}

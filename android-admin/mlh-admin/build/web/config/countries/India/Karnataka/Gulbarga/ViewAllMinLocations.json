@@ -1,0 +1,10 @@
+{
+  "minLocations" :[{"minlocationName":"Afzalpur","minlocationValue":"Afzalpur"},
+				   {"minlocationName":"Jewargi","minlocationValue":"Jewargi"},
+				   {"minlocationName":"Gurmitkal","minlocationValue":"Gurmitkal"},
+				   {"minlocationName":"Chittapur","minlocationValue":"Chittapur"},
+				   {"minlocationName":"Sedam","minlocationValue":"Sedam"},
+				   {"minlocationName":"Gulbarga Rural","minlocationValue":"Gulbarga Rural"},
+				   {"minlocationName":"Gulbarga Dakshin","minlocationValue":"Gulbarga Dakshin"},
+				   {"minlocationName":"Gulbarga Uttar","minlocationValue":"Gulbarga Uttar"}]
+}

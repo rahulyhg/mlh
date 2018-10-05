@@ -1,0 +1,9 @@
+{
+  "minLocations" :[{"minlocationName":"Jashipur","minlocationValue":"Jashipur"},
+			       {"minlocationName":"Saraskana","minlocationValue":"Saraskana"},
+				   {"minlocationName":"Rairangpur","minlocationValue":"Rairangpur"},
+				   {"minlocationName":"Bangriposi","minlocationValue":"Bangriposi"},
+				   {"minlocationName":"Udala","minlocationValue":"Udala"},
+				   {"minlocationName":"Baripada","minlocationValue":"Baripada"},
+				   {"minlocationName":"Morada","minlocationValue":"Morada"}]
+}
