@@ -19,6 +19,7 @@ if($_SESSION["AUTHENTICATION_STATUS"]=='INCOMPLETED'){
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/bg-styles-common.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/auth-part-06-bg-styles.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/auth-part-06.js"></script>
+ <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/app-subscriptions.js"></script>
  <?php include_once 'templates/api/api_params.php'; ?>
 <style>
 .card-img-top { width:100px;height:100px;border:1px solid #ccc; }
@@ -49,7 +50,7 @@ $(document).ready(function(){
 		<img src="<?php echo $_SESSION["PROJECT_URL"]?>images/load.gif" class="profile_pic_img1"/>
 	   </div>
 	 </div>
-	 <div id="authSubscribeBtn" align="center" class="col-md-12 col-sm-12 col-xs-12 hide-block" 
+	 <div id="authSubscribeBtn" align="center" class="col-md-12 col-sm-12 col-xs-12" 
 	 style="margin-bottom:65px;width:100%;height:auto;">
 	    <button class="btn custom-bg white-font" onclick="javascript:subscribe();"><b>Subscribe</b></button>
 	 </div>

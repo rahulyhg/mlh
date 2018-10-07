@@ -20,11 +20,11 @@
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/ui-templates.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/bg-styles-common.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/app-user-profile-bg-styles.js"></script>
+ <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/app-subscriptions.js"></script>
  <script src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyBLYTwBBtnRDyew0qLZTjCJp0mgR5koP5A"></script>
  <?php include_once 'templates/api/api_params.php'; ?>
 <script type="text/javascript">
 var APP_USERPROFILE_ID='<?php  if(isset($_GET["1"])) { echo $_GET["1"]; } ?>';
-alert(APP_USERPROFILE_ID);
 </script>
 <style>
 body { background-color:#eee; }
@@ -44,7 +44,10 @@ function hzTabSelection(id){
 }
 function mainTab_userProfile(){ hzTabSelection("usrProfileHzTab"); }
 function mainTab_userMyFriends(){ hzTabSelection("usrFriendsHzTab");subMenu_userFriends('usrFrndSubMenu_myFriends'); }
-function mainTab_userSubscription(){ hzTabSelection("usrSubscriptionHzTab");loadUserSubscriptions(); }
+function mainTab_userSubscription(){ 
+ hzTabSelection("usrSubscriptionHzTab");
+ getListOfCategories('app-user-subscription-content',APP_USERPROFILE_ID,''); 
+}
 function mainTab_userCommunity(){ hzTabSelection("usrCommunityHzTab");community_subMenuHgl('community_subMenu_userCreated'); }
 function mainTab_userMovements(){ hzTabSelection("usrMovementHzTab");movement_count_userParticipated(); }
 </script>
@@ -85,7 +88,11 @@ function mainTab_userMovements(){ hzTabSelection("usrMovementHzTab");movement_co
 		  <?php include_once 'templates/pages/app-user-profile/user-profile.php'; ?>
 		</div>
 		<div id="usrSubscriptionDisplayDivision" class="container-fluid mtop15p mbot15p hide-block">
-		  <?php include_once 'templates/pages/app-user-profile/user-subscription.php'; ?>
+		  <div id="app-user-subscription-content">
+			<div align="center">
+				<img src="<?php echo $_SESSION["PROJECT_URL"]?>images/load.gif" class="profile_pic_img1"/>
+			</div>
+		  </div>
 		</div>
 		<div id="usrFriendsDisplayDivision" class="hide-block">
 		  <?php include_once 'templates/pages/app-user-profile/user-friends.php'; ?>

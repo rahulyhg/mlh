@@ -41,7 +41,7 @@ function latestGPSPositions_Other(){
     GLOBAL_MARKER1.setPosition( GLOBAL_POSITION1 );
     GLOBAL_MARKER2.setPosition( GLOBAL_POSITION2 );
     GLOBAL_MAP.setCenter(GLOBAL_POSITION2);
-   }
+   } else { }
  });
 }
 
@@ -124,7 +124,7 @@ function initOthersMap(){
   <div class="list-group-item custom-font">
     <b>User's Current Geolocation&nbsp;<i class="fa fa-angle-double-down pull-right" aria-hidden="true"></i></b>
   </div>
-  <div class="list-group-item pad0">
+  <div id="user-profile-map-point" class="list-group-item pad0">
     <div id="userActualGeoLocationMap" style="width:100%;height:400px;background-color:#eee;"></div>
   </div>
 </div>

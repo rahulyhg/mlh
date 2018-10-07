@@ -10,60 +10,54 @@ $logger=Logger::getLogger("controller.module.app.user.subscriptions.php");
 if(isset($_GET["action"])){
  /* Action Events used By auth-part-06.php/auth-part-06.js ::: START  */
  if($_GET["action"]=='GET_SESSION_DOMAINSUBSCRIPTION'){
-  if(isset($_GET["user_Id"])){
+  if(isset($_GET["user_Id"]) && isset($_GET["projectURL"]) && isset($_GET["usrLang"])){
    $user_Id=$_GET["user_Id"];
-   $subObj=new Subscriptions();
+   $projectURL=$_GET["projectURL"];
+   $usrLang=$_GET["usrLang"];
+   $jsonURL=$projectURL.'backend/config/'.$usrLang.'/domains/categories.json';
+   $jsonFileData=file_get_contents($jsonURL);
+   $jsonFileData = json_decode($jsonFileData);
+   /* Get List of Domains and SubDomains subscribed By User */
+   $subscriptions = new Subscriptions();
+   $query = $subscriptions->query_get_userSubscriptionList($user_Id);
    $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
-   $query01=$subObj->query_getCategoriesList();
-   $jsonData01=$dbObj->getJSONData($query01);
-   $dejsonData01=json_decode($jsonData01);
-   $content='{"domains":[';
-   if(count($dejsonData01)>0){
-    for($i1=0;$i1<count($dejsonData01);$i1++){
-	  $domain_Id=$dejsonData01[$i1]->{'domain_Id'};
-	  $domainName=$dejsonData01[$i1]->{'domainName'};
-	  $content.='{"domain_Id":"'.$domain_Id.'",';
-	  $content.='"domainName":"'.$domainName.'",';
-	  $query02=$subObj->query_getSubCategoriesSubscription($user_Id,$domain_Id);
-	  $jsonData02=$dbObj->getJSONData($query02);
-	  $content.='"subdomains":'.$jsonData02.'},';
-	}
-	$content=chop($content,',');
+   $jsonData = $dbObj->getJSONData($query);
+   $dejsonData = json_decode($jsonData);
+   for($index=0;$index<count($dejsonData);$index++){
+    $domain_Id = $dejsonData[$index]->{'domain_Id'};
+	$subdomain_Id = $dejsonData[$index]->{'subdomain_Id'}; // [""][][""]='YES'
+	$jsonFileData->{$domain_Id}->{'subdomainInfo'}->{$subdomain_Id}->{"subscribed"}='YES';
    }
-   $content.=']}';
-   echo $content;
+   echo json_encode($jsonFileData);
   } 
   else { echo 'MISSING_USERID'; }
  }
  else if($_GET["action"]=='SET_USER_SUBSCRIPTION'){
-  if(isset($_GET["user_Id"])){
-   $user_Id=$_GET["user_Id"];
-   $sub_random=rand(1111,9999);
-   $subObj=new Subscriptions();
-   $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
-   $idObj=new Identity(); // echo $_SESSION["AUTH_USER_SUBSCRIPTIONS_LIST"].'<br/>';
-   $subscriptionListJsonData=$_SESSION["AUTH_USER_SUBSCRIPTIONS_LIST"];
-   $subscriptionListdeJsonData=json_decode($subscriptionListJsonData);
-   $domainData=$subscriptionListdeJsonData->{'domains'};
-   $queryBuilder='';
-   for($i1=0;$i1<count($domainData);$i1++){
-	$domain_Id=$domainData[$i1]->{'domain_Id'};
-	$domainName=$domainData[$i1]->{'domainName'};
-	$subdomains=$domainData[$i1]->{'subdomains'};
-	for($i2=0;$i2<count($subdomains);$i2++){
-	   $subdomain_Id=$subdomains[$i2]->{'subdomain_Id'};
-	   $subdomainName=$subdomains[$i2]->{'subdomainName'};
-	   $subscribed=$subdomains[$i2]->{'subscribed'};
-	   if($subscribed=='YES'){
-		$sub_Id='SUB'.$user_Id.$sub_random.sprintf("%03d", $i2);
-		$queryBuilder.=$subObj->query_setUserSubscription($sub_Id,$user_Id,$domain_Id,$subdomain_Id);
-	   } 
-	   else { $queryBuilder.=$subObj->query_removeUserSubscription($user_Id,$domain_Id,$subdomain_Id); }
+  if(isset($_GET["user_Id"]) && isset($_GET["subscriptions"])){
+  /* Directly get Domain_Id and SubDomain_Id in JSON Format */
+   $user_Id = $_GET["user_Id"];
+   $subscriptions = $_GET["subscriptions"];
+   $subscriptionObj = new Subscriptions();
+   $idObj = new Identity(); 
+   print_r($subscriptions);
+   foreach($subscriptions as $subscriptionKey => $subscriptionArray) {
+    if(is_array($subscriptionArray)){
+	    $sub_Id = $idObj->user_subscription_id();
+	    $domain_Id = $subscriptionArray["domain_Id"];
+		$subdomain_Id = $subscriptionArray["subdomain_Id"];
+		$query=$subscriptionObj->query_add_userSubscriptionList($sub_Id,$user_Id,$domain_Id,$subdomain_Id);
+		$dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
+		echo $dbObj->addupdateData($query); 
 	}
    }
-   echo $dbObj->addupdateData($queryBuilder);
   }
-  else { echo 'MISSING_USERID'; }
+  else { 
+    $content='Missing ';
+    if(!isset($_GET["user_Id"])){ $content.='user_Id,'; }
+	if(!isset($_GET["subscriptions"])){ $content.='subscriptions,'; }
+	$content=chop($content,',');
+    echo $content; 
+  }
  }
  else if($_GET["action"]=='ADD_NEW_CATEGORY'){
    if(isset($_GET["category_Id"]) && isset($_GET["categoryName"])){

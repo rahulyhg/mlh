@@ -34,7 +34,7 @@ public class ApplicationStartup {
   /* Build Categories */
   Database database = new Database(DB_URL, USERNAME, PASSWORD);
   CategoriesService categoriesService = new CategoriesService();
-  JSONArray jsonArray = categoriesService.buildJSONDataForDomain(database);
+  JSONObject jsonArray = categoriesService.buildJSONDataForDomain(database);
   
   /* Dump Data into File */
   categoriesService.dumpDataIntoFile(FOLDERPATH,FILENAME,jsonArray.toJSONString());

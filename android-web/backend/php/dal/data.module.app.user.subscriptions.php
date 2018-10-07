@@ -2,6 +2,21 @@
 class Subscriptions {
 /* Execute SHOW VARIABLES; in Database and  SET SESSION group_concat_max_len = 1000000;
  */
+ function query_get_userSubscriptionList($user_Id){
+  $sql="SELECT domain_Id, subdomain_Id FROM user_subscription WHERE user_Id='".$user_Id."' ORDER BY domain_Id ASC;";
+  return $sql;
+ }
+ function query_add_userSubscriptionList($sub_Id,$user_Id,$domain_Id,$subdomain_Id){
+  $sql="INSERT INTO user_subscription(sub_Id, user_Id, domain_Id, subdomain_Id, sub_on) ";
+  $sql.="SELECT * FROM (SELECT '".$sub_Id."','".$user_Id."', '".$domain_Id."', '".$subdomain_Id."','";
+  $sql.=date('Y-m-d H:i:s')."') As tmp ";
+  $sql.="WHERE (( SELECT count(*) FROM user_subscription WHERE user_Id='".$user_Id."' AND domain_Id='".$domain_Id."' AND ";
+  $sql.="subdomain_Id='".$subdomain_Id."')=0);";
+  return $sql;
+ }
+ 
+ 
+ /*
  function query_getCategoriesList(){
    $sql="SELECT domain_Id, domainName FROM subs_dom_info; ";
    return $sql;
@@ -10,7 +25,7 @@ class Subscriptions {
  function query_getSubCategoriesList($domain_Id){
    $sql="SELECT subdomain_Id, domain_Id, subdomainName FROM subs_subdom_info WHERE domain_Id='".$domain_Id."';";
    return $sql;
- }
+ }*/
  
  function query_getSubCategoriesSubscription($user_Id,$domain_Id){
    $sql="SELECT subdomain_Id, subdomainName, ";
@@ -23,14 +38,7 @@ class Subscriptions {
    return $sql;
  }
  
- function query_setUserSubscription($sub_Id,$user_Id,$domain_Id,$subdomain_Id){
- $sql="INSERT INTO user_subscription(sub_Id, user_Id, domain_Id, subdomain_Id, sub_on) ";
- $sql.="SELECT * FROM (SELECT '".$sub_Id."','".$user_Id."', '".$domain_Id."', '".$subdomain_Id."','";
- $sql.=date('Y-m-d H:i:s')."') As tmp ";
- $sql.="WHERE (( SELECT count(*) FROM user_subscription WHERE user_Id='".$user_Id."' AND domain_Id='".$domain_Id."' AND ";
- $sql.="subdomain_Id='".$subdomain_Id."')=0);";
- return $sql;
- }
+ 
  
  function query_removeUserSubscription($user_Id,$domain_Id,$subdomain_Id){
   $sql="DELETE FROM user_subscription WHERE user_Id='".$user_Id."' AND domain_Id='".$domain_Id."' AND ";
