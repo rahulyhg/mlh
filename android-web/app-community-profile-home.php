@@ -126,9 +126,12 @@ function generateTabList(){
 function hzTabSelection(id,orientation){
  var arryHzTab=["communityMemRequestsHzTab","communityDashboardHzTab","communityProfileHzTab","communityBranchHzTab",
                 "communityMemRolesHzTab","communityNewsFeedHzTab","communityMovementsHzTab","communityMembersHzTab",
-				"communitySupportersHzTab"];
- var arryTabDataViewer=["communityMemRequestsDisplayDivision","communityDashboardDisplayDivision","communityProfileDisplayDivision","communityBranchDisplayDivision","communityMemRolesDisplayDivision",
-						"communityNewsFeedDisplayDivision","communityMovementsDisplayDivision","communityMembersDisplayDivision","communitySupportersDisplayDivision"];
+				"communitySupportersHzTab","communityPermissionsHzTab"];
+ var arryTabDataViewer=["communityMemRequestsDisplayDivision","communityDashboardDisplayDivision",
+						"communityProfileDisplayDivision","communityBranchDisplayDivision","communityMemRolesDisplayDivision",
+						"communityNewsFeedDisplayDivision","communityMovementsDisplayDivision",
+						"communityMembersDisplayDivision","communitySupportersDisplayDivision",
+						"communityPermissionsDisplayDivision"];
  hzTabSelector(id,arryHzTab,arryTabDataViewer);
  if(orientation.length>0){
    $('#communityProfileTab').css('left',orientation+'px');
@@ -272,7 +275,9 @@ function hzTabSelection(id,orientation){
 		
 		</div>
 		<!-- app-page-content :: End -->
-	  </div>
+	 
+	    <div id="communityPermissionsDisplayDivision" class="container-fluid mtop15p"></div>
+	 </div>
 
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/hz-scrollableTabs.js"></script>
 </body>
