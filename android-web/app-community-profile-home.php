@@ -103,13 +103,6 @@ js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.community.profe
 });
 }
 
-function invoke_requestBranchModal(){
-$('#requestBranchModal').modal();
-}
-function invoke_joinAsMemberModal(){
-$('#joinAsMemberModal').modal();
-}
-
 function generateTabList(){ 
  var content='<ul class="nav scrollTablist" id="communityProfileTab" style="border-bottom:0px;">';
 	 content+='<li><a id="communityDashboardHzTab" href="#" onclick="javascript:hzTabSelection(this.id,\'\');"><b>Member Dashboard</b></a></li>';

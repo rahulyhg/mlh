@@ -18,6 +18,13 @@ function menuCommunityProfile(id){
    }
  }
 }
+
+function invoke_requestBranchModal(){
+$('#requestBranchModal').modal();
+}
+function invoke_joinAsMemberModal(){
+$('#joinAsMemberModal').modal();
+}
 </script>
 <div class="container-fluid mtop15p">
 	<div class="" style="margin-bottom:15px;text-transform:uppercase;">

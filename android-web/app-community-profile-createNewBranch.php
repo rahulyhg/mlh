@@ -5,7 +5,7 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <title>Create Community</title>
+ <title>Create New Branch</title>
  <meta charset="utf-8">
  <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="shortcut icon" type="image/x-icon" href="<?php echo $_SESSION["PROJECT_URL"]; ?>images/favicon.ico"/>
@@ -51,7 +51,6 @@ var BRANCH_COUNTRY;
 var BRANCH_STATE;
 var BRANCH_LOCATION;
 var BRANCH_MINLOCATION;
-var ROLE_INFO={};
 </script>
 </head>
 <body>
@@ -71,8 +70,8 @@ $(document).ready(function(){
 function generateTabList(){ 
  var content='<ul class="nav scrollTablist" id="communityProfileTab" style="border-bottom:0px;">';
 	 content+='<li><a id="branchInformationHzTab" href="#"><b>1. Branch Information</b></a></li>';
-	 content+='<li><a id="createRolesHzTab" href="#" onclick="javascript:load_form_createRole();"><b>2. Create Roles</b></a></li>';
-	 content+='<li><a id="addMembersHzTab" href="#" onclick="javascript:load_form_addMembers();"><b>3. Add Members</b></a></li>';
+	 content+='<li><a id="createRolesHzTab" href="#"><b>2. Create Roles</b></a></li>';
+	 content+='<li><a id="addMembersHzTab" href="#"><b>3. Add Members</b></a></li>';
 	 content+='</ul>'; 
   document.getElementById("communityProfileScrollableTab").innerHTML=content;
 }

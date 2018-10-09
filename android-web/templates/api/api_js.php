@@ -11,6 +11,14 @@ body { overflow-x:hidden; }
 .hlLetterString { background-color:yellow;color:#000;}
 </style>
 <script type="text/javascript">
+function sentenceCase(str) {
+ var response='';
+  for(var index=0;index<str.length;index++){
+    if(index==0){ response+=str.charAt(index).toUpperCase(); }
+	else { response+=str.charAt(index).toLowerCase();  }
+  }
+ return response;
+}
 /* Highlight Letter on Search */
 function getCurentTimestamp(){
  var dateObj = new Date();

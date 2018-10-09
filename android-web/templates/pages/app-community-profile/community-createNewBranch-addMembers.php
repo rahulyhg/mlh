@@ -5,28 +5,61 @@
 var MEMBER_ID;
 var MEMBER_DISPLAYCONTENT;
 var MEMBERS_LIST={};
-var MEMBER_ARRAY_ID=[];
+function addRoleToMemberOfBranch(member_Id){
+ var role_Id = unionprof_mem_roles_Id();
+ var roleName = document.getElementById("roles_select_"+member_Id).value;
+ MEMBERS_LIST[MEMBER_ID].role_Id = role_Id;
+ MEMBERS_LIST[MEMBER_ID].roleName = roleName;
+ console.log(MEMBERS_LIST);
+}
 function select_display_roles(div_Id,member_Id){
  if(ROLE_INFO!==undefined){
- var content='<select id="roles_select_'+member_Id+'" class="form-control" ';
-     content+='onclick="javascript:setRoleToMember(\''+member_Id+'\');">';
+ var content='<div id="rolesOpt_display_'+member_Id+'">';
+     content+='<div class="input-group">';
+	 content+='<select id="roles_select_'+member_Id+'" class="form-control" style="z-index:0;" ';
+	 content+='onchange="javascript:addRoleToMemberOfBranch(\''+member_Id+'\');">';
      content+='<option value="">Select Role</option>';
  for(var role_Id in ROLE_INFO){
   roleName= ROLE_INFO[role_Id].roleName;
   content+='<option value="'+role_Id+'">'+roleName+'</option>';
  }
  content+='</select>';
+ content+='<span class="input-group-addon curpoint" ';
+ content+='onclick="javascript:setRoleToMember(\''+member_Id+'\');"><b>Done</b></span>';
+ content+='</div>';
+ content+='</div>';
+ content+='<div id="roles_display_'+member_Id+'" class="hide-block">';
+ content+='<span id="roles_choosen_'+member_Id+'"></span>';
+ content+='<span class="pull-right"><a href="#" onclick="javascript:editRoleToMember(\''+member_Id+'\');"><u>Edit</u></a></span>';
+ content+='</div>';
  document.getElementById(div_Id).innerHTML=content;
  }
 }
 function setRoleToMember(member_Id){
-
+ var sel_RoleName = $("#roles_select_"+member_Id+" option:selected").text();
+ var sel_RoleId = document.getElementById("roles_select_"+member_Id).value;
+ document.getElementById("roles_choosen_"+member_Id).innerHTML=sel_RoleName;
+ console.log(JSON.stringify(MEMBERS_LIST));
+ hide_roles_seloption(member_Id);
+}
+function editRoleToMember(member_Id){
+ show_roles_seloption(member_Id);
 }
 function show_roles_seloption(member_Id){
-
+ if($('#rolesOpt_display_'+member_Id).hasClass('hide-block')){
+   $('#rolesOpt_display_'+member_Id).removeClass('hide-block');
+ }
+ if(!$('#roles_display_'+member_Id).hasClass('hide-block')){
+   $('#roles_display_'+member_Id).addClass('hide-block');
+ }
 }
 function hide_roles_seloption(member_Id){
-
+ if(!$('#rolesOpt_display_'+member_Id).hasClass('hide-block')){
+   $('#rolesOpt_display_'+member_Id).addClass('hide-block');
+ }
+ if($('#roles_display_'+member_Id).hasClass('hide-block')){
+   $('#roles_display_'+member_Id).removeClass('hide-block');
+ }
 }
 function load_form_addMembers(){
  hzTabSelection('addMembersHzTab');
@@ -74,12 +107,13 @@ $(".easy-autocomplete").css('width','100%');
 $(".easy-autocomplete-container").css('margin-top','30px');
 }
 function displayTemplate_membersContent(member_Id, profile_pic, name, minlocation, location, state, country){
-    MEMBER_DISPLAYCONTENT='<div class="list-group">';
+    MEMBER_DISPLAYCONTENT='<div id="div_members_'+member_Id+'" class="list-group">';
 	MEMBER_DISPLAYCONTENT+='<div class="list-group-item pad0">';
 	MEMBER_DISPLAYCONTENT+='<div class="container-fluid mtop15p mbot15p">';
 	MEMBER_DISPLAYCONTENT+='<div class="row">';
 	MEMBER_DISPLAYCONTENT+='<div class="col-xs-12">';
-	MEMBER_DISPLAYCONTENT+='<button type="button" class="close" data-dismiss="modal">&times;</button>';
+	MEMBER_DISPLAYCONTENT+='<button type="button" class="close" ';
+	MEMBER_DISPLAYCONTENT+='onclick="javascript:deleteFromArray_member(\''+member_Id+'\');">&times;</button>';
 	MEMBER_DISPLAYCONTENT+='</div>';
     MEMBER_DISPLAYCONTENT+='</div>'
 	MEMBER_DISPLAYCONTENT+='<div class="row">';
@@ -117,6 +151,7 @@ var options = {
 
 $("#roleName_"+MEMBER_ID).easyAutocomplete(options);
 }
+
 function addToArray_members(){
  document.getElementById("communityNewBranch_members_name").value="";
  console.log(MEMBER_DISPLAYCONTENT);
@@ -129,50 +164,43 @@ function addToArray_members(){
    size++;
  }
  console.log("MEMBERS_LIST: "+JSON.stringify(MEMBERS_LIST));
- /* if(MEMBER_ARRAY_ID.length>0){
- for(var index=0;index<MEMBER_ARRAY_ID.length;index++){
-  if(MEMBER_ID===MEMBER_ARRAY_ID[index].member_Id) { duplicateRecognizer=true;break; }
- }
- }
- if(MEMBER_DISPLAYCONTENT!==undefined && !duplicateRecognizer){
-   var size=MEMBER_ARRAY_ID.length;
-   MEMBER_ARRAY_ID[size]={ member_Id:MEMBER_ID };
-   
-   autocomplete_load_memberRole(MEMBER_ID);
- } */
-
-
-/*
-    $("#roleName_"+MEMBER_ID).autocomplete({        
-        source: function(request, response) {
-		    console.log("autocomplete_load_memberRole: "+JSON.stringify(ROLE_INFO));
-		    response(ROLE_INFO);
-        },
-		focus: function( event, ui ) {
-        console.log("autocomplete_load_memberRole: "+ui.item);
-        return false;
-      },
-        select: function( event, ui ) {
-           //   $("#roleName_"+MEMBER_ID).val( ui.item.roleName); //ui.item is your object from the array
-          return false;
-        }
-    });
- */
+ enable_finishButton();
 }
-function deleteFromArray_member(id){
-
+function deleteFromArray_member(member_Id){
+ delete MEMBERS_LIST[member_Id];
+ $('#div_members_'+member_Id).hide(1000);
+ enable_finishButton();
 }
 function finish_AddMembersToBranch(){
- console.log("MEMBER_ARRAY_ID: "+JSON.stringify(MEMBER_ARRAY_ID));
- console.log("MEMBER_ROLE_ARRAY: "+JSON.stringify(MEMBER_ROLE_ARRAY));
+ var finished = true;
+ for(var member_Id in MEMBERS_LIST){
+   var memberResponse = MEMBERS_LIST[member_Id];
+   if(memberResponse.role_Id === undefined || memberResponse.role_Id.length===0){
+    finished = false;
+   }
+ }
+ if(!finished){
+   alert_display_warning('W036');
+ } else {
+  js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.module.app.community.professional.branch.php',
+   { action:'CREATE_PROFESSIONAL_BRANCH', country: BRANCH_COUNTRY, state:BRANCH_STATE, location: BRANCH_LOCATION,
+   minlocation: BRANCH_MINLOCATION, roleInfo: ROLE_INFO, members: MEMBERS_LIST },function(response){
+    console.log(response);
+  });
+  console.log(JSON.stringify(MEMBERS_LIST));
+  console.log(JSON.stringify(ROLE_INFO));
+ }
 }
-
-function addRoleToMemberOfBranch(member_Id){
- var role_Id = unionprof_mem_roles_Id();
- var roleName = document.getElementById("roleName_"+member_Id).value;
- MEMBERS_LIST[MEMBER_ID].role_Id = role_Id;
- MEMBERS_LIST[MEMBER_ID].roleName = roleName;
- console.log(MEMBERS_LIST);
+function enable_finishButton(){
+ if(Object.keys(MEMBERS_LIST).length>0){
+   if($('#btn_communityNewBranch_formFinsh').hasClass('hide-block')){
+     $('#btn_communityNewBranch_formFinsh').removeClass('hide-block');
+   }
+ } else {
+   if(!$('#btn_communityNewBranch_formFinsh').hasClass('hide-block')){
+     $('#btn_communityNewBranch_formFinsh').addClass('hide-block');
+   }
+ }
 }
 </script>
  <div class="form-group">
@@ -190,7 +218,7 @@ function addRoleToMemberOfBranch(member_Id){
 </div>
 </div>
 <div class="row">
-<div class="col-xs-12">
-<button class="btn btn-default" onclick="javascript:finish_AddMembersToBranch();"><b>I'm done</b></button>
+<div align="center" class="col-xs-12">
+<button id="btn_communityNewBranch_formFinsh" class="btn btn-default hide-block" onclick="javascript:finish_AddMembersToBranch();"><b>Finish</b></button>
 </div>
 </div>
