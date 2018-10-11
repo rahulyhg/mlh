@@ -161,6 +161,26 @@ if(isset($_GET["action"])){
 	echo $content;
    }
  }
+ else if($_GET["action"]==='CHECK_BRANCHUNIQUEORNOT'){ 
+  if(isset($_GET["union_Id"]) && isset($_GET["country"]) && isset($_GET["state"]) && isset($_GET["location"]) 
+  && isset($_GET["minlocation"])){
+    $union_Id = $_GET["union_Id"];
+    $country = $_GET["country"];
+	$state = $_GET["state"];
+	$location = $_GET["location"];
+	$minlocation = $_GET["minlocation"];
+    
+	$professionalCommunityBranch = new ProfessionalCommunityBranch();
+	$query = $professionalCommunityBranch->query_check_branchUniqueOrNot($union_Id,$country,$state,
+								$location,$minlocation);
+	$dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
+    $jsonData = $dbObj->getJSONData($query);
+	$dejsonData = json_decode($jsonData);
+	echo $dejsonData[0]->{'count(*)'};
+  } else {
+  
+  }
+ }
  else { echo 'NO_ACTION'; }
 }
 else { echo 'MISSING_ACTION'; }

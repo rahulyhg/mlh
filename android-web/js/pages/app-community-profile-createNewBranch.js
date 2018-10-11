@@ -37,7 +37,15 @@ function form_add_branchInformation(){
  if(BRANCH_STATE.length>0){
  if(BRANCH_LOCATION.length>0){
  if(BRANCH_MINLOCATION.length>0){
-   load_form_createRole();
+   /* Check BranchNames already Exists for MinLocation, Location, State, Country */
+   js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.module.app.community.professional.branch.php',
+   { action :'CHECK_BRANCHUNIQUEORNOT', union_Id:UNION_ID, country: BRANCH_COUNTRY,
+   state:BRANCH_STATE, location: BRANCH_LOCATION, minlocation: BRANCH_MINLOCATION }, function(total_data){ 
+     total_data = parseInt(total_data);
+	 if(total_data>0){ div_display_warning('alert_form_createBranchInformation','W039'); } 
+	 else { load_form_createRole(); }
+   });
+   
  } else { div_display_warning('alert_form_createBranchInformation','W010'); }
  } else { div_display_warning('alert_form_createBranchInformation','W009'); }
  } else { div_display_warning('alert_form_createBranchInformation','W008'); }

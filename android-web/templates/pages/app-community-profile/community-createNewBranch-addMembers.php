@@ -1,7 +1,7 @@
 <div class="row">
-<div class="col-xs-12">
+<div class="col-xs-12 mtop15p">
  <div class="form-group">
-  <label>Name</label>
+  <h5><b>Add List of Members</b></h5><hr/>
   <div class="input-group">
     <input type="text" id="communityNewBranch_members_name" class="form-control" placeholder="Enter Member Name"/>
 	<span class="input-group-addon custom-bg" onclick="javascript:addToArray_members();">Add</span>

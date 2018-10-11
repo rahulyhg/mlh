@@ -64,5 +64,19 @@ class ProfessionalCommunityBranch {
   $sql.="','".$roleNotify."','".$roleUpdatedOn."','".$memNotify."','".$memAddedOn."','".$memAddedBy."','".$status."');";
   return $sql;
  }
+
+ function query_add_MembersReqToJoinBranch($request_Id, $union_Id, $branch_Id, $role_Id, $req_from, $req_to, $reqMessage, 
+		$sent_On, $notify, $watched){
+   $sql="INSERT INTO unionprof_mem_req(request_Id, union_Id, branch_Id, role_Id, req_from, req_to, reqMessage, sent_On, ";
+   $sql.="notify, watched) VALUES ('".$request_Id."','".$union_Id."','".$branch_Id."','".$role_Id."','".$req_from;
+   $sql.="','".$req_to."','".$reqMessage."','".$sent_On."','".$notify."','".$watched."');";
+   return $sql;
+ }
+ 
+ function query_check_branchUniqueOrNot($union_Id,$country,$state,$location,$minlocation){
+   $sql="SELECT count(*) FROM unionprof_branch WHERE country='".$country."' AND state='".$state."' AND ";
+   $sql.="location='".$location."' AND minlocation='".$minlocation."' AND union_Id='".$union_Id."';";
+   return $sql;      
+ }
 }
 ?>

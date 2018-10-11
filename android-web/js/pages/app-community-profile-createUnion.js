@@ -185,8 +185,15 @@ function load_createRole_list(){
   content+='<i style="font-size:20px;" ';
   content+='class="fa fa-angle-down" aria-hidden="true"></i>&nbsp;&nbsp;';
   content+='<b>'+roleName+'</b>';
+  console.log(roleName+"==="+sentenceCase(MYDESIGNATION_TITLE));
+  var closehidder =false;
+  if(roleName===sentenceCase(MYDESIGNATION_TITLE)){ closehidder =true; }
+  if(roleName==='Members'){ closehidder =true; }
+  
+  if(!closehidder){
   content+='<i id="roleId-'+role_Id+'" onclick="javascript:form_remove_roleName(\''+role_Id+'\');" ';
   content+='class="fa fa-close pull-right"></i>';
+  }
   content+='</div>';
   content+='<div id="roleId-collapse-'+role_Id+'" class="collapse">';
   content+='<div align="center" class="list-group-item">';
@@ -636,13 +643,13 @@ function setPerm_movement_domain_approveMovement(role_Id){
 /*****************************************************************************************************************************/
 var MEMBER_ID;
 var MEMBER_DISPLAYCONTENT;
-var MEMBERS_LIST={};
+var MEMBERS_REQ_LIST={};
 function addRoleToMemberOfBranch(member_Id){
  var role_Id = unionprof_mem_roles_Id();
  var roleName = document.getElementById("roles_select_"+member_Id).value;
- MEMBERS_LIST[MEMBER_ID].role_Id = role_Id;
- MEMBERS_LIST[MEMBER_ID].roleName = roleName;
- console.log(MEMBERS_LIST);
+ MEMBERS_REQ_LIST[MEMBER_ID].role_Id = role_Id;
+ MEMBERS_REQ_LIST[MEMBER_ID].roleName = roleName;
+ console.log(MEMBERS_REQ_LIST);
 }
 function select_display_roles(div_Id,member_Id){
  if(ROLE_INFO!==undefined){
@@ -671,7 +678,7 @@ function setRoleToMember(member_Id){
  var sel_RoleName = $("#roles_select_"+member_Id+" option:selected").text();
  var sel_RoleId = document.getElementById("roles_select_"+member_Id).value;
  document.getElementById("roles_choosen_"+member_Id).innerHTML=sel_RoleName;
- console.log(JSON.stringify(MEMBERS_LIST));
+ console.log(JSON.stringify(MEMBERS_REQ_LIST));
  hide_roles_seloption(member_Id);
 }
 function editRoleToMember(member_Id){
@@ -795,26 +802,26 @@ function addToArray_members(){
  console.log(MEMBER_DISPLAYCONTENT);
  var duplicateRecognizer=false;
  if(MEMBER_ID!==AUTH_USER_ID){
- if(MEMBERS_LIST[MEMBER_ID]===undefined){
-   MEMBERS_LIST[MEMBER_ID]={ "member_Id":MEMBER_ID };
+ if(MEMBERS_REQ_LIST[MEMBER_ID]===undefined){
+   MEMBERS_REQ_LIST[MEMBER_ID]={ "member_Id":MEMBER_ID };
    MEMBER_DISPLAYCONTENT+='<div id="div_communityNewBranch_selectedMembers'+(size+1)+'"></div>';
    document.getElementById("div_communityNewBranch_selectedMembers"+size).innerHTML=MEMBER_DISPLAYCONTENT;
    select_display_roles('roles_div_'+MEMBER_ID,MEMBER_ID);  // Setting Select Options
    size++;
  }
  } else {  alert_display_warning('W038'); }
- console.log("MEMBERS_LIST: "+JSON.stringify(MEMBERS_LIST));
+ console.log("MEMBERS_REQ_LIST: "+JSON.stringify(MEMBERS_REQ_LIST));
  enable_finishButton();
 }
 function deleteFromArray_member(member_Id){
- delete MEMBERS_LIST[member_Id];
+ delete MEMBERS_REQ_LIST[member_Id];
  $('#div_members_'+member_Id).hide(1000);
  enable_finishButton();
 }
 function finish_AddMembersToBranch(){
  var finished = true;
- for(var member_Id in MEMBERS_LIST){
-   var memberResponse = MEMBERS_LIST[member_Id];
+ for(var member_Id in MEMBERS_REQ_LIST){
+   var memberResponse = MEMBERS_REQ_LIST[member_Id];
    if(memberResponse.role_Id === undefined || memberResponse.role_Id.length===0){
     finished = false;
    }
@@ -824,24 +831,26 @@ function finish_AddMembersToBranch(){
  } else {
   show_toggleMLHLoader('body');
   var branch_Id = unionprof_branch_Id();
-   MEMBERS_LIST[AUTH_USER_ID]={ "member_Id":AUTH_USER_ID, "role_Id":MYDESIGNATION_ROLEID, "roleName": MYDESIGNATION_TITLE };
+  var membersList = {};
+      membersList[AUTH_USER_ID]={ "member_Id":AUTH_USER_ID, "role_Id":MYDESIGNATION_ROLEID, "roleName": MYDESIGNATION_TITLE };
   js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.module.app.community.professional.php',
    { action:'CREATE_PROFESSIONALCOMMUNITY', union_Id: UNION_ID, unionName: UNION_NAME, domain_Id: DOMAIN_ID, 
 	 subdomain_Id: SUBDOMAIN_ID, aboutUnion: ABOUT_UNION, profile_pic:IMG_URL, issue01:ISSUE01,  issue02: ISSUE02, 
 	 issue03: ISSUE03, issue04: ISSUE04, issue05: ISSUE05, issue06: ISSUE06, issue07: ISSUE07, issue08: ISSUE08, 
 	 issue09: ISSUE09, issue10: ISSUE10, branch_Id: branch_Id, country: BRANCH_COUNTRY,  state:BRANCH_STATE, 
-	 location: BRANCH_LOCATION, minlocation: BRANCH_MINLOCATION, roleInfo: ROLE_INFO, members: MEMBERS_LIST, 
+	 location: BRANCH_LOCATION, minlocation: BRANCH_MINLOCATION, roleInfo: ROLE_INFO, members_req: MEMBERS_REQ_LIST, 
+	 members: membersList,
      admin_Id: AUTH_USER_ID },function(response){
 	hide_toggleMLHLoader('body');
     alert_display_success('S005',PROJECT_URL+'app/community/general/viewprofile/'+UNION_ID);
     console.log(response);
   });
-  console.log(JSON.stringify(MEMBERS_LIST));
+  console.log(JSON.stringify(MEMBERS_REQ_LIST));
   console.log(JSON.stringify(ROLE_INFO));
  }
 }
 function enable_finishButton(){
- if(Object.keys(MEMBERS_LIST).length>0){
+ if(Object.keys(MEMBERS_REQ_LIST).length>0){
    if($('#btn_communityNewBranch_formFinsh').hasClass('hide-block')){
      $('#btn_communityNewBranch_formFinsh').removeClass('hide-block');
    }

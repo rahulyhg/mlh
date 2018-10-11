@@ -41,8 +41,9 @@ if(isset($_GET["action"])){
 	$minlocation = $_GET["minlocation"];
     $publicInvitation = 'Y';
 	$roleInfoJson = $_GET["roleInfo"];
+	$membersReqJson = $_GET["members_req"];
 	$membersJson = $_GET["members"];
-	
+
 	/* Create Union */
 	$query = $professionalCommunity->query_createCommunity($union_Id,$domain_Id,$subdomain_Id,$main_branch_Id,$unionName,
 				$aboutUnion, $profile_pic, $admin_Id, $issue01, $issue02, $issue03, $issue04, $issue05, $issue06, $issue07,
@@ -150,6 +151,19 @@ if(isset($_GET["action"])){
 	 echo $dbObj->addupdateData($query03);
 	}
 
+	foreach($membersReqJson as $member_Id => $membersObj) {
+	  $request_Id = $identity->unionprof_mem_req_id();
+	  $req_from = $admin_Id;
+	  $req_to = $membersObj["member_Id"];
+	  $role_Id = $membersObj["role_Id"];
+	  $reqMessage = '';
+	  $sent_On = date('Y-m-d H:i:s');
+	  $notify = 'N';
+	  $watched = 'N';
+	  $query04 = $professionalCommunityBranch->query_add_MembersReqToJoinBranch($request_Id, $union_Id, $branch_Id, 
+					$role_Id, $req_from, $req_to, $reqMessage, $sent_On, $notify, $watched);
+	  echo $dbObj->addupdateData($query04);
+	}
 	foreach($membersJson as $member_Id => $membersObj) {
 	  $member_Id = $identity->unionprof_mem_id();
 	  $user_Id = $membersObj["member_Id"];
@@ -163,10 +177,11 @@ if(isset($_GET["action"])){
 	  $memAddedOn = date('Y-m-d H:i:s'); 
 	  $memAddedBy = $admin_Id;
 	  $status = 'OFFLINE';
-	  $query04 = $professionalCommunityBranch->query_add_MembersToBranch($member_Id, $union_Id, $branch_Id, $user_Id, 
+	  $query05 = $professionalCommunityBranch->query_add_MembersToBranch($member_Id, $union_Id, $branch_Id, $user_Id, 
 					$cur_role_Id, $prev_role_Id, $roleNotify, $roleUpdatedOn, $memNotify, $memAddedOn, $memAddedBy, $status);
-	  echo $dbObj->addupdateData($query04);
+	  echo $dbObj->addupdateData($query05);
 	}
+	
  
   }
   else if($_GET["action"]==='GETDATA_PROFESSIONALCOMMUNITY'){
