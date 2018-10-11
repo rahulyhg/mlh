@@ -51,6 +51,22 @@
             android:name="com.google.android.gms.vision.DEPENDENCIES"
             android:value="barcode"/>
         <activity
+            android:name="anups.dun.ads.GoogleAdsActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:hardwareAccelerated="true"
+            android:label="@string/ad_title" >
+             <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+				<action android:name="android.intent.action.VIEW"/>
+				<category android:name="android.intent.category.BROWSABLE"/>
+			 </intent-filter>
+			 <!--  intent-filter>
+ 				<data android:scheme="http" android:host="www.mylocalhook.com"/>
+				<data android:scheme="http" android:host="mylocalhook.com"/>
+			</intent-filter-->
+        </activity>
+        <activity
             android:name="anups.dun.app.AndroidInitializerScreen"
             android:configChanges="orientation|keyboardHidden"
             android:hardwareAccelerated="true"

@@ -1110,10 +1110,11 @@ containing a value of this type.
         public static final int abc_split_action_bar_is_narrow=0x7f070002;
     }
     public static final class color {
-        public static final int abc_search_url_text_holo=0x7f08001c;
+        public static final int abc_search_url_text_holo=0x7f08001d;
         public static final int abc_search_url_text_normal=0x7f080000;
         public static final int abc_search_url_text_pressed=0x7f080002;
         public static final int abc_search_url_text_selected=0x7f080001;
+        public static final int black=0x7f08001c;
         public static final int blue=0x7f08001a;
         public static final int common_action_bar_splitter=0x7f08000c;
         /**  Sign-in Button Colors 
@@ -1127,8 +1128,8 @@ containing a value of this type.
         public static final int common_signin_btn_light_text_disabled=0x7f080009;
         public static final int common_signin_btn_light_text_focused=0x7f08000a;
         public static final int common_signin_btn_light_text_pressed=0x7f080008;
-        public static final int common_signin_btn_text_dark=0x7f08001d;
-        public static final int common_signin_btn_text_light=0x7f08001e;
+        public static final int common_signin_btn_text_dark=0x7f08001e;
+        public static final int common_signin_btn_text_light=0x7f08001f;
         public static final int wallet_bright_foreground_disabled_holo_light=0x7f080012;
         /** 
          Wallet colors to support consistent Wallet fragment holo dark UI in client application
@@ -1147,8 +1148,8 @@ containing a value of this type.
         public static final int wallet_hint_foreground_holo_light=0x7f080014;
         public static final int wallet_holo_blue_light=0x7f080018;
         public static final int wallet_link_text_light=0x7f080019;
-        public static final int wallet_primary_text_holo_light=0x7f08001f;
-        public static final int wallet_secondary_text_holo_dark=0x7f080020;
+        public static final int wallet_primary_text_holo_light=0x7f080020;
+        public static final int wallet_secondary_text_holo_dark=0x7f080021;
         public static final int white=0x7f08001b;
     }
     public static final class dimen {
@@ -1505,7 +1506,8 @@ containing a value of this type.
         public static final int activity_androidqrcodescanner=0x7f030018;
         public static final int activity_androidwebscreen=0x7f030019;
         public static final int activity_androidwebscreenvideo=0x7f03001a;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001b;
+        public static final int activity_googleads=0x7f03001b;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001c;
     }
     public static final class menu {
         public static final int main=0x7f0e0000;
@@ -1554,7 +1556,8 @@ containing a value of this type.
         /**  Description of a share target (both in the list of such or the default share button) in a ShareActionProvider (share UI). [CHAR LIMIT=NONE] 
          */
         public static final int abc_shareactionprovider_share_with_application=0x7f0c000b;
-        public static final int action_settings=0x7f0c0030;
+        public static final int action_settings=0x7f0c0031;
+        public static final int ad_title=0x7f0c002f;
         public static final int app_name=0x7f0c002e;
         public static final int auth_client_needs_enabling_title=0x7f0c000e;
         public static final int auth_client_needs_installation_title=0x7f0c000f;
@@ -1651,9 +1654,9 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static final int common_signin_button_text_long=0x7f0c002b;
-        public static final int hello_world=0x7f0c002f;
+        public static final int hello_world=0x7f0c0030;
         public static final int image_chooser=0x7f0c002d;
-        public static final int result_text_default=0x7f0c0031;
+        public static final int result_text_default=0x7f0c0032;
         /**  Text on a placeholder buy button when Google Play services is not
          available or up-to-date 
          */

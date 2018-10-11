@@ -47,6 +47,7 @@ $(".lang_"+USR_LANG).css('display','block');
 });
 </script>
 <script type="text/javascript">
+var UNION_ID='<?php if(isset($_GET["1"])) { echo $_GET["1"]; } ?>';
 var BRANCH_COUNTRY;
 var BRANCH_STATE;
 var BRANCH_LOCATION;

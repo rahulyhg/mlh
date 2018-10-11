@@ -1,6 +1,6 @@
 $(document).ready(function(){
  sideWrapperToggle();
- bgstyle();
+ bgstyle(3);
  $(".lang_"+USR_LANG).css('display','block');
  mainMenuSelection("dn_"+USR_LANG+"_mycommunity");
  cloudservers_auth();

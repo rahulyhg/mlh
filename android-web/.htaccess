@@ -56,9 +56,11 @@ RewriteRule app/create-movement app-movement-create.php  [NC,L]
 RewriteRule app/movement/([^/]+)$ app-movement-view.php?1=$1  [NC,L]
 
 RewriteRule app/mycommunity app-community-my.php [NC,L]
-RewriteRule app/create-community app-community-create.php  [NC,L]
 RewriteRule app/findcommunity app-community-find.php  [NC,L]
 RewriteRule app/community/general/([^/]+)/([^/]+)$ app-community-profile-home.php?1=$1&2=$2  [NC,L]
+
+# Create Features:
+RewriteRule app/create-community app-community-create.php  [NC,L]
 RewriteRule app/community/createNewBranch/([^/]+)$ app-community-profile-createNewBranch.php?1=$1  [NC,L]
 
 RewriteRule doc/hook-standard-premium doc_info_hook.php  [NC,L]

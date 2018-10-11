@@ -49,37 +49,34 @@ var content='<div align="center">';
 
 function build_categoryOption(category_Id){
 var industryElement=document.getElementById(category_Id);
-// Delete previous Options 
- for(var index=industryElement.length;index>0;index--) { industryElement.remove(index); }
- var subscriptionList=JSON.parse(AUTH_USER_SUBSCRIPTIONS_LIST);
- // Add Industries
- for(var index=0;index<subscriptionList.domains.length;index++) {
-  var option = document.createElement("option");
-	 option.text = subscriptionList.domains[index].domainName;
-	 option.value = subscriptionList.domains[index].domain_Id;
-  industryElement.add(option);
+for(var index=industryElement.length;index>0;index--) { industryElement.remove(index); }
+js_ajax('GET',PROJECT_URL+'backend/config/english/domains/categories.json',{},function(response){
+ for(var domain_Id in response){
+   var domainName = response[domain_Id].domainName;
+   var option = document.createElement("option");
+	 option.text = domainName;
+	 option.value = domain_Id;
+   industryElement.add(option);
  }
+});
 }
 
 function build_subcategoryOption(category_Id,subCategory_Id){
- var industryValue=document.getElementById(category_Id).value;
- if(industryValue.length>0){
- var subscriptionList=JSON.parse(AUTH_USER_SUBSCRIPTIONS_LIST);
+ var domain_Id=document.getElementById(category_Id).value;
  var subIndustryElement=document.getElementById(subCategory_Id);
- // Delete previous Options 
- for(var index=subIndustryElement.length;index>0;index--) { subIndustryElement.remove(index); }
- // Add sub-Industries
- for(var i1=0;i1<subscriptionList.domains.length;i1++) {
-   for(var i2=0;i2<subscriptionList.domains[i1].subdomains.length;i2++) {
-    if(subscriptionList.domains[i1].domain_Id==industryValue){
-	  var option = document.createElement("option");
-	      option.text = subscriptionList.domains[i1].subdomains[i2].subdomainName;
-	      option.value = subscriptionList.domains[i1].subdomains[i2].subdomain_Id;
-      subIndustryElement.add(option);
-	}
+ if(domain_Id.length>0){
+   for(var index=subIndustryElement.length;index>0;index--) { subIndustryElement.remove(index); }
+     js_ajax('GET',PROJECT_URL+'backend/config/english/domains/categories.json',{},function(response){
+       var subdomainResponse = response[domain_Id].subdomainInfo;
+       for(var subdomain_Id in subdomainResponse){
+         var subdomainName = subdomainResponse[subdomain_Id].subdomainName;
+         var option = document.createElement("option");
+	         option.text = subdomainName;
+	         option.value = subdomain_Id;
+         subIndustryElement.add(option);
+       }
+     });
    }
-  }
- }
 }
 
 function build_countryOption(country_Id){

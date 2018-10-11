@@ -2,6 +2,7 @@
 <resources>
     <string name="image_chooser">File Chooser</string>
     <string name="app_name">My Local Hook</string>
+    <string name="ad_title">Youtube</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="result_text_default">Please focus camera to QR Code</string>

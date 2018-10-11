@@ -182,9 +182,13 @@ function finish_AddMembersToBranch(){
  if(!finished){
    alert_display_warning('W036');
  } else {
+  show_toggleMLHLoader('body');
   js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.module.app.community.professional.branch.php',
-   { action:'CREATE_PROFESSIONAL_BRANCH', country: BRANCH_COUNTRY, state:BRANCH_STATE, location: BRANCH_LOCATION,
-   minlocation: BRANCH_MINLOCATION, roleInfo: ROLE_INFO, members: MEMBERS_LIST },function(response){
+   { action:'CREATE_PROFESSIONAL_BRANCH', union_Id: UNION_ID, country: BRANCH_COUNTRY, state:BRANCH_STATE, 
+     location: BRANCH_LOCATION, minlocation: BRANCH_MINLOCATION, roleInfo: ROLE_INFO, members: MEMBERS_LIST, 
+	 admin_Id: AUTH_USER_ID },function(response){
+	hide_toggleMLHLoader('body');
+	alert_display_success('S005',PROJECT_URL+'app/community/general/viewprofile/'+UNION_ID);
     console.log(response);
   });
   console.log(JSON.stringify(MEMBERS_LIST));
