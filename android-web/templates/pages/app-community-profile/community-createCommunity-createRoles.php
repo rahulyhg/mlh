@@ -16,11 +16,18 @@
 <div align="center" class="col-xs-12 mtop15p">
 <h5><b>List of Roles</b><hr/></h5>
 </div>
-<div id="communityNewBranch_createRoles_rolesList" class="col-xs-12"></div>
+<div align="center" class="col-xs-12">
+<div class="alert alert-info">
+  <strong>Info!</strong> Next Button is displayed if you have atleast one Role. If it doesn't have please create.
+</div>
+</div>
+</div>
+<div class="row">
+<div id="communityNewBranch_createRoles_rolesList" class="col-xs-12 mtop15p"></div>
 </div>
 <div class="row">
 <div id="communityNewBranch_createRoles_done" align="center" class="col-xs-12 mtop15p hide-block">
-<button class="btn custom-bg" onclick="javascript:load_form_addMembers();"><b>I'm Done</b></button>
+<button class="btn custom-bg form-control" onclick="javascript:load_form_addMembers();"><b>Next</b></button>
 </div>
 </div>
 

@@ -58,6 +58,7 @@ console.log("[api_params] AUTH_USER_DOB: "+AUTH_USER_DOB);
 console.log("[api_params] AUTH_USER_COUNTRY: "+AUTH_USER_COUNTRY);
 console.log("[api_params] AUTH_USER_STATE: "+AUTH_USER_STATE);
 console.log("[api_params] AUTH_USER_LOCATION: "+AUTH_USER_LOCATION);
+console.log("[api_params] AUTH_USER_LOCALITY: "+AUTH_USER_LOCALITY);
 console.log("[api_params] AUTH_USER_PROFILEPIC: "+AUTH_USER_PROFILEPIC);
 console.log("[api_params] AUTH_USER_TIMEZONE: "+AUTH_USER_TIMEZONE);
 console.log("[api_params] AUTH_USER_SUBSCRIPTIONS_LIST: "+AUTH_USER_SUBSCRIPTIONS_LIST);

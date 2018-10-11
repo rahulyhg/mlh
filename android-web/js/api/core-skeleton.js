@@ -50,7 +50,7 @@ var content='<div align="center">';
 function build_categoryOption(category_Id){
 var industryElement=document.getElementById(category_Id);
 for(var index=industryElement.length;index>0;index--) { industryElement.remove(index); }
-js_ajax('GET',PROJECT_URL+'backend/config/english/domains/categories.json',{},function(response){
+js_ajax('GET',PROJECT_URL+'backend/config/'+USR_LANG+'/domains/categories.json',{},function(response){
  for(var domain_Id in response){
    var domainName = response[domain_Id].domainName;
    var option = document.createElement("option");
@@ -66,7 +66,7 @@ function build_subcategoryOption(category_Id,subCategory_Id){
  var subIndustryElement=document.getElementById(subCategory_Id);
  if(domain_Id.length>0){
    for(var index=subIndustryElement.length;index>0;index--) { subIndustryElement.remove(index); }
-     js_ajax('GET',PROJECT_URL+'backend/config/english/domains/categories.json',{},function(response){
+     js_ajax('GET',PROJECT_URL+'backend/config/'+USR_LANG+'/domains/categories.json',{},function(response){
        var subdomainResponse = response[domain_Id].subdomainInfo;
        for(var subdomain_Id in subdomainResponse){
          var subdomainName = subdomainResponse[subdomain_Id].subdomainName;

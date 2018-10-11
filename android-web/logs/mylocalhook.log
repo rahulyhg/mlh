@@ -12532,3 +12532,220 @@ Thursday 11th October 2018 02:38:52 PM [INFO] ::: [api.database.php]  Query(Stat
 Thursday 11th October 2018 02:38:53 PM [INFO] ::: [api.database.php]  Database connected Successfully 
 Thursday 11th October 2018 02:38:54 PM [INFO] ::: [api.database.php]  Database connected Successfully 
 Thursday 11th October 2018 02:38:54 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO user_subscription(sub_Id, user_Id, domain_Id, subdomain_Id, sub_on) SELECT * FROM (SELECT 'USRS1811912944876283216223','USR924357814934', '06-FIN', 'FIN-02-INS','2018-10-11 14:38:53') As tmp WHERE (( SELECT count(*) FROM user_subscription WHERE user_Id='USR924357814934' AND domain_Id='06-FIN' AND subdomain_Id='FIN-02-INS')=0); 
+Thursday 11th October 2018 04:04:02 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 04:04:04 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 04:04:12 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 04:04:12 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : UPDATE user_account SET  username='anups',  surName='Nellutla',  name='Anup Chakravarthi',  dob='2015-11-12',  gender='MALE',  profile_pic='http://192.168.1.4/mlh/android-web/images/avatar/3.jpg',  minlocation='Kuttanad',  location='Mavelikara',  state='Kerala',  country='India',  isAdmin='N',  user_tz='Asia/Kolkata',  acc_active='Y' WHERE user_Id='USR924357814934'; 
+Thursday 11th October 2018 04:04:13 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 04:04:18 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 04:04:19 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 04:04:19 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO user_subscription(sub_Id, user_Id, domain_Id, subdomain_Id, sub_on) SELECT * FROM (SELECT 'USRS3724667343676258199967','USR924357814934', '01-TPI', 'TPI-02-B','2018-10-11 16:04:18') As tmp WHERE (( SELECT count(*) FROM user_subscription WHERE user_Id='USR924357814934' AND domain_Id='01-TPI' AND subdomain_Id='TPI-02-B')=0); 
+Thursday 11th October 2018 04:04:20 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 04:04:21 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 04:04:21 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO user_subscription(sub_Id, user_Id, domain_Id, subdomain_Id, sub_on) SELECT * FROM (SELECT 'USRS6994152985836426925633','USR924357814934', '01-TPI', 'TPI-01-A','2018-10-11 16:04:20') As tmp WHERE (( SELECT count(*) FROM user_subscription WHERE user_Id='USR924357814934' AND domain_Id='01-TPI' AND subdomain_Id='TPI-01-A')=0); 
+Thursday 11th October 2018 04:04:22 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 04:04:23 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 04:04:23 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO user_subscription(sub_Id, user_Id, domain_Id, subdomain_Id, sub_on) SELECT * FROM (SELECT 'USRS3567791933583151976478','USR924357814934', '01-TPI', 'TPI-03-C','2018-10-11 16:04:22') As tmp WHERE (( SELECT count(*) FROM user_subscription WHERE user_Id='USR924357814934' AND domain_Id='01-TPI' AND subdomain_Id='TPI-03-C')=0); 
+Thursday 11th October 2018 04:04:24 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 04:04:25 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 04:04:25 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO user_subscription(sub_Id, user_Id, domain_Id, subdomain_Id, sub_on) SELECT * FROM (SELECT 'USRS4496511857269588583686','USR924357814934', '06-FIN', 'FIN-01-BNK','2018-10-11 16:04:24') As tmp WHERE (( SELECT count(*) FROM user_subscription WHERE user_Id='USR924357814934' AND domain_Id='06-FIN' AND subdomain_Id='FIN-01-BNK')=0); 
+Thursday 11th October 2018 04:04:26 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 04:04:27 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 04:04:27 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO user_subscription(sub_Id, user_Id, domain_Id, subdomain_Id, sub_on) SELECT * FROM (SELECT 'USRS9734137212532457989156','USR924357814934', '06-FIN', 'FIN-02-INS','2018-10-11 16:04:26') As tmp WHERE (( SELECT count(*) FROM user_subscription WHERE user_Id='USR924357814934' AND domain_Id='06-FIN' AND subdomain_Id='FIN-02-INS')=0); 
+Thursday 11th October 2018 04:12:44 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 04:12:55 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 04:12:56 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 04:13:01 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 04:13:05 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 04:13:06 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 04:13:06 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO unionprof_branch(branch_Id, union_Id, minlocation, location, state, country, createdOn, admin_Id, publicInvitation) VALUES ('UPB8127912876311237493776','UPA533731685151','Afzalpur','Gulbarga','Karnataka','India','2018-10-11 16:13:05','USR924357814934','Y'); 
+Thursday 11th October 2018 04:13:07 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 04:13:07 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO unionprof_mem_roles(role_Id, union_Id, branch_Id, roleName, updatedOn) VALUES ('UPRO689942868373429915984','UPA533731685151','UPB8127912876311237493776','Prime Minister','2018-10-11 16:13:06'); 
+Thursday 11th October 2018 04:13:08 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 04:13:09 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 04:13:09 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO unionprof_mem_perm1(permission_Id, role_Id, createABranch, createABranchNotify, updateBranchInfo, updateBranchInfoNotify, deleteBranch, deleteBranchNotify, shiftMainBranch, shiftMainBranchNotify, createRole, createRoleNotify, viewRoles, viewRoleNotify, updateRole, updateRoleNotify, deleteRole, deleteRoleNotify, requestUsersToBeMembers, requestUsersToBeMembersNotify, approveUsersToBeMembers, approveUsersToBeMembersNotify, createNewsFeedBranchLevel, createNewsFeedBranchLevelNotify, approveNewsFeedBranchLevel, approveNewsFeedBranchLevelNotify, createNewsFeedUnionLevel, createNewsFeedUnionLevelNotify, approveNewsFeedUnionLevel, approveNewsFeedUnionLevelNotify, createMovementBranchLevel, createMovementBranchLevelNotify, approveMovementBranchLevel, approveMovementBranchLevelNotify, createMovementUnionLevel, createMovementUnionLevelNotify, approveMovementUnionLevel, approveMovementUnionLevelNotify, createMovementSubDomainLevel, createMovementSubDomainLevelNotify, approveMovementSubDomainLevel, approveMovementSubDomainLevelNotify, createMovementDomainLevel, createMovementDomainLevelNotify, approveMovementDomainLevel, approveMovementDomainLevelNotify, answerUnionFAQ, answerBranchFAQ, updatedPermOn) VALUES ('UP1P235114796385299246326','UPRO689942868373429915984','Y','N','Y','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','2018-10-11 16:13:08'); 
+Thursday 11th October 2018 04:13:10 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 04:13:11 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 04:13:12 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO unionprof_mem(member_Id, union_Id, branch_Id, user_Id, cur_role_Id, prev_role_Id, roleNotify, roleUpdatedOn, memNotify, memAddedOn, memAddedBy, status) VALUES ('UPM199384686689','UPA533731685151','UPB8127912876311237493776','USR113561617186','UPRO498292772763287217419','UPRO498292772763287217419','N','2018-10-11 16:13:10','N','2018-10-11 16:13:10','USR924357814934','OFFLINE'); 
+Thursday 11th October 2018 06:51:05 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 06:51:41 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 06:59:32 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 07:04:51 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 07:06:06 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 07:06:43 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 07:09:38 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 07:14:32 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 07:15:05 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 07:15:11 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 07:19:18 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 07:29:24 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 07:29:54 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 07:52:37 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 07:52:54 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 07:53:39 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:08:30 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:18:23 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:18:53 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:19:18 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:19:50 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:20:15 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:21:07 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:24:01 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:40:03 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:41:11 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:41:42 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:44:13 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:44:33 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:45:05 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:46:24 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:46:50 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:47:01 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:47:15 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:47:22 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:47:23 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:47:24 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:47:25 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:47:26 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:47:27 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:47:28 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:47:29 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:47:30 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:47:32 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:47:33 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:48:06 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:48:32 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:48:52 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:48:53 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:48:54 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:48:55 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:48:56 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:48:57 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:48:58 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:48:59 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:49:00 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:49:01 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:49:02 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:49:05 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:49:06 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:49:07 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:49:08 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:49:09 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:49:10 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:49:11 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:49:12 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:49:13 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:49:14 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:49:17 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:49:18 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:49:19 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:49:21 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:49:22 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:49:23 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:49:56 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:49:59 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:50:01 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:52:16 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:52:39 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:53:39 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:53:45 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:53:51 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:53:52 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:53:53 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:53:54 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:53:55 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:53:57 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:53:58 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:53:59 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:54:03 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:54:04 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:54:05 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:54:07 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:54:08 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:54:09 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:54:10 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:54:11 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:54:12 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:54:13 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:54:14 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:54:15 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:56:52 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:57:15 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:58:46 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 08:59:11 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 09:01:20 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 09:01:51 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 09:06:07 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 09:11:10 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 09:11:38 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 09:13:00 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 09:13:32 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 09:14:32 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 09:14:52 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 09:15:14 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 09:59:53 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:01:02 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:03:01 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:03:09 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:03:23 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:03:27 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:03:56 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:04:14 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:04:56 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:05:23 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:05:30 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:05:32 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:09:07 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:09:56 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:09:57 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:10:04 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:10:09 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:10:14 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:10:15 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:10:15 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO unionprof_account(union_Id, domain_Id, subdomain_Id, main_branch_Id, unionName, aboutUnion, profile_pic, created_On, admin_Id, issue01, issue02, issue03, issue04, issue05, issue06, issue07, issue08, issue09, issue10)  VALUES ('','01-TPI','TPI-02-B','UPB9732327521996372851376','QWERTTsd','dwefwef','https://res.cloudinary.com/dbcyhclaw/image/upload/x_26,y_54,w_540,h_540,z_0.1667,c_crop/v1539275958/143188_thumb_665_ufslq2.jpg','2018-10-11 22:10:14','USR924357814934','de','dqwde','dqwd','','','','','','',''); 
+Thursday 11th October 2018 10:11:18 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:11:19 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:11:20 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO unionprof_account(union_Id, domain_Id, subdomain_Id, main_branch_Id, unionName, aboutUnion, profile_pic, created_On, admin_Id, issue01, issue02, issue03, issue04, issue05, issue06, issue07, issue08, issue09, issue10)  VALUES ('','01-TPI','TPI-02-B','UPB5171375781634165572122','QWERTTsd','dwefwef','https://res.cloudinary.com/dbcyhclaw/image/upload/x_26,y_54,w_540,h_540,z_0.1667,c_crop/v1539275958/143188_thumb_665_ufslq2.jpg','2018-10-11 22:11:18','USR924357814934','de','dqwde','dqwd','','','','','','',''); 
+Thursday 11th October 2018 10:11:21 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:11:21 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO unionprof_branch(branch_Id, union_Id, minlocation, location, state, country, createdOn, admin_Id, publicInvitation) VALUES ('UPB5171375781634165572122','','Hayuliang','Arunachal East','Arunachal Pradesh','India','2018-10-11 22:11:20','USR924357814934','Y'); 
+Thursday 11th October 2018 10:11:22 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:11:22 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO unionprof_mem_roles(role_Id, union_Id, branch_Id, roleName, updatedOn) VALUES ('UPRO317692746623218425175','','UPB5171375781634165572122','ewfef','2018-10-11 22:11:21'); 
+Thursday 11th October 2018 10:11:23 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:11:24 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:11:24 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO unionprof_mem_perm1(permission_Id, role_Id, createABranch, createABranchNotify, updateBranchInfo, updateBranchInfoNotify, deleteBranch, deleteBranchNotify, shiftMainBranch, shiftMainBranchNotify, createRole, createRoleNotify, viewRoles, viewRoleNotify, updateRole, updateRoleNotify, deleteRole, deleteRoleNotify, requestUsersToBeMembers, requestUsersToBeMembersNotify, approveUsersToBeMembers, approveUsersToBeMembersNotify, createNewsFeedBranchLevel, createNewsFeedBranchLevelNotify, approveNewsFeedBranchLevel, approveNewsFeedBranchLevelNotify, createNewsFeedUnionLevel, createNewsFeedUnionLevelNotify, approveNewsFeedUnionLevel, approveNewsFeedUnionLevelNotify, createMovementBranchLevel, createMovementBranchLevelNotify, approveMovementBranchLevel, approveMovementBranchLevelNotify, createMovementUnionLevel, createMovementUnionLevelNotify, approveMovementUnionLevel, approveMovementUnionLevelNotify, createMovementSubDomainLevel, createMovementSubDomainLevelNotify, approveMovementSubDomainLevel, approveMovementSubDomainLevelNotify, createMovementDomainLevel, createMovementDomainLevelNotify, approveMovementDomainLevel, approveMovementDomainLevelNotify, answerUnionFAQ, answerBranchFAQ, updatedPermOn) VALUES ('UP1P872129478957497451545','UPRO317692746623218425175','Y','N','Y','N','Y','N','Y','N','Y','N','Y','N','Y','N','Y','N','Y','N','Y','N','Y','N','Y','N','Y','N','Y','N','Y','N','Y','N','Y','N','Y','N','Y','N','Y','N','Y','N','Y','N','N','N','2018-10-11 22:11:23'); 
+Thursday 11th October 2018 10:11:25 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:11:25 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO unionprof_mem_roles(role_Id, union_Id, branch_Id, roleName, updatedOn) VALUES ('UPRO636751878871593632681','','UPB5171375781634165572122','Members','2018-10-11 22:11:24'); 
+Thursday 11th October 2018 10:11:26 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:11:27 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:11:27 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO unionprof_mem_perm1(permission_Id, role_Id, createABranch, createABranchNotify, updateBranchInfo, updateBranchInfoNotify, deleteBranch, deleteBranchNotify, shiftMainBranch, shiftMainBranchNotify, createRole, createRoleNotify, viewRoles, viewRoleNotify, updateRole, updateRoleNotify, deleteRole, deleteRoleNotify, requestUsersToBeMembers, requestUsersToBeMembersNotify, approveUsersToBeMembers, approveUsersToBeMembersNotify, createNewsFeedBranchLevel, createNewsFeedBranchLevelNotify, approveNewsFeedBranchLevel, approveNewsFeedBranchLevelNotify, createNewsFeedUnionLevel, createNewsFeedUnionLevelNotify, approveNewsFeedUnionLevel, approveNewsFeedUnionLevelNotify, createMovementBranchLevel, createMovementBranchLevelNotify, approveMovementBranchLevel, approveMovementBranchLevelNotify, createMovementUnionLevel, createMovementUnionLevelNotify, approveMovementUnionLevel, approveMovementUnionLevelNotify, createMovementSubDomainLevel, createMovementSubDomainLevelNotify, approveMovementSubDomainLevel, approveMovementSubDomainLevelNotify, createMovementDomainLevel, createMovementDomainLevelNotify, approveMovementDomainLevel, approveMovementDomainLevelNotify, answerUnionFAQ, answerBranchFAQ, updatedPermOn) VALUES ('UP1P799487849835999841932','UPRO636751878871593632681','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','2018-10-11 22:11:26'); 
+Thursday 11th October 2018 10:11:28 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:11:29 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:11:30 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO unionprof_mem(member_Id, union_Id, branch_Id, user_Id, cur_role_Id, prev_role_Id, roleNotify, roleUpdatedOn, memNotify, memAddedOn, memAddedBy, status) VALUES ('UPM934859735689','','UPB5171375781634165572122','USR113561617186','UPRO678719917129359399365','UPRO678719917129359399365','N','2018-10-11 22:11:28','N','2018-10-11 22:11:28','USR924357814934','OFFLINE'); 
+Thursday 11th October 2018 10:11:31 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:11:32 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:11:32 PM [INFO] ::: [api.database.php]  Query(Status-ERROR) : INSERT INTO unionprof_mem(member_Id, union_Id, branch_Id, user_Id, cur_role_Id, prev_role_Id, roleNotify, roleUpdatedOn, memNotify, memAddedOn, memAddedBy, status) VALUES ('UPM876938268341','','UPB5171375781634165572122','','UPRO317692746623218425175','UPRO317692746623218425175','N','2018-10-11 22:11:31','N','2018-10-11 22:11:31','USR924357814934','OFFLINE'); 
+Thursday 11th October 2018 10:14:12 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:14:21 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:14:22 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:14:29 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:14:35 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:14:41 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:14:42 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:14:42 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO unionprof_account(union_Id, domain_Id, subdomain_Id, main_branch_Id, unionName, aboutUnion, profile_pic, created_On, admin_Id, issue01, issue02, issue03, issue04, issue05, issue06, issue07, issue08, issue09, issue10)  VALUES ('UPA873688117434','02-EDU','EDU-01-STUDTCHR','UPB7752639117566432959353','qwded','wewf','https://res.cloudinary.com/dbcyhclaw/image/upload/x_26,y_60,w_540,h_540,z_0.1667,c_crop/v1539276240/143188_thumb_665_kjzi1w.jpg','2018-10-11 22:14:41','USR924357814934','qded','qwdwd','dqwd','','','','','','',''); 
+Thursday 11th October 2018 10:14:43 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:14:44 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO unionprof_branch(branch_Id, union_Id, minlocation, location, state, country, createdOn, admin_Id, publicInvitation) VALUES ('UPB7752639117566432959353','UPA873688117434','Mummidivaram','Amalapuram','Andhra Pradesh','India','2018-10-11 22:14:42','USR924357814934','Y'); 
+Thursday 11th October 2018 10:14:45 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:14:45 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO unionprof_mem_roles(role_Id, union_Id, branch_Id, roleName, updatedOn) VALUES ('UPRO688294816694255358171','UPA873688117434','UPB7752639117566432959353','qwdqd','2018-10-11 22:14:44'); 
+Thursday 11th October 2018 10:14:46 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:14:47 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:14:47 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO unionprof_mem_perm1(permission_Id, role_Id, createABranch, createABranchNotify, updateBranchInfo, updateBranchInfoNotify, deleteBranch, deleteBranchNotify, shiftMainBranch, shiftMainBranchNotify, createRole, createRoleNotify, viewRoles, viewRoleNotify, updateRole, updateRoleNotify, deleteRole, deleteRoleNotify, requestUsersToBeMembers, requestUsersToBeMembersNotify, approveUsersToBeMembers, approveUsersToBeMembersNotify, createNewsFeedBranchLevel, createNewsFeedBranchLevelNotify, approveNewsFeedBranchLevel, approveNewsFeedBranchLevelNotify, createNewsFeedUnionLevel, createNewsFeedUnionLevelNotify, approveNewsFeedUnionLevel, approveNewsFeedUnionLevelNotify, createMovementBranchLevel, createMovementBranchLevelNotify, approveMovementBranchLevel, approveMovementBranchLevelNotify, createMovementUnionLevel, createMovementUnionLevelNotify, approveMovementUnionLevel, approveMovementUnionLevelNotify, createMovementSubDomainLevel, createMovementSubDomainLevelNotify, approveMovementSubDomainLevel, approveMovementSubDomainLevelNotify, createMovementDomainLevel, createMovementDomainLevelNotify, approveMovementDomainLevel, approveMovementDomainLevelNotify, answerUnionFAQ, answerBranchFAQ, updatedPermOn) VALUES ('UP1P522876265856564379659','UPRO688294816694255358171','Y','N','Y','N','Y','N','Y','N','Y','N','Y','N','Y','N','Y','N','Y','N','Y','N','Y','N','Y','N','Y','N','Y','N','Y','N','Y','N','Y','N','Y','N','Y','N','Y','N','Y','N','Y','N','N','N','2018-10-11 22:14:46'); 
+Thursday 11th October 2018 10:14:48 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:14:48 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO unionprof_mem_roles(role_Id, union_Id, branch_Id, roleName, updatedOn) VALUES ('UPRO617941754347952259874','UPA873688117434','UPB7752639117566432959353','Members','2018-10-11 22:14:47'); 
+Thursday 11th October 2018 10:14:49 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:14:50 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:14:50 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO unionprof_mem_perm1(permission_Id, role_Id, createABranch, createABranchNotify, updateBranchInfo, updateBranchInfoNotify, deleteBranch, deleteBranchNotify, shiftMainBranch, shiftMainBranchNotify, createRole, createRoleNotify, viewRoles, viewRoleNotify, updateRole, updateRoleNotify, deleteRole, deleteRoleNotify, requestUsersToBeMembers, requestUsersToBeMembersNotify, approveUsersToBeMembers, approveUsersToBeMembersNotify, createNewsFeedBranchLevel, createNewsFeedBranchLevelNotify, approveNewsFeedBranchLevel, approveNewsFeedBranchLevelNotify, createNewsFeedUnionLevel, createNewsFeedUnionLevelNotify, approveNewsFeedUnionLevel, approveNewsFeedUnionLevelNotify, createMovementBranchLevel, createMovementBranchLevelNotify, approveMovementBranchLevel, approveMovementBranchLevelNotify, createMovementUnionLevel, createMovementUnionLevelNotify, approveMovementUnionLevel, approveMovementUnionLevelNotify, createMovementSubDomainLevel, createMovementSubDomainLevelNotify, approveMovementSubDomainLevel, approveMovementSubDomainLevelNotify, createMovementDomainLevel, createMovementDomainLevelNotify, approveMovementDomainLevel, approveMovementDomainLevelNotify, answerUnionFAQ, answerBranchFAQ, updatedPermOn) VALUES ('UP1P878334312126556431165','UPRO617941754347952259874','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','2018-10-11 22:14:49'); 
+Thursday 11th October 2018 10:14:51 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:14:52 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:14:52 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO unionprof_mem(member_Id, union_Id, branch_Id, user_Id, cur_role_Id, prev_role_Id, roleNotify, roleUpdatedOn, memNotify, memAddedOn, memAddedBy, status) VALUES ('UPM647952986388','UPA873688117434','UPB7752639117566432959353','USR113561617186','UPRO488789533439639497272','UPRO488789533439639497272','N','2018-10-11 22:14:51','N','2018-10-11 22:14:51','USR924357814934','OFFLINE'); 
+Thursday 11th October 2018 10:14:53 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:14:54 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Thursday 11th October 2018 10:14:54 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO unionprof_mem(member_Id, union_Id, branch_Id, user_Id, cur_role_Id, prev_role_Id, roleNotify, roleUpdatedOn, memNotify, memAddedOn, memAddedBy, status) VALUES ('UPM225329598998','UPA873688117434','UPB7752639117566432959353','USR924357814934','UPRO688294816694255358171','UPRO688294816694255358171','N','2018-10-11 22:14:53','N','2018-10-11 22:14:53','USR924357814934','OFFLINE'); 

@@ -5,7 +5,7 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <title>Create New Branch</title>
+ <title>Create Community</title>
  <meta charset="utf-8">
  <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="shortcut icon" type="image/x-icon" href="<?php echo $_SESSION["PROJECT_URL"]; ?>images/favicon.ico"/>
@@ -26,11 +26,14 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
  <script type="text/javascript" src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/jquery.easy-autocomplete.min.js"></script>
  <link rel="stylesheet" href="<?php echo $_SESSION["PROJECT_URL"]; ?>styles/api/hz-scrollableTabs.css">
  <?php include_once 'templates/api/api_js.php'; ?>
- <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/app-community-profile-createNewBranch.js"></script>
- <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/app-community-profile-createNewBranch-bg-styles.js"></script>
+ <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/app-community-profile-createUnion.js"></script>
+ <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/app-community-profile-createUnion-bg-styles.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/ui-templates.js"></script>
  <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
  <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+ <script type="text/javascript" src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/summernote.js"></script>
+ <script type="text/javascript" src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/file-upload.js"></script>
+ <script type="text/javascript" src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/croppie.js"></script>
  <script type="text/javascript">
  var UNION_ID='<?php if(isset($_GET["1"])) { echo $_GET["1"]; } ?>';
  </script>
@@ -40,11 +43,11 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
  <?php include_once 'templates/api/api_header_simple.php'; ?>
  <div class="list-group" style="margin-bottom:0px;">
  <div align="center" class="list-group-item" style="background-color:#f5f5f5;">
- <h5 class="uppercase"><b>Create New Branch</b></h5>
+ <h5 class="uppercase"><b>Create New Community</b></h5>
  </div>
  </div>
 
-<div class="container-fluid mbot15p">
+<div class="container-fluid">
  <div class="scroller-divison row">
   <div class="scroller scroller-left col-xs-1" style="height:41px;">
     <i class="glyphicon glyphicon-chevron-left"></i>
@@ -56,15 +59,19 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
  </div>
 </div>
 
+<div id="createCommunityDisplayDivision" class="container-fluid hide-block">
+<?php include_once 'templates/pages/app-community-profile/community-createCommunity-profile.php'; ?>
+</div>
+
 <div id="branchInformationDisplayDivision" class="container-fluid mtop15p hide-block">
-<?php include_once 'templates/pages/app-community-profile/community-createNewBranch-branchInformation.php'; ?>
+<?php include_once 'templates/pages/app-community-profile/community-createCommunity-branchInformation.php'; ?>
 </div>
 
 <div id="createRolesDisplayDivision" class="container-fluid mtop15p hide-block">
-<?php include_once 'templates/pages/app-community-profile/community-createNewBranch-createRoles.php'; ?>
+<?php include_once 'templates/pages/app-community-profile/community-createCommunity-createRoles.php'; ?>
 </div>
 <div id="addMembersDisplayDivision" class="container-fluid mtop15p hide-block">
-<?php include_once 'templates/pages/app-community-profile/community-createNewBranch-addMembers.php'; ?>
+<?php include_once 'templates/pages/app-community-profile/community-createCommunity-addMembers.php'; ?>
 </div>
 
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/hz-scrollableTabs.js"></script>

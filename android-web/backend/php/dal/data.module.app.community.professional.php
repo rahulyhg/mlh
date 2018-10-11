@@ -5,6 +5,20 @@ class ProfessionalCommunity {
  /************************************************ COMMUNITY ***************************************************************/
  /**************************************************************************************************************************/
 
+  function query_createCommunity($union_Id,$domain_Id,$subdomain_Id,$main_branch_Id,$unionName,$aboutUnion,
+								$profile_pic, $admin_Id, $issue01, $issue02, $issue03, $issue04, $issue05, $issue06, 
+								$issue07, $issue08, $issue09, $issue10){
+ /* FUNCTION DESCRIPTION : This Function is used to Create Community
+  * PAGES UTILIZED :  
+  */
+  $sql="INSERT INTO unionprof_account(union_Id, domain_Id, subdomain_Id, main_branch_Id, unionName, aboutUnion, profile_pic, ";
+  $sql.="created_On, admin_Id, issue01, issue02, issue03, issue04, issue05, issue06, issue07, issue08, issue09, issue10) ";
+  $sql.=" VALUES ('".$union_Id."','".$domain_Id."','".$subdomain_Id."','".$main_branch_Id."','".$unionName."','";
+  $sql.=$aboutUnion."','".$profile_pic."','".date('Y-m-d H:i:s')."','".$admin_Id."','".$issue01."','".$issue02;
+  $sql.="','".$issue03."','".$issue04."','".$issue05."','".$issue06."','".$issue07."','".$issue08."','".$issue09;
+  $sql.="','".$issue10."');";
+  return $sql;
+ }
  
  function query_getCommunityProfileData($union_Id){
   // unionprof_account  unionprof_branch  unionprof_mem  unionprof_mem_perm  unionprof_mem_req  unionprof_mem_roles
@@ -118,19 +132,6 @@ class ProfessionalCommunity {
   return $sql;
  }
  
- // 
- 
- 
- function query_createCommunity($union_Id,$domain_Id,$subdomain_Id,$main_branch_Id,$unionName,$unionURLName,$aboutUnion,
-								$profile_pic, $admin_Id){
- /* FUNCTION DESCRIPTION : This Function is used to Create Community
-  * PAGES UTILIZED :  
-  */
-  $sql="INSERT INTO unionprof_account(union_Id, domain_Id, subdomain_Id, main_branch_Id, unionName, unionURLName, aboutUnion,";
-  $sql.="profile_pic, created_On, admin_Id) VALUES ('".$union_Id."','".$domain_Id."','".$subdomain_Id."','";
-  $sql.=$main_branch_Id."','".$unionName."','".$unionURLName."','".$aboutUnion."','".$profile_pic."','".date('Y-m-d H:i:s')."','".$admin_Id."');";
-  return $sql;
- }
  
  function query_updateCommunityData($union_Id,$domain_Id,$subdomain_Id,$main_branch_Id,$unionName,
 				$unionURLName,$profile_pic, $admin_Id){
@@ -153,17 +154,7 @@ class ProfessionalCommunity {
  /**************************************************************************************************************************/
  /************************************************ COMMUNITY BRANCH ********************************************************/
  /**************************************************************************************************************************/
- 
- function query_createCommunityBranch($branch_Id, $union_Id, $minlocation, $location, $state, $country){
- /* FUNCTION DESCRIPTION : This Function is used to create Community Branch
-  * PAGES UTILIZED :
-  */
-   $sql="INSERT INTO unionprof_branch(branch_Id, union_Id, minlocation, location, state, country, createdOn) ";
-   $sql.="VALUES ('".$branch_Id."','".$union_Id."','".$minlocation."','".$location."','".$state."','".$country;
-   $sql.="','".date('Y-m-d H:i:s')."');";
-   return $sql;
- }
- 
+
  function query_updateBranchData($branch_Id,$union_Id,$minlocation,$location,$state, $country){
  /* FUNCTION DESCRIPTION : This Function is used to Update the Details of Existing Branch in a Community
   * PAGES UTILIZED :  
@@ -201,16 +192,7 @@ class ProfessionalCommunity {
  /**************************************************************************************************************************/
  /******************************************* COMMUNITY BRANCH MEMBER ROLES ************************************************/
  /**************************************************************************************************************************/
- 
- function query_createMemberRoles($role_Id, $union_Id, $branch_Id, $roleName){
- /* FUNCTION DESCRIPTION : This Function creates Member Roles in a Branch of a Community.
-  * PAGES UTILIZED : 
-  */
-  $sql="INSERT INTO unionprof_mem_roles(role_Id, union_Id, branch_Id, roleName) ";
-  $sql.="VALUES ('".$role_Id."','".$union_Id."','".$branch_Id."','".$roleName."');";
-  return $sql;
- }
- 
+
  function query_updateMemberRoles($role_Id,$roleName){
  /* FUNCTION DESCRIPTION : This Function is used to update Member Roles in a Branch of a Community.
   * PAGES UTILIZED : 
@@ -246,66 +228,6 @@ class ProfessionalCommunity {
   $sql.="LIMIT ".$limit_start.",".$limit_end;
   return $sql;
  }
- 
- /**************************************************************************************************************************/
- /******************************************* COMMUNITY MEMBERS ************************************************************/
- /**************************************************************************************************************************/
- function query_createCommunityMember($member_Id, $union_Id, $branch_Id, $user_Id, $role_Id, $status, 
-				$permUnion, $permBranch){
- $sql="INSERT INTO unionprof_mem(member_Id, union_Id, branch_Id, user_Id, role_Id, addedOn, status, permUnion, permBranch) ";
- $sql.="VALUES ('".$member_Id."','".$union_Id."','".$branch_Id."','".$user_Id."','".$role_Id."','".date('Y-m-d H:i:s');
- $sql.="','".$status."','".$permUnion."','".$permBranch."');";
- return $sql;
- }
- 
- 
- /**************************************************************************************************************************/
- /******************************************* COMMUNITY PERMISSIONS ********************************************************/
- /**************************************************************************************************************************/
- 
- function query_createUnionPermissions($union_permission_Id, $role_Id, $createABranch, $updateBranchInfo, 
-   $deleteBranch, $shiftMainBranch, $createNewsFeedUnionLevel, $approveNewsFeedUnionLevel, $createMovementUnionLevel, 
-   $approveMovementUnionLevel, $createMovementsubdomainLevel, $approveMovementsubdomainLevel){
-   $sql="INSERT INTO unionprof_mem_perm_union(union_permission_Id, role_Id, createABranch, updateBranchInfo, ";
-   $sql.="deleteBranch, shiftMainBranch, createNewsFeedUnionLevel, approveNewsFeedUnionLevel, createMovementUnionLevel, ";
-   $sql.="approveMovementUnionLevel, createMovementsubdomainLevel, approveMovementsubdomainLevel) ";
-   $sql.="VALUES ('".$union_permission_Id."','".$role_Id."','".$createABranch."','".$updateBranchInfo."','";
-   $sql.=$deleteBranch."','".$shiftMainBranch."','".$createNewsFeedUnionLevel."','".$approveNewsFeedUnionLevel;
-   $sql.="','".$createMovementUnionLevel."','".$approveMovementUnionLevel."','".$createMovementsubdomainLevel."','";
-   $sql.=$approveMovementsubdomainLevel."');";
-   return $sql;
- }
- 
- /**************************************************************************************************************************/
- /******************************************* COMMUNITY BRANCH PERMISSIONS ********************************************************/
- /**************************************************************************************************************************/
- 
- function query_createProfUnionPermissions($permission_Id, $role_Id, $createABranch, 
-    $updateBranchInfo, $deleteBranch, $shiftMainBranch, $createRole, $updateRole, $deleteRole,
-    $requestUsersToBeMembers, $approveUsersToBeMembers, $createNewsFeedBranchLevel, $approveNewsFeedBranchLevel,
-	$createNewsFeedUnionLevel, $approveNewsFeedUnionLevel, $createMovementBranchLevel, $approveMovementBranchLevel,
-	$createMovementUnionLevel, $approveMovementUnionLevel, $createMovementSubDomainLevel, $approveMovementSubDomainLevel,
-	$createMovementDomainLevel, $approveMovementDomainLevel){
-   $sql="INSERT INTO unionprof_mem_perm_branch(permission_Id, role_Id, createABranch, updateBranchInfo, deleteBranch, "; 
-   $sql.="shiftMainBranch, createRole, updateRole, DeleteRole, requestUsersToBeMembers, approveUsersToBeMembers, ";
-   $sql.="createNewsFeedBranchLevel, approveNewsFeedBranchLevel, createNewsFeedUnionLevel, approveNewsFeedUnionLevel, ";
-   $sql.=" createMovementBranchLevel, approveMovementBranchLevel, createMovementUnionLevel, approveMovementUnionLevel,";
-   $sql.=" createMovementSubDomainLevel, approveMovementSubDomainLevel, createMovementDomainLevel, "; 
-   $sql.="approveMovementDomainLevel) ";
-   $sql.="VALUES ('".$permission_Id."','".$role_Id."','".$createABranch."','".$updateBranchInfo."','".$deleteBranch."','";
-   $sql.=$shiftMainBranch."','".$createRole."','".$updateRole."','".$deleteRole."','";
-   $sql.=$requestUsersToBeMembers."','".$approveUsersToBeMembers."','".$createNewsFeedBranchLevel."','";
-   $sql.=$approveNewsFeedBranchLevel."','".$createNewsFeedUnionLevel."','".$approveNewsFeedUnionLevel."','";
-   $sql.=$createMovementBranchLevel."','".$approveMovementBranchLevel."','".$createMovementUnionLevel."','";
-   $sql.=$approveMovementUnionLevel."','".$createMovementSubDomainLevel."','".$approveMovementSubDomainLevel."','";
-   $sql.=$createMovementDomainLevel."','".$approveMovementDomainLevel."');";
-   return $sql;
- }
-   
-  
-   
-  
-  
  
 }
 

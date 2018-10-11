@@ -9,11 +9,12 @@ $logger=Logger::getLogger("controller.module.app.community.professional.branch.p
 
 if(isset($_GET["action"])){
  if($_GET["action"]==='CREATE_PROFESSIONAL_BRANCH'){
-   if(isset($_GET["union_Id"]) && isset($_GET["country"]) && isset($_GET["state"]) && isset($_GET["location"]) && 
-      isset($_GET["minlocation"]) && isset($_GET["roleInfo"]) && isset($_GET["members"]) && isset($_GET["admin_Id"])){
+   if(isset($_GET["union_Id"]) && isset($_GET["branch_Id"]) && isset($_GET["country"]) && isset($_GET["state"]) 
+	  && isset($_GET["location"]) &&  isset($_GET["minlocation"]) && isset($_GET["roleInfo"]) && isset($_GET["members"]) 
+	  && isset($_GET["admin_Id"])){
 	$identity = new Identity();
-    $branch_Id = $identity->unionprof_branch_id();
 	$union_Id = $_GET["union_Id"];
+    $branch_Id = $_GET["branch_Id"];
 	$country = $_GET["country"];
 	$state = $_GET["state"];
 	$location = $_GET["location"];

@@ -34,5 +34,7 @@
   "W033": { "english":"Please Select Course Start Month."},
   "W034": { "english":"Please Select Course End Month."},
   "W035": { "english":"Missing RoleName"},
-  "W036": { "english":"You missed selecting a RoleTitle for one of the Member."}
+  "W036": { "english":"You missed selecting a RoleTitle for one of the Member."},
+  "W037": { "english":"Missing Objectives of the Community. Please Mention Atleast three Objectives of your Community."},
+  "W038": { "english":"You are already the Member of the Community." }
 }
