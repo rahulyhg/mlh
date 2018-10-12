@@ -1,5 +1,25 @@
 <?php
 class Newsfeed {
+  function query_count_listOfUnionBranchesWithCreateNewsFeedPerm($user_Id){
+   $sql="SELECT count(*) FROM unionprof_mem, unionprof_mem_perm1, unionprof_account, unionprof_branch ";
+   $sql.="WHERE unionprof_mem.user_Id='".$user_Id."' AND unionprof_mem.branch_Id = unionprof_branch.branch_Id AND ";
+   $sql.="unionprof_mem_perm1.role_Id = unionprof_mem.cur_role_Id  AND unionprof_account.union_Id = unionprof_branch.union_Id ";
+   $sql.=" AND (createNewsFeedUnionLevel='Y' OR createNewsFeedBranchLevel='Y') ORDER BY unionprof_account.unionName ASC;";
+   return $sql;
+  }
+  function query_data_listOfUnionBranchesWithCreateNewsFeedPerm($user_Id, $limit_start, $limit_end){
+    $sql="SELECT unionprof_account.unionName, unionprof_account.profile_pic, unionprof_mem.union_Id, unionprof_mem.branch_Id, ";
+	$sql.="unionprof_branch.minlocation, unionprof_branch.location, unionprof_branch.state, unionprof_branch.country, ";
+	$sql.="unionprof_mem_perm1.createNewsFeedUnionLevel, unionprof_mem_perm1.createNewsFeedBranchLevel, ";
+	$sql.="unionprof_mem_perm1.approveNewsFeedUnionLevel,  unionprof_mem_perm1.approveNewsFeedBranchLevel ";
+	$sql.="FROM unionprof_mem, unionprof_mem_perm1, unionprof_account, unionprof_branch ";
+	$sql.="WHERE unionprof_mem.user_Id='".$user_Id."' AND unionprof_mem.branch_Id = unionprof_branch.branch_Id AND ";
+	$sql.="unionprof_mem_perm1.role_Id = unionprof_mem.cur_role_Id  AND unionprof_account.union_Id = unionprof_branch.union_Id ";
+	$sql.=" AND (createNewsFeedUnionLevel='Y' OR createNewsFeedBranchLevel='Y') ";
+	$sql.=" ORDER BY unionprof_account.unionName ASC LIMIT ".$limit_start.",".$limit_end;
+   return $sql;
+  }
+  
   function query_count_listOfAvailCommunitiesAndBranchesToWriteNewsFeed($user_Id){
   /* FUNCTION DESCRIPTION : This Function is used to provide list of Available Communities and their Branches
    *						to Write NewsFeed.

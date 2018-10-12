@@ -177,3 +177,28 @@
 .cr-rotate-r i:before {
     content: '↻';
 }
+
+@media screen and (min-width: 1280px) { 
+ #fileupload-loader { position:fixed;width:100px;height:100px;display:none;z-index:2000; }
+ #fileupload-loader { margin-left:42%;margin-top:12%; }
+}
+@media (min-width: 1025px) and (max-width: 1280px) { 
+ #fileupload-loader  { position:fixed;width:100px;height:100px;display:none;z-index:2000; }
+ #fileupload-loader { margin-left:42%;margin-top:12%; }
+}
+@media (min-width: 768px) and (max-width: 1024px) { 
+ #fileupload-loader  { position:fixed;width:100px;height:100px;display:none;z-index:2000; }
+ #fileupload-loader  { margin-left:42%;margin-top:20%; }
+}
+@media (min-width: 481px) and (max-width: 767px) { 
+ #fileupload-loader { position:fixed;width:100px;height:100px;display:none;z-index:2000; }
+ #fileupload-loader { margin-left:36%;margin-top:25%; }
+}
+@media (min-width: 325px) and (max-width: 480px) {
+ #fileupload-loader  { position:fixed;width:150px;height:150px;display:none;z-index:2000; }
+ #fileupload-loader { margin-left:25%;margin-top:30%; }
+}
+@media (min-width: 290px) and (max-width: 324px) {
+ #fileupload-loader { position:fixed;width:100px;height:100px;display:none;z-index:2000; }
+ #fileupload-loader  { margin-left:24%;margin-top:30%; }
+}

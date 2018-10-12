@@ -17,7 +17,7 @@
 }
 @media (min-width: 325px) and (max-width: 480px) {
  #mlh-loader { position:fixed;width:150px;height:150px;display:none;z-index:2000; }
- #mlh-loader { margin-left:33%;margin-top:40%; }
+ #mlh-loader {  margin-left:25%;margin-top:30%; }
 }
 @media (min-width: 290px) and (max-width: 324px) {
  #mlh-loader { position:fixed;width:100px;height:100px;display:none;z-index:2000; }

@@ -1,6 +1,9 @@
 function upload_picture_100X100_WithNext(div_Id,img_src,nextBtnId){ /* Profile pic - 100px X 100px */
 IMG_URL='';
 var content='<div>';
+    content+='<img id="fileupload-loader" src="'+PROJECT_URL+'images/load.gif" style="display:none;"/>';
+    content+='</div>';
+    content+='<div>';
     content+='<input type="file" id="p100X100_fileElem" accept="image/*" ';
 	content+='onchange="handleFiles(this.id,\'p100X100_div_cropping\',\'p100X100-img-crop\'';
 	content+=',this.files,\'p100X100_fileSelect\',\'p100X100_pic_done\',90,90,100,100,\'circle\')">';
@@ -27,7 +30,10 @@ var content='<div>';
 
 function upload_picture_100X100(div_Id,img_src){ /* Profile pic - 100px X 100px */
 IMG_URL='';
-var content='<div align="center">';
+var content='<div>';
+    content+='<img id="fileupload-loader" src="'+PROJECT_URL+'images/load.gif" style="display:none;"/>';
+    content+='</div>';
+    content+='<div align="center">';
     content+='<input type="file" id="p100X100_fileElem" accept="image/*" ';
 	content+='onchange="handleFiles(this.id,\'p100X100_div_cropping\',\'p100X100-img-crop\'';
 	content+=',this.files,\'p100X100_fileSelect\',\'p100X100_pic_done\',90,90,100,100,\'circle\')">';
@@ -40,6 +46,30 @@ var content='<div align="center">';
 	content+=' style="background-color:#fff;color:'+CURRENT_DARK_COLOR+';font-weight: bold;';
 	content+=' margin-top:15px;" ';
 	content+='onclick="javascript:upload_picture_100X100(\''+div_Id+'\',\''+img_src+'\');">';
+	content+='<b>Edit Picture</b>';
+	content+='</button>';
+	content+='</div>';
+ document.getElementById(div_Id).innerHTML=content;
+}
+
+function upload_picture_900X300(div_Id,img_src){ /* Profile pic - 100px X 100px */
+IMG_URL='';
+var content='<div>';
+    content+='<img id="fileupload-loader" src="'+PROJECT_URL+'images/load.gif" style="display:none;"/>';
+    content+='</div>';
+    content+='<div align="center">';
+    content+='<input type="file" id="p900X300_fileElem" accept="image/*" ';
+	content+='onchange="handleFiles(this.id,\'p900X300_div_cropping\',\'p900X300-img-crop\'';
+	content+=',this.files,\'p900X300_fileSelect\',\'p900X300_pic_done\',300,150,300,150,\'square\')">';
+	content+='<img id="p900X300_fileSelect" class="mtop15p mbot15p" style="width:100%;height:auto;"';
+	content+='src="'+img_src+'" ';
+	content+='onclick="javascript:imgClick(\'p900X300_fileElem\');"/>';
+	content+='<div id="p900X300-img-crop" class="mtop15px"></div>';
+	content+='<div id="p900X300_div_cropping" align="center"></div>';
+	content+='<button id="p900X300_pic_done" align="center" class="col-md-12 btn btn-default custom-font" ';
+	content+=' style="background-color:#fff;color:'+CURRENT_DARK_COLOR+';font-weight: bold;';
+	content+=' margin-top:15px;display:none;" ';
+	content+='onclick="javascript:upload_picture_900X300(\''+div_Id+'\',\''+img_src+'\');">';
 	content+='<b>Edit Picture</b>';
 	content+='</button>';
 	content+='</div>';

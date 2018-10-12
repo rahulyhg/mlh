@@ -2,6 +2,7 @@
 session_start();
 require_once '../api/app.initiator.php';
 require_once '../api/app.database.php';
+require_once '../api/app.utils.php';
 require_once '../dal/data.module.app.community.professional.branch.php';
 require_once '../lal/logic.appIdentity.php';
 
@@ -10,8 +11,10 @@ $logger=Logger::getLogger("controller.module.app.community.professional.branch.p
 if(isset($_GET["action"])){
  if($_GET["action"]==='CREATE_PROFESSIONAL_BRANCH'){
    if(isset($_GET["union_Id"]) && isset($_GET["branch_Id"]) && isset($_GET["country"]) && isset($_GET["state"]) 
-	  && isset($_GET["location"]) &&  isset($_GET["minlocation"]) && isset($_GET["roleInfo"]) && isset($_GET["members"]) 
-	  && isset($_GET["admin_Id"])){
+	  && isset($_GET["location"]) &&  isset($_GET["minlocation"]) && isset($_GET["roleInfo"]) 
+	  && isset($_GET["members"]) && isset($_GET["members_req"]) && isset($_GET["admin_Id"]) && isset($_GET["memOrBranchReqId"])){
+	$professionalCommunityBranch = new ProfessionalCommunityBranch();
+	$dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
 	$identity = new Identity();
 	$union_Id = $_GET["union_Id"];
     $branch_Id = $_GET["branch_Id"];
@@ -21,15 +24,18 @@ if(isset($_GET["action"])){
 	$minlocation = $_GET["minlocation"];
 	$admin_Id = $_GET["admin_Id"];
     $publicInvitation = 'Y';
-	/* Create Branch Information */
-	$professionalCommunityBranch = new ProfessionalCommunityBranch();
-	$query01 = $professionalCommunityBranch->query_add_createNewBranch($branch_Id, $union_Id, $minlocation, 
-												$location, $state, $country, $admin_Id, $publicInvitation);
-	$dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
-    echo $dbObj->addupdateData($query01);
-	
+	$memOrBranchReqId = $_GET["memOrBranchReqId"];
 	$roleInfoJson = $_GET["roleInfo"];
 	$membersJson = $_GET["members"];
+	$membersReqJson = $_GET["members_req"];
+	
+	
+	/* Create Branch Information */
+	
+	$query01 = $professionalCommunityBranch->query_add_createNewBranch($branch_Id, $union_Id, $minlocation, 
+												$location, $state, $country, $admin_Id, $publicInvitation);
+	
+    echo $dbObj->addupdateData($query01);
 	
 	foreach($roleInfoJson as $role_Id => $roleInObj) {
 	 $roleName = $roleInObj["roleName"];
@@ -85,9 +91,6 @@ if(isset($_GET["action"])){
 	 $approveMovementDomainLevelNotify = 'N'; 
 	 $answerUnionFAQ = 'N';
 	 $answerBranchFAQ = 'N';
-	 
-	 
-	 
 	 if(isset($roleInObj["createABranch"])){ $createABranch = $roleInObj["createABranch"]; }
 	 if(isset($roleInObj["updateBranchInfo"])){ $updateBranchInfo = $roleInObj["updateBranchInfo"]; }
 	 if(isset($roleInObj["deleteBranch"])){ $deleteBranch = $roleInObj["deleteBranch"]; }
@@ -146,6 +149,27 @@ if(isset($_GET["action"])){
 					$cur_role_Id, $prev_role_Id, $roleNotify, $roleUpdatedOn, $memNotify, $memAddedOn, $memAddedBy, $status);
 	  echo $dbObj->addupdateData($query04);
 	}
+    foreach($membersReqJson as $member_Id => $membersObj) {
+	  $request_Id = $identity->unionprof_mem_req_id();
+	  $req_from = $admin_Id;
+	  $req_to = $membersObj["member_Id"];
+	  $role_Id = $membersObj["role_Id"];
+	  $reqMessage = '';
+	  $sent_On = date('Y-m-d H:i:s');
+	  $notify = 'N';
+	  $watched = 'N';
+	  $query05 = $professionalCommunityBranch->query_add_MembersReqToJoinBranch($request_Id, $union_Id, $branch_Id, 
+					$role_Id, $req_from, $req_to, $reqMessage, $sent_On, $notify, $watched);
+	  echo $dbObj->addupdateData($query05);
+	}
+	
+	/* Delete Request if $memOrBranchReqId starts With */
+	$utils = new Utils();
+	if($utils->StringStartsWith($memOrBranchReqId, 'UPBR')){
+	  $query06 = $professionalCommunityBranch->query_delete_localBranchReq($memOrBranchReqId);
+	  echo $dbObj->addupdateData($query06);
+	}
+	
    } 
    else { 
     $content='Missing';
@@ -156,6 +180,7 @@ if(isset($_GET["action"])){
 	if(!isset($_GET["minlocation"])){ $content.=' minlocation,'; }
     if(!isset($_GET["roleInfo"])){ $content.=' roleInfo,'; }
 	if(!isset($_GET["members"])){ $content.=' members,'; }
+	if(!isset($_GET["members_req"])){ $content.=' members_req,'; }
 	if(!isset($_GET["admin_Id"])){ $content.=' admin_Id,'; } 
 	$content=chop($content,',');
 	echo $content;
@@ -181,6 +206,48 @@ if(isset($_GET["action"])){
   
   }
  }
+ else if($_GET["action"]==='GET_DATA_REQUESTLOCALBRANCH'){
+   if(isset($_GET["req_branch_Id"])){
+    $req_branch_Id = $_GET["req_branch_Id"];
+	$professionalCommunityBranch = new ProfessionalCommunityBranch();
+	$query = $professionalCommunityBranch->query_get_branchRequestByRequestId($req_branch_Id);
+	$dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
+    echo  $dbObj->getJSONData($query);
+   } else { echo 'MISSING_REQUEST_ID'; }
+ }
+ else if($_GET["action"]==='CREATE_DATA_REQUESTLOCALBRANCH'){
+    if(isset($_GET["union_Id"]) && isset($_GET["minlocation"]) && isset($_GET["location"]) && isset($_GET["state"]) 
+	&& isset($_GET["country"]) && isset($_GET["reqMessage"])){
+    $identity = new Identity();
+    $req_branch_Id = $identity->unionprof_branch_req_id();
+	$union_Id = $_GET["union_Id"]; 
+	$minlocation = $_GET["minlocation"]; 
+	$location = $_GET["location"];
+	$state = $_GET["state"];
+	$country = $_GET["country"];
+	$reqOn = date('Y-m-d H:i:s'); 
+	$reqBy = $_GET["user_Id"]; 
+	$reqMessage = $_GET["reqMessage"]; 
+	$notify = 'N'; 
+	$watched ='N';
+    $professionalCommunityBranch = new ProfessionalCommunityBranch();
+	$query = $professionalCommunityBranch->query_add_localBranchRequest($req_branch_Id, $union_Id, $minlocation, 
+		$location, $state, $country, $reqOn, $reqBy, $reqMessage, $notify, $watched);
+	$dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
+	echo $query;
+    echo  $dbObj->addupdateData($query);
+	} else {
+		$content='Missing';
+	    if(!isset($_GET["union_Id"])){ $content.=' union_Id,'; } 
+		if(!isset($_GET["minlocation"])) { $content.=' minlocation,';}
+		if(!isset($_GET["location"])){ $content.=' location,';} 
+		if(!isset($_GET["state"])){ $content.=' state,';} 
+		if(!isset($_GET["country"])){ $content.=' country,';} 
+		if(!isset($_GET["reqMessage"])){ $content.=' reqMessage,'; }
+		$content = chop($content,',');
+		echo $content;
+	}
+  }
  else { echo 'NO_ACTION'; }
 }
 else { echo 'MISSING_ACTION'; }

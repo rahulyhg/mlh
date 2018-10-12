@@ -5,7 +5,7 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <title>Create Community</title>
+ <title>View Community</title>
  <meta charset="utf-8">
  <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="shortcut icon" type="image/x-icon" href="<?php echo $_SESSION["PROJECT_URL"]; ?>images/favicon.ico"/>
@@ -25,7 +25,7 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
  <script type="text/javascript" src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/jquery.easy-autocomplete.min.js"></script>
  <link rel="stylesheet" href="<?php echo $_SESSION["PROJECT_URL"]; ?>styles/api/hz-scrollableTabs.css">
  <?php include_once 'templates/api/api_js.php'; ?>
- <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/app-community-create-bg-styles.js"></script>
+ <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/app-community-profile-home-bg-styles.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/ui-templates.js"></script>
  <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
  <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>

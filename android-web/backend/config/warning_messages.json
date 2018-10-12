@@ -37,5 +37,7 @@
   "W036": { "english":"You missed selecting a RoleTitle for one of the Member."},
   "W037": { "english":"Missing Objectives of the Community. Please Mention Atleast three Objectives of your Community."},
   "W038": { "english":"You are already the Member of the Community." },
-  "W039": { "english":"This Branch already exists in the Community." }
+  "W039": { "english":"This Branch already exists in the Community." },
+  "W040": { "english":"Allow to share your Details with Community Owners." },
+  "W041": { "english":"Mention your Designation in the Branch."},
 }

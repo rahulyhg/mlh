@@ -78,5 +78,27 @@ class ProfessionalCommunityBranch {
    $sql.="location='".$location."' AND minlocation='".$minlocation."' AND union_Id='".$union_Id."';";
    return $sql;      
  }
+ 
+ function query_get_branchRequestByRequestId($req_branch_Id){
+   $sql="SELECT unionprof_branch_req.minlocation, unionprof_branch_req.location, unionprof_branch_req.state, ";
+   $sql.="unionprof_branch_req.country, user_account.surName, user_account.name, user_account.profile_pic ";
+   $sql.=" FROM unionprof_branch_req, user_account WHERE req_branch_Id='".$req_branch_Id."' AND ";
+   $sql.="unionprof_branch_req.reqBy = user_account.user_Id;";
+   return $sql;
+ }
+ 
+ function query_add_localBranchRequest($req_branch_Id, $union_Id, $minlocation, $location, $state, $country, $reqOn, 
+ $reqBy, $reqMessage, $notify, $watched){
+  $sql="INSERT INTO unionprof_branch_req(req_branch_Id, union_Id, minlocation, location, state, country, reqOn, reqBy, ";
+  $sql.="reqMessage, notify, watched) ";
+  $sql.=" VALUES ('".$req_branch_Id."','".$union_Id."','".$minlocation."','".$location."','".$state."','".$country;
+  $sql.="','".$reqOn."','".$reqBy."','".$reqMessage."','".$notify."','".$watched."');";
+  return $sql;
+ }
+ 
+ function query_delete_localBranchReq($req_branch_Id){
+  $sql="DELETE FROM unionprof_branch_req WHERE req_branch_Id='".$req_branch_Id."';";
+  return $sql;
+ }
 }
 ?>

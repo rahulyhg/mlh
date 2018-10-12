@@ -50,7 +50,7 @@ RewriteRule app/hooks app-mylocalhook.php  [NC,L]
 RewriteRule app/myfriends app-user-friends-my.php  [NC,L]
 RewriteRule app/findfriends app-user-friends-find.php  [NC,L]
 
-RewriteRule app/write-newsfeed app-newsfeed-write.php  [NC,L]
+RewriteRule app/create-newsfeed app-newsfeed-create.php  [NC,L]
 
 RewriteRule app/create-movement app-movement-create.php  [NC,L]
 RewriteRule app/movement/([^/]+)$ app-movement-view.php?1=$1  [NC,L]
@@ -61,7 +61,7 @@ RewriteRule app/community/general/([^/]+)/([^/]+)$ app-community-profile-home.ph
 
 # Create Features:
 RewriteRule app/create-community app-community-profile-createUnion.php  [NC,L]
-RewriteRule app/community/createNewBranch/([^/]+)$ app-community-profile-createNewBranch.php?1=$1  [NC,L]
+RewriteRule app/community/createNewBranch/([^/]+)/([^/]+)$ app-community-profile-createNewBranch.php?1=$1&2=$2  [NC,L]
 
 RewriteRule doc/hook-standard-premium doc_info_hook.php  [NC,L]
 

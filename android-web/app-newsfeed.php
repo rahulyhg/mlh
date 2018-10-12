@@ -74,6 +74,9 @@ a.newsfeed-content { color:#000; }
 			   <a href="<?php echo $_SESSION["PROJECT_URL"]; ?>app/socialHub/classmatepoint/institute/batchchat/134">
 				<button>Chat</button>
 			   </a>
+			   <a href="<?php echo $_SESSION["PROJECT_URL"]; ?>app/create-newsfeed">
+				<button>Create NewsFeed</button>
+			   </a>
 		    </div>
 		 </div>
 		 

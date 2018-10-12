@@ -12,7 +12,8 @@ var CROPPING_DIV;
 var cloudinary={};
 
 function imgClick(sel_fileId){
-  document.getElementById(sel_fileId).click();
+ console.log("Image File pickup popup");
+ document.getElementById(sel_fileId).click(); 
 }
 
 function cloudservers_auth(){ /* Call it during page load */
@@ -45,6 +46,7 @@ function getFileSize(fSize){
 
 // *********** Upload file to Cloudinary ******************** //
 function uploadFile(file,parameter) {
+  console.log("Uploading File to Server");
   var cloudName = cloudinary.cloudName;
   var unsignedUploadPreset = cloudinary.uploadpreset;
   console.log("cloudName: "+cloudName+"unsignedUploadPreset: "+unsignedUploadPreset);
@@ -69,6 +71,8 @@ function uploadFile(file,parameter) {
 	  IMG_URL=img_src;
 	  console.log("IMG_URL: "+IMG_URL);
 	  
+	  document.getElementById("fileupload-loader").style.display='none';
+	  $('body').css("opacity","1");
 	  document.getElementById(IDENTITY).style.display='block';
 	  document.getElementById(IDENTITY).src=img_src;  //+'?'+new Date().getTime()
 	  document.getElementById(IMG_CROP_ID).style.display='none';
@@ -86,13 +90,14 @@ function uploadFile(file,parameter) {
 var FILE_ID;
 // *********** Handle selected files ******************** //
 var handleFiles = function(file_Id,crop_div,img_crop,files,id,doneBtn,w,h,c_w,c_h,c_type) {
+console.log("Handling File");
 FILE_ID=file_Id;
 var fileSize=getFileSize(files[0].size);
 if(files[0].size<=5242880) { // Less than or Equal to 5 MB
 	var reader = new FileReader();
 		 reader.onload = function(e) {
 			document.getElementById(id).style.display='none';
-			
+			console.log("FileReader loaded");
 			IMG_CROP_ID=img_crop;
 			CROPPING_DIV=crop_div;
 			FILE=files[0];
@@ -132,6 +137,8 @@ if(files[0].size<=5242880) { // Less than or Equal to 5 MB
 };
 
 function profilepic_done(){
+  document.getElementById("fileupload-loader").style.display='block';
+  $('body').css("opacity","0.6");
 /* Disable Button */
   document.getElementById(IDENTITY+"_crop_done").disabled=true;
   document.getElementById(IDENTITY+"_reload_done").disabled=true;

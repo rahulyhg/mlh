@@ -1,7 +1,7 @@
 <?php
 require_once '../api/app.initiator.php';
 require_once '../api/app.database.php';
-require_once '../api/app.util.php';
+require_once '../api/app.utils.php';
 require_once '../dal/data.api.identity.php';
 
 class Identity {

@@ -19,9 +19,6 @@ function menuCommunityProfile(id){
  }
 }
 
-function invoke_requestBranchModal(){
-$('#requestBranchModal').modal();
-}
 function invoke_joinAsMemberModal(){
 $('#joinAsMemberModal').modal();
 }

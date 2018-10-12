@@ -1,7 +1,7 @@
 <div class="container-fluid mtop15p">
     <div align="right" class="col-xs-12 mbot15p">
 	  <button class="btn btn-default">
-	    <a class="a-custom" href="<?php echo $_SESSION["PROJECT_URL"]; ?>app/community/createNewBranch/<?php if(isset($_GET["2"])){ echo $_GET["2"]; }?>"><b>Create New Branch</b></a>
+	    <a class="a-custom" href="<?php echo $_SESSION["PROJECT_URL"]; ?>app/community/createNewBranch/<?php if(isset($_SESSION["AUTH_USER_ID"])){ echo $_SESSION["AUTH_USER_ID"]; }?>/<?php if(isset($_GET["2"])){ echo $_GET["2"]; }?>"><b>Create New Branch</b></a>
 	  </button>
 	  <button class="btn btn-default" onclick="javascript:invoke_requestBranchModal();"><b>Request Local Branch</b></button>
 	</div>

@@ -7,7 +7,19 @@ $(document).ready(function(){
  build_categoryOption('add_'+USR_LANG+'_category');
  hzTabSelection('createCommunityHzTab','');
  upload_picture_100X100('community-content-media',PROJECT_URL+'images/icons/0.png');
+ load_administratorDetails();
 });
+
+function load_administratorDetails(){
+js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.module.app.user.authentication.php ',
+	      { action: 'GET_DATA_USERINFORMATION', user_Id:AUTH_USER_ID }, function(response){
+  response = JSON.parse(response);
+  var fullName = response[0].surName+" "+response[0].name;
+  var profile_pic = response[0].profile_pic;
+  document.getElementById("add_"+USR_LANG+"_administratorprofilepic").innerHTML='<img src="'+profile_pic+'" class="profile_pic_img"/>';
+  document.getElementById("add_"+USR_LANG+"_administratorName").innerHTML=fullName;
+  });
+}
 
 function generateTabList(){ 
  var content='<ul class="nav scrollTablist" id="communityProfileTab" style="border-bottom:0px;">';
@@ -842,7 +854,7 @@ function finish_AddMembersToBranch(){
 	 members: membersList,
      admin_Id: AUTH_USER_ID },function(response){
 	hide_toggleMLHLoader('body');
-    alert_display_success('S005',PROJECT_URL+'app/community/general/viewprofile/'+UNION_ID);
+    alert_display_success('S001',PROJECT_URL+'app/community/general/viewprofile/'+UNION_ID);
     console.log(response);
   });
   console.log(JSON.stringify(MEMBERS_REQ_LIST));

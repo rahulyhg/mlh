@@ -7,22 +7,20 @@ $(document).ready(function(){
  load_administratorDetails();
 });
 
-var FIRSTMEMBER_NAME;
-
 function load_administratorDetails(){
-  if(MEMBER_OR_BRANCHREQ_ID.startsWith("USR")){
+  if(FIRSTMEMBER_ID.startsWith("USR")){
    show_toggleMLHLoader('body');
    js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.module.app.user.authentication.php',
-	      { action: 'GET_DATA_USERINFORMATION', user_Id:MEMBER_OR_BRANCHREQ_ID }, function(response){
+	      { action: 'GET_DATA_USERINFORMATION', user_Id:FIRSTMEMBER_ID }, function(response){
     hide_toggleMLHLoader('body');
     response = JSON.parse(response);
     FIRSTMEMBER_NAME = response[0].surName+" "+response[0].name;
     document.getElementById("createNewBranch_firstMemberName").innerHTML=FIRSTMEMBER_NAME;
   }); 
-  } else if(MEMBER_OR_BRANCHREQ_ID.startsWith("UPBR")){
+  } else if(FIRSTMEMBER_ID.startsWith("UPBR")){
      show_toggleMLHLoader('body');
      js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.module.app.community.professional.branch.php',
-	      { action: 'GET_DATA_REQUESTLOCALBRANCH', req_branch_Id:MEMBER_OR_BRANCHREQ_ID }, function(response){
+	      { action: 'GET_DATA_REQUESTLOCALBRANCH', req_branch_Id:FIRSTMEMBER_ID }, function(response){
 		  console.log(response);
     response = JSON.parse(response);
 	var minlocation = response[0].minlocation;
@@ -136,10 +134,9 @@ function load_result_myRole(){
 ROLE_INFO[membersRoleId] = { "roleName": "Members" };
 }
 function load_form_createRole(){
- hzTabSelection('createRolesHzTab','-200');
- load_result_myRole();
+ hzTabSelection('createRolesHzTab');
  load_createRole_list();
- console.log(ROLE_INFO);
+ load_result_myRole();
 }
 function form_add_createRole(){
  var roleName = document.getElementById("communityNewBranch_createRoles_roleName").value;
@@ -645,13 +642,13 @@ function setPerm_movement_domain_approveMovement(role_Id){
 /*****************************************************************************************************************************/
 var MEMBER_ID;
 var MEMBER_DISPLAYCONTENT;
-var MEMBERS_REQ_LIST={};
+var MEMBERS_LIST={};
 function addRoleToMemberOfBranch(member_Id){
  var role_Id = unionprof_mem_roles_Id();
  var roleName = document.getElementById("roles_select_"+member_Id).value;
- MEMBERS_REQ_LIST[MEMBER_ID].role_Id = role_Id;
- MEMBERS_REQ_LIST[MEMBER_ID].roleName = roleName;
- console.log(MEMBERS_REQ_LIST);
+ MEMBERS_LIST[MEMBER_ID].role_Id = role_Id;
+ MEMBERS_LIST[MEMBER_ID].roleName = roleName;
+ console.log(MEMBERS_LIST);
 }
 function select_display_roles(div_Id,member_Id){
  if(ROLE_INFO!==undefined){
@@ -680,7 +677,7 @@ function setRoleToMember(member_Id){
  var sel_RoleName = $("#roles_select_"+member_Id+" option:selected").text();
  var sel_RoleId = document.getElementById("roles_select_"+member_Id).value;
  document.getElementById("roles_choosen_"+member_Id).innerHTML=sel_RoleName;
- console.log(JSON.stringify(MEMBERS_REQ_LIST));
+ console.log(JSON.stringify(MEMBERS_LIST));
  hide_roles_seloption(member_Id);
 }
 function editRoleToMember(member_Id){
@@ -702,34 +699,10 @@ function hide_roles_seloption(member_Id){
    $('#roles_display_'+member_Id).removeClass('hide-block');
  }
 }
-
 function load_form_addMembers(){
- hzTabSelection('addMembersHzTab','-320');
+ hzTabSelection('addMembersHzTab');
  autocomplete_load_members();
- display_meAsaMember();
 }
-function display_meAsaMember(){
- var content='<div class="list-group-item pad0">';
-	 content+='<div class="container-fluid mtop15p mbot15p">';
-	 content+='<div class="row">';
-	 
-	 content+='<div class="col-xs-4">';
-	 content+='<img src="'+AUTH_USER_PROFILEPIC+'" class="profile_pic_img3">';
-	 content+='</div>';
-	 
-	 content+='<div class="col-xs-8">';
-	 content+='<div>'+AUTH_USER_SURNAME+' '+AUTH_USER_FULLNAME+'<div>';
-	 content+='<div class="mtop15p"><span class="label label-primary">'+MYDESIGNATION_TITLE+'</span><div>';
-     content+='<div class="mtop15p" style="color:#929090;">';
-	 content+=AUTH_USER_LOCALITY+', '+AUTH_USER_LOCATION+', '+AUTH_USER_STATE+', '+AUTH_USER_COUNTRY+'</div>';
-	 content+='</div>';
-	 
-	 content+='</div>';
-	 content+='</div>';
-	 content+='</div>';
-  document.getElementById("div_communityNewBranch_myProfile").innerHTML=content;
-}
-
 var size=0;
 function autocomplete_load_members(){
 var options = { url: function(phrase) {
@@ -803,27 +776,25 @@ function addToArray_members(){
  document.getElementById("communityNewBranch_members_name").value="";
  console.log(MEMBER_DISPLAYCONTENT);
  var duplicateRecognizer=false;
- if(MEMBER_ID!==AUTH_USER_ID){
- if(MEMBERS_REQ_LIST[MEMBER_ID]===undefined){
-   MEMBERS_REQ_LIST[MEMBER_ID]={ "member_Id":MEMBER_ID };
+ if(MEMBERS_LIST[MEMBER_ID]===undefined){
+   MEMBERS_LIST[MEMBER_ID]={ "member_Id":MEMBER_ID };
    MEMBER_DISPLAYCONTENT+='<div id="div_communityNewBranch_selectedMembers'+(size+1)+'"></div>';
    document.getElementById("div_communityNewBranch_selectedMembers"+size).innerHTML=MEMBER_DISPLAYCONTENT;
    select_display_roles('roles_div_'+MEMBER_ID,MEMBER_ID);  // Setting Select Options
    size++;
  }
- } else {  alert_display_warning('W038'); }
- console.log("MEMBERS_REQ_LIST: "+JSON.stringify(MEMBERS_REQ_LIST));
+ console.log("MEMBERS_LIST: "+JSON.stringify(MEMBERS_LIST));
  enable_finishButton();
 }
 function deleteFromArray_member(member_Id){
- delete MEMBERS_REQ_LIST[member_Id];
+ delete MEMBERS_LIST[member_Id];
  $('#div_members_'+member_Id).hide(1000);
  enable_finishButton();
 }
 function finish_AddMembersToBranch(){
  var finished = true;
- for(var member_Id in MEMBERS_REQ_LIST){
-   var memberResponse = MEMBERS_REQ_LIST[member_Id];
+ for(var member_Id in MEMBERS_LIST){
+   var memberResponse = MEMBERS_LIST[member_Id];
    if(memberResponse.role_Id === undefined || memberResponse.role_Id.length===0){
     finished = false;
    }
@@ -833,31 +804,24 @@ function finish_AddMembersToBranch(){
  } else {
   show_toggleMLHLoader('body');
   var branch_Id = unionprof_branch_Id();
-  var membersList = {};
-      membersList[AUTH_USER_ID]={ "member_Id":AUTH_USER_ID, "role_Id":MYDESIGNATION_ROLEID, "roleName": MYDESIGNATION_TITLE };
-	  
   js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.module.app.community.professional.branch.php',
-   { action:'CREATE_PROFESSIONAL_BRANCH', union_Id: UNION_ID, branch_Id: branch_Id, country: BRANCH_COUNTRY,  
-     state:BRANCH_STATE, location: BRANCH_LOCATION, minlocation: BRANCH_MINLOCATION, roleInfo: ROLE_INFO, 
-	 members: membersList, members_req: MEMBERS_REQ_LIST, admin_Id: AUTH_USER_ID, memOrBranchReqId: MEMBER_OR_BRANCHREQ_ID },
-	 function(response){
+   { action:'CREATE_PROFESSIONAL_BRANCH', union_Id: UNION_ID, branch_Id: branch_Id, country: BRANCH_COUNTRY, 
+	 state:BRANCH_STATE, location: BRANCH_LOCATION, minlocation: BRANCH_MINLOCATION, roleInfo: ROLE_INFO, 
+	 members: MEMBERS_LIST, admin_Id: AUTH_USER_ID },function(response){
 	hide_toggleMLHLoader('body');
-    alert_display_success('S005',PROJECT_URL+'app/community/general/viewprofile/'+UNION_ID);
+	alert_display_success('S005',PROJECT_URL+'app/community/general/viewprofile/'+UNION_ID);
     console.log(response);
   });
-  console.log(JSON.stringify(MEMBERS_REQ_LIST));
+  console.log(JSON.stringify(MEMBERS_LIST));
   console.log(JSON.stringify(ROLE_INFO));
  }
 }
 function enable_finishButton(){
- if(Object.keys(MEMBERS_REQ_LIST).length>0){
+ if(Object.keys(MEMBERS_LIST).length>0){
    if($('#btn_communityNewBranch_formFinsh').hasClass('hide-block')){
      $('#btn_communityNewBranch_formFinsh').removeClass('hide-block');
    }
  } else {
-   var content = '<div align="center"><span style="color:#ccc;">No Members</span></div>';
-   document.getElementById("div_communityNewBranch_selectedMembers0").innerHTML=content;
-   size=0;
    if(!$('#btn_communityNewBranch_formFinsh').hasClass('hide-block')){
      $('#btn_communityNewBranch_formFinsh').addClass('hide-block');
    }

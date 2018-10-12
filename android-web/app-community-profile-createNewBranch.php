@@ -32,7 +32,9 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
  <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
  <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
  <script type="text/javascript">
- var UNION_ID='<?php if(isset($_GET["1"])) { echo $_GET["1"]; } ?>';
+ var MEMBER_OR_BRANCHREQ_ID='<?php if(isset($_GET["1"])) { echo $_GET["1"]; } ?>';
+ var UNION_ID='<?php if(isset($_GET["2"])) { echo $_GET["2"]; } ?>';
+ console.log("MEMBER_OR_BRANCHREQ_ID: "+MEMBER_OR_BRANCHREQ_ID);
  </script>
 </head>
 <body>

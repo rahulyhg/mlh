@@ -16,12 +16,11 @@ class Utils
         return $num;
     }
     
-    function create_zip($files = array(),$destination = '',$overwrite = false) 
+    function create_zip($files = array(),$destination = '',$overwrite = false) {
     /* FUNCTION DESCRIPTION : Creates a compressed zip file 
      * FUNCTION USAGE :  $files_to_zip = array('output/1.jpg','output/2.jpg','output/3.jpg', ... );
      *                   $result = create_zip($files_to_zip,'my-archive.zip'); //if true, good; if false, zip creation failed
      */
-    {
 	if(file_exists($destination) && !$overwrite) { return false; } //if the zip file already exists and overwrite is false, return false
 
 	$valid_files = array();
@@ -84,4 +83,16 @@ for($index1=0;$index1<count($val3);$index1++){
 }
  
 	}
+
+function StringStartsWith($haystack, $needle){
+  $status = false;
+  if(strpos($haystack,$needle)==0){ $status = true; }
+  return $status;
+}
+function StringEndsWith($haystack, $needle){
+  $length = strlen($haystack) - strlen($needle);
+  $status = false;
+  if(strpos($haystack,$needle)===$length){ $status = true; }
+  return $status;
+}
 }

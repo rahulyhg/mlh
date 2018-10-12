@@ -4,6 +4,7 @@
   <div id="community-content-media" align="center" class="mbot35p"></div>
  </div>
 </div>
+
 <div class="row">
 <div class="col-xs-12 mtop15p">
 <div class="form-group">
@@ -35,10 +36,37 @@
 			    style="height:250px;"></textarea>
 </div>
 
+</div>
+</div>
+<div class="row">
+<div class="col-xs-12 mtop15p">
+
+<div class="form-group">
+ <h5><b>Administrator Details</b><hr/></h5>
+</div>
+
+ 
+<div align="center" id="add_english_administratorprofilepic" class="form-group">
+ 
+</div>
+<div class="form-group">
+ <label>Name</label>
+ <div class="list-group">
+ <div id="add_english_administratorName" class="list-group-item">
+ 
+ </div>
+ </div>
+</div>
+
 <div class="form-group">
  <label>My Designation in the Community&nbsp;<span class="font-red">*</span></label>
  <input type="text" class="form-control" id="add_english_mydesignation" placeholder="Enter your Designation Title">
 </div>
+
+</div>
+</div>
+<div class="row">
+<div class="col-xs-12 mtop15p">
 
 <div class="form-group">
  <h5><b>Community Objectives</b><hr/></h5>
