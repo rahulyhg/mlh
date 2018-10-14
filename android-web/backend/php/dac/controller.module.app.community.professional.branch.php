@@ -24,18 +24,13 @@ if(isset($_GET["action"])){
 	$minlocation = $_GET["minlocation"];
 	$admin_Id = $_GET["admin_Id"];
     $publicInvitation = 'Y';
-	$memOrBranchReqId = $_GET["memOrBranchReqId"];
-	$roleInfoJson = $_GET["roleInfo"];
-	$membersJson = $_GET["members"];
-	$membersReqJson = $_GET["members_req"];
-	
 	
 	/* Create Branch Information */
-	
 	$query01 = $professionalCommunityBranch->query_add_createNewBranch($branch_Id, $union_Id, $minlocation, 
 												$location, $state, $country, $admin_Id, $publicInvitation);
-	
     echo $dbObj->addupdateData($query01);
+	
+	$roleInfoJson = $_GET["roleInfo"];
 	
 	foreach($roleInfoJson as $role_Id => $roleInObj) {
 	 $roleName = $roleInObj["roleName"];
@@ -44,15 +39,7 @@ if(isset($_GET["action"])){
 	 $query02 = $professionalCommunityBranch->query_add_createNewRole($role_Id, $union_Id, $branch_Id, $roleName);
 	 echo $dbObj->addupdateData($query02);
 	 
-	 $permission_Id= $identity->unionprof_mem_perm1_id();
-	 $createABranch = 'N';
-	 $createABranchNotify = 'N';
-	 $updateBranchInfo = 'N';
-	 $updateBranchInfoNotify = 'N';
-	 $deleteBranch = 'N';
-	 $deleteBranchNotify = 'N';
-	 $shiftMainBranch = 'N';
-	 $shiftMainBranchNotify = 'N';
+	 $permission2_Id= $identity->unionprof_mem_perm2_id();
 	 $createRole = 'N';
 	 $createRoleNotify = 'N';
 	 $viewRoles = 'N';
@@ -69,32 +56,12 @@ if(isset($_GET["action"])){
 	 $createNewsFeedBranchLevelNotify = 'N';
 	 $approveNewsFeedBranchLevel = 'N';
 	 $approveNewsFeedBranchLevelNotify = 'N';
-	 $createNewsFeedUnionLevel = 'N';
-	 $createNewsFeedUnionLevelNotify = 'N';
-	 $approveNewsFeedUnionLevel = 'N';
-	 $approveNewsFeedUnionLevelNotify = 'N';
 	 $createMovementBranchLevel = 'N';
 	 $createMovementBranchLevelNotify = 'N'; 
 	 $approveMovementBranchLevel = 'N'; 
 	 $approveMovementBranchLevelNotify = 'N';
-	 $createMovementUnionLevel = 'N';
-	 $createMovementUnionLevelNotify = 'N';
-	 $approveMovementUnionLevel = 'N';
-	 $approveMovementUnionLevelNotify = 'N'; 
-	 $createMovementSubDomainLevel = 'N';
-	 $createMovementSubDomainLevelNotify = 'N';
-	 $approveMovementSubDomainLevel = 'N';
-	 $approveMovementSubDomainLevelNotify = 'N';
-	 $createMovementDomainLevel = 'N';
-	 $createMovementDomainLevelNotify = 'N';
-	 $approveMovementDomainLevel = 'N';
-	 $approveMovementDomainLevelNotify = 'N'; 
-	 $answerUnionFAQ = 'N';
-	 $answerBranchFAQ = 'N';
-	 if(isset($roleInObj["createABranch"])){ $createABranch = $roleInObj["createABranch"]; }
-	 if(isset($roleInObj["updateBranchInfo"])){ $updateBranchInfo = $roleInObj["updateBranchInfo"]; }
-	 if(isset($roleInObj["deleteBranch"])){ $deleteBranch = $roleInObj["deleteBranch"]; }
-	 if(isset($roleInObj["shiftMainBranch"])){ $shiftMainBranch = $roleInObj["shiftMainBranch"]; }
+	 
+	 
 	 if(isset($roleInObj["createRole"])){ $createRole = $roleInObj["createRole"]; }
 	 if(isset($roleInObj["viewRoles"])){ $viewRoles = $roleInObj["viewRoles"]; }
 	 if(isset($roleInObj["updateRole"])){ $updateRole = $roleInObj["updateRole"]; }
@@ -103,35 +70,19 @@ if(isset($_GET["action"])){
 	 if(isset($roleInObj["approveUsersToBeMembers"])){ $approveUsersToBeMembers = $roleInObj["approveUsersToBeMembers"]; }
 	 if(isset($roleInObj["createNewsFeedBranchLevel"])){ $createNewsFeedBranchLevel = $roleInObj["createNewsFeedBranchLevel"]; }
 	 if(isset($roleInObj["approveNewsFeedBranchLevel"])){ $approveNewsFeedBranchLevel = $roleInObj["approveNewsFeedBranchLevel"]; }
-	 if(isset($roleInObj["createNewsFeedUnionLevel"])){ $createNewsFeedUnionLevel = $roleInObj["createNewsFeedUnionLevel"]; }
-	 if(isset($roleInObj["approveNewsFeedUnionLevel"])){ $approveNewsFeedUnionLevel = $roleInObj["approveNewsFeedUnionLevel"]; }
 	 if(isset($roleInObj["createMovementBranchLevel"])){ $createMovementBranchLevel = $roleInObj["createMovementBranchLevel"]; }
 	 if(isset($roleInObj["approveMovementBranchLevel"])){ $approveMovementBranchLevel = $roleInObj["approveMovementBranchLevel"]; }
-	 if(isset($roleInObj["createMovementUnionLevel"])){ $createMovementUnionLevel = $roleInObj["createMovementUnionLevel"]; }
-	 if(isset($roleInObj["approveMovementUnionLevel"])){ $approveMovementUnionLevel = $roleInObj["approveMovementUnionLevel"]; }
-	 if(isset($roleInObj["createMovementSubDomainLevel"])){ $createMovementSubDomainLevel = $roleInObj["createMovementSubDomainLevel"]; }
-	 if(isset($roleInObj["approveMovementSubDomainLevel"])){ $approveMovementSubDomainLevel = $roleInObj["approveMovementSubDomainLevel"]; }
-	 if(isset($roleInObj["createMovementDomainLevel"])){ $createMovementDomainLevel = $roleInObj["createMovementDomainLevel"]; }
-	 if(isset($roleInObj["approveMovementDomainLevel"])){ $approveMovementDomainLevel = $roleInObj["approveMovementDomainLevel"]; }
 	 
-	 /* Add Permissions */
-	 $query03 = $professionalCommunityBranch->query_add_createPermissions($permission_Id, $role_Id, $createABranch, 
-					$createABranchNotify, $updateBranchInfo, $updateBranchInfoNotify, $deleteBranch, $deleteBranchNotify, 
-					$shiftMainBranch, $shiftMainBranchNotify, $createRole, $createRoleNotify, $viewRoles, $viewRoleNotify, 
-					$updateRole, $updateRoleNotify, $deleteRole, $deleteRoleNotify, $requestUsersToBeMembers, 
-					$requestUsersToBeMembersNotify, $approveUsersToBeMembers, $approveUsersToBeMembersNotify,
-					$createNewsFeedBranchLevel, $createNewsFeedBranchLevelNotify, $approveNewsFeedBranchLevel, 
-					$approveNewsFeedBranchLevelNotify, $createNewsFeedUnionLevel, $createNewsFeedUnionLevelNotify, 
-					$approveNewsFeedUnionLevel, $approveNewsFeedUnionLevelNotify, $createMovementBranchLevel, 
-					$createMovementBranchLevelNotify, $approveMovementBranchLevel, $approveMovementBranchLevelNotify,
-					$createMovementUnionLevel, $createMovementUnionLevelNotify, $approveMovementUnionLevel, 
-					$approveMovementUnionLevelNotify, $createMovementSubDomainLevel, $createMovementSubDomainLevelNotify, 
-					$approveMovementSubDomainLevel, $approveMovementSubDomainLevelNotify, $createMovementDomainLevel, 
-					$createMovementDomainLevelNotify, $approveMovementDomainLevel, $approveMovementDomainLevelNotify, 
-					$answerUnionFAQ, $answerBranchFAQ);
-	 echo $dbObj->addupdateData($query03);
+	 $query03 = $professionalCommunityBranch->query_add_createPermissions2($permission2_Id, $role_Id, $createRole,
+		$createRoleNotify, $viewRoles, $viewRoleNotify, $updateRole, $updateRoleNotify, $deleteRole, $deleteRoleNotify,
+		$requestUsersToBeMembers, $requestUsersToBeMembersNotify, $approveUsersToBeMembers, $approveUsersToBeMembersNotify,
+		$createNewsFeedBranchLevel, $createNewsFeedBranchLevelNotify, $approveNewsFeedBranchLevel, $approveNewsFeedBranchLevelNotify, 
+		$createMovementBranchLevel, $createMovementBranchLevelNotify, $approveMovementBranchLevel, 
+		$approveMovementBranchLevelNotify);
+	 echo $dbObj->addupdateData($query03);  
 	}
-
+    $membersJson = $_GET["members"];
+	
 	foreach($membersJson as $member_Id => $membersObj) {
 	  $member_Id = $identity->unionprof_mem_id();
 	  $user_Id = $membersObj["member_Id"];
@@ -148,7 +99,43 @@ if(isset($_GET["action"])){
 	  $query04 = $professionalCommunityBranch->query_add_MembersToBranch($member_Id, $union_Id, $branch_Id, $user_Id, 
 					$cur_role_Id, $prev_role_Id, $roleNotify, $roleUpdatedOn, $memNotify, $memAddedOn, $memAddedBy, $status);
 	  echo $dbObj->addupdateData($query04);
+	 $permission1_Id= $identity->unionprof_mem_perm1_id();
+	 $createABranch = 'Y';
+	 $createABranchNotify = 'N';
+	 $updateBranchInfo = 'Y';
+	 $updateBranchInfoNotify = 'N';
+	 $deleteBranch = 'Y';
+	 $deleteBranchNotify = 'N';
+	 $shiftMainBranch = 'Y';
+	 $shiftMainBranchNotify = 'N';
+	 $createNewsFeedUnionLevel = 'Y';
+	 $createNewsFeedUnionLevelNotify = 'N';
+	 $approveNewsFeedUnionLevel = 'Y';
+	 $approveNewsFeedUnionLevelNotify = 'N';
+	 $createMovementUnionLevel = 'Y';
+	 $createMovementUnionLevelNotify = 'N';
+	 $approveMovementUnionLevel = 'Y';
+	 $approveMovementUnionLevelNotify = 'N'; 
+	 $createMovementSubDomainLevel = 'Y';
+	 $createMovementSubDomainLevelNotify = 'N';
+	 $approveMovementSubDomainLevel = 'Y';
+	 $approveMovementSubDomainLevelNotify = 'N';
+	 $createMovementDomainLevel = 'Y';
+	 $createMovementDomainLevelNotify = 'N';
+	 $approveMovementDomainLevel = 'Y';
+	 $approveMovementDomainLevelNotify = 'N'; 
+	
+	 $query05 = $professionalCommunityBranch->query_add_createPermissions1($permission1_Id, $user_Id, $createABranch, 
+				$createABranchNotify, $updateBranchInfo, $updateBranchInfoNotify, $deleteBranch, $deleteBranchNotify, 
+				$shiftMainBranch, $shiftMainBranchNotify, $createNewsFeedUnionLevel, $createNewsFeedUnionLevelNotify, 
+				$approveNewsFeedUnionLevel, $approveNewsFeedUnionLevelNotify, $createMovementUnionLevel, 
+				$createMovementUnionLevelNotify, $approveMovementUnionLevel, $approveMovementUnionLevelNotify, 
+				$createMovementSubDomainLevel, $createMovementSubDomainLevelNotify, $approveMovementSubDomainLevel, 
+				$approveMovementSubDomainLevelNotify, $createMovementDomainLevel, $createMovementDomainLevelNotify, 
+				$approveMovementDomainLevel, $approveMovementDomainLevelNotify);
+	 echo $dbObj->addupdateData($query05);
 	}
+	$membersReqJson = $_GET["members_req"];
     foreach($membersReqJson as $member_Id => $membersObj) {
 	  $request_Id = $identity->unionprof_mem_req_id();
 	  $req_from = $admin_Id;
@@ -158,16 +145,67 @@ if(isset($_GET["action"])){
 	  $sent_On = date('Y-m-d H:i:s');
 	  $notify = 'N';
 	  $watched = 'N';
-	  $query05 = $professionalCommunityBranch->query_add_MembersReqToJoinBranch($request_Id, $union_Id, $branch_Id, 
+	  $query06 = $professionalCommunityBranch->query_add_MembersReqToJoinBranch($request_Id, $union_Id, $branch_Id, 
 					$role_Id, $req_from, $req_to, $reqMessage, $sent_On, $notify, $watched);
-	  echo $dbObj->addupdateData($query05);
+	  echo $dbObj->addupdateData($query06);
+	  
+	  /* Add Permissions */
+	 $permission1_Id= $identity->unionprof_mem_perm1_id();
+	 $createABranch = 'N';
+	 $createABranchNotify = 'N';
+	 $updateBranchInfo = 'N';
+	 $updateBranchInfoNotify = 'N';
+	 $deleteBranch = 'N';
+	 $deleteBranchNotify = 'N';
+	 $shiftMainBranch = 'N';
+	 $shiftMainBranchNotify = 'N';
+	 $createNewsFeedUnionLevel = 'N';
+	 $createNewsFeedUnionLevelNotify = 'N';
+	 $approveNewsFeedUnionLevel = 'N';
+	 $approveNewsFeedUnionLevelNotify = 'N';
+	 $createMovementUnionLevel = 'N';
+	 $createMovementUnionLevelNotify = 'N';
+	 $approveMovementUnionLevel = 'N';
+	 $approveMovementUnionLevelNotify = 'N'; 
+	 $createMovementSubDomainLevel = 'N';
+	 $createMovementSubDomainLevelNotify = 'N';
+	 $approveMovementSubDomainLevel = 'N';
+	 $approveMovementSubDomainLevelNotify = 'N';
+	 $createMovementDomainLevel = 'N';
+	 $createMovementDomainLevelNotify = 'N';
+	 $approveMovementDomainLevel = 'N';
+	 $approveMovementDomainLevelNotify = 'N'; 
+	 
+	 if(isset($roleInObj["createABranch"])){ $createABranch = $roleInObj["createABranch"]; }
+	 if(isset($roleInObj["updateBranchInfo"])){ $updateBranchInfo = $roleInObj["updateBranchInfo"]; }
+	 if(isset($roleInObj["deleteBranch"])){ $deleteBranch = $roleInObj["deleteBranch"]; }
+	 if(isset($roleInObj["shiftMainBranch"])){ $shiftMainBranch = $roleInObj["shiftMainBranch"]; }
+	 if(isset($roleInObj["createNewsFeedUnionLevel"])){ $createNewsFeedUnionLevel = $roleInObj["createNewsFeedUnionLevel"]; }
+	 if(isset($roleInObj["approveNewsFeedUnionLevel"])){ $approveNewsFeedUnionLevel = $roleInObj["approveNewsFeedUnionLevel"]; }
+	 if(isset($roleInObj["createMovementUnionLevel"])){ $createMovementUnionLevel = $roleInObj["createMovementUnionLevel"]; }
+	 if(isset($roleInObj["approveMovementUnionLevel"])){ $approveMovementUnionLevel = $roleInObj["approveMovementUnionLevel"]; }
+	 if(isset($roleInObj["createMovementSubDomainLevel"])){ $createMovementSubDomainLevel = $roleInObj["createMovementSubDomainLevel"]; }
+	 if(isset($roleInObj["approveMovementSubDomainLevel"])){ $approveMovementSubDomainLevel = $roleInObj["approveMovementSubDomainLevel"]; }
+	 if(isset($roleInObj["createMovementDomainLevel"])){ $createMovementDomainLevel = $roleInObj["createMovementDomainLevel"]; }
+	 if(isset($roleInObj["approveMovementDomainLevel"])){ $approveMovementDomainLevel = $roleInObj["approveMovementDomainLevel"]; }
+	 
+	 
+	 $query07 = $professionalCommunityBranch->query_add_createPermissions1($permission1_Id, $req_to, $createABranch, 
+				$createABranchNotify, $updateBranchInfo, $updateBranchInfoNotify, $deleteBranch, $deleteBranchNotify, 
+				$shiftMainBranch, $shiftMainBranchNotify, $createNewsFeedUnionLevel, $createNewsFeedUnionLevelNotify, 
+				$approveNewsFeedUnionLevel, $approveNewsFeedUnionLevelNotify, $createMovementUnionLevel, 
+				$createMovementUnionLevelNotify, $approveMovementUnionLevel, $approveMovementUnionLevelNotify, 
+				$createMovementSubDomainLevel, $createMovementSubDomainLevelNotify, $approveMovementSubDomainLevel, 
+				$approveMovementSubDomainLevelNotify, $createMovementDomainLevel, $createMovementDomainLevelNotify, 
+				$approveMovementDomainLevel, $approveMovementDomainLevelNotify);
+	 echo $dbObj->addupdateData($query07);
 	}
-	
+	$memOrBranchReqId = $_GET["memOrBranchReqId"];
 	/* Delete Request if $memOrBranchReqId starts With */
 	$utils = new Utils();
 	if($utils->StringStartsWith($memOrBranchReqId, 'UPBR')){
-	  $query06 = $professionalCommunityBranch->query_delete_localBranchReq($memOrBranchReqId);
-	  echo $dbObj->addupdateData($query06);
+	  $query08 = $professionalCommunityBranch->query_delete_localBranchReq($memOrBranchReqId);
+	  echo $dbObj->addupdateData($query08);
 	}
 	
    } 

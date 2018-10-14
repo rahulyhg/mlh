@@ -15,47 +15,56 @@ class ProfessionalCommunityBranch {
   return $sql;
  }
  
- function query_add_createPermissions($permission_Id, $role_Id, $createABranch, $createABranchNotify, $updateBranchInfo,
-        $updateBranchInfoNotify, $deleteBranch, $deleteBranchNotify, $shiftMainBranch, $shiftMainBranchNotify, $createRole,
-		$createRoleNotify, $viewRoles, $viewRoleNotify, $updateRole, $updateRoleNotify, $deleteRole, $deleteRoleNotify,
-		$requestUsersToBeMembers, $requestUsersToBeMembersNotify, $approveUsersToBeMembers, $approveUsersToBeMembersNotify,
-		$createNewsFeedBranchLevel, $createNewsFeedBranchLevelNotify, $approveNewsFeedBranchLevel, $approveNewsFeedBranchLevelNotify, 
-		$createNewsFeedUnionLevel, $createNewsFeedUnionLevelNotify, $approveNewsFeedUnionLevel, $approveNewsFeedUnionLevelNotify, 
-		$createMovementBranchLevel, $createMovementBranchLevelNotify, $approveMovementBranchLevel, $approveMovementBranchLevelNotify,
-		$createMovementUnionLevel, $createMovementUnionLevelNotify, $approveMovementUnionLevel, $approveMovementUnionLevelNotify, 
-		$createMovementSubDomainLevel, $createMovementSubDomainLevelNotify, $approveMovementSubDomainLevel, 
-		$approveMovementSubDomainLevelNotify, $createMovementDomainLevel, $createMovementDomainLevelNotify, 
-		$approveMovementDomainLevel, $approveMovementDomainLevelNotify, $answerUnionFAQ, $answerBranchFAQ){
-  $sql="INSERT INTO unionprof_mem_perm1(permission_Id, role_Id, createABranch, createABranchNotify, updateBranchInfo, ";
-  $sql.="updateBranchInfoNotify, deleteBranch, deleteBranchNotify, shiftMainBranch, shiftMainBranchNotify, createRole, ";
-  $sql.="createRoleNotify, viewRoles, viewRoleNotify, updateRole, updateRoleNotify, deleteRole, deleteRoleNotify, ";
-  $sql.="requestUsersToBeMembers, requestUsersToBeMembersNotify, approveUsersToBeMembers, approveUsersToBeMembersNotify, ";
-  $sql.="createNewsFeedBranchLevel, createNewsFeedBranchLevelNotify, approveNewsFeedBranchLevel, ";
-  $sql.="approveNewsFeedBranchLevelNotify, createNewsFeedUnionLevel, createNewsFeedUnionLevelNotify, ";
-  $sql.="approveNewsFeedUnionLevel, approveNewsFeedUnionLevelNotify, createMovementBranchLevel, ";
-  $sql.="createMovementBranchLevelNotify, approveMovementBranchLevel, approveMovementBranchLevelNotify, ";
-  $sql.="createMovementUnionLevel, createMovementUnionLevelNotify, approveMovementUnionLevel, ";
-  $sql.="approveMovementUnionLevelNotify, createMovementSubDomainLevel, createMovementSubDomainLevelNotify, ";
-  $sql.="approveMovementSubDomainLevel, approveMovementSubDomainLevelNotify, createMovementDomainLevel, ";
-  $sql.="createMovementDomainLevelNotify, approveMovementDomainLevel, approveMovementDomainLevelNotify, answerUnionFAQ, ";
-  $sql.="answerBranchFAQ, updatedPermOn) ";
-  $sql.="VALUES ('".$permission_Id."','".$role_Id."','".$createABranch."','".$createABranchNotify."','".$updateBranchInfo;
+ function query_add_createPermissions1($permission1_Id, $member_Id, $createABranch, $createABranchNotify, $updateBranchInfo,
+  $updateBranchInfoNotify, $deleteBranch, $deleteBranchNotify, $shiftMainBranch, $shiftMainBranchNotify, 
+  $createNewsFeedUnionLevel, $createNewsFeedUnionLevelNotify, $approveNewsFeedUnionLevel, $approveNewsFeedUnionLevelNotify, 
+  $createMovementUnionLevel, $createMovementUnionLevelNotify, $approveMovementUnionLevel, $approveMovementUnionLevelNotify, 
+  $createMovementSubDomainLevel, $createMovementSubDomainLevelNotify, $approveMovementSubDomainLevel, 
+  $approveMovementSubDomainLevelNotify, $createMovementDomainLevel, $createMovementDomainLevelNotify, 
+  $approveMovementDomainLevel, $approveMovementDomainLevelNotify){
+  $sql="INSERT INTO unionprof_mem_perm1(permission1_Id, member_Id, createABranch, createABranchNotify, updateBranchInfo, ";
+  $sql.="updateBranchInfoNotify, deleteBranch, deleteBranchNotify, shiftMainBranch, shiftMainBranchNotify, ";
+  $sql.="createNewsFeedUnionLevel, createNewsFeedUnionLevelNotify, approveNewsFeedUnionLevel, ";
+  $sql.="approveNewsFeedUnionLevelNotify, createMovementUnionLevel, createMovementUnionLevelNotify, ";
+  $sql.="approveMovementUnionLevel, approveMovementUnionLevelNotify, createMovementSubDomainLevel, ";
+  $sql.="createMovementSubDomainLevelNotify, approveMovementSubDomainLevel, approveMovementSubDomainLevelNotify, ";
+  $sql.="createMovementDomainLevel, createMovementDomainLevelNotify, approveMovementDomainLevel, ";
+  $sql.=" approveMovementDomainLevelNotify, updatedPermOn) ";
+  $sql.="VALUES ('".$permission1_Id."','".$member_Id."','".$createABranch."','".$createABranchNotify."','".$updateBranchInfo;
   $sql.="','".$updateBranchInfoNotify."','".$deleteBranch."','".$deleteBranchNotify."','".$shiftMainBranch."','";
-  $sql.=$shiftMainBranchNotify."','".$createRole."','".$createRoleNotify."','".$viewRoles."','".$viewRoleNotify;
-  $sql.="','".$updateRole."','".$updateRoleNotify."','".$deleteRole."','".$deleteRoleNotify."','".$requestUsersToBeMembers;
-  $sql.="','".$requestUsersToBeMembersNotify."','".$approveUsersToBeMembers."','".$approveUsersToBeMembersNotify."','";
-  $sql.=$createNewsFeedBranchLevel."','".$createNewsFeedBranchLevelNotify."','".$approveNewsFeedBranchLevel;
-  $sql.="','".$approveNewsFeedBranchLevelNotify."','".$createNewsFeedUnionLevel."','".$createNewsFeedUnionLevelNotify;
-  $sql.="','".$approveNewsFeedUnionLevel."','".$approveNewsFeedUnionLevelNotify."','".$createMovementBranchLevel;
-  $sql.="','".$createMovementBranchLevelNotify."','".$approveMovementBranchLevel."','".$approveMovementBranchLevelNotify;
+  $sql.=$shiftMainBranchNotify."','".$createNewsFeedUnionLevel."','".$createNewsFeedUnionLevelNotify;
+  $sql.="','".$approveNewsFeedUnionLevel."','".$approveNewsFeedUnionLevelNotify;
   $sql.="','".$createMovementUnionLevel."','".$createMovementUnionLevelNotify."','".$approveMovementUnionLevel;
   $sql.="','".$approveMovementUnionLevelNotify."','".$createMovementSubDomainLevel."','".$createMovementSubDomainLevelNotify;
   $sql.="','".$approveMovementSubDomainLevel."','".$approveMovementSubDomainLevelNotify."','".$createMovementDomainLevel;
   $sql.="','".$createMovementDomainLevelNotify."','".$approveMovementDomainLevel."','".$approveMovementDomainLevelNotify;
-  $sql.="','".$answerUnionFAQ."','".$answerBranchFAQ."','".date('Y-m-d H:i:s')."');";
+  $sql.="','".date('Y-m-d H:i:s')."');";
   return $sql;
  }
 
+ function query_add_createPermissions2($permission2_Id, $role_Id, $createRole,
+		$createRoleNotify, $viewRoles, $viewRoleNotify, $updateRole, $updateRoleNotify, $deleteRole, $deleteRoleNotify,
+		$requestUsersToBeMembers, $requestUsersToBeMembersNotify, $approveUsersToBeMembers, $approveUsersToBeMembersNotify,
+		$createNewsFeedBranchLevel, $createNewsFeedBranchLevelNotify, $approveNewsFeedBranchLevel, $approveNewsFeedBranchLevelNotify, 
+		$createMovementBranchLevel, $createMovementBranchLevelNotify, $approveMovementBranchLevel, 
+		$approveMovementBranchLevelNotify){
+  $sql="INSERT INTO unionprof_mem_perm2(permission2_Id, role_Id, createRole, ";
+  $sql.="createRoleNotify, viewRoles, viewRoleNotify, updateRole, updateRoleNotify, deleteRole, deleteRoleNotify, ";
+  $sql.="requestUsersToBeMembers, requestUsersToBeMembersNotify, approveUsersToBeMembers, approveUsersToBeMembersNotify, ";
+  $sql.="createNewsFeedBranchLevel, createNewsFeedBranchLevelNotify, approveNewsFeedBranchLevel, ";
+  $sql.="approveNewsFeedBranchLevelNotify, createMovementBranchLevel, createMovementBranchLevelNotify, ";
+  $sql.=" approveMovementBranchLevel, approveMovementBranchLevelNotify, ";
+  $sql.=" updatedPermOn) ";
+  $sql.="VALUES ('".$permission2_Id."','".$role_Id."','".$createRole."','".$createRoleNotify."','".$viewRoles."','";
+  $sql.=$viewRoleNotify."','".$updateRole."','".$updateRoleNotify."','".$deleteRole."','".$deleteRoleNotify."','";
+  $sql.=$requestUsersToBeMembers."','".$requestUsersToBeMembersNotify."','".$approveUsersToBeMembers."','";
+  $sql.=$approveUsersToBeMembersNotify."','".$createNewsFeedBranchLevel."','".$createNewsFeedBranchLevelNotify."','";
+  $sql.=$approveNewsFeedBranchLevel."','".$approveNewsFeedBranchLevelNotify."','".$createMovementBranchLevel;
+  $sql.="','".$createMovementBranchLevelNotify."','".$approveMovementBranchLevel."','".$approveMovementBranchLevelNotify;
+  $sql.="','".date('Y-m-d H:i:s')."');";
+  return $sql;
+ }
+ 
  function query_add_MembersToBranch($member_Id, $union_Id, $branch_Id, $user_Id, $cur_role_Id, $prev_role_Id, $roleNotify, 
 					$roleUpdatedOn, $memNotify, $memAddedOn, $memAddedBy, $status){
   $sql="INSERT INTO unionprof_mem(member_Id, union_Id, branch_Id, user_Id, cur_role_Id, prev_role_Id, roleNotify, ";

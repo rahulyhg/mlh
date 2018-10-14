@@ -116,11 +116,28 @@ function sel_createNewsFeedTab(id){
 var ARTICLE_TITLE;
 var ARTICLE_SHORTDESC;
 var ARTICLE_DESCRIPTION;
+var ARTICLE_POSTDATA={};
 function finish_writeNewsFeedForm(){
   sel_createNewsFeedTab('createNewsFeedTab_Post');
   load_access_unionBranches();
 }
-
+function display_postSelOpt(union_Id,branch_Id){
+ if($('#'+union_Id+'-select-'+branch_Id).hasClass('hide-block')){
+   $('#'+union_Id+'-select-'+branch_Id).removeClass('hide-block');
+ } else {
+   $('#'+union_Id+'-select-'+branch_Id).addClass('hide-block');
+ }
+}
+// input[name$='letter']  -> EndsWith
+// [id^=a] -> StartsWith
+function build_articlePostData(union_Id,branch_Id){
+ if(ARTICLE_POSTDATA[union_Id]===undefined){
+   ARTICLE_POSTDATA[union_Id] = { "branch_Id":[ branch_Id ] };
+ } else {
+   ARTICLE_POSTDATA[union_Id].branch_Id[ARTICLE_POSTDATA[union_Id].branch_Id.length]=branch_Id;
+ }
+ console.log(JSON.stringify(ARTICLE_POSTDATA));
+}
 function load_access_unionBranches(){
  js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.module.app.newsfeed.php', 
  { action:'GET_COUNT_LISTOFUNIONBRANCHCREATENEWSFEED', user_Id: AUTH_USER_ID },
@@ -128,6 +145,7 @@ function load_access_unionBranches(){
    scroll_loadInitializer('loadAvailableCommunityList',10,load_unionBranches_contentData,total_data);
  });
 }
+var UNIONBRANCHDATA =[];
 function load_unionBranches_contentData(div_view, appendContent,limit_start,limit_end){
  js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.module.app.newsfeed.php', 
       { action:'GET_DATA_LISTOFUNIONBRANCHCREATENEWSFEED', user_Id: AUTH_USER_ID, limit_start:limit_start, 
@@ -143,16 +161,17 @@ function load_unionBranches_contentData(div_view, appendContent,limit_start,limi
 	  var minlocation = response[index].minlocation;
 	  var location = response[index].location;
 	  var state = response[index].state;
-	  var country = response[index].country;
+	  var country = response[index].country; 
 	  var createNewsFeedUnionLevel = response[index].createNewsFeedUnionLevel;
 	  var createNewsFeedBranchLevel = response[index].createNewsFeedBranchLevel;
 	  var approveNewsFeedUnionLevel = response[index].approveNewsFeedUnionLevel;
 	  var approveNewsFeedBranchLevel = response[index].approveNewsFeedBranchLevel;
-	  content+='<div class="list-group-item">';
+	  content+='<div id="'+union_Id+'-div-'+branch_Id+'" class="list-group-item">';
 	  content+='<div class="container-fluid pad0">';
 	  content+='<div class="row">';
 	  content+='<div class="col-xs-2">';
-	  content+='<input type="checkbox" style="width:25px;height:25px;"/>';
+	  content+='<input type="checkbox" style="width:25px;height:25px;" ';
+	  content+='onclick="javascript:display_postSelOpt(\''+union_Id+'\',\''+branch_Id+'\');"/>';
 	  content+='</div>';
 	  content+='<div align="left" class="col-xs-4">';
 	  content+='<img src="'+profile_pic+'" class="profile_pic_img"/>';
@@ -160,10 +179,33 @@ function load_unionBranches_contentData(div_view, appendContent,limit_start,limi
 	  content+='<div align="left" class="col-xs-6">';
 	  content+='<h5 style="line-height:22px;"><b>'+unionName+'</b></h5>';
 	  content+='<div style="line-height:22px;color:#9e9e9e;">';
-	  content+=minlocation+','+location+','+state+','+country;
+	  content+=minlocation+', '+location+', '+state+', '+country;
 	  content+='</div>';
 	  content+='</div>';
 	  content+='</div>';
+	  
+	  content+='<div class="row mtop10p">';
+	  content+='<div class="col-xs-2">';
+	  content+='</div>';
+	  content+='<div align="left" class="col-xs-10" style="line-height:22px;color:#ccc;">';
+	  content+='<select id="'+union_Id+'-select-'+branch_Id+'" class="form-control hide-block"';
+	  content+=' onchange="javascript:build_articlePostData(\''+union_Id+'\',\''+branch_Id+'\');">';
+	  content+='<option value="">Select your Publication</option>';
+	  if(createNewsFeedUnionLevel==='Y' && approveNewsFeedUnionLevel==='Y'){
+	  content+='<option value="ACTIVE">Publish to Community</option>';
+	  } else if(createNewsFeedUnionLevel==='Y' && approveNewsFeedUnionLevel==='N'){
+	  content+='<option value="INACTIVE">Approve to Publish to Community</option>';
+	  }   
+	  if(createNewsFeedBranchLevel==='Y' && approveNewsFeedBranchLevel==='Y'){
+	  content+='<option value="ACTIVE">Publish within Branch</option>';
+	  } else if(createNewsFeedBranchLevel==='Y' && approveNewsFeedBranchLevel==='N'){
+	  content+='<option value="INACTIVE">Approve to Publish within Branch</option>';
+	  } 
+	  content+='</select>';
+	  content+='</div>';
+	  content+='</div>';
+	 
+	/*
 	  content+='<div class="row mtop10p">';
 	  content+='<div class="col-xs-2">';
 	  content+='</div>';
@@ -172,7 +214,8 @@ function load_unionBranches_contentData(div_view, appendContent,limit_start,limi
 	  content+=' <i class="fa fa-check" aria-hidden="true"></i>&nbsp;Publish&nbsp;&nbsp;&nbsp;';
 	  content+=' <i class="fa fa-check" aria-hidden="true"></i>&nbsp;Approve';
 	  content+='</div>';
-	  content+='</div>';
+	  content+='</div>'; */
+	  
 	  content+='</div>';
 	  content+='</div>';
 	}

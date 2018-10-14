@@ -42,6 +42,8 @@ function fn_identity(action){
  function move_views_Id() { return fn_identity("MOVE_VIEWS"); }
 /* Table - (4) newsfeed_info ::: info_Id */
  function newsfeed_info_Id() { return fn_identity("NEWSFEED_INFO"); }
+/* Table - (4) newsfeed_ishare ::: ishare_Id */
+ function newsfeed_ishare_Id() { return fn_identity("NEWSFEED_ISHARE"); }
 /* Table - (5) newsfeed_move ::: nf_move_Id */
  function newsfeed_move_Id() { return fn_identity("NEWSFEED_MOVE"); }
 /* Table - (6) newsfeed_user_fav ::: nf_fav_Id */
@@ -73,8 +75,10 @@ function fn_identity(action){
  function unionprof_mem_Id() { return fn_identity("UNIONPROF_MEMBERS"); }
 /* Table - (20) unionprof_mem_chat ::: chat_Id */
  function unionprof_mem_chat_Id() { return fn_identity("UNIONPROF_MEMBERS_CHAT"); }
-/* Table - (21) unionprof_mem_perm1 ::: permission_Id */
+/* Table - (21) unionprof_mem_perm1 ::: permission1_Id */
  function unionprof_mem_perm1_Id() { return fn_identity("UNIONPROF_MEMBERS_PERM1"); }
+ /* Table - (21) unionprof_mem_perm2 ::: permission2_Id */
+ function unionprof_mem_perm2_Id() { return fn_identity("UNIONPROF_MEMBERS_PERM2"); }
 /* Table - (22) unionprof_mem_req ::: request_Id */
  function unionprof_mem_req_Id() { return fn_identity("UNIONPROF_MEMBERS_REQ"); }
 /* Table - (23) unionprof_mem_roles ::: role_Id */
@@ -85,7 +89,7 @@ function fn_identity(action){
 /* Table - (26) user_account ::: user_Id */
  function user_account_Id() { return fn_identity("USER_ACCOUNT"); }
 /* Table - (27) user_contact ::: contact_Id */
- function user_contact_Id() { return fn_identity("USER_CONTACT"); }
+ function user_contact_Id() { return fn_identity("USER_CONTACTS"); }
 /* Table - (28) user_frnds ::: rel_Id */
  function user_frnds_Id() { return fn_identity("USER_FRNDS"); }
 /* Table - (29) user_frnds_req ::: rel_Id */

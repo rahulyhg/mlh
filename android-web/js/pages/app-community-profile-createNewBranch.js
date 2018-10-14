@@ -16,7 +16,9 @@ function load_administratorDetails(){
 	      { action: 'GET_DATA_USERINFORMATION', user_Id:MEMBER_OR_BRANCHREQ_ID }, function(response){
     hide_toggleMLHLoader('body');
     response = JSON.parse(response);
+	var profile_pic = response[0].profile_pic;
     FIRSTMEMBER_NAME = response[0].surName+" "+response[0].name;
+	document.getElementById("createNewBranch_profilepic").innerHTML='<img src="'+profile_pic+'" class="profile_pic_img"/>';
     document.getElementById("createNewBranch_firstMemberName").innerHTML=FIRSTMEMBER_NAME;
   }); 
   } else if(MEMBER_OR_BRANCHREQ_ID.startsWith("UPBR")){
@@ -88,7 +90,7 @@ function form_add_branchInformation(){
  BRANCH_STATE = document.getElementById("communityNewBranch_branchInfo_state").value;
  BRANCH_LOCATION = document.getElementById("communityNewBranch_branchInfo_location").value; 
  BRANCH_MINLOCATION = document.getElementById("communityNewBranch_branchInfo_locality").value;
- MYDESIGNATION_TITLE = document.getElementById("communityNewBranch_branchInfo_mydesignation").value;
+ MYDESIGNATION_TITLE = sentenceCase(document.getElementById("communityNewBranch_branchInfo_mydesignation").value);
  if(BRANCH_COUNTRY.length>0){
  if(BRANCH_STATE.length>0){
  if(BRANCH_LOCATION.length>0){
@@ -126,12 +128,9 @@ function load_result_myRole(){
  var myRoleId = unionprof_mem_roles_Id();
  var membersRoleId = unionprof_mem_roles_Id();
  MYDESIGNATION_ROLEID = myRoleId;
- ROLE_INFO[myRoleId] = { "roleName":MYDESIGNATION_TITLE,"createABranch":"Y","updateBranchInfo":"Y","deleteBranch":"Y",
-"shiftMainBranch":"Y","createRole":"Y","viewRoles":"Y","updateRole":"Y","deleteRole":"Y","requestUsersToBeMembers":"Y",
-"approveUsersToBeMembers":"Y","createNewsFeedBranchLevel":"Y","approveNewsFeedBranchLevel":"Y","createNewsFeedUnionLevel":"Y",
-"approveNewsFeedUnionLevel":"Y","createMovementBranchLevel":"Y","approveMovementBranchLevel":"Y","createMovementUnionLevel":"Y",
-"approveMovementUnionLevel":"Y","createMovementSubDomainLevel":"Y","approveMovementSubDomainLevel":"Y",
-"createMovementDomainLevel":"Y","approveMovementDomainLevel":"Y" };
+ ROLE_INFO[myRoleId] = {  "roleName":MYDESIGNATION_TITLE,"createRole":"Y","viewRoles":"Y","updateRole":"Y","deleteRole":"Y",
+ "requestUsersToBeMembers":"Y","approveUsersToBeMembers":"Y","createNewsFeedBranchLevel":"Y","approveNewsFeedBranchLevel":"Y",
+"createMovementBranchLevel":"Y","approveMovementBranchLevel":"Y" };
 /* Default Role */
 ROLE_INFO[membersRoleId] = { "roleName": "Members" };
 }
@@ -159,10 +158,6 @@ function load_createRole_list(){
  for(var role_Id in ROLE_INFO){
   var roleInfoObject = ROLE_INFO[role_Id];
   var roleName = sentenceCase(roleInfoObject["roleName"]);
-  var createABranch = roleInfoObject["createABranch"];
-  var updateBranchInfo = roleInfoObject["updateBranchInfo"];
-  var deleteBranch = roleInfoObject["deleteBranch"];
-  var shiftMainBranch = roleInfoObject["shiftMainBranch"];
   var createRole = roleInfoObject["createRole"];
   var viewRoles = roleInfoObject["viewRoles"];
   var updateRole = roleInfoObject["updateRole"];
@@ -171,16 +166,8 @@ function load_createRole_list(){
   var approveUsersToBeMembers = roleInfoObject["approveUsersToBeMembers"];
   var createNewsFeedBranchLevel = roleInfoObject["createNewsFeedBranchLevel"];
   var approveNewsFeedBranchLevel = roleInfoObject["approveNewsFeedBranchLevel"];
-  var createNewsFeedUnionLevel = roleInfoObject["createNewsFeedUnionLevel"];
-  var approveNewsFeedUnionLevel = roleInfoObject["approveNewsFeedUnionLevel"];
   var createMovementBranchLevel = roleInfoObject["createMovementBranchLevel"];
   var approveMovementBranchLevel = roleInfoObject["approveMovementBranchLevel"];
-  var createMovementUnionLevel = roleInfoObject["createMovementUnionLevel"];
-  var approveMovementUnionLevel = roleInfoObject["approveMovementUnionLevel"];
-  var createMovementSubDomainLevel = roleInfoObject["createMovementSubDomainLevel"];
-  var approveMovementSubDomainLevel = roleInfoObject["approveMovementSubDomainLevel"];
-  var createMovementDomainLevel = roleInfoObject["createMovementDomainLevel"];
-  var approveMovementDomainLevel = roleInfoObject["approveMovementDomainLevel"];
   content+='<div class="list-group">'; 
   content+='<div class="list-group-item custom-lgt-bg" style="background-color:'+CURRENT_LIGHT_COLOR+';"';
   content+='data-toggle="collapse" data-target="#roleId-collapse-'+role_Id+'">';
@@ -200,51 +187,6 @@ function load_createRole_list(){
   content+='<div id="roleId-collapse-'+role_Id+'" class="collapse">';
   content+='<div align="center" class="list-group-item">';
   content+='<b>Set Permissions to Role</b>';
-  content+='</div>';
-  content+='<div class="list-group-item" data-toggle="collapse" data-target="#perm_branchInfo_'+role_Id+'">';
-  content+='<b>Branch Information <i class="fa fa-angle-down pull-right" aria-hidden="true"></i></b>';
-  content+='</div>';
-  content+='<div id="perm_branchInfo_'+role_Id+'" class="collapse">';
-  content+='<div class="list-group-item">';
-  content+='<div class="container-fluid">';
-  content+='<div class="row mtop15p">';
-  content+='<div class="col-xs-8 pad0"><div class="pad5">Create a New Branch</div></div>';
-  content+='<div class="col-xs-3 pull-right">';
-  content+='<input id="input_createABranch_'+role_Id+'" type="checkbox" ';
-  content+='data-toggle="toggle" data-on="Yes" data-off="No" ';
-  if(createABranch==='Y'){ content+='checked '; }
-  content+='onchange="javascript:setPerm_branchInfo_create(\''+role_Id+'\');">';
-  content+='</div>';
-  content+='</div>';
-  content+='<div class="row mtop15p">';
-  content+='<div class="col-xs-8 pad0"><div class="pad5">Update Branch Information</div></div>';
-  content+='<div class="col-xs-3 pull-right">';
-  content+='<input id="input_updateBranchInfo_'+role_Id+'" type="checkbox" ';
-  if(updateBranchInfo==='Y'){ content+='checked '; }
-  content+='data-toggle="toggle" data-on="Yes" data-off="No" ';
-  content+='onchange="javascript:setPerm_branchInfo_update(\''+role_Id+'\');">';
-  content+='</div>';
-  content+='</div>'; 
-  content+='<div class="row mtop15p">';
-  content+='<div class="col-xs-8 pad0"><div class="pad5">Able to Delete Branch</div></div>';
-  content+='<div class="col-xs-3 pull-right">';
-  content+='<input id="input_deleteBranch_'+role_Id+'" type="checkbox" ';
-  if(deleteBranch==='Y'){ content+='checked '; }
-  content+='data-toggle="toggle" data-on="Yes" data-off="No" ';
-  content+='onchange="javascript:setPerm_branchInfo_delete(\''+role_Id+'\');">';
-  content+='</div>';
-  content+='</div>';
-  content+='<div class="row mtop15p">';
-  content+='<div class="col-xs-8 pad0"><div class="pad5">Able to Shift Main Branch</div></div>';
-  content+='<div class="col-xs-3 pull-right">';
-  content+='<input id="input_shiftMainBranch_'+role_Id+'" type="checkbox" ';
-  if(shiftMainBranch==='Y'){ content+='checked '; }
-  content+='data-toggle="toggle" data-on="Yes" data-off="No" ';
-  content+='onchange="javascript:setPerm_branchInfo_shiftBranch(\''+role_Id+'\');">';
-  content+='</div>';
-  content+='</div>';
-  content+='</div>';
-  content+='</div>';
   content+='</div>';
   content+='<div class="list-group-item" data-toggle="collapse" data-target="#perm_roles_'+role_Id+'">';
   content+='<b>Member Roles <i class="fa fa-angle-down pull-right" aria-hidden="true"></i></b>';
@@ -319,8 +261,7 @@ function load_createRole_list(){
   content+='<div class="list-group-item">';
   content+='<div class="container-fluid">';
   content+='<div class="row mtop15p">';
-  content+='<div align="center" class="col-xs-12 pad0"><div class="pad5"><h5><b>Branch Level</b></h5></div></div>';
-  content+='</div>';
+ content+='</div>';
   content+='<div class="row mtop15p">';
   content+='<div class="col-xs-8 pad0"><div class="pad5">Create NewsFeed and Post within Branch</div></div> ';
   content+='<div class="col-xs-3 pull-right">';
@@ -338,29 +279,11 @@ function load_createRole_list(){
   content+='data-off="No" onchange="javascript:setPerm_newsfeed_branch_approveNewsFeed(\''+role_Id+'\');">';
   content+='</div>';
   content+='</div>'; 
-  content+='<div class="row mtop15p">';
-  content+='<div align="center" class="col-xs-12 pad0"><div class="pad5"><h5><b>Community Level</b></h5></div></div>';
-  content+='</div>';
-  content+='<div class="row mtop15p">';
-  content+='<div class="col-xs-8 pad0"><div class="pad5">Create NewsFeed and Post within Community</div></div> ';
-  content+='<div class="col-xs-3 pull-right">';
-  content+='<input id="input_createNewsFeedUnionLevel_'+role_Id+'" type="checkbox" data-toggle="toggle" data-on="Yes" ';
-  if(createNewsFeedUnionLevel==='Y'){ content+='checked '; }
-  content+='data-off="No" onchange="javascript:setPerm_newsfeed_union_createAndPostNewsFeed(\''+role_Id+'\');">';
-  content+='</div>';
-  content+='</div>';
-  content+='<div class="row mtop15p">';
-  content+='<div class="col-xs-8 pad0"><div class="pad5">Approve NewsFeed created by others to post ';
-  content+='within Community</div></div>';
-  content+='<div class="col-xs-3 pull-right">';
-  content+='<input id="input_approveNewsFeedUnionLevel_'+role_Id+'" type="checkbox" data-toggle="toggle" data-on="Yes" ';
-  if(approveNewsFeedUnionLevel==='Y'){ content+='checked '; }
-  content+='data-off="No" onchange="javascript:setPerm_newsfeed_union_approveNewsFeed(\''+role_Id+'\');">';
-  content+='</div>';
-  content+='</div>';
+  
   content+='</div>';
   content+='</div>';
   content+='</div>';   
+  
   content+='<div class="list-group-item" data-toggle="collapse" data-target="#perm_movement_'+role_Id+'">';
   content+='<b>Movement <i class="fa fa-angle-down pull-right" aria-hidden="true"></i></b>';
   content+='</div>';
@@ -387,67 +310,8 @@ function load_createRole_list(){
   content+='data-off="No" onchange="javascript:setPerm_movement_branch_approveMovement(\''+role_Id+'\');">';
   content+='</div>';
   content+='</div>';
-  content+='<div class="row mtop15p">';
-  content+='<div align="center" class="col-xs-12 pad0"><div class="pad5"><h5><b>Community Level</b></h5></div></div>';
   content+='</div>';
-  content+='<div class="row mtop15p">';
-  content+='<div class="col-xs-8 pad0"><div class="pad5">Create Movement and Post within Community</div></div> ';
-  content+='<div class="col-xs-3 pull-right">';
-  content+='<input id="input_createMovementUnionLevel_'+role_Id+'" type="checkbox" data-toggle="toggle" data-on="Yes" ';
-  if(createMovementUnionLevel==='Y'){ content+='checked '; }
-  content+='data-off="No" onchange="javascript:setPerm_movement_union_createAndPostMovement(\''+role_Id+'\');">'; 
-  content+='</div>';
-  content+='</div>';
-  content+='<div class="row mtop15p">';
-  content+='<div class="col-xs-8 pad0"><div class="pad5">Approve Movement created by others to post within ';
-  content+='Community</div></div>';
-  content+='<div class="col-xs-3 pull-right">';
-  content+='<input id="input_approveMovementUnionLevel_'+role_Id+'" type="checkbox" data-toggle="toggle" data-on="Yes" ';
-  if(approveMovementUnionLevel==='Y'){ content+='checked '; }
-  content+='data-off="No" onchange="javascript:setPerm_movement_union_approveMovement(\''+role_Id+'\');" >';
-  content+='</div>';
-  content+='</div>';
-  content+='<div class="row mtop15p">';
-  content+='<div align="center" class="col-xs-12 pad0"><div class="pad5"><h5><b>Sub-Category Level</b></h5></div></div>';
-  content+='</div>';
-  content+='<div class="row mtop15p">';
-  content+='<div class="col-xs-8 pad0"><div class="pad5">Create Movement and Post within Sub-Category</div></div> ';
-  content+='<div class="col-xs-3 pull-right">';
-  content+='<input id="input_createMovementSubDomainLevel_'+role_Id+'" type="checkbox" data-toggle="toggle" data-on="Yes" ';
-  if(createMovementSubDomainLevel==='Y'){ content+='checked '; }
-  content+='data-off="No" onchange="javascript:setPerm_movement_subdomain_createAndPostMovement(\''+role_Id+'\');">';   
-  content+='</div>';
-  content+='</div>';
-  content+='<div class="row mtop15p">';
-  content+='<div class="col-xs-8 pad0"><div class="pad5">Approve Movement created by others to post ';
-  content+='within Sub-Category</div></div>';
-  content+='<div class="col-xs-3 pull-right">';
-  content+='<input id="input_approveMovementSubDomainLevel_'+role_Id+'" type="checkbox" data-toggle="toggle" data-on="Yes" ';
-  if(approveMovementSubDomainLevel==='Y'){ content+='checked '; }
-  content+='data-off="No" onchange="javascript:setPerm_movement_subdomain_approveMovement(\''+role_Id+'\');">';
-  content+='</div>';
-  content+='</div>';
-  content+='<div class="row mtop15p">';
-  content+='<div align="center" class="col-xs-12 pad0"><div class="pad5"><h5><b>Category Level</b></h5></div></div>';
-  content+='</div>';
-  content+='<div class="row mtop15p">';
-  content+='<div class="col-xs-8 pad0"><div class="pad5">Create Movement and Post within Category</div></div> ';
-  content+='<div class="col-xs-3 pull-right">';
-  content+='<input id="input_createMovementDomainLevel_'+role_Id+'" type="checkbox" data-toggle="toggle" data-on="Yes" ';
-  if(createMovementDomainLevel==='Y'){ content+='checked '; }
-  content+='data-off="No" onchange="javascript:setPerm_movement_domain_createAndPostMovement(\''+role_Id+'\');">';
-  content+='</div>';
-  content+='</div>';
-  content+='<div class="row mtop15p">';
-  content+='<div class="col-xs-8 pad0"><div class="pad5">Approve Movement created by others to post ';
-  content+='within Category</div></div>';
-  content+='<div class="col-xs-3 pull-right">';
-  content+='<input id="input_approveMovementDomainLevel_'+role_Id+'" type="checkbox" data-toggle="toggle" data-on="Yes" ';
-  if(approveMovementDomainLevel==='Y'){ content+='checked '; }
-  content+='data-off="No" onchange="javascript:setPerm_movement_domain_approveMovement(\''+role_Id+'\');">';
-  content+='</div>';
-  content+='</div>';
-  content+='</div>';
+  
   content+='</div>';
   content+='</div>';
   content+='</div>';
@@ -475,35 +339,6 @@ function form_remove_roleName(role_Id){
  load_createRole_list();
 }
 /* Permissions Add to Roles */
-/* Branch Information */
-function setPerm_branchInfo_create(role_Id){
- var status = $('#input_createABranch_'+role_Id).prop('checked');
- if(status){ status='Y'; }
- else { status='N'; }
- ROLE_INFO[role_Id].createABranch=status;
- console.log(JSON.stringify(ROLE_INFO));
-}
-function setPerm_branchInfo_update(role_Id){
- var status = $('#input_updateBranchInfo_'+role_Id).prop('checked');
- if(status){ status='Y'; }
- else { status='N'; }
- ROLE_INFO[role_Id].updateBranchInfo=status;
- console.log(JSON.stringify(ROLE_INFO));
-}
-function setPerm_branchInfo_delete(role_Id){
- var status = $('#input_deleteBranch_'+role_Id).prop('checked');
- if(status){ status='Y'; }
- else { status='N'; }
- ROLE_INFO[role_Id].deleteBranch=status;
- console.log(JSON.stringify(ROLE_INFO));
-}
-function setPerm_branchInfo_shiftBranch(role_Id){
- var status = $('#input_shiftMainBranch_'+role_Id).prop('checked');
- if(status){ status='Y'; }
- else { status='N'; }
- ROLE_INFO[role_Id].shiftMainBranch=status;
- console.log(JSON.stringify(ROLE_INFO));
-}
 /* Roles */
 function setPerm_roles_create(role_Id){
  var status = $('#input_createRole_'+role_Id).prop('checked');
@@ -564,21 +399,6 @@ function setPerm_newsfeed_branch_approveNewsFeed(role_Id){
  ROLE_INFO[role_Id].approveNewsFeedBranchLevel=status;
  console.log(JSON.stringify(ROLE_INFO));
 }
-/* NewsFeed ::: Union Level */
-function setPerm_newsfeed_union_createAndPostNewsFeed(role_Id){
- var status = $('#input_createNewsFeedUnionLevel_'+role_Id).prop('checked');
- if(status){ status='Y'; }
- else { status='N'; }
- ROLE_INFO[role_Id].createNewsFeedUnionLevel=status;
- console.log(JSON.stringify(ROLE_INFO));
-}
-function setPerm_newsfeed_union_approveNewsFeed(role_Id){
- var status = $('#input_approveNewsFeedUnionLevel_'+role_Id).prop('checked');
- if(status){ status='Y'; }
- else { status='N'; }
- ROLE_INFO[role_Id].approveNewsFeedUnionLevel=status;
- console.log(JSON.stringify(ROLE_INFO));
-}
 /* Movement ::: Branch Level */
 function setPerm_movement_branch_createAndPostMovement(role_Id){
  var status = $('#input_createMovementBranchLevel_'+role_Id).prop('checked');
@@ -592,51 +412,6 @@ function setPerm_movement_branch_approveMovement(role_Id){
  if(status){ status='Y'; }
  else { status='N'; }
  ROLE_INFO[role_Id].approveMovementBranchLevel=status;
- console.log(JSON.stringify(ROLE_INFO));
-}
-/* Movement ::: Union Level */
-function setPerm_movement_union_createAndPostMovement(role_Id){
- var status = $('#input_createMovementUnionLevel_'+role_Id).prop('checked');
- if(status){ status='Y'; }
- else { status='N'; }
- ROLE_INFO[role_Id].createMovementUnionLevel=status;
- console.log(JSON.stringify(ROLE_INFO));
-}
-function setPerm_movement_union_approveMovement(role_Id){
- var status = $('#input_approveMovementUnionLevel_'+role_Id).prop('checked');
- if(status){ status='Y'; }
- else { status='N'; }
- ROLE_INFO[role_Id].approveMovementUnionLevel=status;
- console.log(JSON.stringify(ROLE_INFO));
-}
-/* Movement ::: SubDomain Level */
-function setPerm_movement_subdomain_createAndPostMovement(role_Id){
- var status = $('#input_createMovementSubDomainLevel_'+role_Id).prop('checked');
- if(status){ status='Y'; }
- else { status='N'; }
- ROLE_INFO[role_Id].createMovementSubDomainLevel=status;
- console.log(JSON.stringify(ROLE_INFO));
-}
-function setPerm_movement_subdomain_approveMovement(role_Id){
- var status = $('#input_approveMovementSubDomainLevel_'+role_Id).prop('checked');
- if(status){ status='Y'; }
- else { status='N'; }
- ROLE_INFO[role_Id].approveMovementSubDomainLevel=status;
- console.log(JSON.stringify(ROLE_INFO));
-}
-/* Movement ::: Domain Level */ 
-function setPerm_movement_domain_createAndPostMovement(role_Id){
- var status = $('#input_createMovementDomainLevel_'+role_Id).prop('checked');
- if(status){ status='Y'; }
- else { status='N'; }
- ROLE_INFO[role_Id].createMovementDomainLevel=status;
- console.log(JSON.stringify(ROLE_INFO));
-}
-function setPerm_movement_domain_approveMovement(role_Id){
- var status = $('#input_approveMovementDomainLevel_'+role_Id).prop('checked');
- if(status){ status='Y'; }
- else { status='N'; }
- ROLE_INFO[role_Id].approveMovementDomainLevel=status;
  console.log(JSON.stringify(ROLE_INFO));
 }
 
@@ -797,7 +572,179 @@ function displayTemplate_membersContent(member_Id, profile_pic, name, minlocatio
 	MEMBER_DISPLAYCONTENT+='</div>';
 	MEMBER_DISPLAYCONTENT+='</div>';
 	MEMBER_DISPLAYCONTENT+='</div>';
+	MEMBER_DISPLAYCONTENT+='<div class="list-group-item" data-toggle="collapse" ';
+	MEMBER_DISPLAYCONTENT+=' style="background-color:#e7e7e7;" data-target="#splPerm_members_'+member_Id+'">';
+	MEMBER_DISPLAYCONTENT+='<h5><b>Special Permissions</b>';
+	MEMBER_DISPLAYCONTENT+='<i style="font-size:20px;" class="fa fa-angle-down pull-right" aria-hidden="true"></i></h5>';
 	MEMBER_DISPLAYCONTENT+='</div>';
+	MEMBER_DISPLAYCONTENT+='<div id="splPerm_members_'+member_Id+'" class="collapse">';
+	
+	MEMBER_DISPLAYCONTENT+='<div class="list-group-item" data-toggle="collapse" data-target="#splPerm_branchInfo_'+member_Id+'">';
+    MEMBER_DISPLAYCONTENT+='<b>Branch Information <i class="fa fa-angle-down pull-right" aria-hidden="true"></i></b>';
+    MEMBER_DISPLAYCONTENT+='</div>';
+	
+	MEMBER_DISPLAYCONTENT+='<div id="splPerm_branchInfo_'+member_Id+'" class="collapse">';
+    MEMBER_DISPLAYCONTENT+='<div class="list-group-item">';
+    MEMBER_DISPLAYCONTENT+='<div class="container-fluid">';
+  
+    MEMBER_DISPLAYCONTENT+='<div class="row mtop15p">';
+    MEMBER_DISPLAYCONTENT+='<div class="col-xs-8 pad0"><div class="pad5">Create a New Branch</div></div>';
+    MEMBER_DISPLAYCONTENT+='<div class="col-xs-3 pull-right">';
+    MEMBER_DISPLAYCONTENT+='<input id="input_createABranch_'+member_Id+'" type="checkbox" ';
+    MEMBER_DISPLAYCONTENT+='data-toggle="toggle" data-on="Yes" data-off="No" ';
+    MEMBER_DISPLAYCONTENT+='onchange="javascript:setPerm_branchInfo_create(\''+member_Id+'\');">';
+    MEMBER_DISPLAYCONTENT+='</div>';
+    MEMBER_DISPLAYCONTENT+='</div>';
+	
+	MEMBER_DISPLAYCONTENT+='<div class="row mtop15p">';
+    MEMBER_DISPLAYCONTENT+='<div class="col-xs-8 pad0"><div class="pad5">Update Branch Information</div></div>';
+    MEMBER_DISPLAYCONTENT+='<div class="col-xs-3 pull-right">';
+    MEMBER_DISPLAYCONTENT+='<input id="input_updateBranchInfo_'+member_Id+'" type="checkbox" ';
+    MEMBER_DISPLAYCONTENT+='data-toggle="toggle" data-on="Yes" data-off="No" ';
+    MEMBER_DISPLAYCONTENT+='onchange="javascript:setPerm_branchInfo_update(\''+member_Id+'\');">'; 
+    MEMBER_DISPLAYCONTENT+='</div>';
+    MEMBER_DISPLAYCONTENT+='</div>';
+	
+	MEMBER_DISPLAYCONTENT+='<div class="row mtop15p">';
+    MEMBER_DISPLAYCONTENT+='<div class="col-xs-8 pad0"><div class="pad5">Able to Delete Branch</div></div>';
+    MEMBER_DISPLAYCONTENT+='<div class="col-xs-3 pull-right">';
+    MEMBER_DISPLAYCONTENT+='<input id="input_deleteBranch_'+member_Id+'" type="checkbox" ';
+    MEMBER_DISPLAYCONTENT+='data-toggle="toggle" data-on="Yes" data-off="No" ';
+    MEMBER_DISPLAYCONTENT+='onchange="javascript:setPerm_branchInfo_delete(\''+member_Id+'\');">'; 
+    MEMBER_DISPLAYCONTENT+='</div>';
+    MEMBER_DISPLAYCONTENT+='</div>';
+	
+	MEMBER_DISPLAYCONTENT+='<div class="row mtop15p">';
+    MEMBER_DISPLAYCONTENT+='<div class="col-xs-8 pad0"><div class="pad5">Able to Shift Main Branch</div></div>';
+    MEMBER_DISPLAYCONTENT+='<div class="col-xs-3 pull-right">';
+    MEMBER_DISPLAYCONTENT+='<input id="input_shiftMainBranch_'+member_Id+'" type="checkbox" ';
+    MEMBER_DISPLAYCONTENT+='data-toggle="toggle" data-on="Yes" data-off="No" ';
+    MEMBER_DISPLAYCONTENT+='onchange="javascript:setPerm_branchInfo_shiftBranch(\''+member_Id+'\');">';
+    MEMBER_DISPLAYCONTENT+='</div>';
+    MEMBER_DISPLAYCONTENT+='</div>';
+	
+	MEMBER_DISPLAYCONTENT+='</div>'; // container-fluid
+	MEMBER_DISPLAYCONTENT+='</div>'; // list-group-item
+	
+	MEMBER_DISPLAYCONTENT+='</div>'; // splPerm_branchInfo_
+	
+	MEMBER_DISPLAYCONTENT+='<div class="list-group-item" data-toggle="collapse" data-target="#splPerm_newsFeed_'+member_Id+'">';
+    MEMBER_DISPLAYCONTENT+='<b>NewsFeed <i class="fa fa-angle-down pull-right" aria-hidden="true"></i></b>';
+    MEMBER_DISPLAYCONTENT+='</div>';
+	
+	MEMBER_DISPLAYCONTENT+='<div id="splPerm_newsFeed_'+member_Id+'" class="collapse">';
+    MEMBER_DISPLAYCONTENT+='<div class="list-group-item">';
+    MEMBER_DISPLAYCONTENT+='<div class="container-fluid">';
+	
+    MEMBER_DISPLAYCONTENT+='<div class="row mtop15p">';
+	MEMBER_DISPLAYCONTENT+='<div class="col-xs-8 pad0">';
+	MEMBER_DISPLAYCONTENT+='<div class="pad5">Create NewsFeed and Post within Community</div>';
+	MEMBER_DISPLAYCONTENT+='</div> ';
+    MEMBER_DISPLAYCONTENT+='<div class="col-xs-3 pull-right">';
+    MEMBER_DISPLAYCONTENT+='<input id="input_createNewsFeedUnionLevel_'+member_Id+'" type="checkbox" data-toggle="toggle" ';
+	MEMBER_DISPLAYCONTENT+='data-on="Yes" data-off="No" ';
+	MEMBER_DISPLAYCONTENT+='onchange="javascript:setPerm_newsfeed_union_createAndPostNewsFeed(\''+member_Id+'\');">';
+    MEMBER_DISPLAYCONTENT+='</div>';
+	MEMBER_DISPLAYCONTENT+='</div>';
+	
+	MEMBER_DISPLAYCONTENT+='<div class="row mtop15p">';
+    MEMBER_DISPLAYCONTENT+='<div class="col-xs-8 pad0"><div class="pad5">Approve NewsFeed created by others to post ';
+    MEMBER_DISPLAYCONTENT+='within Community</div></div>';
+    MEMBER_DISPLAYCONTENT+='<div class="col-xs-3 pull-right">';
+    MEMBER_DISPLAYCONTENT+='<input id="input_approveNewsFeedUnionLevel_'+member_Id+'" type="checkbox" data-toggle="toggle" ';
+	MEMBER_DISPLAYCONTENT+='data-on="Yes" data-off="No" ';
+	MEMBER_DISPLAYCONTENT+='onchange="javascript:setPerm_newsfeed_union_approveNewsFeed(\''+member_Id+'\');">'; 
+    MEMBER_DISPLAYCONTENT+='</div>';
+    MEMBER_DISPLAYCONTENT+='</div>';
+	
+	MEMBER_DISPLAYCONTENT+='</div>'; // container-fluid
+	MEMBER_DISPLAYCONTENT+='</div>'; // list-group-item
+	MEMBER_DISPLAYCONTENT+='</div>'; // splPerm_newsFeed_
+	
+	MEMBER_DISPLAYCONTENT+='<div class="list-group-item" data-toggle="collapse" data-target="#splPerm_movements_'+member_Id+'">';
+    MEMBER_DISPLAYCONTENT+='<b>Movements <i class="fa fa-angle-down pull-right" aria-hidden="true"></i></b>';
+    MEMBER_DISPLAYCONTENT+='</div>';
+	
+	MEMBER_DISPLAYCONTENT+='<div id="splPerm_movements_'+member_Id+'" class="collapse">'; // splPerm_movement_
+	MEMBER_DISPLAYCONTENT+='<div class="list-group-item">'; // list-group-item
+	MEMBER_DISPLAYCONTENT+='<div class="container-fluid">'; // container-fluid
+	
+	MEMBER_DISPLAYCONTENT+='<div class="row mtop15p">';
+    MEMBER_DISPLAYCONTENT+='<div align="center" class="col-xs-12 pad0"><div class="pad5"><h5><b>Community Level</b></h5></div></div>';
+    MEMBER_DISPLAYCONTENT+='</div>';
+  
+	MEMBER_DISPLAYCONTENT+='<div class="row mtop15p">';
+    MEMBER_DISPLAYCONTENT+='<div class="col-xs-8 pad0"><div class="pad5">Create Movement and Post within Community</div></div> ';
+    MEMBER_DISPLAYCONTENT+='<div class="col-xs-3 pull-right">';
+    MEMBER_DISPLAYCONTENT+='<input id="input_createMovementUnionLevel_'+member_Id+'" type="checkbox" data-toggle="toggle" ';
+	MEMBER_DISPLAYCONTENT+='data-on="Yes" data-off="No" ';
+    MEMBER_DISPLAYCONTENT+='onchange="javascript:setPerm_movement_union_createAndPostMovement(\''+member_Id+'\');">';
+    MEMBER_DISPLAYCONTENT+='</div>';
+    MEMBER_DISPLAYCONTENT+='</div>';
+	
+	MEMBER_DISPLAYCONTENT+='<div class="row mtop15p">';
+    MEMBER_DISPLAYCONTENT+='<div class="col-xs-8 pad0"><div class="pad5">Approve Movement created by others to post within ';
+    MEMBER_DISPLAYCONTENT+='Community</div></div>';
+    MEMBER_DISPLAYCONTENT+='<div class="col-xs-3 pull-right">';
+    MEMBER_DISPLAYCONTENT+='<input id="input_approveMovementUnionLevel_'+member_Id+'" type="checkbox" data-toggle="toggle" ';
+	MEMBER_DISPLAYCONTENT+='data-on="Yes" data-off="No" ';
+    MEMBER_DISPLAYCONTENT+='onchange="javascript:setPerm_movement_union_approveMovement(\''+member_Id+'\');">';
+    MEMBER_DISPLAYCONTENT+='</div>';
+    MEMBER_DISPLAYCONTENT+='</div>';
+	
+	MEMBER_DISPLAYCONTENT+='<div class="row mtop15p">';
+    MEMBER_DISPLAYCONTENT+='<div align="center" class="col-xs-12 pad0"><div class="pad5">';
+	MEMBER_DISPLAYCONTENT+='<h5><b>Sub-Category Level</b></h5>';
+	MEMBER_DISPLAYCONTENT+='</div>';
+	MEMBER_DISPLAYCONTENT+='</div>';
+    MEMBER_DISPLAYCONTENT+='</div>';
+    MEMBER_DISPLAYCONTENT+='<div class="row mtop15p">';
+    MEMBER_DISPLAYCONTENT+='<div class="col-xs-8 pad0"><div class="pad5">Create Movement and Post within Sub-Category</div></div> ';
+    MEMBER_DISPLAYCONTENT+='<div class="col-xs-3 pull-right">';
+    MEMBER_DISPLAYCONTENT+='<input id="input_createMovementSubDomainLevel_'+member_Id+'" type="checkbox" data-toggle="toggle" ';
+	MEMBER_DISPLAYCONTENT+='data-on="Yes" data-off="No" ';
+    MEMBER_DISPLAYCONTENT+='onchange="javascript:setPerm_movement_subdomain_createAndPostMovement(\''+member_Id+'\');">';
+    MEMBER_DISPLAYCONTENT+='</div>';
+    MEMBER_DISPLAYCONTENT+='</div>';
+  
+    MEMBER_DISPLAYCONTENT+='<div class="row mtop15p">';
+    MEMBER_DISPLAYCONTENT+='<div class="col-xs-8 pad0"><div class="pad5">Approve Movement created by others to post ';
+    MEMBER_DISPLAYCONTENT+='within Sub-Category</div></div>';
+    MEMBER_DISPLAYCONTENT+='<div class="col-xs-3 pull-right">';
+    MEMBER_DISPLAYCONTENT+='<input id="input_approveMovementSubDomainLevel_'+member_Id+'" type="checkbox" data-toggle="toggle" ';
+	MEMBER_DISPLAYCONTENT+='data-on="Yes" data-off="No" ';
+    MEMBER_DISPLAYCONTENT+='onchange="javascript:setPerm_movement_subdomain_approveMovement(\''+member_Id+'\');">';
+    MEMBER_DISPLAYCONTENT+='</div>';
+    MEMBER_DISPLAYCONTENT+='</div>';
+	
+	MEMBER_DISPLAYCONTENT+='<div class="row mtop15p">';
+    MEMBER_DISPLAYCONTENT+='<div align="center" class="col-xs-12 pad0"><div class="pad5"><h5><b>Category Level</b></h5></div></div>';
+    MEMBER_DISPLAYCONTENT+='</div>';
+    MEMBER_DISPLAYCONTENT+='<div class="row mtop15p">';
+    MEMBER_DISPLAYCONTENT+='<div class="col-xs-8 pad0"><div class="pad5">Create Movement and Post within Category</div></div> ';
+    MEMBER_DISPLAYCONTENT+='<div class="col-xs-3 pull-right">';
+    MEMBER_DISPLAYCONTENT+='<input id="input_createMovementDomainLevel_'+member_Id+'" type="checkbox" data-toggle="toggle" ';
+    MEMBER_DISPLAYCONTENT+='data-on="Yes" data-off="No" ';
+    MEMBER_DISPLAYCONTENT+='onchange="javascript:setPerm_movement_domain_createAndPostMovement(\''+member_Id+'\');">';
+    MEMBER_DISPLAYCONTENT+='</div>';
+    MEMBER_DISPLAYCONTENT+='</div>';
+  
+    MEMBER_DISPLAYCONTENT+='<div class="row mtop15p">';
+    MEMBER_DISPLAYCONTENT+='<div class="col-xs-8 pad0"><div class="pad5">Approve Movement created by others to post ';
+    MEMBER_DISPLAYCONTENT+='within Category</div></div>';
+    MEMBER_DISPLAYCONTENT+='<div class="col-xs-3 pull-right">';
+    MEMBER_DISPLAYCONTENT+='<input id="input_approveMovementDomainLevel_'+member_Id+'" type="checkbox" data-toggle="toggle" ';
+    MEMBER_DISPLAYCONTENT+='data-on="Yes" data-off="No" ';
+    MEMBER_DISPLAYCONTENT+='onchange="javascript:setPerm_movement_domain_approveMovement(\''+member_Id+'\');">';
+    MEMBER_DISPLAYCONTENT+='</div>';
+    MEMBER_DISPLAYCONTENT+='</div>';
+	
+	MEMBER_DISPLAYCONTENT+='</div>'; // container-fluid 
+	MEMBER_DISPLAYCONTENT+='</div>'; // list-group-item
+	MEMBER_DISPLAYCONTENT+='</div>'; // splPerm_movement_
+	
+	MEMBER_DISPLAYCONTENT+='</div>'; // splPerm_members_
+	MEMBER_DISPLAYCONTENT+='</div>'; // list-group
 }
 function addToArray_members(){
  document.getElementById("communityNewBranch_members_name").value="";
@@ -805,7 +752,10 @@ function addToArray_members(){
  var duplicateRecognizer=false;
  if(MEMBER_ID!==AUTH_USER_ID){
  if(MEMBERS_REQ_LIST[MEMBER_ID]===undefined){
-   MEMBERS_REQ_LIST[MEMBER_ID]={ "member_Id":MEMBER_ID };
+   MEMBERS_REQ_LIST[MEMBER_ID]={  "member_Id":MEMBER_ID, createABranch:'N', updateBranchInfo:'N', deleteBranch:'N',
+   shiftMainBranch:'N', createNewsFeedUnionLevel:'N', approveNewsFeedUnionLevel:'N', createMovementUnionLevel:'N',
+   approveMovementUnionLevel:'N', createMovementSubDomainLevel:'N', approveMovementSubDomainLevel:'N',
+   createMovementDomainLevel:'N',  approveMovementDomainLevel:'N' };
    MEMBER_DISPLAYCONTENT+='<div id="div_communityNewBranch_selectedMembers'+(size+1)+'"></div>';
    document.getElementById("div_communityNewBranch_selectedMembers"+size).innerHTML=MEMBER_DISPLAYCONTENT;
    select_display_roles('roles_div_'+MEMBER_ID,MEMBER_ID);  // Setting Select Options
@@ -862,4 +812,94 @@ function enable_finishButton(){
      $('#btn_communityNewBranch_formFinsh').addClass('hide-block');
    }
  }
+}
+/* Permissions Add to Roles */
+/* Branch Information */
+function setPerm_branchInfo_create(member_Id){
+ var status = $('#input_createABranch_'+member_Id).prop('checked');
+ if(status){ status='Y'; }
+ else { status='N'; }
+ MEMBERS_REQ_LIST[member_Id].createABranch=status;
+ console.log(JSON.stringify(MEMBERS_REQ_LIST));
+}
+function setPerm_branchInfo_update(member_Id){
+ var status = $('#input_updateBranchInfo_'+member_Id).prop('checked');
+ if(status){ status='Y'; }
+ else { status='N'; }
+ MEMBERS_REQ_LIST[member_Id].updateBranchInfo=status;
+ console.log(JSON.stringify(MEMBERS_REQ_LIST));
+}
+function setPerm_branchInfo_delete(member_Id){
+ var status = $('#input_deleteBranch_'+member_Id).prop('checked');
+ if(status){ status='Y'; }
+ else { status='N'; }
+ MEMBERS_REQ_LIST[member_Id].deleteBranch=status;
+ console.log(JSON.stringify(MEMBERS_REQ_LIST));
+}
+function setPerm_branchInfo_shiftBranch(member_Id){
+ var status = $('#input_shiftMainBranch_'+member_Id).prop('checked');
+ if(status){ status='Y'; }
+ else { status='N'; }
+ MEMBERS_REQ_LIST[member_Id].shiftMainBranch=status;
+ console.log(JSON.stringify(MEMBERS_REQ_LIST));
+}
+/* NewsFeed ::: Union Level */
+function setPerm_newsfeed_union_createAndPostNewsFeed(member_Id){
+ var status = $('#input_createNewsFeedUnionLevel_'+member_Id).prop('checked');
+ if(status){ status='Y'; }
+ else { status='N'; }
+ MEMBERS_REQ_LIST[member_Id].createNewsFeedUnionLevel=status;
+ console.log(JSON.stringify(MEMBERS_REQ_LIST));
+}
+function setPerm_newsfeed_union_approveNewsFeed(member_Id){
+ var status = $('#input_approveNewsFeedUnionLevel_'+member_Id).prop('checked');
+ if(status){ status='Y'; }
+ else { status='N'; }
+ MEMBERS_REQ_LIST[member_Id].approveNewsFeedUnionLevel=status;
+ console.log(JSON.stringify(MEMBERS_REQ_LIST));
+}
+/* Movement ::: Union Level */
+function setPerm_movement_union_createAndPostMovement(member_Id){
+ var status = $('#input_createMovementUnionLevel_'+member_Id).prop('checked');
+ if(status){ status='Y'; }
+ else { status='N'; }
+ MEMBERS_REQ_LIST[member_Id].createMovementUnionLevel=status;
+ console.log(JSON.stringify(MEMBERS_REQ_LIST));
+}
+function setPerm_movement_union_approveMovement(member_Id){
+ var status = $('#input_approveMovementUnionLevel_'+member_Id).prop('checked');
+ if(status){ status='Y'; }
+ else { status='N'; }
+ MEMBERS_REQ_LIST[member_Id].approveMovementUnionLevel=status;
+ console.log(JSON.stringify(MEMBERS_REQ_LIST));
+}
+/* Movement ::: SubDomain Level */
+function setPerm_movement_subdomain_createAndPostMovement(member_Id){
+ var status = $('#input_createMovementSubDomainLevel_'+member_Id).prop('checked');
+ if(status){ status='Y'; }
+ else { status='N'; }
+ MEMBERS_REQ_LIST[member_Id].createMovementSubDomainLevel=status;
+ console.log(JSON.stringify(MEMBERS_REQ_LIST));
+}
+function setPerm_movement_subdomain_approveMovement(member_Id){
+ var status = $('#input_approveMovementSubDomainLevel_'+member_Id).prop('checked');
+ if(status){ status='Y'; }
+ else { status='N'; }
+ MEMBERS_REQ_LIST[member_Id].approveMovementSubDomainLevel=status;
+ console.log(JSON.stringify(MEMBERS_REQ_LIST));
+}
+/* Movement ::: Domain Level */ 
+function setPerm_movement_domain_createAndPostMovement(member_Id){
+ var status = $('#input_createMovementDomainLevel_'+member_Id).prop('checked');
+ if(status){ status='Y'; }
+ else { status='N'; }
+ MEMBERS_REQ_LIST[member_Id].createMovementDomainLevel=status;
+ console.log(JSON.stringify(MEMBERS_REQ_LIST));
+}
+function setPerm_movement_domain_approveMovement(member_Id){
+ var status = $('#input_approveMovementDomainLevel_'+member_Id).prop('checked');
+ if(status){ status='Y'; }
+ else { status='N'; }
+ MEMBERS_REQ_LIST[member_Id].approveMovementDomainLevel=status;
+ console.log(JSON.stringify(MEMBERS_REQ_LIST));
 }

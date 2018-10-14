@@ -88,6 +88,11 @@ class DataIdentity {
   $selectQuery="SELECT count(*) FROM newsfeed_info WHERE info_Id='".$id."';";
   return $selectQuery;
  }
+ /* Table - (4) newsfeed_ishare ::: ishare_Id */
+ function query_checkId_newsfeed_ishare($id) {
+  $selectQuery="SELECT count(*) FROM newsfeed_ishare WHERE ishare_Id='".$id."';";
+  return $selectQuery;
+ }
  /* Table - (5) newsfeed_move ::: nf_move_Id */
  function query_checkId_newsfeed_move($id) {
   $selectQuery="SELECT count(*) FROM newsfeed_move WHERE nf_move_Id='".$id."';";
@@ -163,7 +168,11 @@ class DataIdentity {
  }
  /* Table - (21) unionprof_mem_perm1 ::: permission_Id */
  function query_checkId_unionprof_mem_perm1($id) {
-  $selectQuery="SELECT count(*) FROM unionprof_mem_perm1 WHERE permission_Id='".$id."';";
+  $selectQuery="SELECT count(*) FROM unionprof_mem_perm1 WHERE permission1_Id='".$id."';";
+  return $selectQuery;
+ }
+ function query_checkId_unionprof_mem_perm2($id) {
+  $selectQuery="SELECT count(*) FROM unionprof_mem_perm2 WHERE permission2_Id='".$id."';";
   return $selectQuery;
  }
  /* Table - (22) unionprof_mem_req ::: request_Id */
@@ -188,8 +197,8 @@ class DataIdentity {
   return $selectQuery;
  }
  /* Table - (27) user_contact ::: contact_Id */
- function query_checkId_user_contact($id) {
-  $selectQuery="SELECT count(*) FROM user_contact WHERE contact_Id='".$id."';";
+ function query_checkId_user_contacts($id) {
+  $selectQuery="SELECT count(*) FROM user_contacts WHERE contact_Id='".$id."';";
   return $selectQuery;
  }
  /* Table - (28) user_frnds ::: rel_Id */

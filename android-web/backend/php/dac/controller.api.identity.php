@@ -41,6 +41,8 @@ if(isset($_GET["action"])) {
  else if($_GET["action"]=='MOVE_VIEWS') { echo $idObj->move_views_id(); } 
 	  /* Table - (4) newsfeed_info ::: info_Id */
  else if($_GET["action"]=='NEWSFEED_INFO') { echo $idObj->newsfeed_info_id(); } 
+      /* Table - (4) newsfeed_ishare ::: ishare_Id */
+ else if($_GET["action"]=='NEWSFEED_ISHARE') { echo $idObj->newsfeed_ishare_id(); } 
 	  /* Table - (5) newsfeed_move ::: nf_move_Id */
  else if($_GET["action"]=='NEWSFEED_MOVE') { echo $idObj->newsfeed_move_id(); } 
 	  /* Table - (6) newsfeed_user_fav ::: nf_fav_Id */
@@ -72,8 +74,10 @@ if(isset($_GET["action"])) {
  else if($_GET["action"]=='UNIONPROF_MEMBERS') { echo $idObj->unionprof_mem_id(); }
  /* Table - (20) unionprof_mem_chat ::: chat_Id */
  else if($_GET["action"]=='UNIONPROF_MEMBERS_CHAT') { echo $idObj->unionprof_mem_chat_id(); }
- /* Table - (21) unionprof_mem_perm1 ::: permission_Id */
+ /* Table - (21) unionprof_mem_perm1 ::: permission1_Id */
  else if($_GET["action"]=='UNIONPROF_MEMBERS_PERM1') { echo $idObj->unionprof_mem_perm1_id(); }
+  /* Table - (21) unionprof_mem_perm2 ::: permission2_Id */
+ else if($_GET["action"]=='UNIONPROF_MEMBERS_PERM2') { echo $idObj->unionprof_mem_perm2_id(); }
  /* Table - (22) unionprof_mem_req ::: request_Id */
  else if($_GET["action"]=='UNIONPROF_MEMBERS_REQ') { echo $idObj->unionprof_mem_req_id(); }
  /* Table - (23) unionprof_mem_roles ::: role_Id */
@@ -84,7 +88,7 @@ if(isset($_GET["action"])) {
  /* Table - (26) user_account ::: user_Id */
  else if($_GET["action"]=='USER_ACCOUNT') { echo $idObj->user_account_id(); }
  /* Table - (27) user_contact ::: contact_Id */
- else if($_GET["action"]=='USER_CONTACT') { echo $idObj->user_contact_id(); }
+ else if($_GET["action"]=='USER_CONTACTS') { echo $idObj->user_contacts_id(); }
  /* Table - (28) user_frnds ::: rel_Id */
  else if($_GET["action"]=='USER_FRNDS') { echo $idObj->user_frnds_id(); }
  /* Table - (29) user_frnds_req ::: rel_Id */

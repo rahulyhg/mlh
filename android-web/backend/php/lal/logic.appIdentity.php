@@ -291,6 +291,22 @@ class Identity {
   if($output==='ID_ALREADY_EXIST') { newsfeed_info_id(); } 
   else { return $num; }
  }
+ /* Table - (4) newsfeed_ishare ::: ishare_Id (25) */
+ function id_newsfeed_ishare($id) {
+   $dataObj=new DataIdentity();
+   $selectQuery=$dataObj->query_checkId_newsfeed_ishare($id);
+   $idObj = new Identity();
+   return $idObj->mlhbasic_tbl_PrimaryId_status($selectQuery);
+ }
+ function newsfeed_ishare_id() {
+  $num="NIS";
+  for($index=0;$index<22;$index++) { $num.=rand(1,9); }
+  /* Check Exists or not, If not exist return */
+  $checkObj=new Identity();
+  $output=$checkObj->id_newsfeed_ishare($num);
+  if($output==='ID_ALREADY_EXIST') { newsfeed_ishare_id(); } 
+  else { return $num; }
+ }
  /* Table - (5) newsfeed_move ::: nf_move_Id (25) */
  function id_newsfeed_move($id) {
    $dataObj=new DataIdentity();
@@ -529,7 +545,7 @@ class Identity {
   if($output==='ID_ALREADY_EXIST') { unionprof_mem_chat_id(); } 
   else { return $num; }
  }
- /* Table - (21) unionprof_mem_perm1 ::: permission_Id (25) */
+ /* Table - (21) unionprof_mem_perm1 ::: permission1_Id (25) */
  function id_unionprof_mem_perm1($id) {
    $dataObj=new DataIdentity();
    $selectQuery=$dataObj->query_checkId_unionprof_mem_perm1($id);
@@ -543,6 +559,22 @@ class Identity {
   $checkObj=new Identity();
   $output=$checkObj->id_unionprof_mem_perm1($num);
   if($output==='ID_ALREADY_EXIST') { unionprof_mem_perm1_id(); } 
+  else { return $num; }
+ }
+ /* Table - (21) unionprof_mem_perm2 ::: permission2_Id (25) */
+ function id_unionprof_mem_perm2($id) {
+   $dataObj=new DataIdentity();
+   $selectQuery=$dataObj->query_checkId_unionprof_mem_perm2($id);
+   $idObj = new Identity();
+   return $idObj->mlhbasic_tbl_PrimaryId_status($selectQuery);
+ }
+ function unionprof_mem_perm2_id() {
+  $num="UP2P";
+  for($index=0;$index<21;$index++) { $num.=rand(1,9); }
+  /* Check Exists or not, If not exist return */
+  $checkObj=new Identity();
+  $output=$checkObj->id_unionprof_mem_perm2($num);
+  if($output==='ID_ALREADY_EXIST') { unionprof_mem_perm2_id(); } 
   else { return $num; }
  }
  /* Table - (22) unionprof_mem_req ::: request_Id (15) */
@@ -611,19 +643,19 @@ class Identity {
    else { return $num; }
  }
  /* Table - (27) user_contact ::: contact_Id (25) */
- function id_user_contact($id) {
+ function id_user_contacts($id) {
    $dataObj=new DataIdentity();
-   $selectQuery=$dataObj->query_checkId_user_contact($id);
+   $selectQuery=$dataObj->query_checkId_user_contacts($id);
    $idObj = new Identity();
    return $idObj->mlhbasic_tbl_PrimaryId_status($selectQuery);
  }
- function user_contact_id() {
+ function user_contacts_id() {
    $num="USRC";
    for($index=0;$index<12;$index++) { $num.=rand(1,9); }
    /* Check Exists or not, If not exist return */
    $checkObj=new Identity();
-   $output=$checkObj->id_user_contact($num);
-   if($output==='ID_ALREADY_EXIST') { user_contact_id(); } 
+   $output=$checkObj->id_user_contacts($num);
+   if($output==='ID_ALREADY_EXIST') { user_contacts_id(); } 
    else { return $num; }
  }
  /* Table - (28) user_frnds ::: rel_Id (25) */
