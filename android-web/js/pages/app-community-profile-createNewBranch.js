@@ -8,6 +8,11 @@ $(document).ready(function(){
 });
 
 var FIRSTMEMBER_NAME;
+var FIRSTMEMBER_PROFILEPIC;
+var FIRSTMEMBER_LOCALITY;
+var FIRSTMEMBER_LOCATION;
+var FIRSTMEMBER_STATE;
+var FIRSTMEMBER_COUNTRY;
 
 function load_administratorDetails(){
   if(MEMBER_OR_BRANCHREQ_ID.startsWith("USR")){
@@ -16,8 +21,12 @@ function load_administratorDetails(){
 	      { action: 'GET_DATA_USERINFORMATION', user_Id:MEMBER_OR_BRANCHREQ_ID }, function(response){
     hide_toggleMLHLoader('body');
     response = JSON.parse(response);
-	var profile_pic = response[0].profile_pic;
     FIRSTMEMBER_NAME = response[0].surName+" "+response[0].name;
+	FIRSTMEMBER_PROFILEPIC = response[0].profile_pic;
+    FIRSTMEMBER_LOCALITY = response[0].minlocation;
+    FIRSTMEMBER_LOCATION  = response[0].location;
+    FIRSTMEMBER_STATE  = response[0].state;
+    FIRSTMEMBER_COUNTRY  = response[0].country;
 	document.getElementById("createNewBranch_profilepic").innerHTML='<img src="'+profile_pic+'" class="profile_pic_img"/>';
     document.getElementById("createNewBranch_firstMemberName").innerHTML=FIRSTMEMBER_NAME;
   }); 
@@ -26,32 +35,35 @@ function load_administratorDetails(){
      js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.module.app.community.professional.branch.php',
 	      { action: 'GET_DATA_REQUESTLOCALBRANCH', req_branch_Id:MEMBER_OR_BRANCHREQ_ID }, function(response){
 		  console.log(response);
-    response = JSON.parse(response);
-	var minlocation = response[0].minlocation;
-    var location = response[0].location;
-	var state = response[0].state;
-	var country = response[0].country;
-	var profile_pic = response[0].profile_pic;
-	var surName = response[0].surName;
-	var name = response[0].name;
-	document.getElementById("createNewBranch_profilepic").innerHTML='<img src="'+profile_pic+'" class="profile_pic_img"/>';
-	document.getElementById("createNewBranch_firstMemberName").innerHTML=surName+" "+name;
+    response = JSON.parse(response);      
+	var branch_minlocation = response[0].branch_minlocation;
+    var branch_location = response[0].branch_location;
+	var branch_state = response[0].branch_state;
+	var branch_country = response[0].branch_country;
+	FIRSTMEMBER_NAME = response[0].surName+" "+response[0].name;
+	FIRSTMEMBER_PROFILEPIC = response[0].profile_pic;
+    FIRSTMEMBER_LOCALITY = response[0].user_minlocation;
+    FIRSTMEMBER_LOCATION  = response[0].user_location;
+    FIRSTMEMBER_STATE  = response[0].user_state;
+    FIRSTMEMBER_COUNTRY  = response[0].user_country;
+	document.getElementById("createNewBranch_profilepic").innerHTML='<img src="'+FIRSTMEMBER_PROFILEPIC+'" class="profile_pic_img"/>';
+	document.getElementById("createNewBranch_firstMemberName").innerHTML=FIRSTMEMBER_NAME;
 	setTimeout(function() { 
-     document.getElementById("communityNewBranch_branchInfo_country").value=country;
+     document.getElementById("communityNewBranch_branchInfo_country").value=branch_country;
 	 document.getElementById("communityNewBranch_branchInfo_country").disabled=true;	 
 	 build_stateOption('communityNewBranch_branchInfo_country','communityNewBranch_branchInfo_state');
 	 setTimeout(function() { 
-	 document.getElementById("communityNewBranch_branchInfo_state").value=state; 
+	 document.getElementById("communityNewBranch_branchInfo_state").value=branch_state; 
 	 document.getElementById("communityNewBranch_branchInfo_state").disabled=true;	
 	 build_locationOption('communityNewBranch_branchInfo_country','communityNewBranch_branchInfo_state',
 						  'communityNewBranch_branchInfo_location');
 	 setTimeout(function() { 
-	 document.getElementById("communityNewBranch_branchInfo_location").value=location;
+	 document.getElementById("communityNewBranch_branchInfo_location").value=branch_location;
 	 document.getElementById("communityNewBranch_branchInfo_location").disabled=true;		 
 	 build_minlocationOption('communityNewBranch_branchInfo_country','communityNewBranch_branchInfo_state',
 						'communityNewBranch_branchInfo_location','communityNewBranch_branchInfo_locality');
 	 setTimeout(function() { 
-	 document.getElementById("communityNewBranch_branchInfo_locality").value=minlocation; 
+	 document.getElementById("communityNewBranch_branchInfo_locality").value=branch_minlocation; 
 	 document.getElementById("communityNewBranch_branchInfo_locality").disabled=true;	
 	 hide_toggleMLHLoader('body');
 	 },1000);
@@ -487,16 +499,15 @@ function display_meAsaMember(){
  var content='<div class="list-group-item pad0">';
 	 content+='<div class="container-fluid mtop15p mbot15p">';
 	 content+='<div class="row">';
-	 
 	 content+='<div class="col-xs-4">';
-	 content+='<img src="'+AUTH_USER_PROFILEPIC+'" class="profile_pic_img3">';
+	 content+='<img src="'+FIRSTMEMBER_PROFILEPIC+'" class="profile_pic_img3">';
 	 content+='</div>';
 	 
 	 content+='<div class="col-xs-8">';
-	 content+='<div>'+AUTH_USER_SURNAME+' '+AUTH_USER_FULLNAME+'<div>';
+	 content+='<div>'+FIRSTMEMBER_NAME+'<div>';
 	 content+='<div class="mtop15p"><span class="label label-primary">'+MYDESIGNATION_TITLE+'</span><div>';
      content+='<div class="mtop15p" style="color:#929090;">';
-	 content+=AUTH_USER_LOCALITY+', '+AUTH_USER_LOCATION+', '+AUTH_USER_STATE+', '+AUTH_USER_COUNTRY+'</div>';
+	 content+=FIRSTMEMBER_LOCALITY+', '+FIRSTMEMBER_LOCATION+', '+FIRSTMEMBER_STATE+', '+FIRSTMEMBER_COUNTRY+'</div>';
 	 content+='</div>';
 	 
 	 content+='</div>';

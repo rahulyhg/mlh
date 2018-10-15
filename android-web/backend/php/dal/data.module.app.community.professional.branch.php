@@ -87,10 +87,14 @@ class ProfessionalCommunityBranch {
    $sql.="location='".$location."' AND minlocation='".$minlocation."' AND union_Id='".$union_Id."';";
    return $sql;      
  }
- 
+
  function query_get_branchRequestByRequestId($req_branch_Id){
-   $sql="SELECT unionprof_branch_req.minlocation, unionprof_branch_req.location, unionprof_branch_req.state, ";
-   $sql.="unionprof_branch_req.country, user_account.surName, user_account.name, user_account.profile_pic ";
+ /* Used in controller.module.app.community.professional.branch.php at action = GET_DATA_REQUESTLOCALBRANCH */
+   $sql="SELECT unionprof_branch_req.minlocation As branch_minlocation, ";
+   $sql.="unionprof_branch_req.location As branch_location, unionprof_branch_req.state As branch_state, ";
+   $sql.="unionprof_branch_req.country As branch_country, user_account.surName, user_account.name, ";
+   $sql.="user_account.profile_pic, user_account.minlocation As user_minlocation, ";
+   $sql.=" user_account.location As user_location, user_account.state As user_state, user_account.country As user_country ";
    $sql.=" FROM unionprof_branch_req, user_account WHERE req_branch_Id='".$req_branch_Id."' AND ";
    $sql.="unionprof_branch_req.reqBy = user_account.user_Id;";
    return $sql;
