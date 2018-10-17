@@ -67,7 +67,7 @@ function checkUserAvailability(){
       if(response=='USERNAME_NOT_EXISTS') {   /* keep in Session and Move Forward  */
 		display_availabilityMsg();
 		document.getElementById("username_"+USR_LANG+"_setupDisplay").innerHTML=username;
-	  }
+	  } else { alert_display_warning('W042'); }
    });
   } else { alert_display_warning('W002'); }
 }

@@ -1,71 +1,85 @@
 <?php
 class Newsfeed {
-  function query_count_listOfUnionBranchesWithCreateNewsFeedPerm($user_Id){
-   $sql="SELECT count(*) FROM unionprof_mem, unionprof_mem_perm1, unionprof_account, unionprof_branch ";
-   $sql.="WHERE unionprof_mem.user_Id='".$user_Id."' AND unionprof_mem.branch_Id = unionprof_branch.branch_Id AND ";
-   $sql.="unionprof_mem_perm1.role_Id = unionprof_mem.cur_role_Id  AND unionprof_account.union_Id = unionprof_branch.union_Id ";
-   $sql.=" AND (createNewsFeedUnionLevel='Y' OR createNewsFeedBranchLevel='Y') ORDER BY unionprof_account.unionName ASC;";
-   return $sql;
-  }
-  function query_data_listOfUnionBranchesWithCreateNewsFeedPerm($user_Id, $limit_start, $limit_end){
-    $sql="SELECT unionprof_account.unionName, unionprof_account.profile_pic, unionprof_mem.union_Id, unionprof_mem.branch_Id, ";
-	$sql.="unionprof_branch.minlocation, unionprof_branch.location, unionprof_branch.state, unionprof_branch.country, ";
-	$sql.="unionprof_mem_perm1.createNewsFeedUnionLevel, unionprof_mem_perm1.createNewsFeedBranchLevel, ";
-	$sql.="unionprof_mem_perm1.approveNewsFeedUnionLevel,  unionprof_mem_perm1.approveNewsFeedBranchLevel ";
-	$sql.="FROM unionprof_mem, unionprof_mem_perm1, unionprof_account, unionprof_branch ";
-	$sql.="WHERE unionprof_mem.user_Id='".$user_Id."' AND unionprof_mem.branch_Id = unionprof_branch.branch_Id AND ";
-	$sql.="unionprof_mem_perm1.role_Id = unionprof_mem.cur_role_Id  AND unionprof_account.union_Id = unionprof_branch.union_Id ";
-	$sql.=" AND (createNewsFeedUnionLevel='Y' OR createNewsFeedBranchLevel='Y') ";
-	$sql.=" ORDER BY unionprof_account.unionName ASC LIMIT ".$limit_start.",".$limit_end;
-   return $sql;
-  }
-  
-  function query_count_listOfAvailCommunitiesAndBranchesToWriteNewsFeed($user_Id){
-  /* FUNCTION DESCRIPTION : This Function is used to provide list of Available Communities and their Branches
-   *						to Write NewsFeed.
-   * PAGES UTILIZED :  
-   */
-   $sql="SELECT count(*) FROM subs_dom_info, subs_subdom_info, unionprof_account, unionprof_branch, unionprof_mem, "; 
-   $sql.=" unionprof_mem_perm WHERE subs_dom_info.domain_Id=unionprof_account.domain_Id AND ";
-   $sql.=" subs_subdom_info.subdomain_Id=unionprof_account.subdomain_Id AND ";
-   $sql.=" unionprof_mem.union_Id=unionprof_account.union_Id AND ";
-   $sql.=" unionprof_mem.branch_Id=unionprof_branch.branch_Id AND ";
-   $sql.=" unionprof_mem.user_Id='".$user_Id."' AND  unionprof_mem.role_Id=unionprof_mem_perm.role_Id AND ";
-   $sql.="(unionprof_mem_perm.createNewsFeedBranchLevel='Y' OR unionprof_mem_perm.createNewsFeedUnionLevel='Y')";
-   return $sql;
-  }
-  
-  function query_data_listOfAvailCommunitiesAndBranchesToWriteNewsFeed($user_Id,$limit_start,$limit_end){
-  /* FUNCTION DESCRIPTION : This Function is used to provide list of Available Communities and their Branches
-   *						to Write NewsFeed.
-   * PAGES UTILIZED :  
-   */
-   $sql="SELECT subs_dom_info.domain_Id, subs_dom_info.domainName, subs_subdom_info.subdomain_Id, ";
-   $sql.="subs_subdom_info.subdomainName, unionprof_account.union_Id, unionprof_account.unionName, ";
-   $sql.="unionprof_branch.branch_Id, unionprof_branch.minlocation, unionprof_branch.location, unionprof_branch.state, ";
-   $sql.="unionprof_branch.country, (SELECT IF(unionprof_account.main_branch_Id=unionprof_branch.branch_Id,'YES','NO')) ";
-   $sql.="As isMainBranch FROM subs_dom_info, subs_subdom_info, unionprof_account, unionprof_branch, unionprof_mem, ";
-   $sql.="unionprof_mem_perm WHERE subs_dom_info.domain_Id=unionprof_account.domain_Id AND ";
-   $sql.="subs_subdom_info.subdomain_Id=unionprof_account.subdomain_Id AND ";
-   $sql.="unionprof_mem.union_Id=unionprof_account.union_Id AND ";
-   $sql.="unionprof_mem.branch_Id=unionprof_branch.branch_Id AND ";
-   $sql.="unionprof_mem.user_Id='".$user_Id."' AND unionprof_mem.role_Id=unionprof_mem_perm.role_Id AND ";
-   $sql.="(unionprof_mem_perm.createNewsFeedBranchLevel='Y' OR unionprof_mem_perm.createNewsFeedUnionLevel='Y') ";
-   $sql.="LIMIT ".$limit_start.",".$limit_end;
-   return $sql;
-  }
-  
-  function query_writeNewsFeed($info_Id, $bizUnionId, $unionBranchId, $artTitle, $artShrtDesc, $artDesc,
-						$createdOn, $images, $newsFeedType, $displayLevel, $status){
-  /* FUNCTION DESCRIPTION : This Function is used to Write NewsFeed for a Professional Community
-   * PAGES UTILIZED :  
-   */
-   $sql="INSERT INTO newsfeed_info(info_Id, bizUnionId, unionBranchId, artTitle, artShrtDesc, artDesc, ";
-   $sql.="createdOn, images, newsFeedType, displayLevel, status) ";
-   $sql.="VALUES ('".$info_Id."','".$bizUnionId."','".$unionBranchId."','";
-   $sql.=$artTitle."','".$artShrtDesc."','".$artDesc."','".date('Y-m-d H:i:s')."','".$images."','";
-   $sql.=$newsFeedType."','".$displayLevel."','".$status."');";
-   return $sql;
-  }
+   
+   /* Create NewsFeed Functions: */
+   function query_count_listOfCommunitiesWhereUserMember($user_Id){
+    $sql="SELECT count(DISTINCT(unionprof_account.union_Id)) As total_data ";
+	$sql.="FROM unionprof_account, unionprof_mem, unionprof_mem_perm1 ";
+	$sql.="WHERE unionprof_mem.user_Id = '".$user_Id."' AND ";
+	$sql.="unionprof_account.union_Id = unionprof_mem.union_Id AND ";
+	$sql.="unionprof_mem.user_Id = unionprof_mem_perm1.member_Id AND ";
+	$sql.="unionprof_mem_perm1.createNewsFeedUnionLevel='Y';";
+	return $sql;
+   }
+   function query_data_listOfCommunitiesWhereUserMember($user_Id,$limit_start,$limit_end){
+    $sql="SELECT DISTINCT(unionprof_account.union_Id), unionprof_account.unionName, unionprof_account.profile_pic, ";
+	$sql.="unionprof_account.domain_Id, (SELECT domainName FROM subs_dom_info WHERE ";
+	$sql.="unionprof_account.domain_Id = subs_dom_info.domain_Id) As domainName, ";
+	$sql.="unionprof_account.subdomain_Id, (SELECT subdomainName FROM subs_subdom_info WHERE ";
+	$sql.="unionprof_account.subdomain_Id = subs_subdom_info.subdomain_Id) As subdomainName, ";
+	$sql.="unionprof_mem_perm1.createNewsFeedUnionLevel, unionprof_mem_perm1.approveNewsFeedUnionLevel ";
+	$sql.="FROM unionprof_account, unionprof_mem, unionprof_mem_perm1  ";
+	$sql.="WHERE unionprof_mem.user_Id = '".$user_Id."' AND ";
+	$sql.="unionprof_account.union_Id = unionprof_mem.union_Id AND ";
+	$sql.="unionprof_mem.user_Id = unionprof_mem_perm1.member_Id AND ";
+	$sql.="unionprof_mem_perm1.createNewsFeedUnionLevel='Y' ";
+	$sql.="LIMIT ".$limit_start.",".$limit_end;
+	return $sql;
+   }
+   function query_count_listOfBranchesWhereUserMember($user_Id,$union_Id){
+    $sql="SELECT count(DISTINCT(unionprof_mem_roles.branch_Id)) As total_data "; 
+    $sql.="FROM unionprof_mem_roles, unionprof_branch, unionprof_mem, unionprof_mem_perm2  ";
+    $sql.="WHERE unionprof_branch.union_Id = unionprof_mem_roles.union_Id AND  ";
+    $sql.="unionprof_mem_roles.branch_Id = unionprof_branch.branch_Id AND  ";
+    $sql.="unionprof_mem.cur_role_Id = unionprof_mem_roles.role_Id  AND ";
+	$sql.="unionprof_mem_roles.role_Id = unionprof_mem_perm2.role_Id  ";
+    $sql.="AND unionprof_branch.union_Id='".$union_Id."' AND unionprof_mem.user_Id='".$user_Id."' AND ";
+	$sql.="unionprof_mem_perm2.createNewsFeedBranchLevel='Y';";
+	return $sql;
+   }
+   function query_data_listOfBranchesWhereUserMember($user_Id,$union_Id,$limit_start,$limit_end){
+    $sql="SELECT DISTINCT(unionprof_mem_roles.branch_Id), unionprof_mem_roles.union_Id, unionprof_branch.minlocation, ";
+    $sql.="unionprof_branch.location, unionprof_branch.state, unionprof_branch.country, ";
+    $sql.="unionprof_mem_roles.role_Id, unionprof_mem_roles.roleName, unionprof_mem_perm2.createNewsFeedBranchLevel, ";  
+	$sql.="unionprof_mem_perm2.approveNewsFeedBranchLevel ";
+    $sql.="FROM unionprof_mem_roles, unionprof_branch, unionprof_mem, unionprof_mem_perm2  ";
+    $sql.="WHERE unionprof_branch.union_Id = unionprof_mem_roles.union_Id AND  ";
+    $sql.="unionprof_mem_roles.branch_Id = unionprof_branch.branch_Id AND  ";
+    $sql.="unionprof_mem.cur_role_Id = unionprof_mem_roles.role_Id AND ";
+	$sql.="unionprof_mem_roles.role_Id = unionprof_mem_perm2.role_Id  ";
+    $sql.="AND unionprof_branch.union_Id='".$union_Id."' AND unionprof_mem.user_Id='".$user_Id."' AND ";
+	$sql.="unionprof_mem_perm2.createNewsFeedBranchLevel='Y' ";
+	$sql.="LIMIT ".$limit_start.",".$limit_end;
+	return $sql;
+   }
+   function query_data_addNewsFeedInfo($info_Id, $artTitle, $artShrtDesc, $artDesc, $images, $status, $writtenBy){
+    $sql="INSERT INTO newsfeed_info(info_Id, artTitle, artShrtDesc, artDesc, createdOn, images, status, writtenBy) ";
+	$sql.="VALUES ('".$info_Id."','".$artTitle."','".$artShrtDesc."','".$artDesc."','".date('Y-m-d H:i:s');
+	$sql.="','".$images."','".$status."','".$writtenBy."');";
+	return $sql;
+   }
+   function query_data_addNewsFeedIShare($ishare_Id, $info_Id, $union_Id, $branch_Id, $view_members, $view_subscribers, 
+		$biz_Id, $approvedBy){
+    $sql="INSERT INTO newsfeed_share_i(ishare_Id, info_Id, union_Id, branch_Id, view_members, view_subscribers, ";
+	$sql.="biz_Id, approvedBy, ts) ";
+	$sql.="VALUES ('".$ishare_Id."','".$info_Id."','".$union_Id."','".$branch_Id."','".$view_members."','";
+	$sql.=$view_subscribers."','".$biz_Id."','".$approvedBy."','".date('Y-m-d H:i:s')."');";
+	return $sql;
+   }
+   function query_data_addNewsFeedRShare($rshare_Id, $info_Id, $union_Id, $branch_Id, $view_members, $view_subscribers, 
+    $biz_Id){
+    $sql="INSERT INTO newsfeed_share_r(rshare_Id, info_Id, union_Id, branch_Id, view_members, view_subscribers, biz_Id, ts) ";
+	$sql.="VALUES ('".$rshare_Id."','".$info_Id."','".$union_Id."','".$branch_Id."','".$view_members."','";
+	$sql.=$view_subscribers."','".$biz_Id."','".date('Y-m-d H:i:s')."');";
+	return $sql;
+   }
+
+   /* Latest NewsFeed Display Functions: */
+   function query_count_displayLatestNews($user_Id){
+    
+   }
+   function query_data_displayLatestNews($user_Id,$limit_start,$limit_end){
+   // SELECT * FROM newsfeed_info
+   }
 }
 ?>

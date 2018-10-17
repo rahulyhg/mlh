@@ -44,6 +44,8 @@ function fn_identity(action){
  function newsfeed_info_Id() { return fn_identity("NEWSFEED_INFO"); }
 /* Table - (4) newsfeed_ishare ::: ishare_Id */
  function newsfeed_ishare_Id() { return fn_identity("NEWSFEED_ISHARE"); }
+/* Table - (4) newsfeed_ishare ::: ishare_Id */
+ function newsfeed_rshare_Id() { return fn_identity("NEWSFEED_RSHARE"); }
 /* Table - (5) newsfeed_move ::: nf_move_Id */
  function newsfeed_move_Id() { return fn_identity("NEWSFEED_MOVE"); }
 /* Table - (6) newsfeed_user_fav ::: nf_fav_Id */

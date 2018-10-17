@@ -4,5 +4,6 @@
   "S003": { "english":"Your Institute Details are sent for verification. Once it is verified, Institute Profile gets displayed." },
   "S004": { "english":"Your Course Details are sent for verification. Once it is verified, Course gets displayed." },
   "S005": { "english":"New Branch created Successfully." },
-  "S006": { "english":"Your Request for Local Branch has been sent." }
+  "S006": { "english":"Your Request for Local Branch has been sent." },
+  "S007": { "english":"NewsFeed created Successfully." }
 }

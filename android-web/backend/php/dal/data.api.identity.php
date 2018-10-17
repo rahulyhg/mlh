@@ -88,9 +88,14 @@ class DataIdentity {
   $selectQuery="SELECT count(*) FROM newsfeed_info WHERE info_Id='".$id."';";
   return $selectQuery;
  }
- /* Table - (4) newsfeed_ishare ::: ishare_Id */
+ /* Table - (4) newsfeed_share_i ::: ishare_Id */
  function query_checkId_newsfeed_ishare($id) {
-  $selectQuery="SELECT count(*) FROM newsfeed_ishare WHERE ishare_Id='".$id."';";
+  $selectQuery="SELECT count(*) FROM newsfeed_share_i WHERE ishare_Id='".$id."';";
+  return $selectQuery;
+ }
+ /* Table - (4) newsfeed_share_i ::: ishare_Id */
+ function query_checkId_newsfeed_rshare($id) {
+  $selectQuery="SELECT count(*) FROM newsfeed_share_r WHERE rshare_Id='".$id."';";
   return $selectQuery;
  }
  /* Table - (5) newsfeed_move ::: nf_move_Id */

@@ -41,7 +41,7 @@ RewriteRule app/socialHub/publicparliament/unionsAndAssociations/list/([^/]+)/([
 # CommunityProfile - app/community/<union_Id>
 # Movement Profile - app/movement/<move_Id>
 RewriteRule app/notifications app-notifications.php [NC,L]
-RewriteRule newsfeed/latest-news app-newsfeed.php [NC,L]
+RewriteRule newsfeed/latest-news app-newsfeed-latest.php [NC,L]
 RewriteRule newsfeed/news/([^/]+)/([^/]+)$ app-newsfeed-news.php?1=$1&2=$2 [NC,L]
 RewriteRule newsfeed/news/([^/]+)/([^/]+)/statistics app-newsfeed-statistics.php?1=$1&2=$2 [NC,L]
 

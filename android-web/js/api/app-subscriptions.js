@@ -125,8 +125,8 @@ function getListOfCategories(div_Id,user_Id,status){
  });
 }
 function subscribe(){
-show_toggleMLHLoader('body');
  if(Object.keys(SUBSCRIPTION_BUILDER).length>0) {
+   show_toggleMLHLoader('body');
    js_ajax("GET",PROJECT_URL+'backend/php/dac/controller.module.app.user.subscriptions.php',
 	{ action:'SET_USER_SUBSCRIPTION', user_Id:AUTH_USER_ID, subscriptions:SUBSCRIPTION_BUILDER }, function(response){
 	     console.log(response);

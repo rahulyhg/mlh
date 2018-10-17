@@ -39,5 +39,11 @@
   "W038": { "english":"You are already the Member of the Community." },
   "W039": { "english":"This Branch already exists in the Community." },
   "W040": { "english":"Allow to share your Details with Community Owners." },
-  "W041": { "english":"Mention your Designation in the Branch."}
+  "W041": { "english":"Mention your Designation in the Branch."},
+  "W042": { "english":"Username already Exist." },
+  "W043": { "english":"Missing Article Title." },
+  "W044": { "english":"Missing Article Short Summary." },
+  "W045": { "english":"Missing Article Description." },
+  "W046": { "english":"Missing Article Image." },
+  "W047": { "english":"Select Atleast One Community or Branch to Publish your News." }
 }

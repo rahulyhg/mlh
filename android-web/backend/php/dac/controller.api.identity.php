@@ -43,6 +43,8 @@ if(isset($_GET["action"])) {
  else if($_GET["action"]=='NEWSFEED_INFO') { echo $idObj->newsfeed_info_id(); } 
       /* Table - (4) newsfeed_ishare ::: ishare_Id */
  else if($_GET["action"]=='NEWSFEED_ISHARE') { echo $idObj->newsfeed_ishare_id(); } 
+	  /* Table - (4) newsfeed_ishare ::: ishare_Id */
+ else if($_GET["action"]=='NEWSFEED_RSHARE') { echo $idObj->newsfeed_rshare_id(); } 
 	  /* Table - (5) newsfeed_move ::: nf_move_Id */
  else if($_GET["action"]=='NEWSFEED_MOVE') { echo $idObj->newsfeed_move_id(); } 
 	  /* Table - (6) newsfeed_user_fav ::: nf_fav_Id */

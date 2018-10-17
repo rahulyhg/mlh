@@ -114,7 +114,7 @@ if(isset($_GET["action"])){
 	$idObj=new Identity();
 	$usrauthObj=new user_authentication();
 	$dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
-	$contact_Id=$idObj->user_contact_id();
+	$contact_Id=$idObj->user_contacts_id();
 	$user_Id=$idObj->user_account_id();    
 	$username=$_GET["username"];       
 	$surName=$_GET["surName"];
@@ -138,10 +138,10 @@ if(isset($_GET["action"])){
 	$addQuery=$usrauthObj->query_addNewUser($contact_Id,$user_Id,$username,$surName,$name,$mcountrycode,$mobile,$mob_val,
 			                       $dob,$gender,$profile_pic,$about_me,$minlocation,$location,$state,$country,$created_On,
 								   $isAdmin,$user_tz,$acc_active);
-	echo $addQuery;
+	$logger->info("addQuery: ".$addQuery);
     $status=$dbObj->addupdateData($addQuery);
-	echo $status;
-	if($status=='Success') {
+	$logger->info("addQueryStatus: ".$status);
+	if($status=='SUCCESS') {
 	  $_SESSION["AUTH_USER_ID"]=$user_Id; /* Session: */ 
 	}
    } else {

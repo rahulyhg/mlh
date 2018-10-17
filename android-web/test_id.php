@@ -9,6 +9,7 @@ console.log(i+") "+move_sign_Id());i++;
 console.log(i+") "+move_views_Id());i++;
 console.log(i+") "+newsfeed_info_Id());i++;
 console.log(i+") "+newsfeed_ishare_Id());i++;
+console.log(i+") "+newsfeed_rshare_Id());i++;
 console.log(i+") "+newsfeed_move_Id());i++;
 console.log(i+") "+newsfeed_user_fav_Id());i++;
 console.log(i+") "+newsfeed_user_likes_Id());i++;

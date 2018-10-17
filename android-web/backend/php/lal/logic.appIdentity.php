@@ -307,6 +307,22 @@ class Identity {
   if($output==='ID_ALREADY_EXIST') { newsfeed_ishare_id(); } 
   else { return $num; }
  }
+ /* Table - (4) newsfeed_ishare ::: ishare_Id (25) */
+ function id_newsfeed_rshare($id) {
+   $dataObj=new DataIdentity();
+   $selectQuery=$dataObj->query_checkId_newsfeed_rshare($id);
+   $idObj = new Identity();
+   return $idObj->mlhbasic_tbl_PrimaryId_status($selectQuery);
+ }
+ function newsfeed_rshare_id() {
+  $num="NRS";
+  for($index=0;$index<22;$index++) { $num.=rand(1,9); }
+  /* Check Exists or not, If not exist return */
+  $checkObj=new Identity();
+  $output=$checkObj->id_newsfeed_rshare($num);
+  if($output==='ID_ALREADY_EXIST') { newsfeed_rshare_id(); } 
+  else { return $num; }
+ }
  /* Table - (5) newsfeed_move ::: nf_move_Id (25) */
  function id_newsfeed_move($id) {
    $dataObj=new DataIdentity();
