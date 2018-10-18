@@ -18,12 +18,136 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/load-data-on-scroll.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/bg-styles-common.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/app-newsfeed-news-bg-styles.js"></script>
- <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/app-newsfeed-news.js"></script>
+ <!--script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/app-newsfeed-news.js"></script-->
  <?php include_once 'templates/api/api_params.php'; ?>
- <script type="text/javascript">
- var INPUT_PARAM01='<?php if(isset($_GET["1"])) { echo $_GET["1"]; }  ?>';
- var INPUT_PARAM02='<?php if(isset($_GET["1"])) { echo $_GET["2"]; }  ?>';
- </script>
+<script type="text/javascript">
+var INFO_ID='<?php if(isset($_GET["1"])) { echo $_GET["1"]; }  ?>';
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+sideWrapperToggle();
+mainMenuSelection("dn_"+USR_LANG+"_newsfeed");
+bgstyle(3);
+$(".lang_"+USR_LANG).css('display','block'); 
+load_data_news();
+});
+function load_topmenu_news(id){
+ var arry_id=["id_news_preview","id_news_edit","id_news_posted"];
+ var arry_content=["content_news_preview","content_news_edit","content_news_posted"];
+ for(var index=0;index<arry_id.length;index++){
+  if(arry_id[index]===id){
+   if($('#'+arry_content[index]).hasClass('hide-block')){ $('#'+arry_content[index]).removeClass('hide-block'); }
+   $('#'+arry_id[index]).css('border-bottom','2px solid '+CURRENT_DARK_COLOR);
+   $('#'+arry_id[index]).css('color',CURRENT_DARK_COLOR);
+  }
+  else {
+   if(!$('#'+arry_content[index]).hasClass('hide-block')){ $('#'+arry_content[index]).addClass('hide-block'); }
+   $('#'+arry_id[index]).css('border-bottom','0px');
+   $('#'+arry_id[index]).css('color','#000');
+  }
+ }
+}
+
+function load_data_news(){
+ js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.module.app.newsfeed.php',
+ { action:'GET_DATA_NEWSDATA', info_Id:INFO_ID },function(response){
+  console.log(response);
+  response = JSON.parse(response);
+  var info_Id = response[0].info_Id;
+  var artTitle = response[0].artTitle;
+  var artShrtDesc = response[0].artShrtDesc;
+  var artDesc = response[0].artDesc;
+  var createdOn = response[0].createdOn;
+  var images = response[0].images;
+  var mediaURL01 = response[0].mediaURL01;
+  var mediaURL01_videoId = get_youtube_videoId(mediaURL01);
+  var mediaURL02 = response[0].mediaURL02;
+  var mediaURL02_videoId = get_youtube_videoId(mediaURL02);
+  var mediaURL03 = response[0].mediaURL03;
+  var mediaURL03_videoId = get_youtube_videoId(mediaURL03);
+  var status = response[0].status;
+  var writtenBy = response[0].writtenBy;
+  
+  var topMenuContent='<div class="list-group">';
+      if(writtenBy===AUTH_USER_ID){
+	  topMenuContent+='<div class="list-group-item pad0">';
+	  topMenuContent+='<div class="container-fluid">';
+	  topMenuContent+='<div class="row">';
+	  topMenuContent+='<div class="col-xs-4">';
+	  topMenuContent+='<h5><span id="id_news_preview" class="pad10" ';
+	  topMenuContent+='onclick="javascript:load_topmenu_news(this.id);">';
+	  topMenuContent+='<b>Preview</b></span></h5>';
+	  topMenuContent+='</div>';
+	  topMenuContent+='<div class="col-xs-4">';
+	  topMenuContent+='<h5><span id="id_news_edit" class="pad10" ';
+	  topMenuContent+='onclick="javascript:load_topmenu_news(this.id);">';
+	  topMenuContent+='<b>Edit News</b></span></h5>';
+	  topMenuContent+='</div>';
+	  topMenuContent+='<div class="col-xs-4">';
+	  topMenuContent+='<h5><span id="id_news_posted" class="pad10" ';
+	  topMenuContent+='onclick="javascript:load_topmenu_news(this.id);">';
+	  topMenuContent+='<b>Posted Info</b></span></h5>';
+	  topMenuContent+='</div>';
+	  topMenuContent+='</div>';
+	  topMenuContent+='</div>';
+	  topMenuContent+='</div>';
+	  }
+	  topMenuContent+='</div>';
+	document.getElementById("app-newsfeed-topMenu").innerHTML=topMenuContent;
+	  
+ var  content='<div class="pad10">';
+	  content+='<div class="container-fluid">';
+      content+='<div class="row">';
+	  content+='<div class="col-xs-12"><h4><b>'+decodeURI(artTitle)+'</b></h4><hr/></div>';
+	  content+='</div>';
+	  content+='<div class="row">';
+	  content+='<div class="col-xs-12"><img src="'+images+'" style="width:100%;height:auto;"/></div>';
+	  content+='</div>';
+	  content+='<div class="row">';
+	  content+='<div align="right" class="col-xs-12 mtop15p">';
+	  content+='<div><h5><b>News created on</b></h5></div>';
+	  content+='<div style="color:#aaa;"><h5>'+get_stdDateTimeFormat01(createdOn)+'</h5></div>';
+	  content+='</div>';
+	  content+='</div>';
+	  content+='<div class="row">';
+	  content+='<div align="justify" class="col-xs-12">';
+	  content+='<h4 style="line-height:25px;"><i>'+decodeURI(artShrtDesc)+'</i></h4><hr/>';
+	  content+='</div>';
+	  content+='</div>';
+	  
+	  content+='<div class="row">';
+	  content+='<div align="justify" class="col-xs-12">';
+	  content+='<h4 style="line-height:25px;"><i>'+decodeURI(artDesc)+'</i></h4><hr/>';
+	  content+='</div>';
+	  content+='</div>';
+	  
+	  content+='<div class="row">';
+	  content+='<div align="justify" class="col-xs-12 pad0">';
+	  content+='<h4><b>Other Media Links</b></h4><hr/>';
+	  content+='</div>';
+	  content+='<div class="col-xs-12">';
+	  content+='<a href="'+mediaURL01+'" target="_blank">';
+	  content+=display_preview_content(mediaURL01_videoId);
+	  content+='</a>';
+	  content+='</div>';
+	  content+='<div class="col-xs-12">';
+	  content+='<a href="'+mediaURL02+'" target="_blank">';
+	  content+=display_preview_content(mediaURL02_videoId);
+	  content+='</a>';
+	  content+='</div>';
+	  content+='<div class="col-xs-12">';
+	  content+='<a href="'+mediaURL03+'" target="_blank">';
+	  content+=display_preview_content(mediaURL03_videoId);
+	  content+='</a>';
+	  content+='</div>';
+	  content+='</div>';
+	  content+='</div>';
+	  content+='</div>';
+  document.getElementById("content_news_preview").innerHTML = content;
+  load_topmenu_news('id_news_preview');
+ });
+}
+</script>
  <style>
  body,.f12 { font-size:12px; }
  a,a:hover { color:#000; }
@@ -72,16 +196,30 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
 	  <?php include_once 'templates/api/api_sidewrapper.php'; ?>
 	</div>
     <div id="page-content-wrapper">
-	  <?php include_once 'templates/api/api_header.php'; ?>
+	  <?php include_once 'templates/api/api_header_simple.php'; ?>
 	  <div id="app-page-content">
-	    <div class="container-fluid mtop15p">
+	    <div id="app-newsfeed-topMenu"></div>
+	    <!-- News Feed -->
+		<div id="div-newsFeed-news">
+		  <div id="content_news_preview" class="hide-block">
+		   <div align="center">
+			<img src="images/load.gif" style="width:150px;height:150px;"/>
+		   </div>
+		  </div>
+		  <div id="content_news_edit" class="hide-block">
+		   <div align="center">
+			<img src="images/load.gif" style="width:150px;height:150px;"/>
+		   </div>
+		  </div>
+		  <div id="content_news_posted" class="hide-block">
+		   <div align="center">
+			<img src="images/load.gif" style="width:150px;height:150px;"/>
+		   </div>
+		  </div>
+		</div>
+	    <div class="container-fluid">
 		  <div class="row">
-				    <!-- News Feed -->
-				    <div id="div-newsFeed-news" class="col-md-8 col-xs-12 pad10">  
-					  <div align="center">
-						<img src="images/load.gif" style="width:150px;height:150px;"/>
-					  </div>
-					</div>
+				    
 			
 			        <div align="center" class="col-md-4 col-xs-12 pad10" style="border-left:1px solid #ccc;">
 					  <div class="list-group" style="margin-bottom:0px;">

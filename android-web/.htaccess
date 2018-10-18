@@ -42,7 +42,6 @@ RewriteRule app/socialHub/publicparliament/unionsAndAssociations/list/([^/]+)/([
 # Movement Profile - app/movement/<move_Id>
 RewriteRule app/notifications app-notifications.php [NC,L]
 RewriteRule newsfeed/latest-news app-newsfeed-latest.php [NC,L]
-RewriteRule newsfeed/news/([^/]+)/([^/]+)$ app-newsfeed-news.php?1=$1&2=$2 [NC,L]
 RewriteRule newsfeed/news/([^/]+)/([^/]+)/statistics app-newsfeed-statistics.php?1=$1&2=$2 [NC,L]
 
 RewriteRule app/explore app-explore.php  [NC,L]
@@ -50,7 +49,10 @@ RewriteRule app/hooks app-mylocalhook.php  [NC,L]
 RewriteRule app/myfriends app-user-friends-my.php  [NC,L]
 RewriteRule app/findfriends app-user-friends-find.php  [NC,L]
 
+# NewsFeed
 RewriteRule app/create-newsfeed app-newsfeed-create.php  [NC,L]
+RewriteRule app/news/mylist app-newsfeed-mynews-list.php [NC,L]
+RewriteRule newsfeed/news/([^/]+)$ app-newsfeed-news.php?1=$1 [NC,L]
 
 RewriteRule app/create-movement app-movement-create.php  [NC,L]
 RewriteRule app/movement/([^/]+)$ app-movement-view.php?1=$1  [NC,L]
@@ -59,8 +61,10 @@ RewriteRule app/mycommunity app-community-my.php [NC,L]
 RewriteRule app/findcommunity app-community-find.php  [NC,L]
 RewriteRule app/community/general/([^/]+)/([^/]+)$ app-community-profile-home.php?1=$1&2=$2  [NC,L]
 
-# Create Features:
+# Community
 RewriteRule app/create-community app-community-profile-createUnion.php  [NC,L]
+
+# Community Branches
 RewriteRule app/community/createNewBranch/([^/]+)/([^/]+)$ app-community-profile-createNewBranch.php?1=$1&2=$2  [NC,L]
 
 RewriteRule doc/hook-standard-premium doc_info_hook.php  [NC,L]

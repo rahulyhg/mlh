@@ -8,6 +8,7 @@ require_once '../lal/logic.appIdentity.php';
 $logger=Logger::getLogger("controller.module.app.newsfeed.php");
 
 if(isset($_GET["action"])){
+ /* Create NewsFeed ::: START */
  if($_GET["action"]==='GET_COUNT_LISTOFUNIONSCREATENEWSFEED'){ 
   if(isset($_GET["user_Id"])){
     $user_Id = $_GET["user_Id"];
@@ -70,6 +71,79 @@ if(isset($_GET["action"])){
   }
    
  }
+ /* Create NewsFeed ::: END */
+ 
+ /* MyNewsList ::: START */
+ else if($_GET["action"]==='GET_COUNT_MYPUBLISHEDNEWS'){
+  if(isset($_GET["user_Id"])){
+    $user_Id = $_GET["user_Id"];
+	$newsfeed = new Newsfeed();
+    $query = $newsfeed->query_count_getMyPublishedNews($user_Id);
+	$database = new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
+	$jsonData = $database->getJSONData($query);
+	$dejsonData = json_decode($jsonData);
+	echo $dejsonData[0]->{'count(*)'};
+  } else { echo 'Missing user_Id'; }
+ }
+ else if($_GET["action"]==='GET_DATA_MYPUBLISHEDNEWS'){
+  if(isset($_GET["user_Id"]) && isset($_GET["limit_start"]) && isset($_GET["limit_end"])){
+    $user_Id = $_GET["user_Id"];
+	$limit_start = $_GET["limit_start"];
+	$limit_end = $_GET["limit_end"];
+	$newsfeed = new Newsfeed();
+    $query = $newsfeed->query_data_getMyPublishedNews($user_Id,$limit_start,$limit_end);
+	$database = new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
+	echo $database->getJSONData($query);
+  } else { $content='Missing'; 
+     if(!isset($_GET["user_Id"])){ $content.=' user_Id,'; }
+	 if(!isset($_GET["limit_start"])){ $content.=' limit_start,'; }
+	 if(!isset($_GET["limit_end"])){ $content.=' limit_end,'; }
+	 $content = chop($content,',');
+	 echo $content;
+  }
+ }
+ else if($_GET["action"]==='GET_COUNT_MYPENDINGNEWS'){
+  if(isset($_GET["user_Id"])){
+    $user_Id = $_GET["user_Id"];
+	$newsfeed = new Newsfeed();
+    $query = $newsfeed->query_count_getMyPendingNews($user_Id);
+	$database = new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
+	$jsonData = $database->getJSONData($query);
+	$dejsonData = json_decode($jsonData);
+	echo $dejsonData[0]->{'count(*)'};
+  } else { echo 'Missing user_Id'; }
+ }
+ else if($_GET["action"]==='GET_DATA_MYPENDINGNEWS'){
+  if(isset($_GET["user_Id"]) && isset($_GET["limit_start"]) && isset($_GET["limit_end"])){
+    $user_Id = $_GET["user_Id"];
+	$limit_start = $_GET["limit_start"];
+	$limit_end = $_GET["limit_end"];
+	$newsfeed = new Newsfeed();
+    $query = $newsfeed->query_data_getMyPendingNews($user_Id,$limit_start,$limit_end);
+	$database = new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
+	echo $database->getJSONData($query);
+  } else { $content='Missing'; 
+     if(!isset($_GET["user_Id"])){ $content.=' user_Id,'; }
+	 if(!isset($_GET["limit_start"])){ $content.=' limit_start,'; }
+	 if(!isset($_GET["limit_end"])){ $content.=' limit_end,'; }
+	 $content = chop($content,',');
+	 echo $content;
+  }
+ }
+ /* MyNewsList ::: END */
+ 
+ /* NewsData ::: START */
+ else if($_GET["action"]==='GET_DATA_NEWSDATA'){
+   if(isset($_GET["info_Id"])){
+    $info_Id = $_GET["info_Id"];
+	$newsfeed = new Newsfeed();
+    $query01 = $newsfeed->query_data_getNewsData($info_Id);
+	$database = new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
+	echo $database->getJSONData($query01);
+   } else { echo 'MISSING_INFO_ID'; }
+ }
+ /* NewsData ::: END */
+ 
  else if($_GET["action"]==='GET_COUNT_LATESTNEWS'){
  
  }
@@ -79,6 +153,7 @@ if(isset($_GET["action"])){
  else { echo 'NO_ACTION'; }
 }
 else if(isset($_POST["action"])){
+ /* Create NewsFeed ::: START */
  if($_POST["action"]==='WRITE_NEWSFEED'){
    if(isset($_POST["artTitle"]) && isset($_POST["artShortDesc"]) && isset($_POST["artDesc"]) && 
 	 isset($_POST["artImage"]) && isset($_POST["unionBranchPostShare"]) && isset($_POST["user_Id"])){
@@ -162,6 +237,7 @@ else if(isset($_POST["action"])){
 		 echo $content;
 	 }
    }
+ /* Create NewsFeed ::: END */
 }
 else { echo 'MISSING_ACTION'; }
 ?>

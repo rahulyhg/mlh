@@ -95,24 +95,6 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
 		   <span class = "input-group-addon custom-lgt-bg" onclick="javascript:view_preview_mediaURL01();">preview</span>
 		  </div>
 <script type="text/javascript">
-function display_preview_content(video_Id){
- var content='<div class="container-fluid mtop15p preview-relative">';
-     content+='<div class="preview-absolute">';
-     content+='<img src="'+PROJECT_URL+'images/other/youtube.png" style="width:100px;height:100px;"/>';
-	 content+='</div>';
-	 content+='<div class="row">';
-	 content+='<div class="col-xs-9 pad0">';
-	 content+= '<img src="https://img.youtube.com/vi/'+video_Id+'/0.jpg" style="width:100%;height:auto;"/>';
-     content+='</div>';
-	 content+='<div class="col-xs-3 pad0">';
-	 content+= '<img src="https://img.youtube.com/vi/'+video_Id+'/1.jpg" style="width:100%;height:auto;"/>';
-	 content+= '<img src="https://img.youtube.com/vi/'+video_Id+'/2.jpg" style="width:100%;height:auto;"/>';
-	 content+= '<img src="https://img.youtube.com/vi/'+video_Id+'/3.jpg" style="width:100%;height:auto;"/>';
-     content+='</div>';
-	 content+='</div>';
-	 content+='</div>';
- return content;
-}
 function view_preview_mediaURL01(){
  var mediaURL01 = document.getElementById("createNewsFeedForm_mediaURL01").value;
  var video_Id = get_youtube_videoId(mediaURL01);
@@ -141,10 +123,7 @@ function view_preview_mediaURL03(){
  }
 }
 </script>
-<style>
-.preview-relative { position:relative;border:6px solid #cf3427; }
-.preview-absolute { position:absolute;top:25%;left:35%;z-index:10; }
-</style>
+
 		  <div id="createNewsFeedForm_preview_mediaURL01"></div>
 		</div>
 		<div class="form-group">

@@ -1,7 +1,7 @@
 <?php
 class Newsfeed {
    
-   /* Create NewsFeed Functions: */
+   /* Create NewsFeed Functions ::: START */
    function query_count_listOfCommunitiesWhereUserMember($user_Id){
     $sql="SELECT count(DISTINCT(unionprof_account.union_Id)) As total_data ";
 	$sql.="FROM unionprof_account, unionprof_mem, unionprof_mem_perm1 ";
@@ -75,7 +75,54 @@ class Newsfeed {
 	$sql.=$view_subscribers."','".$biz_Id."','".date('Y-m-d H:i:s')."');";
 	return $sql;
    }
+   /* Create NewsFeed Functions ::: END */
 
+   /* MyNewsList Functions ::: START */
+   function query_count_getMyPublishedNews($user_Id){
+     $sql="SELECT count(*) FROM newsfeed_info WHERE newsfeed_info.writtenBy='".$user_Id."'";
+     $sql.=" AND (SELECT count(*) FROM newsfeed_share_i WHERE newsfeed_share_i.info_Id=newsfeed_info.info_Id)>0;";
+     return $sql;
+   }
+   function query_data_getMyPublishedNews($user_Id,$limit_start,$limit_end){
+     $sql="SELECT newsfeed_info.info_Id, newsfeed_info.artTitle, newsfeed_info.artShrtDesc, newsfeed_info.images,";
+     $sql.=" newsfeed_info.status, newsfeed_info.createdOn FROM newsfeed_info WHERE newsfeed_info.writtenBy='".$user_Id."'";
+     $sql.=" AND (SELECT count(*) FROM newsfeed_share_i WHERE newsfeed_share_i.info_Id=newsfeed_info.info_Id)>0 ";
+	 $sql.="LIMIT ".$limit_start.",".$limit_end.";";
+     return $sql;
+   }
+   function query_count_getMyPendingNews($user_Id){
+     $sql="SELECT count(*) FROM newsfeed_info WHERE newsfeed_info.writtenBy='".$user_Id."'";
+     $sql.=" AND (SELECT count(*) FROM newsfeed_share_r WHERE newsfeed_share_r.info_Id=newsfeed_info.info_Id)>0;";
+     return $sql;
+   }
+   function query_data_getMyPendingNews($user_Id,$limit_start,$limit_end){
+     $sql="SELECT newsfeed_info.info_Id, newsfeed_info.artTitle, newsfeed_info.artShrtDesc, newsfeed_info.images,";
+     $sql.=" newsfeed_info.status, newsfeed_info.createdOn FROM newsfeed_info WHERE newsfeed_info.writtenBy='".$user_Id."'";
+     $sql.=" AND (SELECT count(*) FROM newsfeed_share_r WHERE newsfeed_share_r.info_Id=newsfeed_info.info_Id)>0 ";
+	 $sql.="LIMIT ".$limit_start.",".$limit_end.";";
+     return $sql;
+   }
+   /* MyNewsList Functions ::: END */ 
+   
+   /* NewsData ::: START */
+   function query_data_getNewsData($info_Id){
+    $sql="SELECT newsfeed_info.info_Id, newsfeed_info.artTitle, newsfeed_info.artShrtDesc, newsfeed_info.artDesc, ";
+	$sql.="newsfeed_info.createdOn, newsfeed_info.images, newsfeed_info.mediaURL01, newsfeed_info.mediaURL02, ";
+	$sql.="newsfeed_info.mediaURL03, newsfeed_info.status, newsfeed_info.writtenBy FROM newsfeed_info ";
+	$sql.="WHERE newsfeed_info.info_Id='".$info_Id."';";
+	return $sql;
+   }
+   function query_data_getPostedData($info_Id){
+    $sql="(SELECT union_Id, branch_Id, view_members, view_subscribers, ";
+	$sql.="(SELECT 'PUBLISHED' As type) FROM newsfeed_share_i) ";
+	$sql.="UNION ";
+	$sql.="(SELECT union_Id, branch_Id, view_members, view_subscribers, ";
+	$sql.="(SELECT 'APPROVAL_PENDING' As type) FROM newsfeed_share_r) ";
+	return $sql;
+   }
+   /* NewsData ::: END */
+   
+   
    /* Latest NewsFeed Display Functions: */
    function query_count_displayLatestNews($user_Id){
     
