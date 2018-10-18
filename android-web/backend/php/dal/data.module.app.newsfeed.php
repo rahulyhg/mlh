@@ -52,10 +52,12 @@ class Newsfeed {
 	$sql.="LIMIT ".$limit_start.",".$limit_end;
 	return $sql;
    }
-   function query_data_addNewsFeedInfo($info_Id, $artTitle, $artShrtDesc, $artDesc, $images, $status, $writtenBy){
-    $sql="INSERT INTO newsfeed_info(info_Id, artTitle, artShrtDesc, artDesc, createdOn, images, status, writtenBy) ";
+   function query_data_addNewsFeedInfo($info_Id, $artTitle, $artShrtDesc, $artDesc, $images, $mediaURL01,
+	$mediaURL02, $mediaURL03, $status, $writtenBy){
+    $sql="INSERT INTO newsfeed_info(info_Id, artTitle, artShrtDesc, artDesc, createdOn, images, mediaURL01, ";
+	$sql.="mediaURL02, mediaURL03, status, writtenBy) ";
 	$sql.="VALUES ('".$info_Id."','".$artTitle."','".$artShrtDesc."','".$artDesc."','".date('Y-m-d H:i:s');
-	$sql.="','".$images."','".$status."','".$writtenBy."');";
+	$sql.="','".$images."','".$mediaURL01."','".$mediaURL02."','".$mediaURL03."','".$status."','".$writtenBy."');";
 	return $sql;
    }
    function query_data_addNewsFeedIShare($ishare_Id, $info_Id, $union_Id, $branch_Id, $view_members, $view_subscribers, 

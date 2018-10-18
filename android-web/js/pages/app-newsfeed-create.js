@@ -29,17 +29,30 @@ function sel_createNewsFeedTab(id){
 var ARTICLE_TITLE;
 var ARTICLE_SHORTDESC;
 var ARTICLE_DESCRIPTION;
-
+var MEDIAURL01;
+var MEDIAURL02;
+var MEDIAURL03;
 function finish_writeNewsFeedForm(){
   ARTICLE_TITLE = encodeURI(document.getElementById("createNewsFeedForm_artTitle").value);
   ARTICLE_SHORTDESC = encodeURI(document.getElementById("createNewsFeedForm_artShrtSummary").value);
   ARTICLE_DESCRIPTION = encodeURI($('#createNewsFeedForm_artDesc').summernote('code'));
+  MEDIAURL01 = document.getElementById("createNewsFeedForm_mediaURL01").value;
+  MEDIAURL02 = document.getElementById("createNewsFeedForm_mediaURL02").value;
+  MEDIAURL03 = document.getElementById("createNewsFeedForm_mediaURL03").value;
+  
+  var mediaValidator =  true;
+  if(MEDIAURL01.length>0 && get_youtube_videoId(MEDIAURL01)=='INVALID'){ mediaValidator =  false; }
+  if(MEDIAURL02.length>0 && get_youtube_videoId(MEDIAURL02)=='INVALID'){ mediaValidator =  false; }
+  if(MEDIAURL03.length>0 && get_youtube_videoId(MEDIAURL03)=='INVALID'){ mediaValidator =  false; }
+  
   if(IMG_URL.length>0){
   if(ARTICLE_TITLE.length>0){
   if(ARTICLE_SHORTDESC.length>0){
   if(ARTICLE_DESCRIPTION.length>0){
-	sel_createNewsFeedTab('createNewsFeedTab_Post');
-    load_access_unionBranches();
+    if(mediaValidator){
+	  sel_createNewsFeedTab('createNewsFeedTab_Post');
+      load_access_unionBranches();
+	} else { alert_display_warning('W048');  }
   } else { alert_display_warning('W045');}
   } else { alert_display_warning('W044'); }
   } else { alert_display_warning('W043'); } 
@@ -324,10 +337,11 @@ function newsFeedForm_saveAndPublish(){
  if(formRecognizer){ 
   js_ajax('POST',PROJECT_URL+'backend/php/dac/controller.module.app.newsfeed.php',
   { action:'WRITE_NEWSFEED', artTitle:ARTICLE_TITLE, artShortDesc:ARTICLE_SHORTDESC, 
-  artDesc:ARTICLE_DESCRIPTION, artImage:IMG_URL, unionBranchPostShare: UNIONBRANCHES_POSTSHARE, user_Id: AUTH_USER_ID }, 
+    artDesc:ARTICLE_DESCRIPTION, artImage:IMG_URL, unionBranchPostShare: UNIONBRANCHES_POSTSHARE, 
+	user_Id: AUTH_USER_ID, mediaURL01: MEDIAURL01, mediaURL02: MEDIAURL02, mediaURL03: MEDIAURL03 }, 
   function(response){
     console.log(response);
-	alert_display_success('S007','#');
+	alert_display_success('S007',PROJECT_URL+'app/news/mylist');
   });
  } else { alert_display_warning('W047'); }
 }

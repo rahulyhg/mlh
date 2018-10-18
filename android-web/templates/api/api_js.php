@@ -11,6 +11,12 @@ body { overflow-x:hidden; }
 .hlLetterString { background-color:yellow;color:#000;}
 </style>
 <script type="text/javascript">
+function get_youtube_videoId(url){
+ var video_Id = "INVALID";
+ var calculate = url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
+ if(calculate != null) { video_Id = calculate[1]; } 
+ return video_Id;
+}
 function sentenceCase(str) {
  var response='';
   for(var index=0;index<str.length;index++){

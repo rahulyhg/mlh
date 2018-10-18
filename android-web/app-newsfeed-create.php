@@ -83,12 +83,89 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
 		</div>
 		<div class="form-group">
 		  <label>Description&nbsp;<span class="font-red">*</span></label>
-<script type="text/javascript">
-$(document).ready(function() {
-  
-});
-</script>
 		  <div id="createNewsFeedForm_artDesc" class="summernote"></div>
+		</div>
+		<div class="form-group">
+		  <h4><b>Other Media Links</b></h4><hr/>
+		</div>
+		<div class="form-group">
+		  <label>YouTube Link - 01</label>
+		  <div class = "input-group">
+		   <input id="createNewsFeedForm_mediaURL01" type="text" class="form-control" placeholder="Enter youtube Link"/>
+		   <span class = "input-group-addon custom-lgt-bg" onclick="javascript:view_preview_mediaURL01();">preview</span>
+		  </div>
+<script type="text/javascript">
+function display_preview_content(video_Id){
+ var content='<div class="container-fluid mtop15p preview-relative">';
+     content+='<div class="preview-absolute">';
+     content+='<img src="'+PROJECT_URL+'images/other/youtube.png" style="width:100px;height:100px;"/>';
+	 content+='</div>';
+	 content+='<div class="row">';
+	 content+='<div class="col-xs-9 pad0">';
+	 content+= '<img src="https://img.youtube.com/vi/'+video_Id+'/0.jpg" style="width:100%;height:auto;"/>';
+     content+='</div>';
+	 content+='<div class="col-xs-3 pad0">';
+	 content+= '<img src="https://img.youtube.com/vi/'+video_Id+'/1.jpg" style="width:100%;height:auto;"/>';
+	 content+= '<img src="https://img.youtube.com/vi/'+video_Id+'/2.jpg" style="width:100%;height:auto;"/>';
+	 content+= '<img src="https://img.youtube.com/vi/'+video_Id+'/3.jpg" style="width:100%;height:auto;"/>';
+     content+='</div>';
+	 content+='</div>';
+	 content+='</div>';
+ return content;
+}
+function view_preview_mediaURL01(){
+ var mediaURL01 = document.getElementById("createNewsFeedForm_mediaURL01").value;
+ var video_Id = get_youtube_videoId(mediaURL01);
+ if(video_Id==='INVALID'){ alert_display_warning('W048'); }
+ else {
+  var content = display_preview_content(video_Id);
+  document.getElementById("createNewsFeedForm_preview_mediaURL01").innerHTML = content;  
+ }
+}
+function view_preview_mediaURL02(){
+ var mediaURL02 = document.getElementById("createNewsFeedForm_mediaURL02").value;
+ var video_Id = get_youtube_videoId(mediaURL02);
+ if(video_Id==='INVALID'){ alert_display_warning('W048'); }
+ else {
+  var content = display_preview_content(video_Id);
+  document.getElementById("createNewsFeedForm_preview_mediaURL02").innerHTML = content;  
+ }
+}
+function view_preview_mediaURL03(){
+ var mediaURL03 = document.getElementById("createNewsFeedForm_mediaURL03").value;
+ var video_Id = get_youtube_videoId(mediaURL03);
+ if(video_Id==='INVALID'){ alert_display_warning('W048'); }
+ else {
+  var content = display_preview_content(video_Id);
+  document.getElementById("createNewsFeedForm_preview_mediaURL03").innerHTML = content;  
+ }
+}
+</script>
+<style>
+.preview-relative { position:relative;border:6px solid #cf3427; }
+.preview-absolute { position:absolute;top:25%;left:35%;z-index:10; }
+</style>
+		  <div id="createNewsFeedForm_preview_mediaURL01"></div>
+		</div>
+		<div class="form-group">
+		 <label>YouTube Link - 02</label>
+		 <div class="input-group">
+		  <input id="createNewsFeedForm_mediaURL02" type="text" class="form-control" placeholder="Enter youtube Link"/>
+		  <span class = "input-group-addon custom-lgt-bg" onclick="javascript:view_preview_mediaURL02();">preview</span>
+		 </div>
+		 
+		 <div id="createNewsFeedForm_preview_mediaURL02"></div>
+		 
+		</div>
+		<div class="form-group">
+		 <label>YouTube Link - 03</label>
+		 <div class="input-group">
+		  <input id="createNewsFeedForm_mediaURL03" type="text" class="form-control" placeholder="Enter youtube Link"/>
+		  <span class = "input-group-addon custom-lgt-bg" onclick="javascript:view_preview_mediaURL03();">preview</span>
+		 </div>
+		 
+		  <div id="createNewsFeedForm_preview_mediaURL03"></div>
+		  
 		</div>
 		<div class="form-group">
 		  <button class="btn custom-bg form-control mtop15p mbot15p" onclick="javascript:finish_writeNewsFeedForm();"><b>Next</b></button>

@@ -88,14 +88,17 @@ else if(isset($_POST["action"])){
 	 $artShrtDesc = str_replace("'","\'",$_POST["artShortDesc"]);
 	 $artDesc = str_replace("'","\'",$_POST["artDesc"]);
 	 $images = $_POST["artImage"];
+	 $mediaURL01 = $_POST["mediaURL01"];
+	 $mediaURL02 = $_POST["mediaURL02"];
+	 $mediaURL03 = $_POST["mediaURL03"];
 	 $unionBranchPostShare = $_POST["unionBranchPostShare"];
 	 $status = 'ACTIVE';
 	 $writtenBy = $_POST["user_Id"];
 	 $newsFeed = new Newsfeed();
 	 
 	 $database = new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
-	 $query01 = $newsFeed->query_data_addNewsFeedInfo($info_Id, $artTitle, $artShrtDesc, $artDesc, $images, $status, 
-					$writtenBy);
+	 $query01 = $newsFeed->query_data_addNewsFeedInfo($info_Id, $artTitle, $artShrtDesc, $artDesc, $images, $mediaURL01, 
+						$mediaURL02, $mediaURL03, $status, $writtenBy);
 	 echo $query01.' '.$database->addupdateData($query01);
 	 
 	 print_r($unionBranchPostShare);

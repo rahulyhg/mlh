@@ -45,5 +45,6 @@
   "W044": { "english":"Missing Article Short Summary." },
   "W045": { "english":"Missing Article Description." },
   "W046": { "english":"Missing Article Image." },
-  "W047": { "english":"Select Atleast One Community or Branch to Publish your News." }
+  "W047": { "english":"Select Atleast One Community or Branch to Publish your News." },
+  "W048": { "english":"Please check Media Links. There is an Invalid Youtube Link." }
 }
