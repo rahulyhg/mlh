@@ -222,6 +222,7 @@ protected void onCreate(Bundle savedInstanceState) {
  logger.info("MyLocalHook Activity Container Created...");
  super.onCreate(savedInstanceState);
  requestWindowFeature(Window.FEATURE_NO_TITLE);
+ setTitle(R.string.app_name);
  setContentView(R.layout.activity_androidwebscreen);
 
  AppManagement appManagement = new AppManagement(this);
@@ -370,10 +371,14 @@ protected void onCreate(Bundle savedInstanceState) {
    @Override
    public void onDestroy() {
      logger.info("Activity Destroyed ");
+     /*
      AppSessionManagement appSessionManagement = new AppSessionManagement(this);
      appSessionManagement.setAndroidSession(BusinessConstants.GOOGLE_ADMOBINTERSTITIAL_STATUS,null);
      AndroidWebScreen.googleAdMobInterstitialHandler.removeCallbacks(AndroidWebScreen.googleAdMobRunnable);
+     */
 	 super.onDestroy();
+	 Intent intent = new Intent(this, GoogleAdsActivityScreen.class);
+		this.getApplicationContext().startActivity(intent);
    }
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {

@@ -29,6 +29,8 @@ public class AndroidInitializerScreen extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
     	requestWindowFeature(Window.FEATURE_NO_TITLE);
+    	
+    	setTitle(R.string.app_name);
     	setContentView(R.layout.activity_androidinitializer);
     }
 
@@ -82,4 +84,5 @@ public class AndroidInitializerScreen extends Activity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
     	logger.info("AndroidInitializerScreen(onActivityResult): "+requestCode+" "+resultCode+" "+data);
     }
+
 }
