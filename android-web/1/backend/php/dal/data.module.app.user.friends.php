@@ -1,11 +1,13 @@
 <?php 
-class user_friends {
+class UserFriends {
   
-  function query_sendUserFrndRequests($req_Id,$fromUserId,$toUserId,$usr_frm_call_to){
-	$sql="INSERT INTO user_frnds_req(req_Id, from_userId,  to_userId,usr_frm_call_to, req_on, notify, watched) ";
+  function query_sendUserFrndRequests($req_Id,$fromUserId,$toUserId,$usr_frm_call_to,$usr_to_call_from,$req_tz,$reqMessage){
+	$sql="INSERT INTO user_frnds_req(req_Id, from_userId, to_userId, usr_frm_call_to, usr_to_call_from, req_on, ";
+	$sql.="req_tz, reqMessage, notify, watched) ";
     $sql.="SELECT * FROM ( ";
-    $sql.="SELECT '".$req_Id."','".$fromUserId."','".$toUserId."','".$usr_frm_call_to."','".date("Y-m-d H:i:s");
-	$sql.="','N','N') ";
+    $sql.="SELECT '".$req_Id."' As req_Id,'".$fromUserId."' As fromUserId,'".$toUserId."' As toUserId,'";
+	$sql.=$usr_frm_call_to."' As usr_frm_call_to,'".$usr_to_call_from."' As usr_to_call_from,'".date("Y-m-d H:i:s");
+	$sql.="' As req_on,'".$req_tz."' As req_tz,'".$reqMessage."' As reqMessage,'N' As notify,'N' As watched) ";
 	$sql.="As Tbl1 WHERE (SELECT count(*) FROM user_frnds_req WHERE (from_userId='".$fromUserId."' AND ";
 	$sql.="to_userId='".$toUserId."') OR (from_userId='".$toUserId."' AND to_userId='".$fromUserId."'))=0 ";
 	return $sql;

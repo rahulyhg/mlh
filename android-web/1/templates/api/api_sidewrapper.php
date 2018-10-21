@@ -10,10 +10,16 @@ if($("#wrapper").hasClass('toggled')) { $("#wrapper").removeClass('toggled');}
 }
 
 function mainMenuSelection(id){
-  var arr_id=["dn_"+USR_LANG+"_adminDashboard","dn_"+USR_LANG+"_search","dn_"+USR_LANG+"_notifications","dn_"+USR_LANG+"_explore","dn_"+USR_LANG+"_newsfeed",
+var arr_id=["dn_"+USR_LANG+"_adminDashboard","dn_"+USR_LANG+"_search","dn_"+USR_LANG+"_notifications",
+"dn_"+USR_LANG+"_explore","dn_"+USR_LANG+"_newsfeed","dn_"+USR_LANG+"_mystuff","dn_"+USR_LANG+"_mylocalhook",
+"dn_"+USR_LANG+"_logout"];
+/*
+  var arr_id=["dn_"+USR_LANG+"_adminDashboard","dn_"+USR_LANG+"_search","dn_"+USR_LANG+"_notifications",
+  "dn_"+USR_LANG+"_explore","dn_"+USR_LANG+"_newsfeed",
 			  "dn_"+USR_LANG+"_mylocalhook","dn_"+USR_LANG+"_platform","dn_"+USR_LANG+"_socialHub","dn_"+USR_LANG+"_mymessages",
-			  "dn_"+USR_LANG+"_mycalendar","dn_"+USR_LANG+"_myfriends","dn_"+USR_LANG+"_mycommunity","dn_"+USR_LANG+"_mymovements",
-			  "dn_"+USR_LANG+"_findfriends","dn_"+USR_LANG+"_findcommunity","dn_"+USR_LANG+"_findmovements","dn_"+USR_LANG+"_logout"];
+			  "dn_"+USR_LANG+"_mycalendar","dn_"+USR_LANG+"_myfriends",
+			  "dn_"+USR_LANG+"_findfriends","dn_"+USR_LANG+"_findcommunity","dn_"+USR_LANG+"_findmovements",];
+  */
   // "dn_settings"
   console.log("mainMenuSelection: "+id);
   for(var index=0;index<arr_id.length;index++){
@@ -24,63 +30,101 @@ function mainMenuSelection(id){
 }
 </script>
 <span class="lang_english">
-	<ul class="sidebar-nav">
-			<div id="sideWrapper-profilepic" align="center" class="div-w215px">
-				<a href="<?php echo $_SESSION["PROJECT_URL"]?>app/myprofile">
-					<img src="<?php echo $_SESSION["AUTH_USER_PROFILEPIC"]; ?>" class="img-profilepic"/>
-				</a>
-			</div>
-		<?php if(isset($_SESSION["AUTH_USER_ISADMIN"]) && $_SESSION["AUTH_USER_ISADMIN"]=='Y'){	 ?>
-		<li>
-			<a id="dn_english_adminDashboard" href="<?php echo $_SESSION["PROJECT_URL"]?>app/adminDashBoard" onclick="javascript:mainMenuSelection(this.id);">
-				<div class="f14">
-					<i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;<span><b>Admin Dashboard</b></span>
-				</div>
-			</a>
-		</li>	
-		<?php } ?>
-		<li>
-			<a id="dn_english_search" href="<?php echo $_SESSION["PROJECT_URL"]?>app/search" onclick="javascript:mainMenuSelection(this.id);">
-				<div class="f14">
-					<i class="fa fa-search" aria-hidden="true"></i>&nbsp;&nbsp;<span><b>Search</b></span>
-				</div>
-			</a>
-		</li>
-	    <li>
-			<a id="dn_english_notifications" href="<?php echo $_SESSION["PROJECT_URL"]?>app/notifications" onclick="javascript:mainMenuSelection(this.id);">
-				<div class="f14">
-					<i class="fa fa-bell" aria-hidden="true"></i>&nbsp;&nbsp;<span><b>Notifications</b></span>
-				</div>
-			</a>
-		</li>
-		<li>
-			<a id="dn_english_explore" href="<?php echo $_SESSION["PROJECT_URL"]?>app/explore" onclick="javascript:mainMenuSelection(this.id);">
-				<div class="f14">
-					<i class="fa fa-plus" aria-hidden="true"></i>&nbsp;&nbsp;<span><b>Explore</b></span>
-				</div>
-			</a>
-		</li>
-		<li>
-			<a id="dn_english_newsfeed" href="<?php echo $_SESSION["PROJECT_URL"]?>newsfeed/latest-news" onclick="javascript:mainMenuSelection(this.id);">
-				<div class="f14">
-					<i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;&nbsp;<span><b>News Feed</b></span>
-				</div>
-			</a>
-		</li>
-		<li>
-			<a id="dn_english_mylocalhook" href="<?php echo $_SESSION["PROJECT_URL"]?>app/hooks" onclick="javascript:mainMenuSelection(this.id);">
-				<div class="f14">
-					<i class="fa fa-anchor" aria-hidden="true"></i>&nbsp;&nbsp;<b>MyLocalHook</b>
-				</div>
-			</a>
-		</li>
-		<li>
+<ul class="sidebar-nav">
+ <div id="sideWrapper-profilepic" align="center" class="div-w215px">
+  <a href="<?php echo $_SESSION["PROJECT_URL"]?>app/myprofile">
+	<img src="<?php echo $_SESSION["AUTH_USER_PROFILEPIC"]; ?>" class="img-profilepic"/>
+  </a>
+ </div>
+ <!-- Admin Dashboard ::: START -->
+ <?php if(isset($_SESSION["AUTH_USER_ISADMIN"]) && $_SESSION["AUTH_USER_ISADMIN"]=='Y'){	 ?>
+ <li>
+	<a id="dn_english_adminDashboard" href="<?php echo $_SESSION["PROJECT_URL"]?>app/adminDashBoard" 
+	onclick="javascript:mainMenuSelection(this.id);">
+	 <div class="f14">
+		<i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;<span><b>Admin Dashboard</b></span>
+	 </div>
+	</a>
+ </li>	
+ <?php } ?>
+ <!-- Admin Dashboard ::: END -->
+ <!-- Search ::: START -->
+ <li>
+	<a id="dn_english_search" href="<?php echo $_SESSION["PROJECT_URL"]?>app/search" 
+	onclick="javascript:mainMenuSelection(this.id);">
+	 <div class="f14">
+	   <i class="fa fa-search" aria-hidden="true"></i>&nbsp;&nbsp;<span><b>Search</b></span>
+	 </div>
+	</a>
+ </li>
+ <!-- Search ::: END -->
+ <!-- Notifictions ::: START -->
+ <li>
+	<a id="dn_english_notifications" href="<?php echo $_SESSION["PROJECT_URL"]?>app/notifications" 
+	onclick="javascript:mainMenuSelection(this.id);">
+	 <div class="f14">
+	   <i class="fa fa-bell" aria-hidden="true"></i>&nbsp;&nbsp;<span><b>Notifications</b></span>
+	 </div>
+	</a>
+ </li>
+ <!-- Notifictions ::: END -->
+ <!-- NewsFeed ::: START -->
+ <li>
+    <a id="dn_english_newsfeed" href="<?php echo $_SESSION["PROJECT_URL"]?>newsfeed/latest-news" 
+	onclick="javascript:mainMenuSelection(this.id);">
+	  <div class="f14">
+	    <i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;&nbsp;<span><b>NewsFeed</b></span>
+	  </div>
+	</a>
+ </li>
+ <!-- NewsFeed ::: END -->
+ <!-- MyLocalHook ::: START -->
+ <li>
+  <a id="dn_english_mylocalhook" href="<?php echo $_SESSION["PROJECT_URL"]?>app/hooks" 
+  onclick="javascript:mainMenuSelection(this.id);">
+	<div class="f14">
+		<i class="fa fa-anchor" aria-hidden="true"></i>&nbsp;&nbsp;<b>MyLocalHook</b>
+	</div>
+  </a>
+</li>
+<!-- MyLocalHook ::: END -->
+ <!-- Explore ::: START -->
+ <li>
+   <a id="dn_english_explore" href="<?php echo $_SESSION["PROJECT_URL"]?>app/explore" 
+   onclick="javascript:mainMenuSelection(this.id);">
+	<div class="f14">
+	  <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;&nbsp;<span><b>Explore</b></span>
+	</div>
+   </a>
+ </li>
+ <!-- Explore ::: END -->
+ <!-- MyStuff ::: START -->
+ <li>
+    <a id="dn_english_mystuff" href="<?php echo $_SESSION["PROJECT_URL"]?>app/mystuff" 
+	onclick="javascript:mainMenuSelection(this.id);">
+	  <div class="f14">
+	    <i class="fa fa-folder" aria-hidden="true"></i>&nbsp;&nbsp;<span><b>My Stuff</b></span>
+	  </div>
+	</a>
+ </li>
+ <!-- MyStuff ::: END -->
+ <!-- Logout ::: START -->
+ <li>
+    <a id="dn_english_logout" href="#" onclick="javascript:mainMenuSelection(this.id);">
+	  <div class="f14">
+		<i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;&nbsp;<b>Log out</b>
+	  </div>
+	</a>
+ </li>
+  <!-- Logout ::: END -->
+		
+		<!--li>
 			<a id="dn_english_socialHub" href="<?php echo $_SESSION["PROJECT_URL"]?>app/socialHub/home" onclick="javascript:mainMenuSelection(this.id);">
 				<div class="f14">
 				   <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;<b>Social Hub</b>
 				</div>
 			</a>
-		</li>
+		</li-->
 		<!--li>
 			<a id="dn_english_platform" href="<!--?php echo $_SESSION["PROJECT_URL"]--?>app/explore" onclick="javascript:mainMenuSelection(this.id);">
 				<div>
@@ -110,27 +154,15 @@ function mainMenuSelection(id){
 			</a> 
 		</li--> 
 		
-		<li>
+		<!--li>
 			<a id="dn_english_myfriends" href="<?php echo $_SESSION["PROJECT_URL"]?>app/myfriends" onclick="javascript:mainMenuSelection(this.id);">
 				<div class="f14">
 				   <i class="fa fa-users" aria-hidden="true"></i>&nbsp;&nbsp;<b>My Friends</b>
 				</div>
 			</a>
 		</li>
-		<li>
-			<a id="dn_english_mycommunity" href="<?php echo $_SESSION["PROJECT_URL"]?>app/mycommunity" onclick="javascript:mainMenuSelection(this.id);">
-				<div class="f14">
-					<i class="fa fa-thumbs-up" aria-hidden="true"></i>&nbsp;&nbsp;<b>My Community</b>
-				</div>
-			</a>
-		</li>
-		<!--li>
-			<a id="dn_english_mymovements" href="<!--?php echo $_SESSION["PROJECT_URL"]?>app/mymovements" onclick="javascript:mainMenuSelection(this.id);">
-				<div>
-					<i class="fa fa-hand-paper-o" aria-hidden="true"></i>&nbsp;&nbsp;<b>My Movements</b>
-				</div>
-			</a>
-		</li-->
+		
+		
 		<li>
 			<a id="dn_english_findfriends" href="<?php echo $_SESSION["PROJECT_URL"]?>app/findfriends" onclick="javascript:mainMenuSelection(this.id);">
 				<div class="f14">
@@ -144,7 +176,7 @@ function mainMenuSelection(id){
 				   <i class="fa fa-thumbs-up" aria-hidden="true"></i>&nbsp;&nbsp;<b>Find Community</b>
 				</div>
 			</a>
-		</li>
+		</li-->
 		<!--li>
 			<a id="dn_english_findmovements" href="<!--?php echo $_SESSION["PROJECT_URL"]?>app/findmovements" onclick="javascript:mainMenuSelection(this.id);">
 				<div>
@@ -159,13 +191,7 @@ function mainMenuSelection(id){
 				</div>
 			</a>
 		</li-->
-		<li>
-			<a id="dn_english_logout" href="#" onclick="javascript:mainMenuSelection(this.id);">
-				<div class="f14">
-					<i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;&nbsp;<b>Log out</b>
-				</div>
-			</a>
-		</li>
+		
 	</ul>
 </span>
 <span class="lang_telugu">

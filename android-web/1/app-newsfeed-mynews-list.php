@@ -5,7 +5,7 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
 <html lang="en">
 <head>
  <?php include_once 'templates/api/api_js.php'; ?>
- <title>NewsFeed</title>
+ <title>My News</title>
  <meta charset="utf-8">
  <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="shortcut icon" type="image/x-icon" href="<?php echo $_SESSION["PROJECT_URL"]; ?>images/favicon.ico"/>
@@ -22,30 +22,36 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
 <script type="text/javascript">
 $(document).ready(function(){
 sideWrapperToggle();
-mainMenuSelection("dn_"+USR_LANG+"_newsfeed");
+mainMenuSelection("dn_"+USR_LANG+"_mystuff");
 bgstyle(3);
 $(".lang_"+USR_LANG).css('display','block');
 load_topMenu_published("mynewslist-id-published");
+goBackSetURL(PROJECT_URL+'app/mystuff');
 });
 </script>
 </head>
 <body>
  <?php include_once 'templates/api/api_loading.php'; ?>
+ <div style="position:absolute;bottom:25px;right:25px;z-index:100;">
+  <a href="<?php echo $_SESSION["PROJECT_URL"];?>app/create-newsfeed">
+  <i class="fa fa-plus custom-bg" aria-hidden="true" style="padding:10px;border-radius:50%;"></i>
+  </a>
+ </div>
  <div id="wrapper" class="toggled">
   <!-- Core Skeleton : Side and Top Menu -->
   <div id="sidebar-wrapper">
 	<?php include_once 'templates/api/api_sidewrapper.php'; ?>
   </div>
   <div id="page-content-wrapper">
-	<?php include_once 'templates/api/api_header_other.php'; ?>
+	<?php include_once 'templates/api/api_header_simple.php'; ?>
 	<div class="list-group">
 	  <div align="center" class="list-group-item custom-lgt-bg">
-		<b>MY NEWS LIST</b>
+		<b>MY NEWS</b>
 	  </div>
 <script type="text/javascript">
 function sel_topMenu_myNewsList(id){
- var arry_id = ["mynewslist-id-published","mynewslist-id-pending"];
- var arry_content = ["mynewslist-content-published","mynewslist-content-pending"];
+ var arry_id = ["mynewslist-id-published","mynewslist-id-pending","mynewslist-id-requests"];
+ var arry_content = ["mynewslist-content-published","mynewslist-content-pending","mynewslist-content-requests"];
  for(var index=0;index<arry_id.length;index++){
   if(arry_id[index]===id){
     if(!$('#'+arry_id[index]).hasClass('custom-font')){ 
@@ -179,14 +185,19 @@ function display_News_simple(info_Id,artTitle,artShrtDesc,images,status,createdO
 	  <div align="center" class="list-group-item">
 		<div class="container-fluid">
 		 <div class="row">
-		   <div class="col-xs-6">
+		   <div class="col-xs-4">
 		      <span id="mynewslist-id-published" class="pad10" onclick="javascript:load_topMenu_published(this.id);">
-			    <b>News Published</b>
+			    <b>Published</b>
 			  </span>
 		   </div>
-		   <div class="col-xs-6">
+		   <div class="col-xs-4">
 		     <span id="mynewslist-id-pending" class="pad10" onclick="javascript:load_topMenu_pending(this.id);">
-				<b>News Pending</b>
+				<b>Pending</b>
+			 </span>
+		   </div>
+		   <div class="col-xs-4">
+		     <span id="mynewslist-id-requests" class="pad10" onclick="javascript:load_topMenu_pending(this.id);">
+				<b>Requests</b>
 			 </span>
 		   </div>
 		 </div>
@@ -217,6 +228,17 @@ function display_News_simple(info_Id,artTitle,artShrtDesc,images,status,createdO
 		 </div>
 		</div>
       </div>
+	  <div id="mynewslist-content-requests" class="hide-block">
+	    <div class="container-fluid">
+		 <div class="row">
+		  <div id="mynewslist-news-requests0" class="col-xs-12">
+		    <div align="center">
+		      <img src="images/load.gif" style="width:150px;height:150px;"/>
+		    </div>
+		  </div>
+		 </div>
+		</div>
+	  </div>
 	</div>
   </div>
  </div>

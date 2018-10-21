@@ -11,7 +11,7 @@ if(isset($_GET["action"])){
        if($_GET["action"]=="GET_COUNT_MYFRIENDSLIST") {
 	      if(isset($_GET["user_Id"])){
 			$user_Id=$_GET["user_Id"];
-			$frndObj=new user_friends();
+			$frndObj=new UserFriends();
 			$query=$frndObj->query_count_allFriendsOfUser($user_Id);
 			$dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
 			$jsonData=$dbObj->getJSONData($query);
@@ -23,7 +23,7 @@ if(isset($_GET["action"])){
 	      if(isset($_GET["user_Id"]) && isset($_GET["limit_start"]) && isset($_GET["limit_end"])){
 			$user_Id=$_GET["user_Id"];
 			$user_Id=$_GET["user_Id"];
-			$frndObj=new user_friends();
+			$frndObj=new UserFriends();
 			$query=$frndObj->query_data_allFriendsOfUser($user_Id);
 			$dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
 			echo $dbObj->getJSONData($query);
@@ -37,16 +37,22 @@ if(isset($_GET["action"])){
 		  }
 	   }
   else if($_GET["action"]=="SEND_USERFRND_REQUESTS") {
+  /* Used in app-search.php, triggers When a User wants to Send Friend Request to a Person */
 	   if(isset($_GET["projectURL"]) && isset($_GET["from_user_Id"]) && isset($_GET["to_user_Id"])){
 	         $projectURL=$_GET["projectURL"];
 	         $idObj=new Identity();
 			 $req_Id=$idObj->user_frnds_req_id();
-			 $from_userId=$_GET["from_user_Id"];
-			 $to_userId=$_GET["to_user_Id"];
-			 $usr_frm_call_to='My LocalHook Friend';	
-			 $userObj=new user_friends();
+			 $fromUserId=$_GET["from_user_Id"];
+			 $toUserId=$_GET["to_user_Id"];
+			 $usr_frm_call_to='My LocalHook Friend';
+			 $usr_to_call_from='My LocalHook Friend';
+			 $req_tz='Asia/Kolkata';
+			 $reqMessage='';
+			 $userObj=new UserFriends();
 			 $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
-			 $insertQuery=$userObj->query_sendUserFrndRequests($req_Id,$from_userId,$to_userId,$usr_frm_call_to);
+			 $insertQuery=$userObj->query_sendUserFrndRequests($req_Id,$fromUserId,$toUserId,$usr_frm_call_to,
+									$usr_to_call_from,$req_tz,$reqMessage);
+			 echo $insertQuery;
 			 echo $dbObj->addupdateData($insertQuery);
 		} else {
 		    $content='Missing ';
@@ -59,7 +65,7 @@ if(isset($_GET["action"])){
   else if($_GET["action"]=='ACCEPT_FRNDREQUEST_TO_ME'){ 
   if(isset($_GET["requestFrom"]) && isset($_GET["user_Id"])){
 	$idObj=new Identity();
-    $reqObj=new user_friends();
+    $reqObj=new UserFriends();
     $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
     $from_userId=$_GET["requestFrom"];
     $to_userId=$_GET["user_Id"];
@@ -80,10 +86,11 @@ if(isset($_GET["action"])){
 	  }
    }
   else if($_GET["action"]=='DELETE_A_REQUEST_SENT'){
+  /* Used in app-search.php, triggers When a User wants delete a "Send Friend Request" already sent to a Person  */
 		if(isset($_GET["from_userId"]) && isset($_GET["to_userId"])){  
 		 $from_userId=$_GET["from_userId"];
 		 $to_userId=$_GET["to_userId"];
-	     $reqObj=new user_friends();
+	     $reqObj=new UserFriends();
 		 $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
 		 /* Delete row in user_frnds_req */
 		 $deleteQuery=$reqObj->query_deleteFrndRequestToMe($from_userId,$to_userId);
@@ -96,11 +103,12 @@ if(isset($_GET["action"])){
 			echo $content;
 		}
 }  
-  else if($_GET["action"]=='UNFRIEND_A_PERSON'){  
+  else if($_GET["action"]=='UNFRIEND_A_PERSON'){ 
+  /* Used in app-search.php, triggers When a User wants unfriend a person who is already his Person  */  
 	  if(isset($_GET["frnd1"]) && isset($_GET["frnd2"])){
 		$frnd1=$_GET["frnd1"];
 		$frnd2=$_GET["frnd2"];
-		$frndObj=new user_friends();
+		$frndObj=new UserFriends();
 		$query=$frndObj->query_unfriendAperson($frnd1,$frnd2);
 		$dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
 		echo $dbObj->addupdateData($query);
@@ -115,7 +123,7 @@ if(isset($_GET["action"])){
   else if($_GET["action"]=='GET_COUNT_RECEIVEDFRIENDREQUESTS'){
    if(isset($_GET["to_userId"])){
      $to_userId=$_GET["to_userId"];
-     $frndObj = new user_friends();
+     $frndObj = new UserFriends();
 	 $query=$frndObj->query_count_recievedFriendRequests($to_userId);
 	 $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
 	 $jsonData=$dbObj->getJSONData($query);
@@ -129,7 +137,7 @@ if(isset($_GET["action"])){
     $to_userId=$_GET["to_userId"];
 	$limit_start=$_GET["limit_start"];
 	$limit_end=$_GET["limit_end"];
-    $frndObj = new user_friends();
+    $frndObj = new UserFriends();
 	 $query=$frndObj->query_data_recievedFriendRequests($to_userId,$limit_start,$limit_end);
 	 $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
 	 echo $dbObj->getJSONData($query);
@@ -145,7 +153,7 @@ if(isset($_GET["action"])){
   else if($_GET["action"]=='GET_COUNT_SENTFRIENDREQUESTS'){
     if(isset($_GET["from_userId"])){
      $from_userId=$_GET["from_userId"];
-	 $frndObj = new user_friends();
+	 $frndObj = new UserFriends();
 	 $query=$frndObj->query_count_sentFriendRequests($from_userId);
 	 $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
 	 $jsonData=$dbObj->getJSONData($query);
@@ -158,7 +166,7 @@ if(isset($_GET["action"])){
      $from_userId=$_GET["from_userId"];
 	 $limit_start=$_GET["limit_start"];
 	 $limit_end=$_GET["limit_end"];
-     $frndObj = new user_friends();
+     $frndObj = new UserFriends();
 	 $query=$frndObj->query_data_sentFriendRequests($from_userId,$limit_start,$limit_end);
 	 $dbObj=new Database($DB_MLHBASIC_SERVERNAME,$DB_MLHBASIC_NAME,$DB_MLHBASIC_USER,$DB_MLHBASIC_PASSWORD);
 	 echo $dbObj->getJSONData($query);

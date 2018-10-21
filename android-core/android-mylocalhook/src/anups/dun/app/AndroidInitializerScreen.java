@@ -43,6 +43,8 @@ public class AndroidInitializerScreen extends Activity {
   	  AppSessionManagement appSessionManagement = new AppSessionManagement(this);
   	  AppSQLiteManagement appSQLiteManagement = new AppSQLiteManagement(this);
   	
+  	  appSessionManagement.setAndroidSession(BusinessConstants.ANDROID_CURRENT_ACTIVITY, "ANDROIDINITIALIZERSCREEN");
+  	    
   	  webView = (WebView) findViewById(R.id.webView);
       webView.clearCache(true);
       webView.clearHistory();
@@ -80,6 +82,13 @@ public class AndroidInitializerScreen extends Activity {
       } catch(Exception e){  logger.info("Exception: "+e); }
     }
 
+    @Override
+    public void onDestroy() {
+      logger.info("Activity Destroyed ");
+      super.onDestroy();
+      AppSessionManagement appSessionManagement = new AppSessionManagement(this);
+      appSessionManagement.setAndroidSession(BusinessConstants.ANDROID_CURRENT_ACTIVITY, "NO_ACTIVITY");
+    }
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
     	logger.info("AndroidInitializerScreen(onActivityResult): "+requestCode+" "+resultCode+" "+data);

@@ -205,7 +205,7 @@ function searchNewsFeedInitializer(){
  });
 }
 function searchNewsFeedcontentData(div_view, appendContent,limit_start,limit_end){
-  js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.page.app.search.php',
+  js_ajax('GET',PROJECT_URL+'backend/php/dac/controller.module.app.user.search.php',
   { action:'SEARCH_DATA_NEWSFEED', projectURL:PROJECT_URL, user_Id: AUTH_USER_ID, 
   searchKeyword:SEARCH_KEYWORD, limit_start:limit_start, limit_end:limit_end },
   function(response){

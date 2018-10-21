@@ -36,8 +36,7 @@ $(document).ready(function(){
  setTimeout(function(){ 
   try {
    var AUTH_USER_ID = AndroidSession.getAndroidSession("AUTH_USER_ID");
-   if(AUTH_USER_ID===undefined){ Android.loadAndroidWebScreen('DEFAULT'); }
-   else { Android.loadAndroidWebScreen(Android.latestNews()); } 
+   Android.loadAndroidWebScreen('DEFAULT');
   } catch(err){ alert(err); }
  },3000);
  }

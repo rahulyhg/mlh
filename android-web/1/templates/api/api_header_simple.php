@@ -26,9 +26,11 @@ function goToByScroll(id){
 $(document).ready(function(){
    $('[data-toggle="tooltip"]').tooltip(); 
 });
-
+var PREVIOUS_BACK_URL;
+function goBackSetURL(url){ PREVIOUS_BACK_URL = url; }
 function goBackPreviousURL(){
-window.history.back();
+ if(PREVIOUS_BACK_URL===undefined){ window.history.back(); } 
+ else { window.location.href=PREVIOUS_BACK_URL; }
 }
 // href="#load_page_breadcrumb"
 </script>

@@ -1,7 +1,5 @@
 package anups.dun.js;
 
-import javax.crypto.SecretKey;
-
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -12,8 +10,6 @@ import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
 import android.webkit.JavascriptInterface;
 import android.widget.Toast;
-import anups.dun.app.AndroidInitializerScreen;
-import anups.dun.app.AndroidQRCodeScanner;
 import anups.dun.app.AndroidWebScreen;
 import anups.dun.media.AndroidWebScreenVideo;
 import anups.dun.util.AndroidLogger;
@@ -47,11 +43,6 @@ public class AppManagement extends ActionBarActivity {
     }
 	
 	@JavascriptInterface
-	public String latestNews(){
-	  return new URLGenerator(mContext).latestNews();
-	}
-	
-	@JavascriptInterface
 	public String checkPlayStoreUpdate(String playstoreversion) {
 	String status="UP-TO-DATE";
 	if(!playstoreversion.equals("0.0.0")){
@@ -78,7 +69,6 @@ public class AppManagement extends ActionBarActivity {
         Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show();
     }
 
-	
 	@JavascriptInterface
 	public void showVideo(String videoURL) {
 		Intent intent = new Intent(mContext, AndroidWebScreenVideo.class);

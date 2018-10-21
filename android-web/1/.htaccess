@@ -21,8 +21,10 @@ RewriteRule app/adminDashBoard app-adminDashBoard.php [NC,L]
 RewriteRule app/search/([^/]+)$ app-search.php?searchKeyword=$1 [NC,L]
 RewriteRule app/search app-search.php [NC,L]
 
+# User
 RewriteRule app/myprofile app-user-myprofile.php [NC,L]
 RewriteRule app/user/([^/]+)$ app-user-profile.php?1=$1 [NC,L]
+RewriteRule app/mystuff app-user-mystuff.php?1=$1 [NC,L]
 
 RewriteRule app/socialHub/home app-socialHub.php [NC,L]
 RewriteRule app/socialHub/classmatepoint/home app-socialHub-classmatepoint.php [NC,L]
@@ -41,7 +43,6 @@ RewriteRule app/socialHub/publicparliament/unionsAndAssociations/list/([^/]+)/([
 # CommunityProfile - app/community/<union_Id>
 # Movement Profile - app/movement/<move_Id>
 RewriteRule app/notifications app-notifications.php [NC,L]
-RewriteRule newsfeed/latest-news app-newsfeed-latest.php [NC,L]
 RewriteRule newsfeed/news/([^/]+)/([^/]+)/statistics app-newsfeed-statistics.php?1=$1&2=$2 [NC,L]
 
 RewriteRule app/explore app-explore.php  [NC,L]
@@ -53,6 +54,7 @@ RewriteRule app/findfriends app-user-friends-find.php  [NC,L]
 RewriteRule app/create-newsfeed app-newsfeed-create.php  [NC,L]
 RewriteRule app/news/mylist app-newsfeed-mynews-list.php [NC,L]
 RewriteRule newsfeed/news/([^/]+)$ app-newsfeed-news.php?1=$1 [NC,L]
+RewriteRule newsfeed/latest-news app-newsfeed-latest.php [NC,L]
 
 RewriteRule app/create-movement app-movement-create.php  [NC,L]
 RewriteRule app/movement/([^/]+)$ app-movement-view.php?1=$1  [NC,L]

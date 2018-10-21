@@ -7,6 +7,7 @@ if(Android===undefined){ window.location.href="android.php"; }
 <?php 
 session_start();
 session_unset();
+include_once 'templates/api/api_params.php';
 if(!isset($_SESSION["USR_LANG"])) { $_SESSION["USR_LANG"]='english'; } 
 if(!isset($_SESSION["AUTHENTICATION_STATUS"])){ $_SESSION["AUTHENTICATION_STATUS"]='INCOMPLETED'; }
 if($_SESSION["AUTHENTICATION_STATUS"]=='INCOMPLETED'){
@@ -16,7 +17,6 @@ if($_SESSION["AUTHENTICATION_STATUS"]=='INCOMPLETED'){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<?php include_once 'templates/api/api_params.php'; ?>
 <?php include_once 'templates/api/api_js.php'; ?>
  <title>Authentication</title>
  <meta charset="utf-8">

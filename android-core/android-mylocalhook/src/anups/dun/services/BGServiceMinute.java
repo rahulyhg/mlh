@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import anups.dun.constants.BusinessConstants;
 import anups.dun.js.AppSessionManagement;
+import anups.dun.notify.ws.WSGoogleAds;
 import anups.dun.notify.ws.WSIntervalMinute;
 import anups.dun.util.AndroidLogger;
 import anups.dun.util.GPSTracker;
@@ -24,7 +25,9 @@ public class BGServiceMinute extends Service {
     /* Minute Service */
 	URLGenerator urlGenerator =new URLGenerator(this.getApplicationContext());
 	String user_Id=appSessionManager.getAndroidSession(BusinessConstants.AUTH_USER_ID);
+	
 	logger.info("user_Id: "+user_Id);
+	logger.info("Activity Status: "+appSessionManager.getAndroidSession(BusinessConstants.ANDROID_CURRENT_ACTIVITY));
 	if(user_Id!=null){
 	  /* GPS System : Start */
 	  GPSTracker gpsTracker = new GPSTracker(getApplicationContext());
@@ -43,6 +46,15 @@ public class BGServiceMinute extends Service {
 			              params[1]=stringBuilder.toString();
 	             new WSIntervalMinute(getApplicationContext()).execute(params);
 	}
+	/* Google AdMob Ads */
+	try {
+	  logger.info("MyLocalHook is invoking GoogleAdmobInterstitial Service...");
+	 	  String[] googleAdsParams = new String[1];
+	 	           googleAdsParams[0]= urlGenerator.ws_googleAds();
+	 	  WSGoogleAds wsGoogleAds = new WSGoogleAds(this);
+	 	              wsGoogleAds.execute(googleAdsParams);
+	}
+	catch(Exception e){ logger.error("Exception: "+e.getMessage()); }
   }
 
   private int SERVICE_START_ID;

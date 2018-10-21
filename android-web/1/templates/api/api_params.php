@@ -1,5 +1,8 @@
 <?php
-if(!isset($_SESSION["PROJECT_URL"])){ $_SESSION["PROJECT_URL"]="http://".$_SERVER["HTTP_HOST"]."/mlh/android-web/1/"; }
+$_SESSION["VERSION_NUMBER"]='1';
+if(!isset($_SESSION["PROJECT_URL"])){ 
+ $_SESSION["PROJECT_URL"]="http://".$_SERVER["HTTP_HOST"]."/mlh/android-web/".$_SESSION["VERSION_NUMBER"]."/"; 
+}
 if(!isset($_SESSION["PROJECT_MODE"])){ $_SESSION["PROJECT_MODE"]='DEBUG'; }
 ?>
 <style>

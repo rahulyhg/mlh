@@ -230,9 +230,9 @@ protected void onCreate(Bundle savedInstanceState) {
  AppNotifyManagement appNotifyManagement = new AppNotifyManagement(this);
  AppSessionManagement appSessionManagement = new AppSessionManagement(this.getApplicationContext());
  AppSQLiteManagement appSQLiteManagement = new AppSQLiteManagement(this);
- 
  AppSQLiteUsrFrndsContactsInfo appSQLiteUsrFrndsInfo = new AppSQLiteUsrFrndsContactsInfo(this.getApplicationContext());
   
+ appSessionManagement.setAndroidSession(BusinessConstants.ANDROID_CURRENT_ACTIVITY, "ANDROIDWEBSCREEN");
  /* App Settings :: */
  /* Set Project Path And PropertyFiles */
  if(permissionsExist()){
@@ -370,15 +370,17 @@ protected void onCreate(Bundle savedInstanceState) {
 
    @Override
    public void onDestroy() {
-     logger.info("Activity Destroyed ");
+	logger.info("Activity Destroyed ");
+    super.onDestroy();
+	AppSessionManagement appSessionManagement = new AppSessionManagement(this);
+    appSessionManagement.setAndroidSession(BusinessConstants.ANDROID_CURRENT_ACTIVITY, "NO_ACTIVITY");
      /*
      AppSessionManagement appSessionManagement = new AppSessionManagement(this);
      appSessionManagement.setAndroidSession(BusinessConstants.GOOGLE_ADMOBINTERSTITIAL_STATUS,null);
      AndroidWebScreen.googleAdMobInterstitialHandler.removeCallbacks(AndroidWebScreen.googleAdMobRunnable);
      */
-	 super.onDestroy();
-	 Intent intent = new Intent(this, GoogleAdsActivityScreen.class);
-		this.getApplicationContext().startActivity(intent);
+	 /* Intent intent = new Intent(this, GoogleAdsActivityScreen.class);
+		this.getApplicationContext().startActivity(intent); */
    }
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {

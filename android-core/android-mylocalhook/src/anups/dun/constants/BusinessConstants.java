@@ -6,6 +6,27 @@ public class BusinessConstants {
  public static final String EXTERNALMEMORYPATH=System.getenv("EXTERNAL_STORAGE2");
  public static final String ANDROID_PROJECTPATH="ANDROID_PROJECTPATH";
  
+ /**/
+ public static final String ANDROID_CURRENT_ACTIVITY="ANDROID_CURRENT_ACTIVITY";
+ 
+ /* */
+ public static final String AUTH_USER_ID = "AUTH_USER_ID";
+ public static final String AUTH_USER_USERNAME = "AUTH_USER_USERNAME";
+ public static final String AUTH_USER_SURNAME = "AUTH_USER_SURNAME";
+ public static final String AUTH_USER_FULLNAME = "AUTH_USER_FULLNAME";
+ public static final String AUTH_USER_COUNTRYCODE = "AUTH_USER_COUNTRYCODE";
+ public static final String AUTH_USER_PHONENUMBER = "AUTH_USER_PHONENUMBER";
+ public static final String AUTH_USER_GENDER = "AUTH_USER_GENDER";
+ public static final String AUTH_USER_DOB = "AUTH_USER_DOB";
+ public static final String AUTH_USER_COUNTRY = "AUTH_USER_COUNTRY";
+ public static final String AUTH_USER_STATE = "AUTH_USER_STATE";
+ public static final String AUTH_USER_LOCATION = "AUTH_USER_LOCATION";
+ public static final String AUTH_USER_LOCALITY = "AUTH_USER_LOCALITY";
+ public static final String AUTH_USER_PROFILEPIC = "AUTH_USER_PROFILEPIC";
+ public static final String AUTH_USER_TIMEZONE = "AUTH_USER_TIMEZONE";
+ public static final String AUTH_USER_ISADMIN = "AUTH_USER_ISADMIN";
+ 
+ 
  /* SQLITE DATABASE */
  public static final String SQLITE_LASTUPDATED_USERFRNDSCONTACTS="SQLITE_LASTUPDATED_USERFRNDSCONTACTS"; // Time
  
@@ -28,7 +49,6 @@ public class BusinessConstants {
  
  
  /* SESSION LIST */
- public static final String AUTH_USER_ID="AUTH_USER_ID";
  public static final String COOKIES_CATEGORIES_APPLASTUPDATED="COOKIES_CATEGORIES_APPLASTUPDATED";
  
  /* PERMISSIONS LIST */

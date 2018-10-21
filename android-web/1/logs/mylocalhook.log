@@ -385,3 +385,376 @@ Thursday 18th October 2018 11:17:03 PM [INFO] ::: [api.database.php]  Database c
 Thursday 18th October 2018 11:20:37 PM [INFO] ::: [api.database.php]  Database connected Successfully 
 Thursday 18th October 2018 11:20:43 PM [INFO] ::: [api.database.php]  Database connected Successfully 
 Thursday 18th October 2018 11:20:46 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:49:24 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:49:26 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:49:39 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:49:39 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : UPDATE user_account SET  username='anups',  surName='Nellutla',  name='Anup Chakravarthi',  dob='2015-11-12',  gender='MALE',  profile_pic='http://192.168.1.4/mlh/android-web/images/avatar/3.jpg',  minlocation='Kuttanad',  location='Mavelikara',  state='Kerala',  country='India',  isAdmin='N',  user_tz='Asia/Kolkata',  acc_active='Y' WHERE user_Id='USR924357814934'; 
+Saturday 20th October 2018 06:49:40 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:49:45 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:49:46 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:49:46 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO user_subscription(sub_Id, user_Id, domain_Id, subdomain_Id, sub_on) SELECT * FROM (SELECT 'USRS6214941184852339798754','USR924357814934', '01-TPI', 'TPI-02-B','2018-10-20 18:49:45') As tmp WHERE (( SELECT count(*) FROM user_subscription WHERE user_Id='USR924357814934' AND domain_Id='01-TPI' AND subdomain_Id='TPI-02-B')=0); 
+Saturday 20th October 2018 06:49:47 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:49:48 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:49:48 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO user_subscription(sub_Id, user_Id, domain_Id, subdomain_Id, sub_on) SELECT * FROM (SELECT 'USRS2725858442985971787865','USR924357814934', '01-TPI', 'TPI-01-A','2018-10-20 18:49:47') As tmp WHERE (( SELECT count(*) FROM user_subscription WHERE user_Id='USR924357814934' AND domain_Id='01-TPI' AND subdomain_Id='TPI-01-A')=0); 
+Saturday 20th October 2018 06:49:49 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:49:50 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:49:50 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO user_subscription(sub_Id, user_Id, domain_Id, subdomain_Id, sub_on) SELECT * FROM (SELECT 'USRS1397319255653435887865','USR924357814934', '01-TPI', 'TPI-03-C','2018-10-20 18:49:49') As tmp WHERE (( SELECT count(*) FROM user_subscription WHERE user_Id='USR924357814934' AND domain_Id='01-TPI' AND subdomain_Id='TPI-03-C')=0); 
+Saturday 20th October 2018 06:49:51 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:49:52 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:49:52 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO user_subscription(sub_Id, user_Id, domain_Id, subdomain_Id, sub_on) SELECT * FROM (SELECT 'USRS3387869274318522548642','USR924357814934', '06-FIN', 'FIN-01-BNK','2018-10-20 18:49:51') As tmp WHERE (( SELECT count(*) FROM user_subscription WHERE user_Id='USR924357814934' AND domain_Id='06-FIN' AND subdomain_Id='FIN-01-BNK')=0); 
+Saturday 20th October 2018 06:49:53 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:49:54 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:49:54 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO user_subscription(sub_Id, user_Id, domain_Id, subdomain_Id, sub_on) SELECT * FROM (SELECT 'USRS8213314579553243743187','USR924357814934', '06-FIN', 'FIN-02-INS','2018-10-20 18:49:53') As tmp WHERE (( SELECT count(*) FROM user_subscription WHERE user_Id='USR924357814934' AND domain_Id='06-FIN' AND subdomain_Id='FIN-02-INS')=0); 
+Saturday 20th October 2018 06:50:18 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:50:19 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:50:20 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:50:21 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:50:22 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:53:10 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:53:11 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:53:12 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:53:13 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:53:14 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:54:28 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:54:29 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:54:31 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:54:32 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:54:33 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:55:00 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:55:02 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:55:10 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:55:10 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : UPDATE user_account SET  username='anups',  surName='Nellutla',  name='Anup Chakravarthi',  dob='2015-11-12',  gender='MALE',  profile_pic='http://192.168.1.4/mlh/android-web/1/images/avatar/3.jpg',  minlocation='Kuttanad',  location='Mavelikara',  state='Kerala',  country='India',  isAdmin='N',  user_tz='Asia/Kolkata',  acc_active='Y' WHERE user_Id='USR924357814934'; 
+Saturday 20th October 2018 06:55:11 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:55:15 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:55:16 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:55:16 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO user_subscription(sub_Id, user_Id, domain_Id, subdomain_Id, sub_on) SELECT * FROM (SELECT 'USRS2666917898945887839957','USR924357814934', '01-TPI', 'TPI-02-B','2018-10-20 18:55:15') As tmp WHERE (( SELECT count(*) FROM user_subscription WHERE user_Id='USR924357814934' AND domain_Id='01-TPI' AND subdomain_Id='TPI-02-B')=0); 
+Saturday 20th October 2018 06:55:17 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:55:18 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:55:18 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO user_subscription(sub_Id, user_Id, domain_Id, subdomain_Id, sub_on) SELECT * FROM (SELECT 'USRS8566328556266727719185','USR924357814934', '01-TPI', 'TPI-01-A','2018-10-20 18:55:17') As tmp WHERE (( SELECT count(*) FROM user_subscription WHERE user_Id='USR924357814934' AND domain_Id='01-TPI' AND subdomain_Id='TPI-01-A')=0); 
+Saturday 20th October 2018 06:55:19 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:55:20 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:55:20 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO user_subscription(sub_Id, user_Id, domain_Id, subdomain_Id, sub_on) SELECT * FROM (SELECT 'USRS3325166189569272736355','USR924357814934', '01-TPI', 'TPI-03-C','2018-10-20 18:55:19') As tmp WHERE (( SELECT count(*) FROM user_subscription WHERE user_Id='USR924357814934' AND domain_Id='01-TPI' AND subdomain_Id='TPI-03-C')=0); 
+Saturday 20th October 2018 06:55:21 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:55:22 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:55:22 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO user_subscription(sub_Id, user_Id, domain_Id, subdomain_Id, sub_on) SELECT * FROM (SELECT 'USRS9773225114469169696966','USR924357814934', '06-FIN', 'FIN-01-BNK','2018-10-20 18:55:21') As tmp WHERE (( SELECT count(*) FROM user_subscription WHERE user_Id='USR924357814934' AND domain_Id='06-FIN' AND subdomain_Id='FIN-01-BNK')=0); 
+Saturday 20th October 2018 06:55:23 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:55:24 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:55:24 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO user_subscription(sub_Id, user_Id, domain_Id, subdomain_Id, sub_on) SELECT * FROM (SELECT 'USRS6761111732766792316397','USR924357814934', '06-FIN', 'FIN-02-INS','2018-10-20 18:55:23') As tmp WHERE (( SELECT count(*) FROM user_subscription WHERE user_Id='USR924357814934' AND domain_Id='06-FIN' AND subdomain_Id='FIN-02-INS')=0); 
+Saturday 20th October 2018 06:55:32 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:55:33 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:55:35 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:55:36 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:55:37 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:58:24 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:58:25 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:58:26 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:58:27 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 06:58:28 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 08:01:46 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 08:01:48 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 08:01:49 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 08:01:50 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 08:01:51 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 08:14:41 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 08:27:32 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 08:27:33 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 08:27:34 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 08:27:35 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 08:27:36 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 08:28:31 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 08:28:32 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 08:28:33 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 08:28:34 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 08:28:35 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 08:28:47 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 08:28:49 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 08:28:50 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 08:28:51 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 08:28:52 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 08:29:14 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 08:29:15 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 08:29:16 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 08:29:17 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 08:29:18 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 08:59:47 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 08:59:50 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 08:59:51 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 08:59:52 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 08:59:54 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 08:59:55 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 09:02:59 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 09:03:28 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 09:04:15 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 09:04:26 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 09:04:29 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 09:04:30 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 09:04:35 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 09:04:50 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 09:04:53 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 09:04:54 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 09:05:43 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 09:10:04 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 09:13:03 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 09:13:22 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 09:29:42 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 09:29:54 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 09:31:35 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 09:31:57 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 09:38:04 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 09:38:49 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 09:38:53 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 09:39:05 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 09:39:09 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 09:39:40 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 09:39:48 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 09:40:17 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 09:52:03 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 09:54:06 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 09:54:09 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 09:54:10 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 09:54:33 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 09:54:34 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 09:54:35 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 09:54:36 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 09:54:37 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 09:55:23 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 09:56:15 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 09:56:16 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 09:56:18 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 09:56:19 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 09:56:20 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 09:57:59 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 09:59:27 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 09:59:39 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 09:59:49 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:00:02 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:00:11 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:00:24 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:00:37 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:01:58 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:02:05 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:02:37 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:02:58 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:03:07 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:03:24 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:03:38 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:03:49 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:03:50 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:05:17 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:05:42 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:05:43 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:05:44 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:05:45 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:05:49 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:08:09 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:08:10 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:08:11 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:08:12 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:08:13 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:08:43 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:08:44 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:08:44 PM [INFO] ::: [api.database.php]  Query(Status-ERROR) : INSERT INTO user_frnds_req(req_Id, from_userId,  to_userId,usr_frm_call_to, req_on, notify, watched) SELECT * FROM ( SELECT 'UFRI815192793322','USR924357814934','USR128879133554','My LocalHook Friend','2018-10-20 22:08:43','N','N') As Tbl1 WHERE (SELECT count(*) FROM user_frnds_req WHERE (from_userId='USR924357814934' AND to_userId='USR128879133554') OR (from_userId='USR128879133554' AND to_userId='USR924357814934'))=0  
+Saturday 20th October 2018 10:38:53 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:38:54 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:38:55 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:38:56 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:38:57 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:39:16 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:39:17 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:39:17 PM [INFO] ::: [api.database.php]  Query(Status-ERROR) : INSERT INTO user_frnds_req(req_Id, from_userId,  to_userId,usr_frm_call_to, req_on, notify, watched) SELECT * FROM ( SELECT 'UFRI155117781661','USR924357814934','USR128879133554','My LocalHook Friend','2018-10-20 22:39:16','N','N') As Tbl1 WHERE (SELECT count(*) FROM user_frnds_req WHERE (from_userId='USR924357814934' AND to_userId='USR128879133554') OR (from_userId='USR128879133554' AND to_userId='USR924357814934'))=0  
+Saturday 20th October 2018 10:50:00 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:50:01 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:50:02 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:50:03 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:50:04 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:50:11 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:50:12 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:50:12 PM [INFO] ::: [api.database.php]  Query(Status-ERROR) : INSERT INTO user_frnds_req(req_Id, from_userId, to_userId, usr_frm_call_to, usr_to_call_from, req_on, req_tz, reqMessage, notify, watched) SELECT * FROM ( SELECT 'UFRI988782478491','','','My LocalHook Friend','My LocalHook Friend','2018-10-20 22:50:11','Asia/Kolkata','','N','N') As Tbl1 WHERE (SELECT count(*) FROM user_frnds_req WHERE (from_userId='' AND to_userId='') OR (from_userId='' AND to_userId=''))=0  
+Saturday 20th October 2018 10:50:54 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:50:55 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:50:56 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:50:57 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:50:58 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:51:02 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:51:03 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:51:03 PM [INFO] ::: [api.database.php]  Query(Status-ERROR) : INSERT INTO user_frnds_req(req_Id, from_userId, to_userId, usr_frm_call_to, usr_to_call_from, req_on, req_tz, reqMessage, notify, watched) SELECT * FROM ( SELECT 'UFRI562981781938','USR924357814934','USR128879133554','My LocalHook Friend','My LocalHook Friend','2018-10-20 22:51:02','Asia/Kolkata','','N','N') As Tbl1 WHERE (SELECT count(*) FROM user_frnds_req WHERE (from_userId='USR924357814934' AND to_userId='USR128879133554') OR (from_userId='USR128879133554' AND to_userId='USR924357814934'))=0  
+Saturday 20th October 2018 10:53:18 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:53:19 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:53:20 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:53:21 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:53:22 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:53:25 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:53:26 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:53:27 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:53:29 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:53:30 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:53:35 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:53:36 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:53:36 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO user_frnds_req(req_Id, from_userId, to_userId, usr_frm_call_to, usr_to_call_from, req_on, req_tz, reqMessage, notify, watched) SELECT * FROM ( SELECT 'UFRI962113657732' As req_Id,'USR924357814934' As fromUserId,'USR128879133554' As toUserId,'My LocalHook Friend' As usr_frm_call_to,'My LocalHook Friend' As usr_to_call_from,'2018-10-20 22:53:35' As req_on,'Asia/Kolkata' As req_tz,'' As reqMessage,'N' As notify,'N' As watched) As Tbl1 WHERE (SELECT count(*) FROM user_frnds_req WHERE (from_userId='USR924357814934' AND to_userId='USR128879133554') OR (from_userId='USR128879133554' AND to_userId='USR924357814934'))=0  
+Saturday 20th October 2018 10:53:53 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:53:54 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:53:55 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:53:56 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:53:57 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:55:36 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:55:36 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : DELETE FROM user_frnds_req WHERE (from_userId='USR924357814934' AND to_userId='USR128879133554')  OR (from_userId='USR128879133554' AND to_userId='USR924357814934');  
+Saturday 20th October 2018 10:57:09 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:57:09 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : DELETE FROM user_frnds WHERE (frnd1='USR113561617186' AND frnd2='USR924357814934') OR (frnd1='USR924357814934' AND frnd2='USR113561617186'); 
+Saturday 20th October 2018 10:57:25 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:57:26 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : DELETE FROM user_frnds WHERE (frnd1='USR255798352927' AND frnd2='USR924357814934') OR (frnd1='USR924357814934' AND frnd2='USR255798352927'); 
+Saturday 20th October 2018 10:59:14 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:59:17 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:59:18 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:59:19 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:59:20 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:59:21 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:59:28 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:59:36 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:59:37 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 10:59:37 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO user_frnds_req(req_Id, from_userId, to_userId, usr_frm_call_to, usr_to_call_from, req_on, req_tz, reqMessage, notify, watched) SELECT * FROM ( SELECT 'UFRI429751946456' As req_Id,'USR924357814934' As fromUserId,'USR113561617186' As toUserId,'My LocalHook Friend' As usr_frm_call_to,'My LocalHook Friend' As usr_to_call_from,'2018-10-20 22:59:36' As req_on,'Asia/Kolkata' As req_tz,'' As reqMessage,'N' As notify,'N' As watched) As Tbl1 WHERE (SELECT count(*) FROM user_frnds_req WHERE (from_userId='USR924357814934' AND to_userId='USR113561617186') OR (from_userId='USR113561617186' AND to_userId='USR924357814934'))=0  
+Saturday 20th October 2018 11:00:45 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 11:00:46 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 11:00:47 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 11:00:48 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 11:00:50 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 11:00:55 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 11:00:56 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 11:00:57 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO user_frnds(rel_Id, rel_from, rel_tz, frnd1, frnd2, frnd1_call_frnd2, frnd2_call_frnd1,notify) SELECT rel_Id, rel_from, rel_tz, frnd1, frnd2, frnd1_call_frnd2, frnd2_call_frnd1,notify FROM ( SELECT 'USRF549792774728' As rel_Id,'2018-10-20 23:00:55' As rel_from,'Asia/Kolkata' As rel_tz,'USR113561617186' As frnd1,'USR924357814934' As frnd2,'My LocalHook Friend' As frnd1_call_frnd2,'My LocalHook Friend' As frnd2_call_frnd1,'N' As notify)As Tbl1 WHERE (SELECT count(*) FROM user_frnds WHERE (frnd1='USR113561617186' AND frnd2='USR924357814934') OR (frnd1='USR924357814934' AND frnd2='USR113561617186'))=0  
+Saturday 20th October 2018 11:00:58 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 11:00:58 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : DELETE FROM user_frnds_req WHERE (from_userId='USR113561617186' AND to_userId='USR924357814934')  OR (from_userId='USR924357814934' AND to_userId='USR113561617186');  
+Saturday 20th October 2018 11:01:39 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 11:01:43 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 11:01:46 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 11:01:49 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 11:01:53 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 11:01:54 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 11:02:14 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 11:02:17 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 11:02:18 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 11:02:25 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 11:20:09 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 11:20:13 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 11:20:14 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 11:20:15 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 11:20:16 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 11:20:17 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 11:34:50 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 11:34:51 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 11:34:52 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 11:34:54 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 11:34:55 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 11:35:04 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 11:35:06 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 11:35:07 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 11:35:08 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 11:35:09 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 11:48:55 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 11:48:56 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 11:48:57 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 11:48:58 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Saturday 20th October 2018 11:48:59 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 12:26:58 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 12:26:59 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 12:27:01 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 12:27:02 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 12:27:03 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 11:26:55 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 11:27:26 AM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:07:31 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:07:33 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:07:39 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:07:40 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : UPDATE user_account SET  username='anups',  surName='Nellutla',  name='Anup Chakravarthi',  dob='2015-11-12',  gender='MALE',  profile_pic='http://192.168.1.4/mlh/android-web/1/images/avatar/3.jpg',  minlocation='Kuttanad',  location='Mavelikara',  state='Kerala',  country='India',  isAdmin='N',  user_tz='Asia/Kolkata',  acc_active='Y' WHERE user_Id='USR924357814934'; 
+Sunday 21st October 2018 07:07:41 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:07:49 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:07:50 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:07:50 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO user_subscription(sub_Id, user_Id, domain_Id, subdomain_Id, sub_on) SELECT * FROM (SELECT 'USRS8826523852343326748222','USR924357814934', '01-TPI', 'TPI-02-B','2018-10-21 19:07:49') As tmp WHERE (( SELECT count(*) FROM user_subscription WHERE user_Id='USR924357814934' AND domain_Id='01-TPI' AND subdomain_Id='TPI-02-B')=0); 
+Sunday 21st October 2018 07:07:51 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:07:53 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:07:53 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO user_subscription(sub_Id, user_Id, domain_Id, subdomain_Id, sub_on) SELECT * FROM (SELECT 'USRS1333686567955961565924','USR924357814934', '01-TPI', 'TPI-01-A','2018-10-21 19:07:51') As tmp WHERE (( SELECT count(*) FROM user_subscription WHERE user_Id='USR924357814934' AND domain_Id='01-TPI' AND subdomain_Id='TPI-01-A')=0); 
+Sunday 21st October 2018 07:07:54 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:07:55 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:07:55 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO user_subscription(sub_Id, user_Id, domain_Id, subdomain_Id, sub_on) SELECT * FROM (SELECT 'USRS8656523999569973871252','USR924357814934', '01-TPI', 'TPI-03-C','2018-10-21 19:07:54') As tmp WHERE (( SELECT count(*) FROM user_subscription WHERE user_Id='USR924357814934' AND domain_Id='01-TPI' AND subdomain_Id='TPI-03-C')=0); 
+Sunday 21st October 2018 07:07:56 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:07:57 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:07:57 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO user_subscription(sub_Id, user_Id, domain_Id, subdomain_Id, sub_on) SELECT * FROM (SELECT 'USRS2227138544782577262637','USR924357814934', '06-FIN', 'FIN-01-BNK','2018-10-21 19:07:56') As tmp WHERE (( SELECT count(*) FROM user_subscription WHERE user_Id='USR924357814934' AND domain_Id='06-FIN' AND subdomain_Id='FIN-01-BNK')=0); 
+Sunday 21st October 2018 07:07:58 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:07:59 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:07:59 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO user_subscription(sub_Id, user_Id, domain_Id, subdomain_Id, sub_on) SELECT * FROM (SELECT 'USRS9526489636231418591298','USR924357814934', '06-FIN', 'FIN-02-INS','2018-10-21 19:07:58') As tmp WHERE (( SELECT count(*) FROM user_subscription WHERE user_Id='USR924357814934' AND domain_Id='06-FIN' AND subdomain_Id='FIN-02-INS')=0); 
+Sunday 21st October 2018 07:08:04 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:08:05 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:08:05 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO user_subscription(sub_Id, user_Id, domain_Id, subdomain_Id, sub_on) SELECT * FROM (SELECT 'USRS3331418247489848285162','USR924357814934', '01-TPI', 'TPI-02-B','2018-10-21 19:08:04') As tmp WHERE (( SELECT count(*) FROM user_subscription WHERE user_Id='USR924357814934' AND domain_Id='01-TPI' AND subdomain_Id='TPI-02-B')=0); 
+Sunday 21st October 2018 07:08:06 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:08:07 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:08:07 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO user_subscription(sub_Id, user_Id, domain_Id, subdomain_Id, sub_on) SELECT * FROM (SELECT 'USRS4843631868792495759622','USR924357814934', '01-TPI', 'TPI-01-A','2018-10-21 19:08:06') As tmp WHERE (( SELECT count(*) FROM user_subscription WHERE user_Id='USR924357814934' AND domain_Id='01-TPI' AND subdomain_Id='TPI-01-A')=0); 
+Sunday 21st October 2018 07:08:08 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:08:09 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:08:09 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO user_subscription(sub_Id, user_Id, domain_Id, subdomain_Id, sub_on) SELECT * FROM (SELECT 'USRS2967882341121615446655','USR924357814934', '01-TPI', 'TPI-03-C','2018-10-21 19:08:08') As tmp WHERE (( SELECT count(*) FROM user_subscription WHERE user_Id='USR924357814934' AND domain_Id='01-TPI' AND subdomain_Id='TPI-03-C')=0); 
+Sunday 21st October 2018 07:08:10 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:08:11 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:08:11 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO user_subscription(sub_Id, user_Id, domain_Id, subdomain_Id, sub_on) SELECT * FROM (SELECT 'USRS5697188333794588246714','USR924357814934', '06-FIN', 'FIN-01-BNK','2018-10-21 19:08:10') As tmp WHERE (( SELECT count(*) FROM user_subscription WHERE user_Id='USR924357814934' AND domain_Id='06-FIN' AND subdomain_Id='FIN-01-BNK')=0); 
+Sunday 21st October 2018 07:08:12 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:08:13 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:08:13 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO user_subscription(sub_Id, user_Id, domain_Id, subdomain_Id, sub_on) SELECT * FROM (SELECT 'USRS2886279379263889198378','USR924357814934', '06-FIN', 'FIN-02-INS','2018-10-21 19:08:12') As tmp WHERE (( SELECT count(*) FROM user_subscription WHERE user_Id='USR924357814934' AND domain_Id='06-FIN' AND subdomain_Id='FIN-02-INS')=0); 
+Sunday 21st October 2018 07:09:01 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:09:03 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:09:09 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:09:09 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : UPDATE user_account SET  username='anups',  surName='Nellutla',  name='Anup Chakravarthi',  dob='2015-11-12',  gender='MALE',  profile_pic='http://192.168.1.4/mlh/android-web/1/images/avatar/3.jpg',  minlocation='Kuttanad',  location='Mavelikara',  state='Kerala',  country='India',  isAdmin='N',  user_tz='Asia/Kolkata',  acc_active='Y' WHERE user_Id='USR924357814934'; 
+Sunday 21st October 2018 07:09:11 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:09:16 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:09:17 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:09:17 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO user_subscription(sub_Id, user_Id, domain_Id, subdomain_Id, sub_on) SELECT * FROM (SELECT 'USRS9957332274195928451847','USR924357814934', '01-TPI', 'TPI-02-B','2018-10-21 19:09:16') As tmp WHERE (( SELECT count(*) FROM user_subscription WHERE user_Id='USR924357814934' AND domain_Id='01-TPI' AND subdomain_Id='TPI-02-B')=0); 
+Sunday 21st October 2018 07:09:18 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:09:19 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:09:19 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO user_subscription(sub_Id, user_Id, domain_Id, subdomain_Id, sub_on) SELECT * FROM (SELECT 'USRS7551417339987435794677','USR924357814934', '01-TPI', 'TPI-01-A','2018-10-21 19:09:18') As tmp WHERE (( SELECT count(*) FROM user_subscription WHERE user_Id='USR924357814934' AND domain_Id='01-TPI' AND subdomain_Id='TPI-01-A')=0); 
+Sunday 21st October 2018 07:09:20 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:09:21 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:09:21 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO user_subscription(sub_Id, user_Id, domain_Id, subdomain_Id, sub_on) SELECT * FROM (SELECT 'USRS6173713676255999317671','USR924357814934', '01-TPI', 'TPI-03-C','2018-10-21 19:09:20') As tmp WHERE (( SELECT count(*) FROM user_subscription WHERE user_Id='USR924357814934' AND domain_Id='01-TPI' AND subdomain_Id='TPI-03-C')=0); 
+Sunday 21st October 2018 07:09:22 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:09:23 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:09:23 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO user_subscription(sub_Id, user_Id, domain_Id, subdomain_Id, sub_on) SELECT * FROM (SELECT 'USRS7511129238642191399859','USR924357814934', '06-FIN', 'FIN-01-BNK','2018-10-21 19:09:22') As tmp WHERE (( SELECT count(*) FROM user_subscription WHERE user_Id='USR924357814934' AND domain_Id='06-FIN' AND subdomain_Id='FIN-01-BNK')=0); 
+Sunday 21st October 2018 07:09:24 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:09:25 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:09:25 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO user_subscription(sub_Id, user_Id, domain_Id, subdomain_Id, sub_on) SELECT * FROM (SELECT 'USRS5354721647796948326452','USR924357814934', '06-FIN', 'FIN-02-INS','2018-10-21 19:09:24') As tmp WHERE (( SELECT count(*) FROM user_subscription WHERE user_Id='USR924357814934' AND domain_Id='06-FIN' AND subdomain_Id='FIN-02-INS')=0); 
+Sunday 21st October 2018 07:10:07 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:10:27 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:10:29 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:10:36 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:10:37 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:10:38 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:13:54 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:13:56 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:13:57 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:13:58 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:13:59 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:14:01 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:14:14 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:18:12 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:18:13 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:18:14 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:18:16 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 07:18:17 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 10:53:00 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 10:53:02 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 10:53:10 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 10:53:10 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : UPDATE user_account SET  username='anups',  surName='Nellutla',  name='Anup Chakravarthi',  dob='2015-11-12',  gender='MALE',  profile_pic='http://192.168.1.4/mlh/android-web/1/images/avatar/3.jpg',  minlocation='Kuttanad',  location='Mavelikara',  state='Kerala',  country='India',  isAdmin='N',  user_tz='Asia/Kolkata',  acc_active='Y' WHERE user_Id='USR924357814934'; 
+Sunday 21st October 2018 10:53:11 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 10:53:19 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 10:53:20 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 10:53:20 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO user_subscription(sub_Id, user_Id, domain_Id, subdomain_Id, sub_on) SELECT * FROM (SELECT 'USRS3823751626832281886357','USR924357814934', '01-TPI', 'TPI-02-B','2018-10-21 22:53:19') As tmp WHERE (( SELECT count(*) FROM user_subscription WHERE user_Id='USR924357814934' AND domain_Id='01-TPI' AND subdomain_Id='TPI-02-B')=0); 
+Sunday 21st October 2018 10:53:21 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 10:53:22 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 10:53:22 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO user_subscription(sub_Id, user_Id, domain_Id, subdomain_Id, sub_on) SELECT * FROM (SELECT 'USRS5824213987893235646375','USR924357814934', '01-TPI', 'TPI-01-A','2018-10-21 22:53:21') As tmp WHERE (( SELECT count(*) FROM user_subscription WHERE user_Id='USR924357814934' AND domain_Id='01-TPI' AND subdomain_Id='TPI-01-A')=0); 
+Sunday 21st October 2018 10:53:23 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 10:53:24 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 10:53:24 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO user_subscription(sub_Id, user_Id, domain_Id, subdomain_Id, sub_on) SELECT * FROM (SELECT 'USRS3366312918535249321924','USR924357814934', '01-TPI', 'TPI-03-C','2018-10-21 22:53:23') As tmp WHERE (( SELECT count(*) FROM user_subscription WHERE user_Id='USR924357814934' AND domain_Id='01-TPI' AND subdomain_Id='TPI-03-C')=0); 
+Sunday 21st October 2018 10:53:25 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 10:53:26 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 10:53:26 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO user_subscription(sub_Id, user_Id, domain_Id, subdomain_Id, sub_on) SELECT * FROM (SELECT 'USRS3578149342373567585449','USR924357814934', '06-FIN', 'FIN-01-BNK','2018-10-21 22:53:25') As tmp WHERE (( SELECT count(*) FROM user_subscription WHERE user_Id='USR924357814934' AND domain_Id='06-FIN' AND subdomain_Id='FIN-01-BNK')=0); 
+Sunday 21st October 2018 10:53:27 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 10:53:28 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 10:53:28 PM [INFO] ::: [api.database.php]  Query(Status-SUCCESS) : INSERT INTO user_subscription(sub_Id, user_Id, domain_Id, subdomain_Id, sub_on) SELECT * FROM (SELECT 'USRS8453282542121649269215','USR924357814934', '06-FIN', 'FIN-02-INS','2018-10-21 22:53:27') As tmp WHERE (( SELECT count(*) FROM user_subscription WHERE user_Id='USR924357814934' AND domain_Id='06-FIN' AND subdomain_Id='FIN-02-INS')=0); 
+Sunday 21st October 2018 11:00:39 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 11:00:40 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 11:00:41 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 11:00:42 PM [INFO] ::: [api.database.php]  Database connected Successfully 
+Sunday 21st October 2018 11:00:43 PM [INFO] ::: [api.database.php]  Database connected Successfully 
