@@ -25,10 +25,11 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
  var SEARCH_KEYWORD='<?php if(isset($_GET["searchKeyword"])) { echo $_GET["searchKeyword"]; } ?>';
  </script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/app-search.js"></script>
- <style>
- .img-min-profilepic { margin-top:4%;margin-bottom:4%;width:70px;height:70px;border-radius: 50%; }
- .label-newsfeed { font-size: 10px;padding: 5px; }
- </style>
+<style>
+body{ background-color:#f7f7f7; }
+.img-min-profilepic { margin-top:4%;margin-bottom:4%;width:70px;height:70px;border-radius: 50%; }
+.label-newsfeed { font-size: 10px;padding: 5px; }
+</style>
 </head>
 <body>
  <?php include_once 'templates/api/api_loading.php'; ?>

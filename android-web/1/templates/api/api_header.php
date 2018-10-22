@@ -21,11 +21,6 @@ function goToByScroll(id){
   id = id.replace("link", "");
   $('html,body').animate({ scrollTop: $("#"+id).offset().top},'slow');
 }
-function sideMenuToggle(){
-  if($("#wrapper").hasClass("toggled")) {  $("#wrapper").removeClass("toggled"); } 
-  else { $("#wrapper").addClass("toggled"); }
-}
-
 </script>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -68,7 +63,7 @@ function logout(){
 		      
 		   </ul>
 		</div>
-		<a class="navbar-brand a-custom" style="cursor:pointer;" onclick="javascript:sideMenuToggle();">
+		<a class="navbar-brand a-custom" style="cursor:pointer;" onclick="javascript:sideWrapperToggle();">
 			<span class="glyphicon glyphicon-align-justify white-font"></span>
 		</a>
 		<div class="container-fluid" style="padding-left:0px;padding-right:0px;">

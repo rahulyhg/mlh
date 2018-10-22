@@ -5,7 +5,7 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
 <html lang="en">
 <head>
  <?php include_once 'templates/api/api_js.php'; ?>
- <title>My News</title>
+ <title>My Stuff</title>
  <meta charset="utf-8">
  <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="shortcut icon" type="image/x-icon" href="<?php echo $_SESSION["PROJECT_URL"]; ?>images/favicon.ico"/>
@@ -37,13 +37,8 @@ $(".lang_"+USR_LANG).css('display','block');
   </div>
   <div id="page-content-wrapper">
 	<?php include_once 'templates/api/api_header_other.php'; ?>
-	<div class="list-group">
-	  <div align="center" class="list-group-item custom-lgt-bg">
-		<b>MY STUFF</b>
-	  </div>
-	</div>
 	<!-- -->
-	<div class="container-fluid">
+	<div class="container-fluid mtop15p">
 	  <div class="row">
 	    <div class="col-xs-6">
 		 <a href="#">

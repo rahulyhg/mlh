@@ -3,12 +3,28 @@
 .div-w215px { width:215px; }
 .img-profilepic { margin-top:4%;margin-bottom:4%;width:100px;height:100px;border-radius:50%;border:px solid #fff; }
 .img-min-profilepic { margin-top:4%;margin-bottom:4%;width:70px;height:70px;border-radius:50%;border:px solid #fff; }
+.stop-vertificalScroll { position:fixed;overflow:hidden; }
 </style>
 <script type="text/javascript">
 function sideWrapperToggle(){
-if($("#wrapper").hasClass('toggled')) { $("#wrapper").removeClass('toggled');}
+if($("#wrapper").hasClass('toggled')) { 
+ $("#wrapper").removeClass('toggled'); // hides SideMenu
+ $('html').removeClass("stop-vertificalScroll");
+ $("#page-content-wrapper").css("position","absolute");
 }
-
+else { 
+ $("#wrapper").addClass("toggled");  // adds SideMenu
+ $("#page-content-wrapper").css("position","fixed");
+ setTimeout(function(){ $("html").addClass("stop-vertificalScroll"); },400);
+}
+// sidebar-wrapper
+// 
+}
+/*
+function sideMenuToggle(){
+  if($("#wrapper").hasClass("toggled")) {  $("#wrapper").removeClass("toggled"); } 
+  
+} */
 function mainMenuSelection(id){
 var arr_id=["dn_"+USR_LANG+"_adminDashboard","dn_"+USR_LANG+"_search","dn_"+USR_LANG+"_notifications",
 "dn_"+USR_LANG+"_explore","dn_"+USR_LANG+"_newsfeed","dn_"+USR_LANG+"_mystuff","dn_"+USR_LANG+"_mylocalhook",

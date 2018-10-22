@@ -62,7 +62,6 @@ function getCurentTimestamp(){
  var timestamp = year+"-"+month+"-"+date+" "+hour+":"+min+":"+sec;
  return timestamp;
 }
-
 function highlightLetterInAString(innerHTML,text) {
  var content='';
  if(text.length>0){
@@ -83,8 +82,6 @@ function core_anchorScrolling(){
     } 
   });
 }
-
-
 /* Select Option - Get Value By Text (Using ForLoop) */
 function selectOpt_getValueByText(select_id,text){
 var returnValue='';
@@ -96,7 +93,6 @@ var returnValue='';
  }
  return returnValue;
 }
-
 /* TimeZones */
 function get_stdDateTimeFormat01(ts_date){ 
 /* Input : YYYY-MM-DD HH:ii:ss
@@ -116,7 +112,6 @@ var months=["January","February","March","April","May","June","July","August","S
  var seconds = d.getSeconds() < 10 ? "0" + d.getSeconds() : d.getSeconds();
  return day+", "+date+" "+month+" "+year+" "+hours + ":"+minutes+" "+am_pm;
 }
-
 /* COLLECTIONS */
 var arry_hm_key=[];
 var arry_hm_value=[];
@@ -137,13 +132,10 @@ function js_getHashMap(key){
   }
   return value;
 }
-
 function urlTransfer(url){
  window.location.href=url;
 }
-
 /* AJAX */
-
 function js_ajax(method,url,data,fn_output){
  $.ajax({type: method, url: url,data:data, success: function(response) { fn_output(response); } }); 
 }
@@ -158,7 +150,6 @@ function js_session(sessionJSON,fn_output) {
  var sessionData={action:'Session',SESSION_JSON: sessionJSON};
  js_ajax("POST",PROJECT_URL+'backend/php/api/app.session.php',sessionData,fn_output);
 }
-
 function div_display_warning(div_Id,warning_Id){
 js_ajax("GET",PROJECT_URL+'backend/config/warning_messages.json',{},function(response){
 var content='<div class="alert alert-warning alert-dismissible" style="margin-bottom:0px;">';
@@ -168,7 +159,6 @@ var content='<div class="alert alert-warning alert-dismissible" style="margin-bo
  document.getElementById(div_Id).innerHTML=content;
 });
 }
-
 function alert_display_warning(warning_Id){
 js_ajax("GET",PROJECT_URL+'backend/config/warning_messages.json',{},function(response){
 var content='<div class="modal-dialog">';
@@ -190,7 +180,6 @@ var modalDivision = document.createElement("div");
  $('#alertWarningModal').modal();
 });
 }
-
 function div_display_success(div_Id,success_Id){
 js_ajax("GET",PROJECT_URL+'backend/config/success_messages.json',{},function(response){
 var content='<div class="alert alert-success alert-dismissible" style="margin-bottom:0px;">';
@@ -200,7 +189,6 @@ var content='<div class="alert alert-success alert-dismissible" style="margin-bo
  document.getElementById(div_Id).innerHTML=content;
 });
 }
-
 function alert_display_success(success_Id,success_url){
 js_ajax("GET",PROJECT_URL+'backend/config/success_messages.json',{},function(response){
 var content='<div class="modal-dialog">';

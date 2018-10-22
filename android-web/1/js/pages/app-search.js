@@ -72,7 +72,8 @@ function searchpeoplecontentData(div_view, appendContent,limit_start,limit_end){
 
 function ui_displayPeopleData(param_userId, param_profilepic, param_surName, param_name, param_minlocation, param_location,
 						   param_state,param_country,param_isFriend,param_youRecFrndRequest,param_youSentfrndRequest){
- var content='<div id="searchpeople_'+param_userId+'" class="list-group-item" style="padding:5px 0px;">';
+ var content='<div class="list-group">';
+     content+='<div id="searchpeople_'+param_userId+'" class="list-group-item" style="padding:5px 0px;">';
 	 content+='<div class="container-fluid pad0" onclick="javascript:transfer_userProfile(\''+param_userId+'\');">';
 	 content+='<div class="col-md-2 col-xs-5">';
 	 content+='<img class="img-min-profilepic" src="'+param_profilepic+'"/>';
@@ -98,6 +99,7 @@ function ui_displayPeopleData(param_userId, param_profilepic, param_surName, par
  } else if(AUTH_USER_ID!==param_userId && param_isFriend==='YES') {
     content+=ui_frndUnFrnd(param_userId);
  }
+ content+='</div>';
  content+='</div>';
  content+='</div>';
  content+='</div>';
