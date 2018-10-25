@@ -134,6 +134,21 @@ function subscribe(){
 		 try {
 			  if(AndroidSession!==undefined){
 		        AndroidSession.setAndroidSession('AUTH_USER_ID',AUTH_USER_ID);
+				AndroidSession.setAndroidSession('AUTH_USER_USERNAME',AUTH_USER_USERNAME);
+				AndroidSession.setAndroidSession('AUTH_USER_SURNAME',AUTH_USER_SURNAME);
+				AndroidSession.setAndroidSession('AUTH_USER_FULLNAME',AUTH_USER_FULLNAME);
+				AndroidSession.setAndroidSession('AUTH_USER_COUNTRYCODE',AUTH_USER_COUNTRYCODE);
+				AndroidSession.setAndroidSession('AUTH_USER_PHONENUMBER',AUTH_USER_PHONENUMBER);
+				AndroidSession.setAndroidSession('AUTH_USER_GENDER',AUTH_USER_GENDER);
+				AndroidSession.setAndroidSession('AUTH_USER_DOB',AUTH_USER_DOB);
+				AndroidSession.setAndroidSession('AUTH_USER_COUNTRY',AUTH_USER_COUNTRY);
+				AndroidSession.setAndroidSession('AUTH_USER_STATE',AUTH_USER_STATE);
+				AndroidSession.setAndroidSession('AUTH_USER_LOCATION',AUTH_USER_LOCATION);
+				AndroidSession.setAndroidSession('AUTH_USER_LOCALITY',AUTH_USER_LOCALITY);
+				AndroidSession.setAndroidSession('AUTH_USER_PROFILEPIC',AUTH_USER_PROFILEPIC);
+				AndroidSession.setAndroidSession('AUTH_USER_TIMEZONE',AUTH_USER_TIMEZONE);
+				AndroidSession.setAndroidSession('AUTH_USER_ISADMIN',AUTH_USER_ISADMIN);
+				AndroidSession.setAndroidSession('AUTHENTICATION_STATUS','COMPLETED');
 			  }
 			  if(AndroidNotify!==undefined){
 			    AndroidNotify.shutdownNotification_authReminder();

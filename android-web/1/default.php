@@ -1,23 +1,12 @@
-<!--script type="text/javascript">
-var Android;
-var AndroidNotify;
-var AndroidSession;
-if(Android===undefined){ window.location.href="android.php"; }
-</script-->
-<?php 
-session_start();
-session_unset();
+<?php session_start();session_unset(); 
 include_once 'templates/api/api_params.php';
 if(!isset($_SESSION["USR_LANG"])) { $_SESSION["USR_LANG"]='english'; } 
 if(!isset($_SESSION["AUTHENTICATION_STATUS"])){ $_SESSION["AUTHENTICATION_STATUS"]='INCOMPLETED'; }
 if($_SESSION["AUTHENTICATION_STATUS"]=='INCOMPLETED'){
-/* SET params to Empty */
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<?php include_once 'templates/api/api_js.php'; ?>
  <title>Authentication</title>
  <meta charset="utf-8">
  <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,9 +17,10 @@ if($_SESSION["AUTHENTICATION_STATUS"]=='INCOMPLETED'){
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/jquery.min.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/bootstrap.min.js"></script>
  <script src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/api/bg-styles-common.js"></script>
- <style>
- body { background-color:#0ba0da; }
- </style>
+ <?php include_once 'templates/api/api_js.php'; ?>
+<style> 
+body { background-color:#0ba0da; } 
+</style>
 <script type="text/javascript">
 var Android;
 var AndroidPermissions;
@@ -67,6 +57,7 @@ function makeOutPermissions(){
  } else { window.location.href=url; }	
 }
 </script>
+ 
 </head>
 <body>
  <?php include_once 'templates/api/api_loading.php'; ?>

@@ -328,11 +328,11 @@ protected void onCreate(Bundle savedInstanceState) {
         	if(!permissionsExist()){
         		directURL="file:///android_asset/www/app-permissions.html";
         	} else {
-        	if(data!=null){
-        	  if("DEFAULT".equalsIgnoreCase(data.toString())) { 
-        		directURL = appSessionManagement.getAndroidSession("PROPERTY_PROJECT_URL"); 
-        	  } else { directURL = data.toString(); }
-        	}
+        	    if(data!=null){
+        	       if("DEFAULT".equalsIgnoreCase(data.toString())) { 
+        		      directURL = appSessionManagement.getAndroidSession("PROPERTY_PROJECT_URL"); 
+        	       } else { directURL = data.toString(); }
+        	    }
         	}
         	 logger.info("intent: "+intent);
         	 logger.info("extras: "+extras);

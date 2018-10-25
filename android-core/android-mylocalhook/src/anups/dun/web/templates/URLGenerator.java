@@ -15,8 +15,8 @@ public class URLGenerator {
 	 return PROJECT_URL+"default.php";
  }
  
- public String latestNews(){
-	 return PROJECT_URL+"newsfeed/latest-news"; 
+ public String latestNews(String projectURL){
+	 return projectURL+"newsfeed/latest-news"; 
  }
  
  public String ws_googleAds(){

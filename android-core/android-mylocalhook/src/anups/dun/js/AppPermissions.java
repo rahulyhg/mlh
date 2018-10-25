@@ -12,9 +12,9 @@ public class AppPermissions extends ActionBarActivity {
   public AppPermissions(Context c) {  mContext = c; }
 	
   @JavascriptInterface
-  public boolean doesPermissionExist(String permission){ 
+  public String doesPermissionExist(String permission){ 
    boolean status=((AndroidWebScreen) mContext).doesPermissionExist(permission);
-   return status;
+   return Boolean.toString(status);
   }
 	
   @JavascriptInterface

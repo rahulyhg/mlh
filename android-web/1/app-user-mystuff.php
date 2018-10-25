@@ -27,6 +27,14 @@ bgstyle(3);
 $(".lang_"+USR_LANG).css('display','block');
 });
 </script>
+<style>
+body { background-color:#f7f7f7; }
+.mystuff-tmp1 {     background-color: #e91e63;color:#fff; }
+.mystuff-tmp2 {     background-color: #f39204;color:#fff; }
+.mystuff-tmp3 {     background-color: #1daf23;color:#fff; }
+.mystuff-tmp4 {     background-color: #607d8b;color:#fff; }
+.mystuff-tmp5 {     background-color: #9c02b7;color:#fff; }
+</style>
 </head>
 <body>
  <?php include_once 'templates/api/api_loading.php'; ?>
@@ -41,42 +49,46 @@ $(".lang_"+USR_LANG).css('display','block');
 	<div class="container-fluid mtop15p">
 	  <div class="row">
 	    <div class="col-xs-6">
-		 <a href="#">
+		 <a href="#" class="a-custom">
 		  <div class="list-group">
-		  <div class="list-group-item pad0" style="background-color:#f9f9f9;">
+		  <div class="list-group-item pad0 mystuff-tmp1">
 		    <!-- Content ::: START -->
 			<div class="container-fluid mtop15p mbot15p">
 	         <div class="row">
 	           <div align="center" class="col-xs-12">
-				 <i class="fa fa-5x fa-user custom-font" aria-hidden="true"></i>
+				 <i class="fa fa-3x fa-user" aria-hidden="true"></i>
+		       </div>
+		     </div>
+			 <div class="row">
+	           <div align="center" class="col-xs-12">
+				 <h5><b>My Profile</b></h5>
 		       </div>
 		     </div>
 		    </div>
 			<!-- Content ::: END -->
 		  </div> 
-		  <div align="center" class="list-group-item pad0 custom-bg">
-		    <h5><b>My Profile</b></h5>
-		  </div>
 		  </div>
 		 </a>
 		</div>
 		<div class="col-xs-6">
-		 <a href="#">
+		 <a href="#" class="a-custom">
 		  <div class="list-group">
-		  <div class="list-group-item pad0" style="background-color:#f9f9f9;">
+		  <div class="list-group-item pad0 mystuff-tmp2">
 		    <!-- Content ::: START -->
 			<div class="container-fluid mtop15p mbot15p">
 	         <div class="row">
 	           <div align="center" class="col-xs-12">
-				 <i class="fa fa-5x fa fa-users custom-font" aria-hidden="true"></i>
+				 <i class="fa fa-3x fa fa-users" aria-hidden="true"></i>
 		       </div>
 		     </div>
+			 <div class="row">
+	           <div align="center" class="col-xs-12">
+			    <h5><b>My Friends</b></h5>
+			   </div>
+			 </div>
 		    </div>
 			<!-- Content ::: END -->
 		  </div> 
-		  <div align="center" class="list-group-item pad0 custom-bg">
-		    <h5><b>My Friends</b></h5>
-		  </div>
 		  </div>
 		 </a>
 		</div>
@@ -84,64 +96,70 @@ $(".lang_"+USR_LANG).css('display','block');
 	  
 	  <div class="row">
 	    <div class="col-xs-6">
-		 <a href="<?php echo $_SESSION["PROJECT_URL"]; ?>app/news/mylist">
+		 <a href="<?php echo $_SESSION["PROJECT_URL"]; ?>app/news/mylist" class="a-custom">
 		  <div class="list-group">
-		  <div class="list-group-item pad0" style="background-color:#f9f9f9;">
+		  <div class="list-group-item pad0 mystuff-tmp3">
 		    <!-- Content ::: START -->
 			<div class="container-fluid mtop15p mbot15p">
 	         <div class="row">
 	           <div align="center" class="col-xs-12">
-				 <i class="fa fa-5x fa-newspaper-o custom-font" aria-hidden="true"></i>
+				 <i class="fa fa-3x fa-newspaper-o" aria-hidden="true"></i>
 		       </div>
 		     </div>
+			 <div class="row">
+	           <div align="center" class="col-xs-12">
+			     <h5><b>My Articles</b></h5>
+			   </div>
+			 </div>
 		    </div>
 			<!-- Content ::: END -->
 		  </div> 
-		  <div align="center" class="list-group-item pad0 custom-bg">
-		    <h5><b>My Articles</b></h5>
-		  </div>
 		  </div>
 		 </a>
 		</div>
 		<div class="col-xs-6">
-		 <a href="<?php echo $_SESSION["PROJECT_URL"]; ?>app/mycommunity">
+		 <a href="<?php echo $_SESSION["PROJECT_URL"]; ?>app/mycommunity" class="a-custom">
 		  <div class="list-group">
-		  <div class="list-group-item pad0" style="background-color:#f9f9f9;">
+		  <div class="list-group-item pad0 mystuff-tmp4">
 		    <!-- Content ::: START -->
 			<div class="container-fluid mtop15p mbot15p">
 	         <div class="row">
 	           <div align="center" class="col-xs-12">
-				 <i class="fa fa-5x fa fa-university custom-font" aria-hidden="true"></i>
+				 <i class="fa fa-3x fa fa-university" aria-hidden="true"></i>
 		       </div>
 		     </div>
+			 <div class="row">
+	           <div align="center" class="col-xs-12">
+			     <h5><b>My Community</b></h5>
+			   </div>
+			  </div>
 		    </div>
 			<!-- Content ::: END -->
 		  </div> 
-		  <div align="center" class="list-group-item pad0 custom-bg">
-		    <h5><b>My Community</b></h5>
-		  </div>
 		  </div>
 		 </a>
 		</div>
 	  </div>
 	  <div class="row">
 	    <div class="col-xs-6">
-		 <a href="<?php echo $_SESSION["PROJECT_URL"]; ?>app/mymovements">
+		 <a href="<?php echo $_SESSION["PROJECT_URL"]; ?>app/mymovements" class="a-custom">
 		  <div class="list-group">
-		  <div class="list-group-item pad0" style="background-color:#f9f9f9;">
+		  <div class="list-group-item pad0 mystuff-tmp5">
 		    <!-- Content ::: START -->
 			<div class="container-fluid mtop15p mbot15p">
 	         <div class="row">
 	           <div align="center" class="col-xs-12">
-				 <i class="fa fa-5x fa-hand-paper-o custom-font" aria-hidden="true"></i>
+				 <i class="fa fa-3x fa-hand-paper-o" aria-hidden="true"></i>
 		       </div>
 		     </div>
+			 <div class="row">
+	           <div align="center" class="col-xs-12">
+			     <h5><b>My Movements</b></h5>
+			   </div>
+			 </div>
 		    </div>
 			<!-- Content ::: END -->
 		  </div> 
-		  <div align="center" class="list-group-item pad0 custom-bg">
-		    <h5><b>My Movements</b></h5>
-		  </div>
 		  </div>
 		 </a>
 		</div>

@@ -36,7 +36,12 @@ $(document).ready(function(){
  setTimeout(function(){ 
   try {
    var AUTH_USER_ID = AndroidSession.getAndroidSession("AUTH_USER_ID");
-   Android.loadAndroidWebScreen('DEFAULT');
+   if(AUTH_USER_ID===null){
+     Android.loadAndroidWebScreen('DEFAULT');
+   } else {
+     var VERSION_NUMBER = Android.getProjectURL()+Android.getVersionNumber()+'/';
+     Android.loadAndroidWebScreen(Android.getHomePage(VERSION_NUMBER));
+   }
   } catch(err){ alert(err); }
  },3000);
  }

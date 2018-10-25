@@ -90,7 +90,7 @@ function reg_avatar_img(){
 function reg_profile_img(){
  if(IMG_URL!==undefined){
    var init_session_data='{"session_set":[{"key":"AUTH_USER_PROFILEPIC","value":"'+IMG_URL+'"}],';
-       init_session_data+='"session_get":["AUTH_USER_PROFILEPIC"]}';
+       init_session_data+='"session_get" : [ "AUTH_USER_PROFILEPIC"]}';
    js_session(init_session_data,function(response){
 	   response=JSON.parse(response);
        reg_data_store(response.AUTH_USER_PROFILEPIC);

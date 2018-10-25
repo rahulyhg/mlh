@@ -5,16 +5,17 @@ console.log("Search Keyword: "+SEARCH_KEYWORD);
  bgstyle(3);
  $(".lang_"+USR_LANG).css('display','block');
  hzTabSelection('searchPeopleHzTab');
- searchpeopleInitializer();
- searchNewsFeedInitializer();
- searchCommunityInitializer();
- searchMovementInitializer();
 });
+
 function hzTabSelection(id){
  var arryHzTab=["searchPeopleHzTab","searchNewsFeedHzTab","searchCommunityHzTab","searchMovementHzTab"];
  var arryTabDataViewer=["searchPeopleDisplayDivision","searchNewsFeedDisplayDivision",
 						"searchCommunityDisplayDivision","searchMovementDisplayDivision"];
  hzTabSelector(id,arryHzTab,arryTabDataViewer);
+      if(id==='searchPeopleHzTab'){ searchpeopleInitializer(); }
+ else if(id==='searchNewsFeedHzTab'){ searchNewsFeedInitializer(); }
+ else if(id==='searchCommunityHzTab'){ searchCommunityInitializer(); }
+ else if(id==='searchMovementHzTab'){ searchMovementInitializer(); }
 }
 /*****************************************************************************************************************************/
 /************************************************* Search People load On Scroll **********************************************/

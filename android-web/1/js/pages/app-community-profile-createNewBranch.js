@@ -27,7 +27,7 @@ function load_administratorDetails(){
     FIRSTMEMBER_LOCATION  = response[0].location;
     FIRSTMEMBER_STATE  = response[0].state;
     FIRSTMEMBER_COUNTRY  = response[0].country;
-	document.getElementById("createNewBranch_profilepic").innerHTML='<img src="'+profile_pic+'" class="profile_pic_img"/>';
+	document.getElementById("createNewBranch_profilepic").innerHTML='<img src="'+FIRSTMEMBER_PROFILEPIC+'" class="profile_pic_img"/>';
     document.getElementById("createNewBranch_firstMemberName").innerHTML=FIRSTMEMBER_NAME;
   }); 
   } else if(MEMBER_OR_BRANCHREQ_ID.startsWith("UPBR")){

@@ -54,7 +54,6 @@
             android:name="anups.dun.app.GoogleAdsActivityScreen"
             android:configChanges="orientation|keyboardHidden"
             android:hardwareAccelerated="true"
-            android:launchMode="singleInstance"
             android:icon="@drawable/mlh_yt_launcher"
             android:label="@string/ad_title" >
         </activity>
@@ -62,7 +61,6 @@
             android:name="anups.dun.app.AndroidInitializerScreen"
             android:configChanges="orientation|keyboardHidden"
             android:hardwareAccelerated="true"
-            android:launchMode="singleInstance"
             android:icon="@drawable/ic_launcher"
             android:label="@string/app_name" >
              <intent-filter>
@@ -81,7 +79,6 @@
             android:name="anups.dun.app.AndroidWebScreen"
             android:configChanges="orientation|keyboardHidden"
             android:hardwareAccelerated="true"
-            android:launchMode="singleInstance"
             android:icon="@drawable/ic_launcher"
             android:label="@string/app_name" >
             <intent-filter>

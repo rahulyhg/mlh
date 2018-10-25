@@ -25,7 +25,7 @@ public class BusinessConstants {
  public static final String AUTH_USER_PROFILEPIC = "AUTH_USER_PROFILEPIC";
  public static final String AUTH_USER_TIMEZONE = "AUTH_USER_TIMEZONE";
  public static final String AUTH_USER_ISADMIN = "AUTH_USER_ISADMIN";
- 
+ public static final String AUTHENTICATION_STATUS = "AUTHENTICATION_STATUS";
  
  /* SQLITE DATABASE */
  public static final String SQLITE_LASTUPDATED_USERFRNDSCONTACTS="SQLITE_LASTUPDATED_USERFRNDSCONTACTS"; // Time

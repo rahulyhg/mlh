@@ -38,8 +38,25 @@ public class AppManagement extends ActionBarActivity {
 	}
 	
 	@JavascriptInterface
+	public String getProjectURL() {
+	  AppSessionManagement appSessionManagement = new AppSessionManagement(mContext);
+      return appSessionManagement.getAndroidSession("PROPERTY_PROJECT_URL"); 
+    }
+	
+	@JavascriptInterface
+	public String getVersionNumber() {
+	  AppSessionManagement appSessionManagement = new AppSessionManagement(mContext);
+      return appSessionManagement.getAndroidSession("PROJECT_VERSION_NUMBER"); 
+    }
+	
+	@JavascriptInterface
 	public String getDefaultPage() {
       return new URLGenerator(mContext).defaultPage();
+    }
+	
+	@JavascriptInterface
+	public String getHomePage(String projectURL) {
+      return new URLGenerator(mContext).latestNews(projectURL);
     }
 	
 	@JavascriptInterface
