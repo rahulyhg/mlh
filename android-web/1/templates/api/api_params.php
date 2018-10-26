@@ -23,7 +23,9 @@ if(!isset($_SESSION["PROJECT_MODE"])){ $_SESSION["PROJECT_MODE"]='DEBUG'; }
  var PROJECT_MODE='<?php  if(isset($_SESSION["PROJECT_MODE"])) { echo $_SESSION["PROJECT_MODE"]; } ?>';
  var PROJECT_URL='<?php  if(isset($_SESSION["PROJECT_URL"])) { echo $_SESSION["PROJECT_URL"]; } ?>';
  var PROJECT_VERSION_NUMBER = '<?php  if(isset($_SESSION["PROJECT_VERSION_NUMBER"])) { echo $_SESSION["PROJECT_VERSION_NUMBER"]; } ?>';
- AndroidSession.setAndroidSession('PROJECT_VERSION_NUMBER',PROJECT_VERSION_NUMBER);
+ if(AndroidSession!==undefined){
+  AndroidSession.setAndroidSession('PROJECT_VERSION_NUMBER',PROJECT_VERSION_NUMBER);
+ }
  /* AUTHENTICATION_STATUS - COMPLETED/INCOMPLETED */
  var AUTHENTICATION_STATUS='<?php  if(isset($_SESSION["AUTHENTICATION_STATUS"])) { echo $_SESSION["AUTHENTICATION_STATUS"]; } ?>'; 
  /* USER DATA */

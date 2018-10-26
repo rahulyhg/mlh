@@ -5,7 +5,7 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
 <html lang="en">
 <head>
  <?php include_once 'templates/api/api_js.php'; ?>
- <title>NewsFeed</title>
+ <title>MyLocalHook</title>
  <meta charset="utf-8">
  <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="shortcut icon" type="image/x-icon" href="<?php echo $_SESSION["PROJECT_URL"]; ?>images/favicon.ico"/>
@@ -27,13 +27,36 @@ if(isset($_SESSION["AUTH_USER_ID"])) {
  <script type="text/javascript" src="<?php echo $_SESSION["PROJECT_URL"]; ?>js/pages/app-user-mylocalhook-bg-styles.js"></script>
  <?php include_once 'templates/api/api_js.php'; ?>
  <?php include_once 'templates/api/api_params.php'; ?>
+<style>
+body { background-color: #f7f7f7; }
+</style>
 <script type="text/javascript">
 $(document).ready(function(){
-sideWrapperToggle();
-bgstyle(3);
-mainMenuSelection("dn_"+USR_LANG+"_mylocalhook");
-$(".lang_"+USR_LANG).css('display','block');
+ sideWrapperToggle();
+ bgstyle(3);
+ mainMenuSelection("dn_"+USR_LANG+"_mylocalhook");
+ $(".lang_"+USR_LANG).css('display','block');
+ selMenu_hookTab('tab_buddyhook_Id');
 });
+</script>
+<script type="text/javascript">
+function selMenu_hookTab(id){
+ var arry_Id=["tab_buddyhook_Id","tab_publichook_Id"];
+ var arry_content=["tab_buddyhook_content","tab_publichook_content"];
+ for(var index=0;index<arry_Id.length;index++){
+  if(arry_Id[index]===id){
+      if(!$('#'+arry_Id[index]).hasClass('custom-font')){ $('#'+arry_Id[index]).addClass('custom-font'); }
+      $('#'+arry_Id[index]).css('border-bottom','2px solid '+CURRENT_DARK_COLOR);
+	  $('#'+arry_Id[index]).css('color',CURRENT_DARK_COLOR);
+	  if($('#'+arry_content[index]).hasClass('hide-block')){ $('#'+arry_content[index]).removeClass('hide-block'); }
+  } else {
+     if($('#'+arry_Id[index]).hasClass('custom-font')){ $('#'+arry_Id[index]).removeClass('custom-font'); }
+	 $('#'+arry_Id[index]).css('border-bottom','0px ');
+	 $('#'+arry_Id[index]).css('color','#000');
+	 if(!$('#'+arry_content[index]).hasClass('hide-block')){ $('#'+arry_content[index]).addClass('hide-block'); }
+  }
+ }
+}
 </script>
 </head>
 <body>
@@ -44,9 +67,37 @@ $(".lang_"+USR_LANG).css('display','block');
 	<?php include_once 'templates/api/api_sidewrapper.php'; ?>
   </div>
   <div id="page-content-wrapper">
-	<?php include_once 'templates/api/api_header.php'; ?>
+	<?php include_once 'templates/api/api_header_hook.php'; ?>
+	<div class="list-group">
+	  <div class="list-group-item">
+	    <div class="container-fluid">
+		  <div class="row">
+		    <div align="center" class="col-xs-6">
+			   <span id="tab_buddyhook_Id" class="pad10" onclick="javascript:selMenu_hookTab(this.id);">
+			      <b>Buddy Hook</b>
+			   </span>
+			</div>
+			<div align="center" class="col-xs-6">
+			   <span id="tab_publichook_Id" class="pad10" onclick="javascript:selMenu_hookTab(this.id);">
+			      <b>Public Hook</b>
+			   </span>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</div>
 	<div id="app-page-content">
-	
+	  <div id="tab_buddyhook_content" class="container-fluid hide-block">
+	    <!--div align="center">
+		  <img src="<?php echo $_SESSION["PROJECT_URL"]; ?>images/load.gif" style="width:150px;height:150px;">
+		</div-->
+		<?php include_once 'templates/pages/app-hook-buddy.php'; ?>
+	  </div>
+	  <div id="tab_publichook_content" class="container-fluid hide-block">
+	    <div align="center">
+		  <img src="<?php echo $_SESSION["PROJECT_URL"]; ?>images/load.gif" style="width:150px;height:150px;">
+		</div>
+	  </div>
 	</div>
   </div>
 </div>
